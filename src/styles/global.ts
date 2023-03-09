@@ -1,6 +1,12 @@
-'use client'
+'use client';
 
 import { createGlobalStyle } from 'styled-components';
+import { Ubuntu } from "next/font/google"
+
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"]
+})
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -19,36 +25,36 @@ export const GlobalStyles = createGlobalStyle`
   /*========== Colors ==========*/
 
   //Color-Primary
-  --primary: #0046B5;
-  --primary-dark: #101E36;
-  --primary-light: #3A6EC1;
+  --primary: #0036C6;
+  --primary-dark: #152347;
+  --primary-light: #3E65D0;
 
   //Color-Secundary
-  --secundary: #00C899;
-  --secundary-dark: #15473C;
-  --secundary-light: #3ED0AE;
+  --secondary: #00D35E;
+  --secondary-dark: #195434;
+  --secondary-light: #42DB87;
 
   //Status-Color
-  --success: #12B76A;
-  --Danger: #F04438;
-  --Warning: #F79009;
-  --Info: #0098FF;
+  --status-success: #06D6A0;
+  --status-danger: #E62965;
+  --status-waring: #FAAE42;
+  --status-info: #039BE5;
 
   //Gray-Color
-  --gray-25: #FCFCFD;
-  --gray-50: #F9FAFB;
-  --gray-100: #F2F4F7;
-  --gray-200: #EAECF0;
-  --gray-300: #D0D5DD;
-  --gray-400: #98A2B3;
-  --gray-500: #667085;
-  --gray-600: #475467;
-  --gray-700: #344054;
-  --gray-800: #1D2939;
-  --gray-900: #101828;
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
 
-  --dark: #18191A;
-  --light: #ffffff;
+  --dark: #242526;
+  --light: #EEEEEE;
+  --white: #FFFFFF;
+  --black: #000000;
   --background-primary: #ffffff;
 
   //Others-Colors
@@ -60,6 +66,7 @@ export const GlobalStyles = createGlobalStyle`
   --Yellow: #FFD66E;
 
   //Degrade
+  --degrade-primary: linear-gradient(77.17deg, #0036C6 -0.7%, #3E65D0 93.94%);
   --degrade-green: linear-gradient(250.88deg, #93E088 0%, #73B969 97.63%);
   --degrade-purple: linear-gradient(250.88deg, #8269B2 0%, #533D80 97.63%);
   --degrade-blue: linear-gradient(250.88deg, #37C3FF 0%, #2C98C6 97.63%);
@@ -100,7 +107,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Fonts ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: 'Inter', sans-serif;
+  --body-font: ${ubuntu.style.fontFamily}, sans-serif;
 
   --text-smal-xs: 0.75rem; // 12px
   --text-smal-sm: 0.875rem; // 14px
@@ -204,4 +211,3 @@ legend {
     cursor: pointer;
   }
 `;
-

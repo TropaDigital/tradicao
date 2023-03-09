@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react'
-import * as S from "./styles"
+import React, { ReactNode } from 'react';
+import * as S from './styles';
 
 interface IDefaultInput {
-    icon?: ReactNode
-    placeholder?: string;
+  icon?: ReactNode;
+  placeholder?: string;
 }
 
 const DefaultInput = ({ icon, ...rest }: IDefaultInput) => {
@@ -14,7 +14,7 @@ const DefaultInput = ({ icon, ...rest }: IDefaultInput) => {
         <input type="text" {...rest} />
       </S.Container>
     </>
-  )
-}
+  );
+};
 
-export default DefaultInput
+export default DefaultInput;

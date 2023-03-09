@@ -1,3 +1,6 @@
+'use client'
+
+import Header from '@/components/global/Header';
 import { GlobalStyles } from '@/styles/global';
 import StyledJsxRegistry from '../registry';
 
@@ -14,9 +17,7 @@ export default function RootLayout({
   return (
     <section>
       <StyledJsxRegistry>
-        <nav>
-          Layout Painel
-        </nav>
+        <Header />
         {children}
         <GlobalStyles />
       </StyledJsxRegistry>
