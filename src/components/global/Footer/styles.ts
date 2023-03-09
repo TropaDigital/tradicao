@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100vw;
+    /* width: 100vw; */
     height: fit-content;
     background: var(--primary);    
 `
@@ -15,7 +15,6 @@ export const FooterWrapper = styled.div`
 export const TopFooter = styled.div`
     display: flex;
     justify-content: space-between;
-    max-width: 1344px;
     margin: 0 auto;
     margin-bottom: 30px;
 `
@@ -46,8 +45,7 @@ export const SocialMedia = styled.div`
 export const MidFooter = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1344px;
+    gap: 30px;    
     margin: 0 auto;
 `
 
@@ -186,7 +184,6 @@ export const Copyright = styled.div`
     align-items: center;
     justify-content: center;
     
-    width: 100vw;
     height: fit-content;
     
     background: var(--primary-light);
