@@ -4,19 +4,31 @@ import styled from "styled-components";
 export const Container = styled.div`
     /* width: 100vw; */
     height: fit-content;
-    background: var(--primary);    
+    background: var(--primary);   
+    background: linear-gradient(77deg, var(--primary) 0.7%, var(--primary-light) 93.94%); 
 `
 
 export const FooterWrapper = styled.div`
     background: linear-gradient(77deg, var(--primary) 0.7%, var(--primary-light) 93.94%);
     padding: 44px 150px 17px 150px;
+
+    @media (max-width: 450px) {
+        padding: 30px 5% 17px 5%;
+    }
 `
 
 export const TopFooter = styled.div`
     display: flex;
     justify-content: space-between;
+    max-width: 1400px;
     margin: 0 auto;
     margin-bottom: 30px;
+
+    @media (max-width: 1050px) {
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
 `
 
 export const LeftSide = styled.div`
@@ -24,6 +36,10 @@ export const LeftSide = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 33px;
+
+    @media (max-width: 1050px) {
+        flex-direction: column;
+    }
 `
 
 export const RightSide = styled.div`
@@ -33,6 +49,10 @@ export const RightSide = styled.div`
 
     .correct {
         margin-bottom: -26px;
+    }
+
+    @media (max-width: 1050px) {
+        justify-content: center;
     }
 `
 
@@ -44,14 +64,16 @@ export const SocialMedia = styled.div`
 
 export const MidFooter = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
     gap: 30px;    
-    margin: 0 auto;
+    max-width: 1400px;
+    margin: 0 auto;    
 `
 
 export const Column =styled.div`
     width: 262px;
-    height: fit-content;    
+    height: fit-content;  
+    margin: 0 auto;
 `
 
 export const TitleColumns = styled.h2`
@@ -159,6 +181,8 @@ export const GreenButton = styled.div`
 
 export const Divider = styled.div`
     border: 1px solid #456FE2;
+    max-width: 1400px;
+    margin: 0 auto;
     margin-top: 18px;
     margin-bottom: 20px;
 `
@@ -168,13 +192,17 @@ export const BottomFooter = styled.div`
     align-items: center;
     justify-content: center;
     gap: 25px;
-    max-width: 1344px;
+    max-width: 1400px;
     margin: 0 auto;
 
     .text {
         color: var(--white);
         font-size: 16px;
         font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+        flex-direction: column;
     }
 `
 
@@ -192,6 +220,8 @@ export const Copyright = styled.div`
     padding: 30px 150px;
 
     .text {
+        max-width: 1400px;
+
         font-size: 14px;
         font-weight: 400;
         color: var(--white);
@@ -201,6 +231,7 @@ export const Copyright = styled.div`
     }
 
     .developed {
+        max-width: 1400px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -210,6 +241,18 @@ export const Copyright = styled.div`
         font-weight: 400;
         color: var(--white);
         text-align: center;        
+    }
+
+    @media (max-width: 800px) {
+        .developed {
+            max-width: 80%;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        padding: 30px 10%;
     }
 `
  

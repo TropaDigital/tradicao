@@ -269,7 +269,7 @@ export default function Footer() {
                 </div>
 
                 <div className="developed">
-                    Copyright © 2020 Consórcio Tradição. All Rights Reserved. | Developed By
+                    Copyright © 2020 Consórcio Tradição. All Rights Reserved. | Developed By:
                     <Link href={'https://tropa.digital/'} target={'_blank'}>
                         <Image 
                             src={Tropa}
