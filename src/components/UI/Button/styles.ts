@@ -1,11 +1,13 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 type Props = {
-  variant?: string
-  weight?: '500' | '700'
-  radius?: 'default' | 'rounded'
-  color?: string
-}
+  variant?: string;
+  weight?: '500' | '700';
+  radius?: 'default' | 'rounded';
+  color?: string;
+  buttonWidth?: number;
+  degrade?: boolean
+};
 
 export const ButtonContainer = styled.button<Props>`
   display: flex;
@@ -14,6 +16,9 @@ export const ButtonContainer = styled.button<Props>`
   gap: 8px;
   padding: 14px;
   cursor: pointer;
+  width: 100%;
+  max-width: ${({ buttonWidth }) =>
+    buttonWidth ? `${buttonWidth}px` : 'fit-content'};
 
   font-weight: ${({ weight = '700' }) => weight};
   border-radius: ${({ radius = 'default' }) =>
@@ -24,6 +29,7 @@ export const ButtonContainer = styled.button<Props>`
     variant &&
     css`
       background-color: ${color && variant === 'default' && `var(--${color})`};
+      background: ${color && variant === "default" && `var(--degrade-primary)`};
       background-color: ${variant === 'outline' && 'transparent'};
 
       border-width: 1px;
@@ -41,4 +47,4 @@ export const ButtonContainer = styled.button<Props>`
         }
       }
     `}
-`
+`;

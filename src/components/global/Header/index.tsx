@@ -5,17 +5,17 @@ import {
   PhoneIcon,
   SuitCaseIcon,
   UniversityIcon
-} from '@/assets/icons'
-import Button from '@/components/UI/Button'
-import { useOutsideAlerter } from '@/utils/useOutsideAlerter'
-import Link from 'next/link'
-import { useRef, useState } from 'react'
-import * as S from './styles'
+} from '@/assets/icons';
+import Button from '@/components/UI/Button';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import Link from 'next/link';
+import { useRef, useState } from 'react';
+import * as S from './styles';
 
 const Header = () => {
-  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false)
-  const [oldScroll, setOldScroll] = useState<any>()
-  const [showHeader, setShowHeader] = useState<boolean>(false)
+  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
+  const [oldScroll, setOldScroll] = useState<any>();
+  const [showHeader, setShowHeader] = useState<boolean>(false);
 
   const mainPages = [
     'Início',
@@ -25,50 +25,67 @@ const Header = () => {
     'Unidades',
     'Contato',
     'Área do Cliente'
-  ]
+  ];
 
-  const wrapperRef = useRef(null)
-  useOutsideAlerter(wrapperRef, setIsMobileOpen)
+  const infoLinks = [
+    {
+      icon: <PhoneIcon />,
+      link: 'tel: 40035090',
+      text: 'Televendas: 4003-5090'
+    },
+    {
+      icon: <JornalIcon />,
+      link: '/',
+      text: 'Blog'
+    },
+    {
+      icon: <UniversityIcon />,
+      link: '/',
+      text: 'Universidade'
+    },
+    {
+      icon: <SuitCaseIcon />,
+      link: '/',
+      text: 'Área do Representante'
+    }
+  ];
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, setIsMobileOpen);
 
   window.onscroll = function (e) {
-    setOldScroll(window.scrollY)
+    setOldScroll(window.scrollY);
     if (oldScroll > window.scrollY) {
-      setShowHeader(false)
+      setShowHeader(false);
     } else {
       if (window?.scrollY > 300) {
-        setShowHeader(true)
+        setShowHeader(true);
       }
     }
-  }
+  };
 
   return (
     <>
       <S.InfoContainer showHeader={showHeader}>
         <ul>
-          <li className="televendas">
-            <Link href="/">
-              <PhoneIcon />
-              Televendas: 4003-5090
-            </Link>
-          </li>
-          <li className="blog">
-            <Link href="/">
-              <JornalIcon />
-              Blog
-            </Link>
-          </li>
-          <li className="universidade">
-            <Link href="/">
-              <UniversityIcon />
-              Universidade
-            </Link>
-          </li>
-          <li className="area-do-representante">
-            <Link href="/">
-              <SuitCaseIcon />
-              Área do Representante
-            </Link>
-          </li>
+          {infoLinks.map((info) => {
+            return (
+              <li
+                className={info.text
+                  .trim()
+                  .replaceAll(' ', '-')
+                  .replace(/[0-9]/g, '')
+                  .toLowerCase()
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')}
+              >
+                <Link href={info.link}>
+                  {info.icon}
+                  {info.text}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <S.BoletoButton href="/">2ª via de boleto</S.BoletoButton>
           </li>
@@ -93,7 +110,7 @@ const Header = () => {
 
         <S.HeaderNav>
           <ul>
-            {mainPages.map(page => {
+            {mainPages.map((page) => {
               return (
                 <>
                   {page !== 'Área do Cliente' ? (
@@ -105,7 +122,7 @@ const Header = () => {
                   ) : (
                     <li>
                       <Button
-                        radius='rounded'
+                        radius="rounded"
                         icon={<PersonIcon color={'var(--white)'} />}
                         key={page}
                       >
@@ -114,13 +131,13 @@ const Header = () => {
                     </li>
                   )}
                 </>
-              )
+              );
             })}
           </ul>
         </S.HeaderNav>
       </S.HeaderContainer>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
