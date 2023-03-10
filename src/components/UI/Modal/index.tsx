@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import * as S from './styles'
 
-interface IModal extends React.Component {
+interface IModal {
   isOpen: boolean
   children: ReactNode;
 }
