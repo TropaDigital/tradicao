@@ -35,11 +35,11 @@ import {
 } from "./styles";
 
 // Images
-import WizImage from '@/assets/images/ImageWiz.svg';
-import ReclameLogo from '@/assets/images/ReclameAqui.svg';
-import NoFrontiers from '@/assets/images/NoFrontiers.svg';
-import AyrtonSenna from '@/assets/images/AyrtonSenna.svg';
-import Tropa from '@/assets/images/TropaLogo.svg';
+import WizImage from '../../../../public/images/ImageWiz.svg';
+import ReclameLogo from '../../../../public/images/ReclameAqui.svg';
+import NoFrontiers from '../../../../public/images/NoFrontiers.svg';
+import AyrtonSenna from '../../../../public/images/AyrtonSenna.svg';
+import Tropa from '../../../../public/images/TropaLogo.svg';
 
 
 export default function Footer() {
