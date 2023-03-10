@@ -11,13 +11,12 @@ import Button from '@/components/UI/Button';
 import Modal from '@/components/UI/Modal';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
-  const [oldScroll, setOldScroll] = useState<any>();
   const [showHeader, setShowHeader] = useState<boolean>(false);
   const [isSubMenuTradicaoOpen, setIsSubMenuTradicaoOpen] =
     useState<boolean>(false);
@@ -117,17 +116,6 @@ const Header = () => {
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
   useOutsideAlerter(wrapperRef, setIsSubMenuTradicaoOpen);
 
-  window.onscroll = function (e) {
-    setOldScroll(window.scrollY);
-    if (oldScroll > window.scrollY) {
-      setShowHeader(false);
-    } else {
-      if (window?.scrollY > 300) {
-        setShowHeader(true);
-      }
-    }
-  };
-
   return (
     <>
       <S.InfoContainer showHeader={showHeader}>
@@ -162,16 +150,16 @@ const Header = () => {
           <DefaultLogo width={262} height={77} />
         </div>
 
-
-          {/* TODO: fix wrapperRef mobileMenu */}
+        {/* TODO: fix wrapperRef mobileMenu */}
         <div
           className="menu-container"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          
         >
           <S.MenuHamburgerContainer
             isOpen={isMobileOpen}
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
           ></S.MenuHamburgerContainer>
-          <S.MobileMenuModal isOpen={isMobileOpen}>
+          <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
             {mainPages.map((page) => {
               return (
                 <>
@@ -180,15 +168,15 @@ const Header = () => {
                     key={page.title}
                     className="mobile-option"
                     onClick={() => {
-                      if(page.title === "A Tradição") {
-                        setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
-                      }else if(page.title === "O Consórcio") {
-                        setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen)
+                      if (page.title === 'A Tradição') {
+                        setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
+                      } else if (page.title === 'O Consórcio') {
+                        setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
                       }
                     }}
                   >
                     {page.title}
-                    <span>{page.subOptions && <ChevronIcon />}</span>
+                    <span className="chevron-icon">{page.subOptions && <ChevronIcon />}</span>
                   </Link>
 
                   {page.subOptions && (
@@ -200,7 +188,7 @@ const Header = () => {
                       }
                     >
                       {page.subOptions?.map((subOption) => (
-                        <Link href={subOption.path}>{subOption.subTitle}</Link>
+                        <Link href={subOption.path} className="sub-submobile-option">{subOption.subTitle}</Link>
                       ))}
                     </S.SubMobileMenu>
                   )}
@@ -246,7 +234,6 @@ const Header = () => {
                             ? isSubMenuTradicaoOpen
                             : isSubMenuConsorcioOpen
                         }
-                        wrapperRef={wrapperRef}
                       >
                         {page.subOptions.map((subOption) => (
                           <Link href={subOption.path} key={subOption.subTitle}>

@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
 import { GlobalStyles } from '@/styles/global';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import StyledJsxRegistry from './registry';
+import NextNProgress from 'nextjs-progressbar';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,12 +15,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   return (
     <html lang="pt-BR">
       <body>
+        <NextNProgress
+          color="var(--primary-light)"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={10}
+          showOnShallow={true}
+        />
         <QueryClientProvider client={queryClient}>
           <StyledJsxRegistry>
             {children}

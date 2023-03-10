@@ -1,15 +1,14 @@
 import React, { ReactNode } from 'react'
 import * as S from './styles'
 
-interface IModal {
+interface IModal extends React.Component {
   isOpen: boolean
   children: ReactNode;
-  wrapperRef?: any
 }
 
-const Modal = ({ children, isOpen, wrapperRef, ...rest }: IModal) => {
+const Modal = ({ children, isOpen, ...rest }: IModal) => {
   return (
-    <S.Container isOpen={isOpen} {...rest} ref={wrapperRef}>
+    <S.Container isOpen={isOpen} {...rest}>
       {children}
     </S.Container>
   )

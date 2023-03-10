@@ -69,7 +69,7 @@ const WorkWithUsPage = () => {
               validationSchema={curriulumFormSchema}
               onSubmit={(values, errors) => {
                 console.log(values);
-                console.log(errors);
+                // TODO: Integração com banco de dados
               }}
             >
               {({ values, errors, handleSubmit, handleChange }) => (
@@ -119,6 +119,7 @@ const WorkWithUsPage = () => {
               validationSchema={representanteFormSchema}
               onSubmit={(values) => {
                 console.log(values);
+                // TODO: Integração com banco de dados
               }}
             >
               {({ handleChange, errors, values, handleSubmit }) => (
