@@ -9,7 +9,7 @@ export default function HeaderSkew({
   children
 }: IHeroSkew) {
   return (
-    <S.Container>
+    <S.Container >
       <S.BackgroundSection />
       <div className="skewImageWrapper">
         <SkewImage
