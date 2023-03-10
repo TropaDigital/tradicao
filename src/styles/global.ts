@@ -58,6 +58,7 @@ export const GlobalStyles = createGlobalStyle`
   --white: #FFFFFF;
   --black: #000000;
   --background-primary: #ffffff;
+  --background-secondary: #F6F7FB;
 
   //Others-Colors
   --Purple: #8269B2;
