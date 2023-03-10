@@ -3,19 +3,19 @@ import Button from '@/components/UI/Button';
 import * as S from './styles';
 import { IHeroSkew } from './types';
 
-export default function HeroSkew({
+export default function HeaderSkew({
   altBackgroundImage,
   backgroundImage,
   children
 }: IHeroSkew) {
   return (
-    <S.Container>
+    <S.Container >
       <S.BackgroundSection />
       <div className="skewImageWrapper">
         <SkewImage
           alt={altBackgroundImage}
           src={backgroundImage}
-          imageHeigth={434}
+          imageHeigth={234}
         />
       </div>
       <span className="chidrenWrapper">

@@ -18,6 +18,8 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
 }
 
+
+
 :root {
   /*SCROLLBAR */
   --scrollbar-size: 10px;

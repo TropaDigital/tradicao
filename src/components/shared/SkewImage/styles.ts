@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  transform: skew(-18deg);
-  border-radius: 60px;
+  width: fit-content;
+  max-width: 80%;
+  border-radius: 0 20px 20px 0;
   overflow: hidden;
   position: absolute;
-  left: -345px;
-
+  left: 0;
+  margin-left: -55px;
+  transform: skewX(-20deg);
+  
   .imageWrapper {
-    transform: skew(18deg);
-    position: absolute;
-    right: -55px;
+    position: relative;
+    margin-right: -40px;
+    transform: skewX(20deg);    
+    width: fit-content;    
+    left: 0;
     scale: 1.1;
+    img{
+      object-fit: cover;
+    }
   }
 `;
