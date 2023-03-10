@@ -1,4 +1,5 @@
 import {
+  ChevronIcon,
   DefaultLogo,
   JornalIcon,
   PersonIcon,
@@ -7,27 +8,88 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
+import Modal from '@/components/UI/Modal';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import * as S from './styles';
+import { IHeaderOptions, IInfoOptions } from './types';
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
   const [oldScroll, setOldScroll] = useState<any>();
   const [showHeader, setShowHeader] = useState<boolean>(false);
+  const [isSubMenuTradicaoOpen, setIsSubMenuTradicaoOpen] =
+    useState<boolean>(false);
+  const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
+    useState<boolean>(false);
 
-  const mainPages = [
-    'Início',
-    'A Tradição',
-    'O Consórcio',
-    'Trabalhe Conosco',
-    'Unidades',
-    'Contato',
-    'Área do Cliente'
+  const mainPages: IHeaderOptions[] = [
+    {
+      title: 'Início',
+      path: '/'
+    },
+    {
+      title: 'A Tradição',
+      subOptions: [
+        {
+          subTitle: 'Quem somos',
+          path: '/quem-somos'
+        },
+        {
+          subTitle: 'Demonstrações Financeiras',
+          path: '/demonstracoes-financeiras'
+        },
+        {
+          subTitle: 'Compliance',
+          path: '/compliance'
+        },
+        {
+          subTitle: 'Atendimento',
+          path: '/atendimento'
+        }
+      ]
+    },
+    {
+      title: 'O Consórcio',
+      subOptions: [
+        {
+          subTitle: 'Automóveis',
+          path: '/automoveis'
+        },
+        {
+          subTitle: 'Imóveis',
+          path: '/imoveis'
+        },
+        {
+          subTitle: 'Pesados',
+          path: '/pesados'
+        },
+        {
+          subTitle: 'Regulamento',
+          path: '/regulamento'
+        }
+      ]
+    },
+    {
+      title: 'Trabalhe Conosco',
+      path: '/trabalhe-conosco'
+    },
+    {
+      title: 'Unidades',
+      path: '/unidades'
+    },
+    {
+      title: 'Contato',
+      path: '/contato'
+    },
+    {
+      title: 'Área do Cliente',
+      path: '/'
+    }
   ];
 
-  const infoLinks = [
+  const infoLinks: IInfoOptions[] = [
     {
       icon: <PhoneIcon />,
       link: 'tel: 40035090',
@@ -52,6 +114,8 @@ const Header = () => {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
+  useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
+  useOutsideAlerter(wrapperRef, setIsSubMenuTradicaoOpen);
 
   window.onscroll = function (e) {
     setOldScroll(window.scrollY);
@@ -78,6 +142,7 @@ const Header = () => {
                   .toLowerCase()
                   .normalize('NFD')
                   .replace(/[\u0300-\u036f]/g, '')}
+                key={info.text}
               >
                 <Link href={info.link}>
                   {info.icon}
@@ -97,37 +162,108 @@ const Header = () => {
           <DefaultLogo width={262} height={77} />
         </div>
 
+
+          {/* TODO: fix wrapperRef mobileMenu */}
         <div
           className="menu-container"
-          ref={wrapperRef}
           onClick={() => setIsMobileOpen(!isMobileOpen)}
         >
           <S.MenuHamburgerContainer
             isOpen={isMobileOpen}
           ></S.MenuHamburgerContainer>
-          <S.MobileMenuModal options={mainPages} isOpen={isMobileOpen} />
-        </div>
-
-        <S.HeaderNav>
-          <ul>
+          <S.MobileMenuModal isOpen={isMobileOpen}>
             {mainPages.map((page) => {
               return (
                 <>
-                  {page !== 'Área do Cliente' ? (
-                    <li>
-                      <Link href="/" key={page}>
-                        {page}
-                      </Link>
-                    </li>
-                  ) : (
+                  <Link
+                    href={page.path ? page.path : ''}
+                    key={page.title}
+                    className="mobile-option"
+                    onClick={() => {
+                      if(page.title === "A Tradição") {
+                        setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
+                      }else if(page.title === "O Consórcio") {
+                        setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen)
+                      }
+                    }}
+                  >
+                    {page.title}
+                    <span>{page.subOptions && <ChevronIcon />}</span>
+                  </Link>
+
+                  {page.subOptions && (
+                    <S.SubMobileMenu
+                      isOpen={
+                        page.title === 'A Tradição'
+                          ? isSubMenuTradicaoOpen
+                          : isSubMenuConsorcioOpen
+                      }
+                    >
+                      {page.subOptions?.map((subOption) => (
+                        <Link href={subOption.path}>{subOption.subTitle}</Link>
+                      ))}
+                    </S.SubMobileMenu>
+                  )}
+                </>
+              );
+            })}
+          </S.MobileMenuModal>
+        </div>
+
+        <S.HeaderNav>
+          <ul className="header-options">
+            {mainPages.map((page) => {
+              return (
+                <>
+                  {page.title === 'Área do Cliente' ? (
                     <li>
                       <Button
                         radius="rounded"
                         icon={<PersonIcon color={'var(--white)'} />}
-                        key={page}
+                        key={page.title}
                       >
                         Área do Cliente
                       </Button>
+                    </li>
+                  ) : page.subOptions ? (
+                    <li className="submenu-options">
+                      <div
+                        className="option-title"
+                        onClick={() => {
+                          page.title === 'A Tradição'
+                            ? setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
+                            : setIsSubMenuConsorcioOpen(
+                                !isSubMenuConsorcioOpen
+                              );
+                        }}
+                      >
+                        {page.title}
+                      </div>
+
+                      <S.SubMenuOptions
+                        isOpen={
+                          page.title === 'A Tradição'
+                            ? isSubMenuTradicaoOpen
+                            : isSubMenuConsorcioOpen
+                        }
+                        wrapperRef={wrapperRef}
+                      >
+                        {page.subOptions.map((subOption) => (
+                          <Link href={subOption.path} key={subOption.subTitle}>
+                            {subOption.subTitle}
+                          </Link>
+                        ))}
+                      </S.SubMenuOptions>
+                    </li>
+                  ) : (
+                    <li>
+                      <Link
+                        href={page.path ? page?.path : '/'}
+                        key={page.path}
+                        className="option-title"
+                      >
+                        {page.title}
+                      </Link>
                     </li>
                   )}
                 </>
