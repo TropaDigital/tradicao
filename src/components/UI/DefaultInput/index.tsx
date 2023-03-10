@@ -5,7 +5,7 @@ interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
   placeholder?: string;
   label?: string;
-  error?: string | string[];
+  error?: string | false;
 }
 
 const DefaultInput = ({ icon, label, error, ...rest }: IDefaultInput) => {

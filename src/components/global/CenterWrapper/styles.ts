@@ -10,6 +10,6 @@ justify-content: center;
     padding: 0px 20px;
 }
 
-  .content {
+.content {
     width: clamp(300px, 100%, 1140px);
-}
+}`

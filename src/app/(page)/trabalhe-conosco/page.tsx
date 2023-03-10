@@ -72,7 +72,7 @@ const WorkWithUsPage = () => {
                 // TODO: Integração com banco de dados
               }}
             >
-              {({ values, errors, handleSubmit, handleChange }) => (
+              {({ values, errors, handleSubmit, handleChange, touched }) => (
                 <Form onSubmit={handleSubmit} className="work-form">
                   <MainTitle
                     title="Cadastre seu currículo"
@@ -84,7 +84,7 @@ const WorkWithUsPage = () => {
                     value={values.fullName}
                     onChange={handleChange}
                     label="Nome Completo"
-                    error={errors.fullName}
+                    error={touched.fullName && errors.fullName}
                   />
                   <DefaultInput
                     name="role"
@@ -92,14 +92,14 @@ const WorkWithUsPage = () => {
                     value={values.role}
                     onChange={handleChange}
                     label="Vaga"
-                    error={errors.role}
+                    error={touched.role && errors.role}
                   />
                   <UploadFile
                     name="curriculum"
                     value={values.curriulum}
                     onChange={handleChange}
                     label="Anexar currículo"
-                    error={errors.curriulum}
+                    error={touched.curriulum && errors.curriulum}
                   />
                   <Button weight={500} type="submit">
                     Enviar
@@ -122,7 +122,7 @@ const WorkWithUsPage = () => {
                 // TODO: Integração com banco de dados
               }}
             >
-              {({ handleChange, errors, values, handleSubmit }) => (
+              {({ handleChange, errors, values, handleSubmit, touched }) => (
                 <Form onSubmit={handleSubmit} className="work-form">
                   <MainTitle
                     title="Seja um Representante"
@@ -134,7 +134,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.fullName}
                     label="Nome Completo"
-                    error={errors.fullName}
+                    error={touched.fullName && errors.fullName}
                   />
                   <DefaultInput
                     placeholder="CNPJ"
@@ -144,7 +144,7 @@ const WorkWithUsPage = () => {
                     }
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
-                    error={errors.cnpj}
+                    error={touched.cnpj && errors.cnpj}
                   />
                   <DefaultInput
                     placeholder="Contato"
@@ -152,7 +152,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.contact}
                     label="Contato"
-                    error={errors.contact}
+                    error={touched.contact && errors.contact}
                   />
                   <Button type="submit">Enviar</Button>
                 </Form>
