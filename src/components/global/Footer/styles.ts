@@ -20,7 +20,7 @@ export const FooterWrapper = styled.div`
 export const TopFooter = styled.div`
     display: flex;
     justify-content: space-between;
-    max-width: 1400px;
+    max-width: 1140px;
     margin: 0 auto;
     margin-bottom: 30px;
 
@@ -66,7 +66,7 @@ export const MidFooter = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
     gap: 30px;    
-    max-width: 1400px;
+    max-width: 1140px;
     margin: 0 auto;    
 `
 
@@ -181,7 +181,7 @@ export const GreenButton = styled.div`
 
 export const Divider = styled.div`
     border: 1px solid #456FE2;
-    max-width: 1400px;
+    max-width: 1140px;
     margin: 0 auto;
     margin-top: 18px;
     margin-bottom: 20px;
@@ -192,7 +192,7 @@ export const BottomFooter = styled.div`
     align-items: center;
     justify-content: center;
     gap: 25px;
-    max-width: 1400px;
+    max-width: 1140px;
     margin: 0 auto;
 
     .text {
@@ -220,7 +220,7 @@ export const Copyright = styled.div`
     padding: 30px 150px;
 
     .text {
-        max-width: 1400px;
+        max-width: 1140px;
 
         font-size: 14px;
         font-weight: 400;
@@ -231,7 +231,7 @@ export const Copyright = styled.div`
     }
 
     .developed {
-        max-width: 1400px;
+        max-width: 1140px;
         display: flex;
         align-items: center;
         justify-content: center;
