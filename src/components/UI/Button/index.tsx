@@ -1,15 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { ButtonContainer } from './styles';
 
-interface IDefaultButton {
+interface IDefaultButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: 'default' | 'outline';
   radius?: 'default' | 'rounded';
-  weight?: '500' | '700';
+  weight?: 500 | 700;
   color?: 'primary' | 'secondary' | string;
   icon?: ReactNode;
   degrade?: boolean;
-  buttonWidth?: number;
 }
 
 const Button = ({
@@ -17,9 +16,8 @@ const Button = ({
   variant,
   icon,
   radius,
-  weight,
+  weight = 700,
   color,
-  buttonWidth,
   degrade,
   ...rest
 }: IDefaultButton) => {
@@ -31,7 +29,6 @@ const Button = ({
         radius={radius}
         weight={weight}
         color={color}
-        buttonWidth={buttonWidth}
         degrade={degrade}
       >
         {icon && icon}

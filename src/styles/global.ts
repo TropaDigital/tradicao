@@ -69,6 +69,7 @@ export const GlobalStyles = createGlobalStyle`
 
   //Degrade
   --degrade-primary: linear-gradient(77.17deg, #0036C6 -0.7%, #3E65D0 93.94%);
+  --degrade-secondary: linear-gradient(77.17deg, #00D35E -0.7%, #42DB87 93.94%);
   --degrade-green: linear-gradient(250.88deg, #93E088 0%, #73B969 97.63%);
   --degrade-purple: linear-gradient(250.88deg, #8269B2 0%, #533D80 97.63%);
   --degrade-blue: linear-gradient(250.88deg, #37C3FF 0%, #2C98C6 97.63%);

@@ -8,7 +8,6 @@ justify-content: center;
 
 .content{
     width: clamp(300px, 100%, 1140px);
-    background-color: red;
 }
 
 `

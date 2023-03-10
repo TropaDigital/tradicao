@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section style={{ height: "200vh" }}>
+    <section>
       <StyledJsxRegistry>
         <Header />
         {children}

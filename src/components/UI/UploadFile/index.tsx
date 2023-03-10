@@ -1,16 +1,25 @@
-import React from 'react'
-import { Container } from './styles'
+import React from 'react';
+import * as S from "./styles"
 
-const UploadFile = () => {
-  return (
-    <Container>
-      <label>
-        <p>Selecione o arquivo</p>
-        <input type="file" />
-        <button>Buscar</button>
-      </label>
-    </Container>
-  )
+interface IUploadFile extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string | string[];
 }
 
-export default UploadFile
+const UploadFile = ({ label, error, ...rest }: IUploadFile) => {
+  return (
+    <S.Container>
+      {label && <label className='input-label'>{label}</label>}
+      <S.InputWrapper>
+        <label>
+          <p>Selecione o arquivo</p>
+          <input type="file" {...rest} />
+          <button>Buscar</button>
+        </label>
+      </S.InputWrapper>
+      {error && <span className='validation-error'>{error}</span>}
+    </S.Container>
+  );
+};
+
+export default UploadFile;
