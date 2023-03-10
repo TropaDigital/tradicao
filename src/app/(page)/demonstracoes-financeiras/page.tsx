@@ -7,6 +7,7 @@ import { useGetAllDemonstrations } from '@/services/demosntracoes/GET';
 import * as S from './styles';
 import GraphicDemonstrations from "../../../../public/images/demonstracoes_bg.png"
 import SkewContainer from '@/components/shared/SkewContainer';
+import CenterWrapper from '@/components/global/CenterWrapper';
 
 const DemonstracoesPage = () => {
   const { allDemonstrations } = useGetAllDemonstrations();
@@ -22,7 +23,7 @@ const DemonstracoesPage = () => {
           subtitle="Escolha abaixo o demonstrativo desejado"
         />
 
-        <S.DemonstrationsListContainer>
+        <CenterWrapper>
           <ul>
             {allDemonstrations?.map((demo) => {
               return (
@@ -34,7 +35,7 @@ const DemonstracoesPage = () => {
               );
             })}
           </ul>
-        </S.DemonstrationsListContainer>
+        </CenterWrapper>
       </S.Container>
     </>
   );
