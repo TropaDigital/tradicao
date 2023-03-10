@@ -1,15 +1,22 @@
+'use client';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
 import { Container } from './styles';
 
 const inter = Inter({ subsets: ['latin'] });
 
+import contato_bg from '../../../../public/images/contato_bg.png';
+import HeaderSkew from '@/components/shared/HeaderSkew';
+import CenterWrapper from '@/components/global/CenterWrapper';
+
 export default function Contato() {
   return (
     <Container>
-      <Link href="/">Home</Link>
-
-      <span>Hello Contato</span>
+      <HeaderSkew
+      altBackgroundImage='imagem de fundo'
+      backgroundImage={contato_bg}/>
+      <CenterWrapper>
+        <p>teste</p>
+      </CenterWrapper>
     </Container>
   );
 }

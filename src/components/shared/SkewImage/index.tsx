@@ -1,25 +1,25 @@
+'use client'
+
 import Image from 'next/image'
 import * as S from './styles'
 
 interface ISkewImage {
   src: string | any
   alt: string
+  imageHeigth: number
 }
 
-const SkewImage = ({ src, alt }: ISkewImage) => {
+export default function skewImage({ src, alt, imageHeigth }: ISkewImage) {
+
   return (
-    <S.Container>
-      <div>
+    <S.Container style={{height:imageHeigth}}>
+      <div className='imageWrapper'>
         <Image
           src={src}
-          // placeholder="blur"
           alt={alt}
-          width={1200}
-          height={400}
         />
       </div>
     </S.Container>
   )
 }
 
-export default SkewImage
