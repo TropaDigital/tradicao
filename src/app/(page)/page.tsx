@@ -1,8 +1,7 @@
 'use client';
-
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
-import HeaderSkew from '@/components/shared/SkewImage/HeaderSkew';
+import HeaderSkew from '@/components/shared/HeaderSkew';
 import Steps from '@/components/Steps';
 import { useSteps } from '@/hooks/useSteps';
 import React, { useCallback, useState } from 'react';
