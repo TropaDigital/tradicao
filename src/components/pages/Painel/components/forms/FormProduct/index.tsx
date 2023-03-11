@@ -5,7 +5,7 @@ import Inputdefault from "../../inputs/InputDefault";
 import InputDescription from "../../inputs/InputDescription";
 import InputImage from "../../inputs/InputImage";
 import InputQuantity from "../../inputs/InputQuantity";
-import InputSelect from "../../inputs/InputSelect";
+import { SelectDefault } from "../../inputs/SelectDefault";
 import * as S from "../styles";
 import { IActualItemProduct, IInitialValuesProduct } from "./types";
 import { Formik, Form } from "formik";
@@ -196,16 +196,20 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 </div>
 
                 <div className="lineElementsWrapper">
-                  <InputSelect
+                  <SelectDefault
                     label="Estoque"
-                    options={["Em estoque", "Fora de estoque"]}
                     value={values.estoque}
-                  />
-                  <InputSelect
+                  >
+                    <option value="Em estoque">Em estoque</option>
+                    <option value="Fora de estoque">Fora de estoque</option>
+                  </SelectDefault>
+                  <SelectDefault
                     label="Status"
-                    options={["Ativo", "Inativo"]}
                     value={values.status}
-                  />
+                  >
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                  </SelectDefault>
                 </div>
 
                 <div className="lineElementsWrapper buttonsWrapper">

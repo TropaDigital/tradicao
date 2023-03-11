@@ -877,7 +877,7 @@ export const PhoneIcon = ({ size = 14 }) => {
   )
 }
 
-export const JornalIcon = ({ size = 14 }) => {
+export const JornalIcon = ({ size = 14, color = "white" }) => {
   return (
     <svg
       width={size}
@@ -888,7 +888,7 @@ export const JornalIcon = ({ size = 14 }) => {
     >
       <path
         d="M0 0V14H14V0H0ZM11.6667 11.6667H2.33333V10.8889H11.6667V11.6667ZM11.6667 10.1111H2.33333V9.33333H11.6667V10.1111ZM11.6667 7H2.33333V2.33333H11.6667V7Z"
-        fill="white"
+        fill={color}
       />
     </svg>
   )

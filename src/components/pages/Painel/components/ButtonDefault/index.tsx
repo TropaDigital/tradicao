@@ -12,7 +12,7 @@ export default function ButtonDefault({
   ...rest
 }: IPropsButton) {
   return (
-    <Button {...rest} color={color}>
+    <Button {...rest} color={color} >
       {children}
     </Button>
   );

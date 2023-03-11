@@ -107,7 +107,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Fonts ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: ${ubuntu.style.fontFamily}, sans-serif;
+  --body-font: 'Ubuntu', sans-serif;
 
   --text-smal-xs: 0.75rem; // 12px
   --text-smal-sm: 0.875rem; // 14px
@@ -179,7 +179,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 fieldset {
-  margin-top: 12px;
+  margin-top: 20px;
   min-inline-size: auto;
   border: 0;
 }
@@ -189,11 +189,12 @@ legend {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-
+  margin-bottom: 10px;
+  
   font-size: var(--text-smal-sm);
-  font-weight: var(--weight-medium);
-  color: var(--gray-700);
+  font-weight: var(--weight-bold);
+  text-align: center;
+  color: #0036C6;
 }
 
  // font-size: 16px (desktop)
@@ -210,4 +211,53 @@ legend {
   button {
     cursor: pointer;
   }
+
+// RANGE
+  .SliderRoot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    touch-action: none;
+    width: 100%;
+    height: 20px;
+  }
+
+  .SliderRoot:hover {
+    /* background-color: #3E65D0; */
+    cursor: pointer;
+  }
+
+  .SliderTrack {
+    background-color: #D9D9D9;
+    position: relative;
+    flex-grow: 1;
+    border-radius: 9999px;
+    height: 4px;
+  }
+
+  .SliderRange {
+    position: absolute;
+    background-color: #D9D9D9;
+    border-radius: 9999px;
+    height: 100%;
+  }
+
+  .SliderThumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px #343A40;
+    border-radius: 10px;
+  }
+  .SliderThumb:hover {
+    background-color: #3E65D0;
+  }
+  .SliderThumb:focus {
+    outline: none;
+    /* box-shadow: 0 0 0 5px transparent; */
+    box-shadow: 0 2px 10px #343A40;
+  }
+
 `;
