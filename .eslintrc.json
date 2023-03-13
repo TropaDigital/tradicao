@@ -21,7 +21,12 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "@typescript-eslint", "react-hooks", "eslint-plugin-import-helpers"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "eslint-plugin-import-helpers"
+  ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -30,18 +35,19 @@
     "prettier/prettier": "error",
     "import-helpers/order-imports": [
       "warn",
-      { // example configuration
-          "newlinesBetween": "always",
-          "groups": [
-            ["/^react/", "/^next", "/@next"],
-              "/components",
-              "module",
-              "/^@shared/",
-              "/absolute",
-              ["parent", "sibling", "index"]
-          ],
-          "alphabetize": { "order": "asc", "ignoreCase": true }
+      {
+        // example configuration
+        "newlinesBetween": "always",
+        "groups": [
+          ["/^react/", "/^next", "/@next"],
+          "/components",
+          "module",
+          "/^@shared/",
+          "/absolute",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
       }
-  ]
+    ]
   }
 }

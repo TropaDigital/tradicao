@@ -15,9 +15,12 @@ export default function RootLayout({
     <section>
       <StyledJsxRegistry>
         <nav>
-          Layout Painel
+          Layout SITE
         </nav>
         {children}
+        <footer>
+
+        </footer>
         <GlobalStyles />
       </StyledJsxRegistry>
     </section>
