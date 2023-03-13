@@ -18,6 +18,8 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
 }
 
+
+
 :root {
   /*SCROLLBAR */
   --scrollbar-size: 10px;
@@ -56,6 +58,7 @@ export const GlobalStyles = createGlobalStyle`
   --white: #FFFFFF;
   --black: #000000;
   --background-primary: #ffffff;
+  --background-secondary: #F6F7FB;
 
   //Others-Colors
   --Purple: #8269B2;
@@ -67,6 +70,7 @@ export const GlobalStyles = createGlobalStyle`
 
   //Degrade
   --degrade-primary: linear-gradient(77.17deg, #0036C6 -0.7%, #3E65D0 93.94%);
+  --degrade-secondary: linear-gradient(77.17deg, #00D35E -0.7%, #42DB87 93.94%);
   --degrade-green: linear-gradient(250.88deg, #93E088 0%, #73B969 97.63%);
   --degrade-purple: linear-gradient(250.88deg, #8269B2 0%, #533D80 97.63%);
   --degrade-blue: linear-gradient(250.88deg, #37C3FF 0%, #2C98C6 97.63%);
@@ -107,7 +111,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Fonts ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: ${ubuntu.style.fontFamily}, sans-serif;
+  --body-font: 'Ubuntu', sans-serif;
 
   --text-smal-xs: 0.75rem; // 12px
   --text-smal-sm: 0.875rem; // 14px
@@ -117,6 +121,7 @@ export const GlobalStyles = createGlobalStyle`
   --text-headline-sm: 1.5rem; // 24px
   --text-headline-md: 1.875rem; // 30px
   --text-headline-lg: 2.25rem; // 36px
+  --text-headline-lgx: 2.5rem; // 40px
   --text-display-sm: 3rem; // 48px
   --text-display-md: 3.75rem; // 60px
   --text-display-lg: 4.5rem; // 72px
@@ -178,8 +183,13 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+strong {
+  font-weight: var(--weight-bold);
+  /* color: var(--gray-600); */
+}
+
 fieldset {
-  margin-top: 12px;
+  margin-top: 1rem;
   min-inline-size: auto;
   border: 0;
 }
@@ -189,11 +199,12 @@ legend {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-
+  margin-bottom: 10px;
+  
   font-size: var(--text-smal-sm);
-  font-weight: var(--weight-medium);
-  color: var(--gray-700);
+  font-weight: var(--weight-bold);
+  text-align: center;
+  color: #0036C6;
 }
 
  // font-size: 16px (desktop)
@@ -210,4 +221,53 @@ legend {
   button {
     cursor: pointer;
   }
+
+// RANGE
+  .SliderRoot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    touch-action: none;
+    width: 100%;
+    height: 20px;
+  }
+
+  .SliderRoot:hover {
+    /* background-color: #3E65D0; */
+    cursor: pointer;
+  }
+
+  .SliderTrack {
+    background-color: #D9D9D9;
+    position: relative;
+    flex-grow: 1;
+    border-radius: 9999px;
+    height: 4px;
+  }
+
+  .SliderRange {
+    position: absolute;
+    background-color: #D9D9D9;
+    border-radius: 9999px;
+    height: 100%;
+  }
+
+  .SliderThumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px #343A40;
+    border-radius: 10px;
+  }
+  .SliderThumb:hover {
+    background-color: #3E65D0;
+  }
+  .SliderThumb:focus {
+    outline: none;
+    /* box-shadow: 0 0 0 5px transparent; */
+    box-shadow: 0 2px 10px #343A40;
+  }
+
 `;
