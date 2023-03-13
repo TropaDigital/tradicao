@@ -16,11 +16,11 @@ export default function GreenCarousel({ children, title, height, marginBottom, s
             height={height}
             marginBottom={marginBottom}
         >
-            <CenterWrapper>
+            {/* <CenterWrapper> */}
                 <TitleCarousel>{title}</TitleCarousel>
                 <SubtitleCarousel>{subtitle}</SubtitleCarousel>
                 {children}               
-            </CenterWrapper>
+            {/* </CenterWrapper> */}
         </CarouselWrapper>
     )
 }
