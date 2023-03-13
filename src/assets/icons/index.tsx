@@ -964,7 +964,7 @@ export const ChevronIcon = ({ color = '#CCCCCC', size = 18 }) => {
   )
 }
 
-export const FacebookIcon: React.FC = ({ size = 20, color = '#FFF' }: any) => {
+export const FacebookIcon = ({ size = 20, color = '#FFF' }: any) => {
   return (
     <svg 
         width={size}
@@ -982,7 +982,7 @@ export const FacebookIcon: React.FC = ({ size = 20, color = '#FFF' }: any) => {
   )
 }
 
-export const InstagramIcon: React.FC = ({ size = 20, color = '#FFF' }: any) => {
+export const InstagramIcon = ({ size = 20, color = '#FFF' }: any) => {
   return (
     <svg 
       width={size} 
@@ -1001,7 +1001,7 @@ export const InstagramIcon: React.FC = ({ size = 20, color = '#FFF' }: any) => {
   )
 }
 
-export const YoutubeIcon: React.FC = ({ width = 28, height = 19, color = '#FFF' }: any) => {
+export const YoutubeIcon = ({ width = 28, height = 19, color = '#FFF' }: any) => {
   return (
     <svg 
       width={width} 
@@ -1018,7 +1018,7 @@ export const YoutubeIcon: React.FC = ({ width = 28, height = 19, color = '#FFF' 
   )
 }
 
-export const TikTokIcon: React.FC = ({ width = 20, height = 21, color = '#FFF' }: any) => {
+export const TikTokIcon = ({ width = 20, height = 21, color = '#FFF' }: any) => {
   return (
     <svg 
       width={width} 
@@ -1035,7 +1035,7 @@ export const TikTokIcon: React.FC = ({ width = 20, height = 21, color = '#FFF' }
   )
 }
 
-export const LinkedinIcon: React.FC = ({ width = 20, height = 21, color = '#FFF' }: any) => {
+export const LinkedinIcon = ({ width = 20, height = 21, color = '#FFF' }: any) => {
   return (
     <svg 
       width={width} 
@@ -1054,7 +1054,7 @@ export const LinkedinIcon: React.FC = ({ width = 20, height = 21, color = '#FFF'
   )
 }
 
-export const TalkWithUsIcon: React.FC = ({ width = 36, height = 38, color = '#FFF' }: any) => {
+export const TalkWithUsIcon = ({ width = 36, height = 38, color = '#FFF' }: any) => {
   return (
     <svg 
       width={width}
@@ -1075,7 +1075,7 @@ export const TalkWithUsIcon: React.FC = ({ width = 36, height = 38, color = '#FF
   )
 }
 
-export const BeAPartnerIcon: React.FC = ({ width = 38, height = 23, color = '#FFF' }: any) => {
+export const BeAPartnerIcon = ({ width = 38, height = 23, color = '#FFF' }: any) => {
   return (
     <svg 
       width={width}
