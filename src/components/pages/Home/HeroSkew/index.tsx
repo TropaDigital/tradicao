@@ -22,5 +22,5 @@ export default function HeroSkew({
         {children && children}
       </span>
     </S.Container>
-  );
+  ); 
 }

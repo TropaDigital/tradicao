@@ -1,12 +1,10 @@
 import SkewImage from '@/components/shared/SkewImage';
-import Button from '@/components/UI/Button';
 import * as S from './styles';
 import { IHeroSkew } from './types';
 
 export default function HeaderSkew({
   altBackgroundImage,
   backgroundImage,
-  heigth,
   children
 }: IHeroSkew) {
   return (
@@ -16,7 +14,7 @@ export default function HeaderSkew({
         <SkewImage
           alt={altBackgroundImage}
           src={backgroundImage}
-          imageHeigth={heigth ? heigth : 234}
+          imageHeigth={234}
         />
       </div>
       <span className="chidrenWrapper">
