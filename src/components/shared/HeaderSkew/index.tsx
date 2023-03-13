@@ -6,6 +6,7 @@ import { IHeroSkew } from './types';
 export default function HeaderSkew({
   altBackgroundImage,
   backgroundImage,
+  heigth,
   children
 }: IHeroSkew) {
   return (
@@ -15,7 +16,7 @@ export default function HeaderSkew({
         <SkewImage
           alt={altBackgroundImage}
           src={backgroundImage}
-          imageHeigth={234}
+          imageHeigth={heigth ? heigth : 234}
         />
       </div>
       <span className="chidrenWrapper">

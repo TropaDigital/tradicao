@@ -1,4 +1,3 @@
-import { GlobalStyles } from '@/styles/global';
 import StyledJsxRegistry from '../registry';
 
 export const metadata = {
@@ -18,7 +17,6 @@ export default function RootLayout({
           Layout Painel
         </nav>
         {children}
-        <GlobalStyles />
       </StyledJsxRegistry>
     </section>
   );
