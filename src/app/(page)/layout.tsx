@@ -21,7 +21,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        <GlobalStyles />
+        {/* <GlobalStyles /> */}
       </StyledJsxRegistry>
     </section>
   );
