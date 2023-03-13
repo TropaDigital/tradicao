@@ -1,5 +1,4 @@
 import SkewImage from '@/components/shared/SkewImage';
-import Button from '@/components/UI/Button';
 import * as S from './styles';
 import { IHeroSkew } from './types';
 

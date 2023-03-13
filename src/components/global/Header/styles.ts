@@ -1,13 +1,10 @@
-import styled, { css } from 'styled-components'
-import Modal from '../../UI/Modal'
+import styled, { css } from 'styled-components';
+import Modal from '../../UI/Modal';
 
 type Props = {
-  showHeader: boolean
-}
-
-interface IMobileMenu {
-  isOpen: boolean
-}
+  showHeader?: boolean;
+  isOpen?: boolean
+};
 
 export const HeaderContainer = styled.header<Props>`
   ${({ showHeader }) =>
@@ -28,7 +25,7 @@ export const HeaderContainer = styled.header<Props>`
       left: 0;
       height: 122px;
       opacity: 1;
-      z-index: 99;
+      z-index: 99999;
     `}
   display: flex;
   align-items: center;
@@ -42,7 +39,6 @@ export const HeaderContainer = styled.header<Props>`
   }
   .menu-container {
     position: relative;
-    cursor: pointer;
   }
 
   @media (max-width: 1320px) {
@@ -52,31 +48,36 @@ export const HeaderContainer = styled.header<Props>`
       width: 200px;
     }
   }
-`
+`;
 
 export const HeaderNav = styled.nav`
-  ul {
+  .header-options {
     display: flex;
     align-items: center;
     gap: 30px;
 
-    li a {
+    .option-title {
       color: var(--primary);
       font-weight: 700;
       padding: 7px 12px;
       border-radius: 30px;
       transition: all 0.3s;
+      cursor: pointer;
 
       &:hover {
         background-color: rgba(62, 101, 208, 0.25);
       }
+    }
+
+    .submenu-options {
+      position: relative;
     }
   }
 
   @media (max-width: 1320px) {
     display: none;
   }
-`
+`;
 
 export const InfoContainer = styled.div<Props>`
   display: flex;
@@ -125,7 +126,7 @@ export const InfoContainer = styled.div<Props>`
       gap: 5px;
     }
   }
-`
+`;
 
 export const BoletoButton = styled.a`
   padding: 6px 20px;
@@ -136,9 +137,9 @@ export const BoletoButton = styled.a`
   border-radius: 30px;
   font-weight: 400;
   white-space: nowrap;
-`
+`;
 
-export const MenuHamburgerContainer = styled.div<IMobileMenu>`
+export const MenuHamburgerContainer = styled.div<Props>`
   display: none;
   cursor: pointer;
   position: relative;
@@ -190,24 +191,56 @@ export const MenuHamburgerContainer = styled.div<IMobileMenu>`
         bottom: 0;
       }
     `}
-`
-export const MobileMenuModal = styled(Modal)`
+`;
+export const MobileMenuModal = styled.div<Props>`
   position: absolute;
+  background-color: var(--white);
+  top: 15px;
   right: 0;
-  top: 30px;
-  height: 0px;
-  opacity: 0;
-  z-index: 99;
-  transition: height 300ms ease-in-out;
-  ${({ isOpen }) =>
-    isOpen &&
-    css`
-      height: 202px;
-      max-height: unset;
-      opacity: 1;
-    `}
+  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  flex-direction: column;
+  min-width: 210px;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
+  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+  transition: all .3s;
 
-  @media(min-width: 1319px) {
+  .mobile-option {
+    color: var(--primary);
+    font-weight: 500;
+    opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media(min-width: 1320px) {
     display: none;
   }
+`;
+
+export const SubMobileMenu = styled.div<Props>`
+  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  flex-direction: column;
+  gap: ${({ isOpen }) => isOpen ? "14px" : "0px"};
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 5px;
+  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
+  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+
+  .sub-submobile-option {
+    color: var(--primary);
+    font-weight: 400;
+  }
 `
+
+export const SubMenuOptions = styled(Modal)`
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
