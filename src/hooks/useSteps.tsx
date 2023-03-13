@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export function useSteps(steps: any) {
-  const [currentStep, setCurrentStep] = useState(1);
+export function useSteps(steps: any, defaultValue: number) {
+  const [currentStep, setCurrentStep] = useState(defaultValue ?? 0);
 
   function changeStep(i?: any, event?: any) {
     if(event) event.preventDefault();

@@ -1,20 +1,25 @@
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import InputRange from '@/components/pages/Painel/components/InputRange';
+import { ContentSimulation } from '../styles';
 
 interface Props {
   simulatorPlan: string;
   setSimulatorPlan: (value: string) => void;
   styleButtonPlan: any;
+  handleOnChangeValue: (value: number[]) => void;
+  defaultValue: number;
 }
 
 export default function InfoGeral({
   simulatorPlan,
   setSimulatorPlan,
-  styleButtonPlan
+  styleButtonPlan,
+  handleOnChangeValue,
+  defaultValue
 }: Props) {
   return (
     <div>
-      <fieldset>
+      <ContentSimulation>
         <legend>
           <h2>Simular plano por</h2>
         </legend>
@@ -57,9 +62,9 @@ export default function InfoGeral({
             Crédito
           </ButtonDefault>
         </div>
-      </fieldset>
+      </ContentSimulation>
 
-      <fieldset>
+      <ContentSimulation>
         <legend>
           <h2>Escolha o valor da parcela</h2>
         </legend>
@@ -67,15 +72,15 @@ export default function InfoGeral({
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
-          }).format(1250)}
+          }).format(defaultValue ?? 0)}
         </strong>
         <InputRange
-          defaultValue={1500}
+          defaultValue={defaultValue}
           maxValue={3000}
           minValue={200}
-          handleOnChange={(value) => console.log('VALUE', value[0])}
+          handleOnChange={handleOnChangeValue}
         />
-      </fieldset>
+      </ContentSimulation>
     </div>
   );
 }

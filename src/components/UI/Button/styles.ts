@@ -9,12 +9,13 @@ type Props = {
 };
 
 export const ButtonContainer = styled.button<Props>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 14px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* gap: 8px; */
   cursor: pointer;
+  font-size: 14px;
+  height: 40px;
   width: 100%;
 
   font-weight: ${({ weight }) => weight};

@@ -2,13 +2,12 @@ import React, {
   useRef,
   useState,
   useCallback,
-  InputHTMLAttributes
+  InputHTMLAttributes,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { BsCheck } from 'react-icons/bs';
 
 import { Container, ContainerInput, Error } from './styles';
-import { ErrorInputMessage } from '@/components/UI/Inputs/InputDefault/styles';
 
 interface ErrorInput {
   message: string;
@@ -16,17 +15,13 @@ interface ErrorInput {
 }
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
   label: string;
-  error?: string;
+  error?: ErrorInput;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-export function CheckboxDefault({
-  label,
-  error,
-  icon: Icon,
-  ...rest
-}: InputProps) {
+export function CheckboxDefault({ name, label, error, icon: Icon, ...rest }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -43,34 +38,28 @@ export function CheckboxDefault({
   }, []);
 
   return (
-    <>
-      <Container>
+    <Container htmlFor={name}>
         <input
           type="checkbox"
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           ref={inputRef}
+          id={name}
           {...rest}
         />
 
-        <span className="checkbox">
-          <BsCheck />
+        <span className='checkbox'>
+          <BsCheck  />
         </span>
 
-        <span className="labelInput">{label}</span>
+        <span className='labelInput'>{label}</span>
 
         {/* {error?.isError && (
           <Error title={error.message}>
-          <FiAlertCircle size={20} color="#E62965" />
+            <FiAlertCircle size={20} color="#E62965" />
           </Error>
         )} */}
-        {/* </ContainerInput> */}
-      </Container>
-      {error && (
-        <ErrorInputMessage style={{ marginTop: '6px' }} title={error}>
-          <span>{error}</span>
-        </ErrorInputMessage>
-      )}
-    </>
+      {/* </ContainerInput> */}
+    </Container>
   );
 }
