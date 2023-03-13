@@ -1,4 +1,5 @@
 'use client';
+import HeroSkew from '@/components/pages/Home/HeroSkew';
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
 import HeaderSkew from '@/components/shared/HeaderSkew';
@@ -61,10 +62,9 @@ export default function Home() {
 
   return (
     <Container>
-      <HeaderSkew
+      <HeroSkew
         altBackgroundImage="imagem de fundo"
         backgroundImage={contato_bg}
-        heigth={434}
       />
 
       <SectionSimulatorForm>
