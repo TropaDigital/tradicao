@@ -1,90 +1,64 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  InputHTMLAttributes,
-} from 'react';
-import { IconBaseProps } from 'react-icons';
-import { IoMdHelpCircle } from 'react-icons/io';
-import { FiAlertCircle } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import InputMask from 'react-input-mask';
 
-import { Container, ContainerInput, Error, Alert } from './styles';
-import { currency, dateTimeMask } from './masks';
+import { Container } from './styles';
 
-interface ErrorInput {
-  message: string;
-  isError: boolean;
+interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
+    placeholder?: string;
+    value: string | any;
+    name?: string;
+    type?: 'text' | 'password' | 'email' | 'tel' | 'number';
+    mask?: string;
+    onChangeText: (value: string | any) => void;
+    search?: boolean;
+    className?: any;
+    title?: string;
+    disabled?: boolean;
+    error?: string;
 }
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  error?: ErrorInput;
-  icon?: React.ComponentType<IconBaseProps>;
-  alert?: string;
-  mask?: 'currency' | 'dateTime';
-}
+const InputDefault: React.FC<InputProps> = ({
+    placeholder,
+    value,
+    name,
+    mask = '',
+    onChangeText,
+    type,
+    search = false,
+    title = null,
+    className = '',
+    disabled = false,
+    error = '',
+    ...rest
+}) => {
+    const [valueInput, setValueInput] = useState<string>(value);
 
-export function InputDefault({ required, mask, label, alert, error, icon: Icon, ...rest }: InputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        setValueInput(value);
+    }, [value]);
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
-
-  const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
-  }, []);
-
-  const handleInputBlur = useCallback(() => {
-    setIsFocused(false);
-
-    setIsFilled(!!inputRef.current?.value);
-  }, []);
-
-  const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-    if (mask === 'dateTime') {
-      dateTimeMask(e)
+    function handleOnChange(e: React.FormEvent<HTMLInputElement>) {
+        setValueInput(e.currentTarget.value);
+        onChangeText(e.currentTarget.value);
     }
-    return;
-  }, [mask])
 
-  return (
-    <Container>
-      <div className="containerAlert" style={{ display: 'flex', alignItems: 'center' }} >
-        <label htmlFor={label}>{label}</label>
-        {required && (
-          <Alert title={alert ?? 'Campo obrigatório'}>
-            <IoMdHelpCircle size={18} color='#CED4DA' />
-          </Alert>
-        )}
-      </div>
+    return (
+        <Container className={`default-input ${className}`}>
+            {/* {search && <IconSearch />} */}
+            {title && <p className="title">{title}</p>}
+            <InputMask
+                type={type}
+                value={valueInput}
+                name={name}
+                onChange={handleOnChange}
+                placeholder={placeholder}
+                disabled={disabled}
+                mask={mask}
+                {...rest}
+            />
+            <span>{error}</span>
+        </Container>
+    );
+};
 
-      <ContainerInput
-        isErrored={!!error?.isError}
-        isFocused={isFocused}
-        isFilled={isFilled}
-        isIcon={!!Icon}
-      >
-
-        <div className="leftInputElement">
-          {Icon && <Icon color='rgba(204, 204, 204, 1)' size={22}/>}
-        </div>
-
-        <input
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          ref={inputRef}
-          id={label}
-          role="presentation" autoComplete="off"
-          onKeyUp={handleKeyUp}
-          {...rest}
-        />
-
-        {error?.isError && (
-          <Error title={error.message}>
-            <FiAlertCircle size={20} color="#E62965" />
-          </Error>
-        )}
-      </ContainerInput>
-    </Container>
-  );
-}
+export default InputDefault;
