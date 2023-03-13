@@ -1,3 +1,4 @@
+import { TruckIcon } from "@/assets/icons";
 import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/CheckboxDefault";
 import Inputdefault from "@/components/pages/Painel/components/inputs/InputDefault";
 import { SelectDefault } from "@/components/pages/Painel/components/inputs/SelectDefault";
@@ -9,9 +10,13 @@ interface Props {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export default function InfoTruck({data, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function InfoTruck({data, handleInputChange, handleOnChangeCheckbox}: Props) {
   return (
-    <div>
+    <fieldset style={{ marginTop: '0px' }}>
+      <legend className="isSubInfo">
+        <TruckIcon />
+        <h2 >Consórcio de Veiculo</h2>
+      </legend>
       <FieldDefault style={{marginBottom: '14px'}}>
         <Inputdefault 
           label='Nome completo'
@@ -66,6 +71,44 @@ export default function InfoTruck({data, handleInputChange, handleOnChangeCheckb
         />
       </FieldDefault>
 
-    </div>
+    </fieldset>
   )
 }
+
+export function ConfirmTruck({data, handleInputChange, handleOnChangeCheckbox}: Props) {
+  return (
+    <fieldset style={{ marginTop: '0px' }}>
+      <legend className="isSubInfo">
+        <TruckIcon />
+        <h2 >Consórcio de Veiculo</h2>
+      </legend>
+      
+      <aside>
+        <h3>Olá, Gabriel!</h3>
+        <span>Você esta muito próximo de virar um cliente Tradição e ainda mais próximo do seu sonho!</span>
+      </aside>
+
+      <FieldDefault style={{marginBottom: '14px'}}>
+        <Inputdefault 
+          label='Nome completo'
+          placeholder='Nome'
+          name="name"
+          value={data.name}
+          onChange={handleInputChange}
+        />
+      </FieldDefault>
+
+      <FieldDefault style={{ marginBottom: '8px' }}>
+        <CheckboxDefault
+          label="Aceito o termo de privacidade"
+          name="privacy"
+          onChange={handleOnChangeCheckbox}
+          checked={data.privacy === "true" ? true : false}
+        />
+      </FieldDefault>
+
+    </fieldset>
+  )
+}
+
+export default { InfoTruck, ConfirmTruck }

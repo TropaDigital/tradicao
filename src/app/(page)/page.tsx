@@ -8,10 +8,10 @@ import React, { useCallback, useState } from 'react';
 
 import contato_bg from '../../../public/images/contato_bg.png';
 import InfoGeral from './componentSteps/InfoGeral';
-import InfoImovel from './componentSteps/InfoImovel';
-import InfoServices from './componentSteps/InfoServices';
-import InfoTruck from './componentSteps/InfoTruck';
-import InfoVehicle from './componentSteps/InfoVehicle';
+import { ConfirmImovel, InfoImovel } from './componentSteps/InfoImovel';
+import { ConfirmService, InfoService } from './componentSteps/InfoServices';
+import { ConfirmTruck, InfoTruck } from './componentSteps/InfoTruck';
+import { ConfirmVehicle, InfoVehicle } from './componentSteps/InfoVehicle';
 
 import { Container, SectionSimulatorForm, TitleSimulator } from './styles';
 
@@ -23,37 +23,98 @@ const styleButtonPlan = {
 export default function Home() {
   const [simulatorPlan, setSimulatorPlan] = useState('parcela');
   const [isSimulator, setSimulator] = useState(false);
+  const [selectStep, setSelectStep] = useState('carComponents');
 
-  const formComponents = [
-    <InfoGeral
-      setSimulatorPlan={(value) => setSimulatorPlan(value)}
-      simulatorPlan={simulatorPlan}
-      styleButtonPlan={styleButtonPlan}
-    />,
-    <InfoVehicle
-      data={[]}
-      handleInputChange={(e) => console.log('EVENT', e)}
-      handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
-    />,
-    <InfoImovel
-      data={[]}
-      handleInputChange={(e) => console.log('EVENT', e)}
-      handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
-    />,
-    <InfoServices
-      data={[]}
-      handleInputChange={(e) => console.log('EVENT', e)}
-      handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
-    />,
-    <InfoTruck
-      data={[]}
-      handleInputChange={(e) => console.log('EVENT', e)}
-      handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
-    />
+  const newComponents = [
+    {
+      name: 'homeComponents',
+      componet: [
+        <InfoGeral
+          setSimulatorPlan={(value) => setSimulatorPlan(value)}
+          simulatorPlan={simulatorPlan}
+          styleButtonPlan={styleButtonPlan}
+        />
+      ]
+    },
+    {
+      name: 'carComponents',
+      componet: [
+        <InfoVehicle
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />,
+        <ConfirmVehicle
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />
+      ]
+    },
+    {
+      name: 'imovelComponents',
+      componet: [
+        <InfoImovel
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />,
+        <ConfirmImovel
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />
+      ]
+    },
+    {
+      name: 'serviceComponents',
+      componet: [
+        <InfoService
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />,
+        <ConfirmService
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />
+      ]
+    },
+    {
+      name: 'truckComponents',
+      componet: [
+        <InfoTruck
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />,
+        <ConfirmTruck
+          data={[]}
+          handleInputChange={(e) => console.log('EVENT', e)}
+          handleOnChangeCheckbox={(e) => console.log('EVENT', e)}
+        />
+      ]
+    }
   ];
 
-  const { changeStep, currentComponent, currentStep, isFirstStep, isLastStep } =
-    useSteps(formComponents);
+  const fillComponents = newComponents.filter(
+    (row: any) => row.name === selectStep
+  )[0].componet;
+
+  const { changeStep, currentStep } = useSteps(newComponents, 1);
+  const {
+    changeStep: subChangeStep,
+    currentComponent: subCurrentComponent,
+    currentStep: subCurrentStep,
+    isFirstStep: subIsFirstStep,
+    isLastStep: subIsLastStep
+  } = useSteps(fillComponents, 0);
+
+  const changeStepComp = (name: string, value: any) => {
+    changeStep(value);
+    setSelectStep(name);
+  };
 
   const handleOnSubmit = useCallback((event: any) => {
     event.preventDefault();
@@ -68,20 +129,22 @@ export default function Home() {
       />
 
       <SectionSimulatorForm>
-        <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
+        {!isSimulator && (
+          <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
+        )}
 
         <form onSubmit={handleOnSubmit}>
           {!isSimulator && (
             <Steps
               currentStep={currentStep}
-              handleOnClick={(value) => changeStep(value)}
+              handleOnClick={(name, step) => changeStepComp(name, step)}
             />
           )}
 
           {isSimulator ? (
-            <div>{currentComponent}</div>
+            <div>{subCurrentComponent}</div>
           ) : (
-            <div>{formComponents[0]}</div>
+            <div>{newComponents[0].componet}</div>
           )}
 
           <FieldGroup>
@@ -90,16 +153,34 @@ export default function Home() {
                 <ButtonDefault
                   color="primaryButton"
                   onClick={() => {
-                    setSimulator(!isSimulator);
-                    changeStep(1);
+                    if (subCurrentStep === 0) {
+                      changeStep(1);
+                      setSimulator(!isSimulator);
+                      subChangeStep(subCurrentStep - 1);
+                    }
+                    subChangeStep(subCurrentStep - 1);
                   }}
                 >
                   Voltar
                 </ButtonDefault>
 
-                <ButtonDefault type="button" color="primaryButton">
-                  Avançar
-                </ButtonDefault>
+                {!subIsLastStep ? (
+                  <ButtonDefault
+                    type="button"
+                    color="primaryButton"
+                    onClick={() => subChangeStep(subCurrentStep + 1)}
+                  >
+                    Avançar
+                  </ButtonDefault>
+                ) : (
+                  <ButtonDefault
+                    color="primaryButton"
+                    type="button"
+                    onClick={() => console.log('SALVAR DADOS')}
+                  >
+                    Salvar
+                  </ButtonDefault>
+                )}
               </>
             )}
           </FieldGroup>

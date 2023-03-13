@@ -1,8 +1,8 @@
-import { JornalIcon } from '@/assets/icons';
+import { CarIcon, MovelIcon, ServiceIcon, TruckIcon } from '@/assets/icons';
 import { Container } from './styles';
 
 interface StepsProps {
-  handleOnClick: (step: any) => void;
+  handleOnClick: (name: string, step: any) => void;
   currentStep: number;
 }
 
@@ -14,9 +14,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button 
           type='button' 
           className="stepButton"
-          onClick={() => handleOnClick(1)}
+          onClick={() => handleOnClick("carComponents", 1)}
         >
-          <JornalIcon color="#0036C6" />
+          <CarIcon />
           <span>Veiculos</span>
         </button>
 
@@ -27,9 +27,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button 
           type='button' 
           className="stepButton"
-          onClick={() => handleOnClick(2)}
+          onClick={() => handleOnClick("imovelComponents", 2)}
         >
-          <JornalIcon color="#0036C6" />
+          <MovelIcon />
           <span>imóvel</span>
         </button>
         
@@ -40,9 +40,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button 
           type='button' 
           className="stepButton"
-          onClick={() => handleOnClick(3)}
+          onClick={() => handleOnClick("serviceComponents", 3)}
         >
-          <JornalIcon color="#0036C6" />
+          <ServiceIcon />
           <span>Serviços</span>
         </button>
         
@@ -53,9 +53,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button 
           type='button' 
           className="stepButton"
-          onClick={() => handleOnClick(4)}
+          onClick={() => handleOnClick("truckComponents", 4)}
         >
-          <JornalIcon color="#0036C6" />
+          <TruckIcon />
           <span>Caminhão</span>
         </button>
         

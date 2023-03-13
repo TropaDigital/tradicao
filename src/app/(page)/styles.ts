@@ -28,6 +28,18 @@ export const SectionSimulatorForm = styled.div`
 
     fieldset {
 
+      .isSubInfo {
+        display: flex; 
+        align-items: center; 
+        gap: 10px; 
+        justify-content: center;
+
+        >h2 {
+          font-size: 24px;
+          font-weight: 700;
+        }
+      }
+
       legend {
         display: block;
   
@@ -39,7 +51,7 @@ export const SectionSimulatorForm = styled.div`
         }
       }
       
-      strong {
+      >strong {
         text-align: center;
         display: block;
         font-weight: 700;
@@ -48,6 +60,31 @@ export const SectionSimulatorForm = styled.div`
         margin: 12px 0;
         color: #152347;
       }
+
+      aside {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+
+        h3 {
+          font-size: var(--text-headline-lgx);
+          font-weight: var(--weight-bold);
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 46px;
+          letter-spacing: -0.02em;
+
+          color: var(--primary);
+        }
+
+        span {
+          font-weight: var(--weight-regular);
+          font-size: var(--text-smal-sm);
+          line-height: 18px;
+          color: var(--gray-600);
+        }
+      }
+
     }
   }
 `;

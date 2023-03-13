@@ -121,6 +121,7 @@ export const GlobalStyles = createGlobalStyle`
   --text-headline-sm: 1.5rem; // 24px
   --text-headline-md: 1.875rem; // 30px
   --text-headline-lg: 2.25rem; // 36px
+  --text-headline-lgx: 2.5rem; // 40px
   --text-display-sm: 3rem; // 48px
   --text-display-md: 3.75rem; // 60px
   --text-display-lg: 4.5rem; // 72px
@@ -180,6 +181,11 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: var(--body-font);
   color: var(--gray-800);
   font-weight: 400;
+}
+
+strong {
+  font-weight: var(--weight-bold);
+  /* color: var(--gray-600); */
 }
 
 fieldset {
