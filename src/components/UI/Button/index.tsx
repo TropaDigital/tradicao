@@ -1,13 +1,14 @@
-import React, { ReactNode } from 'react'
-import { ButtonContainer } from './styles'
+import React, { ReactElement, ReactNode } from 'react';
+import { ButtonContainer } from './styles';
 
-interface IDefaultButton {
-  children: ReactNode
-  variant?: 'default' | 'outline'
-  radius?: 'default' | 'rounded'
-  weight?: '500' | '700'
-  color?: "primary" | "secondary" | string;
+interface IDefaultButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  variant?: 'default' | 'outline';
+  radius?: 'default' | 'rounded';
+  weight?: 500 | 700;
+  color?: 'primary' | 'secondary' | string;
   icon?: ReactNode;
+  degrade?: boolean;
 }
 
 const Button = ({
@@ -15,8 +16,9 @@ const Button = ({
   variant,
   icon,
   radius,
-  weight,
+  weight = 700,
   color,
+  degrade,
   ...rest
 }: IDefaultButton) => {
   return (
@@ -27,12 +29,13 @@ const Button = ({
         radius={radius}
         weight={weight}
         color={color}
+        degrade={degrade}
       >
         {icon && icon}
         {children}
       </ButtonContainer>
     </>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
