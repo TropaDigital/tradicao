@@ -1,5 +1,14 @@
 'use client';
+
+// React
+import React, { useCallback, useState } from 'react';
+
+// Next
+import Image from 'next/image';
+
+// Components
 import GreenCarousel from '@/components/global/GreenCarousel';
+
 import HeroSkew from '@/components/pages/Home/HeroSkew';
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
@@ -7,23 +16,37 @@ import CardCarousel from '@/components/shared/CardCarousel';
 import HeaderSkew from '@/components/shared/HeaderSkew';
 import Steps from '@/components/Steps';
 import { useSteps } from '@/hooks/useSteps';
-import React, { useCallback, useState } from 'react';
-
-import contato_bg from '../../../public/images/contato_bg.png';
-import Person from '/public/images/imagePerson.jpg';
 import InfoGeral from './componentSteps/InfoGeral';
 import InfoImovel from './componentSteps/InfoImovel';
 import InfoServices from './componentSteps/InfoServices';
 import InfoTruck from './componentSteps/InfoTruck';
 import InfoVehicle from './componentSteps/InfoVehicle';
+import BrandsCarousel from '@/components/shared/BrandsCarousel';
 
+// Images
+import contato_bg from '../../../public/images/contato_bg.png';
+import Person from '/public/images/imagePerson.jpg';
+import FiatLogo from '/public/images/FiatLogo.svg';
+import BmwLogo from '/public/images/BMWLogo.svg';
+import CheryLogo from '/public/images/CheryLogo.svg';
+import ChevroletLogo from '/public/images/ChevroletLogo.svg';
+import FordLogo from '/public/images/FordLogo.svg';
+import JacLogo from '/public/images/JacLogo.svg';
+import JeepLogo from '/public/images/JeepLogo.svg';
+import MercedesLogo from '/public/images/MercedesLogo.svg';
+import PeugeotLogo from '/public/images/PeugeotLogo.svg';
+import VolksLogo from '/public/images/VolksLogo.svg';
+
+// Libraries
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+// Styles
 import { Container, SectionSimulatorForm, TitleSimulator } from './styles';
+import BrandCard from '@/components/shared/BrandCard';
 
 
 const styleButtonPlan = {
@@ -244,6 +267,135 @@ export default function Home() {
           
         </Swiper>
       </GreenCarousel>
+
+      <BrandsCarousel>
+          <Swiper
+            slidesPerView={7}
+            className="my-swiper"           
+          >
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={FiatLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={CheryLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={BmwLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={ChevroletLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={MercedesLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={JacLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={FordLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={JacLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={VolksLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={PeugeotLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <BrandCard>
+                <Image
+                  width={157}
+                  height={96}
+                  src={JeepLogo}
+                  alt={'Icon image'}
+                />
+              </BrandCard>
+            </SwiperSlide>
+
+          </Swiper>
+      </BrandsCarousel>
     </Container>
   );
 }
