@@ -22,4 +22,6 @@ export const BackgroundSection = styled.span`
   background: var(--degrade-blue);
   opacity: 0.2;
   height: 386px;
+  margin-bottom: calc(434px - 386px + 10px);
+
 `;

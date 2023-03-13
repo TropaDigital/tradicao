@@ -21,22 +21,11 @@ export const Container = styled.section`
   @media(max-width: 450px) {
     padding: 28px 20px;
   }
-`;
 
-export const DemonstrationsListContainer = styled.div`
-  min-height: 100vh;
-
-  ul {
+  .demonstracao-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 10px;
     margin-top: 30px;
-
-    li {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
   }
 `;

@@ -56,9 +56,13 @@ export default function Contato() {
             </S.ContactText>
 
             <S.ServiceCard>
-              <p className="titleCard">Atendimento na CPN consórcio</p>
+              <p className="titleCard">Atendimento na CNP consórcio</p>
               <p className="textCard">
-                0800 272 2021 sugestões, elogios, esclarecimentos e reclamações
+                <Link href={`tel:08002722021`}>
+                0800 272 2021
+                </Link>
+                {' '}
+                 sugestões, elogios, esclarecimentos e reclamações
                 www.cnpconsorcio.com.br
               </p>
             </S.ServiceCard>

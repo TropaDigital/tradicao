@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 24px;
+  /* margin-top: 24px; */
   position: relative;
 
   border-bottom: 2px solid #0036C6;

@@ -1,6 +1,28 @@
 'use client'
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+`;
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+`;
 
 export const Container = styled.div`
   position: relative;
@@ -9,8 +31,9 @@ export const Container = styled.div`
 export const SectionSimulatorForm = styled.div`
   width: 100%;
   max-width: 460px;
-  padding: 40px 20px;
-
+  height: 428px;
+  
+  padding: 32px 20px;
   margin: 0 auto;
 
   background: #FFFFFF;
@@ -24,10 +47,12 @@ export const SectionSimulatorForm = styled.div`
   transform: translate(-50%,-12%);
 
   form {
-    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 
     fieldset {
-
       .isSubInfo {
         display: flex; 
         align-items: center; 
@@ -42,7 +67,7 @@ export const SectionSimulatorForm = styled.div`
 
       legend {
         display: block;
-  
+        margin-bottom: 16px;
         h2 {
           font-size: var(--text-smal-sm);
           font-weight: var(--weight-bold);
@@ -65,6 +90,7 @@ export const SectionSimulatorForm = styled.div`
         display: flex;
         flex-direction: column;
         gap: 3px;
+        margin-bottom: 2rem;
 
         h3 {
           font-size: var(--text-headline-lgx);
@@ -97,3 +123,7 @@ export const TitleSimulator = styled.div`
   color: var(--primary-dark);
 `;
 
+export const ContentSimulation = styled.fieldset`
+
+  animation: ${appearFromRight} .35s ease;
+`

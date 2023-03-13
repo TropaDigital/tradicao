@@ -189,7 +189,7 @@ strong {
 }
 
 fieldset {
-  margin-top: 20px;
+  margin-top: 1rem;
   min-inline-size: auto;
   border: 0;
 }

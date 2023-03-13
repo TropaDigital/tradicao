@@ -89,7 +89,7 @@ export const InfoContainer = styled.div<Props>`
     var(--primary) 93.94%
   );
   height: 40px;
-  padding: 6px 130px;
+  padding: 6px 35px;
 
   @media (max-width: 1320px) {
     padding: 6px 20px;
