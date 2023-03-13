@@ -28,6 +28,7 @@ export const GlobalStyles = createGlobalStyle`
 
   //Color-Primary
   --primary: #0036C6;
+  --primary-mid: #213365;
   --primary-dark: #152347;
   --primary-light: #3E65D0;
 
