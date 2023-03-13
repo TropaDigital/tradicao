@@ -17,7 +17,7 @@ import { IHeaderOptions, IInfoOptions } from './types';
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
-  const [showHeader, setShowHeader] = useState<boolean>(false);
+  // const [showHeader, setShowHeader] = useState<boolean>(false);
   const [isSubMenuTradicaoOpen, setIsSubMenuTradicaoOpen] =
     useState<boolean>(false);
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
@@ -118,7 +118,7 @@ const Header = () => {
 
   return (
     <>
-      <S.InfoContainer showHeader={showHeader}>
+      <S.InfoContainer>
         <ul>
           {infoLinks.map((info) => {
             return (
@@ -145,16 +145,12 @@ const Header = () => {
         </ul>
       </S.InfoContainer>
 
-      <S.HeaderContainer showHeader={showHeader}>
+      <S.HeaderContainer>
         <div className="logo">
           <DefaultLogo width={262} height={77} />
         </div>
 
-        {/* TODO: fix wrapperRef mobileMenu */}
-        <div
-          className="menu-container"
-          
-        >
+        <div className="menu-container">
           <S.MenuHamburgerContainer
             isOpen={isMobileOpen}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -176,7 +172,9 @@ const Header = () => {
                     }}
                   >
                     {page.title}
-                    <span className="chevron-icon">{page.subOptions && <ChevronIcon />}</span>
+                    <span className="chevron-icon">
+                      {page.subOptions && <ChevronIcon />}
+                    </span>
                   </Link>
 
                   {page.subOptions && (
@@ -188,7 +186,12 @@ const Header = () => {
                       }
                     >
                       {page.subOptions?.map((subOption) => (
-                        <Link href={subOption.path} className="sub-submobile-option">{subOption.subTitle}</Link>
+                        <Link
+                          href={subOption.path}
+                          className="sub-submobile-option"
+                        >
+                          {subOption.subTitle}
+                        </Link>
                       ))}
                     </S.SubMobileMenu>
                   )}

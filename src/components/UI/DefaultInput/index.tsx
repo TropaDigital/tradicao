@@ -11,12 +11,23 @@ interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
 const DefaultInput = ({ icon, label, error, ...rest }: IDefaultInput) => {
   return (
     <S.Container>
-      {label && <label className='input-label'>{label}</label>}
+      {label && (
+        <label
+          className="input-label"
+          htmlFor={label?.trim().replaceAll(' ', '-').toLowerCase()}
+        >
+          {label}
+        </label>
+      )}
       <S.InputWrapper icon={icon}>
         {icon && icon}
-        <input type="text" {...rest} />
+        <input
+          type="text"
+          {...rest}
+          id={label && label?.trim().replaceAll(' ', '-').toLowerCase()}
+        />
       </S.InputWrapper>
-      {error && <span className='validation-error'>{error}</span>}
+      {error && <span className="validation-error">{error}</span>}
     </S.Container>
   );
 };
