@@ -3,9 +3,6 @@
 import { GlobalStyles } from '@/styles/global';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import StyledJsxRegistry from './registry';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 export default function RootLayout({
   children

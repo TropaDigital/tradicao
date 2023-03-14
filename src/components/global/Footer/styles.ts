@@ -40,6 +40,12 @@ export const LeftSide = styled.div`
     @media (max-width: 1050px) {
         flex-direction: column;
     }
+
+    @media (max-width: 500px) {
+        svg {
+            max-width: 90%;
+        }    
+    }
 `
 
 export const RightSide = styled.div`

@@ -16,14 +16,22 @@ export const CarouselWrapper = styled.div<ICarousel>`
     background: linear-gradient(77.17deg, #00D35E -0.7%, #42DB87 93.94%);
     padding-top: 40px;
 
-    position: relative;
-
-    .content {
-        .my-swiper {
-            overflow: hidden;
-            .swiper-wrapper {
-                display: flex;
-            }
+    position: relative;   
+    
+    .slider {
+        overflow: hidden;
+    }
+    
+    .slick-track {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 30px;        
+        
+        .slick-slide {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
         }
     }
 `
