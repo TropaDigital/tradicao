@@ -32,7 +32,7 @@ export const ContainerInput = styled.div<ContainerProps>`
   ${(props) =>
     props.isErrored &&
     css`
-      border-color: #E62965;
+      border-color: #e62965;
     `}
 
   input {
@@ -67,25 +67,21 @@ export const ContainerInput = styled.div<ContainerProps>`
       box-shadow: rgb(49 130 206) 0px 0px 0px 1px;
 
       /* ${(props) =>
-    props.isErrored &&
-    css`
-      border-color: #E62965;
-      box-shadow: #E62965 0px 0px 0px 1px;
-    `} */
-
+        props.isErrored &&
+        css`
+          border-color: #e62965;
+          box-shadow: #e62965 0px 0px 0px 1px;
+        `} */
     }
 
-
-
-  ::-webkit-calendar-picker-indicator {
-    background-color: #cecece;
-    cursor: pointer;
-    border-radius: 3px;
-    position: absolute;
-    left: 0px;
-    opacity: 0;
-  }
-
+    ::-webkit-calendar-picker-indicator {
+      background-color: #cecece;
+      cursor: pointer;
+      border-radius: 3px;
+      position: absolute;
+      left: 0px;
+      opacity: 0;
+    }
   }
 
   .leftInputElement {
@@ -141,10 +137,10 @@ export const Error = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #E62965;
+    background: #e62965;
     color: #fff;
     &::before {
-      border-color: #E62965 transparent;
+      border-color: #e62965 transparent;
     }
   }
 `;
@@ -160,10 +156,10 @@ export const Alert = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #CED4DA;
+    background: #ced4da;
     color: #fff;
     &::before {
-      border-color: #CED4DA transparent;
+      border-color: #ced4da transparent;
     }
   }
-`
+`;

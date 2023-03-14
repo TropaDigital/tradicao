@@ -8,7 +8,7 @@ export interface IGetUnit {
     excluido: unknown;
     id: number;
     latitude: string;
-    longitutde: string;
+    longitude: string;
     matricula: string;
     modificado: string;
     telefone: string;

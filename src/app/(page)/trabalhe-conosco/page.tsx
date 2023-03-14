@@ -4,7 +4,6 @@ import CenterWrapper from '@/components/global/CenterWrapper';
 import HeroSkew from '@/components/pages/Home/HeroSkew';
 import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
-import DefaultInput from '@/components/UI/DefaultInput';
 import MainTitle from '@/components/UI/MainTitle';
 import UploadFile from '@/components/UI/UploadFile';
 import { Form, Formik } from 'formik';
@@ -12,6 +11,7 @@ import { useState } from 'react';
 import * as S from './styles';
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
 import WorkWithUsBg from '../../../../public/images/work_with_us_bg.png';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 const WorkWithUsPage = () => {
   const [formStage, setFormStage] = useState<'curriculo' | 'representante'>(
@@ -78,7 +78,7 @@ const WorkWithUsPage = () => {
                     title="Cadastre seu currículo"
                     subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
                   />
-                  <DefaultInput
+                  <InputDefault
                     name="fullName"
                     placeholder="Nome"
                     value={values.fullName}
@@ -86,7 +86,7 @@ const WorkWithUsPage = () => {
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
                   />
-                  <DefaultInput
+                  <InputDefault
                     name="role"
                     placeholder="Cargo/ Vaga/ Área"
                     value={values.role}
@@ -128,7 +128,7 @@ const WorkWithUsPage = () => {
                     title="Seja um Representante"
                     subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
                   />
-                  <DefaultInput
+                  <InputDefault
                     placeholder="Nome"
                     name="fullName"
                     onChange={handleChange}
@@ -136,7 +136,7 @@ const WorkWithUsPage = () => {
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
                   />
-                  <DefaultInput
+                  <InputDefault
                     placeholder="CNPJ"
                     name="cnpj"
                     onChange={(e: any) =>
@@ -146,7 +146,7 @@ const WorkWithUsPage = () => {
                     label="CNPJ"
                     error={touched.cnpj && errors.cnpj}
                   />
-                  <DefaultInput
+                  <InputDefault
                     placeholder="Contato"
                     name="contact"
                     onChange={handleChange}
