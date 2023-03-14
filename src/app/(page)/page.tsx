@@ -4,13 +4,11 @@ import HeroSkew from '@/components/pages/Home/HeroSkew';
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
 import CardCarousel from '@/components/shared/CardCarousel';
-import HeaderSkew from '@/components/shared/HeaderSkew';
-import Steps from '@/components/Steps';
 import Button from '@/components/UI/Button';
 import { useSteps } from '@/hooks/useSteps';
 import React, { useCallback, useState } from 'react';
 
-import contato_bg from '../../../public/images/contato_bg.png';
+import car_bg from '../../../public/images/car_banner.png';
 import Person from '/public/images/imagePerson.jpg';
 import InfoGeral from './componentSteps/InfoGeral';
 import { ConfirmImovel, InfoImovel } from './componentSteps/InfoImovel';
@@ -25,6 +23,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { Container, SectionSimulatorForm, TitleSimulator } from './styles';
+import Steps from '@/components/Steps';
+import SkewContainer from '@/components/shared/SkewContainer';
 
 type HandleOnChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
 
@@ -274,9 +274,10 @@ export default function Home() {
   return (
     <Container>
       <HeroSkew
-        altBackgroundImage="imagem de fundo"
-        backgroundImage={contato_bg}
-      />
+        backgroundImage={car_bg}
+        altBackgroundImage="Imagem de um carro com um pai e um filho ao lado"
+        subtitle="Você mais próximo dos seus sonhos!"
+        />
 
       <SectionSimulatorForm>
         <form onSubmit={handleOnSubmit}>
@@ -284,12 +285,12 @@ export default function Home() {
         {!isSimulator && (
           <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
         )}
-          {/* {!isSimulator && (
+          {!isSimulator && (
             <Steps
               currentStep={currentStep}
               handleOnClick={(name, step) => changeStepComp(name, step)}
             />
-          )} */}
+          )}
 
           {isSimulator ? (
             <div style={{ flex: '1 1 0' }}>{subCurrentComponent}</div>

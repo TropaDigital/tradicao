@@ -24,7 +24,7 @@ export const SkewContainer = styled.div<Props>`
   .skewImage {
     transform: skew(18deg);
     position: relative;
-    left: 30px;
+    left: ${({ size = "medium" }) => size === "medium" ? "80px" : size === "tiny" ? "30px" : ""};
     object-fit: cover;
   }
 `;

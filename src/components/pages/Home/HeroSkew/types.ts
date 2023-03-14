@@ -4,5 +4,5 @@ import { ReactNode } from "react"
 export interface IHeroSkew{
     backgroundImage: string | any
     altBackgroundImage: string
-    children?: ReactNode
+    subtitle?: ReactNode | string
 }
