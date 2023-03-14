@@ -27,7 +27,7 @@ export const MainWrapper = styled.main`
   display: flex;
   flex-direction: row;
   gap: 30px;
-  margin-top: 30px;
+  margin: 30px 0;
 
   @media (max-width: 1200px) {
     flex-direction: column;

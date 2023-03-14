@@ -17,6 +17,20 @@ export const CarouselWrapper = styled.div<ICarousel>`
     padding-top: 40px;
 
     position: relative;
+
+    .content {
+        .my-swiper {
+            overflow: hidden;
+            .swiper-wrapper {
+                display: flex;
+            }
+        }
+    }
+`
+
+export const TitleCentralize = styled.div`
+    max-width: 1140px;
+    margin: 0 auto;
 `
 
 export const TitleCarousel = styled.h1`

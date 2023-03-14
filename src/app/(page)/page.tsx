@@ -1,19 +1,30 @@
 'use client';
+import GreenCarousel from '@/components/global/GreenCarousel';
 import HeroSkew from '@/components/pages/Home/HeroSkew';
+import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
-import Steps from '@/components/Steps';
+import CardCarousel from '@/components/shared/CardCarousel';
 import Button from '@/components/UI/Button';
 import { useSteps } from '@/hooks/useSteps';
 import React, { useCallback, useState } from 'react';
 
-import contato_bg from '../../../public/images/contato_bg.png';
+import car_bg from '../../../public/images/car_banner.png';
+import Person from '/public/images/imagePerson.jpg';
 import InfoGeral from './componentSteps/InfoGeral';
 import { ConfirmImovel, InfoImovel } from './componentSteps/InfoImovel';
 import { ConfirmService, InfoService } from './componentSteps/InfoServices';
 import { ConfirmTruck, InfoTruck } from './componentSteps/InfoTruck';
 import { ConfirmVehicle, InfoVehicle } from './componentSteps/InfoVehicle';
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { Container, SectionSimulatorForm, TitleSimulator } from './styles';
+import Steps from '@/components/Steps';
+import SkewContainer from '@/components/shared/SkewContainer';
 
 type HandleOnChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
 
@@ -263,9 +274,10 @@ export default function Home() {
   return (
     <Container>
       <HeroSkew
-        altBackgroundImage="imagem de fundo"
-        backgroundImage={contato_bg}
-      />
+        backgroundImage={car_bg}
+        altBackgroundImage="Imagem de um carro com um pai e um filho ao lado"
+        subtitle="Você mais próximo dos seus sonhos!"
+        />
 
       <SectionSimulatorForm>
         <form onSubmit={handleOnSubmit}>
@@ -339,6 +351,125 @@ export default function Home() {
           )}
         </form>
       </SectionSimulatorForm>
+
+      {/* Precisa de no minímo 1 imagem fora da tela para começar a rodar */}
+      <GreenCarousel
+        title='Contemplados'
+        height='350'
+        marginBottom='110'
+      >   
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          className="my-swiper"
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          // loop={true}
+          modules={[Autoplay]}
+        >
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='300'
+              padding='20'
+              image={Person}
+              imageType={false}
+              bigText={false}
+              title='Título genérico'
+              description="Aqui um exemplo de um card que contem imagem e texto"
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='300'
+              padding='20'
+              image={Person}
+              imageType={false}
+              bigText={false}
+              title='Título genérico'
+              description="Aqui um exemplo de um card que contem imagem e texto"
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='300'
+              padding='20'
+              image={Person}
+              imageType={false}
+              bigText={false}
+              title='Título genérico'
+              description="Aqui um exemplo de um card que contem imagem e texto"
+            />       
+          </SwiperSlide>          
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='276'
+              heigth='276'
+              padding='20'
+              image={Person}
+              imageType={true}
+              bigText={false}
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='200'
+              padding='34'
+              image=''
+              imageType={false}
+              bigText={true}
+              haveIcons={true}              
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='200'
+              padding='34'
+              title='Missão'
+              description='Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa.'
+              imageType={false}
+              bigText={true}
+              haveIcons={false}              
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='360'
+              heigth='300'
+              padding='20'
+              image={Person}
+              imageType={false}
+              bigText={false}
+              title='Título genérico'
+              description="Aqui um exemplo de um card que contem imagem e texto"
+            />       
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <CardCarousel 
+              width='276'
+              heigth='276'
+              padding='20'
+              image={Person}
+              imageType={true}
+              bigText={false}
+            />       
+          </SwiperSlide>
+          
+        </Swiper>
+      </GreenCarousel>
     </Container>
   );
 }

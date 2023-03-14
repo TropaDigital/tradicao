@@ -5,9 +5,9 @@ import * as S from './styles';
 const inter = Inter({ subsets: ['latin'] });
 
 import contato_bg from '../../../../public/images/contato_bg.png';
-import HeaderSkew from '@/components/shared/HeaderSkew';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import Link from 'next/link';
+import SkewContainer from '@/components/shared/SkewContainer';
 
 export default function Contato() {
   const CALL_CENTERS_NUMBER: Array<string> = [
@@ -18,9 +18,10 @@ export default function Contato() {
 
   return (
     <S.Container>
-      <HeaderSkew
-        altBackgroundImage="imagem de fundo"
-        backgroundImage={contato_bg}
+      <SkewContainer
+        imageSrc={contato_bg}
+        imageAlt="Imagem de operadores de telemarketing"
+        size='medium'
       />
       <CenterWrapper>
         <h1 className="titleContactPage">Contato com a Tradição</h1>

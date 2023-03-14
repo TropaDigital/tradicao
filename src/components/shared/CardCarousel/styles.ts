@@ -30,10 +30,15 @@ export const CardImageRounded = styled.div`
     align-items: center;
     justify-content: center;
     gap: 6px;
+
     .image {
-         width: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 110px;
         height: 110px;
         border-radius: 50%;
+        overflow: hidden;
     }
 `
 
@@ -46,6 +51,24 @@ export const CardImageSquare = styled.div`
         width: 260px;
         height: 260px;
         border-radius: 10px;
+
+        img {
+            height: inherit;
+        }
+    }
+`
+
+export const CardTextSquared = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    .title {
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--primary-mid);
     }
 `
 
@@ -63,4 +86,21 @@ export const CardDescription = styled.div`
     color: var(--primary-mid);
 
     text-align: center;
+`
+
+export const CardIcons = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0 20px;
+
+    .icon {
+        display: flex;
+        align-items: center;
+        gap: 10px;   
+        
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--primary-mid);
+    }
 `

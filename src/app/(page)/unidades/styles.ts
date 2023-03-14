@@ -44,6 +44,7 @@ export const CityStateContainer = styled.div`
 export const UnitsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
 `;
 
 export const UnityCard = styled.div`
@@ -55,6 +56,13 @@ export const UnityCard = styled.div`
   border: 1px solid var(--light);
   border-radius: 10px;
   box-shadow: 0px 10px 30px -14px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s;
+
+  :hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 30px -14px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
 
   .location-bg-icon {
     position: absolute;

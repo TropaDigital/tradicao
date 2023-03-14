@@ -6,20 +6,20 @@ import React, {
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { IoMdHelpCircle } from 'react-icons/io';
+import { FiAlertCircle } from 'react-icons/fi';
 
-import { Container, ContainerInput, Error, Alert, ErrorInputMessage } from './styles';
-import { dateTimeMask } from './masks';
+import { Container, ContainerInput, Error, Alert } from './styles';
+import { currency, dateTimeMask } from './masks';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  error?: string;
+  error?: string | any;
   icon?: React.ComponentType<IconBaseProps>;
   alert?: string;
   mask?: 'currency' | 'dateTime';
-  isLoading?: boolean;
 }
 
-export function InputDefault({ isLoading, mask, label, alert, error, icon: Icon, ...rest }: InputProps) {
+export function InputDefault({ required, mask, label, alert, error, icon: Icon, ...rest }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -46,7 +46,7 @@ export function InputDefault({ isLoading, mask, label, alert, error, icon: Icon,
     <Container>
       <div className="containerAlert" style={{ display: 'flex', alignItems: 'center' }} >
         <label htmlFor={label}>{label}</label>
-        {alert && (
+        {required && (
           <Alert title={alert ?? 'Campo obrigatório'}>
             <IoMdHelpCircle size={18} color='#CED4DA' />
           </Alert>
@@ -54,19 +54,14 @@ export function InputDefault({ isLoading, mask, label, alert, error, icon: Icon,
       </div>
 
       <ContainerInput
-        isErrored={!!error}
+        isErrored={!!error?.isError}
         isFocused={isFocused}
         isFilled={isFilled}
         isIcon={!!Icon}
-        isLoad={isLoading}
       >
 
         <div className="leftInputElement">
-          {isLoading ? (
-            <div className="custom-loader" />
-            ) : (
-            Icon && <Icon color='rgba(204, 204, 204, 1)' size={22}/>
-          )}
+          {Icon && <Icon color='rgba(204, 204, 204, 1)' size={22}/>}
         </div>
 
         <input
@@ -76,28 +71,15 @@ export function InputDefault({ isLoading, mask, label, alert, error, icon: Icon,
           id={label}
           role="presentation" autoComplete="off"
           onKeyUp={handleKeyUp}
-          // required={alert ? true : false}
           {...rest}
         />
 
-    
-
-        {/* {error && (
+        {error && (
           <Error title={error}>
             <FiAlertCircle size={20} color="#E62965" />
           </Error>
-        )} */}
-
-          {/* <div className="errorMessage">
-            <span>{error.message}</span>
-          </div> */}
-      </ContainerInput>
-
-      {error && (
-          <ErrorInputMessage title={error}>
-            <span>{error}</span>
-          </ErrorInputMessage>
         )}
+      </ContainerInput>
     </Container>
   );
 }
