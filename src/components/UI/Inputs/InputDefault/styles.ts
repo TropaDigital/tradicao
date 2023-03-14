@@ -1,12 +1,24 @@
-import styled, { css } from 'styled-components';
-import Tooltip from '../../../shared/Tooltip';
+import Tooltip from '@/components/shared/Tooltip';
+import styled, { css, keyframes } from 'styled-components';
 
 interface ContainerProps {
   isFocused: boolean;
   isFilled: boolean;
   isErrored: boolean;
   isIcon: boolean;
+  isLoad?: boolean;
 }
+
+const fadeInUp = keyframes`
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+`
 
 export const Container = styled.div`
   display: flex;
@@ -14,11 +26,15 @@ export const Container = styled.div`
   position: relative;
 
   label {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--primary);
+    font-size: var(--text-smal-sm);
+    font-weight: var(--weight-medium);
+    color: var(--gray-700);
     margin-bottom: 5px;
   }
+`;
+
+const load = keyframes`
+  to{transform: rotate(1turn)}
 `;
 
 export const ContainerInput = styled.div<ContainerProps>`
@@ -28,11 +44,13 @@ export const ContainerInput = styled.div<ContainerProps>`
 
   border-color: #e2e8f0;
   word-wrap: break-word;
+  border-radius: 0.375rem;
 
   ${(props) =>
     props.isErrored &&
     css`
-      border-color: #e62965;
+      border-color: #E62965;
+      box-shadow: rgb(229 62 62) 0px 0px 0px 1px;
     `}
 
   input {
@@ -45,17 +63,19 @@ export const ContainerInput = styled.div<ContainerProps>`
     transition-property: background-color, border-color, color, fill, stroke,
       opacity, box-shadow, transform;
     transition-duration: 200ms;
-    font-size: 14px;
-    color: var(--dark);
-    padding-inline-start: ${(props) => (props.isIcon ? '2.5rem' : '1rem')};
+    font-size: var(--text-smal-md);
+    font-weight: var(--weight-reular);
+    color: var(--gray-700);
+    padding-inline-start: ${(props) => ((props.isIcon || props.isLoad) ? '2.5rem' : '1rem')};
     padding-inline-end: ${(props) => (props.isErrored ? '2.5rem' : '1rem')};
-    height: 2.667rem;
+    height: 2.5rem;
     border-radius: 0.375rem;
     border-width: 1px;
     border-style: solid;
     border-image: initial;
     border-color: inherit;
-    background: var(--white);
+    background: inherit;
+    line-height: 40px;
 
     &::placeholder {
       color: #cccccc;
@@ -67,12 +87,40 @@ export const ContainerInput = styled.div<ContainerProps>`
       box-shadow: rgb(49 130 206) 0px 0px 0px 1px;
 
       /* ${(props) =>
-        props.isErrored &&
-        css`
-          border-color: #e62965;
-          box-shadow: #e62965 0px 0px 0px 1px;
-        `} */
+    props.isErrored &&
+    css`
+      border-color: #E62965;
+      box-shadow: #E62965 0px 0px 0px 1px;
+    `} */
     }
+
+    input[type="file"]{
+      cursor: pointer;
+      position:absolute;
+      top: 0px;
+      cursor: pointer;
+
+      opacity: 0;
+    }
+    ::-webkit-file-upload-button {
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      border-radius: 0.375rem;
+      height: 2.5rem;
+      
+      width: 25%;
+      position: absolute;
+      right: -4px;
+      opacity: 0.9;
+      cursor: pointer;
+
+
+      &:hover {
+          opacity: 1;
+      }
+    }
+
 
     ::-webkit-calendar-picker-indicator {
       background-color: #cecece;
@@ -80,6 +128,8 @@ export const ContainerInput = styled.div<ContainerProps>`
       border-radius: 3px;
       position: absolute;
       left: 0px;
+      height: 2.5rem;
+      width: 2.5rem;
       opacity: 0;
     }
   }
@@ -115,7 +165,23 @@ export const ContainerInput = styled.div<ContainerProps>`
           /* stroke: rgb(49, 130, 206); */
         }
       `}
+
+
+  .custom-loader {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    padding: 1px;
+    background:conic-gradient(#0000 10%, #0046B5) content-box;
+    -webkit-mask:
+      repeating-conic-gradient(#0000 0deg,#000 1deg 20deg,#0000 21deg 36deg),
+      radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 calc(100% - 8px));
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
+    animation: ${load} 1s infinite steps(10);
+    pointer-events: none;
   }
+}
 `;
 
 export const Error = styled(Tooltip)`
@@ -137,16 +203,18 @@ export const Error = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #e62965;
+    background: #E62965;
     color: #fff;
+    left: -100%;
     &::before {
-      border-color: #e62965 transparent;
+      left: 88%;  
+      border-color: #E62965 transparent;
     }
   }
 `;
 
 export const Alert = styled(Tooltip)`
-  z-index: 3;
+  /* z-index: 3; */
   display: grid;
   place-items: center;
   margin-bottom: 5px;
@@ -156,10 +224,26 @@ export const Alert = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #ced4da;
+    background: #CED4DA;
     color: #fff;
+
+    left: 200%;
     &::before {
-      border-color: #ced4da transparent;
+      left: 33%;
+      border-color: #CED4DA transparent;
     }
   }
-`;
+`
+
+export const ErrorInputMessage = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 0.2rem;
+  animation: ${fadeInUp} .5s linear;
+
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #E62965;
+  }
+`

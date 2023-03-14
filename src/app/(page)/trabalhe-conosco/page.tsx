@@ -84,7 +84,6 @@ const WorkWithUsPage = () => {
                     value={values.fullName}
                     onChange={handleChange}
                     label="Nome Completo"
-                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     name="role"
@@ -92,14 +91,12 @@ const WorkWithUsPage = () => {
                     value={values.role}
                     onChange={handleChange}
                     label="Vaga"
-                    error={touched.role && errors.role}
                   />
                   <UploadFile
                     name="curriculum"
                     value={values.curriulum}
                     onChange={handleChange}
                     label="Anexar currículo"
-                    error={touched.curriulum && errors.curriulum}
                   />
                   <Button weight={500} type="submit">
                     Enviar
@@ -134,7 +131,6 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.fullName}
                     label="Nome Completo"
-                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     placeholder="CNPJ"
@@ -144,7 +140,6 @@ const WorkWithUsPage = () => {
                     }
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
-                    error={touched.cnpj && errors.cnpj}
                   />
                   <InputDefault
                     placeholder="Contato"
@@ -152,7 +147,6 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.contact}
                     label="Contato"
-                    error={touched.contact && errors.contact}
                   />
                   <Button type="submit">Enviar</Button>
                 </Form>

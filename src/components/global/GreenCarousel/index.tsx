@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import CenterWrapper from "../CenterWrapper";
-import { CarouselWrapper, SubtitleCarousel, TitleCarousel } from "./styles";
+import { CarouselWrapper, SubtitleCarousel, TitleCarousel, TitleCentralize } from "./styles";
 
 interface ICarouselWrapper {
     children: ReactNode,
@@ -15,10 +15,13 @@ export default function GreenCarousel({ children, title, height, marginBottom, s
         <CarouselWrapper
             height={height}
             marginBottom={marginBottom}
-        >
-            <CenterWrapper>
+        >   
+            <TitleCentralize>
                 <TitleCarousel>{title}</TitleCarousel>
                 <SubtitleCarousel>{subtitle}</SubtitleCarousel>
+            </TitleCentralize>
+            
+            <CenterWrapper>
                 {children}               
             </CenterWrapper>
         </CarouselWrapper>

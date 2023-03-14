@@ -2,12 +2,13 @@ import React, {
   useRef,
   useState,
   useCallback,
-  InputHTMLAttributes,
+  InputHTMLAttributes
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { BsCheck } from 'react-icons/bs';
 
 import { Container, ContainerInput, Error } from './styles';
+import { ErrorInputMessage } from '@/components/UI/Inputs/InputDefault/styles';
 
 interface ErrorInput {
   message: string;
@@ -16,11 +17,16 @@ interface ErrorInput {
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  error?: ErrorInput;
+  error?: string;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-export function CheckboxDefault({ label, error, icon: Icon, ...rest }: InputProps) {
+export function CheckboxDefault({
+  label,
+  error,
+  icon: Icon,
+  ...rest
+}: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -37,7 +43,8 @@ export function CheckboxDefault({ label, error, icon: Icon, ...rest }: InputProp
   }, []);
 
   return (
-    <Container>
+    <>
+      <Container>
         <input
           type="checkbox"
           onFocus={handleInputFocus}
@@ -46,18 +53,24 @@ export function CheckboxDefault({ label, error, icon: Icon, ...rest }: InputProp
           {...rest}
         />
 
-        <span className='checkbox'>
-          <BsCheck  />
+        <span className="checkbox">
+          <BsCheck />
         </span>
 
-        <span className='labelInput'>{label}</span>
+        <span className="labelInput">{label}</span>
 
         {/* {error?.isError && (
           <Error title={error.message}>
-            <FiAlertCircle size={20} color="#E62965" />
+          <FiAlertCircle size={20} color="#E62965" />
           </Error>
         )} */}
-      {/* </ContainerInput> */}
-    </Container>
+        {/* </ContainerInput> */}
+      </Container>
+      {error && (
+        <ErrorInputMessage style={{ marginTop: '6px' }} title={error}>
+          <span>{error}</span>
+        </ErrorInputMessage>
+      )}
+    </>
   );
 }
