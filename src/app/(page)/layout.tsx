@@ -2,7 +2,6 @@
 
 import Footer from '@/components/global/Footer';
 import Header from '@/components/global/Header';
-import { GlobalStyles } from '@/styles/global';
 import StyledJsxRegistry from '../registry';
 
 export default function RootLayout({
@@ -16,7 +15,6 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        {/* <GlobalStyles /> */}
       </StyledJsxRegistry>
     </section>
   );

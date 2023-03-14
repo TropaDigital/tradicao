@@ -5,4 +5,5 @@ export interface IHeroSkew{
     backgroundImage: string | any
     altBackgroundImage: string
     subtitle?: ReactNode | string
+    solidHeight?: string | number;
 }

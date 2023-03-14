@@ -7,11 +7,12 @@ import { IHeroSkew } from './types';
 export default function HeroSkew({
   altBackgroundImage,
   backgroundImage,
+  solidHeight,
   subtitle
 }: IHeroSkew) {
   return (
     <S.Container>
-      <S.SolidBackground />
+      <S.SolidBackground height={solidHeight} />
       <S.SkewContainer>
         <Image 
         src={backgroundImage}

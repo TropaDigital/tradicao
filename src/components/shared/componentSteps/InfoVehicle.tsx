@@ -3,7 +3,7 @@ import { CarIcon } from "@/assets/icons";
 import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/CheckboxDefault";
 import { FieldDefault, FieldGroup } from "@/components/pages/Painel/components/UiElements/styles";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
-import { ContentSimulation } from "../styles";
+import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
   [key: string]: any
