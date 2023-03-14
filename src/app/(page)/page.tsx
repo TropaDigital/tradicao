@@ -30,19 +30,25 @@ import FiatLogo from '/public/images/FiatLogo.svg';
 import BmwLogo from '/public/images/BMWLogo.svg';
 import CheryLogo from '/public/images/CheryLogo.svg';
 import ChevroletLogo from '/public/images/ChevroletLogo.svg';
+import CitroenLogo from '/public/images/CitroenLogo.svg';
 import FordLogo from '/public/images/FordLogo.svg';
 import JacLogo from '/public/images/JacLogo.svg';
 import JeepLogo from '/public/images/JeepLogo.svg';
 import MercedesLogo from '/public/images/MercedesLogo.svg';
 import PeugeotLogo from '/public/images/PeugeotLogo.svg';
 import VolksLogo from '/public/images/VolksLogo.svg';
+import VolksTruck from '/public/images/VolksTrucksLogo.svg';
+import AgraleTruck from '/public/images/AgraleTrucksLogo.svg';
+import FordTruck from '/public/images/FordTrucksLogo.svg';
+import IvecoTruck from '/public/images/IvecoTrucksLogo.svg';
+import JinbeiTruck from '/public/images/JinbeiTrucksLogo.svg';
+import MarcopoloTruck from '/public/images/MarcopoloTrucksLogo.svg';
+import MercedesTruck from '/public/images/MercedesTrucksLogo.svg';
+import ScaniaTruck from '/public/images/ScaniaTrucksLogo.svg';
+import VolvoTruck from '/public/images/VolvoTrucksLogo.svg';
 
 // Libraries
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import Slider from "react-slick";
 
 // Styles
 import { Container, SectionSimulatorForm, TitleSimulator } from './styles';
@@ -92,6 +98,80 @@ export default function Home() {
   const handleOnSubmit = useCallback((event: any) => {
     event.preventDefault();
   }, []);
+
+  const SlideSettings = {
+    dots: false,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    adaptiveHeight: false,
+    arrows: false,
+    className: 'slider',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,          
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+  const BrandSettings = {
+    dots: false,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    arrows: false,
+    adaptiveHeight: false,
+    className: 'slider',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,          
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  }
 
   return (
     <Container>
@@ -149,252 +229,463 @@ export default function Home() {
         </form>
       </SectionSimulatorForm>
 
-      {/* Precisa de no minímo 1 imagem fora da tela para começar a rodar */}
+      {/* Carrossel de contemplados */}
       <GreenCarousel
         title='Contemplados'
         height='350'
         marginBottom='110'
-      >   
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          className="my-swiper"
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          // loop={true}
-          modules={[Autoplay]}
-        >
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='300'
-              padding='20'
-              image={Person}
-              imageType={false}
-              bigText={false}
-              title='Título genérico'
-              description="Aqui um exemplo de um card que contem imagem e texto"
-            />       
-          </SwiperSlide>
+      >  
+        <Slider {...SlideSettings}>
+          <CardCarousel 
+            width='360'
+            heigth='300'
+            padding='20'
+            image={Person}
+            imageType={false}
+            bigText={false}
+            title='Título genérico'
+            description="Aqui um exemplo de um card que contem imagem e texto"
+          />       
+                
+          <CardCarousel 
+            width='360'
+            heigth='300'
+            padding='20'
+            image={Person}
+            imageType={false}
+            bigText={false}
+            title='Título genérico'
+            description="Aqui um exemplo de um card que contem imagem e texto"
+          />  
 
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='300'
-              padding='20'
-              image={Person}
-              imageType={false}
-              bigText={false}
-              title='Título genérico'
-              description="Aqui um exemplo de um card que contem imagem e texto"
-            />       
-          </SwiperSlide>
+          <CardCarousel 
+            width='360'
+            heigth='300'
+            padding='20'
+            image={Person}
+            imageType={false}
+            bigText={false}
+            title='Título genérico'
+            description="Aqui um exemplo de um card que contem imagem e texto"
+          />       
+                
+          <CardCarousel 
+            width='276'
+            heigth='276'
+            padding='20'
+            image={Person}
+            imageType={true}
+            bigText={false}
+          />  
+      
+          <CardCarousel 
+            width='360'
+            heigth='200'
+            padding='34'
+            image=''
+            imageType={false}
+            bigText={true}
+            haveIcons={true}              
+          />       
+                
+          <CardCarousel 
+            width='360'
+            heigth='200'
+            padding='34'
+            title='Missão'
+            description='Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa.'
+            imageType={false}
+            bigText={true}
+            haveIcons={false}              
+          />       
+        
+          <CardCarousel 
+            width='360'
+            heigth='300'
+            padding='20'
+            image={Person}
+            imageType={false}
+            bigText={false}
+            title='Título genérico'
+            description="Aqui um exemplo de um card que contem imagem e texto"
+          />    
 
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='300'
-              padding='20'
-              image={Person}
-              imageType={false}
-              bigText={false}
-              title='Título genérico'
-              description="Aqui um exemplo de um card que contem imagem e texto"
-            />       
-          </SwiperSlide>          
+          <CardCarousel 
+            width='276'
+            heigth='276'
+            padding='20'
+            image={Person}
+            imageType={true}
+            bigText={false}
+          />
 
-          <SwiperSlide>
-            <CardCarousel 
-              width='276'
-              heigth='276'
-              padding='20'
-              image={Person}
-              imageType={true}
-              bigText={false}
-            />       
-          </SwiperSlide>
+          <CardCarousel 
+            width='360'
+            heigth='300'
+            padding='20'
+            image={Person}
+            imageType={false}
+            bigText={false}
+            title='Título genérico'
+            description="Aqui um exemplo de um card que contem imagem e texto"
+          />   
 
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='200'
-              padding='34'
-              image=''
-              imageType={false}
-              bigText={true}
-              haveIcons={true}              
-            />       
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='200'
-              padding='34'
-              title='Missão'
-              description='Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa.'
-              imageType={false}
-              bigText={true}
-              haveIcons={false}              
-            />       
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <CardCarousel 
-              width='360'
-              heigth='300'
-              padding='20'
-              image={Person}
-              imageType={false}
-              bigText={false}
-              title='Título genérico'
-              description="Aqui um exemplo de um card que contem imagem e texto"
-            />       
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <CardCarousel 
-              width='276'
-              heigth='276'
-              padding='20'
-              image={Person}
-              imageType={true}
-              bigText={false}
-            />       
-          </SwiperSlide>
+        </Slider>
+       
           
-        </Swiper>
       </GreenCarousel>
-
+      
+      {/* Carrossel de automóveis */}
       <BrandsCarousel>
-          <Swiper
-            slidesPerView={7}
-            className="my-swiper"           
-          >
-            <SwiperSlide>
+          
+        <Slider {...BrandSettings}>
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={FiatLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={CheryLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={BmwLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={300}
+              height={96}
+              src={ChevroletLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={MercedesLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={JacLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={FordLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={CitroenLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={VolksLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={PeugeotLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={JeepLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={FiatLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={CheryLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={BmwLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={300}
+              height={96}
+              src={ChevroletLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+      
+          <BrandCard>
+            <Image
+              width={157}
+              height={96}
+              src={MercedesLogo}
+              alt={'Icon image'}
+              className='auto'
+            />
+          </BrandCard>
+          
+        </Slider>  
+          
+      </BrandsCarousel>
+      
+      {/* Carrossel de caminhões */}
+      <BrandsCarousel>
+          <Slider {...BrandSettings}>
+            <BrandCard>
+              <Image
+                width={130}
+                height={130}
+                src={VolksTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={JinbeiTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={AgraleTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={MercedesTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={IvecoTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={FordTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={MarcopoloTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={VolvoTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={ScaniaTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
               <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={FiatLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={CheryLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={BmwLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={ChevroletLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={MercedesLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={JacLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={FordLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={JacLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={VolksLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={PeugeotLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <BrandCard>
-                <Image
-                  width={157}
-                  height={96}
-                  src={JeepLogo}
-                  alt={'Icon image'}
-                />
-              </BrandCard>
-            </SwiperSlide>
-
-          </Swiper>
+              <Image
+                width={130}
+                height={130}
+                src={VolksTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={JinbeiTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={AgraleTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={MercedesTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={IvecoTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={FordTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={MarcopoloTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={VolvoTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+          
+            <BrandCard>
+              <Image
+                width={157}
+                height={96}
+                src={ScaniaTruck}
+                alt={'Icon image'}
+                className='truck'
+              />
+            </BrandCard>
+            
+          </Slider>
       </BrandsCarousel>
     </Container>
   );
