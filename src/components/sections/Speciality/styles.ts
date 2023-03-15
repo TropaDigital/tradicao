@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   margin-left: 1.5rem;
 
-  padding: 2.5rem 0 2rem;
+  /* padding: 2.5rem 0 2rem; */
   height: 260px;
   position: relative;
 
@@ -24,27 +24,26 @@ export const Container = styled.div`
     bottom: 0;
     z-index: -1;
   }
-  
-  .groupLogos {
+`;
+
+export const GroupLogos = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .logos {
     display: flex;
-    align-items: center;
-    gap: 2rem;
-    
-    .logos {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+
+    h3 {
+      font-weight: var(--weight-bold);
+      font-size: var(--text-smal-sm);
+      line-height: 18px;
       text-align: center;
 
-      h3 {
-        font-weight: var(--weight-bold);
-        font-size: var(--text-smal-sm);
-        line-height: 18px;
-        text-align: center;
-
-        color: var(--primary-mid);
-      }
+      color: var(--primary-mid);
     }
   }
-
-`
+`;
