@@ -1,5 +1,6 @@
 'use client';
 
+import ModalDefault from '@/components/shared/Modal';
 import styled from 'styled-components';
 
 export const Container = styled.section`
@@ -37,14 +38,23 @@ export const CepContainer = styled.div`
 `;
 
 export const CityStateContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
   padding-left: 30px;
   width: 100%;
+  gap: 10px;
+
+  select {
+    width: 303px;
+  }
 `;
 
 export const UnitsContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 20px;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 export const UnityCard = styled.div`
@@ -57,6 +67,7 @@ export const UnityCard = styled.div`
   border-radius: 10px;
   box-shadow: 0px 10px 30px -14px rgba(0, 0, 0, 0.12);
   transition: all 0.3s;
+  background: var(--white);
 
   :hover {
     transform: scale(1.05);
@@ -78,6 +89,65 @@ export const UnityCard = styled.div`
   }
 
   .unity-description {
+    color: var(--gray-700);
+    font-size: 14px;
+    font-weight: 500;
+  }
+`;
+
+export const MapModal = styled(ModalDefault)`
+  text-align: end;
+  max-width: 640px;
+
+  .map-container {
+    text-align: center;
+  }
+
+  iframe {
+    @media(max-width: 700px) {
+      width: calc(0.9*600px);
+      height: calc(0.9*450px);
+    }
+    @media(max-width: 630px) {
+      width: calc(0.8*600px);
+      height: calc(0.8*450px);
+    }
+    @media(max-width: 580px) {
+      width: calc(0.7*600px);
+      height: calc(0.7*450px);
+    }
+    @media(max-width: 500px) {
+      width: calc(0.65*600px);
+      height: calc(0.7*450px);
+    }
+    @media(max-width: 475px) {
+      width: calc(0.58*600px);
+      height: calc(0.7*450px);
+    }
+    @media(max-width: 455px) {
+      width: calc(0.5*600px);
+      height: calc(0.6*450px);
+    }
+  }
+
+  .unit-header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .unit-contact {
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .unit-title {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 16px;
+  }
+  .unit-address {
     color: var(--gray-700);
     font-size: 14px;
     font-weight: 500;

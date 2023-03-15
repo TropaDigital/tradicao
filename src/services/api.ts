@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import axios from "axios"
+import axios from 'axios';
 
 const API = axios.create({
-    baseURL: `http://192.168.15.19:3000/`,
-})
+  baseURL: `http://192.168.15.15:33333/`
+});
 
-export default API
+export default API;
