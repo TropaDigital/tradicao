@@ -14,7 +14,6 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    list-style: none;
     text-decoration: none;
 }
 
@@ -160,10 +159,6 @@ input, button, textarea, select {
 
 a {
   text-decoration: none;
-}
-
-ul{
-    list-style: none;
 }
 
 img{
