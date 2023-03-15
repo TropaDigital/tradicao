@@ -23,6 +23,24 @@ export const BlueLeft = styled.div`
     border-bottom-right-radius: 20px;
 
     padding: 20px 120px 39px 0px;
+
+    @media (max-width: 800px) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        width: 52%;
+
+        padding: 20px 110px 40px 20px;
+    }
+
+    @media (max-width: 500px) {
+        display: flex;
+        align-items: center;
+        width: 60%;
+
+        padding: 20px 30px 44px 60px;
+    }
 `
 
 export const BlueRight = styled.div`
@@ -39,34 +57,70 @@ export const BlueRight = styled.div`
     border-bottom-left-radius: 20px;
 
     padding: 20px 0px 38px 60px;
+
+    @media (max-width: 800px) {
+        display: flex;
+        align-items: center;
+
+        width: 62%;
+
+        padding: 20px 0px 20px 40px;
+    }
+
+
+    @media (max-width: 500px) {
+        display: flex;
+        align-items: center;
+
+        width: 62%;
+
+        padding: 20px 0px 20px 30px;
+    }
 `
 
 export const BlueLeftInfo = styled.div`
     text-align: right;
-    font-size: 72px;
+    font-size: 4.5rem;
     font-weight: 700;
     color: var(--white);
     transform: skewX(18deg);
 
     .title {
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 400;
+    }
+
+    @media (max-width: 800px) {
+        font-size: 2.5rem;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 1.5rem;
     }
 `
 
 export const BlueRightInfo = styled.div`
     text-align: left;
-    font-size: 72px;
+    font-size: 4.5rem;
     font-weight: 700;
     color: var(--white);
     transform: skewX(18deg);
 
     span {
-        font-size: 22px;
+        font-size: 1.375rem;
     }
 
     .title {
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 400;
+    }
+
+    @media (max-width: 800px) {
+        font-size: 2.5rem;
+    }
+
+    @media (max-width: 500px) {
+        
+        font-size: 1.5rem;
     }
 `
