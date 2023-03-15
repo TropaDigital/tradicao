@@ -8,6 +8,7 @@ import SimulationForm from '@/components/shared/SimulationForm';
 import { Container } from './styles';
 import Speciality from '@/components/sections/Speciality';
 import BlueInfos from '@/components/pages/Home/BlueInfos';
+import ConsortiumWorks from '@/components/pages/Home/ConsortiumWorks';
 
 export default function Home() {
   return (
@@ -27,6 +28,8 @@ export default function Home() {
         quotasTotal='39.583'
         creditsTotal='501.260.000'
       />
+
+      <ConsortiumWorks />
 
       <Contemplated />
     </Container>

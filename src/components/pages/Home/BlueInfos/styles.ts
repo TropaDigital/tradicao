@@ -39,7 +39,7 @@ export const BlueLeft = styled.div`
         align-items: center;
         width: 60%;
 
-        padding: 20px 30px 44px 60px;
+        padding: 20px 64px 44px 30px;
     }
 `
 
