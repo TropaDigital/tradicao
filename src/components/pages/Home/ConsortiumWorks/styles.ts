@@ -7,8 +7,8 @@ export const ConsortiumContainer = styled.div`
 
 export const ConsortiumTitle = styled.h1`
     text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: var(--text-headline-lgx);
+    font-weight: var(--weight-bold);
     color: var(--primary-dark);
 
     margin-bottom: 42px;    

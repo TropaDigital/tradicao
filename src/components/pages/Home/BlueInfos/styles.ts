@@ -80,29 +80,29 @@ export const BlueRight = styled.div`
 
 export const BlueLeftInfo = styled.div`
     text-align: right;
-    font-size: 4.5rem;
-    font-weight: 700;
+    font-size: var(--text-display-lg);
+    font-weight: var(--weight-bold);
     color: var(--white);
     transform: skewX(18deg);
 
     .title {
-        font-size: 0.875rem;
-        font-weight: 400;
+        font-size: var(--text-smal-sm);
+        font-weight: var(--weight-regular);
     }
 
     @media (max-width: 800px) {
-        font-size: 2.5rem;
+        font-size: var(--text-headline-lgx);
     }
 
     @media (max-width: 500px) {
-        font-size: 1.5rem;
+        font-size: var(--text-headline-sm);
     }
 `
 
 export const BlueRightInfo = styled.div`
     text-align: left;
-    font-size: 4.5rem;
-    font-weight: 700;
+    font-size: var(--text-display-lg);
+    font-weight: var(--weight-bold);
     color: var(--white);
     transform: skewX(18deg);
 
@@ -111,16 +111,16 @@ export const BlueRightInfo = styled.div`
     }
 
     .title {
-        font-size: 0.875rem;
-        font-weight: 400;
+        font-size: var(--text-smal-sm);
+        font-weight: var(--weight-regular);
     }
 
     @media (max-width: 800px) {
-        font-size: 2.5rem;
+        font-size: var(--text-headline-lgx);
     }
 
     @media (max-width: 500px) {
         
-        font-size: 1.5rem;
+        font-size: var(--text-headline-sm);
     }
 `
