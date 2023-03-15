@@ -20,6 +20,7 @@ export const CarouselWrapper = styled.div<ICarousel>`
     
     .slider {
         overflow: hidden;
+        padding-bottom: 40px;
     }
     
     .slick-track {

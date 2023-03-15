@@ -20,7 +20,7 @@ export const BlueLeft = styled.div`
     position: absolute;
     top: 11px;
     left: -25px;
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: 20px;
 
     padding: 20px 120px 39px 0px;
 `
@@ -35,8 +35,8 @@ export const BlueRight = styled.div`
     position: absolute;
     top: 0;
     right: -25px;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     padding: 20px 0px 38px 60px;
 `

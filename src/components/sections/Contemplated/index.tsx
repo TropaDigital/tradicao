@@ -96,9 +96,7 @@ export default function Contemplated() {
             bigText={false}
             title='Título genérico'
             description="Aqui um exemplo de um card que contem imagem e texto"
-          />       
-          
-
+          />  
         
           <CardCarousel 
             width='360'
@@ -109,9 +107,7 @@ export default function Contemplated() {
             bigText={false}
             title='Título genérico'
             description="Aqui um exemplo de um card que contem imagem e texto"
-          />       
-        
-
+          />     
       
           <CardCarousel 
             width='360'
@@ -122,67 +118,7 @@ export default function Contemplated() {
             bigText={false}
             title='Título genérico'
             description="Aqui um exemplo de um card que contem imagem e texto"
-          />       
-                  
-
-      
-          <CardCarousel 
-            width='276'
-            heigth='276'
-            padding='20'
-            image={Person}
-            imageType={true}
-            bigText={false}
-          />       
-        
-
-      
-          <CardCarousel 
-            width='360'
-            heigth='200'
-            padding='34'
-            image=''
-            imageType={false}
-            bigText={true}
-            haveIcons={true}              
-          />       
-        
-
-      
-          <CardCarousel 
-            width='360'
-            heigth='200'
-            padding='34'
-            title='Missão'
-            description='Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa.'
-            imageType={false}
-            bigText={true}
-            haveIcons={false}              
-          />       
-        
-
-      
-          <CardCarousel 
-            width='360'
-            heigth='300'
-            padding='20'
-            image={Person}
-            imageType={false}
-            bigText={false}
-            title='Título genérico'
-            description="Aqui um exemplo de um card que contem imagem e texto"
-          />       
-        
-
-      
-          <CardCarousel 
-            width='276'
-            heigth='276'
-            padding='20'
-            image={Person}
-            imageType={true}
-            bigText={false}
-          />       
+          />  
           
         </Slider>
         
