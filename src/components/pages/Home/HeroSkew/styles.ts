@@ -37,7 +37,7 @@ export const SkewContainer = styled.div`
     width: 65%;
   }
 
-  @media (max-width: 940px) {
+  @media (max-width: 1092px) {
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     width: 75%;
@@ -100,8 +100,11 @@ export const SubTitleWrapper = styled.div`
     width: 50%;
   }
 
-  @media (max-width: 765px) {
-    left: -15px;
+  @media (max-width: 700px) {
+    width: 100%;
+    transform: skew(0);
+    left: 0;
+    border-radius: 0;
   }
 
   .subtitle {
@@ -118,6 +121,10 @@ export const SubTitleWrapper = styled.div`
     }
     @media (max-width: 765px) {
       font-size: 16px;
+    }
+    @media (max-width: 700px) {
+      transform: skew(0);
+      text-align: center;
     }
   }
 `;

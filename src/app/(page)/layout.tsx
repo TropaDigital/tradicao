@@ -6,7 +6,6 @@ import StyledJsxRegistry from '../registry';
 import { Toasted } from '../../styles/toast';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NextNProgress from 'nextjs-progressbar';
 
 export default function RootLayout({
   children
@@ -16,13 +15,6 @@ export default function RootLayout({
   return (
     <section>
       <StyledJsxRegistry>
-        <NextNProgress
-          color="var(--primary)"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={10}
-          showOnShallow={true}
-        />
         <Header />
         <Toasted>
           <ToastContainer

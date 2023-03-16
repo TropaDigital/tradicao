@@ -45,18 +45,14 @@ export const SectionSimulatorForm = styled.div`
   top: 22%;
   transform: translate(-50%, -50%); */
 
-  @media (max-width: 940px) {
+  @media (max-width: 1090px) {
     top: 18%;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  @media (max-width: 830px) {
-    top: 15%;
-  }
-
-  @media (max-width: 540px) {
-    top: 13%;
+  @media (max-width: 640px) {
+    top: 16%;
   }
 
   @media (max-width: 528px) {

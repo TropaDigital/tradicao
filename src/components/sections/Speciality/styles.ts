@@ -1,12 +1,13 @@
-'use client'
+'use client';
 
 import brasaoImg from '../../../../public/images/Brasao.png';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   margin-left: 1.5rem;
 
@@ -20,9 +21,21 @@ export const Container = styled.div`
     object-fit: cover;
 
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: -10%;
+    bottom: -150%;
     z-index: -1;
+
+    @media (max-width: 600px) {
+      bottom: -120%;
+    }
+
+    @media (max-width: 530px) {
+      bottom: -85%;
+    }
+
+    @media (max-width: 350px) {
+      bottom: -60%;
+    }
   }
 `;
 
