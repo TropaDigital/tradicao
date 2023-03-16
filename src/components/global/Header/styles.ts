@@ -41,7 +41,7 @@ export const HeaderContainer = styled.header<Props>`
     position: relative;
   }
 
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     justify-content: space-between;
 
     .logo svg {
@@ -69,13 +69,17 @@ export const HeaderNav = styled.nav`
       }
     }
 
+    .client-area-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      gap: 5px;
+    }
+
     .submenu-options {
       position: relative;
     }
-  }
-
-  @media (max-width: 1320px) {
-    display: none;
   }
 `;
 
@@ -91,7 +95,7 @@ export const InfoContainer = styled.div<Props>`
   height: 40px;
   padding: 6px 35px;
 
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     padding: 6px 20px;
     justify-content: space-around;
   }
@@ -143,7 +147,7 @@ export const MenuHamburgerContainer = styled.div<Props>`
   display: none;
   cursor: pointer;
   position: relative;
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     display: block;
   }
 
@@ -217,7 +221,7 @@ export const MobileMenuModal = styled.div<Props>`
     align-items: center;
   }
 
-  @media(min-width: 1320px) {
+  @media(min-width: 1340px) {
     display: none;
   }
 `;
@@ -243,4 +247,11 @@ export const SubMenuOptions = styled(Modal)`
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
+
+  .sub-menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
 `;

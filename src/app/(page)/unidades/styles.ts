@@ -13,39 +13,64 @@ export const Container = styled.section`
 export const SearchContainer = styled.div`
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
   padding: 20px;
   background-color: var(--light);
   border-radius: 10px;
   width: 100%;
+  margin: 30px 0;
+
+  @media (max-width: 880px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const CepContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  max-width: 100%;
+  display: block;
+  width: 100%;
   padding-right: 30px;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-
-  .cep-input {
-    width: 303px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  @media (max-width: 880px) {
+    padding-right: 0;
+    padding-bottom: 30px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
+  .cep-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
 
-  .cep-button {
-    width: 104px;
+    @media (max-width: 880px) {
+      flex-wrap: wrap;
+    }
+
+    .cep-button {
+      max-width: 104px;
+      @media (max-width: 880px) {
+        max-width: 100%;
+      }
+    }
   }
 `;
 
 export const CityStateContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  padding-left: 30px;
+  display: block;
   width: 100%;
-  gap: 10px;
+  padding-left: 30px;
+  @media (max-width: 880px) {
+    padding-left: 0;
+    padding-top: 30px;
+  }
+  .city-state-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    width: 100%;
 
-  select {
-    width: 303px;
+    @media (max-width: 880px) {
+      flex-wrap: wrap;
+      gap: 5px;
+    }
   }
 `;
 
@@ -61,6 +86,7 @@ export const UnityCard = styled.div`
   position: relative;
   text-align: end;
   width: 270px;
+  min-height: 170px;
   padding: 30px 20px;
   line-height: 18px;
   border: 1px solid var(--light);
@@ -104,29 +130,29 @@ export const MapModal = styled(ModalDefault)`
   }
 
   iframe {
-    @media(max-width: 700px) {
-      width: calc(0.9*600px);
-      height: calc(0.9*450px);
+    @media (max-width: 700px) {
+      width: calc(0.9 * 600px);
+      height: calc(0.9 * 450px);
     }
-    @media(max-width: 630px) {
-      width: calc(0.8*600px);
-      height: calc(0.8*450px);
+    @media (max-width: 630px) {
+      width: calc(0.8 * 600px);
+      height: calc(0.8 * 450px);
     }
-    @media(max-width: 580px) {
-      width: calc(0.7*600px);
-      height: calc(0.7*450px);
+    @media (max-width: 580px) {
+      width: calc(0.7 * 600px);
+      height: calc(0.7 * 450px);
     }
-    @media(max-width: 500px) {
-      width: calc(0.65*600px);
-      height: calc(0.7*450px);
+    @media (max-width: 500px) {
+      width: calc(0.65 * 600px);
+      height: calc(0.7 * 450px);
     }
-    @media(max-width: 475px) {
-      width: calc(0.58*600px);
-      height: calc(0.7*450px);
+    @media (max-width: 475px) {
+      width: calc(0.58 * 600px);
+      height: calc(0.7 * 450px);
     }
-    @media(max-width: 455px) {
-      width: calc(0.5*600px);
-      height: calc(0.6*450px);
+    @media (max-width: 455px) {
+      width: calc(0.5 * 600px);
+      height: calc(0.6 * 450px);
     }
   }
 
@@ -151,5 +177,12 @@ export const MapModal = styled(ModalDefault)`
     color: var(--gray-700);
     font-size: 14px;
     font-weight: 500;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  .subtitle {
+    font-weight: 400;
+    color: var(--gray-500);
   }
 `;

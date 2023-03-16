@@ -184,6 +184,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
+                    maxLength={14}
                     error={touched.cnpj && errors.cnpj}
                   />
                   <InputDefault

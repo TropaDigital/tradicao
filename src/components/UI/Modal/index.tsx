@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react'
-import * as S from './styles'
+import React, { ReactNode } from 'react';
+import * as S from './styles';
 
 interface IModal {
-  isOpen: boolean
+  isOpen: boolean;
   children: ReactNode;
 }
 
@@ -11,7 +11,7 @@ const Modal = ({ children, isOpen, ...rest }: IModal) => {
     <S.Container isOpen={isOpen} {...rest}>
       {children}
     </S.Container>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
