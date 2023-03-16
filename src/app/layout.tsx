@@ -14,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-       
         <QueryClientProvider client={queryClient}>
           <StyledJsxRegistry>
             {children}

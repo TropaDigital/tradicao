@@ -92,6 +92,10 @@ export default function QuemSomos() {
           </div>
         </CenterWrapper>
       </S.BenefitsBottomWrapper>
+
+      <CenterWrapper>
+        
+      </CenterWrapper>
     </S.QuemSomosContainer>
   );
 }

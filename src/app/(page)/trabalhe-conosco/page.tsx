@@ -12,6 +12,8 @@ import * as S from './styles';
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
 import WorkWithUsBg from '../../../../public/images/work_with_us_bg.png';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { useCreateCandidate } from '@/services/trabalhe-conosco/POST/useCreateCadidate';
+import { useCreateAgent } from '@/services/representante/POST';
 
 const WorkWithUsPage = () => {
   const [formStage, setFormStage] = useState<'curriculo' | 'representante'>(
@@ -25,6 +27,9 @@ const WorkWithUsPage = () => {
       '$1.$2.$3/$4-$5'
     );
   };
+
+  const { createCandidate } = useCreateCandidate();
+  const { createAgent } = useCreateAgent();
 
   return (
     <>
@@ -53,7 +58,7 @@ const WorkWithUsPage = () => {
               color={formStage === 'representante' ? 'primary' : 'secondary'}
               type="submit"
               degrade
-              className='stage-form-button'
+              className="stage-form-button"
             >
               Seja um Representante
             </Button>
@@ -64,16 +69,33 @@ const WorkWithUsPage = () => {
               initialValues={{
                 fullName: '',
                 role: '',
-                curriulum: []
+                curriculum: []
               }}
               validationSchema={curriulumFormSchema}
-              onSubmit={(values, errors) => {
-                console.log(values);
-                // TODO: Integração com banco de dados
+              onSubmit={(values, { resetForm }) => {
+                createCandidate({
+                  nome: values.fullName,
+                  vaga: values.role,
+                  curriculo_pdf: values.curriculum
+                });
+
+                resetForm();
               }}
             >
-              {({ values, errors, handleSubmit, handleChange, touched }) => (
-                <Form onSubmit={handleSubmit} className="work-form">
+              {({
+                values,
+                errors,
+                handleSubmit,
+                handleChange,
+                touched,
+                setFieldValue
+              }) => (
+                <Form
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                    handleSubmit(e)
+                  }
+                  className="work-form"
+                >
                   <MainTitle
                     title="Cadastre seu currículo"
                     subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
@@ -84,6 +106,7 @@ const WorkWithUsPage = () => {
                     value={values.fullName}
                     onChange={handleChange}
                     label="Nome Completo"
+                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     name="role"
@@ -91,12 +114,20 @@ const WorkWithUsPage = () => {
                     value={values.role}
                     onChange={handleChange}
                     label="Vaga"
+                    error={touched.role && errors.role}
                   />
+                  {/* TODO: Rest file input when create candidate */}
                   <UploadFile
                     name="curriculum"
-                    value={values.curriulum}
+                    id="curriculum"
                     onChange={handleChange}
                     label="Anexar currículo"
+                    onPostFile={(curriculoUrl) => {
+                      if (curriculoUrl) {
+                        setFieldValue('curriculum', [curriculoUrl]);
+                      }
+                    }}
+                    errors={touched.curriculum && errors.curriculum}
                   />
                   <Button weight={500} type="submit">
                     Enviar
@@ -115,8 +146,11 @@ const WorkWithUsPage = () => {
               }}
               validationSchema={representanteFormSchema}
               onSubmit={(values) => {
-                console.log(values);
-                // TODO: Integração com banco de dados
+                createAgent({
+                  nome: values.fullName,
+                  cnpj: values.cnpj.replaceAll(/\D+/g, ''),
+                  contato: values.contact
+                });
               }}
             >
               {({ handleChange, errors, values, handleSubmit, touched }) => (
