@@ -3,20 +3,10 @@ import styled from 'styled-components';
 export const QuemSomosContainer = styled.div`
   max-width: 100vw;
   overflow: hidden;
-`;
 
-export const AboutUsTitle = styled.h1`
-  margin-top: 43px;
-
-  font-style: normal;
-  font-weight: var(--font-bold);
-  font-size: var(--h1-font-size);
-  line-height: 46px;
-  letter-spacing: -0.02em;
-  color: var(--primary-mid);
-
-  &::before {
-    content: '| ';
+  .title {
+    //class inside main title component
+    margin-top: 36px;
   }
 `;
 
@@ -119,6 +109,19 @@ export const BenefitItem = styled.li`
 `;
 
 export const AboutUsCardWrapper = styled.div`
-display: flex;
-gap: 32px;
-`
+  display: flex;
+  gap: 32px;
+`;
+export const VideoWrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  margin: 50px 0;
+
+  .bgHomeVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;

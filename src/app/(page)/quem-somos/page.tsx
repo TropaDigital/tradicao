@@ -12,8 +12,10 @@ import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg
 import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
 import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
-import Slider from "react-slick";
+import Slider from 'react-slick';
+import MainTitle from '@/components/UI/MainTitle';
 
+// import testeVideo from '../../../../public/video/testVideo.mp4'
 
 export default function QuemSomos() {
   const BENEFITS_WITH_CONSORCIO_TRADICAO: Array<string> = [
@@ -42,17 +44,16 @@ export default function QuemSomos() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,          
+          infinite: true
         }
       },
       {
         breakpoint: 798,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToScroll: 1
         }
-      },
-      
+      }
     ]
   };
 
@@ -64,7 +65,7 @@ export default function QuemSomos() {
         size={'medium'}
       />
       <CenterWrapper>
-        <S.AboutUsTitle>Quem somos</S.AboutUsTitle>
+        <MainTitle title="Quem Somos" />
         <S.AboutUsContent>
           Com mais de 20 anos no mercado de Consórcio, a Tradição se tornou
           autoridade na modalidade alternativa de investimento a longo prazo.
@@ -136,40 +137,48 @@ export default function QuemSomos() {
         padTopCarousel={62}
       >
         <S.AboutUsCardWrapper>
-          <Slider 
-          {...SLIDER_SETTINGS}
-          >
+          <Slider {...SLIDER_SETTINGS}>
             <CardCarousel
-            bigText={true}
-            title="Missão"
-            description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
-            heigth="200"
-            imageType={false}
-            padding="20px"
-            width="357"
-          />
-          <CardCarousel
-            bigText={true}
-            title="Visão"
-            description="Destacar-se entre as 10 maiores administradoras independentes do Brasil, crescendo com segurança e solidez."
-            heigth="200"
-            imageType={false}
-            padding="20px"
-            width="357"
-          />
-          <CardCarousel
-            bigText={true}
-            title="Missão"
-            description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
-            heigth="200"
-            imageType={false}
-            padding="20px"
-            width="357"
-          />
+              bigText={true}
+              title="Missão"
+              description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
+              heigth="200"
+              imageType={false}
+              padding="20px"
+              width="357"
+            />
+            <CardCarousel
+              bigText={true}
+              title="Visão"
+              description="Destacar-se entre as 10 maiores administradoras independentes do Brasil, crescendo com segurança e solidez."
+              heigth="200"
+              imageType={false}
+              padding="20px"
+              width="357"
+            />
+            <CardCarousel
+              bigText={true}
+              title="Missão"
+              description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
+              heigth="200"
+              imageType={false}
+              padding="20px"
+              width="357"
+            />
           </Slider>
-          
         </S.AboutUsCardWrapper>
       </GreenCarousel>
+
+      <CenterWrapper>
+        <S.VideoWrapper>
+          <video autoPlay controls className="bgHomeVideo">
+            <source
+              src={'/videos/testVideo.mp4'}
+              type={'video/mp4'}
+            />
+          </video>
+        </S.VideoWrapper>
+      </CenterWrapper>
     </S.QuemSomosContainer>
   );
 }
