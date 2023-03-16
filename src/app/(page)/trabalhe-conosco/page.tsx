@@ -98,10 +98,13 @@ const WorkWithUsPage = () => {
                   }
                   className="work-form"
                 >
-                  <MainTitle
-                    title="Cadastre seu currículo"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+                  <S.TitleContainer>
+                    <MainTitle title="Cadastre seu currículo" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     name="fullName"
                     placeholder="Nome"
@@ -160,10 +163,13 @@ const WorkWithUsPage = () => {
             >
               {({ handleChange, errors, values, handleSubmit, touched }) => (
                 <Form onSubmit={handleSubmit} className="work-form">
-                  <MainTitle
-                    title="Seja um Representante"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+                  <S.TitleContainer>
+                    <MainTitle title="Seja um Representante" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     placeholder="Nome"
                     name="fullName"
