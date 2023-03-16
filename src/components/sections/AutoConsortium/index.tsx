@@ -20,41 +20,41 @@ import PeugeotLogo from '/public/images/PeugeotLogo.svg';
 import VolksLogo from '/public/images/VolksLogo.svg';
 
 const SlideSettings = {
-    dots: false,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 3000,
-    infinite: true,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    arrows: false,
-    adaptiveHeight: false,
-    className: 'slider',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,          
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
+  dots: false,
+  autoplay: true,
+  speed: 2000,
+  autoplaySpeed: 3000,
+  infinite: true,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  arrows: false,
+  adaptiveHeight: false,
+  className: 'slider',
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,          
       }
-    ]
-  }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }
+  ]
+}
 
 export default function AutoConsortium() {
 
