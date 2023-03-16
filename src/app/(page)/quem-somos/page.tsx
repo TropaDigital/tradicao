@@ -14,6 +14,7 @@ import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
 import Slider from 'react-slick';
 import MainTitle from '@/components/UI/MainTitle';
+import { EyeIcon, HeartEyeIcon, HeartIcon, LikeIcon, LogoutIcon, MagnifyingGlass, PersonEmptyIcon, PersonIcon, WatchIcon } from '@/assets/icons';
 
 // import testeVideo from '../../../../public/video/testVideo.mp4'
 
@@ -57,6 +58,28 @@ export default function QuemSomos() {
     ]
   };
 
+  const MORAL_VALUES_CARD_ITENS = [
+    {
+      icon: <PersonEmptyIcon size={32} color={'var(--primary-mid)'} />,
+      text: 'Justiça'
+    },{
+      icon: <EyeIcon size={32} color={'var(--primary-mid)'} />,
+      text: 'Honestidade'
+    },{
+      icon: <LikeIcon size={32} color={'var(--primary-mid)'} />,
+      text: 'Igualdade'
+    },{
+      icon: <MagnifyingGlass size={32} color={'var(--primary-mid)'} />,
+      text: 'Transparência'
+    },{
+      icon: <HeartIcon size={32} color={'var(--primary-mid)'} />,
+      text: 'Respeito'
+    },{
+      icon: <WatchIcon size={32} color={'var(--primary-mid)'} />,
+      text: 'Agilidade'
+    }
+  ];
+
   return (
     <S.QuemSomosContainer>
       <SkewContainer
@@ -89,8 +112,6 @@ export default function QuemSomos() {
           <Image
             alt="imagem de fundo do consórcio tradição"
             src={bgTradicaoImage}
-            height={742}
-            width={742}
           />
         </S.AbsoluteImageWrapper>
 
@@ -156,15 +177,19 @@ export default function QuemSomos() {
               padding="20px"
               width="357"
             />
-            <CardCarousel
-              bigText={true}
-              title="Missão"
-              description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
-              heigth="200"
-              imageType={false}
-              padding="20px"
-              width="357"
-            />
+            <S.MoralValuesCard>
+              <h3 className="moralValuesTitle">Valores</h3>
+              <div className="gridTemplateValuesCard">
+                {MORAL_VALUES_CARD_ITENS.map(
+                  (row: any | 'tipar', index: number) => (
+                    <S.MoralValuesCardItem>
+                      {row.icon}
+                      <p className="moralValuesCardItemText">{row.text}</p>
+                    </S.MoralValuesCardItem>
+                  )
+                )}
+              </div>
+            </S.MoralValuesCard>
           </Slider>
         </S.AboutUsCardWrapper>
       </GreenCarousel>
@@ -172,13 +197,13 @@ export default function QuemSomos() {
       <CenterWrapper>
         <S.VideoWrapper>
           <video autoPlay controls className="bgHomeVideo">
-            <source
-              src={'/videos/testVideo.mp4'}
-              type={'video/mp4'}
-            />
+            <source src={'/videos/testVideo.mp4'} type={'video/mp4'} />
           </video>
         </S.VideoWrapper>
       </CenterWrapper>
+         
+      
+
     </S.QuemSomosContainer>
   );
 }

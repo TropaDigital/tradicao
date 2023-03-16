@@ -15,6 +15,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    list-style: none;
 }
 
 
@@ -188,6 +189,10 @@ fieldset {
   margin-top: 1rem;
   min-inline-size: auto;
   border: 0;
+}
+
+ul, li, ol{
+  list-style: none;
 }
 
 legend {

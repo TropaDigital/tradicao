@@ -52,6 +52,34 @@ export const AbsoluteImageWrapper = styled.span`
   margin-right: -150px;
   margin-bottom: -200px;
   z-index: -1;
+
+  width: 720px;
+  height: 720px;
+
+  @media (max-width: 1025px) {
+    width: 600px;
+    height: 600px;
+  }
+
+  @media (max-width: 769px) {
+    margin-bottom: -120px;
+    margin-right: -105px;
+
+    width: 430px;
+    height: 430px;
+  }
+
+  @media (max-width: 769px) {
+    margin-bottom: -120px;
+    margin-right: -105px;
+
+    width: 350px;
+    height: 350px;
+  }
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const BenefitsBottomWrapper = styled.div`
@@ -93,25 +121,20 @@ export const BenefitsBottomWrapper = styled.div`
 `;
 
 export const BenefitItem = styled.li`
+  list-style: disc;
   margin-top: 10px;
-
   font-weight: var(--weight-regular);
   font-size: var(-small-font-size);
   line-height: 26px;
   color: var(--text-color-light);
-
   margin-left: 20px;
-
   &::marker {
     font-size: 100%;
-    color: var();
   }
 `;
 
-export const AboutUsCardWrapper = styled.div`
-  display: flex;
-  gap: 32px;
-`;
+export const AboutUsCardWrapper = styled.div``;
+
 export const VideoWrapper = styled.div`
   margin: 0;
   padding: 0;
@@ -123,5 +146,45 @@ export const VideoWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+`;
+
+export const MoralValuesCard = styled.div`
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 20px 20px -7px rgba(0, 0, 0, 0.4);
+  height: 200px;
+  min-width: 357px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .moralValuesTitle {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--primary-mid);
+    text-align: center;
+  }
+
+  .gridTemplateValuesCard {
+    margin: 10px 16px;
+    display: grid;
+    grid-column-gap: 36px;
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+export const MoralValuesCardItem = styled.span`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 36px;
+  .moralValuesCardItemText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--primary-mid);
   }
 `;
