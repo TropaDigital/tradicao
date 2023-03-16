@@ -26,3 +26,10 @@ export const ButtonsWrapper = styled.div`
     gap: 10px;
   }
 `;
+
+export const TitleContainer = styled.div`
+  .subtitle {
+    font-weight: 400;
+    color: var(--gray-500);
+  }
+`

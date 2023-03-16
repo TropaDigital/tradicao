@@ -17,11 +17,11 @@ import { IHeaderOptions, IInfoOptions } from './types';
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
-  // const [showHeader, setShowHeader] = useState<boolean>(false);
   const [isSubMenuTradicaoOpen, setIsSubMenuTradicaoOpen] =
     useState<boolean>(false);
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>();
 
   const mainPages: IHeaderOptions[] = [
     {
@@ -41,11 +41,11 @@ const Header = () => {
         },
         {
           subTitle: 'Compliance',
-          path: '/compliance'
+          path: '/canal-de-denuncia'
         },
         {
           subTitle: 'Atendimento',
-          path: '/atendimento'
+          path: '/contato'
         }
       ]
     },
@@ -111,10 +111,19 @@ const Header = () => {
     }
   ];
 
+  const getWindowWidth = () => {
+    window.addEventListener('resize', () => {
+      setWindowWidth(window?.innerWidth);
+    });
+  };
+
+  getWindowWidth();
+
   const wrapperRef = useRef(null);
+  const tradicaoWrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
-  useOutsideAlerter(wrapperRef, setIsSubMenuTradicaoOpen);
+  useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
 
   return (
     <>
@@ -150,123 +159,124 @@ const Header = () => {
           <DefaultLogo width={262} height={77} />
         </div>
 
-        <div className="menu-container">
-          <S.MenuHamburgerContainer
-            isOpen={isMobileOpen}
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-          ></S.MenuHamburgerContainer>
-          <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
-            {mainPages.map((page, key) => {
-              return (
-                <>
-                  <Link
-                    href={page.path ? page.path : ''}
-                    key={key}
-                    className="mobile-option"
-                    onClick={() => {
-                      if (page.title === 'A Tradição') {
-                        setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
-                      } else if (page.title === 'O Consórcio') {
-                        setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
-                      }
-                    }}
-                  >
-                    {page.title}
-                    <span className="chevron-icon">
-                      {page.subOptions && <ChevronIcon />}
-                    </span>
-                  </Link>
-
-                  {page.subOptions && (
-                    <S.SubMobileMenu
-                      isOpen={
-                        page.title === 'A Tradição'
-                          ? isSubMenuTradicaoOpen
-                          : isSubMenuConsorcioOpen
-                      }
-                    >
-                      {page.subOptions?.map((subOption, keyOption) => (
-                        <Link
-                          key={keyOption}
-                          href={subOption.path}
-                          className="sub-submobile-option"
-                        >
-                          {subOption.subTitle}
-                        </Link>
-                      ))}
-                    </S.SubMobileMenu>
-                  )}
-                </>
-              );
-            })}
-          </S.MobileMenuModal>
-        </div>
-
-        <S.HeaderNav>
-          <ul className="header-options">
-            {mainPages.map((page, key) => {
-              return (
-                <>
-                  {page.title === 'Área do Cliente' ? (
-                    <li
+        {windowWidth && windowWidth <= 1340 ? (
+          <div className="menu-container">
+            <S.MenuHamburgerContainer
+              isOpen={isMobileOpen}
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+            ></S.MenuHamburgerContainer>
+            <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
+              {mainPages.map((page, key) => {
+                return (
+                  <>
+                    <Link
+                      href={page.path ? page.path : ''}
                       key={key}
+                      className="mobile-option"
+                      onClick={() => {
+                        if (page.title === 'A Tradição') {
+                          setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
+                        } else if (page.title === 'O Consórcio') {
+                          setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
+                        }
+                      }}
                     >
-                      <Button
-                        radius="rounded"
-                        icon={<PersonIcon color={'var(--white)'} />}
-                      >
-                        Área do Cliente
-                      </Button>
-                    </li>
-                  ) : page.subOptions ? (
-                    <li
-                      key={key}
-                      className="submenu-options"
-                    >
-                      <div
-                        className="option-title"
-                        onClick={() => {
-                          page.title === 'A Tradição'
-                            ? setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
-                            : setIsSubMenuConsorcioOpen(
-                                !isSubMenuConsorcioOpen
-                              );
-                        }}
-                      >
-                        {page.title}
-                      </div>
+                      {page.title}
+                      <span className="chevron-icon">
+                        {page.subOptions && <ChevronIcon />}
+                      </span>
+                    </Link>
 
-                      <S.SubMenuOptions
+                    {page.subOptions && (
+                      <S.SubMobileMenu
                         isOpen={
                           page.title === 'A Tradição'
                             ? isSubMenuTradicaoOpen
                             : isSubMenuConsorcioOpen
                         }
                       >
-                        {page.subOptions.map((subOption, keyOption) => (
-                          <Link href={subOption.path} key={keyOption}>
+                        {page.subOptions?.map((subOption, keyOption) => (
+                          <Link
+                            key={keyOption}
+                            href={subOption.path}
+                            className="sub-submobile-option"
+                          >
                             {subOption.subTitle}
                           </Link>
                         ))}
-                      </S.SubMenuOptions>
-                    </li>
-                  ) : (
-                    <li
-                      key={key}
-                    >
-                      <Link
-                        href={page.path ? page?.path : '/'}
-                        className="option-title"
-                      >
-                        {page.title}
-                      </Link>
-                    </li>
-                  )}
-                </>
-              );
-            })}
-          </ul>
-        </S.HeaderNav>
+                      </S.SubMobileMenu>
+                    )}
+                  </>
+                );
+              })}
+            </S.MobileMenuModal>
+          </div>
+        ) : (
+          <S.HeaderNav>
+            <ul className="header-options">
+              {mainPages.map((page, key) => {
+                return (
+                  <>
+                    {page.title === 'Área do Cliente' ? (
+                      <li key={key}>
+                        <Button
+                          radius="rounded"
+                          icon={<PersonIcon color={'var(--white)'} />}
+                          className="client-area-button"
+                        >
+                          Área do Cliente
+                        </Button>
+                      </li>
+                    ) : page.subOptions ? (
+                      <li key={key} className="submenu-options">
+                        <div
+                          className="option-title"
+                          onClick={() => {
+                            page.title === 'A Tradição'
+                              ? setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
+                              : setIsSubMenuConsorcioOpen(
+                                  !isSubMenuConsorcioOpen
+                                );
+                          }}
+                        >
+                          {page.title}
+                        </div>
+
+                        <S.SubMenuOptions
+                          isOpen={
+                            page.title === 'A Tradição'
+                              ? isSubMenuTradicaoOpen
+                              : isSubMenuConsorcioOpen
+                          }
+                        >
+                          <div ref={page.title === "A Tradição" ? tradicaoWrapperRef : wrapperRef} className="sub-menu-container">
+                            {page.subOptions.map((subOption, keyOption) => (
+                              <Link
+                                href={subOption.path}
+                                key={keyOption}
+                              >
+                                {subOption.subTitle}
+                              </Link>
+                            ))}
+                          </div>
+                        </S.SubMenuOptions>
+                      </li>
+                    ) : (
+                      <li key={key}>
+                        <Link
+                          href={page.path ? page?.path : '/'}
+                          className="option-title"
+                        >
+                          {page.title}
+                        </Link>
+                      </li>
+                    )}
+                  </>
+                );
+              })}
+            </ul>
+          </S.HeaderNav>
+        )}
       </S.HeaderContainer>
     </>
   );

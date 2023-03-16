@@ -17,13 +17,50 @@ import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
 
 const UnidadesPage = () => {
+  const [allUnits, setAllUnits] = useState<IGetUnit[]>();
   const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
-  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
+  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
+
   const [allCities, setAllCities] = useState<any>();
   const [allStates, setAllStates] = useState<string[]>();
 
   const { unitsByQuery } = useGetUnitsByQuery(query);
+  const units = useGetUnitsByQuery('');
+
+  useEffect(() => {
+    setAllUnits(units.unitsByQuery);
+  }, [units]);
+
+  useEffect(() => {
+    const getAllStates = () => {
+      const allStates = allUnits?.map((fullUnit: any) => {
+        return fullUnit.uf;
+      });
+
+      const uniqueStates = [...new Set(allStates)].sort();
+
+      setAllStates(uniqueStates);
+    };
+
+    getAllStates();
+  }, [allUnits]);
+
+  useEffect(() => {
+    const getAllCities = (actualFilter: IGetUnit[]) => {
+      const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
+        return fullUnit.cidade;
+      });
+
+      const uniqueCities = [...new Set(allCities)].sort();
+
+      if (!query?.includes('cidade')) {
+        setAllCities(uniqueCities);
+      }
+    };
+
+    getAllCities(unitsByQuery);
+  }, [unitsByQuery]);
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -39,19 +76,6 @@ const UnidadesPage = () => {
     setQuery('');
   };
 
-  const searchUnitByCityAndState = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form: any = document.querySelector('#city-state-form');
-    const formData = new FormData(form);
-    const data: any = Object.fromEntries(formData);
-
-    let state: string;
-    let city: string;
-
-    setQuery('');
-  };
-
   const getUnitById = (id: string | number) => {
     const unit = unitsByQuery.filter((unit) => {
       return unit.id === id;
@@ -60,20 +84,6 @@ const UnidadesPage = () => {
     setActualUnit(unit);
     setIsMapModalOpen(true);
   };
-
-  useEffect(() => {
-    const getAllStates = () => {
-      const allStates = unitsByQuery?.map((fullUnit) => {
-        return fullUnit.uf;
-      });
-
-      const uniqueStates = [...new Set(allStates)].sort();
-
-      setAllStates(uniqueStates);
-    };
-
-    getAllStates();
-  }, [unitsByQuery]);
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsMapModalOpen);
@@ -88,19 +98,29 @@ const UnidadesPage = () => {
 
       <CenterWrapper>
         <S.Container>
-          <MainTitle
-            title="Unidades Credenciadas"
-            subtitle="Conheça nossas unidades. O Consórcio Tradição está sempre pronto em atendê-lo"
-          />
+          <S.TitleContainer>
+            <MainTitle title="Unidades Credenciadas" />
+            <p className="subtitle">
+              Conheça nossas unidades. O Consórcio Tradição está sempre pronto
+              em atendê-lo
+            </p>
+          </S.TitleContainer>
 
           <S.SearchContainer>
             <S.CepContainer>
-              <form onSubmit={(e: any) => searchUnitByCep(e)} id="cep-form">
+              <form
+                onSubmit={(e: React.ChangeEvent<HTMLFormElement>) =>
+                  searchUnitByCep(e)
+                }
+                className="cep-form"
+                id="cep-form"
+              >
                 <InputDefault
                   label="Busque pelo CEP"
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
+                  maxLength={8}
                 />
                 <Button degrade className="cep-button" type="submit">
                   Buscar
@@ -108,19 +128,21 @@ const UnidadesPage = () => {
               </form>
             </S.CepContainer>
             <S.CityStateContainer>
-              <form
-                onSubmit={(e: any) => searchUnitByCityAndState(e)}
-                id="city-state-form"
-              >
+              <form id="city-state-form" className="city-state-form">
                 <SelectDefault
                   label="ou selecione o Estado e Cidade"
                   className="select-city-state"
                   name="select-state"
+                  onChange={(e) =>
+                    e.target.value !== ''
+                      ? setQuery('uf=' + e.target.value)
+                      : setQuery('')
+                  }
                 >
-                  <option selected disabled value="null">
-                    Selecione o Estado
+                  <option selected value="">
+                    Selecione o estado
                   </option>
-                  {allStates?.map((state) => (
+                  {allStates?.map((state: any) => (
                     <option value={state}>{state}</option>
                   ))}
                 </SelectDefault>
@@ -128,17 +150,22 @@ const UnidadesPage = () => {
                   label=""
                   className="select-city-state"
                   name="select-city"
+                  onChange={(e) => {
+                    if (!query.includes('&cidade=')) {
+                      setQuery(query + '&cidade=' + e.target.value);
+                    } else {
+                      const newQuery = query.split('&').shift();
+                      setQuery(newQuery + '&cidade=' + e.target.value);
+                    }
+                  }}
                 >
-                  <option selected disabled value="null">
+                  <option selected value="null">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
                     <option value={city}>{city}</option>
                   ))}
                 </SelectDefault>
-                <Button degrade className="cep-button" type="submit">
-                  Buscar
-                </Button>
               </form>
             </S.CityStateContainer>
           </S.SearchContainer>

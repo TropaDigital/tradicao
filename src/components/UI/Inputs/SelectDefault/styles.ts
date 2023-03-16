@@ -11,6 +11,8 @@ interface ContainerProps {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 190px;
 
   label {
     font-size: 14px;
