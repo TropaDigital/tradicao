@@ -12,6 +12,7 @@ import AutoMovel from '../../../../public/images/consortiumAuto.svg'
 import SimulationForm from "@/components/shared/SimulationForm";
 import MainTitle from "@/components/UI/MainTitle";
 import AutoConsortium from "@/components/sections/AutoConsortium";
+import OurContemplated from "@/components/sections/OurContemplated";
 
 export default function ConsortiumAuto() {
     return (
@@ -22,7 +23,6 @@ export default function ConsortiumAuto() {
                     imageSrc={AutoMovel}
                     imageAlt="Imagem de um automóvel"
                 />
-
                 
                 <SimulationForm />
 
@@ -42,6 +42,8 @@ export default function ConsortiumAuto() {
             </S.ContainerTop>
 
             <AutoConsortium />
+
+            <OurContemplated />
         </>
     )
 }
