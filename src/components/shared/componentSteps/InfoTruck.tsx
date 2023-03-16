@@ -3,7 +3,7 @@ import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/Che
 import { SelectDefault } from "@/components/pages/Painel/components/inputs/SelectDefault";
 import { FieldDefault, FieldGroup } from "@/components/pages/Painel/components/UiElements/styles";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
-import { ContentSimulation } from "../styles";
+import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
   [key: string]: any

@@ -40,6 +40,12 @@ export const LeftSide = styled.div`
     @media (max-width: 1050px) {
         flex-direction: column;
     }
+
+    @media (max-width: 500px) {
+        svg {
+            max-width: 90%;
+        }    
+    }
 `
 
 export const RightSide = styled.div`
@@ -77,8 +83,8 @@ export const Column =styled.div`
 `
 
 export const TitleColumns = styled.h2`
-    font-size: 20px;
-    font-weight: 700;
+    font-size: var(--text-smal-xl);
+    font-weight: var(--weight-bold);
     color: var(--white);
 `
 
@@ -88,20 +94,20 @@ export const TextButton = styled.div`
     gap: 8px;
     width: 100%;
     min-height: 31px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: var(--text-smal-sm);
+    font-weight: var(--weight-regular);
     line-height: 30px;
     color: var(--white);
 `
 
 export const TextField = styled.div`
-    font-size: 14px;
-    font-weight: 400;
+    font-size: var(--text-smal-sm);
+    font-weight: var(--weight-regular);
     line-height: 18px;
     color: var(--white);
 
     span {
-        font-weight: 700;
+        font-weight: var(--weight-bold);
     }
 `
 
@@ -168,8 +174,8 @@ export const GreenButton = styled.div`
 
         .text {
             color: var(--white);
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: var(--text-smal-md);
+            font-weight: var(--weight-bold);
             z-index: 9;
         }        
     }
@@ -197,8 +203,8 @@ export const BottomFooter = styled.div`
 
     .text {
         color: var(--white);
-        font-size: 16px;
-        font-weight: 700;
+        font-size: var(--text-smal-md);
+        font-weight: var(--weight-bold);
     }
 
     @media (max-width: 800px) {
@@ -222,8 +228,8 @@ export const Copyright = styled.div`
     .text {
         max-width: 1140px;
 
-        font-size: 14px;
-        font-weight: 400;
+        font-size: var(--text-smal-sm);
+        font-weight: var(--weight-regular);
         color: var(--white);
         text-align: center;
 
@@ -237,8 +243,8 @@ export const Copyright = styled.div`
         justify-content: center;
         gap: 5px;
                 
-        font-size: 14px;
-        font-weight: 400;
+        font-size: var(--text-smal-sm);
+        font-weight: var(--weight-regular);
         color: var(--white);
         text-align: center;        
     }

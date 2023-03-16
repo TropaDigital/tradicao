@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
+interface Props {
+  height?: string | number;
+}
+
 export const Container = styled.div`
   width: 100%;
   position: relative;
   padding-top: 10px;
-  margin-bottom: 800px;
+  margin-bottom: 2rem;
 `
 
 export const SkewContainer = styled.div`
@@ -25,10 +29,10 @@ export const SkewContainer = styled.div`
   }
 `;
 
-export const SolidBackground = styled.div`
+export const SolidBackground = styled.div<Props>`
   width: 100%;
   background: linear-gradient(90.03deg, rgba(233, 239, 255, 0) 23.97%, #E9EFFF 91.12%);;
-  height: 50%;
+  height: ${({ height }) => height ? height : '50%'};
   position: absolute;
   top: 0;
 `

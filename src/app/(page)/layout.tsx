@@ -2,7 +2,6 @@
 
 import Footer from '@/components/global/Footer';
 import Header from '@/components/global/Header';
-import { GlobalStyles } from '@/styles/global';
 import StyledJsxRegistry from '../registry';
 import { Toasted } from '../../styles/toast';
 import { ToastContainer } from 'react-toastify';
@@ -28,7 +27,6 @@ export default function RootLayout({
         </Toasted>
         {children}
         <Footer />
-        {/* <GlobalStyles /> */}
       </StyledJsxRegistry>
     </section>
   );

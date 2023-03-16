@@ -17,7 +17,7 @@ export const CardWrapper = styled.div<ICard>`
     height: ${props => props.height? `${props.height}px` : '300px'};
     
     background: var(--white);
-    box-shadow: 0 20px 30px -14px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 20px -7px rgba(0, 0, 0, 0.4);
     
     border-radius: 4px;
 

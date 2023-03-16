@@ -1,6 +1,6 @@
 import ButtonDefault from '@/components/pages/Painel/components/ButtonDefault';
 import InputRange from '@/components/pages/Painel/components/InputRange';
-import { ContentSimulation } from '../styles';
+import { ContentSimulation } from '../SimulationForm/styles';
 
 interface Props {
   simulatorPlan: string;
