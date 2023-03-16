@@ -4,6 +4,7 @@ import styled from "styled-components"
 interface ICarousel {
     height: string,
     marginBottom: string,
+    padTop?: number
 }
 
 export const CarouselWrapper = styled.div<ICarousel>`
@@ -14,7 +15,7 @@ export const CarouselWrapper = styled.div<ICarousel>`
 
     background: var(--secondary);
     background: var(--degrade-secondary);
-    padding-top: 40px;
+    padding-top: ${({padTop}) => padTop ? `${padTop}px` : '40px'};
 
     position: relative;   
     

@@ -68,6 +68,7 @@ export const BenefitsBottomWrapper = styled.div`
   margin-top: 10px;
   position: relative;
   max-width: 100vw;
+  margin-bottom: 36px;
 
   .benefitsContainer {
     display: flex;
@@ -116,3 +117,8 @@ export const BenefitItem = styled.li`
     color: var();
   }
 `;
+
+export const AboutUsCardWrapper = styled.div`
+display: flex;
+gap: 32px;
+`

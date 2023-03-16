@@ -60,7 +60,7 @@ export default function CardCarousel({
                             alt={"Imagem do card"} 
                         />
                     </div>
-                </CardImageSquare>
+                </CardImageSquare> 
             }
 
             {

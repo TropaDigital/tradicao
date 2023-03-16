@@ -10,6 +10,10 @@ import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
 import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';
 
 import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
+import GreenCarousel from '@/components/global/GreenCarousel';
+import CardCarousel from '@/components/shared/CardCarousel';
+import Slider from "react-slick";
+
 
 export default function QuemSomos() {
   const BENEFITS_WITH_CONSORCIO_TRADICAO: Array<string> = [
@@ -20,6 +24,37 @@ export default function QuemSomos() {
     'Contemplações por sorteio e lance todos os meses (extraído pela loteria federal)',
     'Representação em nível nacional'
   ];
+
+  const SLIDER_SETTINGS = {
+    dots: false,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 5000,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    adaptiveHeight: false,
+    arrows: false,
+    className: 'slider',
+    responsive: [
+      {
+        breakpoint: 1195,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,          
+        }
+      },
+      {
+        breakpoint: 798,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      },
+      
+    ]
+  };
 
   return (
     <S.QuemSomosContainer>
@@ -93,9 +128,48 @@ export default function QuemSomos() {
         </CenterWrapper>
       </S.BenefitsBottomWrapper>
 
-      <CenterWrapper>
-        
-      </CenterWrapper>
+      <GreenCarousel
+        title="Nossas Diretrizes"
+        subtitle="Aquilo que nos move dia a dia!"
+        height="317"
+        marginBottom="50"
+        padTopCarousel={62}
+      >
+        <S.AboutUsCardWrapper>
+          <Slider 
+          {...SLIDER_SETTINGS}
+          >
+            <CardCarousel
+            bigText={true}
+            title="Missão"
+            description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
+            heigth="200"
+            imageType={false}
+            padding="20px"
+            width="357"
+          />
+          <CardCarousel
+            bigText={true}
+            title="Visão"
+            description="Destacar-se entre as 10 maiores administradoras independentes do Brasil, crescendo com segurança e solidez."
+            heigth="200"
+            imageType={false}
+            padding="20px"
+            width="357"
+          />
+          <CardCarousel
+            bigText={true}
+            title="Missão"
+            description="Possibilitar conquistas, proporcionando à sociedade brasileira a aquisição de bens de consumo, livres de juros abusivos de forma transparente e justa."
+            heigth="200"
+            imageType={false}
+            padding="20px"
+            width="357"
+          />
+          </Slider>
+          
+        </S.AboutUsCardWrapper>
+      </GreenCarousel>
     </S.QuemSomosContainer>
   );
 }
