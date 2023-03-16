@@ -55,7 +55,7 @@ const UnidadesPage = () => {
       const uniqueCities = [...new Set(allCities)].sort();
 
       if (!query?.includes('cidade')) {
-        setAllCities(uniqueCities);
+        setAllCities(query?.includes('uf') ? uniqueCities : []);
       }
     };
 
@@ -133,6 +133,7 @@ const UnidadesPage = () => {
                   label="ou selecione o Estado e Cidade"
                   className="select-city-state"
                   name="select-state"
+                  value={query.includes('cep') ? '' : undefined}
                   onChange={(e) =>
                     e.target.value !== ''
                       ? setQuery('uf=' + e.target.value)
