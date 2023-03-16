@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const appearFromLeft = keyframes`
   from {
@@ -28,11 +28,11 @@ export const SectionSimulatorForm = styled.div`
   width: 100%;
   max-width: 460px;
   height: 428px;
-  
+
   padding: 32px 20px;
   margin: 0 auto;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 20px 30px -14px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 
@@ -40,13 +40,26 @@ export const SectionSimulatorForm = styled.div`
 
   top: 20px;
   right: 20px;
-/* 
+  /* 
   left: 50%;
   top: 22%;
   transform: translate(-50%, -50%); */
 
+  @media (max-width: 940px) {
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-  @media(max-width: 528px) {
+  @media (max-width: 830px) {
+    top: 15%;
+  }
+
+  @media (max-width: 540px) {
+    top: 13%;
+  }
+
+  @media (max-width: 528px) {
     left: 50%;
     top: 22%;
     transform: translate(-50%, -50%);
@@ -60,12 +73,12 @@ export const SectionSimulatorForm = styled.div`
 
     fieldset {
       .isSubInfo {
-        display: flex; 
-        align-items: center; 
-        gap: 10px; 
+        display: flex;
+        align-items: center;
+        gap: 10px;
         justify-content: center;
 
-        >h2 {
+        > h2 {
           font-size: 24px;
           font-weight: 700;
         }
@@ -78,11 +91,11 @@ export const SectionSimulatorForm = styled.div`
           font-size: var(--text-smal-sm);
           font-weight: var(--weight-bold);
           text-align: center;
-          color: #0036C6;
+          color: #0036c6;
         }
       }
-      
-      >strong {
+
+      > strong {
         text-align: center;
         display: block;
         font-weight: 700;
@@ -116,7 +129,6 @@ export const SectionSimulatorForm = styled.div`
           color: var(--gray-600);
         }
       }
-
     }
   }
 `;
@@ -130,6 +142,5 @@ export const TitleSimulator = styled.div`
 `;
 
 export const ContentSimulation = styled.fieldset`
-
-  animation: ${appearFromRight} .35s ease;
-`
+  animation: ${appearFromRight} 0.35s ease;
+`;
