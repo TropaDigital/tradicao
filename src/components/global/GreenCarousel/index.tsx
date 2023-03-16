@@ -8,13 +8,16 @@ interface ICarouselWrapper {
     subtitle?: string,
     height: string,
     marginBottom: string,
+    padTopCarousel?: number
+    
 }
 
-export default function GreenCarousel({ children, title, height, marginBottom, subtitle }: ICarouselWrapper) {
+export default function GreenCarousel({ children, title, height, marginBottom, subtitle, padTopCarousel }: ICarouselWrapper) {
     return (
         <CarouselWrapper
             height={height}
             marginBottom={marginBottom}
+            padTop={padTopCarousel}
         >   
             <TitleCentralize>
                 <TitleCarousel>{title}</TitleCarousel>

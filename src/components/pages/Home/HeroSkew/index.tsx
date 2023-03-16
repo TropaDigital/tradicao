@@ -1,4 +1,4 @@
-import SkewImage from '@/components/shared/SkewImage';
+import SkewImage from '@/components/shared/SkewContainer/SkewImage';
 import Button from '@/components/UI/Button';
 import Image from 'next/image';
 import * as S from './styles';
