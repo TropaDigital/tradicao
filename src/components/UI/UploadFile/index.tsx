@@ -5,26 +5,34 @@ import * as S from './styles';
 interface IUploadFile extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   errors?: string | any;
-  onPostFile: (curriculum: string) => void;
-  filename?: () => void;
+  onPostFile: (
+    curriculum: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  filename: string;
 }
 
-const UploadFile = ({ label, errors, onPostFile, ...rest }: IUploadFile) => {
-  const [fileName, setFileName] = useState<string>();
+const UploadFile = ({
+  label,
+  errors,
+  onPostFile,
+  filename,
+  ...rest
+}: IUploadFile) => {
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    if(errors) setError(errors)
-  }, [errors])
+    if (errors) setError(errors);
+  }, [errors]);
 
   const { postCurriculum } = usePostCurriculum();
 
-  const loadCurriculum = async (file: React.ChangeEvent<HTMLInputElement>) => {
+  const loadCurriculum = async (e: React.ChangeEvent<HTMLInputElement>) => {
     let formData = new FormData();
-    if (file.target.files?.length) {
-      formData.set('file', file?.target?.files[0]);
+    if (e?.target?.files?.length) {
+      formData.set('file', e?.target?.files[0]);
       let response: any = await postCurriculum(formData);
-      onPostFile(response);
+      onPostFile(response, e);
     }
   };
 
@@ -41,7 +49,12 @@ const UploadFile = ({ label, errors, onPostFile, ...rest }: IUploadFile) => {
       extension === actualFileExtension ? true : false
     );
 
-    return isAValidExtension.includes(true);
+    if (isAValidExtension?.includes(true)) {
+      loadCurriculum(e);
+      setError('');
+      return;
+    }
+    setError('São aceitos somente arquivos .pdf | .doc | .docx');
   };
 
   return (
@@ -49,21 +62,12 @@ const UploadFile = ({ label, errors, onPostFile, ...rest }: IUploadFile) => {
       {label && <label className="input-label">{label}</label>}
       <S.InputWrapper>
         <label>
-          <p>{fileName ? `${fileName}` : 'Selecione o arquivo'}</p>
+          <p>{filename ? `${filename}` : 'Selecione o arquivo'}</p>
           <input
             type="file"
             {...rest}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              const isAValidExtension = validateFileExtension(e);
-
-              if (isAValidExtension) {
-                loadCurriculum(e);
-                setFileName(e?.target?.value?.replace(/.*[\/\\]/, ''));
-                setError("")
-              } else if (!isAValidExtension && e.target.value) {
-                setError('São aceitos somente arquivos .pdf | .doc | .docx');
-              }
-            }}
+            onChange={validateFileExtension}
+            accept=".pdf, .doc, .docx"
           />
           <button>Buscar</button>
         </label>

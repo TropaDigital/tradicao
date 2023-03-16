@@ -11,8 +11,7 @@ export const Container = styled.div`
 `
 
 export const SkewContainer = styled.div<Props>`
-  max-height: ${({ size = 'medium' }) =>
-    size === 'large' ? '434px' : size === 'medium' ? '315px' : '234px'};
+  max-height: 234px;
   transform: skew(-18deg);
   width: fit-content;
   height: fit-content;
@@ -24,7 +23,7 @@ export const SkewContainer = styled.div<Props>`
   .skewImage {
     transform: skew(18deg);
     position: relative;
-    left: ${({ size = "medium" }) => size === "medium" ? "80px" : size === "tiny" ? "30px" : ""};
+    left: 80px;
     object-fit: cover;
   }
 `;

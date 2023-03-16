@@ -7,7 +7,7 @@ import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import UploadFile from '@/components/UI/UploadFile';
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
 import WorkWithUsBg from '../../../../public/images/work_with_us_bg.png';
@@ -19,6 +19,7 @@ const WorkWithUsPage = () => {
   const [formStage, setFormStage] = useState<'curriculo' | 'representante'>(
     'curriculo'
   );
+  const [fileName, setFileName] = useState<string>('');
 
   const formatCnpj = (cnpj: string) => {
     cnpj = cnpj?.replace(/\D/g, '');
@@ -79,6 +80,7 @@ const WorkWithUsPage = () => {
                   curriculo_pdf: values.curriculum
                 });
 
+                setFileName('');
                 resetForm();
               }}
             >
@@ -116,18 +118,19 @@ const WorkWithUsPage = () => {
                     label="Vaga"
                     error={touched.role && errors.role}
                   />
-                  {/* TODO: Rest file input when create candidate */}
                   <UploadFile
                     name="curriculum"
                     id="curriculum"
-                    onChange={handleChange}
                     label="Anexar currículo"
-                    onPostFile={(curriculoUrl) => {
+                    onPostFile={(curriculoUrl, e) => {
                       if (curriculoUrl) {
+                        handleChange(e);
+                        setFileName(e?.target?.value?.replace(/.*[\/\\]/, ''));
                         setFieldValue('curriculum', [curriculoUrl]);
                       }
                     }}
                     errors={touched.curriculum && errors.curriculum}
+                    filename={fileName}
                   />
                   <Button weight={500} type="submit">
                     Enviar
@@ -145,12 +148,14 @@ const WorkWithUsPage = () => {
                 contact: ''
               }}
               validationSchema={representanteFormSchema}
-              onSubmit={(values) => {
+              onSubmit={(values, { resetForm }) => {
                 createAgent({
                   nome: values.fullName,
                   cnpj: values.cnpj.replaceAll(/\D+/g, ''),
                   contato: values.contact
                 });
+
+                resetForm();
               }}
             >
               {({ handleChange, errors, values, handleSubmit, touched }) => (
@@ -165,15 +170,15 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.fullName}
                     label="Nome Completo"
+                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     placeholder="CNPJ"
                     name="cnpj"
-                    onChange={(e: any) =>
-                      values.cnpj.length <= 14 && handleChange(e)
-                    }
+                    onChange={handleChange}
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
+                    error={touched.cnpj && errors.cnpj}
                   />
                   <InputDefault
                     placeholder="Contato"
@@ -181,6 +186,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.contact}
                     label="Contato"
+                    error={touched.contact && errors.contact}
                   />
                   <Button type="submit">Enviar</Button>
                 </Form>

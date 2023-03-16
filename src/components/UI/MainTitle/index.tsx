@@ -4,14 +4,12 @@ import * as S from "./styles"
 
 interface IMainTitle {
   title: string;
-  subtitle?: string;
 }
 
-const MainTitle = ({ title, subtitle }: IMainTitle) => {
+const MainTitle = ({ title }: IMainTitle) => {
   return (
     <S.Container>
-      <h2>| {title}</h2>
-      <h3>{subtitle}</h3>
+      <h1 className='title'>{title}</h1>
     </S.Container>
   );
 };
