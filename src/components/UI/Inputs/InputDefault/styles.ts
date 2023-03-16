@@ -28,8 +28,9 @@ export const Container = styled.div`
   label {
     font-size: var(--text-smal-sm);
     font-weight: var(--weight-medium);
-    color: var(--gray-700);
+    color: var(--primary);
     margin-bottom: 5px;
+    font-weight: 700;
   }
 `;
 
@@ -74,7 +75,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     border-style: solid;
     border-image: initial;
     border-color: inherit;
-    background: inherit;
+    background: var(--white);
     line-height: 40px;
 
     &::placeholder {
@@ -120,7 +121,6 @@ export const ContainerInput = styled.div<ContainerProps>`
           opacity: 1;
       }
     }
-
 
     ::-webkit-calendar-picker-indicator {
       background-color: #cecece;
