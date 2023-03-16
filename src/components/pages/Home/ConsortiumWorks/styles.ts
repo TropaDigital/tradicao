@@ -32,6 +32,10 @@ export const TimeLineInfo = styled.div`
     &.left {
         margin-top: 100px;
     }
+
+    /* @media (max-width: 1200px) {
+        padding: 0 20px;
+    } */
 `
 
 export const TimeLineCenter = styled.div`
@@ -73,7 +77,7 @@ export const InfoWithIcon = styled.div`
 `
 
 export const InfoText = styled.div`
-    width: 447px;
+    width: 100%;
     height: 80px;
 
     .info-title {
