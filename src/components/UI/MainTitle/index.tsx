@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { number } from 'yup';
 import * as S from "./styles"
 
 interface IMainTitle {
@@ -14,3 +15,5 @@ const MainTitle = ({ title }: IMainTitle) => {
 };
 
 export default MainTitle;
+
+

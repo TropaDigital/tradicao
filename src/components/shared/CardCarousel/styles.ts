@@ -19,7 +19,7 @@ export const CardWrapper = styled.div<ICard>`
     background: var(--white);
     box-shadow: 0 20px 20px -7px rgba(0, 0, 0, 0.4);
     
-    border-radius: 4px;
+    border-radius: 10px;
 
     padding: ${props => props.padding? `${props.padding}px` : '20px'};
 `
@@ -65,7 +65,7 @@ export const CardTextSquared = styled.div`
     justify-content: center;
     gap: 6px;
 
-    .title {
+    .titleCard {
         font-size: 40px;
         font-weight: 700;
         color: var(--primary-mid);

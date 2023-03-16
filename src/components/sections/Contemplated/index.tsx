@@ -12,7 +12,7 @@ export default function Contemplated() {
   const SlideSettings = {
     dots: false,
     autoplay: true,
-    speed: 2000,
+    speed: 3000,
     autoplaySpeed: 3000,
     infinite: true,
     slidesToShow: 3,
@@ -22,25 +22,18 @@ export default function Contemplated() {
     className: 'slider',
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           infinite: true,          
         }
       },
       {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        }
-      },
-      {
-        breakpoint: 480,
+        breakpoint: 800,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
         }
       }
     ]
