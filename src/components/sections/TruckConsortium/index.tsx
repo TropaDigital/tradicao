@@ -23,7 +23,7 @@ const SlideSettings = {
   speed: 4000,
   autoplaySpeed: 3000,
   infinite: true,
-  slidesToShow: 6,
+  slidesToShow: 7,
   slidesToScroll: 1,
   arrows: false,
   adaptiveHeight: false,
