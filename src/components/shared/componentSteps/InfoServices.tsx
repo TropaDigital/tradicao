@@ -1,9 +1,9 @@
-import { MovelIcon } from "@/assets/icons";
+import { ServiceIcon } from "@/assets/icons";
 import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/CheckboxDefault";
 import { SelectDefault } from "@/components/pages/Painel/components/inputs/SelectDefault";
 import { FieldDefault, FieldGroup } from "@/components/pages/Painel/components/UiElements/styles";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
-import { ContentSimulation } from "../styles";
+import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
   [key: string]: any
@@ -16,37 +16,22 @@ interface Props {
   error: FormProps;
 }
 
-export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function InfoService({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
-        <MovelIcon width={23} height={20} />
-        <h2>Consórcio de Imóvel</h2>
+        <ServiceIcon width={23} height={22} />
+        <h2>Consórcio de Serviços</h2>
       </legend>
       <FieldDefault style={{marginBottom: '14px'}}>
         <InputDefault 
-          label='Nome completo'
+          label='Nome do Serviço'
           placeholder='Nome'
           name="name"
           value={data.name}
           onChange={handleInputChange}
           error={error?.name}
         />
-      </FieldDefault>
-
-      <FieldDefault style={{marginBottom: '14px'}}>
-        <SelectDefault
-          label='Selecione um Imovel'
-          placeholder='imovel'
-          name="imovel"
-          value={data.imovel}
-          onChange={handleInputChange}
-          error={error?.imovel}
-        >
-          <option value="1">opção 1</option>
-          <option value="2">opção 2</option>
-          <option value="3">opção 3</option>
-        </SelectDefault>
       </FieldDefault>
 
       <FieldGroup>
@@ -86,13 +71,12 @@ export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckb
   )
 }
 
-export function ConfirmImovel({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function ConfirmService({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
-        <MovelIcon width={23} height={20} />
-
-        <h2>Consórcio de Imovel</h2>
+        <ServiceIcon width={23} height={22} />
+        <h2>Consórcio de Serviços</h2>
       </legend>
       
       <aside>
@@ -125,4 +109,4 @@ export function ConfirmImovel({data, error, handleInputChange, handleOnChangeChe
   )
 }
 
-export default { InfoImovel, ConfirmImovel }
+export default { InfoService, ConfirmService }

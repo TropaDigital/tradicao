@@ -120,7 +120,7 @@ const Header = () => {
     <>
       <S.InfoContainer>
         <ul>
-          {infoLinks.map((info) => {
+          {infoLinks.map((info, key) => {
             return (
               <li
                 className={info.text
@@ -130,7 +130,7 @@ const Header = () => {
                   .toLowerCase()
                   .normalize('NFD')
                   .replace(/[\u0300-\u036f]/g, '')}
-                key={info.text}
+                key={key}
               >
                 <Link href={info.link}>
                   {info.icon}
@@ -156,12 +156,12 @@ const Header = () => {
             onClick={() => setIsMobileOpen(!isMobileOpen)}
           ></S.MenuHamburgerContainer>
           <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
-            {mainPages.map((page) => {
+            {mainPages.map((page, key) => {
               return (
                 <>
                   <Link
                     href={page.path ? page.path : ''}
-                    key={page.title}
+                    key={key}
                     className="mobile-option"
                     onClick={() => {
                       if (page.title === 'A Tradição') {
@@ -185,8 +185,9 @@ const Header = () => {
                           : isSubMenuConsorcioOpen
                       }
                     >
-                      {page.subOptions?.map((subOption) => (
+                      {page.subOptions?.map((subOption, keyOption) => (
                         <Link
+                          key={keyOption}
                           href={subOption.path}
                           className="sub-submobile-option"
                         >
@@ -203,21 +204,25 @@ const Header = () => {
 
         <S.HeaderNav>
           <ul className="header-options">
-            {mainPages.map((page) => {
+            {mainPages.map((page, key) => {
               return (
                 <>
                   {page.title === 'Área do Cliente' ? (
-                    <li>
+                    <li
+                      key={key}
+                    >
                       <Button
                         radius="rounded"
                         icon={<PersonIcon color={'var(--white)'} />}
-                        key={page.title}
                       >
                         Área do Cliente
                       </Button>
                     </li>
                   ) : page.subOptions ? (
-                    <li className="submenu-options">
+                    <li
+                      key={key}
+                      className="submenu-options"
+                    >
                       <div
                         className="option-title"
                         onClick={() => {
@@ -238,18 +243,19 @@ const Header = () => {
                             : isSubMenuConsorcioOpen
                         }
                       >
-                        {page.subOptions.map((subOption) => (
-                          <Link href={subOption.path} key={subOption.subTitle}>
+                        {page.subOptions.map((subOption, keyOption) => (
+                          <Link href={subOption.path} key={keyOption}>
                             {subOption.subTitle}
                           </Link>
                         ))}
                       </S.SubMenuOptions>
                     </li>
                   ) : (
-                    <li>
+                    <li
+                      key={key}
+                    >
                       <Link
                         href={page.path ? page?.path : '/'}
-                        key={page.path}
                         className="option-title"
                       >
                         {page.title}

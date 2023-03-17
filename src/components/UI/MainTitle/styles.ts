@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  h2 {
+  .title {
     font-size: var(--h1-font-size);
     font-weight: var(--font-bold);
     color: var(--primary-dark);
@@ -15,11 +15,9 @@ export const Container = styled.div`
     @media(max-width: 365px) {
       font-size: var(--h3-font-size);
     }
-  }
 
-  h3 {
-    font-weight: var(--font-medium);
-    color: var(--gray-500);
-    font-size: var(--text-smal-md);
+    ::before {
+      content: "| ";
+    }
   }
 `;

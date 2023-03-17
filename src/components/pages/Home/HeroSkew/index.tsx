@@ -1,26 +1,28 @@
-import SkewImage from '@/components/shared/SkewImage';
+import SkewImage from '@/components/shared/SkewContainer/SkewImage';
 import Button from '@/components/UI/Button';
+import Image from 'next/image';
 import * as S from './styles';
 import { IHeroSkew } from './types';
 
 export default function HeroSkew({
   altBackgroundImage,
   backgroundImage,
-  children
+  solidHeight,
+  subtitle
 }: IHeroSkew) {
   return (
     <S.Container>
-      <S.BackgroundSection />
-      <div className="skewImageWrapper">
-        <SkewImage
-          alt={altBackgroundImage}
-          src={backgroundImage}
-          imageHeigth={434}
+      <S.SolidBackground height={solidHeight} />
+      <S.SkewContainer>
+        <Image 
+        src={backgroundImage}
+        alt={altBackgroundImage}
+        className="skewImage"
         />
-      </div>
-      <span className="chidrenWrapper">
-        {children && children}
-      </span>
+      </S.SkewContainer>
+      <S.SubTitleWrapper>
+          <p className='subtitle'>{subtitle}</p>
+      </S.SubTitleWrapper>
     </S.Container>
   ); 
 }
