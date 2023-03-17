@@ -23,7 +23,6 @@ const RelatoriosPage = () => {
             <MainTitle title="Relatórios de Ouvidoria" />
             <p className="subtitle">Escolha abaixo o relatório desejado</p>
           </S.TitleContainer>
-
           <S.ButtonsContainer>
             <Button degrade radius="rounded" className="relatorio-button">
               1º semestre 2020

@@ -1,18 +1,17 @@
-import React, { HTMLAttributes, ReactNode } from 'react'
-import * as S from "./styles"
+import React, { HTMLAttributes, ReactNode } from 'react';
+import * as S from './styles';
 
 interface IModalDefault extends HTMLAttributes<HTMLDivElement> {
-    children: ReactNode
+  children: ReactNode;
+  isModalOpen?: boolean;
 }
 
-const ModalDefault = ({ children, ...rest }: IModalDefault) => {
+const ModalDefault = ({ children, isModalOpen, ...rest }: IModalDefault) => {
   return (
-    <S.OverlayContainer>
-        <S.ModalContainer {...rest} >
-            {children}
-        </S.ModalContainer>
+    <S.OverlayContainer isOpen={isModalOpen}>
+      <S.ModalContainer {...rest}>{children}</S.ModalContainer>
     </S.OverlayContainer>
-  )
-}
+  );
+};
 
-export default ModalDefault
+export default ModalDefault;

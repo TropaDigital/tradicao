@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ChevronIcon,
   DefaultLogo,
@@ -8,9 +10,9 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
-import Modal from '@/components/UI/Modal';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
@@ -23,6 +25,8 @@ const Header = () => {
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
 
+  const pathName = usePathname();
+
   const mainPages: IHeaderOptions[] = [
     {
       title: 'Início',
@@ -30,6 +34,7 @@ const Header = () => {
     },
     {
       title: 'A Tradição',
+      path: pathName,
       subOptions: [
         {
           subTitle: 'Quem somos',
@@ -51,6 +56,7 @@ const Header = () => {
     },
     {
       title: 'O Consórcio',
+      path: pathName,
       subOptions: [
         {
           subTitle: 'Automóveis',
@@ -101,7 +107,7 @@ const Header = () => {
     },
     {
       icon: <UniversityIcon />,
-      link: '/',
+      link: '/universidade',
       text: 'Universidade'
     },
     {

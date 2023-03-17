@@ -9,9 +9,7 @@ export const useCreateAgent = () => {
     async (agent: IAgentInfo) => {
       let response = toast.promise(
         async () => {
-          let response: any = await TrabalheConoscoClass.postCandidate(
-            agent
-          );
+          let response: any = await TrabalheConoscoClass.postCandidate(agent);
           return response;
         },
         {

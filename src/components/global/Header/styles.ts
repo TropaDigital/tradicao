@@ -3,7 +3,7 @@ import Modal from '../../UI/Modal';
 
 type Props = {
   showHeader?: boolean;
-  isOpen?: boolean
+  isOpen?: boolean;
 };
 
 export const HeaderContainer = styled.header<Props>`
@@ -201,46 +201,46 @@ export const MobileMenuModal = styled.div<Props>`
   background-color: var(--white);
   top: 15px;
   right: 0;
-  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   min-width: 210px;
   gap: 10px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: var(--shadow);
-  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
-  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
-  transition: all .3s;
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transition: all 0.3s;
 
   .mobile-option {
     color: var(--primary);
     font-weight: 500;
-    opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  @media(min-width: 1340px) {
+  @media (min-width: 1340px) {
     display: none;
   }
 `;
 
 export const SubMobileMenu = styled.div<Props>`
-  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
-  gap: ${({ isOpen }) => isOpen ? "14px" : "0px"};
+  gap: ${({ isOpen }) => (isOpen ? '14px' : '0px')};
   font-size: 14px;
   font-weight: 400;
   margin-left: 5px;
-  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
-  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
 
   .sub-submobile-option {
     color: var(--primary);
     font-weight: 400;
   }
-`
+`;
 
 export const SubMenuOptions = styled(Modal)`
   position: absolute;

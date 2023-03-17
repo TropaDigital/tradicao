@@ -1,9 +1,4 @@
-import {
-  useRef,
-  useState,
-  useCallback,
-  InputHTMLAttributes,
-} from 'react';
+import { useRef, useState, useCallback, InputHTMLAttributes } from 'react';
 
 import { Container, ContainerInput } from './styles';
 
@@ -14,7 +9,7 @@ interface ErrorInput {
 
 interface InputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   label: string;
-  error?: ErrorInput;
+  error?: string | any;
 }
 
 export function TextAreaDefault({ label, error, ...rest }: InputProps) {
@@ -35,14 +30,15 @@ export function TextAreaDefault({ label, error, ...rest }: InputProps) {
 
   return (
     <Container>
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} className="label">
+        {label}
+      </label>
 
       <ContainerInput
-        isErrored={!!error?.isError}
+        isErrored={!!error}
         isFocused={isFocused}
         isFilled={isFilled}
       >
-
         <textarea
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
@@ -57,6 +53,7 @@ export function TextAreaDefault({ label, error, ...rest }: InputProps) {
           </Error>
         )} */}
       </ContainerInput>
+      {error && <span className="errorValidation">{error}</span>}
     </Container>
   );
 }
