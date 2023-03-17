@@ -58,8 +58,9 @@ export const CourseCard = styled.div`
 
 export const CourseCardTop = styled.div`
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     text-align: center;
 
     height: 178px;
@@ -87,6 +88,24 @@ export const CourseCardTop = styled.div`
         top: 10px;
         left: -40px;
         font-size: 18px;
+    }
+
+    .icon-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+        padding-bottom: 10px;
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .brushed {
+            svg {
+                width: 50px;
+                height: 20px;                
+            }
+        }
     }
 `
 
