@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Container } from './styles';
-import { HouseIcon } from '../../../../../assets/icons';
+// import { HouseIcon } from '../../../../../assets/icons';
 
 export default function Breadcrumbs() {
   const [pathnameRoute, setPathnameRoute] = useState<Array<string>>([]);
@@ -19,7 +19,7 @@ export default function Breadcrumbs() {
   }
   return (
     <Container>
-      <HouseIcon />
+      {/* <HouseIcon /> */}
       {pathnameRoute?.map((row: string, key: number) => (
         <span key={key}>
           {row && <p>/</p>}
