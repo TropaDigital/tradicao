@@ -1,0 +1,28 @@
+{
+  "pages": [
+    {
+      "name": "Contemplados",
+      "path": "/contemplados"
+    },
+    {
+      "name": "Demontrações",
+      "path": "/demonstracoes-financeiras"
+    },
+    {
+      "name": "Unidades",
+      "path": "/unidades"
+    }
+  ],
+  "colors": {
+    "primary": "var(--primary)",
+    "primaryDark": "var(--primary-dark)",
+    "secondary": "var(--secondary)",
+    "secondaryDark": "var(--secondary-dark)",
+    "gray100": "var(--gray-100)",
+    "gray200": "var(--gray-200)",
+    "dark": "var(--dark)",
+    "light": "var(--light)",
+    "black": "var(--black)",
+    "white": "var(--white)"
+  }
+}
