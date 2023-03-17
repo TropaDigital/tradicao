@@ -1,8 +1,6 @@
-import { AxiosResponse } from 'axios';
 import { useMutation } from 'react-query';
 import DenunciaClass from '../index';
 import { IDenunciaBody } from '../types';
-import { toast } from 'react-toastify';
 
 export const useSentComplaint = () => {
   const { mutateAsync } = useMutation(

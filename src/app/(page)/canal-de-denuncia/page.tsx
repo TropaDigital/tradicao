@@ -11,8 +11,7 @@ import ComplaintForm from '@/components/pages/Canal-de-denuncia/ComplaintForm';
 import FollowComplaintForm from '@/components/pages/Canal-de-denuncia/FollowComplaintForm';
 
 const CompliancePage = () => {
-  const [isComplaintFormOpen, setIsComplaintFormOpen] =
-    useState<boolean>(false);
+  const [isComplaintFormOpen, setIsComplaintFormOpen] = useState<any>(false);
 
   const closeFormComplaint = () => {
     setIsComplaintFormOpen(false);
@@ -52,7 +51,6 @@ const CompliancePage = () => {
           </S.TextContainer>
 
           <S.ButtonsWrapper>
-            {/* TODO: Add funcionalidade */}
             <Button degrade onClick={() => setIsComplaintFormOpen(true)}>
               Preencher Novo Formulário
             </Button>
@@ -62,6 +60,7 @@ const CompliancePage = () => {
 
         <ComplaintForm
           isOpen={isComplaintFormOpen}
+          setOpenState={setIsComplaintFormOpen}
           closeFormComplaint={closeFormComplaint}
         />
       </CenterWrapper>

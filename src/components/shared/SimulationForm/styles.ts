@@ -1,6 +1,10 @@
 'use client';
 
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+type Props = {
+  heroStyles: boolean;
+};
 
 const appearFromLeft = keyframes`
   from {
@@ -24,7 +28,7 @@ const appearFromRight = keyframes`
   }
 `;
 
-export const SectionSimulatorForm = styled.div`
+export const SectionSimulatorForm = styled.div<Props>`
   width: 100%;
   max-width: 460px;
   height: 428px;
@@ -40,26 +44,44 @@ export const SectionSimulatorForm = styled.div`
 
   top: 20px;
   right: 20px;
+
   /* 
   left: 50%;
   top: 22%;
   transform: translate(-50%, -50%); */
 
-  @media (max-width: 1090px) {
-    top: 18%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  ${({ heroStyles }) =>
+    heroStyles &&
+    css`
+      @media (max-width: 1090px) {
+        top: 18%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 640px) {
+        top: 16%;
+      }
+      @media (max-width: 528px) {
+        left: 50%;
+        top: 22%;
+        transform: translate(-50%, -50%);
+      }
+    `}
 
-  @media (max-width: 640px) {
-    top: 16%;
-  }
+  ${({ heroStyles }) =>
+    !heroStyles &&
+    css`
+      @media (max-width: 1090px) {
+        top: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-  @media (max-width: 528px) {
-    left: 50%;
-    top: 22%;
-    transform: translate(-50%, -50%);
-  }
+      @media (max-width: 640px) {
+        top: 50%;
+      }
+    `}
+
 
   form {
     display: flex;

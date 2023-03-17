@@ -8,7 +8,7 @@ export const ContainerTop = styled.div`
   position: relative;
 
   .margin {
-    margin-top: 30px;
+    margin-bottom: 400px;
   }
 `;
 

@@ -1,7 +1,7 @@
 import ModalDefault from '@/components/shared/Modal';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useRef, useState } from 'react';
-import { IComplaintForm } from './types';
+import { IComplaintForm, IDenunciaBodyPost } from './types';
 import * as S from './styles';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
@@ -14,6 +14,7 @@ import { ShieldCheckMarkIcon } from '@/assets/icons';
 const ComplaintForm = ({
   isOpen,
   closeFormComplaint,
+  setOpenState,
   ...rest
 }: IComplaintForm) => {
   const [complaintWasSent, setComplaintWasSent] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const ComplaintForm = ({
 
   return (
     <>
-      <ModalDefault isModalOpen={isOpen}>
+      <ModalDefault openState={isOpen} setOpenState={setOpenState}>
         {!complaintWasSent ? (
           <S.Container {...rest}>
             <S.FormHeader>
@@ -41,13 +42,20 @@ const ComplaintForm = ({
               }}
               validationSchema={complaintYupSchema}
               onSubmit={(values) => {
-                setComplaintWasSent(true);
-                sentComplaint({
-                  nome: values.nome && values.nome,
-                  celular: values.celular && values.celular,
-                  email: values.email && values.email,
+                const nome = values.nome.trim();
+                const celular = values.celular.trim();
+                const email = values.email.trim();
+
+                const denunciaBody: IDenunciaBodyPost = {
                   texto_denuncia: values.denuncia
-                });
+                };
+
+                if (nome) denunciaBody.nome = nome;
+                if (celular) denunciaBody.celular = celular;
+                if (email) denunciaBody.email = email;
+
+                setComplaintWasSent(true);
+                sentComplaint(denunciaBody);
               }}
             >
               {({

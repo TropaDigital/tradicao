@@ -1,15 +1,27 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import React, { HTMLAttributes, ReactNode, useRef, useState } from 'react';
 import * as S from './styles';
 
 interface IModalDefault extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  isModalOpen?: boolean;
+  setOpenState?: () => void;
+  openState?: boolean;
 }
 
-const ModalDefault = ({ children, isModalOpen, ...rest }: IModalDefault) => {
+const ModalDefault = ({
+  children,
+  setOpenState,
+  openState,
+  ...rest
+}: IModalDefault) => {
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, setOpenState);
+
   return (
-    <S.OverlayContainer isOpen={isModalOpen}>
-      <S.ModalContainer {...rest}>{children}</S.ModalContainer>
+    <S.OverlayContainer isOpen={openState}>
+      <S.ModalContainer ref={wrapperRef} {...rest}>
+        {children}
+      </S.ModalContainer>
     </S.OverlayContainer>
   );
 };

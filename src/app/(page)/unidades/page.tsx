@@ -25,7 +25,9 @@ const UnidadesPage = () => {
   const [allCities, setAllCities] = useState<any>();
   const [allStates, setAllStates] = useState<string[]>();
 
-  const { unitsByQuery } = useGetUnitsByQuery(query);
+  const [cep, setCep] = useState<string>();
+
+  const { unitsByQuery } = useGetUnitsByQuery(query.trim());
   const units = useGetUnitsByQuery('');
 
   useEffect(() => {
@@ -62,6 +64,12 @@ const UnidadesPage = () => {
     getAllCities(unitsByQuery);
   }, [unitsByQuery]);
 
+  useEffect(() => {
+    if (query?.includes('uf=')) {
+      setCep('');
+    }
+  }, [query]);
+
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
 
@@ -69,11 +77,11 @@ const UnidadesPage = () => {
     const formData = new FormData(form);
     const cep: any = formData.get('cep');
 
+    setQuery('');
     if (cep.length > 0) {
-      setQuery('cep=' + cep);
+      setQuery('cep=' + cep.trim());
       return;
     }
-    setQuery('');
   };
 
   const getUnitById = (id: string | number) => {
@@ -87,7 +95,7 @@ const UnidadesPage = () => {
 
   const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const actualQuery = query;
-    const ufQuery = actualQuery?.split('&')?.shift();
+    const ufQuery = actualQuery?.split('&')?.shift().trim();
 
     if (!e?.target?.value) {
       setQuery(ufQuery);
@@ -95,10 +103,10 @@ const UnidadesPage = () => {
     }
 
     if (!actualQuery?.includes('&cidade=')) {
-      setQuery(actualQuery + '&cidade=' + e?.target?.value);
+      setQuery(actualQuery + '&cidade=' + e?.target?.value.trim());
       return;
     }
-    setQuery(ufQuery + '&cidade=' + e.target.value);
+    setQuery(ufQuery + '&cidade=' + e.target.value.trim());
   };
 
   const wrapperRef = useRef(null);
@@ -136,7 +144,11 @@ const UnidadesPage = () => {
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
+                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
                   maxLength={8}
+                  onChange={(e: any) =>
+                    setCep(e.target.value.replace(/[^0-9]/g, ''))
+                  }
                 />
                 <Button degrade className="cep-button" type="submit">
                   Buscar
