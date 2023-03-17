@@ -120,7 +120,7 @@ const Header = () => {
   getWindowWidth();
 
   const wrapperRef = useRef(null);
-  const tradicaoWrapperRef = useRef(null)
+  const tradicaoWrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
   useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
@@ -249,12 +249,16 @@ const Header = () => {
                               : isSubMenuConsorcioOpen
                           }
                         >
-                          <div ref={page.title === "A Tradição" ? tradicaoWrapperRef : wrapperRef} className="sub-menu-container">
+                          <div
+                            ref={
+                              page.title === 'A Tradição'
+                                ? tradicaoWrapperRef
+                                : wrapperRef
+                            }
+                            className="sub-menu-container"
+                          >
                             {page.subOptions.map((subOption, keyOption) => (
-                              <Link
-                                href={subOption.path}
-                                key={keyOption}
-                              >
+                              <Link href={subOption.path} key={keyOption}>
                                 {subOption.subTitle}
                               </Link>
                             ))}

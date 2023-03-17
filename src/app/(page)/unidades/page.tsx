@@ -19,7 +19,7 @@ import * as S from './styles';
 const UnidadesPage = () => {
   const [allUnits, setAllUnits] = useState<IGetUnit[]>();
   const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<any>('');
   const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
 
   const [allCities, setAllCities] = useState<any>();
@@ -83,6 +83,22 @@ const UnidadesPage = () => {
 
     setActualUnit(unit);
     setIsMapModalOpen(true);
+  };
+
+  const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const actualQuery = query;
+    const ufQuery = actualQuery?.split('&')?.shift();
+
+    if (!e?.target?.value) {
+      setQuery(ufQuery);
+      return;
+    }
+
+    if (!actualQuery?.includes('&cidade=')) {
+      setQuery(actualQuery + '&cidade=' + e?.target?.value);
+      return;
+    }
+    setQuery(ufQuery + '&cidade=' + e.target.value);
   };
 
   const wrapperRef = useRef(null);
@@ -151,16 +167,9 @@ const UnidadesPage = () => {
                   label=""
                   className="select-city-state"
                   name="select-city"
-                  onChange={(e) => {
-                    if (!query.includes('&cidade=')) {
-                      setQuery(query + '&cidade=' + e.target.value);
-                    } else {
-                      const newQuery = query.split('&').shift();
-                      setQuery(newQuery + '&cidade=' + e.target.value);
-                    }
-                  }}
+                  onChange={searchUnitByCity}
                 >
-                  <option selected value="null">
+                  <option selected value="">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
@@ -202,7 +211,7 @@ const UnidadesPage = () => {
                     </div>
                     <div className="map-container">
                       <iframe
-                        src={`https://maps.google.com/maps?q=%20${actualUnit[0]?.cep},%20${actualUnit[0].endereco},%20${actualUnit[0]?.uf}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
+                        src={`https://maps.google.com/maps?q=${actualUnit[0].latitude}%20${actualUnit[0].longitude}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
                         width="600"
                         height="450"
                         allowFullScreen={true}
