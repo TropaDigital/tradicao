@@ -13,38 +13,24 @@ export const Container = styled.div`
 export const SkewContainer = styled.div`
   max-height: 434px;
   transform: skew(-18deg);
-  width: 47%;
+  width: 965px;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   overflow: hidden;
   position: relative;
-  left: -80px;
+  left: -138px;
 
   @media (max-width: 1600px) {
     margin-bottom: 80px;
   }
 
-  @media (max-width: 1320px) {
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    width: 55%;
-    margin-bottom: 140pxs;
-  }
-
   @media (max-width: 1090px) {
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    width: 65%;
-  }
-
-  @media (max-width: 1092px) {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    width: 75%;
     margin-bottom: 500px;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     width: 100%;
     transform: skew(0);
     left: 0;
@@ -54,12 +40,15 @@ export const SkewContainer = styled.div`
   .skewImage {
     transform: skew(18deg);
     position: relative;
-    object-fit: fill;
-    right: -80px;
+    object-fit: contain;
+    object-position: 80px -180px;
+    right: -87px;
 
-    @media (max-width: 700px) {
+    @media (max-width: 920px) {
       right: 0;
       transform: skew(0);
+      object-position: 0;
+      object-fit: cover;
     }
   }
 `;
@@ -100,7 +89,7 @@ export const SubTitleWrapper = styled.div`
     width: 50%;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     width: 100%;
     transform: skew(0);
     left: 0;
@@ -119,10 +108,10 @@ export const SubTitleWrapper = styled.div`
     @media (max-width: 1090px) {
       font-size: 18px;
     }
-    @media (max-width: 765px) {
+    @media (max-width: 768px) {
       font-size: 16px;
     }
-    @media (max-width: 700px) {
+    @media (max-width: 920px) {
       transform: skew(0);
       text-align: center;
     }

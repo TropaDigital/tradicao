@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 
 export interface IComplaintForm {
   isOpen: boolean;
-  setOpenState: any;
+  setOpenState: React.Dispatch<boolean>;
   closeFormComplaint: () => void;
 }
 

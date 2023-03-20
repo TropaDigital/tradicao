@@ -7,9 +7,7 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
-import { useGetAllUnits } from '@/services/unidades/GET';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnitsByQuery';
-import { useGetUnitById } from '@/services/unidades/GET/useGetUnityById';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { useEffect, useRef, useState } from 'react';
@@ -19,10 +17,10 @@ import * as S from './styles';
 const UnidadesPage = () => {
   const [allUnits, setAllUnits] = useState<IGetUnit[]>();
   const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
-  const [query, setQuery] = useState<any>('');
+  const [query, setQuery] = useState<string>('');
   const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
 
-  const [allCities, setAllCities] = useState<any>();
+  const [allCities, setAllCities] = useState<string[]>();
   const [allStates, setAllStates] = useState<string[]>();
 
   const [cep, setCep] = useState<string>();
@@ -36,7 +34,7 @@ const UnidadesPage = () => {
 
   useEffect(() => {
     const getAllStates = () => {
-      const allStates = allUnits?.map((fullUnit: any) => {
+      const allStates = allUnits?.map((fullUnit: IGetUnit) => {
         return fullUnit.uf;
       });
 
@@ -75,13 +73,14 @@ const UnidadesPage = () => {
 
     const form: any = document.querySelector('#cep-form');
     const formData = new FormData(form);
-    const cep: any = formData.get('cep');
+    const cep: FormDataEntryValue | string | null = formData.get('cep');
 
     setQuery('');
-    if (cep.length > 0) {
-      setQuery('cep=' + cep.trim());
-      return;
-    }
+    if (cep)
+      if (cep?.length > 0) {
+        setQuery('cep=' + cep);
+        return;
+      }
   };
 
   const getUnitById = (id: string | number) => {
@@ -95,9 +94,9 @@ const UnidadesPage = () => {
 
   const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const actualQuery = query;
-    const ufQuery = actualQuery?.split('&')?.shift().trim();
+    const ufQuery = actualQuery?.split('&')?.shift()?.trim();
 
-    if (!e?.target?.value) {
+    if (!e?.target?.value && ufQuery) {
       setQuery(ufQuery);
       return;
     }
@@ -146,7 +145,8 @@ const UnidadesPage = () => {
                   name="cep"
                   value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
                   maxLength={8}
-                  onChange={(e: any) =>
+                  minLength={8}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setCep(e.target.value.replace(/[^0-9]/g, ''))
                   }
                 />

@@ -12,8 +12,8 @@ import {
 import Button from '@/components/UI/Button';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
@@ -50,7 +50,7 @@ const Header = () => {
         },
         {
           subTitle: 'Atendimento',
-          path: '/contato'
+          path: '/canal-de-denuncia'
         }
       ]
     },
@@ -118,9 +118,10 @@ const Header = () => {
   ];
 
   const getWindowWidth = () => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window?.innerWidth);
-    });
+    if (typeof window !== 'undefined')
+      window?.addEventListener('resize', () => {
+        setWindowWidth(window?.innerWidth);
+      });
   };
 
   getWindowWidth();

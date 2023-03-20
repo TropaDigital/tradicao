@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 // import { LogoWithoutDigital, PageIcon } from "../../../Svg";
-import { Menu, MobileMenuContainer } from "./styles";
-import PanelConfig from "../../panelConfig.json";
-import SelectSideBar from "../SelectSideBar";
-import Link from "next/link";
-import { BlackLogo } from "@/assets/icons";
+import { Menu, MobileMenuContainer } from './styles';
+import PanelConfig from '../../panelConfig.json';
+import SelectSideBar from '../SelectSideBar';
+import Link from 'next/link';
+import { BlackLogo } from '@/assets/icons';
 
 const MobileMenu = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
@@ -17,16 +17,16 @@ const MobileMenu = () => {
       />
       <MobileMenuContainer isOpen={isSideBarOpen}>
         <div className="sideBarMenuHeader">
-            <BlackLogo />
+          <BlackLogo />
         </div>
 
         <div className="menuContainer">
-          <SelectSideBar
+          {/* <SelectSideBar
             title="Dashboard"
             // icon={<PageIcon />}
             pages={PanelConfig.pages}
             openSideBar={() => setIsSideBarOpen(isSideBarOpen)}
-          />
+          /> */}
         </div>
       </MobileMenuContainer>
     </>

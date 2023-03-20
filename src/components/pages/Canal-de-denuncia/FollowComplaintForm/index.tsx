@@ -19,7 +19,7 @@ const FollowComplaintForm = () => {
 
   return (
     <>
-      <ModalDefault isModalOpen={true}>
+      <ModalDefault>
         {!hasProtocol && (
           <form onSubmit={checkComplaintStatus}>
             <h2 className="title">Acompanhamento de denúncia</h2>

@@ -5,6 +5,14 @@ export const Container = styled.div`
   height: 100%;
   min-width: 380px;
 
+  @media (max-width: 480px) {
+    min-width: 280px;
+  }
+
+  @media (max-width: 370px) {
+    min-width: 230px;
+  }
+
   .complaint-form {
     display: flex;
     flex-direction: column;

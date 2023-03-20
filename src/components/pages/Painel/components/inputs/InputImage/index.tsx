@@ -6,14 +6,13 @@ import { IInputFileProps } from './types';
 
 export default function InputImage({ onPostImage, error }: IInputFileProps) {
   // const pathName = usePathname()
-  let tipo = ''
+  let tipo = '';
 
   // if(pathName?.includes('receitas')) {
   //   tipo = "Receita"
   // }else {
   //   tipo = "Produto"
   // }
-
 
   // const { postImage } = usePostImage(tipo);
 
@@ -37,7 +36,7 @@ export default function InputImage({ onPostImage, error }: IInputFileProps) {
           }}
         />
         <span className="inputContent">
-          <CameraIcon />
+          {/* <CameraIcon /> */}
           <p className="inputTitle">Adicionar Miniatura</p>
           <p className="inputButton">Escolher Arquivo</p>
         </span>

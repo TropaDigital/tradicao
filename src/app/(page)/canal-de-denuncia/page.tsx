@@ -11,7 +11,8 @@ import ComplaintForm from '@/components/pages/Canal-de-denuncia/ComplaintForm';
 import FollowComplaintForm from '@/components/pages/Canal-de-denuncia/FollowComplaintForm';
 
 const CompliancePage = () => {
-  const [isComplaintFormOpen, setIsComplaintFormOpen] = useState<any>(false);
+  const [isComplaintFormOpen, setIsComplaintFormOpen] =
+    useState<boolean>(false);
 
   const closeFormComplaint = () => {
     setIsComplaintFormOpen(false);

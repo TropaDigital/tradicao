@@ -84,7 +84,7 @@ const ComplaintForm = ({
                   <DefaultInput
                     label="Celular"
                     value={values.celular}
-                    onChange={(e: any) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       handleChange(e);
                       setFieldValue(
                         'celular',

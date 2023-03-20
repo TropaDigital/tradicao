@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from '../../../../../assets/styles/mixin'
+import styled from 'styled-components';
+// import { colors } from '../../../../../assets/styles/mixin'
 
 export const Container = styled.div`
   position: fixed;
@@ -61,4 +61,4 @@ export const Container = styled.div`
       border-radius: 12px;
     }
   }
-`
+`;

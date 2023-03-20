@@ -51,34 +51,30 @@ export const SectionSimulatorForm = styled.div<Props>`
   transform: translate(-50%, -50%); */
 
   ${({ heroStyles }) =>
-    heroStyles &&
+    heroStyles === true &&
     css`
       @media (max-width: 1090px) {
-        top: 18%;
+        top: 22%;
         left: 50%;
         transform: translateX(-50%);
       }
       @media (max-width: 640px) {
-        top: 16%;
+        top: 19%;
       }
       @media (max-width: 528px) {
         left: 50%;
-        top: 22%;
-        transform: translate(-50%, -50%);
+        top: 15%;
+        transform: translateX(-50%);
       }
     `}
 
   ${({ heroStyles }) =>
-    !heroStyles &&
+    heroStyles === false &&
     css`
       @media (max-width: 1090px) {
-        top: 60%;
+        top: 40%;
         left: 50%;
         transform: translateX(-50%);
-      }
-
-      @media (max-width: 640px) {
-        top: 50%;
       }
     `}
 

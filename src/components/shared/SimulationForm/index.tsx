@@ -266,7 +266,7 @@ export default function SimulationForm() {
   const pathName = usePathname();
 
   return (
-    <SectionSimulatorForm heroStyles={pathName === '/'}>
+    <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
       <form onSubmit={handleOnSubmit}>
         {!isSimulator && (
           <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>

@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components'
-import { colors } from '../../panelConfig.json'
+import styled, { css } from 'styled-components';
+// import { colors } from '../../panelConfig.json'
 
 interface propsModal {
-  isOpen: boolean
+  isOpen: boolean;
 }
 
 export const Container = styled.div<propsModal>`
@@ -14,7 +14,7 @@ export const Container = styled.div<propsModal>`
     width: 24px;
     height: 24px;
     border-radius: 12px;
-    background-color: ${colors.white};
+    background-color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,13 +46,13 @@ export const Container = styled.div<propsModal>`
         }
       `}
   }
-`
+`;
 
 export const ModalLogOut = styled.div<propsModal>`
   position: absolute;
   width: 150px;
   height: 48px;
-  background-color: ${colors.white};
+  background-color: var(--white);
   top: 0;
   right: 0;
   margin-top: 34px;
@@ -88,4 +88,4 @@ export const ModalLogOut = styled.div<propsModal>`
       display: flex;
       transition: all 0.3s;
     `};
-`
+`;

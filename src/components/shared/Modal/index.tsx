@@ -4,7 +4,7 @@ import * as S from './styles';
 
 interface IModalDefault extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  setOpenState?: () => void;
+  setOpenState?: React.Dispatch<boolean>;
   openState?: boolean;
 }
 
