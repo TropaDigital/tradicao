@@ -213,7 +213,7 @@ const UnidadesPage = () => {
               ))}
 
               {isMapModalOpen && actualUnit && (
-                <S.MapModal>
+                <S.MapModal openState={isMapModalOpen}>
                   <div ref={wrapperRef}>
                     <div
                       onClick={() => setIsMapModalOpen(false)}
