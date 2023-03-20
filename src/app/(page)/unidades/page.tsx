@@ -7,9 +7,7 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
-import { useGetAllUnits } from '@/services/unidades/GET';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnitsByQuery';
-import { useGetUnitById } from '@/services/unidades/GET/useGetUnityById';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { useEffect, useRef, useState } from 'react';
@@ -17,39 +15,72 @@ import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
 
 const UnidadesPage = () => {
+  const [allUnits, setAllUnits] = useState<IGetUnit[]>();
   const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
-  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
-  const [allCities, setAllCities] = useState<any>();
+  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
+
+  const [allCities, setAllCities] = useState<string[]>();
   const [allStates, setAllStates] = useState<string[]>();
 
-  const { unitsByQuery } = useGetUnitsByQuery(query);
+  const [cep, setCep] = useState<string>();
+
+  const { unitsByQuery } = useGetUnitsByQuery(query.trim());
+  const units = useGetUnitsByQuery('');
+
+  useEffect(() => {
+    setAllUnits(units.unitsByQuery);
+  }, [units]);
+
+  useEffect(() => {
+    const getAllStates = () => {
+      const allStates = allUnits?.map((fullUnit: IGetUnit) => {
+        return fullUnit.uf;
+      });
+
+      const uniqueStates = [...new Set(allStates)].sort();
+
+      setAllStates(uniqueStates);
+    };
+
+    getAllStates();
+  }, [allUnits]);
+
+  useEffect(() => {
+    const getAllCities = (actualFilter: IGetUnit[]) => {
+      const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
+        return fullUnit.cidade;
+      });
+
+      const uniqueCities = [...new Set(allCities)].sort();
+
+      if (!query?.includes('cidade')) {
+        setAllCities(query?.includes('uf') ? uniqueCities : []);
+      }
+    };
+
+    getAllCities(unitsByQuery);
+  }, [unitsByQuery]);
+
+  useEffect(() => {
+    if (query?.includes('uf=')) {
+      setCep('');
+    }
+  }, [query]);
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
 
     const form: any = document.querySelector('#cep-form');
     const formData = new FormData(form);
-    const cep: any = formData.get('cep');
-
-    if (cep.length > 0) {
-      setQuery('cep=' + cep);
-      return;
-    }
-    setQuery('');
-  };
-
-  const searchUnitByCityAndState = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form: any = document.querySelector('#city-state-form');
-    const formData = new FormData(form);
-    const data: any = Object.fromEntries(formData);
-
-    let state: string;
-    let city: string;
+    const cep: FormDataEntryValue | string | null = formData.get('cep');
 
     setQuery('');
+    if (cep)
+      if (cep?.length > 0) {
+        setQuery('cep=' + cep);
+        return;
+      }
   };
 
   const getUnitById = (id: string | number) => {
@@ -61,19 +92,21 @@ const UnidadesPage = () => {
     setIsMapModalOpen(true);
   };
 
-  useEffect(() => {
-    const getAllStates = () => {
-      const allStates = unitsByQuery?.map((fullUnit) => {
-        return fullUnit.uf;
-      });
+  const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const actualQuery = query;
+    const ufQuery = actualQuery?.split('&')?.shift()?.trim();
 
-      const uniqueStates = [...new Set(allStates)].sort();
+    if (!e?.target?.value && ufQuery) {
+      setQuery(ufQuery);
+      return;
+    }
 
-      setAllStates(uniqueStates);
-    };
-
-    getAllStates();
-  }, [unitsByQuery]);
+    if (!actualQuery?.includes('&cidade=')) {
+      setQuery(actualQuery + '&cidade=' + e?.target?.value.trim());
+      return;
+    }
+    setQuery(ufQuery + '&cidade=' + e.target.value.trim());
+  };
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsMapModalOpen);
@@ -88,19 +121,34 @@ const UnidadesPage = () => {
 
       <CenterWrapper>
         <S.Container>
-          <MainTitle
-            title="Unidades Credenciadas"
-            subtitle="Conheça nossas unidades. O Consórcio Tradição está sempre pronto em atendê-lo"
-          />
+          <S.TitleContainer>
+            <MainTitle title="Unidades Credenciadas" />
+            <p className="subtitle">
+              Conheça nossas unidades. O Consórcio Tradição está sempre pronto
+              em atendê-lo
+            </p>
+          </S.TitleContainer>
 
           <S.SearchContainer>
             <S.CepContainer>
-              <form onSubmit={(e: any) => searchUnitByCep(e)} id="cep-form">
+              <form
+                onSubmit={(e: React.ChangeEvent<HTMLFormElement>) =>
+                  searchUnitByCep(e)
+                }
+                className="cep-form"
+                id="cep-form"
+              >
                 <InputDefault
                   label="Busque pelo CEP"
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
+                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+                  maxLength={8}
+                  minLength={8}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setCep(e.target.value.replace(/[^0-9]/g, ''))
+                  }
                 />
                 <Button degrade className="cep-button" type="submit">
                   Buscar
@@ -108,19 +156,22 @@ const UnidadesPage = () => {
               </form>
             </S.CepContainer>
             <S.CityStateContainer>
-              <form
-                onSubmit={(e: any) => searchUnitByCityAndState(e)}
-                id="city-state-form"
-              >
+              <form id="city-state-form" className="city-state-form">
                 <SelectDefault
                   label="ou selecione o Estado e Cidade"
                   className="select-city-state"
                   name="select-state"
+                  value={query.includes('cep') ? '' : undefined}
+                  onChange={(e) =>
+                    e.target.value !== ''
+                      ? setQuery('uf=' + e.target.value)
+                      : setQuery('')
+                  }
                 >
-                  <option selected disabled value="null">
-                    Selecione o Estado
+                  <option selected value="">
+                    Selecione o estado
                   </option>
-                  {allStates?.map((state) => (
+                  {allStates?.map((state: any) => (
                     <option value={state}>{state}</option>
                   ))}
                 </SelectDefault>
@@ -128,17 +179,15 @@ const UnidadesPage = () => {
                   label=""
                   className="select-city-state"
                   name="select-city"
+                  onChange={searchUnitByCity}
                 >
-                  <option selected disabled value="null">
+                  <option selected value="">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
                     <option value={city}>{city}</option>
                   ))}
                 </SelectDefault>
-                <Button degrade className="cep-button" type="submit">
-                  Buscar
-                </Button>
               </form>
             </S.CityStateContainer>
           </S.SearchContainer>
@@ -164,7 +213,7 @@ const UnidadesPage = () => {
               ))}
 
               {isMapModalOpen && actualUnit && (
-                <S.MapModal>
+                <S.MapModal openState={isMapModalOpen}>
                   <div ref={wrapperRef}>
                     <div
                       onClick={() => setIsMapModalOpen(false)}
@@ -174,7 +223,7 @@ const UnidadesPage = () => {
                     </div>
                     <div className="map-container">
                       <iframe
-                        src={`https://maps.google.com/maps?q=%20${actualUnit[0]?.cep},%20${actualUnit[0].endereco},%20${actualUnit[0]?.uf}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
+                        src={`https://maps.google.com/maps?q=${actualUnit[0].latitude}%20${actualUnit[0].longitude}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
                         width="600"
                         height="450"
                         allowFullScreen={true}

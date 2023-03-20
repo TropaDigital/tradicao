@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { colors } from '../../../../../assets/styles/mixin'
+import styled from 'styled-components';
+// import { colors } from '../../../../../assets/styles/mixin'
 
 type Props = {
-  isOpen: boolean
-}
+  isOpen: boolean;
+};
 
 export const EditorHeader = styled.div`
   background-color: var(--light);
@@ -45,7 +45,7 @@ export const EditorHeader = styled.div`
   svg.left {
     transform: rotateY(180deg);
   }
-`
+`;
 
 export const ChangeTextColor = styled.label`
   position: relative;
@@ -62,11 +62,11 @@ export const ChangeTextColor = styled.label`
   input[type='color']::-webkit-color-swatch {
     border: none;
   }
-`
+`;
 
 export const MenuFontSize = styled.div`
   position: relative;
-`
+`;
 
 export const DropDownMenuFontSize = styled.div<Props>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
@@ -87,4 +87,4 @@ export const DropDownMenuFontSize = styled.div<Props>`
   ul li:hover {
     background-color: rgba(3, 3, 3, 0.1);
   }
-`
+`;

@@ -75,8 +75,8 @@ const WorkWithUsPage = () => {
               validationSchema={curriulumFormSchema}
               onSubmit={(values, { resetForm }) => {
                 createCandidate({
-                  nome: values.fullName,
-                  vaga: values.role,
+                  nome: values.fullName.trim(),
+                  vaga: values.role.trim(),
                   curriculo_pdf: values.curriculum
                 });
 
@@ -98,10 +98,13 @@ const WorkWithUsPage = () => {
                   }
                   className="work-form"
                 >
-                  <MainTitle
-                    title="Cadastre seu currículo"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+                  <S.TitleContainer>
+                    <MainTitle title="Cadastre seu currículo" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     name="fullName"
                     placeholder="Nome"
@@ -150,9 +153,9 @@ const WorkWithUsPage = () => {
               validationSchema={representanteFormSchema}
               onSubmit={(values, { resetForm }) => {
                 createAgent({
-                  nome: values.fullName,
+                  nome: values.fullName.trim(),
                   cnpj: values.cnpj.replaceAll(/\D+/g, ''),
-                  contato: values.contact
+                  contato: values.contact.trim()
                 });
 
                 resetForm();
@@ -160,10 +163,13 @@ const WorkWithUsPage = () => {
             >
               {({ handleChange, errors, values, handleSubmit, touched }) => (
                 <Form onSubmit={handleSubmit} className="work-form">
-                  <MainTitle
-                    title="Seja um Representante"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+                  <S.TitleContainer>
+                    <MainTitle title="Seja um Representante" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     placeholder="Nome"
                     name="fullName"
@@ -178,6 +184,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
+                    maxLength={14}
                     error={touched.cnpj && errors.cnpj}
                   />
                   <InputDefault

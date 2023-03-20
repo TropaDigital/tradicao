@@ -5,11 +5,11 @@ export const Container = styled.div`
     /* width: 100vw; */
     height: fit-content;
     background: var(--primary);   
-    background: linear-gradient(77deg, var(--primary) 0.7%, var(--primary-light) 93.94%); 
+    background: var(--degrade-primary); 
 `
 
 export const FooterWrapper = styled.div`
-    background: linear-gradient(77deg, var(--primary) 0.7%, var(--primary-light) 93.94%);
+    background: var(--degrade-primary);
     padding: 44px 150px 17px 150px;
 
     @media (max-width: 450px) {

@@ -118,6 +118,21 @@ export const BenefitsBottomWrapper = styled.div`
       }
     }
   }
+
+  @media (max-width: 769px) {
+    .benefitsContainer {
+      flex-direction: column;
+      .leftSide {
+        flex: 1;
+      }
+      .rigthSide {
+        flex: 1;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 20px;
+      }
+    }
+  }
 `;
 
 export const BenefitItem = styled.li`
@@ -134,7 +149,7 @@ export const BenefitItem = styled.li`
 `;
 
 interface IVideoWrapper {
-  videoIsRunning: boolean
+  videoIsRunning: boolean;
 }
 
 export const VideoWrapper = styled.div<IVideoWrapper>`
@@ -144,7 +159,7 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
   position: relative;
   margin: 50px 0;
 
-  video{
+  video {
     border-radius: 10px;
   }
 
@@ -164,16 +179,17 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
     width: 100%;
     height: 100%;
 
-    ${({videoIsRunning}) => videoIsRunning && css`
-      opacity: 0;
-      transition: all 0.3s;
-
-      &:hover{
+    ${({ videoIsRunning }) =>
+      videoIsRunning &&
+      css`
+        opacity: 0;
         transition: all 0.3s;
-        opacity: 1;
-      }
-    `}
 
+        &:hover {
+          transition: all 0.3s;
+          opacity: 1;
+        }
+      `}
 
     .videoButtonWrapper {
       top: 0;
@@ -194,8 +210,8 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
 
     .thirdColor {
       cursor: pointer;
-      width: 480px;
-      height: 480px;
+      width: 30rem;
+      height: 30rem;
       border-radius: 50%;
       background: linear-gradient(
         97.17deg,
@@ -211,8 +227,8 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
       transition: all 0.5s;
 
       .secondColor {
-        width: 240px;
-        height: 240px;
+        width: 15rem;
+        height: 15rem;
         border-radius: 50%;
         background: linear-gradient(
           77.17deg,
@@ -221,10 +237,40 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
         );
         box-shadow: 0px 0px 64px rgba(0, 0, 0, 0.85);
         .primaryColor {
-          width: 180px;
-          height: 180px;
+          width: 11.25rem;
+          height: 11.25rem;
           border-radius: 50%;
           background-color: var(--primary);
+        }
+      }
+
+      @media (max-width: 1024px) {
+        transform: scale(0.8);
+        &:hover {
+          transform: scale(0.85);
+        }
+      }
+
+      @media (max-width: 769px) {
+        transform: scale(0.45);
+        &:hover {
+          transform: scale(0.50);
+        }
+      }
+
+      @media (max-width: 500px) {
+        width: 250px;
+        height: 250px;
+        &:hover {
+          transform: scale(1.05);
+        }
+        .secondColor {
+          width: 200px;
+          height: 200px;
+          .primaryColor {
+            width: 150px;
+            height: 150px;
+          }
         }
       }
     }
@@ -325,6 +371,10 @@ export const ContemplatedQuotasWrapper = styled.div`
   .cl-white {
     color: var(--white);
   }
+
+  @media(max-width: 769px){
+    transform: scale(0.8);
+  }
 `;
 
 export const ContemplatedValueWrapper = styled.div`
@@ -333,6 +383,22 @@ export const ContemplatedValueWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 5px;
+
+  @media(max-width: 1024px){
+    transform: scale(0.8);
+  }
+
+  @media(max-width: 769px){
+    transform: scale(0.6);
+  }
+
+  @media(max-width: 769px){
+    transform: scale(0.5);
+  }
+
+  @media (max-width: 480px) {
+    transform: scale(0.35);
+  }
 `;
 
 export const ContemplatedValueText = styled.p`
@@ -343,6 +409,10 @@ export const ContemplatedValueText = styled.p`
   text-align: center;
   color: var(--white);
   margin-bottom: 31px;
+
+  @media(max-width: 769px){
+    font-size: var(--text-headline-md);
+  }
 `;
 
 export const Separator = styled.div`
@@ -359,4 +429,9 @@ export const GenericFlexWrapper = styled.div`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+
+  @media(max-width: 1024px){
+    flex-direction: column;
+    gap: 18px;
+  }
 `;

@@ -1,5 +1,5 @@
-'use client'
-import styled from "styled-components";
+'use client';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,13 @@ export const Container = styled.div`
   /* margin-top: 24px; */
   position: relative;
 
-  border-bottom: 2px solid #0036C6;
+  border-bottom: 2px solid #0036c6;
+
+  .option-text {
+    @media (max-width: 450px) {
+      display: none;
+    }
+  }
 
   .stepButtonInner {
     display: grid;
@@ -45,7 +51,7 @@ export const Container = styled.div`
     span {
       font-weight: 400;
       font-size: 14px;
-      color: #0036C6;
+      color: #0036c6;
     }
   }
 
@@ -58,7 +64,7 @@ export const Container = styled.div`
       visibility: visible;
       opacity: 1;
       transform: scale(1);
-      background-color: #0036C6;
+      background-color: #0036c6;
     }
   }
 `;

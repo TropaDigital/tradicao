@@ -28,12 +28,13 @@ export const CarouselWrapper = styled.div<ICarousel>`
         display: flex;
         align-items: flex-start;
         justify-content: center;
-        gap: 30px;        
+        /* gap: 30px;         */
         
         .slick-slide {
             display: flex;
             align-items: flex-start;
             justify-content: center;
+            box-sizing: border-box;
         }
     }
 `
@@ -52,6 +53,11 @@ export const TitleCarousel = styled.h1`
     color: var(--white);
 
     margin-bottom: 30px;
+
+    @media (max-width: 500px) {
+        text-align: center;
+        font-size: var(--text-headline-md);
+    }
 `
 
 export const SubtitleCarousel = styled.p`

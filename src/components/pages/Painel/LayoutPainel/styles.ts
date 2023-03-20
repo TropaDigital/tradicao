@@ -1,15 +1,15 @@
-import styled, { css } from 'styled-components'
-import { colors } from "../panelConfig.json"
+import styled, { css } from 'styled-components';
+// import { colors } from "../panelConfig.json"
 
 interface ISideBarProps {
-  sideBarIsOpen: boolean
+  sideBarIsOpen: boolean;
 }
 
 export const Container = styled.div<ISideBarProps>`
   height: 100vh;
 
   .customCheckbox {
-    border: 2px solid ${colors.dark};
+    border: 2px solid var(--dark);
   }
 
   .headerLayoutDashboard {
@@ -30,7 +30,7 @@ export const Container = styled.div<ISideBarProps>`
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid ${colors.gray200};
+      border-bottom: 1px solid var(--gray-200);
 
       @media (max-width: 835px) {
         display: none;
@@ -44,10 +44,10 @@ export const Container = styled.div<ISideBarProps>`
       justify-content: space-between;
       align-items: center;
       padding: 24px 30px;
-      background-color: ${colors.primary};
+      background-color: var(--primary);
       font-weight: 400;
 
-      color: ${colors.light};
+      color: var(--light);
       font-size: 16px;
       line-height: 16px;
       font-weight: 400;
@@ -70,7 +70,7 @@ export const Container = styled.div<ISideBarProps>`
       }
 
       .noticeUser {
-        .tinyScreen{
+        .tinyScreen {
           display: none;
         }
 
@@ -94,7 +94,7 @@ export const Container = styled.div<ISideBarProps>`
           bottom: 0;
           left: ${({ sideBarIsOpen }) => (sideBarIsOpen ? '0' : '-100%')};
           width: 40%;
-          background-color: ${colors.white};
+          background-color: var(--white);
           height: calc(100vh - 64px);
           transition: 0.75s linear;
           box-shadow: 0px 4px 12px rgba(25, 73, 62, 0.1);
@@ -104,7 +104,7 @@ export const Container = styled.div<ISideBarProps>`
           padding: 60px 20px;
 
           a {
-            color: ${colors.secondaryDark};
+            color: var(--secondary-dark);
             font-weight: 500;
           }
 
@@ -119,7 +119,7 @@ export const Container = styled.div<ISideBarProps>`
 
         .optionsSelect {
           margin: 0;
-          background-color: ${colors.white};
+          background-color: var(--white);
           .cardToPage {
             padding: 12px;
           }
@@ -168,43 +168,45 @@ export const Container = styled.div<ISideBarProps>`
           font-size: 16px;
           font-weight: 500;
           line-height: 24px;
-          color: var(--gray-700)};
-        }
-      }
-      .sideBarFooter {
-        > p {
-          font-size: 16px;
-        }
-
-        .adminUserName {
-          font-weight: 700;
-          color: var(--gray-700)};
-        }
-
-        .adminEmail {
-          font-size: 14px;
-          color: var(--gray-500);
-          font-weight: 400;
-        }
-
-        .handleCloseSideBar {
-          margin-top: 24px;
+          color: var(--gray-700);
         }
       }
     }
-    .mainWrapperWithChildren {
-      margin-left: ${({ sideBarIsOpen }) => (sideBarIsOpen ? '216px' : '80px')};
-      margin-top: 65px;
-      transition: all 0.3s;
-      width: ${({ sideBarIsOpen }) =>
-        sideBarIsOpen ? 'calc(100% - 216px)' : 'calc(100% - 80px)'};
-      padding: 40px 30px;
-      @media (max-width: 835px) {
-        width: 100%;
-        margin-left: 0;
+    .sideBarFooter {
+      > p {
+        font-size: 16px;
       }
+
+      .adminUserName {
+        font-weight: 700;
+        color: var(--gray-700);
+      }
+    }
+
+    .adminEmail {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+
+    .handleCloseSideBar {
+      margin-top: 24px;
     }
   }
+
+  .mainWrapperWithChildren {
+    margin-left: ${({ sideBarIsOpen }) => (sideBarIsOpen ? '216px' : '80px')};
+    margin-top: 65px;
+    transition: all 0.3s;
+    width: ${({ sideBarIsOpen }) =>
+      sideBarIsOpen ? 'calc(100% - 216px)' : 'calc(100% - 80px)'};
+    padding: 40px 30px;
+    @media (max-width: 835px) {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
   .footerWrapper {
     width: calc(100% - 216px);
     margin-left: 216px;
@@ -242,4 +244,4 @@ export const Container = styled.div<ISideBarProps>`
       height: auto;
     }
   }
-`
+`;

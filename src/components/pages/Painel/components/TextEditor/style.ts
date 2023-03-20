@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from '../../../../assets/styles/mixin'
+import styled from 'styled-components';
+// import { colors } from '../../../../assets/styles/mixin'
 
 export const TextEditorContainer = styled.div`
   margin: 32px 0;
@@ -95,4 +95,4 @@ export const TextEditorContainer = styled.div`
       }
     }
   }
-`
+`;

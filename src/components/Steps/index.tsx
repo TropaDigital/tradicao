@@ -7,60 +7,59 @@ interface StepsProps {
 }
 
 export default function Steps({ currentStep, handleOnClick }: StepsProps) {
-
   return (
     <Container>
-      <div className={`step ${currentStep === 1 ? " stepActive" : ""}`}>
-        <button 
-          type='button' 
+      <div className={`step ${currentStep === 1 ? ' stepActive' : ''}`}>
+        <button
+          type="button"
           className="stepButton"
-          onClick={() => handleOnClick("veiculo", 1)}
+          onClick={() => handleOnClick('veiculo', 1)}
         >
           <CarIcon />
-          <span>Veiculos</span>
+          <span className="option-text">Veiculos</span>
         </button>
 
         <div className="stepButtonInner" />
       </div>
 
-      <div className={`step ${currentStep === 2 ? "stepActive " : ""}`}>
-        <button 
-          type='button' 
+      <div className={`step ${currentStep === 2 ? 'stepActive ' : ''}`}>
+        <button
+          type="button"
           className="stepButton"
-          onClick={() => handleOnClick("imovel", 2)}
+          onClick={() => handleOnClick('imovel', 2)}
         >
           <MovelIcon />
-          <span>imóvel</span>
+          <span className="option-text">imóvel</span>
         </button>
-        
+
         <div className="stepButtonInner" />
       </div>
 
-      <div className={`step ${currentStep === 3 ? "stepActive " : ""} `}>
-        <button 
-          type='button' 
+      <div className={`step ${currentStep === 3 ? 'stepActive ' : ''} `}>
+        <button
+          type="button"
           className="stepButton"
-          onClick={() => handleOnClick("servicos", 3)}
+          onClick={() => handleOnClick('servicos', 3)}
         >
           <ServiceIcon />
-          <span>Serviços</span>
+          <span className="option-text">Serviços</span>
         </button>
-        
+
         <div className="stepButtonInner" />
       </div>
 
-      <div className={`step ${currentStep === 4 ? "stepActive " : ""}`}>
-        <button 
-          type='button' 
+      <div className={`step ${currentStep === 4 ? 'stepActive ' : ''}`}>
+        <button
+          type="button"
           className="stepButton"
-          onClick={() => handleOnClick("caminhao", 4)}
+          onClick={() => handleOnClick('caminhao', 4)}
         >
           <TruckIcon />
-          <span>Caminhão</span>
+          <span className="option-text">Caminhão</span>
         </button>
-        
+
         <div className="stepButtonInner" />
       </div>
     </Container>
-  )
+  );
 }

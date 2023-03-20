@@ -4,21 +4,21 @@
 // import { useDeleteRecipe } from '@/src/services/receitas/DELETE/useDeleteRecipes';
 // import { IGetRecipes } from '@/src/services/receitas/GET/types';
 // import { usePathname } from 'next/navigation';
-import router from "next/router";
-import { useState, useEffect } from "react";
-import { colors } from "../../../../assets/styles/mixin";
-import { AlertIcon } from "../../../Svg";
-import ButtonDefault from "../ButtonDefault";
-import FormProduct from "../forms/FormProduct";
-import Modal from "../modal/ModalDefault";
-import Pagination from "../Pagination";
-import RenderTD from "./RenderTD/RenderTD";
-import { Container, ModalDeleteProduct } from "./styles";
-import { ITableProps } from "./types";
+import router from 'next/router';
+import { useState, useEffect } from 'react';
+// import { colors } from "../../../../assets/styles/mixin";
+// import { AlertIcon } from '../../../Svg';
+import ButtonDefault from '../ButtonDefault';
+import FormProduct from '../forms/FormProduct';
+import Modal from '../modal/ModalDefault';
+import Pagination from '../Pagination';
+import RenderTD from './RenderTD/RenderTD';
+import { Container, ModalDeleteProduct } from './styles';
+import { ITableProps } from './types';
 // import { useQueryClient } from 'react-query';
 
-export default function Table({ title, search, header, data }: ITableProps) {
-  const [dataInternal, setDataInternal] = useState<any>(data);
+export default function Table({ title, search, header }: ITableProps) {
+  // const [dataInternal, setDataInternal] = useState<any>(data);
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -30,17 +30,17 @@ export default function Table({ title, search, header, data }: ITableProps) {
     }, 800);
   }, []);
 
-  useEffect(() => {
-    if (data) {
-      setDataInternal([...data]);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setDataInternal([...data]);
+  //   }
+  // }, [data]);
 
   useEffect(() => {
-    if(modalOpen === "visualizar") {
-      router.push(`/portfolio/${actualItem.slug}`)
+    if (modalOpen === 'visualizar') {
+      router.push(`/portfolio/${actualItem.slug}`);
     }
-  }, [modalOpen])
+  }, [modalOpen]);
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -48,11 +48,11 @@ export default function Table({ title, search, header, data }: ITableProps) {
 
   useEffect(() => {
     const handleSelectAll = () => {
-      const mainCheckbox: any = document.querySelector("#selectAll");
+      const mainCheckbox: any = document.querySelector('#selectAll');
 
-      mainCheckbox?.addEventListener("click", () => {
-        const allCheckboxes: any = document?.querySelectorAll("#select");
-        const isCheckedAll: boolean = mainCheckbox.checked
+      mainCheckbox?.addEventListener('click', () => {
+        const allCheckboxes: any = document?.querySelectorAll('#select');
+        const isCheckedAll: boolean = mainCheckbox.checked;
 
         allCheckboxes.forEach((checkbox: any) => {
           checkbox.checked = isCheckedAll;
@@ -65,7 +65,7 @@ export default function Table({ title, search, header, data }: ITableProps) {
   return (
     <>
       <Container>
-        {modalOpen === "editar" && (
+        {/* {modalOpen === 'editar' && (
           <Modal
             onClose={() => {
               setModalOpen(null);
@@ -76,13 +76,13 @@ export default function Table({ title, search, header, data }: ITableProps) {
               modalOpen="editar"
               actualItem={actualItem}
               onSubmit={() => {
-                setModalOpen("");
+                setModalOpen('');
               }}
             />
           </Modal>
-        )}
+        )} */}
 
-        {modalOpen === "excluir" && (
+        {modalOpen === 'excluir' && (
           <Modal
             onClose={() => {
               setModalOpen(null);
@@ -90,7 +90,7 @@ export default function Table({ title, search, header, data }: ITableProps) {
             setData={() => {}}
           >
             <ModalDeleteProduct>
-              <AlertIcon />
+              {/* <AlertIcon /> */}
               <div className="modalTitleWarning">Excluir item</div>
               <div className="modalDescription">
                 Tem certeza de que deseja excluir esse item ? Essa ação não
@@ -100,7 +100,7 @@ export default function Table({ title, search, header, data }: ITableProps) {
                 <ButtonDefault
                   color="transparent"
                   onClick={() => {
-                    setModalOpen("");
+                    setModalOpen('');
                   }}
                 >
                   <p className="buttonText transparentButton">Cancelar</p>
@@ -109,8 +109,8 @@ export default function Table({ title, search, header, data }: ITableProps) {
                   color="darkButton"
                   onClick={() => {
                     let itemType: any = actualItem?.id_receita
-                      ? "recipe"
-                      : "product";
+                      ? 'recipe'
+                      : 'product';
 
                     // removeProductOrRecipe(
                     //   actualItem?.id_receita
@@ -142,7 +142,7 @@ export default function Table({ title, search, header, data }: ITableProps) {
             </tr>
           </thead>
           <tbody>
-            {dataInternal?.map((row: any, key: any) => (
+            {/* {dataInternal?.map((row: any, key: any) => (
               <tr key={key}>
                 {header?.map((head: string | any, keyHead) => (
                   <>
@@ -159,7 +159,7 @@ export default function Table({ title, search, header, data }: ITableProps) {
                   </>
                 ))}
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </Container>

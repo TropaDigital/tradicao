@@ -14,15 +14,15 @@ export default function HeroSkew({
     <S.Container>
       <S.SolidBackground height={solidHeight} />
       <S.SkewContainer>
-        <Image 
-        src={backgroundImage}
-        alt={altBackgroundImage}
-        className="skewImage"
+        <Image
+          src={backgroundImage}
+          alt={altBackgroundImage}
+          className="skewImage"
         />
       </S.SkewContainer>
       <S.SubTitleWrapper>
-          <p className='subtitle'>{subtitle}</p>
+        <p className="subtitle">{subtitle}</p>
       </S.SubTitleWrapper>
     </S.Container>
-  ); 
+  );
 }

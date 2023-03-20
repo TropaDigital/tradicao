@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  max-width: fit-content;
+  width: 100%;
   select {
     padding: 10px 16px;
     font-size: 16px;
@@ -32,4 +32,4 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
   }
-`
+`;

@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
   position: relative;
   padding-top: 10px;
-`
+`;
 
 export const SkewContainer = styled.div<Props>`
   max-height: 234px;
@@ -20,6 +20,13 @@ export const SkewContainer = styled.div<Props>`
   position: relative;
   left: -80px;
 
+  @media (max-width: 850px) {
+    border-radius: 30px;
+  }
+  @media (max-width: 550px) {
+    border-radius: 20px;
+  }
+
   .skewImage {
     transform: skew(18deg);
     position: relative;
@@ -30,8 +37,12 @@ export const SkewContainer = styled.div<Props>`
 
 export const SolidBackground = styled.div`
   width: 100%;
-  background: linear-gradient(90.03deg, rgba(233, 239, 255, 0) 23.97%, #E9EFFF 91.12%);;
+  background: linear-gradient(
+    90.03deg,
+    rgba(233, 239, 255, 0) 23.97%,
+    #e9efff 91.12%
+  );
   height: 50%;
   position: absolute;
   top: 0;
-`
+`;

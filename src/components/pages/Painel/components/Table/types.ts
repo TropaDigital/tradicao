@@ -1,6 +1,6 @@
-import { IGetRecipes } from '@/src/services/receitas/GET/types';
+// import { IGetRecipes } from '@/src/services/receitas/GET/types';
 import React, { ReactNode } from 'react';
-import { IGetProduct } from '../../../../services/products/GET/types';
+// import { IGetProduct } from '../../../../services/products/GET/types';
 
 export interface ITableProps {
   title: string;
@@ -10,7 +10,7 @@ export interface ITableProps {
     label: string | any;
     type: string;
   }>;
-  data: Array<IGetProduct> | Array<IGetRecipes> | any;
+  // data: Array<IGetProduct> | Array<IGetRecipes> | any;
 }
 
 export interface ITableDataProps {
