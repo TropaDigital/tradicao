@@ -179,16 +179,21 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
     width: 100%;
     height: 100%;
 
-    ${({ videoIsRunning }) =>
-      videoIsRunning &&
-      css`
-        opacity: 0;
-        transition: all 0.3s;
+    opacity: 0;  
+    transition: all 0.3s;
+    
+    @media (min-width: 769px) {
+     &:hover{
+      transition: all 0.3s;
+      opacity: 1;
+     } 
+    }
 
-        &:hover {
-          transition: all 0.3s;
-          opacity: 1;
-        }
+    ${({ videoIsRunning }) =>
+      !videoIsRunning &&
+      css`
+        opacity: 1;
+        transition: all 0.3s;
       `}
 
     .videoButtonWrapper {
@@ -254,14 +259,14 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
       @media (max-width: 769px) {
         transform: scale(0.45);
         &:hover {
-          transform: scale(0.50);
+          transform: scale(0.5);
         }
       }
 
       @media (max-width: 500px) {
         width: 250px;
         height: 250px;
-        
+
         .secondColor {
           width: 200px;
           height: 200px;
@@ -370,7 +375,7 @@ export const ContemplatedQuotasWrapper = styled.div`
     color: var(--white);
   }
 
-  @media(max-width: 769px){
+  @media (max-width: 769px) {
     transform: scale(0.8);
   }
 `;
@@ -382,15 +387,15 @@ export const ContemplatedValueWrapper = styled.div`
   justify-content: center;
   gap: 5px;
 
-  @media(max-width: 1024px){
+  @media (max-width: 1024px) {
     transform: scale(0.8);
   }
 
-  @media(max-width: 769px){
+  @media (max-width: 769px) {
     transform: scale(0.6);
   }
 
-  @media(max-width: 769px){
+  @media (max-width: 769px) {
     transform: scale(0.5);
   }
 
@@ -408,7 +413,7 @@ export const ContemplatedValueText = styled.p`
   color: var(--white);
   margin-bottom: 31px;
 
-  @media(max-width: 769px){
+  @media (max-width: 769px) {
     font-size: var(--text-headline-md);
   }
 `;
@@ -428,7 +433,7 @@ export const GenericFlexWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media(max-width: 1024px){
+  @media (max-width: 1024px) {
     flex-direction: column;
     gap: 18px;
   }
