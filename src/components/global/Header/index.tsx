@@ -13,7 +13,7 @@ import Button from '@/components/UI/Button';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
@@ -117,13 +117,16 @@ const Header = () => {
     }
   ];
 
+  useEffect(() => {
+    setWindowWidth(window?.innerWidth);
+  }, []);
+
   const getWindowWidth = () => {
     if (typeof window !== 'undefined')
       window?.addEventListener('resize', () => {
         setWindowWidth(window?.innerWidth);
       });
   };
-
   getWindowWidth();
 
   const wrapperRef = useRef(null);
