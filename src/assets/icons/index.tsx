@@ -1400,6 +1400,38 @@ export const WatchIcon = ({ color = '#000000', size = 18 }) => {
   );
 };
 
+export const RadialPlayIcon = ({ color = '#000000', size = 18 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill={color}
+        d="M9.525 18.025q-.5.325-1.013.037Q8 17.775 8 17.175V6.825q0-.6.512-.888q.513-.287 1.013.038l8.15 5.175q.45.3.45.85t-.45.85Z"
+      />
+    </svg>
+  );
+};
+
+export const RadialPauseIcon = ({ color = '#000000', size = 18 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill={color}
+        d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z"
+      />
+    </svg>
+  );
+};
+
 export const ExampleIcon = ({ color = '#000000', size = 18 }) => {
   return <svg />;
 };
