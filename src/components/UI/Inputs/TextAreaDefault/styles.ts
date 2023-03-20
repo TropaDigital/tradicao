@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Tooltip from '../../Tooltip';
+import Tooltip from '../../../shared/Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -14,8 +14,13 @@ export const Container = styled.div`
   label {
     font-size: 14px;
     font-weight: 700;
-    color: #6c757d;
+    color: var(--primary);
     margin-bottom: 5px;
+  }
+
+  .errorValidation {
+    margin-top: 10px;
+    color: var(--status-danger);
   }
 `;
 
@@ -30,7 +35,7 @@ export const ContainerInput = styled.div<ContainerProps>`
   ${(props) =>
     props.isErrored &&
     css`
-      border-color: #E62965;
+      border-color: #e62965;
     `}
 
   textarea {
@@ -43,8 +48,8 @@ export const ContainerInput = styled.div<ContainerProps>`
     transition-property: background-color, border-color, color, fill, stroke,
       opacity, box-shadow, transform;
     transition-duration: 200ms;
-    font-size: 14px;
-    color: #6c757d;
+    font-size: 16px;
+    color: var(--dark);
     padding-inline-start: 1rem;
     padding-inline-end: 1rem;
     height: 2.5rem;
@@ -59,6 +64,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     min-height: 5rem;
     line-height: 1.375;
     vertical-align: top;
+    resize: none;
 
     &::placeholder {
       color: #cccccc;
@@ -91,10 +97,10 @@ export const Error = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #E62965;
+    background: #e62965;
     color: #fff;
     &::before {
-      border-color: #E62965 transparent;
+      border-color: #e62965 transparent;
     }
   }
 `;

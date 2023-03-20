@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import * as Slider from '@radix-ui/react-slider';
 import { Container } from './styles';
 
@@ -9,14 +9,20 @@ interface RangeProps {
   handleOnChange: (value: any) => void;
 }
 
-export default function InputRange({ defaultValue, maxValue, minValue, handleOnChange }: RangeProps) {
+export default function InputRange({
+  defaultValue,
+  maxValue,
+  minValue,
+  handleOnChange
+}: RangeProps) {
   return (
     <Container>
-      <Slider.Root 
-        className="SliderRoot" 
-        defaultValue={[defaultValue]} 
-        max={3000} 
-        step={1} 
+      <Slider.Root
+        className="SliderRoot"
+        defaultValue={[defaultValue]}
+        max={3000}
+        min={200}
+        step={1}
         aria-label="Volume"
         onValueChange={handleOnChange}
       >
@@ -30,16 +36,16 @@ export default function InputRange({ defaultValue, maxValue, minValue, handleOnC
         <div className="values">
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
-            currency: 'BRL',
+            currency: 'BRL'
           }).format(minValue ?? 0)}
         </div>
         <div className="values">
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
-            currency: 'BRL',
+            currency: 'BRL'
           }).format(maxValue ?? 3000)}
         </div>
       </div>
     </Container>
-  )
+  );
 }

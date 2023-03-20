@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 // import { ArrowHead } from "../../../Svg";
-import * as S from "./styles";
+import * as S from './styles';
 
 const Pagination = () => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
@@ -13,7 +13,7 @@ const Pagination = () => {
       <S.Container>
         <div
           className={
-            selectedPage === 1 ? "previous button disabled" : "previous button"
+            selectedPage === 1 ? 'previous button disabled' : 'previous button'
           }
           onClick={() => {
             if (selectedPage === 1) return;
@@ -21,7 +21,7 @@ const Pagination = () => {
             setSelectedPage(selectedPage - 1);
           }}
         >
-          <ArrowHead />
+          {/* <ArrowHead /> */}
         </div>
 
         <div className="paginationIndex">
@@ -29,7 +29,7 @@ const Pagination = () => {
             return (
               <div
                 className={
-                  pageIndex === selectedPage ? "pageIndex active" : "pageIndex"
+                  pageIndex === selectedPage ? 'pageIndex active' : 'pageIndex'
                 }
                 key={key}
                 onClick={() => {
@@ -46,8 +46,8 @@ const Pagination = () => {
         <div
           className={
             selectedPage === pages.length
-              ? "next button disabled"
-              : "next button"
+              ? 'next button disabled'
+              : 'next button'
           }
           onClick={() => {
             if (selectedPage === pages.length) return;
@@ -55,7 +55,7 @@ const Pagination = () => {
             setSelectedPage(selectedPage + 1);
           }}
         >
-          <ArrowHead />
+          {/* <ArrowHead /> */}
         </div>
       </S.Container>
     </>

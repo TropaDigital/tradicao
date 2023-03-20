@@ -75,8 +75,8 @@ const WorkWithUsPage = () => {
               validationSchema={curriulumFormSchema}
               onSubmit={(values, { resetForm }) => {
                 createCandidate({
-                  nome: values.fullName,
-                  vaga: values.role,
+                  nome: values.fullName.trim(),
+                  vaga: values.role.trim(),
                   curriculo_pdf: values.curriculum
                 });
 
@@ -153,9 +153,9 @@ const WorkWithUsPage = () => {
               validationSchema={representanteFormSchema}
               onSubmit={(values, { resetForm }) => {
                 createAgent({
-                  nome: values.fullName,
+                  nome: values.fullName.trim(),
                   cnpj: values.cnpj.replaceAll(/\D+/g, ''),
-                  contato: values.contact
+                  contato: values.contact.trim()
                 });
 
                 resetForm();

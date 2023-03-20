@@ -76,16 +76,17 @@ export const CityStateContainer = styled.div`
 
 export const UnitsContainer = styled.div`
   margin: 30px 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
   gap: 20px;
 `;
 
 export const UnityCard = styled.div`
   position: relative;
   text-align: end;
-  width: 270px;
+  min-width: 270px;
   min-height: 170px;
   padding: 30px 20px;
   line-height: 18px;

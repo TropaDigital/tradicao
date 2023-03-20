@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from '../../../../assets/styles/mixin'
+import styled from 'styled-components';
+// import { colors } from '../../../../assets/styles/mixin'
 
 export const Container = styled.nav`
   display: flex;
@@ -21,4 +21,4 @@ export const Container = styled.nav`
     display: flex;
     gap: 12px;
   }
-`
+`;

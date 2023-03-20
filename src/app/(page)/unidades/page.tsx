@@ -7,9 +7,7 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
-import { useGetAllUnits } from '@/services/unidades/GET';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnitsByQuery';
-import { useGetUnitById } from '@/services/unidades/GET/useGetUnityById';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { useEffect, useRef, useState } from 'react';
@@ -22,10 +20,12 @@ const UnidadesPage = () => {
   const [query, setQuery] = useState<string>('');
   const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
 
-  const [allCities, setAllCities] = useState<any>();
+  const [allCities, setAllCities] = useState<string[]>();
   const [allStates, setAllStates] = useState<string[]>();
 
-  const { unitsByQuery } = useGetUnitsByQuery(query);
+  const [cep, setCep] = useState<string>();
+
+  const { unitsByQuery } = useGetUnitsByQuery(query.trim());
   const units = useGetUnitsByQuery('');
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const UnidadesPage = () => {
 
   useEffect(() => {
     const getAllStates = () => {
-      const allStates = allUnits?.map((fullUnit: any) => {
+      const allStates = allUnits?.map((fullUnit: IGetUnit) => {
         return fullUnit.uf;
       });
 
@@ -55,25 +55,32 @@ const UnidadesPage = () => {
       const uniqueCities = [...new Set(allCities)].sort();
 
       if (!query?.includes('cidade')) {
-        setAllCities(uniqueCities);
+        setAllCities(query?.includes('uf') ? uniqueCities : []);
       }
     };
 
     getAllCities(unitsByQuery);
   }, [unitsByQuery]);
 
+  useEffect(() => {
+    if (query?.includes('uf=')) {
+      setCep('');
+    }
+  }, [query]);
+
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
 
     const form: any = document.querySelector('#cep-form');
     const formData = new FormData(form);
-    const cep: any = formData.get('cep');
+    const cep: FormDataEntryValue | string | null = formData.get('cep');
 
-    if (cep.length > 0) {
-      setQuery('cep=' + cep);
-      return;
-    }
     setQuery('');
+    if (cep)
+      if (cep?.length > 0) {
+        setQuery('cep=' + cep);
+        return;
+      }
   };
 
   const getUnitById = (id: string | number) => {
@@ -83,6 +90,22 @@ const UnidadesPage = () => {
 
     setActualUnit(unit);
     setIsMapModalOpen(true);
+  };
+
+  const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const actualQuery = query;
+    const ufQuery = actualQuery?.split('&')?.shift()?.trim();
+
+    if (!e?.target?.value && ufQuery) {
+      setQuery(ufQuery);
+      return;
+    }
+
+    if (!actualQuery?.includes('&cidade=')) {
+      setQuery(actualQuery + '&cidade=' + e?.target?.value.trim());
+      return;
+    }
+    setQuery(ufQuery + '&cidade=' + e.target.value.trim());
   };
 
   const wrapperRef = useRef(null);
@@ -120,7 +143,12 @@ const UnidadesPage = () => {
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
+                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
                   maxLength={8}
+                  minLength={8}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setCep(e.target.value.replace(/[^0-9]/g, ''))
+                  }
                 />
                 <Button degrade className="cep-button" type="submit">
                   Buscar
@@ -133,6 +161,7 @@ const UnidadesPage = () => {
                   label="ou selecione o Estado e Cidade"
                   className="select-city-state"
                   name="select-state"
+                  value={query.includes('cep') ? '' : undefined}
                   onChange={(e) =>
                     e.target.value !== ''
                       ? setQuery('uf=' + e.target.value)
@@ -150,16 +179,9 @@ const UnidadesPage = () => {
                   label=""
                   className="select-city-state"
                   name="select-city"
-                  onChange={(e) => {
-                    if (!query.includes('&cidade=')) {
-                      setQuery(query + '&cidade=' + e.target.value);
-                    } else {
-                      const newQuery = query.split('&').shift();
-                      setQuery(newQuery + '&cidade=' + e.target.value);
-                    }
-                  }}
+                  onChange={searchUnitByCity}
                 >
-                  <option selected value="null">
+                  <option selected value="">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
@@ -191,7 +213,7 @@ const UnidadesPage = () => {
               ))}
 
               {isMapModalOpen && actualUnit && (
-                <S.MapModal>
+                <S.MapModal openState={isMapModalOpen}>
                   <div ref={wrapperRef}>
                     <div
                       onClick={() => setIsMapModalOpen(false)}
@@ -201,7 +223,7 @@ const UnidadesPage = () => {
                     </div>
                     <div className="map-container">
                       <iframe
-                        src={`https://maps.google.com/maps?q=%20${actualUnit[0]?.cep},%20${actualUnit[0].endereco},%20${actualUnit[0]?.uf}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
+                        src={`https://maps.google.com/maps?q=${actualUnit[0].latitude}%20${actualUnit[0].longitude}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
                         width="600"
                         height="450"
                         allowFullScreen={true}

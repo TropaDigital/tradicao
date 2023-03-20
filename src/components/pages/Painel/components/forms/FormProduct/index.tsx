@@ -1,16 +1,16 @@
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import ButtonDefault from "../../ButtonDefault";
-import Inputdefault from "../../inputs/InputDefault";
-import InputDescription from "../../inputs/InputDescription";
-import InputImage from "../../inputs/InputImage";
-import InputQuantity from "../../inputs/InputQuantity";
-import { SelectDefault } from "../../inputs/SelectDefault";
-import * as S from "../styles";
-import { IActualItemProduct, IInitialValuesProduct } from "./types";
-import { Formik, Form } from "formik";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import ButtonDefault from '../../ButtonDefault';
+import Inputdefault from '../../inputs/InputDefault';
+import InputDescription from '../../inputs/InputDescription';
+import InputImage from '../../inputs/InputImage';
+import InputQuantity from '../../inputs/InputQuantity';
+import { SelectDefault } from '../../inputs/SelectDefault';
+import * as S from '../styles';
+import { IActualItemProduct, IInitialValuesProduct } from './types';
+import { Formik, Form } from 'formik';
 // import { TrashIcon } from "../../../../Svg";
-import { productSchema } from "./yupSchema";
+import { productSchema } from './yupSchema';
 
 interface IFormProduct {
   modalOpen: string;
@@ -21,7 +21,7 @@ interface IFormProduct {
 const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
   const [image, setImage] = useState<string[]>();
   const [imagesIdToRemove, setImagesIdToRemove] = useState<string[]>([]);
-  const [price, setPrice] = useState<string>("");
+  const [price, setPrice] = useState<string>('');
   const actualItemImages = actualItem?.produtoImagens?.map((objImage: any) => {
     return objImage?.url_imagem;
   });
@@ -30,19 +30,19 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
     if (actualItem) {
       setPrice(actualItem?.project_price);
       setImage(actualItemImages);
-      handleOnChangeDTO("imagem", [...actualItem.produtoImagens]);
+      handleOnChangeDTO('imagem', [...actualItem.produtoImagens]);
     }
   }, [actualItem]);
 
-  console.log(actualItem)
+  console.log(actualItem);
 
   const [DTO, setDTO] = useState<{ valor: number; imagem: string[] }>({
     valor: 0,
-    imagem: [],
+    imagem: []
   });
 
   function handleOnChangeDTO(
-    key: "valor" | "imagem",
+    key: 'valor' | 'imagem',
     value: string | Array<string>
   ) {
     let newDTO: any = DTO;
@@ -59,7 +59,7 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
       if (actualImage === image?.url_imagem) {
         setImagesIdToRemove([
           ...imagesIdToRemove,
-          String(image?.id_produto_imagem),
+          String(image?.id_produto_imagem)
         ]);
       }
     });
@@ -67,18 +67,18 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
     if (arrayFilteredImages) {
       setImage(arrayFilteredImages);
     }
-    handleOnChangeDTO("imagem", arrayFilteredImages);
+    handleOnChangeDTO('imagem', arrayFilteredImages);
   };
 
   const createSlug = (titulo: string) => {
-    return titulo?.replaceAll(" ", "-")?.toLowerCase();
+    return titulo?.replaceAll(' ', '-')?.toLowerCase();
   };
 
   const formatPrice = (price: any) => {
-    let value = price?.replace(/[\W\D]/g, "");
-    value = (value / 100).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
+    let value = price?.replace(/[\W\D]/g, '');
+    value = (value / 100).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
     });
     return value;
   };
@@ -92,19 +92,19 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
       <Formik
         initialValues={{
           images: actualItem?.produtoImagens ?? [],
-          titulo: actualItem?.project_name ?? "",
-          sku: actualItem?.project_sku ?? "",
+          titulo: actualItem?.project_name ?? '',
+          sku: actualItem?.project_sku ?? '',
           preco:
             actualItem?.project_price
-              .replace("R$", "")
-              .replace(",", ".")
-              .trim() ?? "",
-          estoque: actualItem?.project_stock ?? "",
-          status: actualItem?.status ?? "",
+              .replace('R$', '')
+              .replace(',', '.')
+              .trim() ?? '',
+          estoque: actualItem?.project_stock ?? '',
+          status: actualItem?.status ?? ''
         }}
         validationSchema={productSchema}
         onSubmit={(values) => {
-          console.log("+++++++++++++++++++++++++++++");
+          console.log('+++++++++++++++++++++++++++++');
           console.log(values);
         }}
       >
@@ -114,7 +114,7 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
           errors,
           touched,
           setFieldValue,
-          handleChange,
+          handleChange
         }) => (
           <>
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
@@ -122,10 +122,10 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 onPostImage={(image: string) => {
                   let newArrayImagesProduct: Array<string> = DTO?.imagem;
                   newArrayImagesProduct?.push(image);
-                  handleOnChangeDTO("imagem", newArrayImagesProduct);
+                  handleOnChangeDTO('imagem', newArrayImagesProduct);
                   setImage(newArrayImagesProduct);
                   {
-                    setFieldValue("images", newArrayImagesProduct);
+                    setFieldValue('images', newArrayImagesProduct);
                   }
                 }}
                 error={touched?.images ? errors?.images : null}
@@ -138,10 +138,10 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                         className="removeIcon"
                         onClick={() => {
                           removeImage(row, DTO?.imagem);
-                          setFieldValue("images", DTO?.imagem);
+                          setFieldValue('images', DTO?.imagem);
                         }}
                       >
-                        <TrashIcon size={42} />
+                        {/* <TrashIcon size={42} /> */}
                       </div>
                     </div>
                     <Image
@@ -162,9 +162,9 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                   placeholder="Título do produto"
                   name="titulo"
                   value={values?.titulo}
-                  onChange={(e: any) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(e);
-                    setFieldValue("slug", createSlug(e.target.value));
+                    setFieldValue('slug', createSlug(e.target.value));
                   }}
                   error={touched?.titulo ? errors?.titulo : null}
                 />
@@ -183,10 +183,10 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                     value={price}
                     onChange={(e: any) => {
                       setFieldValue(
-                        "preco",
+                        'preco',
                         formatPrice(e.target.value)
-                          ?.replace(",", ".")
-                          .replace(/[^\d.]/g, "")
+                          ?.replace(',', '.')
+                          .replace(/[^\d.]/g, '')
                       );
                       handlePrice(e);
                     }}
@@ -196,17 +196,11 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 </div>
 
                 <div className="lineElementsWrapper">
-                  <SelectDefault
-                    label="Estoque"
-                    value={values.estoque}
-                  >
+                  <SelectDefault label="Estoque" value={values.estoque}>
                     <option value="Em estoque">Em estoque</option>
                     <option value="Fora de estoque">Fora de estoque</option>
                   </SelectDefault>
-                  <SelectDefault
-                    label="Status"
-                    value={values.status}
-                  >
+                  <SelectDefault label="Status" value={values.status}>
                     <option value="Ativo">Ativo</option>
                     <option value="Inativo">Inativo</option>
                   </SelectDefault>
@@ -226,7 +220,7 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                     className="button"
                     type="submit"
                   >
-                    {modalOpen === "publicar" ? "Publicar" : "Atualizar"}
+                    {modalOpen === 'publicar' ? 'Publicar' : 'Atualizar'}
                   </ButtonDefault>
                 </div>
               </div>

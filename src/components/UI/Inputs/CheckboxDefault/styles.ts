@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Tooltip from '../../Tooltip';
+import Tooltip from '../../../shared/Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -17,7 +17,7 @@ export const Container = styled.label`
   .labelInput {
     font-size: 14px;
     font-weight: 400;
-    color: #6C757D;
+    color: #6c757d;
     user-select: none;
   }
 
@@ -29,19 +29,19 @@ export const Container = styled.label`
     background-color: ##0046B5;
   } */
 
-  /* &:checked ~ .checkbox .checkbox-tick {
+    /* &:checked ~ .checkbox .checkbox-tick {
     opacity: 1;
   } */
   }
 
   input:checked ~ .checkbox {
-    background-color: #0046B5;
-    border-color: #0046B5;
+    background-color: #0046b5;
+    border-color: #0046b5;
   }
 
   input:checked ~ .checkbox .checkbox-tick {
     opacity: 1;
-    border-color: #0046B5;
+    border-color: #0046b5;
   }
 
   .checkbox {
@@ -69,12 +69,10 @@ export const Container = styled.label`
     border-style: solid;
     border-image: initial;
     border-radius: 0.125rem;
-    border-color: #6C757D;
+    border-color: #6c757d;
     color: #fff;
-    --checkbox-size:1rem;
+    --checkbox-size: 1rem;
   }
-
-  
 `;
 
 export const ContainerInput = styled.div<ContainerProps>`
@@ -88,7 +86,7 @@ export const ContainerInput = styled.div<ContainerProps>`
   ${(props) =>
     props.isErrored &&
     css`
-      border-color: #E62965;
+      border-color: #e62965;
     `}
 `;
 
@@ -111,10 +109,10 @@ export const Error = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #E62965;
+    background: #e62965;
     color: #fff;
     &::before {
-      border-color: #E62965 transparent;
+      border-color: #e62965 transparent;
     }
   }
 `;

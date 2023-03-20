@@ -3,26 +3,31 @@
 //   LogoWhite,
 //   PageIcon,
 // } from '@/src/assets/icons';
-import { ReactNode, useState } from 'react'
-import { Container } from './styles'
-import SelectSideBar from '../components/SelectSideBar'
+import { ReactNode, useState } from 'react';
+import { Container } from './styles';
+import SelectSideBar from '../components/SelectSideBar';
 
-import panelConfig from '../panelConfig.json'
-import LogoutPanel from '../components/LogoutPanel'
-import Link from 'next/link'
-import NotificationPanel from '../components/NotificationPanel'
-import MobileMenu from '../components/MobileMenu'
-import { removeCookies } from 'cookies-next'
-import { LogoutIcon, DefaultLogo, PageIcon, DoubleChevronWithCircle } from '@/assets/icons'
-import { useRouter } from 'next/navigation'
+import panelConfig from '../panelConfig.json';
+import LogoutPanel from '../components/LogoutPanel';
+import Link from 'next/link';
+import NotificationPanel from '../components/NotificationPanel';
+import MobileMenu from '../components/MobileMenu';
+import { removeCookies } from 'cookies-next';
+import {
+  LogoutIcon,
+  DefaultLogo,
+  PageIcon,
+  DoubleChevronWithCircle
+} from '@/assets/icons';
+import { useRouter } from 'next/navigation';
 interface ILayoutPanelProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function LayoutPainel({ children }: ILayoutPanelProps) {
-  const [sideBarIsOpen, setSideBarIsOpen] = useState<boolean>(true)
+  const [sideBarIsOpen, setSideBarIsOpen] = useState<boolean>(true);
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Container sideBarIsOpen={sideBarIsOpen}>
@@ -51,7 +56,7 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
       <div className="mainWrapper">
         <div className="sideBarWithContent">
           <div className="navigateOptions">
-            <SelectSideBar
+            {/* <SelectSideBar
               sideBarIsOpen={sideBarIsOpen}
               openSideBar={() => {
                 setSideBarIsOpen(true)
@@ -59,16 +64,18 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
               pages={panelConfig.pages}
               title={'Dashboard'}
               icon={<PageIcon />}
-            />
+            /> */}
           </div>
           <button
             className="handleCloseSideBar"
             onClick={() => {
-              setSideBarIsOpen(!sideBarIsOpen)
+              setSideBarIsOpen(!sideBarIsOpen);
             }}
           >
             <DoubleChevronWithCircle />
-            <p className="textHandleCloseSideBar">{sideBarIsOpen && "Recolher Menu"}</p>
+            <p className="textHandleCloseSideBar">
+              {sideBarIsOpen && 'Recolher Menu'}
+            </p>
           </button>
         </div>
 
@@ -82,5 +89,5 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
         </div>
       </footer>
     </Container>
-  )
+  );
 }

@@ -11,6 +11,7 @@ import { ConfirmService, InfoService } from '../componentSteps/InfoServices';
 import { ConfirmTruck, InfoTruck } from '../componentSteps/InfoTruck';
 import { ConfirmVehicle, InfoVehicle } from '../componentSteps/InfoVehicle';
 import { SectionSimulatorForm, TitleSimulator } from './styles';
+import { usePathname } from 'next/navigation';
 
 type HandleOnChange = (
   event:
@@ -261,8 +262,11 @@ export default function SimulationForm() {
       hadnleOnSaveStep();
     } catch (err: any) {}
   }, []);
+
+  const pathName = usePathname();
+
   return (
-    <SectionSimulatorForm>
+    <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
       <form onSubmit={handleOnSubmit}>
         {!isSimulator && (
           <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
@@ -275,23 +279,23 @@ export default function SimulationForm() {
         )}
 
         {isSimulator ? (
-          <div style={{ flex: '1 1 0' }}>
-            {subCurrentComponent}
-          </div>
+          <div style={{ flex: '1 1 0' }}>{subCurrentComponent}</div>
         ) : (
-          <div style={{ flex: '0 1 0' }}>{
-            <InfoGeral
-              setSimulatorPlan={(value) =>
-                setFormData({ ...formData, ['typePlan']: value })
-              }
-              simulatorPlan={formData.typePlan}
-              styleButtonPlan={styleButtonPlan}
-              handleOnChangeValue={(value) =>
-                setFormData({ ...formData, ['value']: value[0] })
-              }
-              defaultValue={formData.value}
-            />
-          }</div>
+          <div style={{ flex: '0 1 0' }}>
+            {
+              <InfoGeral
+                setSimulatorPlan={(value) =>
+                  setFormData({ ...formData, ['typePlan']: value })
+                }
+                simulatorPlan={formData.typePlan}
+                styleButtonPlan={styleButtonPlan}
+                handleOnChangeValue={(value) =>
+                  setFormData({ ...formData, ['value']: value[0] })
+                }
+                defaultValue={formData.value}
+              />
+            }
+          </div>
         )}
 
         {isSimulator && (

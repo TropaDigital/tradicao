@@ -171,7 +171,6 @@ export const InfoIcon = styled.div`
 export const ConsortiumTimeLineSmall = styled.div`
     display: flex;
 
-    width: 90%;
     height: fit-content;
 
     @media (min-width: 501px) {

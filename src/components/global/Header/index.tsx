@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ChevronIcon,
   DefaultLogo,
@@ -8,10 +10,10 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
-import Modal from '@/components/UI/Modal';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
@@ -23,6 +25,8 @@ const Header = () => {
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
 
+  const pathName = usePathname();
+
   const mainPages: IHeaderOptions[] = [
     {
       title: 'Início',
@@ -30,6 +34,7 @@ const Header = () => {
     },
     {
       title: 'A Tradição',
+      path: pathName,
       subOptions: [
         {
           subTitle: 'Quem somos',
@@ -45,12 +50,13 @@ const Header = () => {
         },
         {
           subTitle: 'Atendimento',
-          path: '/contato'
+          path: '/canal-de-denuncia'
         }
       ]
     },
     {
       title: 'O Consórcio',
+      path: pathName,
       subOptions: [
         {
           subTitle: 'Automóveis',
@@ -101,7 +107,7 @@ const Header = () => {
     },
     {
       icon: <UniversityIcon />,
-      link: '/',
+      link: '/universidade',
       text: 'Universidade'
     },
     {
@@ -112,15 +118,16 @@ const Header = () => {
   ];
 
   const getWindowWidth = () => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window?.innerWidth);
-    });
+    if (typeof window !== 'undefined')
+      window?.addEventListener('resize', () => {
+        setWindowWidth(window?.innerWidth);
+      });
   };
 
   getWindowWidth();
 
   const wrapperRef = useRef(null);
-  const tradicaoWrapperRef = useRef(null)
+  const tradicaoWrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
   useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
@@ -249,12 +256,16 @@ const Header = () => {
                               : isSubMenuConsorcioOpen
                           }
                         >
-                          <div ref={page.title === "A Tradição" ? tradicaoWrapperRef : wrapperRef} className="sub-menu-container">
+                          <div
+                            ref={
+                              page.title === 'A Tradição'
+                                ? tradicaoWrapperRef
+                                : wrapperRef
+                            }
+                            className="sub-menu-container"
+                          >
                             {page.subOptions.map((subOption, keyOption) => (
-                              <Link
-                                href={subOption.path}
-                                key={keyOption}
-                              >
+                              <Link href={subOption.path} key={keyOption}>
                                 {subOption.subTitle}
                               </Link>
                             ))}
