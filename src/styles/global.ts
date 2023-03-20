@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Colors ==========*/
 
+
   //Color-Primary
   --primary: #0036C6;
   --primary-mid: #213365;
