@@ -7,16 +7,19 @@ import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import UploadFile from '@/components/UI/UploadFile';
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
 import WorkWithUsBg from '../../../../public/images/work_with_us_bg.png';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { useCreateCandidate } from '@/services/trabalhe-conosco/POST/useCreateCadidate';
+import { useCreateAgent } from '@/services/representante/POST';
 
 const WorkWithUsPage = () => {
   const [formStage, setFormStage] = useState<'curriculo' | 'representante'>(
     'curriculo'
   );
+  const [fileName, setFileName] = useState<string>('');
 
   const formatCnpj = (cnpj: string) => {
     cnpj = cnpj?.replace(/\D/g, '');
@@ -25,6 +28,9 @@ const WorkWithUsPage = () => {
       '$1.$2.$3/$4-$5'
     );
   };
+
+  const { createCandidate } = useCreateCandidate();
+  const { createAgent } = useCreateAgent();
 
   return (
     <>
@@ -53,7 +59,7 @@ const WorkWithUsPage = () => {
               color={formStage === 'representante' ? 'primary' : 'secondary'}
               type="submit"
               degrade
-              className='stage-form-button'
+              className="stage-form-button"
             >
               Seja um Representante
             </Button>
@@ -64,26 +70,48 @@ const WorkWithUsPage = () => {
               initialValues={{
                 fullName: '',
                 role: '',
-                curriulum: []
+                curriculum: []
               }}
               validationSchema={curriulumFormSchema}
-              onSubmit={(values, errors) => {
-                console.log(values);
-                // TODO: Integração com banco de dados
+              onSubmit={(values, { resetForm }) => {
+                createCandidate({
+                  nome: values.fullName.trim(),
+                  vaga: values.role.trim(),
+                  curriculo_pdf: values.curriculum
+                });
+
+                setFileName('');
+                resetForm();
               }}
             >
-              {({ values, errors, handleSubmit, handleChange, touched }) => (
-                <Form onSubmit={handleSubmit} className="work-form">
-                  <MainTitle
-                    title="Cadastre seu currículo"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+              {({
+                values,
+                errors,
+                handleSubmit,
+                handleChange,
+                touched,
+                setFieldValue
+              }) => (
+                <Form
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                    handleSubmit(e)
+                  }
+                  className="work-form"
+                >
+                  <S.TitleContainer>
+                    <MainTitle title="Cadastre seu currículo" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     name="fullName"
                     placeholder="Nome"
                     value={values.fullName}
                     onChange={handleChange}
                     label="Nome Completo"
+                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     name="role"
@@ -91,12 +119,21 @@ const WorkWithUsPage = () => {
                     value={values.role}
                     onChange={handleChange}
                     label="Vaga"
+                    error={touched.role && errors.role}
                   />
                   <UploadFile
                     name="curriculum"
-                    value={values.curriulum}
-                    onChange={handleChange}
+                    id="curriculum"
                     label="Anexar currículo"
+                    onPostFile={(curriculoUrl, e) => {
+                      if (curriculoUrl) {
+                        handleChange(e);
+                        setFileName(e?.target?.value?.replace(/.*[\/\\]/, ''));
+                        setFieldValue('curriculum', [curriculoUrl]);
+                      }
+                    }}
+                    errors={touched.curriculum && errors.curriculum}
+                    filename={fileName}
                   />
                   <Button weight={500} type="submit">
                     Enviar
@@ -114,32 +151,41 @@ const WorkWithUsPage = () => {
                 contact: ''
               }}
               validationSchema={representanteFormSchema}
-              onSubmit={(values) => {
-                console.log(values);
-                // TODO: Integração com banco de dados
+              onSubmit={(values, { resetForm }) => {
+                createAgent({
+                  nome: values.fullName.trim(),
+                  cnpj: values.cnpj.replaceAll(/\D+/g, ''),
+                  contato: values.contact.trim()
+                });
+
+                resetForm();
               }}
             >
               {({ handleChange, errors, values, handleSubmit, touched }) => (
                 <Form onSubmit={handleSubmit} className="work-form">
-                  <MainTitle
-                    title="Seja um Representante"
-                    subtitle="Você também quer realizar sonhos na vida das pessoas? Venha trabalhar conosco!"
-                  />
+                  <S.TitleContainer>
+                    <MainTitle title="Seja um Representante" />
+                    <p className="subtitle">
+                      Você também quer realizar sonhos na vida das pessoas?
+                      Venha trabalhar conosco!
+                    </p>
+                  </S.TitleContainer>
                   <InputDefault
                     placeholder="Nome"
                     name="fullName"
                     onChange={handleChange}
                     value={values.fullName}
                     label="Nome Completo"
+                    error={touched.fullName && errors.fullName}
                   />
                   <InputDefault
                     placeholder="CNPJ"
                     name="cnpj"
-                    onChange={(e: any) =>
-                      values.cnpj.length <= 14 && handleChange(e)
-                    }
+                    onChange={handleChange}
                     value={formatCnpj(values.cnpj)}
                     label="CNPJ"
+                    maxLength={14}
+                    error={touched.cnpj && errors.cnpj}
                   />
                   <InputDefault
                     placeholder="Contato"
@@ -147,6 +193,7 @@ const WorkWithUsPage = () => {
                     onChange={handleChange}
                     value={values.contact}
                     label="Contato"
+                    error={touched.contact && errors.contact}
                   />
                   <Button type="submit">Enviar</Button>
                 </Form>

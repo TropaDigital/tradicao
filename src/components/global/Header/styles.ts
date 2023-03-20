@@ -3,7 +3,7 @@ import Modal from '../../UI/Modal';
 
 type Props = {
   showHeader?: boolean;
-  isOpen?: boolean
+  isOpen?: boolean;
 };
 
 export const HeaderContainer = styled.header<Props>`
@@ -41,7 +41,7 @@ export const HeaderContainer = styled.header<Props>`
     position: relative;
   }
 
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     justify-content: space-between;
 
     .logo svg {
@@ -69,13 +69,17 @@ export const HeaderNav = styled.nav`
       }
     }
 
+    .client-area-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      gap: 5px;
+    }
+
     .submenu-options {
       position: relative;
     }
-  }
-
-  @media (max-width: 1320px) {
-    display: none;
   }
 `;
 
@@ -91,7 +95,7 @@ export const InfoContainer = styled.div<Props>`
   height: 40px;
   padding: 6px 35px;
 
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     padding: 6px 20px;
     justify-content: space-around;
   }
@@ -143,7 +147,7 @@ export const MenuHamburgerContainer = styled.div<Props>`
   display: none;
   cursor: pointer;
   position: relative;
-  @media (max-width: 1320px) {
+  @media (max-width: 1340px) {
     display: block;
   }
 
@@ -197,50 +201,57 @@ export const MobileMenuModal = styled.div<Props>`
   background-color: var(--white);
   top: 15px;
   right: 0;
-  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   min-width: 210px;
   gap: 10px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: var(--shadow);
-  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
-  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
-  transition: all .3s;
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transition: all 0.3s;
 
   .mobile-option {
     color: var(--primary);
     font-weight: 500;
-    opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  @media(min-width: 1320px) {
+  @media (min-width: 1340px) {
     display: none;
   }
 `;
 
 export const SubMobileMenu = styled.div<Props>`
-  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
-  gap: ${({ isOpen }) => isOpen ? "14px" : "0px"};
+  gap: ${({ isOpen }) => (isOpen ? '14px' : '0px')};
   font-size: 14px;
   font-weight: 400;
   margin-left: 5px;
-  height: ${({ isOpen }) => isOpen ? "auto" : "0px"};
-  opacity: ${({ isOpen }) => isOpen ? "1" : "0"};
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
 
   .sub-submobile-option {
     color: var(--primary);
     font-weight: 400;
   }
-`
+`;
 
 export const SubMenuOptions = styled(Modal)`
   position: absolute;
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
+
+  .sub-menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
 `;

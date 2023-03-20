@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 // import { colors, fonts } from "../../../../assets/styles/mixin";
 
 export const Container = styled.div`
@@ -14,7 +14,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     aspect-ratio: 4/4;
-    background-color: ${colors.secondaryLight};
+    background-color: var(--secondary-light);
     border-radius: 6px;
     cursor: pointer;
     transition: 0.4s;
@@ -41,7 +41,7 @@ export const Container = styled.div`
       background-color: transparent;
       transition: 0.7s;
       &:hover {
-        background-color: ${colors.secondaryLight};
+        background-color: var(--secondary-light);
       }
       &.active {
         background-color: var(--secondary-dark);
@@ -49,4 +49,4 @@ export const Container = styled.div`
       }
     }
   }
-`
+`;

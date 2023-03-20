@@ -60,7 +60,7 @@ export default function CardCarousel({
                             alt={"Imagem do card"} 
                         />
                     </div>
-                </CardImageSquare>
+                </CardImageSquare> 
             }
 
             {
@@ -88,7 +88,7 @@ export default function CardCarousel({
                 bigText &&
                 !haveIcons &&
                 <CardTextSquared>
-                    <div className="title">{title}</div>
+                    <div className="titleCard">{title}</div>
                     <CardDescription>{description}</CardDescription>
                 </CardTextSquared>
             }
