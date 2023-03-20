@@ -7,6 +7,9 @@ export const useGetUnitsByQuery = (query: string) => {
     ['UnitsByQuery', query],
     async () => {
       return await UnidadesClass.getUnitsByQuery(query);
+    },
+    {
+      keepPreviousData: true
     }
   );
 
