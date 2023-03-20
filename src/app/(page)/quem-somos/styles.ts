@@ -261,9 +261,7 @@ export const VideoWrapper = styled.div<IVideoWrapper>`
       @media (max-width: 500px) {
         width: 250px;
         height: 250px;
-        &:hover {
-          transform: scale(1.05);
-        }
+        
         .secondColor {
           width: 200px;
           height: 200px;
