@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 import contato_bg from '../../../../public/images/contato_bg.png';
 import CenterWrapper from '@/components/global/CenterWrapper';
-import Link from 'next/link';
 import SkewContainer from '@/components/shared/SkewContainer';
 
 export default function Contato() {
