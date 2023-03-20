@@ -171,8 +171,10 @@ const UnidadesPage = () => {
                   <option selected value="">
                     Selecione o estado
                   </option>
-                  {allStates?.map((state: any) => (
-                    <option value={state}>{state}</option>
+                  {allStates?.map((state: string) => (
+                    <option value={state} key={state}>
+                      {state}
+                    </option>
                   ))}
                 </SelectDefault>
                 <SelectDefault

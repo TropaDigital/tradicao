@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import API from '../api';
 
 class CurriculumClass {
-  async postCurriculum(curriculum: any) {
+  async postCurriculum(curriculum: File) {
     try {
       const response: AxiosResponse<any> = await axios.post(
         `https://bucket.backendtropa.com.br/upload`,

@@ -1,10 +1,10 @@
 // Components
-import BrandCard from "@/components/shared/BrandCard";
-import BrandsCarousel from "@/components/shared/BrandsCarousel";
-import Image from "next/image";
+import BrandCard from '@/components/shared/BrandCard';
+import BrandsCarousel from '@/components/shared/BrandsCarousel';
+import Image from 'next/image';
 
 // Libraries
-import Slider from "react-slick";
+import Slider from 'react-slick';
 
 // Images
 import FiatLogo from '/public/images/FiatLogo.svg';
@@ -36,14 +36,14 @@ const SlideSettings = {
       settings: {
         slidesToShow: 3,
         slidesToScroll: 3,
-        infinite: true,          
+        infinite: true
       }
     },
     {
       breakpoint: 600,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 2
       }
     },
     {
@@ -54,16 +54,15 @@ const SlideSettings = {
       }
     }
   ]
-}
+};
 
 interface IAutoProps {
-    id: number,
-    logo: any,    
-    altImg: string,
+  id: number;
+  logo: string | any;
+  altImg: string;
 }
 
 export default function AutoConsortium() {
-
   const autoArray: IAutoProps[] = [
     {
       id: 1,
@@ -119,30 +118,24 @@ export default function AutoConsortium() {
       id: 11,
       logo: VolksLogo,
       altImg: 'Logo da empresa Volkswagen'
-    },
-  ]
+    }
+  ];
 
-    return (
-        <BrandsCarousel>
-            <Slider {...SlideSettings}>
-
-              {
-                autoArray.map((row: any) => (
-                  <BrandCard key={row.id}>
-                      <Image
-                      width={158}
-                      height={96}
-                      src={row.logo}
-                      alt={row.altImg}
-                      className='auto'
-                      />
-                  </BrandCard>
-                ))
-              }
-            
-                
-
-            </Slider>
-        </BrandsCarousel>
-    )
+  return (
+    <BrandsCarousel>
+      <Slider {...SlideSettings}>
+        {autoArray.map((row: any) => (
+          <BrandCard key={row.id}>
+            <Image
+              width={158}
+              height={96}
+              src={row.logo}
+              alt={row.altImg}
+              className="auto"
+            />
+          </BrandCard>
+        ))}
+      </Slider>
+    </BrandsCarousel>
+  );
 }
