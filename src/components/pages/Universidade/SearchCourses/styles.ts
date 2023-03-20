@@ -25,11 +25,28 @@ export const SearchHeader = styled.div`
     transform: translateX(-50%);
 
     .button-search {
-      max-width: 104px;
-      @media (max-width: 880px) {
-        max-width: 100%;
-      }
+      max-width: 104px;     
     }
+
+    @media (max-width: 800px) {
+
+        .button-search {
+            max-width: 20%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        width: 90%;
+        height: fit-content;
+
+        flex-direction: column;
+        align-items: center;
+
+        .button-search {
+            max-width: 100%;
+        }
+    }
+
 `
 
 export const CourseCardWrapper = styled.div`
@@ -39,9 +56,16 @@ export const CourseCardWrapper = styled.div`
     gap: 22px;
     
     padding-top: 68px;
-    padding-bottom: 55px;
+    padding-bottom: 55px;   
+    
+    @media (max-width: 500px) {
+        padding-top: 110px;
+        flex-wrap: wrap;
+    }
 
-    background-color: lightblue;
+    @media (max-width: 330px) {
+        padding-top: 130px;
+    }
 `
 
 export const CourseCard = styled.div`
@@ -54,6 +78,10 @@ export const CourseCard = styled.div`
     border-radius: 10px;
     overflow: hidden;
 
+    @media (max-width: 500px) {
+        width: 180px;
+        height: fit-content;
+    }
 `
 
 export const CourseCardTop = styled.div`
@@ -107,6 +135,17 @@ export const CourseCardTop = styled.div`
             }
         }
     }
+
+    @media (max-width: 800px) {
+        font-size: var(--text-smal-lg);
+    }
+
+    @media (max-width: 500px) {
+        padding-left: 12px;
+        padding-right: 12px;
+
+        gap: 10px;
+    }
 `
 
 export const CourseCardBottom = styled.div`
@@ -122,5 +161,11 @@ export const CourseCardBottom = styled.div`
     color: var(--primary);
 
     font-size: var(--text-smal-sm);
-    font-weight: var(--weight-bold);    
+    font-weight: var(--weight-bold); 
+    
+    padding: 0 26px;
+
+    @media (max-width: 800px) {
+        padding: 0 18px;
+    }
 `
