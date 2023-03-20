@@ -23,7 +23,7 @@ const Header = () => {
     useState<boolean>(false);
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>();
+  const [windowWidth, setWindowWidth] = useState<number>(window?.innerWidth);
 
   const pathName = usePathname();
 
@@ -116,10 +116,6 @@ const Header = () => {
       text: 'Área do Representante'
     }
   ];
-
-  useEffect(() => {
-    setWindowWidth(window?.innerWidth);
-  }, []);
 
   const getWindowWidth = () => {
     if (typeof window !== 'undefined')
