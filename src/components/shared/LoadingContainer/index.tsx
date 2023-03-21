@@ -1,14 +1,18 @@
+'use client';
+
 import CenterWrapper from '@/components/global/CenterWrapper';
-import Image from 'next/image';
 import React from 'react';
 import * as S from './styles';
-import LoadingIcon from '../../../assets/images/Loading.svg';
+import { DefaultLogo } from '../../../assets/icons';
 
 const LoadingContainer = () => {
   return (
     <CenterWrapper>
       <S.LoadingContainer>
-        <Image src={LoadingIcon} alt="Loading Icon..." />
+        <div className="icon-container">
+          <DefaultLogo />
+        </div>
+        <div className="loading-ball"></div>
       </S.LoadingContainer>
     </CenterWrapper>
   );

@@ -1,6 +1,6 @@
 'use client';
 import HeroSkew from '@/components/pages/Home/HeroSkew';
-import car_bg from '../../../public/images/car_banner.png';
+import car_bg from '../../../public/images/car_banner.jpg';
 
 import Contemplated from '@/components/sections/Contemplated';
 

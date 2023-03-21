@@ -124,7 +124,9 @@ export function ConfirmVehicle({
           placeholder="000.000.000-00"
           name="cpf"
           value={formatCnpjAndCpf(data.cpf)}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+          }}
           error={error?.cpf}
           // maxLength={11}
         />

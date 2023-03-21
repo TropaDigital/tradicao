@@ -13,8 +13,8 @@ export const Container = styled.div`
 export const SkewContainer = styled.div`
   max-height: 434px;
   transform: skew(-18deg);
-  width: 965px;
-  /* width: 70%; */
+  /* width: 965px; */
+  width: 75%;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   overflow: hidden;
@@ -29,6 +29,7 @@ export const SkewContainer = styled.div`
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     margin-bottom: 500px;
+    width: 90%;
   }
 
   @media (max-width: 920px) {
@@ -42,13 +43,20 @@ export const SkewContainer = styled.div`
     transform: skew(18deg);
     position: relative;
     object-fit: contain;
-    object-position: 80px -180px;
-    right: -87px;
+    right: -110px;
+
+    @media (min-width: 2300px) {
+      object-position: 0px -300px;
+    }
+
+    @media (min-width: 1650px) {
+      object-position: 0px -150px;
+    }
 
     @media (max-width: 920px) {
       right: 0;
       transform: skew(0);
-      object-position: 0;
+      object-position: 0px -10px;
       object-fit: cover;
     }
   }

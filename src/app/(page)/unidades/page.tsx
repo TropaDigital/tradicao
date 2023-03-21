@@ -7,7 +7,7 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
-import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnitsByQuery';
+import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { useEffect, useRef, useState } from 'react';
@@ -25,12 +25,12 @@ const UnidadesPage = () => {
 
   const [cep, setCep] = useState<string>();
 
-  const { unitsByQuery } = useGetUnitsByQuery(query.trim());
-  const units = useGetUnitsByQuery('');
+  const { units } = useGetUnitsByQuery(query.trim());
+  const unitsCopy = useGetUnitsByQuery('');
 
   useEffect(() => {
-    setAllUnits(units.unitsByQuery);
-  }, [units]);
+    setAllUnits(unitsCopy.units);
+  }, [unitsCopy]);
 
   useEffect(() => {
     const getAllStates = () => {
@@ -59,8 +59,8 @@ const UnidadesPage = () => {
       }
     };
 
-    getAllCities(unitsByQuery);
-  }, [unitsByQuery]);
+    getAllCities(units);
+  }, [units]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
@@ -84,7 +84,7 @@ const UnidadesPage = () => {
   };
 
   const getUnitById = (id: string | number) => {
-    const unit = unitsByQuery.filter((unit) => {
+    const unit = units.filter((unit) => {
       return unit.id === id;
     });
 
@@ -196,7 +196,7 @@ const UnidadesPage = () => {
 
           <S.UnitsContainer>
             <>
-              {unitsByQuery?.map((unit) => (
+              {units?.map((unit) => (
                 <S.UnityCard key={unit.id} onClick={() => getUnitById(unit.id)}>
                   <div className="location-bg-icon">
                     <LocationIcon />

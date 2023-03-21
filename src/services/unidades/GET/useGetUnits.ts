@@ -6,7 +6,7 @@ export const useGetUnitsByQuery = (query: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
     ['UnitsByQuery', query],
     async () => {
-      return await UnidadesClass.getUnitsByQuery(query);
+      return await UnidadesClass.getUnits(query);
     },
     {
       keepPreviousData: true
@@ -14,9 +14,9 @@ export const useGetUnitsByQuery = (query: string) => {
   );
 
   return {
-    unitsByQuery: data as IGetUnit[],
-    isLoadingAllUnitsByQuery: isLoading as boolean,
-    isErrorAllUnitsByQuery: isError as boolean,
-    isSuccessAllUnitsByQuery: isSuccess as boolean
+    units: data as IGetUnit[],
+    isLoadingUnits: isLoading as boolean,
+    isErrorUnits: isError as boolean,
+    isSuccessUnits: isSuccess as boolean
   };
 };
