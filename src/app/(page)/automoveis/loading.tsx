@@ -2,6 +2,8 @@
 
 import LoadingContainer from '@/components/shared/LoadingContainer';
 
-export default function Loading() {
+const Loading = () => {
   return <LoadingContainer />;
-}
+};
+
+export default Loading;

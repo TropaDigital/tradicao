@@ -1,32 +1,44 @@
-import { MovelIcon } from "@/assets/icons";
-import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/CheckboxDefault";
-import { SelectDefault } from "@/components/pages/Painel/components/inputs/SelectDefault";
-import { FieldDefault, FieldGroup } from "@/components/pages/Painel/components/UiElements/styles";
-import { InputDefault } from "@/components/UI/Inputs/InputDefault";
+import { MovelIcon } from '@/assets/icons';
+import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
+import { SelectDefault } from '@/components/pages/Painel/components/inputs/SelectDefault';
+import {
+  FieldDefault,
+  FieldGroup
+} from '@/components/pages/Painel/components/UiElements/styles';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
-  [key: string]: any
+  [key: string]: any;
 }
 
 interface Props {
   data: any;
   handleOnChangeCheckbox: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
+  handleInputChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => void;
   error: FormProps;
 }
 
-export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function InfoImovel({
+  data,
+  error,
+  handleInputChange,
+  handleOnChangeCheckbox
+}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <MovelIcon width={23} height={20} />
         <h2>Consórcio de Imóvel</h2>
       </legend>
-      <FieldDefault style={{marginBottom: '14px'}}>
-        <InputDefault 
-          label='Nome completo'
-          placeholder='Nome'
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="Nome completo"
+          placeholder="Nome"
           name="name"
           value={data.name}
           onChange={handleInputChange}
@@ -34,10 +46,10 @@ export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckb
         />
       </FieldDefault>
 
-      <FieldDefault style={{marginBottom: '14px'}}>
+      <FieldDefault style={{ marginBottom: '14px' }}>
         <SelectDefault
-          label='Selecione um Imovel'
-          placeholder='imovel'
+          label="Selecione um Imovel"
+          placeholder="imovel"
           name="imovel"
           value={data.imovel}
           onChange={handleInputChange}
@@ -50,23 +62,29 @@ export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckb
       </FieldDefault>
 
       <FieldGroup>
-        <FieldDefault style={{marginBottom: '14px'}}>
-          <InputDefault 
-            label='Celular'
-            placeholder='(00 0 0000-000)'
+        <FieldDefault style={{ marginBottom: '14px' }}>
+          <InputDefault
+            label="Celular"
+            placeholder="00 00000-0000"
             name="phone"
-            value={data.phone}
-            onChange={handleInputChange}
+            value={data.phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '$1 $2-$3')}
+            onChange={(e) => {
+              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+            }}
+            // maxLength={11}
             error={error?.phone}
           />
         </FieldDefault>
-        <FieldDefault style={{marginBottom: '14px'}}>
-          <InputDefault 
-            label='Cep'
-            placeholder='00000-000'
+        <FieldDefault style={{ marginBottom: '14px' }}>
+          <InputDefault
+            label="Cep"
+            placeholder="00000-000"
             name="cep"
-            value={data.cep}
-            onChange={handleInputChange}
+            value={data.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+            onChange={(e) => {
+              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+            }}
+            maxLength={8}
             error={error?.cep}
           />
         </FieldDefault>
@@ -81,12 +99,16 @@ export function InfoImovel({data, error, handleInputChange, handleOnChangeCheckb
           error={error?.terms}
         />
       </FieldDefault>
-
     </ContentSimulation>
-  )
+  );
 }
 
-export function ConfirmImovel({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function ConfirmImovel({
+  data,
+  error,
+  handleInputChange,
+  handleOnChangeCheckbox
+}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
@@ -94,20 +116,26 @@ export function ConfirmImovel({data, error, handleInputChange, handleOnChangeChe
 
         <h2>Consórcio de Imovel</h2>
       </legend>
-      
+
       <aside>
         <h3>{`Olá, ${data.name ?? 'Usuário'}!`}</h3>
-        <span>Você esta muito próximo de virar um cliente Tradição e ainda mais próximo do seu sonho!</span>
+        <span>
+          Você esta muito próximo de virar um cliente Tradição e ainda mais
+          próximo do seu sonho!
+        </span>
       </aside>
 
-      <FieldDefault style={{marginBottom: '14px'}}>
-        <InputDefault 
-          label='CPF / CNPJ'
-          placeholder='000.000.000/00'
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="CPF / CNPJ"
+          placeholder="000.000.000-00"
           name="cpf"
           value={data.cpf}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
           error={error?.cpf}
+          maxLength={14}
         />
       </FieldDefault>
 
@@ -120,9 +148,8 @@ export function ConfirmImovel({data, error, handleInputChange, handleOnChangeChe
           error={error?.regulation}
         />
       </FieldDefault>
-
     </ContentSimulation>
-  )
+  );
 }
 
-export default { InfoImovel, ConfirmImovel }
+export default { InfoImovel, ConfirmImovel };

@@ -14,6 +14,7 @@ export const SkewContainer = styled.div`
   max-height: 434px;
   transform: skew(-18deg);
   width: 965px;
+  /* width: 70%; */
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   overflow: hidden;

@@ -94,7 +94,7 @@ const Header = () => {
     },
     {
       title: 'Área do Cliente',
-      path: '/'
+      path: 'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp'
     }
   ];
 
@@ -116,7 +116,7 @@ const Header = () => {
     },
     {
       icon: <SuitCaseIcon />,
-      link: '/',
+      link: 'http://consorciotradicao.ddns.com.br:8090/newconplus/',
       text: 'Área do Representante'
     }
   ];
@@ -233,6 +233,7 @@ const Header = () => {
                           radius="rounded"
                           icon={<PersonIcon color={'var(--white)'} />}
                           className="client-area-button"
+                          onClick={() => (location.href = `${page.path}`)}
                         >
                           Área do Cliente
                         </Button>
@@ -268,7 +269,14 @@ const Header = () => {
                             className="sub-menu-container"
                           >
                             {page.subOptions.map((subOption, keyOption) => (
-                              <Link href={subOption.path} key={keyOption}>
+                              <Link
+                                href={subOption.path}
+                                key={keyOption}
+                                onClick={() => {
+                                  setIsSubMenuConsorcioOpen(false);
+                                  setIsSubMenuTradicaoOpen(false);
+                                }}
+                              >
                                 {subOption.subTitle}
                               </Link>
                             ))}

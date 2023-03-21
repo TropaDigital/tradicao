@@ -49,23 +49,40 @@ export default function Footer() {
           <LeftSide>
             <WhiteLogo />
             <SocialMedia>
-              <Link href={''}>
+              <Link
+                href={'https://www.facebook.com/ConsorcioTradicao/'}
+                target="_blank"
+              >
                 <FacebookIcon />
               </Link>
 
-              <Link href={''}>
+              <Link
+                href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
+                target="_blank"
+              >
                 <InstagramIcon />
               </Link>
 
-              <Link href={''}>
+              <Link
+                href={
+                  'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'
+                }
+                target="_blank"
+              >
                 <YoutubeIcon />
               </Link>
 
-              <Link href={''}>
+              <Link
+                href={'https://www.tiktok.com/@consorciotradicao'}
+                target="_blank"
+              >
                 <TikTokIcon />
               </Link>
 
-              <Link href={''}>
+              <Link
+                href={'https://www.linkedin.com/company/consorciotradicao/'}
+                target="_blank"
+              >
                 <LinkedinIcon />
               </Link>
             </SocialMedia>
@@ -102,7 +119,7 @@ export default function Footer() {
                   <TextButton>Parceiros</TextButton>
                 </Link>
 
-                <Link href={''}>
+                <Link href={'/trabalhe-conosco'}>
                   <TextButton>Trabalhe Conosco</TextButton>
                 </Link>
               </div>
@@ -134,7 +151,7 @@ export default function Footer() {
           <Column>
             <TitleColumns>Consórcios</TitleColumns>
             <div style={{ marginTop: '10px', marginBottom: '26px' }}>
-              <Link href={''}>
+              <Link href={'/pesados'}>
                 <TextButton>Consórcio de Pesados</TextButton>
               </Link>
 
@@ -142,11 +159,11 @@ export default function Footer() {
                 <TextButton>Consórcio de Serviços</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/imoveis'}>
                 <TextButton>Consórcio de Imóveis</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/automoveis'}>
                 <TextButton>Consórcio de Automóveis</TextButton>
               </Link>
 
@@ -154,7 +171,7 @@ export default function Footer() {
                 <TextButton>Simulador de Consórcio</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/contato'}>
                 <TextButton>Fale com um Especialista</TextButton>
               </Link>
               <Link href={'/relatorios-de-ouvidoria'}>
@@ -165,30 +182,32 @@ export default function Footer() {
             <TitleColumns>Ouvidoria</TitleColumns>
             <div style={{ marginTop: '10px' }}>
               <TextButton>ouvidoria@consorciotradicao.com.br</TextButton>
-              <TextButton>0800 877 0020</TextButton>
+              <Link href={'tel:08008770020'}>
+                <TextButton>0800 877 0020</TextButton>
+              </Link>
             </div>
           </Column>
 
           <Column>
             <TitleColumns>Entenda o Consórcio</TitleColumns>
             <div style={{ marginTop: '10px', marginBottom: '18px' }}>
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>O que é um consórcio</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Contemplação</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Cotas</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Lance</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Pagamento</TextButton>
               </Link>
             </div>
@@ -216,33 +235,43 @@ export default function Footer() {
               <TextField>
                 Alameda Rio Negro, 1084 <br />
                 Alphaville Industrial, Barueri/SP <br />
-                CEP: 06454-000 0800 877 0020
+                CEP: 06454-000{' '}
+                <Link
+                  href={'tel:08008770020'}
+                  style={{ color: 'var(--white)' }}
+                >
+                  0800 877 0020
+                </Link>
               </TextField>
-              <TextButton>
-                <PhoneIcon />
-                (11) 4003 5090
-              </TextButton>
-              <TextButton>
-                <PhoneIcon />
-                (11) 2928-4800
-              </TextButton>
+              <Link href={'tel:11 40035090'}>
+                <TextButton>
+                  <PhoneIcon />
+                  (11) 4003 5090
+                </TextButton>
+              </Link>
+              <Link href={'tel:11 29284800'}>
+                <TextButton>
+                  <PhoneIcon />
+                  (11) 2928-4800
+                </TextButton>
+              </Link>
             </div>
 
             <TitleColumns>LGPD</TitleColumns>
 
-            <Link href={''}>
+            <Link href={'/'}>
               <TextButton>Portal da Privacidade</TextButton>
             </Link>
 
-            <Link href={''}>
+            <Link href={'/'}>
               <TextButton>Portal do Titular</TextButton>
             </Link>
 
-            <Link href={''}>
+            <Link href={'/'}>
               <TextButton>Consentimentos</TextButton>
             </Link>
 
-            <Link href={''}>
+            <Link href={'/'}>
               <TextButton>Pedidos dos Titulares</TextButton>
             </Link>
           </Column>
@@ -252,18 +281,25 @@ export default function Footer() {
 
         <BottomFooter>
           <div className="text">O Consórcio Tradição Apoia:</div>
-          <Image
-            src={NoFrontiers}
-            alt="Imagem de Logo do Fraternidade Sem Fronteiras"
-            width={217}
-            height={79}
-          />
-          <Image
-            src={AyrtonSenna}
-            alt="Imagem de Logo do Instituto Ayrton Senna"
-            width={177}
-            height={79}
-          />
+          <Link
+            href={'https://www.fraternidadesemfronteiras.org.br/'}
+            target={'_blank'}
+          >
+            <Image
+              src={NoFrontiers}
+              alt="Imagem de Logo do Fraternidade Sem Fronteiras"
+              width={217}
+              height={79}
+            />
+          </Link>
+          <Link href={'https://institutoayrtonsenna.org.br/'} target={'_blank'}>
+            <Image
+              src={AyrtonSenna}
+              alt="Imagem de Logo do Instituto Ayrton Senna"
+              width={177}
+              height={79}
+            />
+          </Link>
         </BottomFooter>
       </FooterWrapper>
 
