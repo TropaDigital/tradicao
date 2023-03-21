@@ -5,14 +5,23 @@ export const ContainerTop = styled.div`
   height: 500px;
   position: relative;
 
-  @media (max-width: 1090px) {
-    height: 800px;
-  }
-
   margin-bottom: 30px;
   .margin {
     margin-top: 30px;
   }
+  
+  @media (max-width: 1090px) {
+    height: 800px;
+  }
+
+  @media (max-width: 500px) {
+    height: 380px;
+  }
+
+  @media (max-width: 330px) {
+    height: 420px;
+  }
+
 `;
 
 export const UniversityInfo = styled.div`

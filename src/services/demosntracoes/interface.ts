@@ -1,6 +1,6 @@
 export interface IGetDemonstrations {
-    demonstracaoPDF: any[];
-    id_demo_financeira: number;
-    status: string;
-    titulo: string;
+  demonstracaoPDF: string[];
+  id_demo_financeira: number;
+  status: string;
+  titulo: string;
 }

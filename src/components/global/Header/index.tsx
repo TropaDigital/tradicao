@@ -13,7 +13,7 @@ import Button from '@/components/UI/Button';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
@@ -24,6 +24,10 @@ const Header = () => {
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
+  }, []);
 
   const pathName = usePathname();
 
@@ -123,7 +127,6 @@ const Header = () => {
         setWindowWidth(window?.innerWidth);
       });
   };
-
   getWindowWidth();
 
   const wrapperRef = useRef(null);

@@ -1,6 +1,7 @@
 'use client';
 
-import SkewContainer from '@/components/shared/SkewContainer';
+import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
+
 // Styles
 import * as S from './styles';
 
@@ -16,10 +17,10 @@ export default function University() {
     return (
         <>
             <S.ContainerTop>
-                <SkewContainer 
+                <SkewContainerFiltered 
                     size="medium"
                     imageSrc={UniversityBg}
-                    imageAlt="Imagem de um automóvel"
+                    imageAlt="Imagem de um teclado e uma pessoa escrevendo em um papel"
                 />
 
                 <CenterWrapper>
