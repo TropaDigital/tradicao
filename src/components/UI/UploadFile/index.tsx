@@ -31,7 +31,7 @@ const UploadFile = ({
     let formData = new FormData();
     if (e?.target?.files?.length) {
       formData.set('file', e?.target?.files[0]);
-      let response: any = await postCurriculum(formData);
+      let response = await postCurriculum(formData);
       onPostFile(response, e);
     }
   };
