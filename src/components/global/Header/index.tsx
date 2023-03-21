@@ -23,7 +23,11 @@ const Header = () => {
     useState<boolean>(false);
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>(window?.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
+  }, []);
 
   const pathName = usePathname();
 
