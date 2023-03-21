@@ -239,12 +239,12 @@ export default function QuemSomos() {
       </GreenCarousel>
 
       <CenterWrapper>
-        <S.VideoWrapper 
-        videoIsRunning={videoStats}
-        >
+        <S.VideoWrapper videoIsRunning={videoStats}>
           <video
+            webkit-playsInline
+            playsInline
+            autoPlay={false}
             ref={videoRef}
-            autoPlay
             className="bgHomeVideo"
             poster={'images/bgImageVideo.png'}
           >

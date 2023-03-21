@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const ContemplatedCardValue = styled.div`
-  width: 72px;
+  min-width: 72px;
   height: 95px;
   left: 847px;
   top: 0px;
   background: linear-gradient(180deg, #403f3f 0%, #282828 100%);
   box-shadow: 0px 14px 10px -7px rgba(0, 0, 0, 0.45);
   border-radius: 10px;
+
+  
 `;
 
 export const ContemplatedCardTextLarge = styled.p`
