@@ -18,6 +18,7 @@ export default function HeroSkew({
           src={backgroundImage}
           alt={altBackgroundImage}
           className="skewImage"
+          placeholder="blur"
         />
       </S.SkewContainer>
       <S.SubTitleWrapper>

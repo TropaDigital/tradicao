@@ -1,5 +1,3 @@
-'use client';
-
 import LoadingContainer from '@/components/shared/LoadingContainer';
 
 const Loading = () => {

@@ -123,12 +123,12 @@ export function ConfirmVehicle({
           label="CPF / CNPJ"
           placeholder="000.000.000-00"
           name="cpf"
-          value={formatCnpjAndCpf(data.cpf)}
           onChange={(e) => {
-            if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+            handleInputChange(e);
+            formatCnpjAndCpf(e);
           }}
           error={error?.cpf}
-          // maxLength={11}
+          maxLength={18}
         />
       </FieldDefault>
 

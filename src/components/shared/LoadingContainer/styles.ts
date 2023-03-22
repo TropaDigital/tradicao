@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 
 export const LoadingContainer = styled.div`
@@ -6,7 +8,7 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -18,8 +20,8 @@ export const LoadingContainer = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #0036c6;
-    animation: motion 3s ease-in-out;
+    background-color: var(--primary);
+    animation: motion 3s ease-in-out infinite;
     opacity: 0.7;
   }
 

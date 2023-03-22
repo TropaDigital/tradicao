@@ -6,6 +6,7 @@ import {
   FieldGroup
 } from '@/components/pages/Painel/components/UiElements/styles';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
@@ -130,12 +131,12 @@ export function ConfirmImovel({
           label="CPF / CNPJ"
           placeholder="000.000.000-00"
           name="cpf"
-          value={data.cpf}
           onChange={(e) => {
             handleInputChange(e);
+            formatCnpjAndCpf(e);
           }}
           error={error?.cpf}
-          maxLength={14}
+          maxLength={18}
         />
       </FieldDefault>
 

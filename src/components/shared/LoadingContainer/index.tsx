@@ -1,8 +1,7 @@
 'use client';
 
-import CenterWrapper from '@/components/global/CenterWrapper';
-import React from 'react';
 import * as S from './styles';
+import CenterWrapper from '@/components/global/CenterWrapper';
 import { DefaultLogo } from '../../../assets/icons';
 
 const LoadingContainer = () => {

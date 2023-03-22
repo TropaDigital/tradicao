@@ -46,7 +46,8 @@ export const SkewContainer = styled.div`
     right: -110px;
 
     @media (min-width: 2300px) {
-      object-position: 0px -300px;
+      right: -150px;
+      bottom: 120px;
     }
 
     @media (min-width: 1650px) {

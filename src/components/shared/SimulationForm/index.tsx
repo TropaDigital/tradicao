@@ -190,7 +190,7 @@ export default function SimulationForm() {
     return message;
   }
 
-  const hadnleOnSaveStep = () => {
+  const handleOnSaveStep = () => {
     const { cpf, regulation } = formData;
 
     try {
@@ -201,7 +201,10 @@ export default function SimulationForm() {
       }
 
       if (regulation === false) {
-        throw setErrorInput('regulation', 'Aceite oregulamento para continuar');
+        throw setErrorInput(
+          'regulation',
+          'Aceite o regulamento para continuar'
+        );
       } else {
         setErrorInput('regulation', undefined);
       }
@@ -220,14 +223,16 @@ export default function SimulationForm() {
         setErrorInput('name', undefined);
       }
 
-      if (email === '') {
-        throw setErrorInput('email', 'Email é obrigatório!');
-      } else if (!email.includes('@')) {
-        throw setErrorInput('email', 'Email inválido!');
-      } else if (!email.includes('.')) {
-        throw setErrorInput('email', 'Email inválido!');
-      } else {
-        setErrorInput('email', undefined);
+      if (formData.conquest === 'veiculo') {
+        if (email === '') {
+          throw setErrorInput('email', 'Email é obrigatório!');
+        } else if (!email.includes('@')) {
+          throw setErrorInput('email', 'Email inválido!');
+        } else if (!email.includes('.')) {
+          throw setErrorInput('email', 'Email inválido!');
+        } else {
+          setErrorInput('email', undefined);
+        }
       }
 
       if (phone === '') {
@@ -263,7 +268,7 @@ export default function SimulationForm() {
     event.preventDefault();
 
     try {
-      hadnleOnSaveStep();
+      handleOnSaveStep();
     } catch (err: any) {}
   }, []);
 
@@ -308,6 +313,7 @@ export default function SimulationForm() {
               <Button
                 radius="rounded"
                 degrade
+                type={'button'}
                 onClick={() => {
                   if (subCurrentStep === 0) {
                     setSimulator(!isSimulator);
@@ -320,20 +326,15 @@ export default function SimulationForm() {
               </Button>
 
               {!subIsLastStep ? (
-                <Button
-                  radius="rounded"
-                  degrade
-                  type="button"
-                  onClick={handleOnNextStep}
-                >
+                <Button radius="rounded" degrade onClick={handleOnNextStep}>
                   Avançar
                 </Button>
               ) : (
                 <Button
                   radius="rounded"
-                  degrade
                   type="button"
-                  onClick={hadnleOnSaveStep}
+                  degrade
+                  onClick={handleOnSaveStep}
                 >
                   Salvar
                 </Button>
@@ -346,7 +347,7 @@ export default function SimulationForm() {
           <Button
             radius="rounded"
             degrade
-            type="button"
+            type="submit"
             onClick={() => setSimulator(!isSimulator)}
           >
             Simular
