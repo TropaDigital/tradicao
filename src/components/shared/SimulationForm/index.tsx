@@ -1,7 +1,7 @@
 'use client';
 
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Steps from '@/components/Steps';
 import Button from '@/components/UI/Button';
 import { useSteps } from '@/hooks/useSteps';
@@ -62,6 +62,10 @@ export default function SimulationForm() {
     cpf: '',
     regulation: false
   } as PlanProps);
+
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
 
   const handleOnChange: HandleOnChange = (event) => {
     const { name, value } = event.target;
@@ -237,12 +241,16 @@ export default function SimulationForm() {
 
       if (phone === '') {
         throw setErrorInput('phone', 'Celular é obrigatório!');
+      } else if (phone.length < 11) {
+        throw setErrorInput('phone', 'Número de celular inválido');
       } else {
         setErrorInput('phone', undefined);
       }
 
       if (cep === '') {
         throw setErrorInput('cep', 'Cep é obrigatório!');
+      } else if (cep.length < 8) {
+        throw setErrorInput('cep', 'Cep inválido');
       } else {
         setErrorInput('cep', undefined);
       }
@@ -268,8 +276,10 @@ export default function SimulationForm() {
     event.preventDefault();
 
     try {
-      handleOnSaveStep();
-    } catch (err: any) {}
+      if (subIsLastStep) handleOnSaveStep();
+    } catch (err: any) {
+      console.log(err);
+    }
   }, []);
 
   const pathName = usePathname();
@@ -332,7 +342,7 @@ export default function SimulationForm() {
               ) : (
                 <Button
                   radius="rounded"
-                  type="button"
+                  type="submit"
                   degrade
                   onClick={handleOnSaveStep}
                 >
@@ -347,7 +357,6 @@ export default function SimulationForm() {
           <Button
             radius="rounded"
             degrade
-            type="submit"
             onClick={() => setSimulator(!isSimulator)}
           >
             Simular
