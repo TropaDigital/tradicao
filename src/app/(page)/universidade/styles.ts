@@ -102,8 +102,8 @@ export const LoginUniversity = styled.div`
   padding: 48px;
 
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -160px;
+  right: -100px;
 
   .input {
     width: 360px;
@@ -116,12 +116,52 @@ export const LoginUniversity = styled.div`
 
     input {
       width: 100%;
+      height: 38px;
+
+      border-radius: 5px;
+      padding: 8px;
     }
   }
-`
+`;
 
 export const LoginTitle = styled.div`
   color: var(--white);
   font-size: var(--text-headline-sm);
   font-weight: var(--weight-bold);
+
+  text-align: center;
+`;
+
+export const CheckboxLogin = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 16px;
+
+  input {
+    
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  span {
+    color: var(--white);
+
+    font-size: var(--text-smal-sm);
+    font-weight: var(--weight-regular);
+  }
+
+` 
+
+export const TextButton = styled.button`
+  background-color: transparent;
+
+  color: var(--white);
+
+  font-size: var(--text-smal-sm);
+  font-weight: var(--weight-regular);
+  font-style: italic;
+
+  margin-left: auto;
 `

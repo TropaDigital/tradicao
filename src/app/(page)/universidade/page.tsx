@@ -1,6 +1,6 @@
 'use client';
-
-import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
+// React
+import { useState } from 'react';
 
 // Styles
 import * as S from './styles';
@@ -9,11 +9,16 @@ import * as S from './styles';
 import UniversityBg from '../../../../public/images/University_bg.png'
 
 // Components
+import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import SearchCourses from '@/components/pages/Universidade/SearchCourses';
+import Button from '@/components/UI/Button';
 
 export default function University() {
+    const [ checked, setChecked ] = useState<boolean>(false);
+
+
     return (
         <>
             <S.ContainerTop>
@@ -34,17 +39,34 @@ export default function University() {
                             
                             <div className="input">
                                 <div className="label">Usuário</div>
-                                <input type="text" />
+                                <input type="text" placeholder='Nome'/>
                             </div>
 
                             <div className="input">
                                 <div className="label">Senha</div>
-                                <input type="password" />
+                                <input type="password" placeholder='Senha' />
                             </div>
 
-                            <div className="checkbox">
-                                <input type="checkbox" name="Conectado" id="1" />
-                            </div>
+                            <S.CheckboxLogin>
+                                <input 
+                                    type="checkbox" 
+                                    name="" 
+                                    id="" 
+                                    onChange={() => setChecked(!checked)}
+                                />
+                                <span>Manter conectado</span>
+                            </S.CheckboxLogin>                           
+
+                            <Button
+                                radius="rounded"
+                                color='secondary'
+                                degrade={true}
+                                type={'button'}
+                            >
+                                Logar
+                            </Button>
+
+                            <S.TextButton>Esqueci minha senha</S.TextButton>
                             
                         </S.LoginUniversity>
                     </div>
