@@ -10,6 +10,7 @@ import MainTitle from '@/components/UI/MainTitle';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import { Skeleton } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
@@ -25,7 +26,7 @@ const UnidadesPage = () => {
 
   const [cep, setCep] = useState<string>();
 
-  const { units } = useGetUnitsByQuery(query.trim());
+  const { units, isLoadingUnits } = useGetUnitsByQuery(query.trim());
   const unitsCopy = useGetUnitsByQuery('');
 
   useEffect(() => {
@@ -67,6 +68,9 @@ const UnidadesPage = () => {
       setCep('');
     }
   }, [query]);
+
+  const unitsSkeletons = new Array(16);
+  unitsSkeletons.fill('a');
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -196,6 +200,18 @@ const UnidadesPage = () => {
 
           <S.UnitsContainer>
             <>
+              {isLoadingUnits && (
+                <>
+                  {unitsSkeletons.map(() => (
+                    <Skeleton
+                      variant="rounded"
+                      height={207}
+                      width={270}
+                      animation="wave"
+                    />
+                  ))}
+                </>
+              )}
               {units?.map((unit) => (
                 <S.UnityCard key={unit.id} onClick={() => getUnitById(unit.id)}>
                   <div className="location-bg-icon">

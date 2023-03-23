@@ -30,6 +30,16 @@ export function InfoImovel({
   handleInputChange,
   handleOnChangeCheckbox
 }: Props) {
+  function formatCep(cep: string) {
+    const onlyNumbers = cep.replace(/\D/g, '');
+    const cepWithoutMask = onlyNumbers.slice(0, 8);
+    const cepParts = cepWithoutMask.match(/^(\d{5})(\d{3})$/);
+    const formattedCep = cepParts
+      ? `${cepParts[1]}-${cepParts[2]}`
+      : onlyNumbers;
+    return formattedCep;
+  }
+
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
@@ -68,11 +78,14 @@ export function InfoImovel({
             label="Celular"
             placeholder="00 00000-0000"
             name="phone"
+            maxLength={13}
             value={data.phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '$1 $2-$3')}
             onChange={(e) => {
-              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+              if (/^[0-9\s-]*$/.test(e.target.value)) {
+                handleInputChange(e);
+              }
             }}
-            // maxLength={11}
+            // maxLength={13}
             error={error?.phone}
           />
         </FieldDefault>
@@ -81,11 +94,10 @@ export function InfoImovel({
             label="Cep"
             placeholder="00000-000"
             name="cep"
-            value={data.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+            value={formatCep(data.cep)}
             onChange={(e) => {
-              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+              if (/^[0-9\s-]*$/.test(e.target.value)) handleInputChange(e);
             }}
-            maxLength={8}
             error={error?.cep}
           />
         </FieldDefault>
@@ -131,9 +143,9 @@ export function ConfirmImovel({
           label="CPF / CNPJ"
           placeholder="000.000.000-00"
           name="cpf"
+          value={formatCnpjAndCpf(data.cpf)}
           onChange={(e) => {
-            handleInputChange(e);
-            formatCnpjAndCpf(e);
+            if (/^[0-9.\-/]*$/.test(e.target.value)) handleInputChange(e);
           }}
           error={error?.cpf}
           maxLength={18}

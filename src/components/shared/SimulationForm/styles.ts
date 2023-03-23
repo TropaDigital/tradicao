@@ -58,12 +58,18 @@ export const SectionSimulatorForm = styled.div<Props>`
         left: 50%;
         transform: translateX(-50%);
       }
+      @media (max-width: 985px) {
+        top: 20%;
+      }
+      @media (max-width: 758px) {
+        top: 18%;
+      }
       @media (max-width: 640px) {
-        top: 19%;
+        top: 15%;
       }
       @media (max-width: 528px) {
         left: 50%;
-        top: 15%;
+        top: 12%;
         transform: translateX(-50%);
       }
     `}
@@ -72,9 +78,12 @@ export const SectionSimulatorForm = styled.div<Props>`
     heroStyles === false &&
     css`
       @media (max-width: 1090px) {
-        top: 40%;
+        top: 45%;
         left: 50%;
         transform: translateX(-50%);
+      }
+      @media (max-width: 756px) {
+        top: 40%;
       }
     `}
 

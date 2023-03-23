@@ -65,9 +65,10 @@ export function InfoVehicle({
             name="phone"
             value={data.phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '$1 $2-$3')}
             onChange={(e) => {
-              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+              if (/^[0-9\s-]*$/.test(e.target.value)) handleInputChange(e);
             }}
             error={error?.phone}
+            maxLength={13}
           />
         </FieldDefault>
         <FieldDefault style={{ marginBottom: '14px' }}>
@@ -77,9 +78,10 @@ export function InfoVehicle({
             name="cep"
             value={data.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
             onChange={(e) => {
-              if (/\D/g.test(e.target.value) === false) handleInputChange(e);
+              if (/^[0-9\s-]*$/.test(e.target.value)) handleInputChange(e);
             }}
             error={error?.cep}
+            maxLength={9}
           />
         </FieldDefault>
       </FieldGroup>
@@ -123,10 +125,11 @@ export function ConfirmVehicle({
           label="CPF / CNPJ"
           placeholder="000.000.000-00"
           name="cpf"
+          value={formatCnpjAndCpf(data.cpf)}
           onChange={(e) => {
-            handleInputChange(e);
-            formatCnpjAndCpf(e);
+            if (/^[0-9.\-/]*$/.test(e.target.value)) handleInputChange(e);
           }}
+          className="cpf-cnpj-input"
           error={error?.cpf}
           maxLength={18}
         />

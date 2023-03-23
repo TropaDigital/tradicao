@@ -121,6 +121,23 @@ const Header = () => {
     }
   ];
 
+  const handlePageChangeMobileMenu = (page: IHeaderOptions) => {
+    if (page.title === 'A Tradição') {
+      setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
+      setIsSubMenuConsorcioOpen(false);
+    } else if (page.title === 'O Consórcio') {
+      setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
+      setIsSubMenuTradicaoOpen(false);
+    }
+
+    if (
+      (page.title !== 'A Tradição' && page.title !== 'O Consórcio') ||
+      isMobileOpen === false
+    ) {
+      setIsMobileOpen(false);
+    }
+  };
+
   const getWindowWidth = () => {
     if (typeof window !== 'undefined')
       window?.addEventListener('resize', () => {
@@ -165,9 +182,11 @@ const Header = () => {
       </S.InfoContainer>
 
       <S.HeaderContainer>
-        <div className="logo">
-          <DefaultLogo width={262} height={77} />
-        </div>
+        <Link href="/">
+          <div className="logo">
+            <DefaultLogo width={262} height={77} />
+          </div>
+        </Link>
 
         {windowWidth && windowWidth <= 1340 ? (
           <div className="menu-container">
@@ -175,6 +194,7 @@ const Header = () => {
               isOpen={isMobileOpen}
               onClick={() => setIsMobileOpen(!isMobileOpen)}
             ></S.MenuHamburgerContainer>
+
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
               {mainPages.map((page, key) => {
                 return (
@@ -183,13 +203,7 @@ const Header = () => {
                       href={page.path ? page.path : ''}
                       key={key}
                       className="mobile-option"
-                      onClick={() => {
-                        if (page.title === 'A Tradição') {
-                          setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
-                        } else if (page.title === 'O Consórcio') {
-                          setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
-                        }
-                      }}
+                      onClick={() => handlePageChangeMobileMenu(page)}
                     >
                       {page.title}
                       <span className="chevron-icon">
@@ -210,6 +224,7 @@ const Header = () => {
                             key={keyOption}
                             href={subOption.path}
                             className="sub-submobile-option"
+                            onClick={() => setIsMobileOpen(false)}
                           >
                             {subOption.subTitle}
                           </Link>
