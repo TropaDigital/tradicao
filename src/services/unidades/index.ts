@@ -9,7 +9,6 @@ class UnidadesClass {
       const response: AxiosResponse = await API.get(
         `unidades${query && '?' + query}`
       );
-      console.log(response);
       return response.data.result;
     } catch (err) {
       console.log(err);

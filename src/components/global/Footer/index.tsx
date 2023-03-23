@@ -90,19 +90,28 @@ export default function Footer() {
 
           <RightSide>
             <div className="correct">
-              <Image
-                src={WizImage}
-                alt="Imagem do Wi3"
-                width={231}
-                height={87}
-              />
+              <Link href={'https://wiz.co/'} target="_blank">
+                <Image
+                  src={WizImage}
+                  alt="Imagem do Wi3"
+                  width={231}
+                  height={87}
+                />
+              </Link>
             </div>
-            <Image
-              src={ReclameLogo}
-              alt="Imagem do Wi3"
-              width={175}
-              height={64}
-            />
+            <Link
+              href={
+                'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'
+              }
+              target="_blank"
+            >
+              <Image
+                src={ReclameLogo}
+                alt="Imagem do Wi3"
+                width={175}
+                height={64}
+              />
+            </Link>
           </RightSide>
         </TopFooter>
 

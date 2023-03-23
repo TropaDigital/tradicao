@@ -65,10 +65,6 @@ export default function SimulationForm() {
     regulation: false
   } as PlanProps);
 
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
   const handleOnChange: HandleOnChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
