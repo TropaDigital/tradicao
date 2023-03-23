@@ -115,9 +115,9 @@ export function ConfirmService({
           label="CPF / CNPJ"
           placeholder="000.000.000/00"
           name="cpf"
+          value={formatCnpjAndCpf(data.cpf)}
           onChange={(e) => {
-            handleInputChange(e);
-            formatCnpjAndCpf(e);
+            if (/^[0-9.\-/]*$/.test(e.target.value)) handleInputChange(e);
           }}
           maxLength={18}
           error={error?.cpf}

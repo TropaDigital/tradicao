@@ -142,7 +142,11 @@ export default function Footer() {
                   </div>
                 </div>
                 <div className="button">
-                  <div className="text">Fale Conosco</div>
+                  <div className="text">
+                    <Link href="/" className="text">
+                      Fale Conosco
+                    </Link>
+                  </div>
                 </div>
               </GreenButton>
             </div>
@@ -224,7 +228,11 @@ export default function Footer() {
                 </div>
               </div>
               <div className="button">
-                <div className="text">Seja um Parceiro</div>
+                <div className="text">
+                  <Link href="/" className="text">
+                    Seja um Parceiro
+                  </Link>
+                </div>
               </div>
             </GreenButton>
           </Column>

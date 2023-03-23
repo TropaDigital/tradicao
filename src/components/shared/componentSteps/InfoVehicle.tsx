@@ -29,7 +29,6 @@ export function InfoVehicle({
   error,
   handleOnChangeCheckbox
 }: Props) {
-  console.log(error);
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">

@@ -203,7 +203,12 @@ const UnidadesPage = () => {
               {isLoadingUnits && (
                 <>
                   {unitsSkeletons.map(() => (
-                    <Skeleton variant="rounded" height={207} width={270} />
+                    <Skeleton
+                      variant="rounded"
+                      height={207}
+                      width={270}
+                      animation="wave"
+                    />
                   ))}
                 </>
               )}
