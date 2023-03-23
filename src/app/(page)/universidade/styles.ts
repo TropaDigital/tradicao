@@ -17,7 +17,11 @@ export const ContainerTop = styled.div`
   }
 
   @media (max-width: 500px) {
-    height: 380px;
+    height: 720px;
+
+    .margin {
+      padding-top: 420px;
+    }
   }
 
   @media (max-width: 330px) {
@@ -55,6 +59,10 @@ export const ContainerMid = styled.div`
   background: var(--degrade-secondary);
 
   padding-top: 40px;
+
+  @media (max-width: 500px) {
+    margin-top: 80px;
+  }
 `;
 
 export const CoursesContainer = styled.div`
@@ -87,81 +95,3 @@ export const CoursesDescription = styled.div`
 export const ContainerBottom = styled.div`
   /* background-color: lightblue; */
 `;
-
-export const LoginUniversity = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  width: fit-content;
-  height: fit-content;
-  background-color: var(--primary);
-  background: var(--degrade-primary);
-  border-radius: 10px;
-
-  padding: 48px;
-
-  position: absolute;
-  top: -160px;
-  right: -100px;
-
-  .input {
-    width: 360px;
-
-    .label {
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    input {
-      width: 100%;
-      height: 38px;
-
-      border-radius: 5px;
-      padding: 8px;
-    }
-  }
-`;
-
-export const LoginTitle = styled.div`
-  color: var(--white);
-  font-size: var(--text-headline-sm);
-  font-weight: var(--weight-bold);
-
-  text-align: center;
-`;
-
-export const CheckboxLogin = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 16px;
-
-  input {
-    
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
-  span {
-    color: var(--white);
-
-    font-size: var(--text-smal-sm);
-    font-weight: var(--weight-regular);
-  }
-
-` 
-
-export const TextButton = styled.button`
-  background-color: transparent;
-
-  color: var(--white);
-
-  font-size: var(--text-smal-sm);
-  font-weight: var(--weight-regular);
-  font-style: italic;
-
-  margin-left: auto;
-`

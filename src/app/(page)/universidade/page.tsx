@@ -1,22 +1,20 @@
 'use client';
-// React
-import { useState } from 'react';
 
 // Styles
 import * as S from './styles';
 
 // Images
-import UniversityBg from '../../../../public/images/University_bg.png'
+import UniversityBg from '../../../../public/images/University_bg.svg'
 
 // Components
 import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import SearchCourses from '@/components/pages/Universidade/SearchCourses';
-import Button from '@/components/UI/Button';
+import UniversityLogin from '@/components/pages/Universidade/UniversityLogin';
+
 
 export default function University() {
-    const [ checked, setChecked ] = useState<boolean>(false);
 
 
     return (
@@ -34,41 +32,7 @@ export default function University() {
                             title="A Universidade"                            
                         />  
 
-                        <S.LoginUniversity>
-                            <S.LoginTitle>Área do Estudante</S.LoginTitle>                            
-                            
-                            <div className="input">
-                                <div className="label">Usuário</div>
-                                <input type="text" placeholder='Nome'/>
-                            </div>
-
-                            <div className="input">
-                                <div className="label">Senha</div>
-                                <input type="password" placeholder='Senha' />
-                            </div>
-
-                            <S.CheckboxLogin>
-                                <input 
-                                    type="checkbox" 
-                                    name="" 
-                                    id="" 
-                                    onChange={() => setChecked(!checked)}
-                                />
-                                <span>Manter conectado</span>
-                            </S.CheckboxLogin>                           
-
-                            <Button
-                                radius="rounded"
-                                color='secondary'
-                                degrade={true}
-                                type={'button'}
-                            >
-                                Logar
-                            </Button>
-
-                            <S.TextButton>Esqueci minha senha</S.TextButton>
-                            
-                        </S.LoginUniversity>
+                        <UniversityLogin />
                     </div>
 
                     <S.UniversityInfo>
