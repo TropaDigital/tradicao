@@ -17,6 +17,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
   alert?: string;
   mask?: 'currency' | 'dateTime';
+  labelColor?: string;
 }
 
 export function InputDefault({
@@ -24,6 +25,7 @@ export function InputDefault({
   mask,
   label,
   alert,
+  labelColor,
   error,
   icon: Icon,
   ...rest
@@ -54,7 +56,7 @@ export function InputDefault({
   );
 
   return (
-    <Container>
+    <Container labelColor={labelColor}>
       <div
         className="containerAlert"
         style={{ display: 'flex', alignItems: 'center' }}
