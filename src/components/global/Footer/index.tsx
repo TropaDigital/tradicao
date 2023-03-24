@@ -102,6 +102,7 @@ export default function Footer() {
               alt="Imagem do Wi3"
               width={175}
               height={64}
+              className='reclame-logo'
             />
           </RightSide>
         </TopFooter>
