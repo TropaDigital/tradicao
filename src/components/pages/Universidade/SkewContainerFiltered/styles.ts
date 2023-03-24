@@ -30,7 +30,7 @@ export const SkewContainer = styled.div<Props>`
       object-fit: cover;        
   }    
 
-   &::before {
+  /* &::before {
       content: '';
       background-color: var(--primary);
       background: var(--degrade-primary);
@@ -41,7 +41,7 @@ export const SkewContainer = styled.div<Props>`
       right: 0;
       z-index: 9;
       opacity: 0.7;
-  }
+  } */
 
   .logo-mask {
     transform: skewX(18deg);
