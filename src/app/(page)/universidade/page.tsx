@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import UniversityBg from '../../../../public/images/University_bg.svg'
+import UniversityBg from '../../../../public/images/University_bg.png'
 
 // Components
 import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
