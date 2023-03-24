@@ -120,11 +120,11 @@ export default function Footer() {
             <div style={{ marginBottom: '20px' }}>
               <TitleColumns>A Tradição</TitleColumns>
               <div style={{ marginTop: '10px' }}>
-                <Link href={''}>
+                <Link href={'/'}>
                   <TextButton>História</TextButton>
                 </Link>
 
-                <Link href={''}>
+                <Link href={'/'}>
                   <TextButton>Parceiros</TextButton>
                 </Link>
 
@@ -168,7 +168,7 @@ export default function Footer() {
                 <TextButton>Consórcio de Pesados</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Consórcio de Serviços</TextButton>
               </Link>
 
@@ -180,7 +180,7 @@ export default function Footer() {
                 <TextButton>Consórcio de Automóveis</TextButton>
               </Link>
 
-              <Link href={''}>
+              <Link href={'/'}>
                 <TextButton>Simulador de Consórcio</TextButton>
               </Link>
 

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { useMutation } from 'react-query';
-import TrabalheConoscoClass from '../index';
+import RepresentanteClass from '../index';
 import { IAgentInfo } from '../types';
 import { toast } from 'react-toastify';
 
@@ -9,7 +9,7 @@ export const useCreateAgent = () => {
     async (agent: IAgentInfo) => {
       let response = toast.promise(
         async () => {
-          let response: any = await TrabalheConoscoClass.postCandidate(agent);
+          let response: any = await RepresentanteClass.postCandidate(agent);
           return response;
         },
         {

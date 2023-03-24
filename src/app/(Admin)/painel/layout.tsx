@@ -7,7 +7,7 @@
 // } from '@/src/assets/icons';
 import { ReactNode, useState } from 'react';
 import { Container } from './styles';
-import SelectSideBar from '../components/SelectSideBar';
+import SelectSideBar from '../../../components/pages/Painel/components/SelectSideBar';
 
 import panelConfig from '../../../components/pages/Painel/panelConfig.json';
 import LogoutPanel from '../../../components/pages/Painel/components/LogoutPanel';

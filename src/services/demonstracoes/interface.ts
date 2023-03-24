@@ -13,3 +13,8 @@ interface IDemonstracaoPDF {
   modificado: string;
   excluido: null | string;
 }
+
+export interface IDemonstracaoBody {
+  titulo: string;
+  url_pdf: string[];
+}
