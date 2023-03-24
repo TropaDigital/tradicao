@@ -9,7 +9,6 @@ import { IoMdHelpCircle } from 'react-icons/io';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, ContainerInput, Error, Alert } from './styles';
-import { currency, dateTimeMask } from './masks';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -20,7 +19,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   labelColor?: string;
 }
 
-export function InputDefault({
+export function InputPassword({
   required,
   mask,
   label,
@@ -44,16 +43,6 @@ export function InputDefault({
 
     setIsFilled(!!inputRef.current?.value);
   }, []);
-
-  const handleKeyUp = useCallback(
-    (e: React.FormEvent<HTMLInputElement>) => {
-      if (mask === 'dateTime') {
-        dateTimeMask(e);
-      }
-      return;
-    },
-    [mask]
-  );
 
   return (
     <Container labelColor={labelColor}>
@@ -86,7 +75,6 @@ export function InputDefault({
           id={label}
           role="presentation"
           autoComplete="off"
-          onKeyUp={handleKeyUp}
           {...rest}
         />
 

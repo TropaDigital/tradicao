@@ -18,13 +18,16 @@ export const SkewContainer = styled.div<Props>`
   border-radius: 40px;
   overflow: hidden;
   position: relative;
-  left: -80px;
+  left: -83px;
 
   @media (max-width: 850px) {
     border-radius: 30px;
   }
   @media (max-width: 550px) {
     border-radius: 20px;
+  }
+  @media (max-width: 450px) {
+    border-radius: 13px;
   }
 
   .skewImage {
