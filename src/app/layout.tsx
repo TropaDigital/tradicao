@@ -16,14 +16,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <Suspense fallback={<LoadingContainer />}>
-          <QueryClientProvider client={queryClient}>
-            <StyledJsxRegistry>
-              {children}
-              <GlobalStyles />
-            </StyledJsxRegistry>
-          </QueryClientProvider>
-        </Suspense>
+        <QueryClientProvider client={queryClient}>
+          <StyledJsxRegistry>
+            {children}
+            <GlobalStyles />
+          </StyledJsxRegistry>
+        </QueryClientProvider>
       </body>
     </html>
   );
