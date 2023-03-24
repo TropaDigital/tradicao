@@ -1,32 +1,45 @@
-import { TruckIcon } from "@/assets/icons";
-import { CheckboxDefault } from "@/components/pages/Painel/components/inputs/CheckboxDefault";
-import { SelectDefault } from "@/components/pages/Painel/components/inputs/SelectDefault";
-import { FieldDefault, FieldGroup } from "@/components/pages/Painel/components/UiElements/styles";
-import { InputDefault } from "@/components/UI/Inputs/InputDefault";
+import { TruckIcon } from '@/assets/icons';
+import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
+import { SelectDefault } from '@/components/pages/Painel/components/inputs/SelectDefault';
+import {
+  FieldDefault,
+  FieldGroup
+} from '@/components/pages/Painel/components/UiElements/styles';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
-  [key: string]: any
+  [key: string]: any;
 }
 
 interface Props {
   data: any;
   handleOnChangeCheckbox: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
+  handleInputChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => void;
   error: FormProps;
 }
 
-export function InfoTruck({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function InfoTruck({
+  data,
+  error,
+  handleInputChange,
+  handleOnChangeCheckbox
+}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <TruckIcon width={23} height={21} />
         <h2>Consórcio de Caminhão</h2>
       </legend>
-      <FieldDefault style={{marginBottom: '14px'}}>
-        <InputDefault 
-          label='Nome completo'
-          placeholder='Nome'
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="Nome completo"
+          placeholder="Nome"
           name="name"
           value={data.name}
           onChange={handleInputChange}
@@ -50,24 +63,30 @@ export function InfoTruck({data, error, handleInputChange, handleOnChangeCheckbo
       </FieldDefault> */}
 
       <FieldGroup>
-        <FieldDefault style={{marginBottom: '14px'}}>
-          <InputDefault 
-            label='Celular'
-            placeholder='(00 0 0000-000)'
+        <FieldDefault style={{ marginBottom: '14px' }}>
+          <InputDefault
+            label="Celular"
+            placeholder="00 00000-0000"
             name="phone"
-            value={data.phone}
-            onChange={handleInputChange}
+            value={data.phone.replace(/^(\d{2})(\d{5})(\d{4})$/, '$1 $2-$3')}
+            onChange={(e) => {
+              if (/^[0-9\s-]*$/.test(e.target.value)) handleInputChange(e);
+            }}
             error={error?.phone}
+            maxLength={13}
           />
         </FieldDefault>
-        <FieldDefault style={{marginBottom: '14px'}}>
-          <InputDefault 
-            label='Cep'
-            placeholder='00000-000'
+        <FieldDefault style={{ marginBottom: '14px' }}>
+          <InputDefault
+            label="Cep"
+            placeholder="00000-000"
             name="cep"
-            value={data.cep}
-            onChange={handleInputChange}
+            value={data.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+            onChange={(e) => {
+              if (/^[0-9\s-]*$/.test(e.target.value)) handleInputChange(e);
+            }}
             error={error?.cep}
+            maxLength={9}
           />
         </FieldDefault>
       </FieldGroup>
@@ -81,32 +100,42 @@ export function InfoTruck({data, error, handleInputChange, handleOnChangeCheckbo
           error={error?.terms}
         />
       </FieldDefault>
-
     </ContentSimulation>
-  )
+  );
 }
 
-export function ConfirmTruck({data, error, handleInputChange, handleOnChangeCheckbox}: Props) {
+export function ConfirmTruck({
+  data,
+  error,
+  handleInputChange,
+  handleOnChangeCheckbox
+}: Props) {
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <TruckIcon width={23} height={21} />
         <h2>Consórcio de Caminhão</h2>
       </legend>
-      
+
       <aside>
         <h3>{`Olá, ${data.name ?? 'Usuário'}!`}</h3>
-        <span>Você esta muito próximo de virar um cliente Tradição e ainda mais próximo do seu sonho!</span>
+        <span>
+          Você esta muito próximo de virar um cliente Tradição e ainda mais
+          próximo do seu sonho!
+        </span>
       </aside>
 
-      <FieldDefault style={{marginBottom: '14px'}}>
-        <InputDefault 
-          label='CPF / CNPJ'
-          placeholder='000.000.000/00'
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="CPF / CNPJ"
+          placeholder="000.000.000/00"
           name="cpf"
-          value={data.cpf}
-          onChange={handleInputChange}
+          value={formatCnpjAndCpf(data.cpf)}
+          onChange={(e) => {
+            if (/^[0-9.\-/]*$/.test(e.target.value)) handleInputChange(e);
+          }}
           error={error?.cpf}
+          maxLength={18}
         />
       </FieldDefault>
 
@@ -119,9 +148,8 @@ export function ConfirmTruck({data, error, handleInputChange, handleOnChangeChec
           error={error?.regulation}
         />
       </FieldDefault>
-
     </ContentSimulation>
-  )
+  );
 }
 
-export default { InfoTruck, ConfirmTruck }
+export default { InfoTruck, ConfirmTruck };

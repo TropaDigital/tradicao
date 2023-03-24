@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import TruckBg from '../../../../public/images/ConsortiumTruck.svg';
+import TruckBg from '../../../../public/images/ConsortiumTruck.png';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -14,39 +14,31 @@ import MainTitle from '@/components/UI/MainTitle';
 import OurContemplated from '@/components/sections/OurContemplated';
 import TruckConsortium from '@/components/sections/TruckConsortium';
 
-
 export default function ConsortiumTrucks() {
-    return (
-        <>
-            <S.ContainerTop>
-                <SkewContainer
-                    size="medium"
-                    imageSrc={TruckBg}
-                    imageAlt="Imagem de uma família se abraçando na sala de casa"
-                />
+  return (
+    <>
+      <S.ContainerTop>
+        <SkewContainer
+          size="medium"
+          imageSrc={TruckBg}
+          imageAlt="Imagem de uma família se abraçando na sala de casa"
+        />
 
-                <SimulationForm />
+        <SimulationForm />
 
-                <CenterWrapper>
-                    <div className="margin">
-                        <MainTitle
-                            title="Consórcio de Pesados"                            
-                        />   
-                        <S.SubtitleTop>
-                            Realize o seu sonho
-                        </S.SubtitleTop> 
+        <CenterWrapper>
+          <div className="margin">
+            <MainTitle title="Consórcio de Pesados" />
+            <S.SubtitleTop>Realize o seu sonho</S.SubtitleTop>
+          </div>
+        </CenterWrapper>
+      </S.ContainerTop>
 
-                    </div>
+      <CenterWrapper>
+        <TruckConsortium />
+      </CenterWrapper>
 
-                </CenterWrapper>
-
-            </S.ContainerTop>
-
-            <CenterWrapper>
-                <TruckConsortium />
-            </CenterWrapper>
-
-            <OurContemplated />
-        </>
-    )
+      <OurContemplated />
+    </>
+  );
 }

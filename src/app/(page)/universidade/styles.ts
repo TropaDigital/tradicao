@@ -6,8 +6,10 @@ export const ContainerTop = styled.div`
   position: relative;
 
   margin-bottom: 30px;
+
   .margin {
     margin-top: 30px;
+    position: relative;
   }
   
   @media (max-width: 1090px) {
@@ -15,11 +17,18 @@ export const ContainerTop = styled.div`
   }
 
   @media (max-width: 500px) {
-    height: 380px;
+    height: 720px;
+
+    .margin {
+      padding-top: 420px;
+    }
   }
 
   @media (max-width: 330px) {
-    height: 420px;
+    height: 800px;
+    .margin {
+      padding-top: 440px;
+    }
   }
 
 `;
@@ -28,7 +37,7 @@ export const UniversityInfo = styled.div`
   max-width: 650px;
   max-height: 145px;
 
-  margin-top: 30px;
+  margin-top: 30px;  
 `;
 
 export const InfoTitle = styled.div`
@@ -53,7 +62,12 @@ export const ContainerMid = styled.div`
   background: var(--degrade-secondary);
 
   padding-top: 40px;
+
+  @media (max-width: 500px) {
+    margin-top: 80px;
+  }
 `;
+
 export const CoursesContainer = styled.div`
   display: flex;
   flex-direction: column;

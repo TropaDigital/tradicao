@@ -60,12 +60,36 @@ export const RightSide = styled.div`
     @media (max-width: 1050px) {
         justify-content: center;
     }
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+        gap: 16px;
+
+        .correct {
+            width: 230px;
+        }
+
+        .reclame-logo {
+            width: 230px;
+        }
+    }
 `
 
 export const SocialMedia = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
+
+    @media (max-width: 500px) {
+        width: 80%;
+        justify-content: center;
+
+        a {
+            svg {
+                width: 32px;
+            }
+        }
+    }
 `
 
 export const MidFooter = styled.div`

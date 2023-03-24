@@ -1,35 +1,27 @@
 'use client';
 
-import { AxiosResponse } from 'axios';
+import { Axios, AxiosResponse } from 'axios';
 import API from '../api';
+import { IUnitBody } from './types';
 
 class UnidadesClass {
-  // async getAllUnits() {
-  //   try {
-  //     const response: AxiosResponse = await API.get(`getAll-unidade`);
-  //     console.log('ALL UNITS' + response);
-  //     return response.data.result;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // async getUnitById(id: number | string) {
-  //   try {
-  //     const response: AxiosResponse = await API.get(`getById-unidade/${id}`);
-  //     return response.data.result;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  async getUnitsByQuery(query: string) {
+  async getUnits(query: string) {
     try {
       const response: AxiosResponse = await API.get(
         `unidades${query && '?' + query}`
       );
-      console.log(response);
       return response.data.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async createUnit(unitBody: IUnitBody) {
+    try {
+      const response: AxiosResponse = await API.post(
+        `create-unidade`,
+        unitBody
+      );
     } catch (err) {
       console.log(err);
     }

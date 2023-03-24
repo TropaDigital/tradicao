@@ -2,7 +2,7 @@ import React, {
   useRef,
   useState,
   useCallback,
-  InputHTMLAttributes,
+  InputHTMLAttributes
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { IoMdHelpCircle } from 'react-icons/io';
@@ -14,12 +14,22 @@ import { currency, dateTimeMask } from './masks';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string | any;
-  icon?: React.ComponentType<IconBaseProps>;
+  icon?: React.ComponentType<IconBaseProps> | any;
   alert?: string;
   mask?: 'currency' | 'dateTime';
+  labelColor?: string;
 }
 
-export function InputDefault({ required, mask, label, alert, error, icon: Icon, ...rest }: InputProps) {
+export function InputDefault({
+  required,
+  mask,
+  label,
+  alert,
+  labelColor,
+  error,
+  icon: Icon,
+  ...rest
+}: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -35,20 +45,26 @@ export function InputDefault({ required, mask, label, alert, error, icon: Icon, 
     setIsFilled(!!inputRef.current?.value);
   }, []);
 
-  const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-    if (mask === 'dateTime') {
-      dateTimeMask(e)
-    }
-    return;
-  }, [mask])
+  const handleKeyUp = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      if (mask === 'dateTime') {
+        dateTimeMask(e);
+      }
+      return;
+    },
+    [mask]
+  );
 
   return (
-    <Container>
-      <div className="containerAlert" style={{ display: 'flex', alignItems: 'center' }} >
+    <Container labelColor={labelColor}>
+      <div
+        className="containerAlert"
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
         <label htmlFor={label}>{label}</label>
         {required && (
           <Alert title={alert ?? 'Campo obrigatório'}>
-            <IoMdHelpCircle size={18} color='#CED4DA' />
+            <IoMdHelpCircle size={18} color="#CED4DA" />
           </Alert>
         )}
       </div>
@@ -59,9 +75,8 @@ export function InputDefault({ required, mask, label, alert, error, icon: Icon, 
         isFilled={isFilled}
         isIcon={!!Icon}
       >
-
         <div className="leftInputElement">
-          {Icon && <Icon color='rgba(204, 204, 204, 1)' size={22}/>}
+          {Icon && <Icon color="rgba(204, 204, 204, 1)" size={22} />}
         </div>
 
         <input
@@ -69,7 +84,8 @@ export function InputDefault({ required, mask, label, alert, error, icon: Icon, 
           onBlur={handleInputBlur}
           ref={inputRef}
           id={label}
-          role="presentation" autoComplete="off"
+          role="presentation"
+          autoComplete="off"
           onKeyUp={handleKeyUp}
           {...rest}
         />

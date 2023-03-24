@@ -34,6 +34,8 @@ export default function Contemplated() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          speed: 4500,
+          autoplaySpeed: 6000,
         }
       }
     ]

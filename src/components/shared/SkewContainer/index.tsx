@@ -8,7 +8,13 @@ const SkewContainer = ({ imageAlt, imageSrc, size }: ISkewContainer) => {
     <S.Container>
       <S.SolidBackground />
       <S.SkewContainer size={size}>
-        <Image src={imageSrc} alt={imageAlt} className="skewImage" />
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          className="skewImage"
+          placeholder="blur"
+          priority
+        />
       </S.SkewContainer>
     </S.Container>
   );

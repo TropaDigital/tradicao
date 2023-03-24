@@ -1,7 +1,7 @@
 'use client';
 
 import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Steps from '@/components/Steps';
 import Button from '@/components/UI/Button';
 import { useSteps } from '@/hooks/useSteps';
@@ -12,6 +12,8 @@ import { ConfirmTruck, InfoTruck } from '../componentSteps/InfoTruck';
 import { ConfirmVehicle, InfoVehicle } from '../componentSteps/InfoVehicle';
 import { SectionSimulatorForm, TitleSimulator } from './styles';
 import { usePathname } from 'next/navigation';
+import { validateCnpj } from '@/utils/validateCnpj';
+import { validateCpf } from '@/utils/validateCpf';
 
 type HandleOnChange = (
   event:
@@ -190,18 +192,30 @@ export default function SimulationForm() {
     return message;
   }
 
-  const hadnleOnSaveStep = () => {
+  const handleOnSaveStep = () => {
     const { cpf, regulation } = formData;
 
     try {
+      const clearCpf = cpf?.replace(/\D/g, '');
       if (cpf === '') {
         throw setErrorInput('cpf', 'CPF / CNPJ é obrigatório!');
+      } else if (clearCpf?.length > 0 && clearCpf?.length < 11) {
+        throw setErrorInput('cpf', 'CPF deve conter 11 dígitos');
+      } else if (clearCpf?.length === 11 && !validateCpf(cpf)) {
+        throw setErrorInput('cpf', 'CPF Inválido');
+      } else if (clearCpf?.length > 11 && clearCpf?.length < 14) {
+        throw setErrorInput('cpf', 'CNPJ deve conter 14 dígitos');
+      } else if (!validateCnpj(cpf) && clearCpf?.length === 14) {
+        throw setErrorInput('cpf', 'CNPJ inválido');
       } else {
         setErrorInput('cpf', undefined);
       }
 
       if (regulation === false) {
-        throw setErrorInput('regulation', 'Aceite oregulamento para continuar');
+        throw setErrorInput(
+          'regulation',
+          'Aceite o regulamento para continuar'
+        );
       } else {
         setErrorInput('regulation', undefined);
       }
@@ -220,20 +234,30 @@ export default function SimulationForm() {
         setErrorInput('name', undefined);
       }
 
-      if (email === '') {
-        throw setErrorInput('email', 'Email é obrigatório!');
-      } else {
-        setErrorInput('email', undefined);
+      if (formData.conquest === 'veiculo') {
+        if (email === '') {
+          throw setErrorInput('email', 'Email é obrigatório!');
+        } else if (!email.includes('@')) {
+          throw setErrorInput('email', 'Email inválido!');
+        } else if (!email.includes('.')) {
+          throw setErrorInput('email', 'Email inválido!');
+        } else {
+          setErrorInput('email', undefined);
+        }
       }
 
       if (phone === '') {
         throw setErrorInput('phone', 'Celular é obrigatório!');
+      } else if (phone?.replace(/\D/g, '')?.length < 11) {
+        throw setErrorInput('phone', 'Número de celular inválido');
       } else {
         setErrorInput('phone', undefined);
       }
 
       if (cep === '') {
         throw setErrorInput('cep', 'Cep é obrigatório!');
+      } else if (cep?.replace(/\D/g, '')?.length < 8) {
+        throw setErrorInput('cep', 'Cep inválido');
       } else {
         setErrorInput('cep', undefined);
       }
@@ -259,8 +283,10 @@ export default function SimulationForm() {
     event.preventDefault();
 
     try {
-      hadnleOnSaveStep();
-    } catch (err: any) {}
+      if (subIsLastStep) handleOnSaveStep();
+    } catch (err: any) {
+      console.log(err);
+    }
   }, []);
 
   const pathName = usePathname();
@@ -304,6 +330,7 @@ export default function SimulationForm() {
               <Button
                 radius="rounded"
                 degrade
+                type={'button'}
                 onClick={() => {
                   if (subCurrentStep === 0) {
                     setSimulator(!isSimulator);
@@ -316,20 +343,15 @@ export default function SimulationForm() {
               </Button>
 
               {!subIsLastStep ? (
-                <Button
-                  radius="rounded"
-                  degrade
-                  type="button"
-                  onClick={handleOnNextStep}
-                >
+                <Button radius="rounded" degrade onClick={handleOnNextStep}>
                   Avançar
                 </Button>
               ) : (
                 <Button
                   radius="rounded"
+                  type="submit"
                   degrade
-                  type="button"
-                  onClick={hadnleOnSaveStep}
+                  onClick={handleOnSaveStep}
                 >
                   Salvar
                 </Button>
@@ -342,7 +364,6 @@ export default function SimulationForm() {
           <Button
             radius="rounded"
             degrade
-            type="button"
             onClick={() => setSimulator(!isSimulator)}
           >
             Simular

@@ -7,9 +7,10 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
-import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnitsByQuery';
+import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import { Skeleton } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
@@ -25,12 +26,12 @@ const UnidadesPage = () => {
 
   const [cep, setCep] = useState<string>();
 
-  const { unitsByQuery } = useGetUnitsByQuery(query.trim());
-  const units = useGetUnitsByQuery('');
+  const { units, isLoadingUnits } = useGetUnitsByQuery(query.trim());
+  const unitsCopy = useGetUnitsByQuery('');
 
   useEffect(() => {
-    setAllUnits(units.unitsByQuery);
-  }, [units]);
+    setAllUnits(unitsCopy.units);
+  }, [unitsCopy]);
 
   useEffect(() => {
     const getAllStates = () => {
@@ -59,14 +60,17 @@ const UnidadesPage = () => {
       }
     };
 
-    getAllCities(unitsByQuery);
-  }, [unitsByQuery]);
+    getAllCities(units);
+  }, [units]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
       setCep('');
     }
   }, [query]);
+
+  const unitsSkeletons = new Array(16);
+  unitsSkeletons.fill('a');
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -84,7 +88,7 @@ const UnidadesPage = () => {
   };
 
   const getUnitById = (id: string | number) => {
-    const unit = unitsByQuery.filter((unit) => {
+    const unit = units.filter((unit) => {
       return unit.id === id;
     });
 
@@ -196,7 +200,19 @@ const UnidadesPage = () => {
 
           <S.UnitsContainer>
             <>
-              {unitsByQuery?.map((unit) => (
+              {isLoadingUnits && (
+                <>
+                  {unitsSkeletons.map(() => (
+                    <Skeleton
+                      variant="rounded"
+                      height={207}
+                      width={270}
+                      animation="wave"
+                    />
+                  ))}
+                </>
+              )}
+              {units?.map((unit) => (
                 <S.UnityCard key={unit.id} onClick={() => getUnitById(unit.id)}>
                   <div className="location-bg-icon">
                     <LocationIcon />

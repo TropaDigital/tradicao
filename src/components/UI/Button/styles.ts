@@ -28,7 +28,7 @@ export const ButtonContainer = styled.button<Props>`
     css`
       background: ${color && variant === 'default' && `var(--${color})`};
       background: ${color === "primary" && degrade && variant === "default" && `var(--degrade-primary)`};
-      background: ${color === "secondary" && degrade && variant === "default" && `var(--degrade-secondary:)`};
+      background: ${color === "secondary" && degrade && variant === "default" && `var(--degrade-secondary)`};
       background: ${variant === 'outline' && 'transparent'};
 
       border-width: 1px;

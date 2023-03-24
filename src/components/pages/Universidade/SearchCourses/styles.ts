@@ -24,6 +24,13 @@ export const SearchHeader = styled.div`
     left: 50%;    
     transform: translateX(-50%);
 
+    form {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
     .button-search {
       max-width: 104px;     
     }
@@ -39,11 +46,14 @@ export const SearchHeader = styled.div`
         width: 90%;
         height: fit-content;
 
-        flex-direction: column;
-        align-items: center;
-
-        .button-search {
-            max-width: 100%;
+        form {           
+    
+            flex-direction: column;
+            align-items: center;
+    
+            .button-search {
+                max-width: 100%;
+            }
         }
     }
 
@@ -52,7 +62,7 @@ export const SearchHeader = styled.div`
 export const CourseCardWrapper = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 22px;
     
     padding-top: 68px;
@@ -103,7 +113,7 @@ export const CourseCardTop = styled.div`
     font-weight: var(--weight-bold); 
     text-transform: uppercase;
 
-    padding-top: 20px;
+    padding: 20px 10px 0 10px;
 
     position: relative;
 

@@ -2,6 +2,7 @@
 import { BrushedIcon, CircleLogoIcon } from "@/assets/icons";
 import Button from "@/components/UI/Button";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
+import { useMemo, useState } from "react";
 
 // Styles
 import { 
@@ -14,53 +15,87 @@ import {
 } from "./styles";
 
 interface ICoursesProps {
+    [x: string]: any;
     id: number,
-    bigTitle: string,
+    courseName: string,
     description: string,
 }
 
 export default function SearchCourses() {
+    const [ filterCourse, setFilterCourse ] = useState<string>('');
+    const [ search, setSearch ] = useState<string | any>('');
 
     const Courses: ICoursesProps[] = [
         {
             id: 1,
-            bigTitle: 'Integração Consórcio Tradição',
+            courseName: 'Integração Consórcio Tradição',
             description: 'Integração Consórcio Tradição com Sheila Cruz'
         },
         {
             id: 2,
-            bigTitle: 'Treinamento sobre a Lei Geral de Proteção de dados',
+            courseName: 'Treinamento sobre a Lei Geral de Proteção de dados',
             description: 'Treinamento sobre a Lei Geral de Proteção de dados'
         },
         {
             id: 3,
-            bigTitle: 'Treinamento Código de Conduta Ética',
+            courseName: 'Treinamento Código de Conduta Ética',
             description: 'Treinamento Código de Conduta Ética'
         },
         {
             id: 4,
-            bigTitle: 'Regulamento Interno',
+            courseName: 'Regulamento Interno',
             description: 'Regulamento Interno'
         },
     ]
 
+    const filteredCourses = useMemo(() => {
+        const searchLowercase = search?.toLowerCase();
+
+        return Courses.filter((course) => course.courseName.toLowerCase().includes(searchLowercase))
+
+    }, [search]);
+
     return (
         <SearchContainer>
             <SearchHeader>
-                <InputDefault 
-                    label="Buscar Curso"
-                />
-                <Button degrade className="button-search" type="submit">
-                  Buscar
-                </Button>
+                <form action="">
+                    <InputDefault 
+                        label="Buscar Curso"
+                        placeholder="Digite o nome do curso"
+                        value={filterCourse}
+                        onChange={(e: any) => setFilterCourse(e.target.value)}
+                    />
+                    {
+                        !search &&
+                        <Button 
+                            degrade 
+                            className="button-search" 
+                            type="submit"
+                            onClick={() => setSearch(filterCourse)}
+                        >
+                            Buscar
+                        </Button>
+                    }
+                    {
+                        search &&
+                        <Button 
+                            degrade 
+                            className="button-search" 
+                            type="submit"
+                            onClick={() => {setSearch(''); setFilterCourse('')}}
+                        >
+                            Limpar
+                        </Button>
+                    }
+                </form>
             </SearchHeader>
 
             <CourseCardWrapper>
                 {
-                    Courses.map((row: any) => (
+                    filteredCourses.map((row: any) => (
                         <CourseCard key={row.id}>
                             <CourseCardTop>
-                                {row.bigTitle}
+                                {row.courseName}
                                 <div className="icon-bottom">
                                     <div className="brushed">
                                         <BrushedIcon />

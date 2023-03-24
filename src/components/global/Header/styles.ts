@@ -29,8 +29,8 @@ export const HeaderContainer = styled.header<Props>`
     `}
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 21px 30px;
+  justify-content: space-between;
+  padding: 21px 150px;
   background-color: var(--white);
   width: 100%;
   transition: all 0.3s;
@@ -41,9 +41,15 @@ export const HeaderContainer = styled.header<Props>`
     position: relative;
   }
 
-  @media (max-width: 1340px) {
-    justify-content: space-between;
+  @media (max-width: 1600px) {
+    padding: 21px 43px;
+  }
 
+  @media (max-width: 425px) {
+    padding: 21px;
+  }
+
+  @media (max-width: 1340px) {
     .logo svg {
       width: 200px;
     }
@@ -93,11 +99,10 @@ export const InfoContainer = styled.div<Props>`
     var(--primary) 93.94%
   );
   height: 40px;
-  padding: 6px 35px;
+  padding: 6px 150px;
 
-  @media (max-width: 1340px) {
-    padding: 6px 20px;
-    justify-content: space-around;
+  @media (max-width: 1600px) {
+    padding: 6px 43px;
   }
   @media (max-width: 900px) {
     .blog {
@@ -115,6 +120,17 @@ export const InfoContainer = styled.div<Props>`
     }
     .televendas {
       font-size: 14px;
+    }
+  }
+  @media (max-width: 425px) {
+    padding: 21px;
+  }
+  @media (max-width: 375px) {
+    padding: 21px 10px;
+
+    &:first-child {
+      font-size: 12px;
+      white-space: nowrap;
     }
   }
 
@@ -223,6 +239,9 @@ export const MobileMenuModal = styled.div<Props>`
 
   @media (min-width: 1340px) {
     display: none;
+  }
+  @media (max-width: 425px) {
+    top: 30px;
   }
 `;
 
