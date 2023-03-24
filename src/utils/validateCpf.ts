@@ -5,12 +5,11 @@ export const validateCpf = (cpf: string) => {
   const sum = allDigits?.reduce((partialSum, a) => partialSum + parseInt(a), 0);
   if (sum > 88 || sum < 10) return false;
 
-  if (!verifyTwoDigits(sum)) {
-    if (!verifyTwoDigits(sum - 1)) return false;
-    if (!verifyTwoDigits(sum + 1)) return false;
-  }
+  if (verifyTwoDigits(sum)) return true;
+  if (verifyTwoDigits(sum - 1)) return true;
+  if (verifyTwoDigits(sum + 1)) return true;
 
-  return true;
+  return false;
 };
 
 const verifyTwoDigits = (number: number) => {
