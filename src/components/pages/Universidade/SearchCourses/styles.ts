@@ -46,11 +46,14 @@ export const SearchHeader = styled.div`
         width: 90%;
         height: fit-content;
 
-        flex-direction: column;
-        align-items: center;
-
-        .button-search {
-            max-width: 100%;
+        form {           
+    
+            flex-direction: column;
+            align-items: center;
+    
+            .button-search {
+                max-width: 100%;
+            }
         }
     }
 
