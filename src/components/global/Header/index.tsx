@@ -53,6 +53,10 @@ const Header = () => {
           path: '/canal-de-denuncia'
         },
         {
+          subTitle: 'Universidade Tradição',
+          path: '/universidade'
+        },
+        {
           subTitle: 'Atendimento',
           path: '/canal-de-denuncia'
         }

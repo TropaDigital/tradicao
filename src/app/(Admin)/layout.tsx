@@ -12,12 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <section>
-      <StyledJsxRegistry>
-        <nav>
-          Layout Painel
-        </nav>
-        {children}
-      </StyledJsxRegistry>
+      <StyledJsxRegistry>{children}</StyledJsxRegistry>
     </section>
   );
 }
