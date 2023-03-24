@@ -1,9 +1,9 @@
 'use client';
 
+import LoadingContainer from '@/components/shared/LoadingContainer';
 import { GlobalStyles } from '@/styles/global';
 import { Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import Loading from './loading';
 import StyledJsxRegistry from './registry';
 
 export default function RootLayout({
@@ -16,12 +16,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <QueryClientProvider client={queryClient}>
-          <StyledJsxRegistry>
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-            <GlobalStyles />
-          </StyledJsxRegistry>
-        </QueryClientProvider>
+        <Suspense fallback={<LoadingContainer />}>
+          <QueryClientProvider client={queryClient}>
+            <StyledJsxRegistry>
+              {children}
+              <GlobalStyles />
+            </StyledJsxRegistry>
+          </QueryClientProvider>
+        </Suspense>
       </body>
     </html>
   );

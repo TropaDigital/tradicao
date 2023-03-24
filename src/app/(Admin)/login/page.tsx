@@ -5,11 +5,6 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import * as S from './styles';
 
-// import bgLoginAcai from '../../../../assets/images/bgLoginAcai.png';
-// import bgLoginMandioca from '../../../../assets/images/bgLoginMandioca.png';
-// import bgLoginChocolate from '../../../../assets/images/bgLoginChocolate.png';
-// import bgLoginPeixe from '../../../../assets/images/bgLoginPeixe.png';
-
 import carBanner from '../../../../public/images/car_banner.jpg';
 
 import { DefaultLogo } from '@/assets/icons';
@@ -18,9 +13,8 @@ import Button from '@/components/UI/Button';
 import { toast } from 'react-toastify';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
-// import useRouter from 'next/navigation';
-
-// import CookiesClass from '../../../../utils/cookies';
+import cookieClass from '@/utils/cookieClass';
+import { useRouter } from 'next/navigation';
 
 interface IDTO {
   login: string;
@@ -35,7 +29,7 @@ const PanelLoginComponent = () => {
     password: ''
   });
 
-  // const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     handleBgImage();
@@ -59,16 +53,14 @@ const PanelLoginComponent = () => {
     try {
       if (!DTO.login || !DTO.password)
         throw new Error('Todos os campos são obrigatórios');
-      if (DTO.login != 'amazonia@teste.com')
+      if (DTO.login != 'admin@consorcio.com')
         throw new Error('O login está incorreto');
-      if (DTO.password !== 'Mud@r123')
+      if (DTO.password !== 'consorcio123')
         throw new Error('A senha está incorreta');
 
-      // let cookie = await CookiesClass.setCookies();
+      cookieClass.setCookie('AuthorizedAdminConsorcio', 'kYsZVB2spAMNpL');
 
-      // router.push('/painel/produtos');
-
-      console.log('Acerto');
+      router.push('/painel');
     } catch (error: any) {
       toast.error(error.message);
     }
