@@ -25,7 +25,10 @@ export const ContainerTop = styled.div`
   }
 
   @media (max-width: 330px) {
-    height: 420px;
+    height: 800px;
+    .margin {
+      padding-top: 440px;
+    }
   }
 
 `;
