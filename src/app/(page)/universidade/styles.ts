@@ -17,11 +17,18 @@ export const ContainerTop = styled.div`
   }
 
   @media (max-width: 500px) {
-    height: 380px;
+    height: 720px;
+
+    .margin {
+      padding-top: 420px;
+    }
   }
 
   @media (max-width: 330px) {
-    height: 420px;
+    height: 800px;
+    .margin {
+      padding-top: 440px;
+    }
   }
 
 `;
@@ -55,6 +62,10 @@ export const ContainerMid = styled.div`
   background: var(--degrade-secondary);
 
   padding-top: 40px;
+
+  @media (max-width: 500px) {
+    margin-top: 80px;
+  }
 `;
 
 export const CoursesContainer = styled.div`
@@ -87,41 +98,3 @@ export const CoursesDescription = styled.div`
 export const ContainerBottom = styled.div`
   /* background-color: lightblue; */
 `;
-
-export const LoginUniversity = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  width: fit-content;
-  height: fit-content;
-  background-color: var(--primary);
-  background: var(--degrade-primary);
-  border-radius: 10px;
-
-  padding: 48px;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  .input {
-    width: 360px;
-
-    .label {
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    input {
-      width: 100%;
-    }
-  }
-`
-
-export const LoginTitle = styled.div`
-  color: var(--white);
-  font-size: var(--text-headline-sm);
-  font-weight: var(--weight-bold);
-`

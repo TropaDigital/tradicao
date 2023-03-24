@@ -23,7 +23,7 @@ export const CardWrapper = styled.div<ICard>`
 
     padding: ${props => props.padding? `${props.padding}px` : '20px'};
 
-    @media (max-width: 330px) {
+    @media (max-width: 500px) {
         max-width: 280px;
     }
 `

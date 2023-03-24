@@ -1,7 +1,5 @@
 'use client';
 
-import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
-
 // Styles
 import * as S from './styles';
 
@@ -9,11 +7,16 @@ import * as S from './styles';
 import UniversityBg from '../../../../public/images/University_bg.png'
 
 // Components
+import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainerFiltered';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import SearchCourses from '@/components/pages/Universidade/SearchCourses';
+import UniversityLogin from '@/components/pages/Universidade/UniversityLogin';
+
 
 export default function University() {
+
+
     return (
         <>
             <S.ContainerTop>
@@ -29,24 +32,7 @@ export default function University() {
                             title="A Universidade"                            
                         />  
 
-                        <S.LoginUniversity>
-                            <S.LoginTitle>Área do Estudante</S.LoginTitle>                            
-                            
-                            <div className="input">
-                                <div className="label">Usuário</div>
-                                <input type="text" />
-                            </div>
-
-                            <div className="input">
-                                <div className="label">Senha</div>
-                                <input type="password" />
-                            </div>
-
-                            <div className="checkbox">
-                                <input type="checkbox" name="Conectado" id="1" />
-                            </div>
-                            
-                        </S.LoginUniversity>
+                        <UniversityLogin />
                     </div>
 
                     <S.UniversityInfo>
