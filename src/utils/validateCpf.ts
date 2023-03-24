@@ -3,7 +3,19 @@ export const validateCpf = (cpf: string) => {
   const allDigits = formattedCpf.split('');
 
   const sum = allDigits?.reduce((partialSum, a) => partialSum + parseInt(a), 0);
-  const digito1 = Math.floor(sum / 10);
-  const digito2 = sum % 10;
-  return digito1 === digito2;
+  if (sum > 88 || sum < 10) return false;
+
+  if (!verifyTwoDigits(sum)) {
+    if (!verifyTwoDigits(sum - 1)) return false;
+    if (!verifyTwoDigits(sum + 1)) return false;
+  }
+
+  return true;
+};
+
+const verifyTwoDigits = (number: number) => {
+  const firstDigit = Math.floor(number / 10);
+  const secondDigit = number % 10;
+
+  return firstDigit === secondDigit;
 };

@@ -30,7 +30,7 @@ const DemonstracoesPage = () => {
           <ul className="demonstracao-container">
             {allDemonstrations?.map((demo) => {
               return (
-                <li>
+                <li className="button-wrapper">
                   <Button
                     radius="rounded"
                     degrade
@@ -40,6 +40,7 @@ const DemonstracoesPage = () => {
                         demo?.titulo
                       )
                     }
+                    className="demonstracao-button"
                   >
                     {demo?.titulo}
                   </Button>

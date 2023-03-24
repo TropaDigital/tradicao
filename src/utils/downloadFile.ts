@@ -1,7 +1,7 @@
-export function downloadFileFromExternalLink(
+export const downloadFileFromExternalLink = (
   externalLinkUrl: string,
   fileName: string
-) {
+) => {
   fetch(externalLinkUrl)
     .then((response) => response.blob())
     .then((blob) => {
@@ -13,4 +13,4 @@ export function downloadFileFromExternalLink(
       URL.revokeObjectURL(url);
     })
     .catch((error) => console.error(error));
-}
+};
