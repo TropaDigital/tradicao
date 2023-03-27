@@ -29,7 +29,7 @@ export const RightWrapper = styled.div`
     z-index: 0;
   }
   .bgImageWrapper {
-    width: 600px;
+    width: 400px;
     height: 850px;
     margin-right: 52px;
     z-index: 2;

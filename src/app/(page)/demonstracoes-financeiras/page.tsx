@@ -1,6 +1,5 @@
 'use client';
 
-import HeroSkew from '@/components/pages/Home/HeroSkew';
 import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';

@@ -53,6 +53,15 @@ export const ContainerInput = styled.div<ContainerProps>`
   word-wrap: break-word;
   border-radius: 0.375rem;
 
+  .toggleIcon {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+  }
+
   ${(props) =>
     props.isErrored &&
     css`

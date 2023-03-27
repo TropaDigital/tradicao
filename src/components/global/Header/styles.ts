@@ -49,7 +49,7 @@ export const HeaderContainer = styled.header<Props>`
     padding: 21px;
   }
 
-  @media (max-width: 1340px) {
+  @media (max-width: 1360px) {
     .logo svg {
       width: 200px;
     }
@@ -163,7 +163,7 @@ export const MenuHamburgerContainer = styled.div<Props>`
   display: none;
   cursor: pointer;
   position: relative;
-  @media (max-width: 1340px) {
+  @media (max-width: 1360px) {
     display: block;
   }
 
@@ -237,7 +237,7 @@ export const MobileMenuModal = styled.div<Props>`
     align-items: center;
   }
 
-  @media (min-width: 1340px) {
+  @media (min-width: 1360px) {
     display: none;
   }
   @media (max-width: 425px) {
