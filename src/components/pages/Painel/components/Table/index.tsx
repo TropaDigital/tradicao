@@ -82,7 +82,7 @@ export default function Table({ title, search, header }: ITableProps) {
           >
             <FormProduct
               modalOpen="editar"
-              // actualItem={actualItem}
+              actualItem={actualItem}
               onSubmit={() => {
                 setModalOpen('');
               }}

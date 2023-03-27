@@ -6,7 +6,8 @@ import CardCarousel from '@/components/shared/CardCarousel';
 import Person from '/public/images/imagePerson.jpg';
 
 // Libraries
-import Slider from "react-slick";
+import Slider from 'react-slick';
+import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 
 export default function Contemplated() {
   const SlideSettings = {
@@ -26,7 +27,7 @@ export default function Contemplated() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,          
+          infinite: true
         }
       },
       {
@@ -35,55 +36,30 @@ export default function Contemplated() {
           slidesToShow: 1,
           slidesToScroll: 1,
           speed: 4500,
-          autoplaySpeed: 6000,
+          autoplaySpeed: 6000
         }
       }
     ]
   };
 
+  const { allContemplados } = useGetAllContemplados();
+
   return (
-    <GreenCarousel
-        title='Contemplados'
-        height='350'
-        marginBottom='110'
-      >   
-        <Slider {...SlideSettings}>
-        
-          <CardCarousel 
-            width='360'
-            heigth='300'
-            padding='20'
-            image={Person}
+    <GreenCarousel title="Contemplados" height="350" marginBottom="110">
+      <Slider {...SlideSettings}>
+        {allContemplados?.map((contemplado) => (
+          <CardCarousel
+            width="360"
+            heigth="300"
+            padding="20"
+            image={contemplado?.contempladoImagens[0].url_foto}
             imageType={false}
             bigText={false}
-            title='Título genérico'
-            description="Aqui um exemplo de um card que contem imagem e texto"
-          />  
-        
-          <CardCarousel 
-            width='360'
-            heigth='300'
-            padding='20'
-            image={Person}
-            imageType={false}
-            bigText={false}
-            title='Título genérico'
-            description="Aqui um exemplo de um card que contem imagem e texto"
-          />     
-      
-          <CardCarousel 
-            width='360'
-            heigth='300'
-            padding='20'
-            image={Person}
-            imageType={false}
-            bigText={false}
-            title='Título genérico'
-            description="Aqui um exemplo de um card que contem imagem e texto"
-          />  
-          
-        </Slider>
-        
-      </GreenCarousel>
-  )
+            title={contemplado?.nome}
+            description={contemplado?.depoimento}
+          />
+        ))}
+      </Slider>
+    </GreenCarousel>
+  );
 }

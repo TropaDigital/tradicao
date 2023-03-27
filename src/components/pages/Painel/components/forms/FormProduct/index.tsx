@@ -96,14 +96,13 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               <InputImage
                 onPostImage={(image: string) => {
-                  // let newArrayImagesProduct: Array<string> = DTO?.imagem;
-                  // newArrayImagesProduct?.push(image);
-                  // handleOnChangeDTO('imagem', newArrayImagesProduct);
-                  // setImage(newArrayImagesProduct);
-                  // {
-                  //   setFieldValue('images', newArrayImagesProduct);
-                  // }
-                  console.log(image);
+                  let newArrayImagesProduct: Array<string> = DTO?.imagem;
+                  newArrayImagesProduct?.push(image);
+                  handleOnChangeDTO('imagem', newArrayImagesProduct);
+                  setImage(newArrayImagesProduct);
+                  {
+                    setFieldValue('images', newArrayImagesProduct);
+                  }
                 }}
                 error={touched?.images ? errors?.images : null}
               />
