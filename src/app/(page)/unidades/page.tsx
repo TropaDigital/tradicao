@@ -203,17 +203,12 @@ const UnidadesPage = () => {
               {isLoadingUnits && (
                 <>
                   {unitsSkeletons.map(() => (
-                    <Skeleton
-                      variant="rounded"
-                      height={207}
-                      width={270}
-                      animation="wave"
-                    />
+                    <Skeleton variant="rounded" height={207} animation="wave" />
                   ))}
                 </>
               )}
               {units?.map((unit) => (
-                <S.UnityCard key={unit.id} onClick={() => getUnitById(unit.id)}>
+                <S.UnityCard key={unit.id}>
                   <div className="location-bg-icon">
                     <LocationIcon />
                   </div>
@@ -229,49 +224,6 @@ const UnidadesPage = () => {
                   )}
                 </S.UnityCard>
               ))}
-
-              {isMapModalOpen && actualUnit && (
-                <S.MapModal openState={isMapModalOpen}>
-                  <div ref={wrapperRef}>
-                    <div
-                      onClick={() => setIsMapModalOpen(false)}
-                      style={{ cursor: 'pointer', display: 'inline-block' }}
-                    >
-                      <CloseIcon />
-                    </div>
-                    <div className="map-container">
-                      <iframe
-                        src={`https://maps.google.com/maps?q=${actualUnit[0].latitude}%20${actualUnit[0].longitude}&t=&z=18&ie=UTF8&iwloc=&output=embed`}
-                        width="600"
-                        height="450"
-                        allowFullScreen={true}
-                        style={{
-                          border: 'none',
-                          borderRadius: '10px',
-                          margin: '15px 0'
-                        }}
-                      ></iframe>
-                    </div>
-                    <div>
-                      <div className="unit-header">
-                        <h2 className="unit-title">{actualUnit[0].titulo}</h2>
-                        {actualUnit[0].telefone && (
-                          <p className="unit-contact">
-                            Contato: {actualUnit[0].telefone}
-                          </p>
-                        )}
-                      </div>
-                      <p className="unit-address">
-                        {actualUnit[0].endereco} - {actualUnit[0].bairro}{' '}
-                        {actualUnit[0].cidade} - {actualUnit[0].uf}
-                      </p>
-                      {actualUnit[0].cep && (
-                        <p className="unit-address">CEP: {actualUnit[0].cep}</p>
-                      )}
-                    </div>
-                  </div>
-                </S.MapModal>
-              )}
             </>
           </S.UnitsContainer>
         </S.Container>

@@ -70,6 +70,8 @@ export const Container = styled.div<ISideBarProps>`
       }
 
       .noticeUser {
+        color: var(--white);
+
         .tinyScreen {
           display: none;
         }

@@ -5,8 +5,6 @@ import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
-import { useCreateRelatorio } from '@/services/relatorios/POST/useCreateRelatorio';
-import { useGetAllRepresentantes } from '@/services/representante/GET/useGetAllRepresentantes';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import React from 'react';
 import GraphicsBg from '../../../../public/images/demonstracoes_bg.png';
@@ -14,9 +12,6 @@ import * as S from './styles';
 
 const RelatoriosPage = () => {
   const { allRelatories } = useGetlAllRelatorios();
-  const { allRepresentantes } = useGetAllRepresentantes();
-
-  console.log(allRepresentantes);
 
   return (
     <>

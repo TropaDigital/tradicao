@@ -9,6 +9,7 @@ import { IoMdHelpCircle } from 'react-icons/io';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, ContainerInput, Error, Alert } from './styles';
+import { EyeIcon, EyeIconClose } from '@/assets/icons';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -33,6 +34,7 @@ export function InputPassword({
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -75,8 +77,13 @@ export function InputPassword({
           id={label}
           role="presentation"
           autoComplete="off"
+          type={isVisible ? 'text' : 'password'}
           {...rest}
         />
+
+        <div className="toggleIcon" onClick={() => setIsVisible(!isVisible)}>
+          {isVisible ? <EyeIcon /> : <EyeIconClose />}
+        </div>
 
         {error && (
           <Error title={error}>

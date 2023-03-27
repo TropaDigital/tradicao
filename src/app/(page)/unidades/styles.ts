@@ -99,7 +99,6 @@ export const UnityCard = styled.div`
   :hover {
     transform: scale(1.05);
     box-shadow: 0px 10px 30px -14px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
   }
 
   .location-bg-icon {
@@ -154,6 +153,9 @@ export const MapModal = styled(ModalDefault)`
     @media (max-width: 455px) {
       width: calc(0.5 * 600px);
       height: calc(0.6 * 450px);
+    }
+    @media (max-height: 800px) {
+      height: calc(0.6 * 600px);
     }
   }
 

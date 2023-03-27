@@ -180,7 +180,12 @@ const Header = () => {
             );
           })}
           <li>
-            <S.BoletoButton href="/">2ª via de boleto</S.BoletoButton>
+            <S.BoletoButton
+              href="https://consorciotradicao.enviodeboleto.com.br/Principal"
+              target={'_blank'}
+            >
+              2ª via de boleto
+            </S.BoletoButton>
           </li>
         </ul>
       </S.InfoContainer>
