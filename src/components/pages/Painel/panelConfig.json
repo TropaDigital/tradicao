@@ -2,15 +2,15 @@
   "pages": [
     {
       "name": "Contemplados",
-      "path": "/contemplados"
+      "path": "contemplados"
     },
     {
       "name": "Demontrações",
-      "path": "/demonstracoes-financeiras"
+      "path": "demonstracoes-financeiras"
     },
     {
       "name": "Unidades",
-      "path": "/unidades"
+      "path": "unidades"
     }
   ],
   "colors": {

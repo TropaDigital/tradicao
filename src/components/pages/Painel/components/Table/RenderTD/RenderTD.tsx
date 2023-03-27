@@ -1,19 +1,13 @@
+import { CloseIcon, MenuIcon, PencilIcon } from '@/assets/icons';
+import moment from 'moment';
 import Image from 'next/image';
 import { useState } from 'react';
 import MiniModal from '../../modal/MiniModal';
-import moment from 'moment';
 
 import * as S from './styles';
 import { IRenderTD } from './types';
-// import { CloseIcon, MenuIcon, PencilIcon } from "../../../../Svg";
-import { Skeleton } from '@mui/material';
 
-export default function RenderTD({
-  head,
-  item,
-  isLoading,
-  onClickOptions
-}: IRenderTD) {
+export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   const [miniModal, setMiniModal] = useState<boolean>(false);
 
   const labelKey:
@@ -26,12 +20,8 @@ export default function RenderTD({
 
   return (
     <S.Container id="td">
-      {head.type === 'date' && isLoading ? (
-        <Skeleton width={80} />
-      ) : (
-        head.type === 'date' && (
-          <span>{moment(item.criado).format('DD/MM/YYYY')}</span>
-        )
+      {head.type === 'date' && (
+        <span>{moment(item.criado).format('DD/MM/YYYY')}</span>
       )}
       {head.type === 'options' && (
         <button
@@ -40,7 +30,7 @@ export default function RenderTD({
             setMiniModal(!miniModal);
           }}
         >
-          {/* <MenuIcon /> */}
+          <MenuIcon />
           {miniModal && (
             <MiniModal
               onClick={(modalType) => {
@@ -52,62 +42,33 @@ export default function RenderTD({
               options={[
                 {
                   label: 'Editar',
-                  value: 'editar'
+                  value: 'editar',
+                  icon: <PencilIcon />
                 },
                 {
-                  label: 'Visualizar',
-                  value: 'visualizar'
-                },
-                {
-                  label: 'Excluir',
-                  value: 'excluir'
+                  label: 'Deletar',
+                  value: 'deletar',
+                  icon: <CloseIcon />
                 }
               ]}
             />
           )}
         </button>
       )}
-      {head.type === 'status' && isLoading ? (
-        <Skeleton width={35} />
-      ) : (
-        head.type === 'status' && (
-          <span className={item[head.key] as string}>
-            {item.status.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
-          </span>
-        )
+      {head.type === 'status' && (
+        <span className={item.status.toLowerCase() as string}>
+          {item.status.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
+        </span>
       )}
-
-      {head.type === 'select_product' && <span>{item[labelKey]}</span>}
-
-      {head.type === 'string' && isLoading ? (
-        <Skeleton width={120} />
-      ) : (
-        head.type === 'string' && <span>{item[labelKey] as string}</span>
-      )}
-
-      {head.type === 'number' && isLoading ? (
-        <Skeleton width={80} />
-      ) : (
-        head.type === 'number' && <span>{item[labelKey] as number}</span>
-      )}
-
-      {head.type === 'image' && isLoading ? (
-        <Skeleton width={60} height={60} variant="rounded" />
-      ) : (
-        head.type === 'image' && (
-          <div style={{ width: '60px', height: '60px' }}>
-            <Image
-              alt={head?.label}
-              width={60}
-              height={60}
-              src={
-                item?.produtoImagens
-                  ? item?.produtoImagens[0]
-                  : 'https://via.placeholder.com/3000'
-              }
-            />
-          </div>
-        )
+      {head.type === 'string' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'number' && <span>{item[labelKey] as number}</span>}
+      {head.type === 'image' && (
+        <Image
+          alt={head?.label}
+          width={90}
+          height={60}
+          src={item?.contempladoImagens && item?.contempladoImagens[0].url_foto}
+        />
       )}
     </S.Container>
   );

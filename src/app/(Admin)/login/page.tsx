@@ -60,7 +60,7 @@ const PanelLoginComponent = () => {
 
       cookieClass.setCookie('AuthorizedAdminConsorcio', 'kYsZVB2spAMNpL');
 
-      router.push('/painel');
+      router.push('/painel/contemplados');
     } catch (error: any) {
       toast.error(error.message);
     }

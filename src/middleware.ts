@@ -15,7 +15,7 @@ export function middleware(req: NextRequest) {
   if (req?.nextUrl?.pathname?.includes('/login')) {
     if (!hasAdminCookie) return NextResponse.next();
 
-    url.pathname = '/painel';
+    url.pathname = '/painel/contemplados';
     return NextResponse.redirect(url);
   }
 

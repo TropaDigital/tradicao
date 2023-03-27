@@ -4,6 +4,7 @@
 // import { useDeleteRecipe } from '@/src/services/receitas/DELETE/useDeleteRecipes';
 // import { IGetRecipes } from '@/src/services/receitas/GET/types';
 // import { usePathname } from 'next/navigation';
+import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import router from 'next/router';
 import { useState, useEffect } from 'react';
 // import { colors } from "../../../../assets/styles/mixin";
@@ -18,23 +19,22 @@ import { ITableProps } from './types';
 // import { useQueryClient } from 'react-query';
 
 export default function Table({ title, search, header }: ITableProps) {
-  // const [dataInternal, setDataInternal] = useState<any>(data);
+  const [dataInternal, setDataInternal] = useState<any>();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { allContemplados, isLoadingAllDemonsrations } =
+    useGetAllContemplados();
 
   useEffect(() => {
-    // Loading na chamada de API
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-  }, []);
+    console.log(allContemplados);
+  }, [allContemplados]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setDataInternal([...data]);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (allContemplados) {
+      setDataInternal([...allContemplados]);
+    }
+  }, [allContemplados]);
 
   useEffect(() => {
     if (modalOpen === 'visualizar') {
@@ -142,7 +142,7 @@ export default function Table({ title, search, header }: ITableProps) {
             </tr>
           </thead>
           <tbody>
-            {/* {dataInternal?.map((row: any, key: any) => (
+            {dataInternal?.map((row: any, key: any) => (
               <tr key={key}>
                 {header?.map((head: string | any, keyHead) => (
                   <>
@@ -150,7 +150,7 @@ export default function Table({ title, search, header }: ITableProps) {
                       key={keyHead}
                       head={head}
                       item={row}
-                      isLoading={isLoading}
+                      isLoading={isLoadingAllDemonsrations}
                       onClickOptions={(modalType, product) => {
                         handleModal(modalType, product);
                         setActualItem(product);
@@ -159,7 +159,7 @@ export default function Table({ title, search, header }: ITableProps) {
                   </>
                 ))}
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </Container>

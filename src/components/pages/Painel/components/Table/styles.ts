@@ -1,9 +1,10 @@
-import styled from 'styled-components'
-// import { colors, fonts } from "../../../../assets/styles/mixin";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   box-shadow: 0px 4px 12px rgba(25, 73, 62, 0.1);
-  overflow: auto;
+  @media (max-width: 900px) {
+    overflow-x: scroll;
+  }
   .headerTable {
     display: flex;
     flex-wrap: wrap;
@@ -11,17 +12,17 @@ export const Container = styled.div`
     align-items: center;
     gap: 30px;
     padding: 28px 24px;
-    background-color: var(--light);
+    background-color: var(--white);
     @media (max-width: 835px) {
       position: absolute;
       z-index: 1;
     }
     .titleHeaderTable {
       font-style: normal;
-      font-weight: 700;
+      font-weight: 400;
       font-size: 24px;
       line-height: 32px;
-      color: var(--dark);
+      color: var(--primary);
     }
     .buttonsWrapper {
       display: flex;
@@ -50,31 +51,31 @@ export const Container = styled.div`
           font-weight: 400;
           font-size: 12px;
           line-height: 16px;
-          color: var(--gray-700)};
+          color: #495057;
           padding: 12px 24px;
-          font-weight: 500;
-          &:nth-child(2) svg {
-            align-items: center;
-          }
         }
       }
     }
     tbody {
-      overflow-x: auto;
+      overflow-x: scroll;
       tr {
         td {
           font-style: normal;
           font-weight: 500;
           font-size: 14px;
           line-height: 20px;
-          color: var(--dark);
-          border-bottom: 1px solid var(--gray-200);
+          padding: 24px 0px;
+          color: var(--gray-600);
+          border-bottom: 1px solid var(--gray-300);
           padding: 24px;
+          img {
+            object-fit: cover;
+          }
         }
       }
     }
   }
-`
+`;
 
 export const ModalDeleteProduct = styled.div`
   width: 100%;
@@ -83,16 +84,14 @@ export const ModalDeleteProduct = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   .modalTitleWarning {
     margin-top: 20px;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 28px;
-    color: var(--text5);
+    color: var(--gray-500);
   }
-
   .modalDescription {
     margin-top: 8px;
     font-style: normal;
@@ -100,9 +99,8 @@ export const ModalDeleteProduct = styled.div`
     font-size: 14px;
     line-height: 20px;
     text-align: center;
-    color: var(--text6);
+    color: var(--gray-500);
   }
-
   .buttonWrapper {
     display: flex;
     flex-direction: row;
@@ -116,13 +114,11 @@ export const ModalDeleteProduct = styled.div`
       font-size: 16px;
       line-height: 24px;
     }
-
     .transparentButton {
-      color: var(--text5);
+      color: var(--gray-600);
     }
-
     .warningButton {
-      color: var(--bg);
+      color: var(--white);
     }
   }
-`
+`;
