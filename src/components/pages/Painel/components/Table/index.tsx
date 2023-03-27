@@ -1,17 +1,12 @@
 'use client';
 
-// import { AlertIcon } from '@/src/assets/icons';
-// import { useDeleteProduct } from '@/src/services/products/DELETE/useDeleteProduct';
-// import { IGetProduct } from '@/src/services/products/GET/types';
-// import { useDeleteRecipe } from '@/src/services/receitas/DELETE/useDeleteRecipes';
-// import { IGetRecipes } from '@/src/services/receitas/GET/types';
-// import { usePathname } from 'next/navigation';
+import { AlertIcon } from '@/assets/icons';
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-// import { colors } from "../../../../assets/styles/mixin";
-// import { AlertIcon } from '../../../Svg';
 import ButtonDefault from '../ButtonDefault';
 import FormProduct from '../forms/FormProduct';
 import Modal from '../modal/ModalDefault';
@@ -19,15 +14,17 @@ import Pagination from '../Pagination';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
-// import { useQueryClient } from 'react-query';
 
 export default function Table({ title, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
 
+  const { deleteFile } = useDeleteFile();
+
   const { allContemplados, isLoadingAllDemonsrations } =
     useGetAllContemplados();
+  const { deleteContemplado } = useDeleteContemplado();
 
   const { allDemonstrations } = useGetAllDemonstrations();
 
@@ -37,38 +34,46 @@ export default function Table({ title, search, header }: ITableProps) {
   };
 
   const pathname = usePathname();
-  const actualPage: any = pathname?.split('/')?.pop();
+  const actualPage: string | undefined = pathname?.split('/')?.pop();
 
   useEffect(() => {
-    if (tablesByPage[actualPage]) {
-      setDataInternal([...tablesByPage[actualPage]]);
-    }
-  }, [allContemplados]);
+    if (actualPage)
+      if (tablesByPage[actualPage]) {
+        setDataInternal([...tablesByPage[actualPage]]);
+      }
+  }, [allContemplados, allDemonstrations]);
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
   }
 
-  useEffect(() => {
-    const handleSelectAll = () => {
-      const mainCheckbox: any = document.querySelector('#selectAll');
-
-      mainCheckbox?.addEventListener('click', () => {
-        const allCheckboxes: any = document?.querySelectorAll('#select');
-        const isCheckedAll: boolean = mainCheckbox.checked;
-
-        allCheckboxes.forEach((checkbox: any) => {
-          checkbox.checked = isCheckedAll;
-        });
-      });
+  const getItemType = (actualItem: any) => {
+    const actualItemKeys = Object.keys(actualItem);
+    const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
+    console.log(getKey[0].split('_').pop());
+    return {
+      itemType: getKey[0].split('_').pop(),
+      itemID: actualItem[getKey[0]]
     };
-    handleSelectAll();
-  }, []);
+  };
+
+  const removeItem = (itemToDelete: {
+    itemType: string | undefined;
+    itemID: number;
+  }) => {
+    if (itemToDelete?.itemType?.includes('contemplado')) {
+      deleteContemplado(itemToDelete?.itemID);
+      deleteFile({
+        endpoint: 'delete-contemplado-foto',
+        id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
+      });
+    }
+  };
 
   return (
     <>
       <Container>
-        {/* {modalOpen === 'editar' && (
+        {modalOpen === 'editar' && (
           <Modal
             onClose={() => {
               setModalOpen(null);
@@ -77,13 +82,13 @@ export default function Table({ title, search, header }: ITableProps) {
           >
             <FormProduct
               modalOpen="editar"
-              actualItem={actualItem}
+              // actualItem={actualItem}
               onSubmit={() => {
                 setModalOpen('');
               }}
             />
           </Modal>
-        )} */}
+        )}
 
         {modalOpen === 'excluir' && (
           <Modal
@@ -93,7 +98,7 @@ export default function Table({ title, search, header }: ITableProps) {
             setData={() => {}}
           >
             <ModalDeleteProduct>
-              {/* <AlertIcon /> */}
+              <AlertIcon />
               <div className="modalTitleWarning">Excluir item</div>
               <div className="modalDescription">
                 Tem certeza de que deseja excluir esse item ? Essa ação não
@@ -111,16 +116,9 @@ export default function Table({ title, search, header }: ITableProps) {
                 <ButtonDefault
                   color="darkButton"
                   onClick={() => {
-                    let itemType: any = actualItem?.id_receita
-                      ? 'recipe'
-                      : 'product';
-
-                    // removeProductOrRecipe(
-                    //   actualItem?.id_receita
-                    //     ? actualItem?.id_receita
-                    //     : actualItem?.id_produto,
-                    //   itemType
-                    // );
+                    const itemToDelete = getItemType(actualItem);
+                    removeItem(itemToDelete);
+                    setModalOpen('');
                   }}
                 >
                   <p className="buttonText warningButton">Excluir</p>

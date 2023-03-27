@@ -90,7 +90,7 @@ export const ModalDeleteProduct = styled.div`
     font-weight: 600;
     font-size: 18px;
     line-height: 28px;
-    color: var(--gray-500);
+    color: var(--black);
   }
   .modalDescription {
     margin-top: 8px;
@@ -99,7 +99,7 @@ export const ModalDeleteProduct = styled.div`
     font-size: 14px;
     line-height: 20px;
     text-align: center;
-    color: var(--gray-500);
+    color: var(--black);
   }
   .buttonWrapper {
     display: flex;
@@ -115,7 +115,7 @@ export const ModalDeleteProduct = styled.div`
       line-height: 24px;
     }
     .transparentButton {
-      color: var(--gray-600);
+      color: var(--black);
     }
     .warningButton {
       color: var(--white);

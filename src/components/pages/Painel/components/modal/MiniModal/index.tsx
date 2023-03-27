@@ -28,7 +28,7 @@ export default function MiniModal({
     <S.Container ref={wrapperRef}>
       {options?.map((row: OptionsProps, key: number) => (
         <button
-          className={`${row?.value === 'deletar' ? 'redText' : 'normalText'}`}
+          className={`${row?.value === 'excluir' ? 'redText' : 'normalText'}`}
           onClick={() => {
             onClick(row?.value);
           }}

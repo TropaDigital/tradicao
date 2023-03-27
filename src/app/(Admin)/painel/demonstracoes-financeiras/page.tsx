@@ -1,5 +1,6 @@
 'use client';
 
+import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import DefaultInput from '@/components/UI/DefaultInput';
 import React from 'react';
@@ -35,9 +36,10 @@ const DemonstracoesPage = () => {
 
   return (
     <>
+      <HeaderPage title="Demonstrações Financeiras" />
       <Table
         header={headerTable}
-        title={'Lista de Demonstrações Financeiras'}
+        title={'Lista de Demonstrações'}
         search={<DefaultInput />}
       />
     </>

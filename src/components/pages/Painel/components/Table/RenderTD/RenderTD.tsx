@@ -46,8 +46,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
                   icon: <PencilIcon />
                 },
                 {
-                  label: 'Deletar',
-                  value: 'deletar',
+                  label: 'Excluir',
+                  value: 'excluir',
                   icon: <CloseIcon />
                 }
               ]}

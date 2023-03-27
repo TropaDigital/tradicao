@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { useMutation } from 'react-query';
-import CurriculumClass from '../index';
+import FileClass from '../index';
 
-export const usePostCurriculum = () => {
+export const usePostFile = () => {
   const { mutateAsync } = useMutation(
     async (curriculum: any) => {
-      let response: any = await CurriculumClass.postCurriculum(curriculum);
+      let response: any = await FileClass.postFile(curriculum);
       console.log(response);
       return response.data?.arquivo;
     },
@@ -14,5 +14,5 @@ export const usePostCurriculum = () => {
     }
   );
 
-  return { postCurriculum: mutateAsync };
+  return { postFile: mutateAsync };
 };

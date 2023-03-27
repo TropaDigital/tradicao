@@ -1623,6 +1623,94 @@ export const ArrowHead: React.FC = ({ color = '#323232' }: any) => {
   );
 };
 
+export const HouseIcon = ({ color = '#069CD1', size = 18 }: any) => (
+  <svg
+    width="17"
+    height="16"
+    viewBox="0 0 17 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M6.83341 13.6666V10.6666C6.83341 9.74596 7.57941 8.99996 8.50008 8.99996V8.99996C9.42075 8.99996 10.1667 9.74596 10.1667 10.6666V13.6666H13.8334V7.94263C13.8334 7.5893 13.6927 7.24996 13.4427 6.99996L8.97141 2.52863C8.71075 2.26796 8.28875 2.26796 8.02875 2.52863L3.55741 6.99996C3.30741 7.24996 3.16675 7.5893 3.16675 7.94263V13.6666H6.83341Z"
+      stroke="#ADBDBA"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const AlertIcon = ({ color = '#069CD1', size = 18 }: any) => (
+  <svg
+    width="56"
+    height="56"
+    viewBox="0 0 56 56"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="4" y="4" width="48" height="48" rx="24" fill="#FEE4E2" />
+    <path
+      d="M28 24V28M28 32H28.01M38 28C38 33.5228 33.5228 38 28 38C22.4772 38 18 33.5228 18 28C18 22.4772 22.4772 18 28 18C33.5228 18 38 22.4772 38 28Z"
+      stroke="#D92D20"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <rect
+      x="4"
+      y="4"
+      width="48"
+      height="48"
+      rx="24"
+      stroke="#FEF3F2"
+      stroke-width="8"
+    />
+  </svg>
+);
+
+export const TrashIcon = ({ color = 'var(--white)', size = 24 }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill={color}
+      d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37l3.03 1.75M6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2Z"
+    />
+  </svg>
+);
+
+export const CameraIcon = ({ color = '#069CD1', size = 18 }: any) => (
+  <svg
+    width="33"
+    height="32"
+    viewBox="0 0 33 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20.3389 13.557C22.4149 15.633 22.4149 18.999 20.3389 21.075C18.2629 23.151 14.897 23.151 12.8209 21.075C10.7449 18.999 10.7449 15.633 12.8209 13.557C14.897 11.481 18.2629 11.481 20.3389 13.557"
+      stroke="#869693"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M28.5 12V24C28.5 25.4734 27.3067 26.6667 25.8333 26.6667H7.16667C5.69333 26.6667 4.5 25.4734 4.5 24V12C4.5 10.5267 5.69333 9.33337 7.16667 9.33337H9.83333L11.7827 5.99471C12.0213 5.58537 12.46 5.33337 12.9347 5.33337H20.0067C20.4747 5.33337 20.908 5.57871 21.1493 5.97871L23.1667 9.33337H25.8333C27.3067 9.33337 28.5 10.5267 28.5 12Z"
+      stroke="#869693"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
 export const ExampleIcon = ({ color = '#000000', size = 18 }) => {
   return <svg />;
 };

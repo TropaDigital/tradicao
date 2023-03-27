@@ -17,13 +17,3 @@ export interface IActualItemProduct {
   titulo: string;
   valor: string;
 }
-
-export interface IInitialValuesProduct {
-  images: string[];
-  titulo: string;
-  preco: string;
-  sku: string;
-  estoque: string;
-  status: string;
-  slug: string;
-}

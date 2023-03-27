@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import ContempladosClass from '../index';
 
-export const useDeleteProduct = () => {
+export const useDeleteContemplado = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
@@ -29,7 +29,7 @@ export const useDeleteProduct = () => {
 
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('allContemplados');
+        queryClient.invalidateQueries('AllContemplados');
       }
     }
   );
