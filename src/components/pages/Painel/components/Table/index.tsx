@@ -1,3 +1,5 @@
+'use client';
+
 // import { AlertIcon } from '@/src/assets/icons';
 // import { useDeleteProduct } from '@/src/services/products/DELETE/useDeleteProduct';
 // import { IGetProduct } from '@/src/services/products/GET/types';
@@ -5,7 +7,8 @@
 // import { IGetRecipes } from '@/src/services/receitas/GET/types';
 // import { usePathname } from 'next/navigation';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
-import router from 'next/router';
+import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 // import { colors } from "../../../../assets/styles/mixin";
 // import { AlertIcon } from '../../../Svg';
@@ -26,21 +29,21 @@ export default function Table({ title, search, header }: ITableProps) {
   const { allContemplados, isLoadingAllDemonsrations } =
     useGetAllContemplados();
 
-  useEffect(() => {
-    console.log(allContemplados);
-  }, [allContemplados]);
+  const { allDemonstrations } = useGetAllDemonstrations();
+
+  const tablesByPage: any = {
+    contemplados: allContemplados,
+    'demonstracoes-financeiras': allDemonstrations
+  };
+
+  const pathname = usePathname();
+  const actualPage: any = pathname?.split('/')?.pop();
 
   useEffect(() => {
-    if (allContemplados) {
-      setDataInternal([...allContemplados]);
+    if (tablesByPage[actualPage]) {
+      setDataInternal([...tablesByPage[actualPage]]);
     }
   }, [allContemplados]);
-
-  useEffect(() => {
-    if (modalOpen === 'visualizar') {
-      router.push(`/portfolio/${actualItem.slug}`);
-    }
-  }, [modalOpen]);
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);

@@ -12,6 +12,17 @@ class ContempladosClass {
       console.log(err);
     }
   }
+
+  async deleteContemplado(id: number) {
+    try {
+      const response: AxiosResponse = await API.delete(
+        `delete-contemplado/${id}`
+      );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 export default new ContempladosClass();

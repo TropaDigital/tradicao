@@ -42,4 +42,10 @@ export const Container = styled.td`
       background-color: var(--gray-200);
     }
   }
+  .imageWrapper {
+    overflow: hidden;
+    height: 90px;
+    width: 90px;
+    border-radius: 8px;
+  }
 `;

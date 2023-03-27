@@ -63,12 +63,16 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
       {head.type === 'image' && (
-        <Image
-          alt={head?.label}
-          width={90}
-          height={60}
-          src={item?.contempladoImagens && item?.contempladoImagens[0].url_foto}
-        />
+        <div className="imageWrapper">
+          <Image
+            alt={head?.label}
+            width={90}
+            height={90}
+            src={
+              item?.contempladoImagens && item?.contempladoImagens[0].url_foto
+            }
+          />
+        </div>
       )}
     </S.Container>
   );
