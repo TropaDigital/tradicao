@@ -13,10 +13,10 @@ import Button from '@/components/UI/Button';
 import { toast } from 'react-toastify';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
 import cookieClass from '@/utils/cookieClass';
-import { useRouter } from 'next/navigation';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { Form, Formik } from 'formik';
 import { loginSchema } from './yupSchema';
+import { useRouter } from 'next/navigation';
 
 interface IDTO {
   login: string;
@@ -26,22 +26,12 @@ interface IDTO {
 const PanelLoginComponent = () => {
   const [currentBgImage, setCurrentBgImage] =
     useState<StaticImageData>(carBanner);
-  const [DTO, setDTO] = useState<IDTO>({
-    login: '',
-    password: ''
-  });
 
   const router = useRouter();
 
   useEffect(() => {
     handleBgImage();
   }, []);
-
-  // function handleOnChange(pos: 'login' | 'password', value: string) {
-  //   const newDTO: IDTO = DTO;
-  //   newDTO[pos] = value;
-  //   setDTO({ ...newDTO });
-  // }
 
   function handleBgImage() {
     const options: Array<StaticImageData> = [carBanner];
@@ -51,27 +41,18 @@ const PanelLoginComponent = () => {
     }, 5000);
   }
 
-  // async function checkDTO() {
-  //   try {
-  //     if (!DTO.login || !DTO.password)
-  //       throw new Error('Todos os campos são obrigatórios');
-  //     if (DTO.login != 'admin@consorcio.com')
-  //       throw new Error('O login está incorreto');
-  //     if (DTO.password !== 'consorcio123')
-  //       throw new Error('A senha está incorreta');
+  function checkCredentials(values: any) {
+    const errors: { email?: string; senha?: string } = {};
 
-  //     cookieClass.setCookie('AuthorizedAdminConsorcio', 'kYsZVB2spAMNpL');
+    if (values?.email !== 'admin@consorcio.com') {
+      errors.email = 'E-mail inválido!';
+    }
+    if (values?.senha !== 'consorcio123') {
+      errors.senha = 'Senha inválida!';
+    }
 
-  //     router.push('/painel/contemplados');
-  //   } catch (error: any) {
-  //     toast.error(error.message);
-  //   }
-  // }
-
-  // function handleSubmitAccessForm(e: FormEvent) {
-  //   e.preventDefault();
-  //   checkDTO();
-  // }
+    return errors;
+  }
 
   return (
     <S.Container>
@@ -94,8 +75,15 @@ const PanelLoginComponent = () => {
           senha: ''
         }}
         validationSchema={loginSchema}
+        validate={checkCredentials}
         onSubmit={(values) => {
-          console.log(values);
+          if (values?.email === 'admin@consorcio.com')
+            if (values?.senha === 'consorcio123')
+              cookieClass.setCookie(
+                'AuthorizedAdminConsorcio',
+                'Abzmfoi+65Afdia'
+              );
+          router.push('/painel/contemplados');
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (
@@ -143,16 +131,6 @@ const PanelLoginComponent = () => {
           </S.FormWrapper>
         )}
       </Formik>
-      {/* <S.FormWrapper>
-        <form
-          className="panelAccess"
-          onSubmit={(e: FormEvent) => {
-            handleSubmitAccessForm(e);
-          }}
-        >
-
-        </form>
-      </S.FormWrapper> */}
     </S.Container>
   );
 };
