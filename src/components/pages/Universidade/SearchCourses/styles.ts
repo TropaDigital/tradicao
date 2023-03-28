@@ -16,6 +16,7 @@ export const SearchHeader = styled.div`
     height: 100px;
     background: var(--background-secondary);
     border-radius: 10px;
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.2);
 
     padding: 20px 30px;
 
@@ -87,6 +88,7 @@ export const CourseCard = styled.div`
     border: 1px solid var(--light);
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1);    
 
     @media (max-width: 500px) {
         width: 180px;
