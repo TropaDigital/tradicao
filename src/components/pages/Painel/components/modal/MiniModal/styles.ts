@@ -1,40 +1,29 @@
-import styled from 'styled-components'
-// import { colors, fonts } from "../../../../../assets/styles/mixin";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: absolute;
   bottom: 0;
-  margin-bottom: -90px;
+  margin-bottom: -15px;
   width: 150px;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   z-index: 1;
-  background: var(--light);
+  background-color: var(--white);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
   padding: 8px;
   margin-left: -145px;
   button {
     display: flex;
     gap: 8px;
-    padding: 8px;
     align-items: center;
-    background-color: var(--light);
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
-    &:hover {
-      background-color: var(--gray-200);
-    }
+    background-color: var(--white);
   }
-  .boldText,
   .normalText {
-    color: var(--gray-500);
-    font-weight: 500;
+    color: var(--gray-700);
   }
-  .boldText {
-    font-weight: 700;
-    color: var(--secondary-dark);
+  .redText {
+    color: var(--status-danger);
   }
-`
+`;

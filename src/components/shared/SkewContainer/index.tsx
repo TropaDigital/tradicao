@@ -3,11 +3,11 @@ import React from 'react';
 import { ISkewContainer } from './types';
 import * as S from './styles';
 
-const SkewContainer = ({ imageAlt, imageSrc, size }: ISkewContainer) => {
+const SkewContainer = ({ imageAlt, imageSrc }: ISkewContainer) => {
   return (
     <S.Container>
       <S.SolidBackground />
-      <S.SkewContainer size={size}>
+      <S.SkewContainer>
         <Image
           src={imageSrc}
           alt={imageAlt}

@@ -60,6 +60,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 2;
+    height: 24px;
   }
 
   ${(props) =>

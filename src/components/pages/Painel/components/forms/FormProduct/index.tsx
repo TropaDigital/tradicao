@@ -1,45 +1,49 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
-import Inputdefault from '../../inputs/InputDefault';
-import InputDescription from '../../inputs/InputDescription';
 import InputImage from '../../inputs/InputImage';
-import InputQuantity from '../../inputs/InputQuantity';
 import { SelectDefault } from '../../inputs/SelectDefault';
 import * as S from '../styles';
-import { IActualItemProduct, IInitialValuesProduct } from './types';
 import { Formik, Form } from 'formik';
-// import { TrashIcon } from "../../../../Svg";
-import { productSchema } from './yupSchema';
+import { contempladoSchema } from './yupSchema';
+import { TrashIcon } from '@/assets/icons';
+import DefaultInput from '@/components/UI/DefaultInput';
+import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
+import {
+  IContempladoImages,
+  IGetContemplados
+} from '@/services/contemplados/types';
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
 
 interface IFormProduct {
   modalOpen: string;
-  actualItem?: IActualItemProduct | any;
+  actualItem?: IGetContemplados;
   onSubmit: () => void;
 }
 
 const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
-  const [image, setImage] = useState<string[]>();
+  const [newImages, setNewImages] = useState<string[]>([]);
   const [imagesIdToRemove, setImagesIdToRemove] = useState<string[]>([]);
-  const [price, setPrice] = useState<string>('');
-  const actualItemImages = actualItem?.produtoImagens?.map((objImage: any) => {
-    return objImage?.url_imagem;
-  });
+  const actualItemImages = actualItem?.contempladoImagens?.map(
+    (objImage: IContempladoImages) => {
+      return objImage?.url_foto;
+    }
+  );
 
   useEffect(() => {
-    if (actualItem) {
-      setPrice(actualItem?.project_price);
-      setImage(actualItemImages);
-      handleOnChangeDTO('imagem', [...actualItem.produtoImagens]);
+    if (actualItemImages) {
+      handleOnChangeDTO('imagem', actualItemImages);
     }
   }, [actualItem]);
-
-  console.log(actualItem);
 
   const [DTO, setDTO] = useState<{ valor: number; imagem: string[] }>({
     valor: 0,
     imagem: []
   });
+
+  const { deleteFile } = useDeleteFile();
+  const { updateContemplado } = useUpdateContemplado();
 
   function handleOnChangeDTO(
     key: 'valor' | 'imagem',
@@ -55,57 +59,49 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
       return image !== actualImage;
     });
 
-    actualItem?.produtoImagens?.map((image: any) => {
-      if (actualImage === image?.url_imagem) {
+    actualItem?.contempladoImagens?.map((image: IContempladoImages) => {
+      if (actualImage === image?.url_foto) {
         setImagesIdToRemove([
           ...imagesIdToRemove,
-          String(image?.id_produto_imagem)
+          String(image?.id_contemplado_foto)
         ]);
       }
     });
 
-    if (arrayFilteredImages) {
-      setImage(arrayFilteredImages);
-    }
     handleOnChangeDTO('imagem', arrayFilteredImages);
-  };
-
-  const createSlug = (titulo: string) => {
-    return titulo?.replaceAll(' ', '-')?.toLowerCase();
-  };
-
-  const formatPrice = (price: any) => {
-    let value = price?.replace(/[\W\D]/g, '');
-    value = (value / 100).toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    });
-    return value;
-  };
-
-  const handlePrice = (e: any) => {
-    setPrice(formatPrice(e.target.value));
   };
 
   return (
     <S.Container>
       <Formik
         initialValues={{
-          images: actualItem?.produtoImagens ?? [],
-          titulo: actualItem?.project_name ?? '',
-          sku: actualItem?.project_sku ?? '',
-          preco:
-            actualItem?.project_price
-              .replace('R$', '')
-              .replace(',', '.')
-              .trim() ?? '',
-          estoque: actualItem?.project_stock ?? '',
-          status: actualItem?.status ?? ''
+          images: actualItemImages ?? [],
+          nome: actualItem?.nome ?? '',
+          depoimento: actualItem?.depoimento ?? '',
+          status: actualItem?.status ?? 'Ativo'
         }}
-        validationSchema={productSchema}
-        onSubmit={(values) => {
-          console.log('+++++++++++++++++++++++++++++');
-          console.log(values);
+        validationSchema={contempladoSchema}
+        onSubmit={(values: {
+          images: string[];
+          nome: string;
+          depoimento: string;
+          status: 'Ativo' | 'Inativo';
+        }) => {
+          imagesIdToRemove?.map((imageID) => {
+            deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
+          });
+
+          updateContemplado({
+            contempladoBody: {
+              depoimento: values?.depoimento,
+              url_foto: newImages,
+              nome: values?.nome,
+              status: values?.status
+            },
+            id: actualItem?.id_contemplado
+          });
+
+          onSubmit();
         }}
       >
         {({
@@ -120,91 +116,72 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               <InputImage
                 onPostImage={(image: string) => {
-                  let newArrayImagesProduct: Array<string> = DTO?.imagem;
+                  let newArrayImagesProduct = DTO?.imagem;
                   newArrayImagesProduct?.push(image);
                   handleOnChangeDTO('imagem', newArrayImagesProduct);
-                  setImage(newArrayImagesProduct);
+                  setNewImages([...newImages, image]);
                   {
                     setFieldValue('images', newArrayImagesProduct);
                   }
                 }}
-                error={touched?.images ? errors?.images : null}
+                error={touched?.images && errors?.images}
               />
               <div className="imageComponentWrapper">
                 {DTO?.imagem?.map((row: string, key: number) => (
-                  <span className="imageComponent" key={key}>
-                    <div className="removeImage">
-                      <div
-                        className="removeIcon"
-                        onClick={() => {
-                          removeImage(row, DTO?.imagem);
-                          setFieldValue('images', DTO?.imagem);
-                        }}
-                      >
-                        {/* <TrashIcon size={42} /> */}
+                  <>
+                    <span className="imageComponent" key={key}>
+                      <div className="removeImage">
+                        <div
+                          className="removeIcon"
+                          onClick={() => {
+                            removeImage(row, DTO?.imagem);
+                            setFieldValue('images', DTO?.imagem);
+                          }}
+                        >
+                          <TrashIcon size={42} />
+                        </div>
                       </div>
-                    </div>
-                    <Image
-                      className="nextImage"
-                      src={row}
-                      alt="Imagem de upload"
-                      key={key}
-                      width={80}
-                      height={80}
-                    />
-                  </span>
+                      <Image
+                        className="nextImage"
+                        src={row}
+                        alt="Imagem de upload"
+                        key={key}
+                        width={80}
+                        height={80}
+                      />
+                    </span>
+                  </>
                 ))}
               </div>
 
               <div className="inputsProductWrapper">
-                <Inputdefault
-                  label="Título"
-                  placeholder="Título do produto"
-                  name="titulo"
-                  value={values?.titulo}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(e);
-                    setFieldValue('slug', createSlug(e.target.value));
-                  }}
-                  error={touched?.titulo ? errors?.titulo : null}
+                <DefaultInput
+                  label="Nome"
+                  placeholder="Nome do contemplado"
+                  name="nome"
+                  value={values?.nome}
+                  onChange={handleChange}
+                  error={touched?.nome && errors?.nome}
                 />
 
-                <div className="lineElementsWrapper">
-                  <Inputdefault
-                    label="SKU"
-                    placeholder="SKU do produto"
-                    name="sku"
-                    value={values.sku}
-                    onChange={(e: any) => handleChange(e)}
-                  />
-                  <Inputdefault
-                    label="Preço (R$)"
-                    placeholder="R$59,99"
-                    value={price}
-                    onChange={(e: any) => {
-                      setFieldValue(
-                        'preco',
-                        formatPrice(e.target.value)
-                          ?.replace(',', '.')
-                          .replace(/[^\d.]/g, '')
-                      );
-                      handlePrice(e);
-                    }}
-                    name="preco"
-                    error={touched?.preco ? errors?.preco : null}
-                  />
-                </div>
+                <TextAreaDefault
+                  label="Depoimento"
+                  placeholder="Depoimento do contemplado"
+                  name="depoimento"
+                  value={values?.depoimento}
+                  onChange={handleChange}
+                  error={touched?.depoimento && errors?.depoimento}
+                />
 
-                <div className="lineElementsWrapper">
-                  <SelectDefault label="Estoque" value={values.estoque}>
-                    <option value="Em estoque">Em estoque</option>
-                    <option value="Fora de estoque">Fora de estoque</option>
-                  </SelectDefault>
-                  <SelectDefault label="Status" value={values.status}>
-                    <option value="Ativo">Ativo</option>
-                    <option value="Inativo">Inativo</option>
-                  </SelectDefault>
-                </div>
+                <SelectDefault
+                  label="Status"
+                  className="inputField"
+                  value={values.status}
+                  onChange={handleChange}
+                >
+                  <option value="Ativo">Ativo</option>
+                  <option value="Inativo">Inativo</option>
+                </SelectDefault>
 
                 <div className="lineElementsWrapper buttonsWrapper">
                   <ButtonDefault

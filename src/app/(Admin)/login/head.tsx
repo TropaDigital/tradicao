@@ -1,7 +1,7 @@
 const Head = () => {
   return (
     <>
-      <title>Painel | Login</title>
+      <title>Consórcio | Login</title>
       <meta
         name="Login Painel Administrativo"
         content="Login Painel Administrativo"

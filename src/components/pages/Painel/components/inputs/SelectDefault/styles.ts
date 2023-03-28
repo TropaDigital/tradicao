@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import styled, { css, keyframes } from 'styled-components';
 import Tooltip from '../../Tooltip';
 
@@ -18,7 +18,7 @@ const fadeInUp = keyframes`
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
 	}
-`
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +27,8 @@ export const Container = styled.div`
   label {
     font-size: var(--text-smal-sm);
     font-weight: var(--weight-medium);
-    color: var(--gray-700);
+    color: var(--primary);
+    font-weight: 700;
     margin-bottom: 5px;
   }
 `;
@@ -46,7 +47,6 @@ export const ContainerInput = styled.div<ContainerProps>`
     css`
       border-color: #e62965;
       box-shadow: rgb(229 62 62) 0px 0px 0px 1px;
-
     `}
 
   select {
@@ -161,26 +161,26 @@ export const Alert = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #CED4DA;
+    background: #ced4da;
     color: #fff;
 
     left: 200%;
     &::before {
       left: 33%;
-      border-color: #CED4DA transparent;
+      border-color: #ced4da transparent;
     }
   }
-`
+`;
 
 export const ErrorInputMessage = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.2rem;
-  animation: ${fadeInUp} .5s linear;
+  animation: ${fadeInUp} 0.5s linear;
 
   span {
     font-size: 14px;
     font-weight: 500;
-    color: #E62965;
+    color: #e62965;
   }
-`
+`;

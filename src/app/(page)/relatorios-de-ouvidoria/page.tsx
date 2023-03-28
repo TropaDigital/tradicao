@@ -15,11 +15,7 @@ const RelatoriosPage = () => {
 
   return (
     <>
-      <SkewContainer
-        imageSrc={GraphicsBg}
-        imageAlt="Imagem de gráficos"
-        size="medium"
-      />
+      <SkewContainer imageSrc={GraphicsBg} imageAlt="Imagem de gráficos" />
 
       <CenterWrapper>
         <S.Container>

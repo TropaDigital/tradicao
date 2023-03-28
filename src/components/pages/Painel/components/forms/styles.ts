@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 // import { colors, fonts } from '../../../../assets/styles/mixin';
 
 export const Container = styled.div`
@@ -9,7 +9,8 @@ export const Container = styled.div`
 
     .inputField {
       font-weight: 400;
-      background-color: var(--light);
+      background-color: var(--white);
+      color: var(--dark);
     }
 
     span {
@@ -46,6 +47,8 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
+    overflow: hidden;
+    border-radius: 8px;
     .removeImage {
       position: absolute;
       transition: 0.7s linear;
@@ -74,10 +77,12 @@ export const Container = styled.div`
       width: 80px;
       height: 80px;
       position: relative;
-      img {
+      .nextImage {
         object-fit: cover;
         border-radius: 8px;
+        width: 80px;
+        height: 80px;
       }
     }
   }
-`
+`;

@@ -1,27 +1,19 @@
 // import { usePostImage } from '@/src/services/image/POST/usePostImage';
 // import { usePathname } from 'next/navigation';
-// import { CameraIcon } from '../../../../Svg';
+import { CameraIcon } from '@/assets/icons';
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 import { Container } from './styles';
 import { IInputFileProps } from './types';
 
 export default function InputImage({ onPostImage, error }: IInputFileProps) {
-  // const pathName = usePathname()
-  let tipo = '';
+  const { postFile } = usePostFile();
 
-  // if(pathName?.includes('receitas')) {
-  //   tipo = "Receita"
-  // }else {
-  //   tipo = "Produto"
-  // }
-
-  // const { postImage } = usePostImage(tipo);
-
-  async function LoadImage(file: React.ChangeEvent<HTMLInputElement>) {
+  async function LoadImage(e: React.ChangeEvent<HTMLInputElement>) {
     let formData = new FormData();
-    if (file.target.files?.length) {
-      formData.append('theFiles', file?.target?.files[0]);
-      // let response: any = await postImage(formData);
-      // onPostImage(response);
+    if (e?.target?.files?.length) {
+      formData.set('file', e?.target?.files[0]);
+      let response = await postFile(formData);
+      onPostImage(response);
     }
   }
 
@@ -36,7 +28,7 @@ export default function InputImage({ onPostImage, error }: IInputFileProps) {
           }}
         />
         <span className="inputContent">
-          {/* <CameraIcon /> */}
+          <CameraIcon />
           <p className="inputTitle">Adicionar Miniatura</p>
           <p className="inputButton">Escolher Arquivo</p>
         </span>

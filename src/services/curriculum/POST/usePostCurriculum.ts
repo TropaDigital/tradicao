@@ -6,6 +6,7 @@ export const usePostCurriculum = () => {
   const { mutateAsync } = useMutation(
     async (curriculum: any) => {
       let response: any = await CurriculumClass.postCurriculum(curriculum);
+      console.log(response);
       return response.data?.arquivo;
     },
     {

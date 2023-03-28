@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, InputHTMLAttributes } from 'react';
+import { FiAlertCircle } from 'react-icons/fi';
 
-import { Container, ContainerInput } from './styles';
+import { Container, ContainerInput, Error } from './styles';
 
 interface ErrorInput {
   message: string;
@@ -47,13 +48,12 @@ export function TextAreaDefault({ label, error, ...rest }: InputProps) {
           {...rest}
         />
 
-        {/* {error?.isError && (
-          <Error title={error.message}>
+        {error && (
+          <Error title={error}>
             <FiAlertCircle size={20} color="#E62965" />
           </Error>
-        )} */}
+        )}
       </ContainerInput>
-      {error && <span className="errorValidation">{error}</span>}
     </Container>
   );
 }

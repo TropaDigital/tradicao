@@ -18,11 +18,7 @@ export default function ConsortiumAuto() {
   return (
     <>
       <S.ContainerTop>
-        <SkewContainer
-          size="medium"
-          imageSrc={AutoMovel}
-          imageAlt="Imagem de um automóvel"
-        />
+        <SkewContainer imageSrc={AutoMovel} imageAlt="Imagem de um automóvel" />
 
         <SimulationForm />
 

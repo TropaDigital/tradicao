@@ -22,6 +22,7 @@ class UnidadesClass {
         `create-unidade`,
         unitBody
       );
+      return response;
     } catch (err) {
       console.log(err);
     }

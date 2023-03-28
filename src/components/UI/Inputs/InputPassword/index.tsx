@@ -82,7 +82,7 @@ export function InputPassword({
         />
 
         <div className="toggleIcon" onClick={() => setIsVisible(!isVisible)}>
-          {isVisible ? <EyeIcon /> : <EyeIconClose />}
+          {error ? <></> : isVisible ? <EyeIcon /> : <EyeIconClose />}
         </div>
 
         {error && (

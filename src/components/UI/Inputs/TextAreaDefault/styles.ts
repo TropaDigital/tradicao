@@ -32,12 +32,6 @@ export const ContainerInput = styled.div<ContainerProps>`
   border-color: #e2e8f0;
   word-wrap: break-word;
 
-  ${(props) =>
-    props.isErrored &&
-    css`
-      border-color: #e62965;
-    `}
-
   textarea {
     width: 100%;
     min-width: 0px;
@@ -58,7 +52,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     border-style: solid;
     border-image: initial;
     border-color: inherit;
-    background: inherit;
+    background: var(--white);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     min-height: 5rem;

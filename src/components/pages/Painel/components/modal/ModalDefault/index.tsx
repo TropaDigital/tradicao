@@ -1,4 +1,5 @@
 // import { CloseIcon } from '@/src/assets/icons';
+import { CloseIcon } from '@/assets/icons';
 import { Container } from './styles';
 import { modalProps } from './types';
 
@@ -11,12 +12,12 @@ export default function Modal({ onClose, setData, children }: modalProps) {
           onClose();
         }}
       ></div>
-      <body className="modalContent">
+      <div className="modalContent">
         <div className="closeModal" onClick={() => onClose()}>
-          {/* <CloseIcon size={30} color={`var(--color1A)`} /> */}
+          <CloseIcon size={30} color={`var(--status-danger)`} />
         </div>
         {children}
-      </body>
+      </div>
     </Container>
   );
 }

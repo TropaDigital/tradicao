@@ -10,34 +10,34 @@ import MainTitle from '@/components/UI/MainTitle';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
-import { Skeleton } from '@mui/material';
+import { Pagination, Skeleton } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
 
 const UnidadesPage = () => {
-  const [allUnits, setAllUnits] = useState<IGetUnit[]>();
-  const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
   const [query, setQuery] = useState<string>('');
-  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
+  const [actualPage, setActualPage] = useState<number>(1);
 
   const [allCities, setAllCities] = useState<string[]>();
   const [allStates, setAllStates] = useState<string[]>();
 
   const [cep, setCep] = useState<string>();
 
-  const { units, isLoadingUnits } = useGetUnitsByQuery(query.trim());
-  const unitsCopy = useGetUnitsByQuery('');
+  const { units, isLoadingUnits } = useGetUnitsByQuery(
+    query.trim() + `&limit=16&page=${actualPage}`
+  );
+
+  const allUnits = useGetUnitsByQuery(query.trim());
 
   useEffect(() => {
-    setAllUnits(unitsCopy.units);
-  }, [unitsCopy]);
-
-  useEffect(() => {
+    if (query?.includes('uf')) return;
     const getAllStates = () => {
-      const allStates = allUnits?.map((fullUnit: IGetUnit) => {
-        return fullUnit.uf;
-      });
+      const allStates = allUnits?.units?.dataPaginada?.map(
+        (fullUnit: IGetUnit) => {
+          return fullUnit.uf;
+        }
+      );
 
       const uniqueStates = [...new Set(allStates)].sort();
 
@@ -60,17 +60,19 @@ const UnidadesPage = () => {
       }
     };
 
-    getAllCities(units);
-  }, [units]);
+    getAllCities(allUnits?.units?.dataPaginada);
+  }, [allUnits]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
       setCep('');
     }
+    if (query) {
+      setActualPage(1);
+    }
   }, [query]);
 
-  const unitsSkeletons = new Array(16);
-  unitsSkeletons.fill('a');
+  const unitsSkeletons = new Array(16).fill('_');
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -85,15 +87,6 @@ const UnidadesPage = () => {
         setQuery('cep=' + cep);
         return;
       }
-  };
-
-  const getUnitById = (id: string | number) => {
-    const unit = units.filter((unit) => {
-      return unit.id === id;
-    });
-
-    setActualUnit(unit);
-    setIsMapModalOpen(true);
   };
 
   const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -112,13 +105,13 @@ const UnidadesPage = () => {
     setQuery(ufQuery + '&cidade=' + e.target.value.trim());
   };
 
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setIsMapModalOpen);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
 
   return (
     <>
       <SkewContainer
-        size="tiny"
         imageSrc={UnidadesBg}
         imageAlt="Imagem do mapa do Brasil"
       />
@@ -207,7 +200,7 @@ const UnidadesPage = () => {
                   ))}
                 </>
               )}
-              {units?.map((unit) => (
+              {units?.dataPaginada?.map((unit) => (
                 <S.UnityCard key={unit.id}>
                   <div className="location-bg-icon">
                     <LocationIcon />
@@ -226,6 +219,17 @@ const UnidadesPage = () => {
               ))}
             </>
           </S.UnitsContainer>
+          {units?.paginas > 1 && (
+            <Pagination
+              count={units?.paginas}
+              shape="rounded"
+              color="primary"
+              page={actualPage}
+              onChange={handlePageChange}
+              size={window && window.innerWidth <= 375 ? 'small' : 'medium'}
+              className="paginationComponent"
+            />
+          )}
         </S.Container>
       </CenterWrapper>
     </>

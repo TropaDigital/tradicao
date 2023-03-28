@@ -71,7 +71,6 @@ export default function ConsortiumProperties() {
     <>
       <S.ContainerTop>
         <SkewContainer
-          size="medium"
           imageSrc={Imovel}
           imageAlt="Imagem de uma família se abraçando na sala de casa"
         />

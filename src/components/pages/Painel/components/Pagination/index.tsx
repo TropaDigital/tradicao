@@ -1,5 +1,5 @@
+import { ArrowHead } from '@/assets/icons';
 import { useState } from 'react';
-// import { ArrowHead } from "../../../Svg";
 import * as S from './styles';
 
 const Pagination = () => {
@@ -21,7 +21,7 @@ const Pagination = () => {
             setSelectedPage(selectedPage - 1);
           }}
         >
-          {/* <ArrowHead /> */}
+          <ArrowHead />
         </div>
 
         <div className="paginationIndex">
@@ -55,7 +55,7 @@ const Pagination = () => {
             setSelectedPage(selectedPage + 1);
           }}
         >
-          {/* <ArrowHead /> */}
+          <ArrowHead />
         </div>
       </S.Container>
     </>

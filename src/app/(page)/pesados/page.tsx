@@ -19,7 +19,6 @@ export default function ConsortiumTrucks() {
     <>
       <S.ContainerTop>
         <SkewContainer
-          size="medium"
           imageSrc={TruckBg}
           imageAlt="Imagem de uma família se abraçando na sala de casa"
         />

@@ -1,3 +1,9 @@
+export interface IResponseUnits {
+  total: number;
+  paginas: number;
+  dataPaginada: IGetUnit[];
+}
+
 export interface IGetUnit {
   bairro: string;
   cep: string;

@@ -1,37 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react'
-import * as S from './styles'
-import { ChevronTopIcon, LogoutIcon, PersonIcon } from '@/assets/icons'
-import { removeCookies } from 'cookies-next'
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useRef, useState } from 'react';
+import * as S from './styles';
+import { ChevronTopIcon, LogoutIcon, PersonIcon } from '@/assets/icons';
+import { removeCookies } from 'cookies-next';
+import { useRouter } from 'next/navigation';
+import cookieClass from '@/utils/cookieClass';
 
 export default function LogoutPanel() {
-  const [modalLogOutOpen, setModalLogOutOpen] = useState<boolean>(false)
+  const [modalLogOutOpen, setModalLogOutOpen] = useState<boolean>(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
       function handleClickOutside(event: any) {
         if (ref.current && !ref.current.contains(event.target)) {
-          setModalLogOutOpen(false)
+          setModalLogOutOpen(false);
         }
       }
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('mousedown', handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [ref])
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
   }
 
-  const wrapperRef = useRef(null)
-  useOutsideAlerter(wrapperRef)
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   return (
     <S.Container isOpen={modalLogOutOpen}>
       <button
         className="chevronHandleLogOutVisibility"
         onClick={() => {
-          setModalLogOutOpen(!modalLogOutOpen)
+          setModalLogOutOpen(!modalLogOutOpen);
         }}
       >
         <div className="avatarPerson">
@@ -42,8 +43,8 @@ export default function LogoutPanel() {
       <S.ModalLogOut isOpen={modalLogOutOpen} ref={wrapperRef}>
         <button
           onClick={() => {
-            removeCookies('AuthorizedConsorcioAdmin')
-            router.push('/painel')
+            cookieClass.removeCookie('AuthorizedAdminConsorcio');
+            router.push('/login');
           }}
         >
           <LogoutIcon />
@@ -51,5 +52,5 @@ export default function LogoutPanel() {
         </button>
       </S.ModalLogOut>
     </S.Container>
-  )
+  );
 }

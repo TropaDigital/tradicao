@@ -199,10 +199,14 @@ const Header = () => {
 
         {windowWidth && windowWidth <= 1340 ? (
           <div className="menu-container">
-            <S.MenuHamburgerContainer
-              isOpen={isMobileOpen}
+            <div
+              className="menuHamburguerContainer"
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-            ></S.MenuHamburgerContainer>
+            >
+              <S.MenuHamburgerContainer
+                isOpen={isMobileOpen}
+              ></S.MenuHamburgerContainer>
+            </div>
 
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
               {mainPages.map((page, key) => {

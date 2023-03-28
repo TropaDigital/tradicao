@@ -10,7 +10,7 @@ export const Container = styled.div`
   padding-top: 10px;
 `;
 
-export const SkewContainer = styled.div<Props>`
+export const SkewContainer = styled.div`
   max-height: 234px;
   transform: skew(-18deg);
   max-width: 80%;
@@ -19,16 +19,15 @@ export const SkewContainer = styled.div<Props>`
   position: relative;
   left: -80px;
 
-  
   .skewImage {
-      width: 100%;
-      height: fit-content;
-      max-height: 234px;
-      transform: skew(18deg);
-      position: relative;
-      left: 80px;
-      object-fit: cover;        
-  }    
+    width: 100%;
+    height: fit-content;
+    max-height: 234px;
+    transform: skew(18deg);
+    position: relative;
+    left: 80px;
+    object-fit: cover;
+  }
 
   /* &::before {
       content: '';
@@ -50,7 +49,7 @@ export const SkewContainer = styled.div<Props>`
     right: 37.5%;
     z-index: 13;
   }
-  
+
   @media (min-width: 1921px) {
     max-width: 90%;
 
@@ -80,7 +79,6 @@ export const SkewContainer = styled.div<Props>`
       transform: skew(0);
       left: 0;
     }
-
 
     .logo-mask {
       transform: skewX(0);
