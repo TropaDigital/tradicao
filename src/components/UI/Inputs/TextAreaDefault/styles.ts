@@ -32,12 +32,6 @@ export const ContainerInput = styled.div<ContainerProps>`
   border-color: #e2e8f0;
   word-wrap: break-word;
 
-  ${(props) =>
-    props.isErrored &&
-    css`
-      border-color: #e62965;
-    `}
-
   textarea {
     width: 100%;
     min-width: 0px;
