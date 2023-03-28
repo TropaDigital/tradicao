@@ -6,8 +6,13 @@ import styled from 'styled-components';
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
-  padding-top: 43px;
+  padding: 43px 0;
   width: 100%;
+
+  .paginationComponent {
+    display: flex;
+    align-self: flex-end;
+  }
 `;
 
 export const SearchContainer = styled.div`
@@ -78,8 +83,6 @@ export const UnitsContainer = styled.div`
   margin: 30px 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  /* justify-content: center; */
-  /* flex-wrap: wrap; */
   gap: 20px;
 `;
 
@@ -87,7 +90,7 @@ export const UnityCard = styled.div`
   position: relative;
   text-align: end;
   min-width: 270px;
-  min-height: 170px;
+  height: 180px;
   padding: 30px 20px;
   line-height: 18px;
   border: 1px solid var(--light);

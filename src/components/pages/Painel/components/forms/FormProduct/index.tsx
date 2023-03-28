@@ -9,7 +9,12 @@ import { contempladoSchema } from './yupSchema';
 import { TrashIcon } from '@/assets/icons';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
-import { IGetContemplados } from '@/services/contemplados/types';
+import {
+  IContempladoImages,
+  IGetContemplados
+} from '@/services/contemplados/types';
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
 
 interface IFormProduct {
   modalOpen: string;
@@ -18,20 +23,17 @@ interface IFormProduct {
 }
 
 const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
-  const [image, setImage] = useState<string[]>();
+  const [newImages, setNewImages] = useState<string[]>([]);
   const [imagesIdToRemove, setImagesIdToRemove] = useState<string[]>([]);
   const actualItemImages = actualItem?.contempladoImagens?.map(
-    (objImage: any) => {
+    (objImage: IContempladoImages) => {
       return objImage?.url_foto;
     }
   );
 
   useEffect(() => {
-    if (actualItem) {
-      setImage(actualItemImages);
-      handleOnChangeDTO('imagem', [
-        ...actualItem?.contempladoImagens[0].url_foto
-      ]);
+    if (actualItemImages) {
+      handleOnChangeDTO('imagem', actualItemImages);
     }
   }, [actualItem]);
 
@@ -39,6 +41,9 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
     valor: 0,
     imagem: []
   });
+
+  const { deleteFile } = useDeleteFile();
+  const { updateContemplado } = useUpdateContemplado();
 
   function handleOnChangeDTO(
     key: 'valor' | 'imagem',
@@ -54,7 +59,7 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
       return image !== actualImage;
     });
 
-    actualItem?.contempladoImagens?.map((image: any) => {
+    actualItem?.contempladoImagens?.map((image: IContempladoImages) => {
       if (actualImage === image?.url_foto) {
         setImagesIdToRemove([
           ...imagesIdToRemove,
@@ -63,9 +68,6 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
       }
     });
 
-    if (arrayFilteredImages) {
-      setImage(arrayFilteredImages);
-    }
     handleOnChangeDTO('imagem', arrayFilteredImages);
   };
 
@@ -73,15 +75,33 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
     <S.Container>
       <Formik
         initialValues={{
-          images: actualItem?.contempladoImagens[0].url_foto ?? [],
-          titulo: actualItem?.nome ?? '',
+          images: actualItemImages ?? [],
+          nome: actualItem?.nome ?? '',
           depoimento: actualItem?.depoimento ?? '',
-          status: actualItem?.status ?? ''
+          status: actualItem?.status ?? 'Ativo'
         }}
         validationSchema={contempladoSchema}
-        onSubmit={(values) => {
-          console.log('+++++++++++++++++++++++++++++');
-          console.log(values);
+        onSubmit={(values: {
+          images: string[];
+          nome: string;
+          depoimento: string;
+          status: 'Ativo' | 'Inativo';
+        }) => {
+          imagesIdToRemove?.map((imageID) => {
+            deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
+          });
+
+          updateContemplado({
+            contempladoBody: {
+              depoimento: values?.depoimento,
+              url_foto: newImages,
+              nome: values?.nome,
+              status: values?.status
+            },
+            id: actualItem?.id_contemplado
+          });
+
+          onSubmit();
         }}
       >
         {({
@@ -96,39 +116,41 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               <InputImage
                 onPostImage={(image: string) => {
-                  let newArrayImagesProduct: Array<string> = DTO?.imagem;
+                  let newArrayImagesProduct = DTO?.imagem;
                   newArrayImagesProduct?.push(image);
                   handleOnChangeDTO('imagem', newArrayImagesProduct);
-                  setImage(newArrayImagesProduct);
+                  setNewImages([...newImages, image]);
                   {
                     setFieldValue('images', newArrayImagesProduct);
                   }
                 }}
-                error={touched?.images ? errors?.images : null}
+                error={touched?.images && errors?.images}
               />
               <div className="imageComponentWrapper">
                 {DTO?.imagem?.map((row: string, key: number) => (
-                  <span className="imageComponent" key={key}>
-                    <div className="removeImage">
-                      <div
-                        className="removeIcon"
-                        onClick={() => {
-                          removeImage(row, DTO?.imagem);
-                          setFieldValue('images', DTO?.imagem);
-                        }}
-                      >
-                        <TrashIcon size={42} />
+                  <>
+                    <span className="imageComponent" key={key}>
+                      <div className="removeImage">
+                        <div
+                          className="removeIcon"
+                          onClick={() => {
+                            removeImage(row, DTO?.imagem);
+                            setFieldValue('images', DTO?.imagem);
+                          }}
+                        >
+                          <TrashIcon size={42} />
+                        </div>
                       </div>
-                    </div>
-                    <Image
-                      className="nextImage"
-                      src={row}
-                      alt="Imagem de upload"
-                      key={key}
-                      width={80}
-                      height={80}
-                    />
-                  </span>
+                      <Image
+                        className="nextImage"
+                        src={row}
+                        alt="Imagem de upload"
+                        key={key}
+                        width={80}
+                        height={80}
+                      />
+                    </span>
+                  </>
                 ))}
               </div>
 
@@ -136,20 +158,27 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 <DefaultInput
                   label="Nome"
                   placeholder="Nome do contemplado"
-                  name="titulo"
-                  value={values?.titulo}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(e);
-                  }}
-                  // error={touched?.titulo ? errors?.titulo : null}
+                  name="nome"
+                  value={values?.nome}
+                  onChange={handleChange}
+                  error={touched?.nome && errors?.nome}
                 />
 
                 <TextAreaDefault
                   label="Depoimento"
                   placeholder="Depoimento do contemplado"
+                  name="depoimento"
+                  value={values?.depoimento}
+                  onChange={handleChange}
+                  error={touched?.depoimento && errors?.depoimento}
                 />
 
-                <SelectDefault label="Status" value={values.status}>
+                <SelectDefault
+                  label="Status"
+                  className="inputField"
+                  value={values.status}
+                  onChange={handleChange}
+                >
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>
                 </SelectDefault>

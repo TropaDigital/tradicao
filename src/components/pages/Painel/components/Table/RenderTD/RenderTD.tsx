@@ -19,7 +19,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
     | 'criado' = head.key;
 
   return (
-    <S.Container id="td">
+    <S.Container id="td" className="td-block">
       {head.type === 'date' && (
         <span>{moment(item.criado).format('DD/MM/YYYY')}</span>
       )}
@@ -69,7 +69,9 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
             width={90}
             height={90}
             src={
-              item?.contempladoImagens && item?.contempladoImagens[0].url_foto
+              item?.contempladoImagens
+                ? item?.contempladoImagens[0]?.url_foto
+                : 'https://via.placeholder.com/90'
             }
           />
         </div>

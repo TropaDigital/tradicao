@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.td`
   position: relative;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  text-align: justify;
   .ativo,
   .Ativo {
     color: var(--secondary);

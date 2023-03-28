@@ -9,11 +9,18 @@ export interface IGetContemplados {
   status: 'Ativo' | 'Inativo';
 }
 
-interface IContempladoImages {
+export interface IContempladoImages {
   criado: string;
   excluido: null | string;
   id_contemplado: number;
   id_contemplado_foto: number;
   moficiado: string;
   url_foto: string;
+}
+
+export interface IContempladoBody {
+  nome: string;
+  depoimento: string;
+  url_foto: string[];
+  status: 'Ativo' | 'Inativo';
 }

@@ -58,7 +58,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     border-style: solid;
     border-image: initial;
     border-color: inherit;
-    background: inherit;
+    background: var(--white);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     min-height: 5rem;
