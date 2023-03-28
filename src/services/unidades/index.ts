@@ -5,10 +5,10 @@ import API from '../api';
 import { IUnitBody } from './types';
 
 class UnidadesClass {
-  async getUnits(query: string, page: number | string) {
+  async getUnits(query: string) {
     try {
       const response: AxiosResponse = await API.get(
-        `unidades?${query}&limit=16&page=${page}`
+        `unidades${query && '?' + query}`
       );
       return response.data.result;
     } catch (err) {
@@ -22,6 +22,7 @@ class UnidadesClass {
         `create-unidade`,
         unitBody
       );
+      return response;
     } catch (err) {
       console.log(err);
     }

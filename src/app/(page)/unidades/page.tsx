@@ -25,15 +25,19 @@ const UnidadesPage = () => {
   const [cep, setCep] = useState<string>();
 
   const { units, isLoadingUnits } = useGetUnitsByQuery(
-    query.trim(),
-    actualPage
+    query.trim() + `&limit=16&page=${actualPage}`
   );
 
+  const allUnits = useGetUnitsByQuery(query.trim());
+
   useEffect(() => {
+    if (query?.includes('uf')) return;
     const getAllStates = () => {
-      const allStates = units?.map((fullUnit: IGetUnit) => {
-        return fullUnit.uf;
-      });
+      const allStates = allUnits?.units?.dataPaginada?.map(
+        (fullUnit: IGetUnit) => {
+          return fullUnit.uf;
+        }
+      );
 
       const uniqueStates = [...new Set(allStates)].sort();
 
@@ -41,7 +45,7 @@ const UnidadesPage = () => {
     };
 
     getAllStates();
-  }, [units]);
+  }, [allUnits]);
 
   useEffect(() => {
     const getAllCities = (actualFilter: IGetUnit[]) => {
@@ -56,17 +60,19 @@ const UnidadesPage = () => {
       }
     };
 
-    getAllCities(units);
-  }, [units]);
+    getAllCities(allUnits?.units?.dataPaginada);
+  }, [allUnits]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
       setCep('');
     }
+    if (query) {
+      setActualPage(1);
+    }
   }, [query]);
 
-  const unitsSkeletons = new Array(16);
-  unitsSkeletons.fill('a');
+  const unitsSkeletons = new Array(16).fill('_');
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -103,12 +109,9 @@ const UnidadesPage = () => {
     setActualPage(value);
   };
 
-  let pageQuantity = 10;
-
   return (
     <>
       <SkewContainer
-        size="tiny"
         imageSrc={UnidadesBg}
         imageAlt="Imagem do mapa do Brasil"
       />
@@ -197,7 +200,7 @@ const UnidadesPage = () => {
                   ))}
                 </>
               )}
-              {units?.map((unit) => (
+              {units?.dataPaginada?.map((unit) => (
                 <S.UnityCard key={unit.id}>
                   <div className="location-bg-icon">
                     <LocationIcon />
@@ -216,11 +219,14 @@ const UnidadesPage = () => {
               ))}
             </>
           </S.UnitsContainer>
-          {pageQuantity > 1 && (
+          {units?.paginas > 1 && (
             <Pagination
-              count={pageQuantity}
+              count={units?.paginas}
+              shape="rounded"
+              color="primary"
               page={actualPage}
               onChange={handlePageChange}
+              size={window && window.innerWidth <= 375 ? 'small' : 'medium'}
               className="paginationComponent"
             />
           )}

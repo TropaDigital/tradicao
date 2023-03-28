@@ -15,7 +15,6 @@ const DemonstracoesPage = () => {
   return (
     <>
       <SkewContainer
-        size="tiny"
         imageSrc={GraphicDemonstrations}
         imageAlt="Imamge de gráficos"
       />

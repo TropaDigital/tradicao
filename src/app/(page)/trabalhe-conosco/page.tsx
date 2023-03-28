@@ -37,7 +37,6 @@ const WorkWithUsPage = () => {
       <SkewContainer
         imageSrc={WorkWithUsBg}
         imageAlt="Imagem de fundo da seção trabalhe conosco"
-        size="medium"
       />
       <CenterWrapper>
         <S.Container>

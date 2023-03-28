@@ -23,7 +23,6 @@ export default function Contato() {
       <SkewContainer
         imageSrc={contato_bg}
         imageAlt="Imagem de operadores de telemarketing"
-        size="medium"
       />
       <CenterWrapper>
         <h1 className="titleContactPage">Contato com a Tradição</h1>
