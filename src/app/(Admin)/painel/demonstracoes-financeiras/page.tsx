@@ -20,7 +20,7 @@ const DemonstracoesPage = () => {
     {
       key: 'file',
       label: 'Arquivo PDF',
-      type: 'file'
+      type: 'filePdf'
     },
     {
       key: 'status',

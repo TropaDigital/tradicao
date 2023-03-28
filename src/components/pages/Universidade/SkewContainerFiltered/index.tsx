@@ -9,16 +9,16 @@ import { ISkewContainer } from '../../../shared/SkewContainer/types';
 import * as S from './styles';
 
 // Images
-import Logo from '../../../../../public/images/WhiteLogo.png'
+import Logo from '../../../../../public/images/WhiteLogo.png';
 
-const SkewContainerFiltered = ({ imageAlt, imageSrc, size }: ISkewContainer) => {
+const SkewContainerFiltered = ({ imageAlt, imageSrc }: ISkewContainer) => {
   return (
     <S.Container>
       <S.SolidBackground />
-      <S.SkewContainer size={size}>
+      <S.SkewContainer>
         <Image src={imageSrc} alt={imageAlt} className="skewImage" />
         <div className="logo-mask">
-          <Image src={Logo} alt={'Logo da Universidade Tradição'}/>
+          <Image src={Logo} alt={'Logo da Universidade Tradição'} />
         </div>
       </S.SkewContainer>
     </S.Container>

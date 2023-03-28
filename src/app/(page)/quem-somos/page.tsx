@@ -128,11 +128,7 @@ export default function QuemSomos() {
 
   return (
     <S.QuemSomosContainer>
-      <SkewContainer
-        imageAlt="imagem teste"
-        imageSrc={bgAboutUsImage}
-        size={'medium'}
-      />
+      <SkewContainer imageAlt="imagem teste" imageSrc={bgAboutUsImage} />
       <CenterWrapper>
         <MainTitle title="Quem Somos" />
         <S.AboutUsContent>

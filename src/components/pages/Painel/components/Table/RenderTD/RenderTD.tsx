@@ -1,4 +1,4 @@
-import { CloseIcon, MenuIcon, PencilIcon } from '@/assets/icons';
+import { CloseIcon, MenuIcon, PdfIcon, PencilIcon } from '@/assets/icons';
 import moment from 'moment';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -62,6 +62,11 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
       )}
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
+      {head.type === 'filePdf' && (
+        <span>
+          <PdfIcon />
+        </span>
+      )}
       {head.type === 'image' && (
         <div className="imageWrapper">
           <Image
@@ -69,9 +74,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
             width={90}
             height={90}
             src={
-              item?.contempladoImagens
-                ? item?.contempladoImagens[0]?.url_foto
-                : 'https://via.placeholder.com/90'
+              item?.contempladoImagens && item?.contempladoImagens[0]?.url_foto
             }
           />
         </div>

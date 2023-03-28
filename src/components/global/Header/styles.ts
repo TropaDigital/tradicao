@@ -39,6 +39,12 @@ export const HeaderContainer = styled.header<Props>`
   }
   .menu-container {
     position: relative;
+    .menuHamburguerContainer {
+      display: flex;
+      align-items: center;
+      height: 25px;
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 1600px) {
@@ -215,7 +221,7 @@ export const MenuHamburgerContainer = styled.div<Props>`
 export const MobileMenuModal = styled.div<Props>`
   position: absolute;
   background-color: var(--white);
-  top: 15px;
+  top: 30px;
   right: 0;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
@@ -241,7 +247,7 @@ export const MobileMenuModal = styled.div<Props>`
     display: none;
   }
   @media (max-width: 425px) {
-    top: 30px;
+    top: 50px;
   }
 `;
 

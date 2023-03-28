@@ -1,5 +1,6 @@
 'use client';
 
+import { SearchIcon } from '@/assets/icons';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import DefaultInput from '@/components/UI/DefaultInput';
@@ -45,7 +46,12 @@ const ContempladosPage = () => {
       <Table
         title="Lista de contemplados"
         header={headerTable}
-        search={<DefaultInput />}
+        search={
+          <DefaultInput
+            icon={<SearchIcon />}
+            placeholder="Pesquise por contemplados"
+          />
+        }
       />
     </>
   );

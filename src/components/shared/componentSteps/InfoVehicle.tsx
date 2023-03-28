@@ -41,7 +41,10 @@ export function InfoVehicle({
           placeholder="Nome"
           name="name"
           value={data.name}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
+            handleInputChange(e);
+          }}
           error={error?.name}
         />
       </FieldDefault>
