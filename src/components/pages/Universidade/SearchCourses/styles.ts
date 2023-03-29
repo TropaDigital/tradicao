@@ -16,6 +16,7 @@ export const SearchHeader = styled.div`
     height: 100px;
     background: var(--background-secondary);
     border-radius: 10px;
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.2);
 
     padding: 20px 30px;
 
@@ -68,9 +69,13 @@ export const CourseCardWrapper = styled.div`
     padding-top: 68px;
     padding-bottom: 55px;   
     
-    @media (max-width: 500px) {
-        padding-top: 110px;
+    @media (max-width: 1200px) {
+        padding-top: 90px;
         flex-wrap: wrap;
+    }
+
+    @media (max-width: 800px) {
+        padding-top: 110px;
     }
 
     @media (max-width: 330px) {
@@ -83,15 +88,22 @@ export const CourseCard = styled.div`
     flex-direction: column;
     width: 268px;
     height: 248px;
+    box-sizing: border-box;
 
     border: 1px solid var(--light);
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1);    
 
-    @media (max-width: 500px) {
-        width: 180px;
+    @media (max-width: 1200px) {
+        max-width: 250px;
         height: fit-content;
     }
+
+    /* @media (max-width: 700px) {
+        width: 180px;
+        height: fit-content;
+    } */
 `
 
 export const CourseCardTop = styled.div`
@@ -177,5 +189,31 @@ export const CourseCardBottom = styled.div`
 
     @media (max-width: 800px) {
         padding: 0 18px;
+    }
+`
+
+export const CleanSearch = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transition: all .3s;
+
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        path {
+            fill: var(--status-danger);
+        }
+    }
+
+    &:hover {
+        transform: scale(1.2);
     }
 `

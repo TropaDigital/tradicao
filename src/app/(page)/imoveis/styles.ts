@@ -26,13 +26,10 @@ export const PropertiesConsortiumType = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+  margin-bottom: 50px;
 
-  @media (max-width: 1200px) and (min-width: 600px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    gap: 10px;
-    padding: 40px;
+  @media (max-width: 1090px) {
+    margin: 70px 0 40px 0;
   }
 `;
 
@@ -51,7 +48,7 @@ export const ConsortiumCard = styled.div`
   background: var(--white);
   box-shadow: 0px 10px 30px -14px rgba(0, 0, 0, 0.12);
 
-  margin: 50px 0;
+  /* margin: 50px 0; */
 `;
 
 export const ConsortiumCardImage = styled.div`

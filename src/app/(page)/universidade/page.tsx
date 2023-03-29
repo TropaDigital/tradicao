@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 
 // Styles
 import * as S from './styles';
@@ -15,18 +14,8 @@ import SearchCourses from '@/components/pages/Universidade/SearchCourses';
 import UniversityLogin from '@/components/pages/Universidade/UniversityLogin';
 
 export default function University() {
-  useEffect(() => {
-    scrollTop();
-  }, []);
 
-  function scrollTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  return (
+  return (        
     <>
       <S.ContainerTop>
         <SkewContainerFiltered

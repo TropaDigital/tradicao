@@ -1,5 +1,8 @@
 'use client';
 
+// Next
+import Image from 'next/image';
+
 // Styles
 import * as S from './styles';
 
@@ -18,7 +21,6 @@ import SimulationForm from '@/components/shared/SimulationForm';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import OurContemplated from '@/components/sections/OurContemplated';
-import Image from 'next/image';
 
 interface IRealStateProperties {
   id: number;

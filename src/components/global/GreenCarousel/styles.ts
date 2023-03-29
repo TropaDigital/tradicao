@@ -54,7 +54,7 @@ export const TitleCarousel = styled.h1`
 
     margin-bottom: 30px;
 
-    @media (max-width: 500px) {
+    @media (max-width: 650px) {
         text-align: center;
         font-size: var(--text-headline-md);
     }
