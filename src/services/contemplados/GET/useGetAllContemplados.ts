@@ -11,7 +11,11 @@ export const useGetAllContemplados = () => {
   );
 
   return {
-    allContemplados: data as IGetContemplados[],
+    allContemplados: data as {
+      dataPaginada: IGetContemplados[];
+      paginas: number;
+      total: number;
+    },
     isLoadingAllDemonsrations: isLoading as boolean,
     isErrorAllDemonstrations: isError as boolean,
     isSuccessAllDemonstrations: isSuccess as boolean

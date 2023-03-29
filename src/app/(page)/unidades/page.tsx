@@ -31,36 +31,9 @@ const UnidadesPage = () => {
   const allUnits = useGetUnitsByQuery(query.trim());
 
   useEffect(() => {
-    if (query?.includes('uf')) return;
-    const getAllStates = () => {
-      const allStates = allUnits?.units?.dataPaginada?.map(
-        (fullUnit: IGetUnit) => {
-          return fullUnit.uf;
-        }
-      );
-
-      const uniqueStates = [...new Set(allStates)].sort();
-
-      setAllStates(uniqueStates);
-    };
-
-    getAllStates();
-  }, [allUnits]);
-
-  useEffect(() => {
-    const getAllCities = (actualFilter: IGetUnit[]) => {
-      const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
-        return fullUnit.cidade;
-      });
-
-      const uniqueCities = [...new Set(allCities)].sort();
-
-      if (!query?.includes('cidade')) {
-        setAllCities(query?.includes('uf') ? uniqueCities : []);
-      }
-    };
-
     getAllCities(allUnits?.units?.dataPaginada);
+    if (query?.includes('uf')) return;
+    getAllStates();
   }, [allUnits]);
 
   useEffect(() => {
@@ -102,11 +75,36 @@ const UnidadesPage = () => {
       setQuery(actualQuery + '&cidade=' + e?.target?.value.trim());
       return;
     }
+
     setQuery(ufQuery + '&cidade=' + e.target.value.trim());
   };
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
+  };
+
+  const getAllStates = () => {
+    const allStates = allUnits?.units?.dataPaginada?.map(
+      (fullUnit: IGetUnit) => {
+        return fullUnit.uf;
+      }
+    );
+
+    const uniqueStates = [...new Set(allStates)].sort();
+
+    setAllStates(uniqueStates);
+  };
+
+  const getAllCities = (actualFilter: IGetUnit[]) => {
+    const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
+      return fullUnit.cidade;
+    });
+
+    const uniqueCities = [...new Set(allCities)].sort();
+
+    if (!query?.includes('cidade')) {
+      setAllCities(query?.includes('uf') ? uniqueCities : []);
+    }
   };
 
   return (

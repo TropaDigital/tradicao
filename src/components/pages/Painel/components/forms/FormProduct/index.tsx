@@ -15,6 +15,7 @@ import {
 } from '@/services/contemplados/types';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
+import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
 
 interface IFormProduct {
   modalOpen: string;
@@ -25,6 +26,8 @@ interface IFormProduct {
 const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
   const [newImages, setNewImages] = useState<string[]>([]);
   const [imagesIdToRemove, setImagesIdToRemove] = useState<string[]>([]);
+  const [charCount, setCharCount] = useState<number>(0);
+
   const actualItemImages = actualItem?.contempladoImagens?.map(
     (objImage: IContempladoImages) => {
       return objImage?.url_foto;
@@ -44,6 +47,7 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
 
   const { deleteFile } = useDeleteFile();
   const { updateContemplado } = useUpdateContemplado();
+  const { createContemplado } = useCreateContemplado();
 
   function handleOnChangeDTO(
     key: 'valor' | 'imagem',
@@ -91,15 +95,21 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
             deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
           });
 
-          updateContemplado({
-            contempladoBody: {
-              depoimento: values?.depoimento,
-              url_foto: newImages,
-              nome: values?.nome,
-              status: values?.status
-            },
-            id: actualItem?.id_contemplado
-          });
+          const contempladoObjectPost = {
+            depoimento: values?.depoimento,
+            url_foto: newImages,
+            nome: values?.nome,
+            status: values?.status
+          };
+
+          if (modalOpen === 'editar') {
+            updateContemplado({
+              contempladoBody: contempladoObjectPost,
+              id: actualItem?.id_contemplado
+            });
+          } else if (modalOpen === 'publicar') {
+            createContemplado(contempladoObjectPost);
+          }
 
           onSubmit();
         }}
@@ -169,8 +179,15 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                   placeholder="Depoimento do contemplado"
                   name="depoimento"
                   value={values?.depoimento}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setCharCount(e?.target?.value?.length);
+                  }}
+                  charQuantity={
+                    charCount > 0 ? charCount : values?.depoimento?.length
+                  }
                   error={touched?.depoimento && errors?.depoimento}
+                  maxCharLength={280}
                 />
 
                 <SelectDefault

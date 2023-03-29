@@ -98,3 +98,17 @@ export const Error = styled(Tooltip)`
     }
   }
 `;
+
+export const CharCount = styled.span`
+  display: flex;
+  align-self: flex-end;
+  margin-top: 5px;
+  font-size: 13px;
+
+  &.textRed {
+    color: #e62965;
+  }
+  &.textNormal {
+    color: var(--gray-500);
+  }
+`;
