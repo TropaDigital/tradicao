@@ -2,11 +2,11 @@ import { useQuery } from 'react-query';
 import ContempladosClass from '../index';
 import { IGetContemplados } from '../types';
 
-export const useGetAllContemplados = () => {
+export const useGetAllContemplados = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllContemplados'],
+    ['AllContemplados', query],
     async () => {
-      return await ContempladosClass.getAllContemplados();
+      return await ContempladosClass.getAllContemplados(query);
     }
   );
 

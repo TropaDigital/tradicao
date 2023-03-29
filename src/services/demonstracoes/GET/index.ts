@@ -11,7 +11,11 @@ export const useGetAllDemonstrations = () => {
   );
 
   return {
-    allDemonstrations: data as IGetDemonstrations[],
+    allDemonstrations: data as {
+      dataPaginada: IGetDemonstrations[];
+      total: number;
+      paginas: number;
+    },
     isLoadingAllDemonsrations: isLoading as boolean,
     isErrorAllDemonstrations: isError as boolean,
     isSuccessAllDemonstrations: isSuccess as boolean

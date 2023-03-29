@@ -29,12 +29,9 @@ const UnidadesPage = () => {
   );
 
   const allUnits = useGetUnitsByQuery(query.trim());
-
   useEffect(() => {
     getAllCities(allUnits?.units?.dataPaginada);
-    if (query?.includes('uf')) return;
-    getAllStates();
-  }, [allUnits]);
+  }, [allUnits?.units?.dataPaginada]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
@@ -42,6 +39,9 @@ const UnidadesPage = () => {
     }
     if (query) {
       setActualPage(1);
+    }
+    if (!query?.includes('uf')) {
+      getAllStates();
     }
   }, [query]);
 
@@ -84,15 +84,15 @@ const UnidadesPage = () => {
   };
 
   const getAllStates = () => {
-    const allStates = allUnits?.units?.dataPaginada?.map(
-      (fullUnit: IGetUnit) => {
-        return fullUnit.uf;
-      }
+    const allStatesFromUnits = allUnits?.units?.dataPaginada?.map(
+      (fullUnit: IGetUnit) => fullUnit.uf
     );
 
-    const uniqueStates = [...new Set(allStates)].sort();
+    const uniqueStates = [...new Set(allStatesFromUnits)].sort();
 
-    setAllStates(uniqueStates);
+    if (!allStates) {
+      setAllStates(uniqueStates);
+    }
   };
 
   const getAllCities = (actualFilter: IGetUnit[]) => {
@@ -163,7 +163,7 @@ const UnidadesPage = () => {
                       : setQuery('')
                   }
                 >
-                  <option selected value="">
+                  <option defaultValue="" value="">
                     Selecione o estado
                   </option>
                   {allStates?.map((state: string) => (
@@ -178,11 +178,13 @@ const UnidadesPage = () => {
                   name="select-city"
                   onChange={searchUnitByCity}
                 >
-                  <option selected value="">
+                  <option defaultValue="" value="">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
-                    <option value={city}>{city}</option>
+                    <option value={city} key={city}>
+                      {city}
+                    </option>
                   ))}
                 </SelectDefault>
               </form>
@@ -193,8 +195,13 @@ const UnidadesPage = () => {
             <>
               {isLoadingUnits && (
                 <>
-                  {unitsSkeletons.map(() => (
-                    <Skeleton variant="rounded" height={207} animation="wave" />
+                  {unitsSkeletons.map((_, key) => (
+                    <Skeleton
+                      variant="rounded"
+                      height={207}
+                      animation="wave"
+                      key={key}
+                    />
                   ))}
                 </>
               )}

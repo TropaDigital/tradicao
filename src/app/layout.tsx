@@ -1,8 +1,6 @@
 'use client';
 
-import LoadingContainer from '@/components/shared/LoadingContainer';
 import { GlobalStyles } from '@/styles/global';
-import { Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import StyledJsxRegistry from './registry';
 

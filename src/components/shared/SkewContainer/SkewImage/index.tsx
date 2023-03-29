@@ -11,7 +11,7 @@ export default function skewImage({ src, alt, imageHeigth }: ISkewImage) {
   return (
     <S.Container style={{ height: imageHeigth }}>
       <div className="imageWrapper">
-        <Image src={src} alt={alt} />
+        <Image src={src} alt={alt} placeholder="blur" blurDataURL={src} />
       </div>
     </S.Container>
   );

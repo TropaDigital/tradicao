@@ -5,25 +5,17 @@ import InputImage from '../../inputs/InputImage';
 import { SelectDefault } from '../../inputs/SelectDefault';
 import * as S from '../styles';
 import { Formik, Form } from 'formik';
-import { contempladoSchema } from './yupSchema';
+import { contempladoSchema } from '../yupSchema';
 import { TrashIcon } from '@/assets/icons';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
-import {
-  IContempladoImages,
-  IGetContemplados
-} from '@/services/contemplados/types';
+import { IContempladoImages } from '@/services/contemplados/types';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
 import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
+import { IForm } from '../types';
 
-interface IFormProduct {
-  modalOpen: string;
-  actualItem?: IGetContemplados;
-  onSubmit: () => void;
-}
-
-const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
+const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [newImages, setNewImages] = useState<string[]>([]);
   const [imagesIdToRemove, setImagesIdToRemove] = useState<string[]>([]);
   const [charCount, setCharCount] = useState<number>(0);
@@ -193,8 +185,11 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 <SelectDefault
                   label="Status"
                   className="inputField"
-                  value={values.status}
-                  onChange={handleChange}
+                  value={values?.status}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('status', e?.target?.value);
+                  }}
                 >
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>
@@ -226,4 +221,4 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
   );
 };
 
-export default FormProduct;
+export default FormContemplados;

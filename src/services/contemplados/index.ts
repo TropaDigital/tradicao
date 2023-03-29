@@ -5,9 +5,11 @@ import API from '../api';
 import { IContempladoBody } from './types';
 
 class ContempladosClass {
-  async getAllContemplados() {
+  async getAllContemplados(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(`getAll-contemplado`);
+      const response: AxiosResponse = await API.get(
+        `getAll-contemplado${query && `?${query}`}`
+      );
       return response.data.result;
     } catch (err) {
       console.log(err);

@@ -5,12 +5,20 @@
       "path": "contemplados"
     },
     {
-      "name": "Demontrações",
-      "path": "demonstracoes-financeiras"
+      "name": "Representantes",
+      "path": "representantes"
     },
     {
       "name": "Unidades",
       "path": "unidades"
+    },
+    {
+      "name": "Demonstrações",
+      "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Relatórios",
+      "path": "relatorios-de-ouvidorias"
     }
   ],
   "colors": {

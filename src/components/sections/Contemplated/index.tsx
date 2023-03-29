@@ -47,18 +47,22 @@ export default function Contemplated() {
   return (
     <GreenCarousel title="Contemplados" height="350" marginBottom="110">
       <Slider {...SlideSettings}>
-        {allContemplados?.dataPaginada?.map((contemplado) => (
-          <CardCarousel
-            width="360"
-            heigth="300"
-            padding="20"
-            image={contemplado?.contempladoImagens[0].url_foto}
-            imageType={false}
-            bigText={false}
-            title={contemplado?.nome}
-            description={contemplado?.depoimento}
-          />
-        ))}
+        {allContemplados?.dataPaginada?.map((contemplado) => {
+          if (contemplado?.status === 'Inativo') return;
+          return (
+            <CardCarousel
+              width="360"
+              heigth="300"
+              padding="20"
+              image={contemplado?.contempladoImagens[0].url_foto}
+              imageType={false}
+              bigText={false}
+              title={contemplado?.nome}
+              description={contemplado?.depoimento}
+              key={contemplado?.id_contemplado}
+            />
+          );
+        })}
       </Slider>
     </GreenCarousel>
   );

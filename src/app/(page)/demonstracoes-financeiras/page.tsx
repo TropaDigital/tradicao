@@ -26,7 +26,7 @@ const DemonstracoesPage = () => {
 
         <CenterWrapper>
           <ul className="demonstracao-container">
-            {allDemonstrations?.map((demo) => {
+            {allDemonstrations?.dataPaginada?.map((demo) => {
               return (
                 <li className="button-wrapper">
                   <Button

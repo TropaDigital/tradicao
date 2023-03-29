@@ -10,7 +10,7 @@ export interface ITableProps {
     label: string | any;
     type: string;
   }>;
-  // data: Array<IGetProduct> | Array<IGetRecipes> | any;
+  data: any;
 }
 
 export interface ITableDataProps {

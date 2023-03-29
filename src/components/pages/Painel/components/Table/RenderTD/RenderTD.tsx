@@ -63,7 +63,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
       )}
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
-      {head.type === 'filePdf' && (
+      {head.type === 'file' && (
         <span
           onClick={() =>
             downloadFileFromExternalLink(
