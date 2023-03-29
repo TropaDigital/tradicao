@@ -1,7 +1,7 @@
 'use client';
 
 import { SearchIcon } from '@/assets/icons';
-import FormProduct from '@/components/pages/Painel/components/forms/FormProduct';
+import FormProduct from '@/components/pages/Painel/components/Form';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';

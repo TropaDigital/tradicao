@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { colors, fonts } from '../../../../assets/styles/mixin';
 
 export const Container = styled.div`
   border-radius: 8px;

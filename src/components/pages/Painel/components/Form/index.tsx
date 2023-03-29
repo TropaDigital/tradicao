@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import ButtonDefault from '../../ButtonDefault';
-import InputImage from '../../inputs/InputImage';
-import { SelectDefault } from '../../inputs/SelectDefault';
-import * as S from '../styles';
+import ButtonDefault from '../ButtonDefault';
+import InputImage from '../inputs/InputImage';
+import { SelectDefault } from '../inputs/SelectDefault';
+import * as S from './styles';
 import { Formik, Form } from 'formik';
 import { contempladoSchema } from './yupSchema';
 import { TrashIcon } from '@/assets/icons';
@@ -193,8 +193,11 @@ const FormProduct = ({ modalOpen, actualItem, onSubmit }: IFormProduct) => {
                 <SelectDefault
                   label="Status"
                   className="inputField"
-                  value={values.status}
-                  onChange={handleChange}
+                  value={values?.status}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('status', e?.target?.value);
+                  }}
                 >
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>

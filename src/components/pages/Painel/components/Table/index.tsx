@@ -8,7 +8,7 @@ import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
-import FormProduct from '../forms/FormProduct';
+import FormProduct from '../Form';
 import Modal from '../modal/ModalDefault';
 import Pagination from '../Pagination';
 import RenderTD from './RenderTD/RenderTD';
@@ -29,8 +29,8 @@ export default function Table({ title, search, header }: ITableProps) {
   const { allDemonstrations } = useGetAllDemonstrations();
 
   const tablesByPage: any = {
-    contemplados: allContemplados,
-    'demonstracoes-financeiras': allDemonstrations
+    contemplados: allContemplados?.dataPaginada,
+    'demonstracoes-financeiras': allDemonstrations?.dataPaginada
   };
 
   const pathname = usePathname();
@@ -62,6 +62,7 @@ export default function Table({ title, search, header }: ITableProps) {
   }) => {
     if (itemToDelete?.itemType?.includes('contemplado')) {
       deleteContemplado(itemToDelete?.itemID);
+      console.log(itemToDelete?.itemID);
       deleteFile({
         endpoint: 'delete-contemplado-foto',
         id: actualItem?.contempladoImagens[0]?.id_contemplado_foto

@@ -34,6 +34,9 @@ export const Select = styled.nav<props>`
         display: ${({ sideBarIsOpen }) => (sideBarIsOpen ? 'block' : 'none')};
       }
     }
+    .handleOpenSelect {
+      background-color: transparent;
+    }
     .iconOpenSelect {
       transition: all 0.3s;
       background-color: var(--white);

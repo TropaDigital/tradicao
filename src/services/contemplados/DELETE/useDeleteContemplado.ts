@@ -8,25 +8,13 @@ export const useDeleteContemplado = () => {
 
   const { mutateAsync } = useMutation(
     async (id: number) => {
-      let response = toast.promise(
-        async () => {
-          let response: any = await ContempladosClass.deleteContemplado(id);
-
-          return response;
-        },
-        {
-          error: `Não foi possível deletar contemplado`,
-          pending: 'Deletando contemplado',
-          success: 'Contemplado deletado com sucesso'
-        },
-        {
-          position: 'top-right',
-          autoClose: 3000
-        }
-      );
-      return response;
+      try {
+        let response: any = await ContempladosClass.deleteContemplado(id);
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
     },
-
     {
       onSuccess: () => {
         queryClient.invalidateQueries('AllContemplados');
