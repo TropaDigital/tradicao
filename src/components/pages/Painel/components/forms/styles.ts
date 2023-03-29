@@ -12,12 +12,6 @@ export const Container = styled.div`
       background-color: var(--white);
       color: var(--dark);
     }
-
-    span {
-      color: var(--status-danger);
-      font-weight: 500;
-      font-size: 14px;
-    }
   }
   .lineElementsWrapper {
     display: flex;

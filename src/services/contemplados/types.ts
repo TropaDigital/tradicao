@@ -22,5 +22,5 @@ export interface IContempladoBody {
   nome: string;
   depoimento: string;
   url_foto: string[];
-  status: 'Ativo' | 'Inativo';
+  status?: 'Ativo' | 'Inativo';
 }

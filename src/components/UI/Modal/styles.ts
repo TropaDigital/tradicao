@@ -1,14 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 type Props = {
-    isOpen: boolean
-}
+  isOpen: boolean;
+};
 
 export const Container = styled.div<Props>`
-  display: ${({ isOpen }) => isOpen ? "flex" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   gap: 6px;
-  background: linear-gradient(77.17deg, var(--primary-dark) -0.7%, var(--primary) 93.94%);
+  background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
   box-shadow: 0px 19px 14px -10px rgba(0, 0, 0, 0.25);
   padding: 10px 20px;
   border-radius: 10px;
@@ -23,4 +23,4 @@ export const Container = styled.div<Props>`
       margin-right: 10px;
     }
   }
-`
+`;

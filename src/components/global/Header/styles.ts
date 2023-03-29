@@ -99,11 +99,7 @@ export const InfoContainer = styled.div<Props>`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  background: linear-gradient(
-    77.17deg,
-    var(--primary-dark) -0.7%,
-    var(--primary) 93.94%
-  );
+  background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
   height: 40px;
   padding: 6px 150px;
 

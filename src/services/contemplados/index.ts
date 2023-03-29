@@ -14,6 +14,18 @@ class ContempladosClass {
     }
   }
 
+  async createContemplado(contempladoBody: IContempladoBody) {
+    try {
+      const response: AxiosResponse = await API.post(
+        `create-contemplado`,
+        contempladoBody
+      );
+      return response.data.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async updateContemplado(
     contempladoBody: IContempladoBody,
     id: number | undefined

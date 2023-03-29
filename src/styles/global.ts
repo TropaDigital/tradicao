@@ -1,12 +1,12 @@
 'use client';
 
 import { createGlobalStyle } from 'styled-components';
-import { Ubuntu } from "next/font/google"
+import { Ubuntu } from 'next/font/google';
 
 const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"]
-})
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700']
+});
 
 export const GlobalStyles = createGlobalStyle`
 

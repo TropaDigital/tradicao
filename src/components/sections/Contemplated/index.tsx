@@ -47,7 +47,7 @@ export default function Contemplated() {
   return (
     <GreenCarousel title="Contemplados" height="350" marginBottom="110">
       <Slider {...SlideSettings}>
-        {allContemplados?.map((contemplado) => (
+        {allContemplados?.dataPaginada?.map((contemplado) => (
           <CardCarousel
             width="360"
             heigth="300"
