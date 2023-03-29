@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { colors } from '../../../../assets/styles/mixin'
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +7,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 30px;
   .titleWrapper {
     display: flex;
     flex-direction: column;

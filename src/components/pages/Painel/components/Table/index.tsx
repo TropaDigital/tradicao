@@ -5,17 +5,19 @@ import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
+import { Pagination, TablePagination } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
-import FormProduct from '../Form';
+import FormContemplados from '../forms/FormContemplados';
+import FormProduct from '../forms/FormContemplados';
+import FormDemonstracoes from '../forms/FormDemonstracoes';
 import Modal from '../modal/ModalDefault';
-import Pagination from '../Pagination';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
 
-export default function Table({ title, search, header }: ITableProps) {
+export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
@@ -26,22 +28,10 @@ export default function Table({ title, search, header }: ITableProps) {
     useGetAllContemplados();
   const { deleteContemplado } = useDeleteContemplado();
 
-  const { allDemonstrations } = useGetAllDemonstrations();
-
-  const tablesByPage: any = {
-    contemplados: allContemplados?.dataPaginada,
-    'demonstracoes-financeiras': allDemonstrations?.dataPaginada
-  };
+  // const { allDemonstrations } = useGetAllDemonstrations();
 
   const pathname = usePathname();
   const actualPage: string | undefined = pathname?.split('/')?.pop();
-
-  useEffect(() => {
-    if (actualPage)
-      if (tablesByPage[actualPage]) {
-        setDataInternal([...tablesByPage[actualPage]]);
-      }
-  }, [allContemplados, allDemonstrations]);
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -68,7 +58,16 @@ export default function Table({ title, search, header }: ITableProps) {
         id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
       });
     }
+    if (itemToDelete?.itemType?.includes('demonstracoes')) {
+      console.log('Entom tá bom');
+    }
   };
+
+  useEffect(() => {
+    if (data) {
+      setDataInternal([...data]);
+    }
+  }, [data]);
 
   return (
     <>
@@ -80,13 +79,22 @@ export default function Table({ title, search, header }: ITableProps) {
             }}
             setData={() => {}}
           >
-            <FormProduct
-              modalOpen="editar"
-              actualItem={actualItem}
-              onSubmit={() => {
-                setModalOpen('');
-              }}
-            />
+            {pathname?.includes('contemplado') && (
+              <FormContemplados
+                modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => {
+                  setModalOpen('');
+                }}
+              />
+            )}
+            {pathname?.includes('demonstracoes') && (
+              <FormDemonstracoes
+                modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
           </Modal>
         )}
 
@@ -164,7 +172,6 @@ export default function Table({ title, search, header }: ITableProps) {
           </tbody>
         </table>
       </Container>
-      <Pagination />
     </>
   );
 }

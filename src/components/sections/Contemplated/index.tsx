@@ -59,6 +59,7 @@ export default function Contemplated() {
               bigText={false}
               title={contemplado?.nome}
               description={contemplado?.depoimento}
+              key={contemplado?.id_contemplado}
             />
           );
         })}

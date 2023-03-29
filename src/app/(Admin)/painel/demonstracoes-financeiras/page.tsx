@@ -4,6 +4,7 @@ import { SearchIcon } from '@/assets/icons';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import DefaultInput from '@/components/UI/DefaultInput';
+import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import React from 'react';
 
 const DemonstracoesPage = () => {
@@ -21,7 +22,7 @@ const DemonstracoesPage = () => {
     {
       key: 'file',
       label: 'Arquivo PDF',
-      type: 'filePdf'
+      type: 'file'
     },
     {
       key: 'status',
@@ -35,12 +36,15 @@ const DemonstracoesPage = () => {
     }
   ];
 
+  const { allDemonstrations } = useGetAllDemonstrations();
+
   return (
     <>
       <HeaderPage title="Demonstrações Financeiras" />
       <Table
         header={headerTable}
         title={'Lista de Demonstrações'}
+        data={allDemonstrations?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}

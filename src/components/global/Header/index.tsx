@@ -232,9 +232,9 @@ const Header = () => {
                             : isSubMenuConsorcioOpen
                         }
                       >
-                        {page.subOptions?.map((subOption, keyOption) => (
+                        {page.subOptions?.map((subOption, key) => (
                           <Link
-                            key={keyOption}
+                            key={key}
                             href={subOption.path}
                             className="sub-submobile-option"
                             onClick={() => setIsMobileOpen(false)}
@@ -296,10 +296,10 @@ const Header = () => {
                             }
                             className="sub-menu-container"
                           >
-                            {page.subOptions.map((subOption, keyOption) => (
+                            {page.subOptions.map((subOption) => (
                               <Link
                                 href={subOption.path}
-                                key={keyOption}
+                                key={subOption.path}
                                 onClick={() => {
                                   setIsSubMenuConsorcioOpen(false);
                                   setIsSubMenuTradicaoOpen(false);

@@ -1,13 +1,17 @@
 'use client';
 
 import { SearchIcon } from '@/assets/icons';
-import FormProduct from '@/components/pages/Painel/components/Form';
+import FormContemplados from '@/components/pages/Painel/components/forms/FormContemplados';
+import FormProduct from '@/components/pages/Painel/components/forms/FormContemplados';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
-import React, { useState } from 'react';
+import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
+import { Pagination } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 
 const ContempladosPage = () => {
   const headerTable = [
@@ -46,6 +50,25 @@ const ContempladosPage = () => {
   const [modalOpen, setModalOpen] = useState<'editar' | 'publicar' | null>(
     null
   );
+  const [searchContemplado, setSerachContemplado] = useState<string>('');
+  const [actualPage, setActualPage] = useState<number>(1);
+
+  const { allContemplados } = useGetAllContemplados(
+    searchContemplado + `limit=5&page=${actualPage}`
+  );
+
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
+
+  const debounced = useDebouncedCallback(
+    // function
+    (value) => {
+      setSerachContemplado(value);
+    },
+    // delay in ms
+    300
+  );
 
   return (
     <>
@@ -56,7 +79,7 @@ const ContempladosPage = () => {
           }}
           setData={() => {}}
         >
-          <FormProduct
+          <FormContemplados
             modalOpen={modalOpen}
             onSubmit={() => setModalOpen(null)}
           />
@@ -85,13 +108,26 @@ const ContempladosPage = () => {
       <Table
         title="Lista de contemplados"
         header={headerTable}
+        data={allContemplados?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}
             placeholder="Pesquise por contemplados"
+            onChange={debounced}
+            name="search"
           />
         }
       />
+      {allContemplados?.paginas > 1 && (
+        <Pagination
+          page={actualPage}
+          onChange={handlePageChange}
+          count={allContemplados?.paginas}
+          defaultPage={1}
+          color="primary"
+          shape="rounded"
+        />
+      )}
     </>
   );
 };
