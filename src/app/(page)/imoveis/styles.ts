@@ -26,6 +26,7 @@ export const PropertiesConsortiumType = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+  margin-bottom: 50px;
 
   @media (max-width: 1090px) {
     margin: 70px 0 40px 0;
