@@ -191,3 +191,29 @@ export const CourseCardBottom = styled.div`
         padding: 0 18px;
     }
 `
+
+export const CleanSearch = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transition: all .3s;
+
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        path {
+            fill: var(--status-danger);
+        }
+    }
+
+    &:hover {
+        transform: scale(1.2);
+    }
+`
