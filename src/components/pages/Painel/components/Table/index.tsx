@@ -50,7 +50,6 @@ export default function Table({ title, search, header }: ITableProps) {
   const getItemType = (actualItem: any) => {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
-    console.log(getKey[0].split('_').pop());
     return {
       itemType: getKey[0].split('_').pop(),
       itemID: actualItem[getKey[0]]

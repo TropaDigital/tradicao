@@ -1,4 +1,5 @@
 import { CloseIcon, MenuIcon, PdfIcon, PencilIcon } from '@/assets/icons';
+import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import moment from 'moment';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -63,7 +64,15 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
       {head.type === 'filePdf' && (
-        <span>
+        <span
+          onClick={() =>
+            downloadFileFromExternalLink(
+              item?.demonstracaoPDF[0]?.url_pdf,
+              item?.titulo
+            )
+          }
+          style={{ cursor: 'pointer' }}
+        >
           <PdfIcon />
         </span>
       )}

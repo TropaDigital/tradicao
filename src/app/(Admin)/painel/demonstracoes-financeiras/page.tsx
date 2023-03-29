@@ -1,5 +1,6 @@
 'use client';
 
+import { SearchIcon } from '@/assets/icons';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import DefaultInput from '@/components/UI/DefaultInput';
@@ -13,7 +14,7 @@ const DemonstracoesPage = () => {
       type: 'date'
     },
     {
-      key: 'title',
+      key: 'titulo',
       label: 'Título',
       type: 'string'
     },
@@ -40,7 +41,12 @@ const DemonstracoesPage = () => {
       <Table
         header={headerTable}
         title={'Lista de Demonstrações'}
-        search={<DefaultInput />}
+        search={
+          <DefaultInput
+            icon={<SearchIcon />}
+            placeholder="Pesquise por demonstrações"
+          />
+        }
       />
     </>
   );

@@ -108,7 +108,10 @@ const WorkWithUsPage = () => {
                     name="fullName"
                     placeholder="Nome"
                     value={values.fullName}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
+                      handleChange(e);
+                    }}
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
                   />
@@ -172,7 +175,10 @@ const WorkWithUsPage = () => {
                   <InputDefault
                     placeholder="Nome"
                     name="fullName"
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
+                      handleChange(e);
+                    }}
                     value={values.fullName}
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
