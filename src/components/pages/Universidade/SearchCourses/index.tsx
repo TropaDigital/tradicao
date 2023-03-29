@@ -1,9 +1,15 @@
 'use client';
+
+// React
+import { useMemo, useState } from "react";
+
+// Icons
 import { BrushedIcon, CircleLogoIcon } from "@/assets/icons";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
+// Components
 import Button from "@/components/UI/Button";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
-import { useMemo, useState } from "react";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 
 // Styles
 import { 
@@ -17,7 +23,6 @@ import {
 } from "./styles";
 
 interface ICoursesProps {
-    [x: string]: any;
     id: number,
     courseName: string,
     description: string,
