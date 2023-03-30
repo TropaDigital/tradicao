@@ -6,12 +6,16 @@ import FormProduct from '@/components/pages/Painel/components/forms/FormContempl
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';
+import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
+import cookieClass from '@/utils/cookieClass';
 import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import { useDebounce } from 'use-debounce';
+import * as S from '../styles';
 
 const ContempladosPage = () => {
   const headerTable = [
@@ -50,7 +54,7 @@ const ContempladosPage = () => {
   const [modalOpen, setModalOpen] = useState<'editar' | 'publicar' | null>(
     null
   );
-  const [searchContemplado, setSerachContemplado] = useState<string>('');
+  const [searchContemplado, setSearchContemplado] = useState<string>('');
   const [actualPage, setActualPage] = useState<number>(1);
 
   const { allContemplados } = useGetAllContemplados(
@@ -64,7 +68,11 @@ const ContempladosPage = () => {
   const debounced = useDebouncedCallback(
     // function
     (value) => {
-      setSerachContemplado(value);
+      if (value?.target?.value) {
+        setSearchContemplado(`pesquisa=${value?.target?.value}&`);
+        return;
+      }
+      setSearchContemplado('');
     },
     // delay in ms
     300
@@ -85,17 +93,11 @@ const ContempladosPage = () => {
           />
         </Modal>
       )}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '30px'
-        }}
-      >
+      <S.HeaderDashboard>
         <HeaderPage title="Contemplados" />
-        <div style={{ display: 'flex' }}>
+        <div className="buttonWrapper">
           <Button
-            style={{ padding: '10px 30px' }}
+            className="styledButton"
             onClick={() => setModalOpen('publicar')}
             radius="rounded"
             color="secondary"
@@ -104,7 +106,7 @@ const ContempladosPage = () => {
             + Adicionar contemplado
           </Button>
         </div>
-      </div>
+      </S.HeaderDashboard>
       <Table
         title="Lista de contemplados"
         header={headerTable}
@@ -118,16 +120,11 @@ const ContempladosPage = () => {
           />
         }
       />
-      {allContemplados?.paginas > 1 && (
-        <Pagination
-          page={actualPage}
-          onChange={handlePageChange}
-          count={allContemplados?.paginas}
-          defaultPage={1}
-          color="primary"
-          shape="rounded"
-        />
-      )}
+      <PaginationData
+        data={allContemplados}
+        page={actualPage}
+        handlePagination={handlePageChange}
+      />
     </>
   );
 };

@@ -91,6 +91,8 @@ export default function CardCarousel({
                 height={36}
                 src={PersonIcon}
                 alt={'Icon image'}
+                placeholder="blur"
+                blurDataURL={PersonIcon}
               />
               Justiça
             </div>

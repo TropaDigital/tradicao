@@ -42,7 +42,7 @@ export default function Contemplated() {
     ]
   };
 
-  const { allContemplados } = useGetAllContemplados();
+  const { allContemplados } = useGetAllContemplados('');
 
   return (
     <GreenCarousel title="Contemplados" height="350" marginBottom="110">

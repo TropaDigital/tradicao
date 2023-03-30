@@ -41,6 +41,7 @@ export const Container = styled.td`
     border-radius: 50%;
     transition: all 0.4s;
     background-color: var(--white);
+    cursor: pointer;
     &:hover {
       transition: all 0.4s;
       background-color: var(--gray-200);

@@ -17,4 +17,5 @@ interface IDemonstracaoPDF {
 export interface IDemonstracaoBody {
   titulo: string;
   url_pdf: string[];
+  status: 'Ativo' | 'Inativo' | string;
 }

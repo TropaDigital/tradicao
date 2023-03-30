@@ -29,6 +29,7 @@ export interface IUnitBody {
   cidade: string;
   uf: string;
   cep: string;
+  telefone: string;
   latitude?: string;
   longitutde?: string;
 }

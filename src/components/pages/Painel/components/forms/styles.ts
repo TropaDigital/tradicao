@@ -6,6 +6,12 @@ export const Container = styled.div`
   .formAddProductWrapper {
     width: 100%;
 
+    .formTitle {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
     .inputField {
       font-weight: 400;
       background-color: var(--white);
