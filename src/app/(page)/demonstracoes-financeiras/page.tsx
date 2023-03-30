@@ -11,7 +11,7 @@ import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 
 const DemonstracoesPage = () => {
   const { allDemonstrations } = useGetAllDemonstrations();
-
+  
   return (
     <>
       <SkewContainer
@@ -28,7 +28,7 @@ const DemonstracoesPage = () => {
           <ul className="demonstracao-container">
             {allDemonstrations?.dataPaginada?.map((demo) => {
               return (
-                <li className="button-wrapper">
+                <li className="button-wrapper" key={demo.id_demo_financeira}>
                   <Button
                     radius="rounded"
                     degrade
