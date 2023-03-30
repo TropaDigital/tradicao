@@ -32,6 +32,7 @@ export default function MiniModal({
           onClick={() => {
             onClick(row?.value);
           }}
+          key={key}
         >
           {row?.icon}
           {row?.label}

@@ -1,8 +1,10 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import DemonstracoesClass from '../index';
 import { IDemonstracaoBody } from '../interface';
 
 export const useCreateDemonstracao = () => {
+  const queryClient = useQueryClient();
+
   const { mutateAsync } = useMutation(
     async (demonstracao: IDemonstracaoBody) => {
       let response: any = await DemonstracoesClass.createDemonstration(
@@ -11,7 +13,10 @@ export const useCreateDemonstracao = () => {
       return response;
     },
     {
-      retry: true
+      retry: true,
+      onSuccess: () => {
+        queryClient.invalidateQueries('AllDemonstrations');
+      }
     }
   );
 

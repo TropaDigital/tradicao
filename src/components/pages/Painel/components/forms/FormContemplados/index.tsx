@@ -5,7 +5,7 @@ import InputImage from '../../inputs/InputImage';
 import { SelectDefault } from '../../inputs/SelectDefault';
 import * as S from '../styles';
 import { Formik, Form } from 'formik';
-import { contempladoSchema } from '../yupSchema';
+import { contempladoSchema } from './yupSchema';
 import { TrashIcon } from '@/assets/icons';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';

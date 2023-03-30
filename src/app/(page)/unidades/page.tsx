@@ -1,6 +1,6 @@
 'use client';
 
-import { CloseIcon, LocationIcon } from '@/assets/icons';
+import { LocationIcon } from '@/assets/icons';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
@@ -9,9 +9,8 @@ import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
-import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { Pagination, Skeleton } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
 
@@ -31,6 +30,9 @@ const UnidadesPage = () => {
   const allUnits = useGetUnitsByQuery(query.trim());
   useEffect(() => {
     getAllCities(allUnits?.units?.dataPaginada);
+    if (!query?.includes('uf')) {
+      getAllStates();
+    }
   }, [allUnits?.units?.dataPaginada]);
 
   useEffect(() => {
@@ -39,9 +41,6 @@ const UnidadesPage = () => {
     }
     if (query) {
       setActualPage(1);
-    }
-    if (!query?.includes('uf')) {
-      getAllStates();
     }
   }, [query]);
 
@@ -85,7 +84,9 @@ const UnidadesPage = () => {
 
   const getAllStates = () => {
     const allStatesFromUnits = allUnits?.units?.dataPaginada?.map(
-      (fullUnit: IGetUnit) => fullUnit.uf
+      (fullUnit: IGetUnit) => {
+        return fullUnit.uf;
+      }
     );
 
     const uniqueStates = [...new Set(allStatesFromUnits)].sort();

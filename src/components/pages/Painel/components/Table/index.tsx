@@ -4,7 +4,12 @@ import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
+import { IGetContemplados } from '@/services/contemplados/types';
+import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
+import { IGetDemonstrations } from '@/services/demonstracoes/interface';
+import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
+import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -12,6 +17,7 @@ import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
 import FormProduct from '../forms/FormContemplados';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
+import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
@@ -23,15 +29,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const [actualItem, setActualItem] = useState<any>();
 
   const { deleteFile } = useDeleteFile();
-
-  const { allContemplados, isLoadingAllDemonsrations } =
-    useGetAllContemplados();
   const { deleteContemplado } = useDeleteContemplado();
-
-  // const { allDemonstrations } = useGetAllDemonstrations();
+  const { deleteDemonstracao } = useDeleteDemonstracoes();
+  const { deleteUnit } = useDeleteUnit();
 
   const pathname = usePathname();
-  const actualPage: string | undefined = pathname?.split('/')?.pop();
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -41,25 +43,36 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
-      itemType: getKey[0].split('_').pop(),
-      itemID: actualItem[getKey[0]]
+      itemType: getKey[0]?.split('_')?.pop() as
+        | 'contemplado'
+        | 'financeira'
+        | 'unidade',
+      itemID: actualItem[getKey[0]] as number
     };
   };
 
   const removeItem = (itemToDelete: {
-    itemType: string | undefined;
+    itemType: 'contemplado' | 'financeira' | 'unidade';
     itemID: number;
   }) => {
-    if (itemToDelete?.itemType?.includes('contemplado')) {
-      deleteContemplado(itemToDelete?.itemID);
-      console.log(itemToDelete?.itemID);
+    const { itemID, itemType } = itemToDelete;
+
+    if (itemType === 'contemplado') {
+      deleteContemplado(itemID);
       deleteFile({
         endpoint: 'delete-contemplado-foto',
         id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
       });
     }
-    if (itemToDelete?.itemType?.includes('demonstracoes')) {
-      console.log('Entom tá bom');
+    if (itemType === 'financeira') {
+      deleteDemonstracao(itemID);
+      deleteFile({
+        endpoint: 'delete-demonstracao-pdf',
+        id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
+      });
+    }
+    if (itemType === 'unidade') {
+      deleteUnit(itemID);
     }
   };
 
@@ -82,7 +95,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {pathname?.includes('contemplado') && (
               <FormContemplados
                 modalOpen="editar"
-                actualItem={actualItem}
+                actualItem={actualItem as IGetContemplados}
                 onSubmit={() => {
                   setModalOpen('');
                 }}
@@ -91,7 +104,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {pathname?.includes('demonstracoes') && (
               <FormDemonstracoes
                 modalOpen="editar"
-                actualItem={actualItem}
+                actualItem={actualItem as IGetDemonstrations}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+            {pathname?.includes('unidades') && (
+              <FormUnidades
+                modalOpen="editar"
+                actualItem={actualItem as IGetUnit}
                 onSubmit={() => setModalOpen('')}
               />
             )}
@@ -159,7 +179,6 @@ export default function Table({ title, data, search, header }: ITableProps) {
                       key={keyHead}
                       head={head}
                       item={row}
-                      isLoading={isLoadingAllDemonsrations}
                       onClickOptions={(modalType, product) => {
                         handleModal(modalType, product);
                         setActualItem(product);

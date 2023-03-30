@@ -296,10 +296,10 @@ const Header = () => {
                             }
                             className="sub-menu-container"
                           >
-                            {page.subOptions.map((subOption) => (
+                            {page.subOptions.map((subOption, key) => (
                               <Link
                                 href={subOption.path}
-                                key={subOption.path}
+                                key={key}
                                 onClick={() => {
                                   setIsSubMenuConsorcioOpen(false);
                                   setIsSubMenuTradicaoOpen(false);

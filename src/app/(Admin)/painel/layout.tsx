@@ -46,9 +46,11 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
                   ></div>
                 </div>
                 <div className="sideBarMenu">
-                  {panelConfig.pages.map((page) => {
+                  {panelConfig.pages.map((page, key) => {
                     return (
-                      <Link href={`/painel/${page.path}`}>{page.name}</Link>
+                      <Link href={`/painel/${page.path}`} key={key}>
+                        {page.name}
+                      </Link>
                     );
                   })}
                 </div>

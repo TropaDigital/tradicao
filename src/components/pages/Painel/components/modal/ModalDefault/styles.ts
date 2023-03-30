@@ -26,7 +26,7 @@ export const Container = styled.div`
   }
   .modalContent {
     position: relative;
-    background-color: var(--gray-100);
+    background-color: var(--white);
     max-width: 528px;
     width: 100%;
     height: auto;

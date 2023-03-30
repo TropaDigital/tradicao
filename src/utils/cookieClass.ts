@@ -1,5 +1,5 @@
 import { getCookie, deleteCookie, setCookie } from 'cookies-next';
-import { OptionsType } from 'cookies-next/lib/types';
+import { CookieValueTypes, OptionsType } from 'cookies-next/lib/types';
 
 class CookieClass {
   getCookie(cookieName: string, options?: OptionsType) {

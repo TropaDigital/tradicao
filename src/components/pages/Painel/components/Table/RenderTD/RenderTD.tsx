@@ -25,7 +25,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
         <span>{moment(item.criado).format('DD/MM/YYYY')}</span>
       )}
       {head.type === 'options' && (
-        <button
+        <div
           className="buttonOptions"
           onClick={() => {
             setMiniModal(!miniModal);
@@ -54,11 +54,11 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
               ]}
             />
           )}
-        </button>
+        </div>
       )}
       {head.type === 'status' && (
-        <span className={item.status.toLowerCase() as string}>
-          {item.status.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
+        <span className={item?.status?.toLowerCase() as string}>
+          {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}

@@ -1,7 +1,5 @@
-import { IGetContemplados } from '@/services/contemplados/types';
-
 export interface IForm extends React.FormHTMLAttributes<HTMLFormElement> {
   modalOpen: string;
-  actualItem?: IGetContemplados;
+  actualItem?: any;
   onSubmit: () => void;
 }

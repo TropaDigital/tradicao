@@ -204,3 +204,17 @@ export const Container = styled.div<ISideBarProps>`
     }
   }
 `;
+
+export const HeaderDashboard = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  .buttonWrapper {
+    display: flex;
+
+    .styledButton {
+      padding: 10px 30px;
+    }
+  }
+`;

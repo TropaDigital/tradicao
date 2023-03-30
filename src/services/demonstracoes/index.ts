@@ -5,9 +5,11 @@ import API from '../api';
 import { IDemonstracaoBody } from './interface';
 
 class DemonstracoesClass {
-  async getAllDemonstrations() {
+  async getAllDemonstrations(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(`getAll-demonstracao`);
+      const response: AxiosResponse = await API.get(
+        `getAll-demonstracao${query && `?${query}`}`
+      );
       return response.data.result;
     } catch (err) {
       console.log(err);
@@ -21,6 +23,32 @@ class DemonstracoesClass {
         demonstracaoBody
       );
       return response.data.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async updateDemonstracao(
+    demonstracaoBody: IDemonstracaoBody,
+    id: number | undefined
+  ) {
+    try {
+      const response: AxiosResponse = await API.put(
+        `update-demonstracao/${id}`,
+        demonstracaoBody
+      );
+      return response.data.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async deleteDemonstracao(id: number) {
+    try {
+      const response: AxiosResponse = await API.delete(
+        `delete-demonstracao/${id}`
+      );
+      return response.data;
     } catch (err) {
       console.log(err);
     }
