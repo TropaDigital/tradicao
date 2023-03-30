@@ -1,6 +1,5 @@
 import { MovelIcon } from '@/assets/icons';
 import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
-import { SelectDefault } from '@/components/pages/Painel/components/inputs/SelectDefault';
 import {
   FieldDefault,
   FieldGroup
@@ -61,6 +60,16 @@ export function InfoImovel({
       </FieldDefault>
 
       <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          value={data.email}
+          onChange={handleInputChange}
+          error={error?.email}
+        />
+      </FieldDefault>
+      {/* <FieldDefault style={{ marginBottom: '14px' }}>
         <SelectDefault
           label="Selecione um Imovel"
           placeholder="imovel"
@@ -73,7 +82,7 @@ export function InfoImovel({
           <option value="2">opção 2</option>
           <option value="3">opção 3</option>
         </SelectDefault>
-      </FieldDefault>
+      </FieldDefault> */}
 
       <FieldGroup>
         <FieldDefault style={{ marginBottom: '14px' }}>

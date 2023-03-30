@@ -8,6 +8,7 @@ interface Props {
   styleButtonPlan: any;
   handleOnChangeValue: (value: number[]) => void;
   defaultValue: number;
+  selectedType: string;
 }
 
 export default function InfoGeral({
@@ -15,7 +16,8 @@ export default function InfoGeral({
   setSimulatorPlan,
   styleButtonPlan,
   handleOnChangeValue,
-  defaultValue
+  defaultValue,
+  selectedType
 }: Props) {
   return (
     <div>
@@ -65,21 +67,106 @@ export default function InfoGeral({
       </ContentSimulation>
 
       <ContentSimulation>
-        <legend>
-          <h2>Escolha o valor da parcela</h2>
-        </legend>
+        {
+          simulatorPlan === 'parcela' &&
+            <legend>
+              <h2>Escolha o valor da parcela</h2>
+            </legend>
+        }
+
+        {
+          simulatorPlan === 'credito' &&
+          <legend>
+            <h2>Escolha o valor do crédito</h2>
+          </legend>
+        }
         <strong>
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
           }).format(defaultValue ?? 0)}
         </strong>
-        <InputRange
-          defaultValue={defaultValue}
-          maxValue={3000}
-          minValue={200}
-          handleOnChange={handleOnChangeValue}
-        />
+
+        {
+          selectedType === 'veiculo' &&
+          simulatorPlan === 'parcela' &&
+          <InputRange
+            defaultValue={defaultValue !== 700 ? 700 : defaultValue}
+            maxValue={1000}
+            minValue={400}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'veiculo' &&
+          simulatorPlan === 'credito' &&
+          <InputRange
+            defaultValue={defaultValue !== 215000 ? 215000 : defaultValue}
+            maxValue={400000}
+            minValue={20000}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'imovel' &&
+          simulatorPlan === 'parcela' &&
+          <InputRange
+            defaultValue={defaultValue !== 1750 ? 1750 : defaultValue}
+            maxValue={3000}
+            minValue={500}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'imovel' &&
+          simulatorPlan === 'credito' &&
+          <InputRange
+            defaultValue={defaultValue !== 165000 ? 165000 : defaultValue}
+            maxValue={276000}
+            minValue={56000}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'servicos' &&
+          simulatorPlan === 'parcela' &&
+          <InputRange
+            defaultValue={defaultValue !== 500 ? 500 : defaultValue}
+            maxValue={800}
+            minValue={200}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'servicos' &&
+          simulatorPlan === 'credito' &&
+          <InputRange
+            defaultValue={defaultValue !== 10000 ? 10000 : defaultValue}
+            maxValue={20000}
+            minValue={0}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'caminhao' &&
+          simulatorPlan === 'parcela' &&
+          <InputRange
+            defaultValue={defaultValue !== 3850 ? 3850 : defaultValue}
+            maxValue={6700}
+            minValue={1000}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
+        {
+          selectedType === 'caminhao' &&
+          simulatorPlan === 'credito' &&
+          <InputRange
+            defaultValue={defaultValue !== 170000 ? 170000 : defaultValue}
+            maxValue={340000}
+            minValue={0}
+            handleOnChange={handleOnChangeValue}
+          />
+        }
       </ContentSimulation>
     </div>
   );

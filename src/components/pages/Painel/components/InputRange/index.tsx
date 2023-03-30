@@ -20,8 +20,8 @@ export default function InputRange({
       <Slider.Root
         className="SliderRoot"
         defaultValue={[defaultValue]}
-        max={3000}
-        min={200}
+        max={maxValue}
+        min={minValue}
         step={1}
         aria-label="Volume"
         onValueChange={handleOnChange}
