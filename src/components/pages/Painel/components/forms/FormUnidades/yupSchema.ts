@@ -7,5 +7,5 @@ export const UnitSchema = yup.object().shape({
   cidade: yup?.string()?.required('A cidade da Unidade é obrigatória'),
   uf: yup?.string()?.required('O estado da Unidade é obrigatório'),
   cep: yup?.string()?.required('O CEP da Unidade é obrigatório'),
-  telefone: yup?.string()?.required('O telefone da Unidade é obrigatório')
+  telefone: yup?.string()?.optional()
 });

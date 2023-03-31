@@ -67,7 +67,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
         <span
           onClick={() =>
             downloadFileFromExternalLink(
-              item?.demonstracaoPDF[0]?.url_pdf,
+              item[head.key][0]?.url_pdf,
               item?.titulo
             )
           }

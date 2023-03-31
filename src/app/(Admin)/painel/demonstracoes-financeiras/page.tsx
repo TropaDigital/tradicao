@@ -24,10 +24,11 @@ const DemonstracoesPage = () => {
     {
       key: 'titulo',
       label: 'Título',
+
       type: 'string'
     },
     {
-      key: 'file',
+      key: 'demonstracaoPDF',
       label: 'Arquivo PDF',
       type: 'file'
     },

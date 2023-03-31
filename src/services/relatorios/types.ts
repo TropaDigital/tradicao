@@ -20,4 +20,5 @@ interface IPdfData {
 export interface IRelatorioBody {
   titulo: string;
   url_pdf: string[];
+  status?: string;
 }

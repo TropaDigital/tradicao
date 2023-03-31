@@ -2,14 +2,14 @@
 
 import { SearchIcon } from '@/assets/icons';
 import FormDemonstracoes from '@/components/pages/Painel/components/forms/FormDemonstracoes';
+import FormRelatories from '@/components/pages/Painel/components/forms/FormRelatories';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
-import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
-import { Pagination } from '@mui/material';
+import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
 import React, { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
@@ -27,7 +27,7 @@ const DemonstracoesPage = () => {
       type: 'string'
     },
     {
-      key: 'file',
+      key: 'pdfData',
       label: 'Arquivo PDF',
       type: 'file'
     },
@@ -46,11 +46,11 @@ const DemonstracoesPage = () => {
   const [modalOpen, setModalOpen] = useState<
     'publicar' | 'editar' | undefined | null
   >();
-  const [searchDemonstracao, setSearchDemonstracao] = useState('');
+  const [searchRelatorio, setSearchRelatorio] = useState('');
   const [actualPage, setActualPage] = useState(1);
 
-  const { allDemonstrations } = useGetAllDemonstrations(
-    searchDemonstracao + `limit=5&page=${actualPage}`
+  const { allRelatories } = useGetlAllRelatorios(
+    searchRelatorio + `limit=5&page=${actualPage}`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -61,10 +61,10 @@ const DemonstracoesPage = () => {
     // function
     (value) => {
       if (value?.target?.value) {
-        setSearchDemonstracao(`pesquisa=${value?.target?.value}&`);
+        setSearchRelatorio(`pesquisa=${value?.target?.value}&`);
         return;
       }
-      setSearchDemonstracao('');
+      setSearchRelatorio('');
     },
     // delay in ms
     300
@@ -79,14 +79,14 @@ const DemonstracoesPage = () => {
           }}
           setData={() => {}}
         >
-          <FormDemonstracoes
+          <FormRelatories
             modalOpen={modalOpen}
             onSubmit={() => setModalOpen(null)}
           />
         </Modal>
       )}
       <S.HeaderDashboard>
-        <HeaderPage title="Demonstrações Financeiras" />
+        <HeaderPage title="Relatórios de Ouvidoria" />
         <div className="buttonWrapper">
           <Button
             className="styledButton"
@@ -95,24 +95,24 @@ const DemonstracoesPage = () => {
             color="secondary"
             degrade
           >
-            + Adicionar Demonstração
+            + Adicionar Relatório
           </Button>
         </div>
       </S.HeaderDashboard>
       <Table
         header={headerTable}
-        title={'Lista de Demonstrações'}
-        data={allDemonstrations?.dataPaginada}
+        title={'Lista de Relatórios'}
+        data={allRelatories?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}
-            placeholder="Pesquise por demonstrações"
+            placeholder="Pesquise por Relatório"
             onChange={debounced}
           />
         }
       />
       <PaginationData
-        data={allDemonstrations}
+        data={allRelatories}
         page={actualPage}
         handlePagination={handlePageChange}
       />
