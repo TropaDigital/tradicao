@@ -5,13 +5,14 @@ import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
+import { IGetRelatorio } from '@/services/relatorios/types';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import React from 'react';
 import GraphicsBg from '../../../../public/images/demonstracoes_bg.png';
 import * as S from './styles';
 
 const RelatoriosPage = () => {
-  const { allRelatories } = useGetlAllRelatorios();
+  const { allRelatories } = useGetlAllRelatorios('');
 
   return (
     <>
@@ -24,23 +25,26 @@ const RelatoriosPage = () => {
             <p className="subtitle">Escolha abaixo o relatório desejado</p>
           </S.TitleContainer>
           <S.ButtonsContainer>
-            {allRelatories?.map((relatorio) => (
-              <>
-                <Button
-                  degrade
-                  radius="rounded"
-                  className="relatorio-button"
-                  onClick={() =>
-                    downloadFileFromExternalLink(
-                      relatorio?.pdfData[0]['url_pdf'],
-                      relatorio?.titulo
-                    )
-                  }
-                >
-                  {relatorio?.titulo}
-                </Button>
-              </>
-            ))}
+            {allRelatories?.dataPaginada?.map((relatorio) => {
+              if (relatorio?.status === 'Inativo') return;
+              return (
+                <>
+                  <Button
+                    degrade
+                    radius="rounded"
+                    className="relatorio-button"
+                    onClick={() =>
+                      downloadFileFromExternalLink(
+                        relatorio?.pdfData[0]['url_pdf'],
+                        relatorio?.titulo
+                      )
+                    }
+                  >
+                    {relatorio?.titulo}
+                  </Button>
+                </>
+              );
+            })}
           </S.ButtonsContainer>
         </S.Container>
       </CenterWrapper>

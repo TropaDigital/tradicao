@@ -8,6 +8,8 @@ import { IGetContemplados } from '@/services/contemplados/types';
 import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
+import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
+import { IGetRelatorio } from '@/services/relatorios/types';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
@@ -17,6 +19,7 @@ import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
 import FormProduct from '../forms/FormContemplados';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
+import FormRelatories from '../forms/FormRelatories';
 import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
@@ -32,6 +35,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteContemplado } = useDeleteContemplado();
   const { deleteDemonstracao } = useDeleteDemonstracoes();
   const { deleteUnit } = useDeleteUnit();
+  const { deleteRelatorio } = useDeleteRelatorio();
 
   const pathname = usePathname();
 
@@ -46,13 +50,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
       itemType: getKey[0]?.split('_')?.pop() as
         | 'contemplado'
         | 'financeira'
-        | 'unidade',
+        | 'unidade'
+        | 'relatorio',
       itemID: actualItem[getKey[0]] as number
     };
   };
 
   const removeItem = (itemToDelete: {
-    itemType: 'contemplado' | 'financeira' | 'unidade';
+    itemType: 'contemplado' | 'financeira' | 'unidade' | 'relatorio';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -73,6 +78,9 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
     if (itemType === 'unidade') {
       deleteUnit(itemID);
+    }
+    if (itemType === 'relatorio') {
+      deleteRelatorio(itemID);
     }
   };
 
@@ -112,6 +120,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
               <FormUnidades
                 modalOpen="editar"
                 actualItem={actualItem as IGetUnit}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+            {pathname?.includes('relatorio') && (
+              <FormRelatories
+                modalOpen="editar"
+                actualItem={actualItem as IGetRelatorio}
                 onSubmit={() => setModalOpen('')}
               />
             )}

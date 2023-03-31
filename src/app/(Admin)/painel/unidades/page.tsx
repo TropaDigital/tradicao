@@ -95,7 +95,7 @@ const UnidadesPainelPage = () => {
         </Modal>
       )}
       <S.HeaderDashboard>
-        <HeaderPage title="Contemplados" />
+        <HeaderPage title="Unidades" />
         <div className="buttonWrapper">
           <Button
             className="styledButton"

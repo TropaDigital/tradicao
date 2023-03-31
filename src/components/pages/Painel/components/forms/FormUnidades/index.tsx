@@ -147,20 +147,20 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                 <div className="lineElementsWrapper">
                   <InputDefault
-                    label="Bairro"
-                    placeholder="Bairro"
-                    name="bairro"
-                    value={values?.bairro}
-                    onChange={handleChange}
-                    error={touched?.bairro && errors?.bairro}
-                  />
-                  <InputDefault
                     label="Cidade"
                     placeholder="Cidade da Unidade"
                     name="cidade"
                     value={values?.cidade}
                     onChange={handleChange}
                     error={touched?.cidade && errors?.cidade}
+                  />
+                  <InputDefault
+                    label="Bairro"
+                    placeholder="Bairro"
+                    name="bairro"
+                    value={values?.bairro}
+                    onChange={handleChange}
+                    error={touched?.bairro && errors?.bairro}
                   />
                 </div>
 
@@ -176,7 +176,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   {allStates?.map((estado) => {
                     return (
                       <option value={estado?.uf} key={estado?.uf}>
-                        {estado?.nome?.toUpperCase()}
+                        {estado?.nome}
                       </option>
                     );
                   })}

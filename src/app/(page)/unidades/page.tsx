@@ -26,12 +26,14 @@ const UnidadesPage = () => {
   const { units, isLoadingUnits } = useGetUnitsByQuery(
     query.trim() + `&limit=16&page=${actualPage}`
   );
-
   const allUnits = useGetUnitsByQuery(query.trim());
+
   useEffect(() => {
     getAllCities(allUnits?.units?.dataPaginada);
-    if (!query?.includes('uf')) {
-      getAllStates();
+    if (!allUnits?.isLoadingUnits) {
+      if (!query?.includes('uf=')) {
+        getAllStates();
+      }
     }
   }, [allUnits?.units?.dataPaginada]);
 
@@ -43,6 +45,10 @@ const UnidadesPage = () => {
       setActualPage(1);
     }
   }, [query]);
+
+  useEffect(() => {
+    console.log(allStates);
+  }, [allStates]);
 
   const unitsSkeletons = new Array(16).fill('_');
 
@@ -85,11 +91,11 @@ const UnidadesPage = () => {
   const getAllStates = () => {
     const allStatesFromUnits = allUnits?.units?.dataPaginada?.map(
       (fullUnit: IGetUnit) => {
-        return fullUnit.uf;
+        return fullUnit?.uf;
       }
     );
 
-    const uniqueStates = [...new Set(allStatesFromUnits)].sort();
+    const uniqueStates: any = [...new Set(allStatesFromUnits)].sort();
 
     if (!allStates) {
       setAllStates(uniqueStates);
@@ -98,7 +104,7 @@ const UnidadesPage = () => {
 
   const getAllCities = (actualFilter: IGetUnit[]) => {
     const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
-      return fullUnit.cidade;
+      return fullUnit?.cidade;
     });
 
     const uniqueCities = [...new Set(allCities)].sort();
