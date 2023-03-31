@@ -42,7 +42,7 @@ const WorkWithUsPage = () => {
         <S.Container>
           <S.ButtonsWrapper>
             <Button
-              weight={500}
+              weight={700}
               variant="default"
               onClick={() => setFormStage('curriculo')}
               color={formStage === 'curriculo' ? 'primary' : 'secondary'}
@@ -52,7 +52,7 @@ const WorkWithUsPage = () => {
               Enviar Currículo
             </Button>
             <Button
-              weight={500}
+              weight={700}
               variant="default"
               onClick={() => setFormStage('representante')}
               color={formStage === 'representante' ? 'primary' : 'secondary'}

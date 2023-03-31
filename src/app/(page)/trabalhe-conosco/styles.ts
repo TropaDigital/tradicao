@@ -19,6 +19,7 @@ export const ButtonsWrapper = styled.div`
 
   .stage-form-button {
     height: 68px;
+    font-size: 16px;
   }
 
   @media (max-width: 450px) {
