@@ -141,7 +141,7 @@ export default function QuemSomos() {
           transparência e qualidade!
         </S.AboutUsContent>
         <S.AboutUsSubtitle>
-          O Melhor jeito de realizar seu sonho
+          O melhor jeito de realizar seu sonho
         </S.AboutUsSubtitle>
         <S.AboutUsBenefitsTitle>
           Conheça as vantagens do Consórcio tradição
