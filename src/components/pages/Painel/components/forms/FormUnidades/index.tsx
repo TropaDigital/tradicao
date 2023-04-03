@@ -106,7 +106,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               <div className="inputsProductWrapper">
                 <InputDefault
                   label="Nome da Unidade"
-                  placeholder="Nome da Unidade"
+                  placeholder="Unidade ABC"
                   name="nome"
                   value={values?.nome}
                   onChange={handleChange}
@@ -115,16 +115,23 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                 <InputDefault
                   label="Telefone"
-                  placeholder="Telefone da Unidade"
+                  placeholder="00 00000-0000"
                   name="telefone"
-                  value={values?.telefone}
-                  onChange={handleChange}
+                  value={values?.telefone?.replace(
+                    /^(\d{2})\s*(\d{5})[-\s]?(\d{4})$/,
+                    '$1 $2-$3'
+                  )}
+                  onChange={(e) => {
+                    if (!/^[0-9 -]*$/.test(e?.target?.value)) return;
+                    handleChange(e);
+                  }}
+                  maxLength={11}
                   error={touched?.telefone && errors?.telefone}
                 />
 
                 <InputDefault
                   label="CEP"
-                  placeholder="CEP da Unidade"
+                  placeholder="00000-000"
                   name="cep"
                   value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
                   maxLength={8}
@@ -138,7 +145,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                 <InputDefault
                   label="Endereço"
-                  placeholder="Endereço"
+                  placeholder="Av. Monte Cruz, 1756 - Sala 2"
                   name="endereco"
                   value={values?.endereco}
                   onChange={handleChange}
@@ -148,7 +155,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 <div className="lineElementsWrapper">
                   <InputDefault
                     label="Cidade"
-                    placeholder="Cidade da Unidade"
+                    placeholder="Santo Antonio"
                     name="cidade"
                     value={values?.cidade}
                     onChange={handleChange}
@@ -156,7 +163,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   />
                   <InputDefault
                     label="Bairro"
-                    placeholder="Bairro"
+                    placeholder="Jardim Alvorada"
                     name="bairro"
                     value={values?.bairro}
                     onChange={handleChange}

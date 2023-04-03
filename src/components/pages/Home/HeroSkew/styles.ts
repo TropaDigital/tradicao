@@ -106,6 +106,14 @@ export const SubTitleWrapper = styled.div`
     border-radius: 0;
   }
 
+  @media (max-width: 520px) {
+    height: 65px;
+  }
+
+  @media (max-width: 375px) {
+    height: 48px;
+  }
+
   .subtitle {
     font-weight: 700;
     font-size: 24px;

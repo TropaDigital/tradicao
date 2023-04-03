@@ -71,12 +71,14 @@ export const Select = styled.nav<props>`
         height: ${(numberOfOptions * 42).toString() + 'px'};
       `}
     .cardToPage {
-      border-left: 1px solid var(--base2);
+      border-left: 1px solid var(--gray-300);
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
       padding-left: 15px;
       margin-left: 12px;
       height: 42px;
       text-decoration: none;
-      color: var(--text2);
+      color: var(--dark);
       display: flex;
       align-items: center;
       font-size: 16px;
@@ -85,7 +87,7 @@ export const Select = styled.nav<props>`
       margin-left: 12px;
       transition: all 0.3s;
       &:hover {
-        background-color: var(--base3);
+        background-color: var(--gray-200);
       }
     }
   }

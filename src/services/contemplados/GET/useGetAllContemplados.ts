@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import ContempladosClass from '../index';
-import { IGetContemplados } from '../types';
+import { IResponseContemplados } from './types';
 
 export const useGetAllContemplados = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
@@ -11,13 +11,9 @@ export const useGetAllContemplados = (query?: string) => {
   );
 
   return {
-    allContemplados: data as {
-      dataPaginada: IGetContemplados[];
-      paginas: number;
-      total: number;
-    },
-    isLoadingAllDemonsrations: isLoading as boolean,
-    isErrorAllDemonstrations: isError as boolean,
-    isSuccessAllDemonstrations: isSuccess as boolean
+    allContemplados: data as IResponseContemplados,
+    isLoadingAlContemplados: isLoading as boolean,
+    isErrorAllContemplados: isError as boolean,
+    isSuccessAllContemplados: isSuccess as boolean
   };
 };

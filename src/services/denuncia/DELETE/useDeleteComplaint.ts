@@ -5,7 +5,8 @@ import DenunciaClass from '../index';
 export const useDeleteComplaint = () => {
   const { mutateAsync } = useMutation(
     async (denunciaID: string | number) => {
-      let response: any = await DenunciaClass.deleteComplaint(denunciaID);
+      let response: AxiosResponse | undefined | unknown =
+        await DenunciaClass.deleteComplaint(denunciaID);
       return response;
     },
     {

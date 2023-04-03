@@ -46,7 +46,9 @@ export const Container = styled.div<ISideBarProps>`
         display: none;
         position: relative;
         @media (max-width: 835px) {
-          display: block;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
         }
         .menuHamburger {
           height: 2.5px;
@@ -93,14 +95,29 @@ export const Container = styled.div<ISideBarProps>`
           box-shadow: 0px 4px 12px rgba(25, 73, 62, 0.1);
           display: flex;
           flex-direction: column;
-          gap: 15px;
-          padding: 60px 20px;
+          gap: 8px;
+          padding: 20px;
           a {
-            color: var(--gray-500);
+            color: var(--dark);
             font-weight: 500;
+            padding: 10px;
+            border-radius: 8px;
+
+            :hover {
+              background-color: var(--gray-300);
+            }
           }
           @media (max-width: 450px) {
             width: 50%;
+          }
+
+          .logoSideBarMenu {
+            margin-bottom: 20px;
+            width: min-content;
+
+            :hover {
+              background-color: transparent;
+            }
           }
         }
       }
@@ -208,7 +225,13 @@ export const Container = styled.div<ISideBarProps>`
 export const HeaderDashboard = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
   margin-bottom: 30px;
+
+  @media (max-width: 588px) {
+    gap: 10px;
+  }
 
   .buttonWrapper {
     display: flex;

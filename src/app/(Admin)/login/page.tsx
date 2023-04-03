@@ -1,72 +1,54 @@
 'use client';
 
-import React, { useState, useEffect, FormEvent } from 'react';
+import React from 'react';
 
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import * as S from './styles';
 
-import carBanner from '../../../../public/images/car_banner.jpg';
+import familyBanner from '../../../../public/images/family-on-grass.jpg';
 
-import { DefaultLogo } from '@/assets/icons';
+import { DefaultLogo, WhiteLogo } from '@/assets/icons';
 import Button from '@/components/UI/Button';
 
-import { toast } from 'react-toastify';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
-import cookieClass from '@/utils/cookieClass';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { Form, Formik } from 'formik';
 import { loginSchema } from './yupSchema';
 import { useRouter } from 'next/navigation';
-
-interface IDTO {
-  login: string;
-  password: string;
-}
+import { toast } from 'react-toastify';
 
 const PanelLoginComponent = () => {
-  const [currentBgImage, setCurrentBgImage] =
-    useState<StaticImageData>(carBanner);
-
   const router = useRouter();
 
-  useEffect(() => {
-    handleBgImage();
-  }, []);
-
-  function handleBgImage() {
-    const options: Array<StaticImageData> = [carBanner];
-    setInterval(() => {
-      var imagePos = Math.floor(Math.random() * options?.length);
-      setCurrentBgImage(options[imagePos]);
-    }, 5000);
-  }
-
   function checkCredentials(values: any) {
-    const errors: { email?: string; senha?: string } = {};
-
-    if (values?.email !== 'admin@consorcio.com') {
-      errors.email = 'E-mail inválido!';
+    if (
+      values?.email !== 'admin@consorcio.com' ||
+      values?.senha !== 'consorcio123'
+    ) {
+      toast.error('E-mail ou Senha Inválidos');
+      return false;
     }
-    if (values?.senha !== 'consorcio123') {
-      errors.senha = 'Senha inválida!';
-    }
 
-    return errors;
+    return true;
   }
 
   return (
     <S.Container>
       <S.RightWrapper>
-        <div className="bgImageWrapper">
+        <div className="columnGreen">
+          <div className="bannerOverlay">
+            <div className="bannerLogo">
+              <WhiteLogo width={786} height={231} />
+            </div>
+          </div>
           <Image
-            className="bgImageWithBlur"
-            alt="imagem"
-            src={currentBgImage}
+            src={familyBanner}
+            alt="Login Banner"
             objectFit="cover"
             fill
+            className="bannerImage"
           />
         </div>
-        <div className="columnGreen"></div>
       </S.RightWrapper>
 
       <Formik
@@ -75,15 +57,10 @@ const PanelLoginComponent = () => {
           senha: ''
         }}
         validationSchema={loginSchema}
-        validate={checkCredentials}
         onSubmit={(values) => {
-          if (values?.email === 'admin@consorcio.com')
-            if (values?.senha === 'consorcio123')
-              cookieClass.setCookie(
-                'AuthorizedAdminConsorcio',
-                'Abzmfoi+65Afdia'
-              );
-          router.push('/painel/contemplados');
+          if (checkCredentials(values)) {
+            router.push('/painel/contemplados');
+          }
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (

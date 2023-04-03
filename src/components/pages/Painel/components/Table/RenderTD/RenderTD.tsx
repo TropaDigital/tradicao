@@ -62,6 +62,9 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
         </span>
       )}
       {head.type === 'string' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'longText' && (
+        <span className="longText">{item[labelKey] as string}</span>
+      )}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
       {head.type === 'file' && (
         <span

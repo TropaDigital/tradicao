@@ -7,7 +7,7 @@ interface IconProps {
 export const DefaultLogo = ({
   color = '#000000',
   width = 262,
-  height = 77
+  height = 58
 }) => {
   return (
     <svg

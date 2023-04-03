@@ -38,7 +38,10 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
           <div className="rigthSideWithAvatar">
             <div className="navigateOptions">
               <div className="sideBarMenuWrapper">
-                <div onClick={() => setSideBarIsOpen(!sideBarIsOpen)}>
+                <div
+                  onClick={() => setSideBarIsOpen(!sideBarIsOpen)}
+                  className="menuHamburguerContainer"
+                >
                   <div
                     className={`menuHamburger ${
                       sideBarIsOpen ? 'opened' : 'closed'
@@ -46,6 +49,10 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
                   ></div>
                 </div>
                 <div className="sideBarMenu">
+                  <Link href="/" className="logoSideBarMenu">
+                    <DefaultBrasao />
+                  </Link>
+
                   {panelConfig.pages.map((page, key) => {
                     return (
                       <Link href={`/painel/${page.path}`} key={key}>

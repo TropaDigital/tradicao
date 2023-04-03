@@ -8,12 +8,24 @@ export const useDeleteRelatorio = () => {
 
   const { mutateAsync } = useMutation(
     async (id: number) => {
-      try {
-        let response: any = await RelatioriosClass.deleteRelatorio(id);
-        return response;
-      } catch (err) {
-        console.log(err);
-      }
+      let response = toast.promise(
+        async () => {
+          let response: AxiosResponse = await RelatioriosClass.deleteRelatorio(
+            id
+          );
+          return response;
+        },
+        {
+          error: 'Erro',
+          pending: 'Pending',
+          success: 'Success'
+        },
+        {
+          position: 'top-right',
+          autoClose: 3000
+        }
+      );
+      return response;
     },
     {
       onSuccess: () => {

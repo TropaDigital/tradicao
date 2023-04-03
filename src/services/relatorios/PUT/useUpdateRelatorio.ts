@@ -11,16 +11,17 @@ export const useUpdateRelatorio = () => {
     async (relatorioPost: IUpdateBody) => {
       let response = toast.promise(
         async () => {
-          let response: any = await DemonstracaoClass.updateDemonstracao(
-            relatorioPost?.putBody as IRelatorioBody,
-            relatorioPost?.id
-          );
+          let response: AxiosResponse =
+            await DemonstracaoClass.updateDemonstracao(
+              relatorioPost?.putBody as IRelatorioBody,
+              relatorioPost?.id
+            );
           return response;
         },
         {
-          error: `Não foi possível atualizar contemplado`,
-          pending: 'Atualizando contemplado',
-          success: 'Contemplado atualizado com sucesso'
+          error: `Não foi possível atualizar relatório`,
+          pending: 'Atualizando relatório',
+          success: 'Relatório atualizado com sucesso'
         },
         {
           position: 'top-right',

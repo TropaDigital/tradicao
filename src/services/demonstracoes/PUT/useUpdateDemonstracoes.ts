@@ -2,12 +2,7 @@ import { AxiosResponse } from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import DemonstracaoClass from '../index';
-import { IDemonstracaoBody } from '../interface';
-
-interface IContempladoPost {
-  demonstracaoBody: IDemonstracaoBody;
-  id: number | undefined;
-}
+import { IContempladoPost } from './types';
 
 export const useUptadeDemonstracao = () => {
   const queryClient = useQueryClient();
@@ -15,16 +10,17 @@ export const useUptadeDemonstracao = () => {
     async (demonstracaoPost: IContempladoPost) => {
       let response = toast.promise(
         async () => {
-          let response: any = await DemonstracaoClass.updateDemonstracao(
-            demonstracaoPost?.demonstracaoBody,
-            demonstracaoPost?.id
-          );
+          let response: AxiosResponse =
+            await DemonstracaoClass.updateDemonstracao(
+              demonstracaoPost?.demonstracaoBody,
+              demonstracaoPost?.id
+            );
           return response;
         },
         {
-          error: `Não foi possível atualizar contemplado`,
-          pending: 'Atualizando contemplado',
-          success: 'Contemplado atualizado com sucesso'
+          error: `Não foi possível atualizar demonstração`,
+          pending: 'Atualizando demonstração',
+          success: 'Demonstração atualizada com sucesso'
         },
         {
           position: 'top-right',
