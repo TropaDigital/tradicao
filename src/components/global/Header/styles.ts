@@ -7,26 +7,13 @@ type Props = {
 };
 
 export const HeaderContainer = styled.header<Props>`
-  ${({ showHeader }) =>
-    showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 0px;
-      opacity: 0;
-    `}
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 122px;
+  opacity: 1;
+  z-index: 99999;
 
-  ${({ showHeader }) =>
-    !showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 122px;
-      opacity: 1;
-      z-index: 99999;
-    `}
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,6 +21,12 @@ export const HeaderContainer = styled.header<Props>`
   background-color: var(--white);
   width: 100%;
   transition: all 0.3s;
+  &.nav-up {
+    top: 0;
+  }
+  &.nav-down {
+    top: -122px;
+  }
   .logo {
     padding-right: 30px;
   }

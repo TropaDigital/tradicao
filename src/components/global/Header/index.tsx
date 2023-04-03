@@ -10,6 +10,7 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
+import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -28,6 +29,11 @@ const Header = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
   }, []);
+
+  const scrollDirection = useScrollDirection();
+  useEffect(() => {
+    if (scrollDirection) console.log(scrollDirection);
+  }, [scrollDirection]);
 
   const pathName = usePathname();
 
@@ -190,7 +196,7 @@ const Header = () => {
         </ul>
       </S.InfoContainer>
 
-      <S.HeaderContainer>
+      <S.HeaderContainer className={'nav-' + scrollDirection}>
         <Link href="/">
           <div className="logo">
             <DefaultLogo width={262} height={77} />
