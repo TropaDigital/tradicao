@@ -25,14 +25,18 @@ const Header = () => {
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
   }, []);
 
-  const scrollDirection = useScrollDirection();
   useEffect(() => {
-    if (scrollDirection) console.log(scrollDirection);
+    if (scrollDirection === 'down') {
+      setIsMobileOpen(false);
+      setIsSubMenuConsorcioOpen(false);
+      setIsSubMenuTradicaoOpen(false);
+    }
   }, [scrollDirection]);
 
   const pathName = usePathname();

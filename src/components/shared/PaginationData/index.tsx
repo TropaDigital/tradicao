@@ -27,6 +27,17 @@ const PaginationData = ({
           shape="rounded"
         />
       )}
+
+      {data?.pagination?.lastPage > 1 && (
+        <Pagination
+          page={data?.pagination?.currentPage}
+          onChange={handlePagination}
+          count={data?.pagination?.lastPage}
+          defaultPage={defaultPage}
+          color="primary"
+          shape="rounded"
+        />
+      )}
     </S.Container>
   );
 };

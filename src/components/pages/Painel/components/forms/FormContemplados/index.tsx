@@ -209,7 +209,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     className="button"
                     type="submit"
                   >
-                    {modalOpen === 'publicar' ? 'Publicar' : 'Atualizar'}
+                    {modalOpen === 'publicar' ? 'Adicionar' : 'Atualizar'}
                   </ButtonDefault>
                 </div>
               </div>

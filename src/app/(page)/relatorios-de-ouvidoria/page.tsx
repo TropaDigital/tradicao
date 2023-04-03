@@ -39,6 +39,7 @@ const RelatoriosPage = () => {
                         relatorio?.titulo
                       )
                     }
+                    key={relatorio?.id_relatorio}
                   >
                     {relatorio?.titulo}
                   </Button>

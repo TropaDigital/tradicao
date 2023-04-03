@@ -17,10 +17,12 @@ class TrabalheConoscoClass {
     }
   }
 
-  async getAllCandidate() {
+  async getAllCandidate(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(`getAll-TrabalheConosco`);
-      return response?.data?.result;
+      const response: AxiosResponse = await API.get(
+        `getAll-TrabalheConosco${query && `?${query}`}`
+      );
+      return response?.data;
     } catch (err) {
       console.log(err);
     }

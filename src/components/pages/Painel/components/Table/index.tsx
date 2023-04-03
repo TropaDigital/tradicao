@@ -10,6 +10,8 @@ import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
 import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
 import { IGetRelatorio } from '@/services/relatorios/types';
+import { IGetRepresentante } from '@/services/representante/types';
+import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
@@ -20,6 +22,7 @@ import FormContemplados from '../forms/FormContemplados';
 import FormProduct from '../forms/FormContemplados';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
+import FormRepresentante from '../forms/FormRepresentante';
 import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
@@ -36,6 +39,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteDemonstracao } = useDeleteDemonstracoes();
   const { deleteUnit } = useDeleteUnit();
   const { deleteRelatorio } = useDeleteRelatorio();
+  const { deleteCurriculo } = useDeleteCurriculo();
 
   const pathname = usePathname();
 
@@ -51,13 +55,19 @@ export default function Table({ title, data, search, header }: ITableProps) {
         | 'contemplado'
         | 'financeira'
         | 'unidade'
-        | 'relatorio',
+        | 'relatorio'
+        | 'candidato',
       itemID: actualItem[getKey[0]] as number
     };
   };
 
   const removeItem = (itemToDelete: {
-    itemType: 'contemplado' | 'financeira' | 'unidade' | 'relatorio';
+    itemType:
+      | 'contemplado'
+      | 'financeira'
+      | 'unidade'
+      | 'relatorio'
+      | 'candidato';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -76,6 +86,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
         endpoint: 'delete-demonstracao-pdf',
         id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
       });
+    }
+
+    if (itemType === 'candidato') {
+      deleteCurriculo(itemID);
     }
 
     if (itemType === 'unidade') {
@@ -131,6 +145,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
               <FormRelatories
                 modalOpen="editar"
                 actualItem={actualItem as IGetRelatorio}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+            {pathname?.includes('representantes') && (
+              <FormRepresentante
+                modalOpen="editar"
+                actualItem={actualItem as IGetRepresentante}
                 onSubmit={() => setModalOpen('')}
               />
             )}

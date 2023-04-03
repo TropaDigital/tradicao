@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import RepresentanteClass from '../index';
-import { IAgentInfo } from '../types';
+import { IGetRepresentante } from '../types';
 import { toast } from 'react-toastify';
 
 export const useCreateAgent = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (agent: IAgentInfo) => {
+    async (agent: IGetRepresentante) => {
       let response = toast.promise(
         async () => {
           let response: AxiosResponse | undefined =
@@ -30,7 +30,7 @@ export const useCreateAgent = () => {
     {
       retry: true,
       onSuccess: () => {
-        queryClient.invalidateQueries('AllCandidates');
+        queryClient.invalidateQueries('AllRepresentantes');
       }
     }
   );

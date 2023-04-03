@@ -14,7 +14,7 @@ export const Container = styled.div`
     padding: 28px 24px;
     background-color: var(--white);
     width: 100%;
-    position: relative;
+    position: sticky;
     left: 0;
     .titleHeaderTable {
       font-style: normal;

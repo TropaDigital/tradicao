@@ -59,7 +59,7 @@ const UnidadesPainelPage = () => {
   const [searchUnit, setSearchUnit] = useState<string>('');
 
   const { units } = useGetUnitsByQuery(
-    searchUnit + `limit=16&page=${actualPage}`
+    searchUnit + `perPage=16&currentPage=${actualPage}`
   );
 
   const debounced = useDebouncedCallback(
@@ -110,7 +110,7 @@ const UnidadesPainelPage = () => {
       </S.HeaderDashboard>
       <Table
         header={headerTable}
-        data={units?.dataPaginada}
+        data={units?.result}
         title="Todas as unidades"
         search={
           <DefaultInput

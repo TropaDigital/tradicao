@@ -24,18 +24,18 @@ const UnidadesPage = () => {
   const [cep, setCep] = useState<string>();
 
   const { units, isLoadingUnits } = useGetUnitsByQuery(
-    query.trim() + `&limit=16&page=${actualPage}`
+    query.trim() + `&perPage=16&currentPage=${actualPage}`
   );
   const allUnits = useGetUnitsByQuery(query.trim());
 
   useEffect(() => {
-    getAllCities(allUnits?.units?.dataPaginada);
+    getAllCities(allUnits?.units?.result);
     if (!allUnits?.isLoadingUnits) {
       if (!query?.includes('uf=')) {
         getAllStates();
       }
     }
-  }, [allUnits?.units?.dataPaginada]);
+  }, [allUnits?.units?.result]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
@@ -45,10 +45,6 @@ const UnidadesPage = () => {
       setActualPage(1);
     }
   }, [query]);
-
-  useEffect(() => {
-    console.log(allStates);
-  }, [allStates]);
 
   const unitsSkeletons = new Array(16).fill('_');
 
@@ -89,7 +85,7 @@ const UnidadesPage = () => {
   };
 
   const getAllStates = () => {
-    const allStatesFromUnits = allUnits?.units?.dataPaginada?.map(
+    const allStatesFromUnits = allUnits?.units?.result?.map(
       (fullUnit: IGetUnit) => {
         return fullUnit?.uf;
       }
@@ -145,7 +141,7 @@ const UnidadesPage = () => {
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
-                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+                  value={cep}
                   maxLength={8}
                   minLength={8}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -212,7 +208,7 @@ const UnidadesPage = () => {
                   ))}
                 </>
               )}
-              {units?.dataPaginada?.map((unit) => (
+              {units?.result?.map((unit) => (
                 <S.UnityCard key={unit.id}>
                   <div className="location-bg-icon">
                     <LocationIcon />
@@ -231,9 +227,9 @@ const UnidadesPage = () => {
               ))}
             </>
           </S.UnitsContainer>
-          {units?.paginas > 1 && (
+          {units?.pagination?.lastPage > 1 && (
             <Pagination
-              count={units?.paginas}
+              count={units?.pagination?.lastPage}
               shape="rounded"
               color="primary"
               page={actualPage}

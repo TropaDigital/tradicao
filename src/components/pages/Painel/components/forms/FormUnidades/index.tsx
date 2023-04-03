@@ -203,7 +203,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     className="button"
                     type="submit"
                   >
-                    {modalOpen === 'publicar' ? 'Publicar' : 'Atualizar'}
+                    {modalOpen === 'publicar' ? 'Cadastrar' : 'Atualizar'}
                   </ButtonDefault>
                 </div>
               </div>

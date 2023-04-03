@@ -223,7 +223,7 @@ export default function QuemSomos() {
             <div className="gridTemplateValuesCard">
               {MORAL_VALUES_CARD_ITENS.map(
                 (row: any | 'tipar', index: number) => (
-                  <S.MoralValuesCardItem>
+                  <S.MoralValuesCardItem key={index}>
                     {row.icon}
                     <p className="moralValuesCardItemText">{row.text}</p>
                   </S.MoralValuesCardItem>

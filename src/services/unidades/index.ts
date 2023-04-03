@@ -10,7 +10,7 @@ class UnidadesClass {
       const response: AxiosResponse = await API.get(
         `unidades${query && '?' + query}`
       );
-      return response.data.result;
+      return response.data;
     } catch (err) {
       console.log(err);
     }
@@ -36,9 +36,7 @@ class UnidadesClass {
 
   async deleteUnit(id: number) {
     try {
-      const response: AxiosResponse = await API.delete(
-        `unidades/${id}`
-      );
+      const response: AxiosResponse = await API.delete(`unidades/${id}`);
       return response.data;
     } catch (err) {
       console.log(err);

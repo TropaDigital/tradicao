@@ -1,19 +1,19 @@
+import { IPagination } from '@/services/unidades/types';
 import { useQuery } from 'react-query';
 import TrabalheConoscoClass from '../index';
 
-export const useGetAllCandidates = () => {
+export const useGetAllCandidates = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllCandidates'],
+    ['AllCandidates', query],
     async () => {
-      return await TrabalheConoscoClass.getAllCandidate();
+      return await TrabalheConoscoClass.getAllCandidate(query);
     }
   );
 
   return {
     allCandidates: data as {
-      dataPaginada: any[];
-      total: number;
-      paginas: number;
+      result: any[];
+      pagination: IPagination;
     },
     isLoadingAllCandidates: isLoading as boolean,
     isErrorAllCandidates: isError as boolean,

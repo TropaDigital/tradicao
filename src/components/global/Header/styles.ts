@@ -20,7 +20,7 @@ export const HeaderContainer = styled.header<Props>`
   padding: 21px 150px;
   background-color: var(--white);
   width: 100%;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &.nav-up {
     top: 0;
   }

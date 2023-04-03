@@ -3,9 +3,12 @@
 import { SearchIcon } from '@/assets/icons';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
+import PaginationData from '@/components/shared/PaginationData';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllCandidates } from '@/services/trabalhe-conosco/GET/useGetAllCurriculos';
-import React from 'react';
+import { Pagination } from '@mui/material';
+import React, { useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
 const CurriculosPage = () => {
@@ -32,7 +35,29 @@ const CurriculosPage = () => {
     }
   ];
 
-  const { allCandidates } = useGetAllCandidates();
+  const [actualPage, setActualPage] = useState<number>(1);
+  const [searchCandidato, setSearchCandidato] = useState<string>('');
+
+  const { allCandidates } = useGetAllCandidates(
+    `${searchCandidato}currentPage=${actualPage}&perPage=10`
+  );
+
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
+
+  const debounced = useDebouncedCallback(
+    // function
+    (value) => {
+      if (value?.target?.value) {
+        setSearchCandidato(`pesquisa=${value?.target?.value}&`);
+        return;
+      }
+      setSearchCandidato('');
+    },
+    // delay in ms
+    300
+  );
 
   return (
     <>
@@ -40,16 +65,22 @@ const CurriculosPage = () => {
         <HeaderPage title="Currículos" />
       </S.HeaderDashboard>
       <Table
-        title="Lista de Candidatos"
+        title="Lista de Currículos"
         header={headerTable}
-        data={allCandidates}
+        data={allCandidates?.result}
         search={
           <DefaultInput
             icon={<SearchIcon />}
-            placeholder="Pesquise por vaga"
+            placeholder="Pesquise por vaga ou candidato"
             name="search"
+            onChange={debounced}
           />
         }
+      />
+      <PaginationData
+        data={allCandidates}
+        handlePagination={handlePageChange}
+        page={actualPage}
       />
     </>
   );
