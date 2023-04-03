@@ -298,7 +298,7 @@ export default function SimulationForm() {
     };
 
     if (formData.conquest === 'veiculo' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 215000 });      
+      setFormData({ ...formData, ['value']: 210000 });      
     };
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'parcela') {
@@ -306,7 +306,7 @@ export default function SimulationForm() {
     };
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 165000 });      
+      setFormData({ ...formData, ['value']: 166000 });      
     };
 
     if (formData.conquest === 'servicos' && formData.typePlan === 'parcela') {

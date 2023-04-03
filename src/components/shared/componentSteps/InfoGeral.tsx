@@ -101,7 +101,7 @@ export default function InfoGeral({
           selectedType === 'veiculo' &&
           simulatorPlan === 'credito' &&
           <InputRange
-            defaultValue={defaultValue !== 215000 ? 215000 : defaultValue}
+            defaultValue={defaultValue !== 210000 ? 210000 : defaultValue}
             maxValue={400000}
             minValue={20000}
             handleOnChange={handleOnChangeValue}
@@ -121,7 +121,7 @@ export default function InfoGeral({
           selectedType === 'imovel' &&
           simulatorPlan === 'credito' &&
           <InputRange
-            defaultValue={defaultValue !== 165000 ? 165000 : defaultValue}
+            defaultValue={defaultValue !== 166000 ? 166000 : defaultValue}
             maxValue={276000}
             minValue={56000}
             handleOnChange={handleOnChangeValue}
