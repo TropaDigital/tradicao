@@ -23,7 +23,6 @@ const CompliancePage = () => {
       <SkewContainer
         imageSrc={ComplianceBg}
         imageAlt="Homem em uma mesa trabalhando"
-        size="tiny"
       />
       <CenterWrapper>
         <S.Container>

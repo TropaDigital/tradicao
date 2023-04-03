@@ -2,15 +2,27 @@
   "pages": [
     {
       "name": "Contemplados",
-      "path": "/contemplados"
+      "path": "contemplados"
     },
     {
-      "name": "Demontrações",
-      "path": "/demonstracoes-financeiras"
+      "name": "Currículos",
+      "path": "curriculos"
+    },
+    {
+      "name": "Demonstrações",
+      "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Relatórios",
+      "path": "relatorios-de-ouvidoria"
+    },
+    {
+      "name": "Representantes",
+      "path": "representantes"
     },
     {
       "name": "Unidades",
-      "path": "/unidades"
+      "path": "unidades"
     }
   ],
   "colors": {

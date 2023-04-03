@@ -10,6 +10,7 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
+import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,10 +25,19 @@ const Header = () => {
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
   }, []);
+
+  useEffect(() => {
+    if (scrollDirection === 'down') {
+      setIsMobileOpen(false);
+      setIsSubMenuConsorcioOpen(false);
+      setIsSubMenuTradicaoOpen(false);
+    }
+  }, [scrollDirection]);
 
   const pathName = usePathname();
 
@@ -190,7 +200,7 @@ const Header = () => {
         </ul>
       </S.InfoContainer>
 
-      <S.HeaderContainer>
+      <S.HeaderContainer className={'nav-' + scrollDirection}>
         <Link href="/">
           <div className="logo">
             <DefaultLogo width={262} height={77} />
@@ -199,10 +209,14 @@ const Header = () => {
 
         {windowWidth && windowWidth <= 1340 ? (
           <div className="menu-container">
-            <S.MenuHamburgerContainer
-              isOpen={isMobileOpen}
+            <div
+              className="menuHamburguerContainer"
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-            ></S.MenuHamburgerContainer>
+            >
+              <S.MenuHamburgerContainer
+                isOpen={isMobileOpen}
+              ></S.MenuHamburgerContainer>
+            </div>
 
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
               {mainPages.map((page, key) => {
@@ -228,9 +242,9 @@ const Header = () => {
                             : isSubMenuConsorcioOpen
                         }
                       >
-                        {page.subOptions?.map((subOption, keyOption) => (
+                        {page.subOptions?.map((subOption, key) => (
                           <Link
-                            key={keyOption}
+                            key={key}
                             href={subOption.path}
                             className="sub-submobile-option"
                             onClick={() => setIsMobileOpen(false)}
@@ -292,10 +306,10 @@ const Header = () => {
                             }
                             className="sub-menu-container"
                           >
-                            {page.subOptions.map((subOption, keyOption) => (
+                            {page.subOptions.map((subOption, key) => (
                               <Link
                                 href={subOption.path}
-                                key={keyOption}
+                                key={key}
                                 onClick={() => {
                                   setIsSubMenuConsorcioOpen(false);
                                   setIsSubMenuTradicaoOpen(false);

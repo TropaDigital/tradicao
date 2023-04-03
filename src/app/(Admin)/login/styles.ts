@@ -21,12 +21,45 @@ export const RightWrapper = styled.div`
   overflow: hidden;
   .columnGreen {
     height: 100%;
-    width: 300px;
+    width: 600px;
     background-color: var(--primary-dark);
     align-self: flex-end;
     position: absolute;
     right: 0;
     z-index: 0;
+
+    .bannerOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+      backdrop-filter: blur(3px) brightness(80%);
+
+      .bannerLogo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        z-index: 2;
+
+        @media (max-height: 810px) {
+          svg {
+            width: calc(786px * 0.75);
+            height: calc(231px * 0.75);
+          }
+        }
+        @media (max-height: 650px) {
+          svg {
+            width: calc(786px * 0.5);
+            height: calc(231px * 0.5);
+          }
+        }
+      }
+    }
   }
   .bgImageWrapper {
     width: 400px;
@@ -77,6 +110,13 @@ export const FormWrapper = styled.div`
     width: 416px;
     .logoGreenCasaAmazonia {
       margin-bottom: 96px;
+
+      @media (max-height: 550px) {
+        margin-bottom: 48px;
+      }
+      @media (max-height: 480px) {
+        margin-bottom: 24px;
+      }
     }
     .welcomeBack {
       font-size: 32px;

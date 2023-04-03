@@ -1,18 +1,14 @@
-import styled from 'styled-components'
-// import { colors, fonts } from "../../../../../assets/styles/mixin";
+import styled from 'styled-components';
 
 export const Container = styled.td`
   position: relative;
-
-  span {
-    white-space: nowrap;
-    img {
-      border-radius: 4px;
-    }
-  }
+  max-width: 250px;
+  max-height: 114px;
+  text-overflow: ellipsis;
+  text-align: justify;
   .ativo,
   .Ativo {
-    color: var(--dark);
+    color: var(--secondary);
     font-weight: 500;
     &::before {
       content: '.';
@@ -25,7 +21,7 @@ export const Container = styled.td`
   }
   .inativo,
   .Inativo {
-    color: var(--dark);
+    color: var(--status-danger);
     font-weight: 500;
     &::before {
       content: '.';
@@ -44,12 +40,25 @@ export const Container = styled.td`
     height: 35px;
     border-radius: 50%;
     transition: all 0.4s;
-    background-color: transparent;
-    border: none;
+    background-color: var(--white);
     cursor: pointer;
     &:hover {
       transition: all 0.4s;
       background-color: var(--gray-200);
     }
   }
-`
+  .imageWrapper {
+    overflow: hidden;
+    height: 90px;
+    width: 90px;
+    border-radius: 8px;
+  }
+  .longText {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 350px;
+    text-overflow: ellipsis;
+  }
+`;

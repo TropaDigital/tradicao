@@ -1,19 +1,19 @@
 import { useQuery } from 'react-query';
 import RelatioriosClass from '../index';
-import { IGetRelatorio } from '../types';
+import { IResponseRelatories } from './types';
 
-export const useGetlAllRelatorios = () => {
+export const useGetlAllRelatorios = (query: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllRelatories'],
+    ['AllRelatories', query],
     async () => {
-      return await RelatioriosClass.getAllRelatorios();
+      return await RelatioriosClass.getAllRelatorios(query);
     }
   );
 
   return {
-    allRelatories: data as IGetRelatorio[],
-    isLoadingAllDemonsrations: isLoading as boolean,
-    isErrorAllDemonstrations: isError as boolean,
-    isSuccessAllDemonstrations: isSuccess as boolean
+    allRelatories: data as IResponseRelatories,
+    isLoadingAllRelatories: isLoading as boolean,
+    isErrorAllDRelatories: isError as boolean,
+    isSuccessAllDRelatories: isSuccess as boolean
   };
 };

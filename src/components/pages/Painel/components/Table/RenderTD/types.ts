@@ -7,5 +7,5 @@ export interface IRenderTD {
   };
   item: any; //TYPAR
   openMenu?: (modal: 'edit' | 'delete') => void;
-  isLoading?: boolean,
+  isLoading?: boolean;
 }

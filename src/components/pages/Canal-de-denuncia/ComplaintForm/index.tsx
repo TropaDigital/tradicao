@@ -1,15 +1,15 @@
 import ModalDefault from '@/components/shared/Modal';
 import { Form, Formik } from 'formik';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IComplaintForm, IDenunciaBodyPost } from './types';
 import * as S from './styles';
-import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import Button from '@/components/UI/Button';
 import { complaintYupSchema } from './yupSchema';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import { useSentComplaint } from '@/services/denuncia/POST/useSentComplaint';
 import { ShieldCheckMarkIcon } from '@/assets/icons';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 const ComplaintForm = ({
   isOpen,
@@ -67,21 +67,21 @@ const ComplaintForm = ({
                 setFieldValue
               }) => (
                 <Form onSubmit={handleSubmit} className="complaint-form">
-                  <DefaultInput
+                  <InputDefault
                     label="Nome Completo"
                     value={values.nome}
                     onChange={handleChange}
                     name="nome"
                     error={touched.nome && errors.nome}
                   />
-                  <DefaultInput
+                  <InputDefault
                     label="E-mail"
                     value={values.email}
                     onChange={handleChange}
                     name="email"
                     error={touched.email && errors.email}
                   />
-                  <DefaultInput
+                  <InputDefault
                     label="Celular"
                     value={values.celular}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

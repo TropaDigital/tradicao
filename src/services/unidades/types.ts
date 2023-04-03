@@ -1,3 +1,8 @@
+export interface IResponseUnits {
+  pagination: IPagination;
+  result: IGetUnit[];
+}
+
 export interface IGetUnit {
   bairro: string;
   cep: string;
@@ -23,6 +28,16 @@ export interface IUnitBody {
   cidade: string;
   uf: string;
   cep: string;
+  telefone: string;
   latitude?: string;
   longitutde?: string;
+}
+
+export interface IPagination {
+  total: number;
+  lastPage: number;
+  perPage: number;
+  currentPage: number;
+  from: number;
+  to: number;
 }

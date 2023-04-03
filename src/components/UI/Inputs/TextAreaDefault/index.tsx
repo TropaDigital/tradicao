@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, InputHTMLAttributes } from 'react';
+import { FiAlertCircle } from 'react-icons/fi';
 
-import { Container, ContainerInput } from './styles';
+import { CharCount, Container, ContainerInput, Error } from './styles';
 
 interface ErrorInput {
   message: string;
@@ -9,10 +10,18 @@ interface ErrorInput {
 
 interface InputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   label: string;
+  maxCharLength?: number;
+  charQuantity?: number;
   error?: string | any;
 }
 
-export function TextAreaDefault({ label, error, ...rest }: InputProps) {
+export function TextAreaDefault({
+  label,
+  maxCharLength,
+  charQuantity,
+  error,
+  ...rest
+}: InputProps) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -42,18 +51,29 @@ export function TextAreaDefault({ label, error, ...rest }: InputProps) {
         <textarea
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
+          maxLength={maxCharLength}
           ref={inputRef}
           id={label}
           {...rest}
         />
 
-        {/* {error?.isError && (
-          <Error title={error.message}>
+        {error && (
+          <Error title={error}>
             <FiAlertCircle size={20} color="#E62965" />
           </Error>
-        )} */}
+        )}
       </ContainerInput>
-      {error && <span className="errorValidation">{error}</span>}
+      {maxCharLength && (
+        <CharCount
+          className={
+            charQuantity && charQuantity >= maxCharLength
+              ? 'textRed'
+              : 'textNormal'
+          }
+        >
+          {charQuantity}/{maxCharLength}
+        </CharCount>
+      )}
     </Container>
   );
 }

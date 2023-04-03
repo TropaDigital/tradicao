@@ -12,8 +12,14 @@ export const ContainerTop = styled.div`
     position: relative;
   }
   
-  @media (max-width: 1090px) {
+  @media (max-width: 1400px) {
+    height: 440px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 800px) {
     height: 800px;
+    margin-bottom: 20px;
   }
 
   @media (max-width: 500px) {
@@ -37,7 +43,11 @@ export const UniversityInfo = styled.div`
   max-width: 650px;
   max-height: 145px;
 
-  margin-top: 30px;  
+  margin-top: 30px; 
+  
+  @media (max-width: 1200px) {
+    max-width: 500px;
+  }
 `;
 
 export const InfoTitle = styled.div`

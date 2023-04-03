@@ -18,16 +18,20 @@ export const Container = styled.div`
     background-color: rgba(33, 37, 41, 0.5);
     backdrop-filter: blur(5px);
   }
-  .closeModal {
+  .closeModalContainer {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 15px;
-    cursor: pointer;
+    margin-bottom: 10px;
+    .closeModal {
+      cursor: pointer;
+    }
   }
   .modalContent {
     position: relative;
-    background-color: var(--light);
+    background-color: var(--white);
     max-width: 528px;
+    width: 100%;
+    max-height: 80%;
     height: auto;
     padding: 24px;
     border-radius: 12px;

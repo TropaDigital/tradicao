@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import { IGetUnit } from '../types';
+import { IResponseUnits } from '../types';
 import UnidadesClass from '../index';
 
 export const useGetUnitsByQuery = (query: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['UnitsByQuery', query],
+    ['UnitsByQuery', [query]],
     async () => {
       return await UnidadesClass.getUnits(query);
     },
@@ -14,7 +14,7 @@ export const useGetUnitsByQuery = (query: string) => {
   );
 
   return {
-    units: data as IGetUnit[],
+    units: data as IResponseUnits,
     isLoadingUnits: isLoading as boolean,
     isErrorUnits: isError as boolean,
     isSuccessUnits: isSuccess as boolean

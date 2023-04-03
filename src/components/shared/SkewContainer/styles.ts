@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 
-type Props = {
-  size: 'tiny' | 'medium' | 'large';
-};
-
 export const Container = styled.div`
   width: 100%;
   position: relative;
   padding-top: 10px;
 `;
 
-export const SkewContainer = styled.div<Props>`
+export const SkewContainer = styled.div`
   max-height: 234px;
   transform: skew(-18deg);
   width: fit-content;

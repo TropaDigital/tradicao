@@ -1,3 +1,4 @@
+import { FormikErrors } from 'formik';
 import React, { ReactNode } from 'react';
 import * as S from './styles';
 
@@ -5,7 +6,7 @@ interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
   placeholder?: string;
   label?: string;
-  error?: string | false;
+  error?: any;
 }
 
 const DefaultInput = ({ icon, label, error, ...rest }: IDefaultInput) => {

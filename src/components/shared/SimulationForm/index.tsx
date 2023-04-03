@@ -55,7 +55,7 @@ export default function SimulationForm() {
   const [formData, setFormData] = useState({
     conquest: 'veiculo',
     typePlan: 'parcela',
-    value: 1250,
+    value: 700,
     name: '',
     email: '',
     phone: '',
@@ -75,7 +75,7 @@ export default function SimulationForm() {
     setFormData({ ...formData, [name]: checked });
   };
 
-  console.log('FORMDATA =>', formData);
+  // console.log('FORMDATA =>', formData);
 
   const newComponents = [
     {
@@ -91,6 +91,7 @@ export default function SimulationForm() {
             setFormData({ ...formData, ['value']: value[0] })
           }
           defaultValue={formData.value}
+          selectedType={selectStep}
         />
       ]
     },
@@ -234,7 +235,7 @@ export default function SimulationForm() {
         setErrorInput('name', undefined);
       }
 
-      if (formData.conquest === 'veiculo') {
+      if (formData.conquest === 'veiculo' || formData.conquest === 'imovel') {
         if (email === '') {
           throw setErrorInput('email', 'Email é obrigatório!');
         } else if (!email.includes('@')) {
@@ -291,6 +292,40 @@ export default function SimulationForm() {
 
   const pathName = usePathname();
 
+  useEffect(() => {
+    if (formData.conquest === 'veiculo' && formData.typePlan === 'parcela') {
+      setFormData({ ...formData, ['value']: 700 });      
+    };
+
+    if (formData.conquest === 'veiculo' && formData.typePlan === 'credito') {
+      setFormData({ ...formData, ['value']: 210000 });      
+    };
+
+    if (formData.conquest === 'imovel' && formData.typePlan === 'parcela') {
+      setFormData({ ...formData, ['value']: 1750 });      
+    };
+
+    if (formData.conquest === 'imovel' && formData.typePlan === 'credito') {
+      setFormData({ ...formData, ['value']: 166000 });      
+    };
+
+    if (formData.conquest === 'servicos' && formData.typePlan === 'parcela') {
+      setFormData({ ...formData, ['value']: 500 });      
+    };
+
+    if (formData.conquest === 'servicos' && formData.typePlan === 'credito') {
+      setFormData({ ...formData, ['value']: 10000 });      
+    };
+
+    if (formData.conquest === 'caminhao' && formData.typePlan === 'parcela') {
+      setFormData({ ...formData, ['value']: 3850 });      
+    };
+
+    if (formData.conquest === 'caminhao' && formData.typePlan === 'credito') {
+      setFormData({ ...formData, ['value']: 170000 });      
+    };
+  }, [formData.typePlan, formData.conquest])
+
   return (
     <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
       <form onSubmit={handleOnSubmit}>
@@ -319,6 +354,7 @@ export default function SimulationForm() {
                   setFormData({ ...formData, ['value']: value[0] })
                 }
                 defaultValue={formData.value}
+                selectedType={selectStep}
               />
             }
           </div>

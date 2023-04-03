@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-// import { colors, fonts } from '../../../../assets/styles/mixin';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   border-radius: 8px;
@@ -7,15 +6,16 @@ export const Container = styled.div`
   .formAddProductWrapper {
     width: 100%;
 
-    .inputField {
-      font-weight: 400;
-      background-color: var(--light);
+    .formTitle {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: var(--primary);
     }
 
-    span {
-      color: var(--status-danger);
-      font-weight: 500;
-      font-size: 14px;
+    .inputField {
+      font-weight: 400;
+      background-color: var(--white);
+      color: var(--dark);
     }
   }
   .lineElementsWrapper {
@@ -29,6 +29,10 @@ export const Container = styled.div`
   }
   .buttonsWrapper {
     justify-content: flex-end;
+    @media (max-width: 420px) {
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
   }
   .button {
     max-width: min-content;
@@ -46,6 +50,8 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
+    overflow: hidden;
+    border-radius: 8px;
     .removeImage {
       position: absolute;
       transition: 0.7s linear;
@@ -74,10 +80,12 @@ export const Container = styled.div`
       width: 80px;
       height: 80px;
       position: relative;
-      img {
+      .nextImage {
         object-fit: cover;
         border-radius: 8px;
+        width: 80px;
+        height: 80px;
       }
     }
   }
-`
+`;

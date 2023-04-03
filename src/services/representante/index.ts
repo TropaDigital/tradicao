@@ -2,19 +2,21 @@
 
 import { AxiosResponse } from 'axios';
 import API from '../api';
-import { IAgentInfo } from './types';
+import { IGetRepresentante } from './types';
 
 class RepresentanteClass {
-  async getAllCandidates() {
+  async getAllCandidates(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(`getAll-representante`);
+      const response: AxiosResponse = await API.get(
+        `getAll-representante${query && `?${query}`}`
+      );
       return response.data.result;
     } catch (err) {
       console.log(err);
     }
   }
 
-  async postCandidate(agentInfo: IAgentInfo) {
+  async postCandidate(agentInfo: IGetRepresentante) {
     try {
       const response: AxiosResponse = await API.post(
         `create-representante`,

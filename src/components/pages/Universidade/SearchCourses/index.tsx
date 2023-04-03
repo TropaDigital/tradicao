@@ -1,11 +1,19 @@
 'use client';
+
+// React
+import { useMemo, useState } from "react";
+
+// Icons
 import { BrushedIcon, CircleLogoIcon } from "@/assets/icons";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
+// Components
 import Button from "@/components/UI/Button";
 import { InputDefault } from "@/components/UI/Inputs/InputDefault";
-import { useMemo, useState } from "react";
 
 // Styles
 import { 
+    CleanSearch,
     CourseCard, 
     CourseCardBottom, 
     CourseCardTop, 
@@ -15,7 +23,6 @@ import {
 } from "./styles";
 
 interface ICoursesProps {
-    [x: string]: any;
     id: number,
     courseName: string,
     description: string,
@@ -55,39 +62,43 @@ export default function SearchCourses() {
 
     }, [search]);
 
+    function onKeyPressed(e: any) {
+        
+        if (e.key === 'Enter') {
+            setSearch(filterCourse);
+        }
+    }
+
     return (
         <SearchContainer>
             <SearchHeader>
-                <form action="">
+               
                     <InputDefault 
                         label="Buscar Curso"
                         placeholder="Digite o nome do curso"
                         value={filterCourse}
                         onChange={(e: any) => setFilterCourse(e.target.value)}
+                        onKeyDown={(e: any) => onKeyPressed(e)}
                     />
+
+                    <Button 
+                        degrade 
+                        className="button-search" 
+                        type="button"
+                        onClick={() => setSearch(filterCourse)}
+                    >
+                        Buscar
+                    </Button>
+                    
                     {
-                        !search &&
-                        <Button 
-                            degrade 
-                            className="button-search" 
-                            type="submit"
-                            onClick={() => setSearch(filterCourse)}
-                        >
-                            Buscar
-                        </Button>
-                    }
-                    {
-                        search &&
-                        <Button 
-                            degrade 
-                            className="button-search" 
-                            type="submit"
+                        filterCourse &&                        
+                        <CleanSearch
                             onClick={() => {setSearch(''); setFilterCourse('')}}
-                        >
-                            Limpar
-                        </Button>
+                        >                        
+                            <IoMdCloseCircleOutline />
+                        </CleanSearch>                        
                     }
-                </form>
+                
             </SearchHeader>
 
             <CourseCardWrapper>

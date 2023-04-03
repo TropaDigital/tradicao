@@ -32,12 +32,6 @@ export const ContainerInput = styled.div<ContainerProps>`
   border-color: #e2e8f0;
   word-wrap: break-word;
 
-  ${(props) =>
-    props.isErrored &&
-    css`
-      border-color: #e62965;
-    `}
-
   textarea {
     width: 100%;
     min-width: 0px;
@@ -58,7 +52,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     border-style: solid;
     border-image: initial;
     border-color: inherit;
-    background: inherit;
+    background: var(--white);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     min-height: 5rem;
@@ -67,7 +61,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     resize: none;
 
     &::placeholder {
-      color: #cccccc;
+      color: var(--gray-200);
     }
 
     &:focus-visible {
@@ -102,5 +96,19 @@ export const Error = styled(Tooltip)`
     &::before {
       border-color: #e62965 transparent;
     }
+  }
+`;
+
+export const CharCount = styled.span`
+  display: flex;
+  align-self: flex-end;
+  margin-top: 5px;
+  font-size: 13px;
+
+  &.textRed {
+    color: #e62965;
+  }
+  &.textNormal {
+    color: var(--gray-500);
   }
 `;

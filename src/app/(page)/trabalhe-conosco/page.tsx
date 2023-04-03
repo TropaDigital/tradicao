@@ -37,13 +37,12 @@ const WorkWithUsPage = () => {
       <SkewContainer
         imageSrc={WorkWithUsBg}
         imageAlt="Imagem de fundo da seção trabalhe conosco"
-        size="medium"
       />
       <CenterWrapper>
         <S.Container>
           <S.ButtonsWrapper>
             <Button
-              weight={500}
+              weight={700}
               variant="default"
               onClick={() => setFormStage('curriculo')}
               color={formStage === 'curriculo' ? 'primary' : 'secondary'}
@@ -53,7 +52,7 @@ const WorkWithUsPage = () => {
               Enviar Currículo
             </Button>
             <Button
-              weight={500}
+              weight={700}
               variant="default"
               onClick={() => setFormStage('representante')}
               color={formStage === 'representante' ? 'primary' : 'secondary'}
@@ -109,7 +108,10 @@ const WorkWithUsPage = () => {
                     name="fullName"
                     placeholder="Nome"
                     value={values.fullName}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
+                      handleChange(e);
+                    }}
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
                   />
@@ -135,7 +137,7 @@ const WorkWithUsPage = () => {
                     errors={touched.curriculum && errors.curriculum}
                     filename={fileName}
                   />
-                  <Button weight={500} type="submit">
+                  <Button weight={500} type="submit" degrade>
                     Enviar
                   </Button>
                 </Form>
@@ -154,7 +156,7 @@ const WorkWithUsPage = () => {
               onSubmit={(values, { resetForm }) => {
                 createAgent({
                   nome: values.fullName.trim(),
-                  cnpj: values.cnpj.replaceAll(/\D+/g, ''),
+                  cnpj: formatCnpj(values.cnpj),
                   contato: values.contact.trim()
                 });
 
@@ -173,7 +175,10 @@ const WorkWithUsPage = () => {
                   <InputDefault
                     placeholder="Nome"
                     name="fullName"
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
+                      handleChange(e);
+                    }}
                     value={values.fullName}
                     label="Nome Completo"
                     error={touched.fullName && errors.fullName}
@@ -195,7 +200,9 @@ const WorkWithUsPage = () => {
                     label="Contato"
                     error={touched.contact && errors.contact}
                   />
-                  <Button type="submit">Enviar</Button>
+                  <Button degrade type="submit">
+                    Enviar
+                  </Button>
                 </Form>
               )}
             </Formik>

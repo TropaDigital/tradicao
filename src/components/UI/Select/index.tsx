@@ -1,8 +1,8 @@
-import { ChevronIcon } from '@/assets/icons'
-import * as S from './styles'
+import { ChevronIcon } from '@/assets/icons';
+import * as S from './styles';
 
 interface ISelect {
-  options: string[]
+  options: string[];
 }
 
 const Select = ({ options }: ISelect) => {
@@ -15,14 +15,17 @@ const Select = ({ options }: ISelect) => {
         <option selected disabled value="">
           Selecione
         </option>
-        {options.map(option => (
-          <option value={option.replaceAll(' ', '-').toLowerCase()}>
+        {options.map((option) => (
+          <option
+            value={option.replaceAll(' ', '-').toLowerCase()}
+            key={option}
+          >
             {option}
           </option>
         ))}
       </select>
     </S.Container>
-  )
-}
+  );
+};
 
-export default Select
+export default Select;

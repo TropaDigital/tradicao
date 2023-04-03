@@ -128,11 +128,7 @@ export default function QuemSomos() {
 
   return (
     <S.QuemSomosContainer>
-      <SkewContainer
-        imageAlt="imagem teste"
-        imageSrc={bgAboutUsImage}
-        size={'medium'}
-      />
+      <SkewContainer imageAlt="imagem teste" imageSrc={bgAboutUsImage} />
       <CenterWrapper>
         <MainTitle title="Quem Somos" />
         <S.AboutUsContent>
@@ -145,7 +141,7 @@ export default function QuemSomos() {
           transparência e qualidade!
         </S.AboutUsContent>
         <S.AboutUsSubtitle>
-          O Melhor jeito de realizar seu sonho
+          O melhor jeito de realizar seu sonho
         </S.AboutUsSubtitle>
         <S.AboutUsBenefitsTitle>
           Conheça as vantagens do Consórcio tradição
@@ -227,7 +223,7 @@ export default function QuemSomos() {
             <div className="gridTemplateValuesCard">
               {MORAL_VALUES_CARD_ITENS.map(
                 (row: any | 'tipar', index: number) => (
-                  <S.MoralValuesCardItem>
+                  <S.MoralValuesCardItem key={index}>
                     {row.icon}
                     <p className="moralValuesCardItemText">{row.text}</p>
                   </S.MoralValuesCardItem>

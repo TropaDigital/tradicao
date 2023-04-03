@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 type Props = {
   variant?: string;
-  weight: 500 | 700;
+  weight: 500 | 700 | undefined;
   radius?: 'default' | 'rounded';
   color?: string;
-  degrade?: boolean
+  degrade?: boolean;
 };
 
 export const ButtonContainer = styled.button<Props>`
@@ -18,7 +18,7 @@ export const ButtonContainer = styled.button<Props>`
   height: 40px;
   width: 100%;
 
-  font-weight: ${({ weight }) => weight};
+  font-weight: ${({ weight = 500 }) => weight};
   border-radius: ${({ radius = 'default' }) =>
     radius === 'default' ? '4px' : '30px'};
 
@@ -27,8 +27,14 @@ export const ButtonContainer = styled.button<Props>`
     variant &&
     css`
       background: ${color && variant === 'default' && `var(--${color})`};
-      background: ${color === "primary" && degrade && variant === "default" && `var(--degrade-primary)`};
-      background: ${color === "secondary" && degrade && variant === "default" && `var(--degrade-secondary)`};
+      background: ${color === 'primary' &&
+      degrade &&
+      variant === 'default' &&
+      `var(--degrade-primary)`};
+      background: ${color === 'secondary' &&
+      degrade &&
+      variant === 'default' &&
+      `var(--degrade-secondary)`};
       background: ${variant === 'outline' && 'transparent'};
 
       border-width: 1px;

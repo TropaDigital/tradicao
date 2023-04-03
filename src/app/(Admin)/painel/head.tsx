@@ -1,8 +1,8 @@
 const Head = () => {
   return (
     <>
-      <title>Painel | Login</title>
-      <meta name="Painel Administrativo" content="Painel Administrativo" />
+      <title>Consórcio | Painel</title>
+      <meta name="Painel" content="Painel Administrativo" />
       <link rel="icon" href="/favicon.ico" />
     </>
   );

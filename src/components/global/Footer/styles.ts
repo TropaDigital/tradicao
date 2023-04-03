@@ -24,7 +24,7 @@ export const TopFooter = styled.div`
     margin: 0 auto;
     margin-bottom: 30px;
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1350px) {
         flex-direction: column;
         justify-content: center;
         gap: 20px;
@@ -37,7 +37,7 @@ export const LeftSide = styled.div`
     justify-content: space-between;
     gap: 33px;
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1350px) {
         flex-direction: column;
     }
 
@@ -57,7 +57,7 @@ export const RightSide = styled.div`
         margin-bottom: -26px;
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1350px) {
         justify-content: center;
     }
 

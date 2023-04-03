@@ -1,15 +1,15 @@
-import { propsPage } from '../../interface'
-import React, { ReactNode, useEffect, useState } from 'react'
-import { Select, SubSelect } from './styles'
-import Link from 'next/link'
-import { ChevronTopIcon } from '@/assets/icons'
+import { propsPage } from '../../interface';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { Select } from './styles';
+import { ChevronTopIcon } from '@/assets/icons';
+import Link from 'next/link';
 
 interface ISelectProps {
-  pages: Array<propsPage>
-  title: string
-  icon: ReactNode
-  openSideBar: () => void
-  sideBarIsOpen?: boolean
+  pages: Array<propsPage>;
+  title: string;
+  icon: ReactNode;
+  openSideBar: () => void;
+  sideBarIsOpen?: boolean;
 }
 
 export default function SelectSideBar({
@@ -20,18 +20,15 @@ export default function SelectSideBar({
   openSideBar,
   ...rest
 }: ISelectProps) {
-  const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true)
-  const [subSelectIsOpen, setSubSelectIsOpen] = useState<boolean>(false)
+  const [selectIsOpen, setSelectIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!selectIsOpen) {
-      setSubSelectIsOpen(false)
-    }
-  }, [selectIsOpen])
+    setSelectIsOpen(false);
+  }, [sideBarIsOpen]);
 
   function handleToogleSideBar() {
     if (!sideBarIsOpen) {
-      openSideBar()
+      openSideBar();
     }
   }
 
@@ -41,7 +38,7 @@ export default function SelectSideBar({
       isOpen={selectIsOpen}
       numberOfOptions={pages.length}
       onClick={() => {
-        handleToogleSideBar()
+        handleToogleSideBar();
       }}
       sideBarIsOpen={sideBarIsOpen}
     >
@@ -56,19 +53,21 @@ export default function SelectSideBar({
         <button
           className="handleOpenSelect"
           onClick={() => {
-            setSelectIsOpen(!selectIsOpen)
+            setSelectIsOpen(!selectIsOpen);
           }}
         >
-          <div className="iconOpenSelect"><ChevronTopIcon /></div>
+          <div className="iconOpenSelect">
+            <ChevronTopIcon />
+          </div>
         </button>
       </div>
       <div className="optionsSelect">
         {pages.map((row: propsPage, key: number) => (
-          <Link href={`/painel/${row.path}`} key={key}>
-            <span className="cardToPage">{row.name}</span>
+          <Link href={`/painel/${row.path}`} className="cardToPage" key={key}>
+            {row.name}
           </Link>
         ))}
       </div>
     </Select>
-  )
+  );
 }

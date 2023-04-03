@@ -23,7 +23,6 @@ export default function Contato() {
       <SkewContainer
         imageSrc={contato_bg}
         imageAlt="Imagem de operadores de telemarketing"
-        size="medium"
       />
       <CenterWrapper>
         <h1 className="titleContactPage">Contato com a Tradição</h1>
@@ -59,7 +58,7 @@ export default function Contato() {
             </S.ContactText>
 
             <S.ServiceCard>
-              <p className="titleCard">Atendimento na CNP consórcio</p>
+              <p className="titleCard">Atendimento na CNP Consórcio</p>
               <p className="textCard">
                 <Link href={`tel:08002722021`}>0800 272 2021</Link> sugestões,
                 elogios, esclarecimentos e reclamações www.cnpconsorcio.com.br

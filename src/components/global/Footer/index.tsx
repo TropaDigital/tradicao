@@ -52,6 +52,7 @@ export default function Footer() {
               <Link
                 href={'https://www.facebook.com/ConsorcioTradicao/'}
                 target="_blank"
+                aria-label='Visite a pagina no Facebook do Consórcio Tradição'
               >
                 <FacebookIcon />
               </Link>
@@ -59,15 +60,15 @@ export default function Footer() {
               <Link
                 href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
                 target="_blank"
+                aria-label='Visite a pagina no Instagram do Consórcio Tradição'
               >
                 <InstagramIcon />
               </Link>
 
               <Link
-                href={
-                  'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'
-                }
+                href={'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'}
                 target="_blank"
+                aria-label='Visite a pagina no Youtube do Consórcio Tradição'
               >
                 <YoutubeIcon />
               </Link>
@@ -75,6 +76,7 @@ export default function Footer() {
               <Link
                 href={'https://www.tiktok.com/@consorciotradicao'}
                 target="_blank"
+                aria-label='Visite a pagina no Tik Tok do Consórcio Tradição'
               >
                 <TikTokIcon />
               </Link>
@@ -82,6 +84,7 @@ export default function Footer() {
               <Link
                 href={'https://www.linkedin.com/company/consorciotradicao/'}
                 target="_blank"
+                aria-label='Visite a pagina no Linkedin do Consórcio Tradição'
               >
                 <LinkedinIcon />
               </Link>
@@ -90,24 +93,27 @@ export default function Footer() {
 
           <RightSide>
             <div className="correct">
-              <Link href={'https://wiz.co/'} target="_blank">
+              <Link 
+                href={'https://wiz.co/'} 
+                target="_blank"
+                aria-label='Visite a pagina do parceiro Consórcio Tradição'
+              >
                 <Image
                   src={WizImage}
-                  alt="Imagem do Wi3"
+                  alt="Imagem de logo da empresa Wi3"
                   width={231}
-                  height={87}
+                  height={86}
                 />
               </Link>
             </div>
             <Link
-              href={
-                'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'
-              }
+              href={'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'}
               target="_blank"
+              aria-label='Visite a pagina do Reclame Aqui do Consórcio Tradição'
             >
               <Image
                 src={ReclameLogo}
-                alt="Imagem do Wi3"
+                alt="Imagem de logo da empresa Reclame Aqui"
                 width={175}
                 height={64}
                 className='reclame-logo'
@@ -188,13 +194,13 @@ export default function Footer() {
               <Link href={'/contato'}>
                 <TextButton>Fale com um Especialista</TextButton>
               </Link>
-              <Link href={'/relatorios-de-ouvidoria'}>
+              {/* <Link href={'/relatorios-de-ouvidoria'}>
                 <TextButton>Relatórios de Ouvidoria</TextButton>
-              </Link>
+              </Link> */}
             </div>
 
             <TitleColumns>Ouvidoria</TitleColumns>
-            <div style={{ marginTop: '10px' }}>
+            <div style={{ marginTop: '6px' }}>
               <TextButton>ouvidoria@consorciotradicao.com.br</TextButton>
               <Link href={'tel:08008770020'}>
                 <TextButton>0800 877 0020</TextButton>
@@ -302,6 +308,7 @@ export default function Footer() {
           <Link
             href={'https://www.fraternidadesemfronteiras.org.br/'}
             target={'_blank'}
+            aria-label='Site Fraternidade Sem Fronteiras'
           >
             <Image
               src={NoFrontiers}
@@ -310,7 +317,11 @@ export default function Footer() {
               height={79}
             />
           </Link>
-          <Link href={'https://institutoayrtonsenna.org.br/'} target={'_blank'}>
+          <Link 
+            href={'https://institutoayrtonsenna.org.br/'} 
+            target={'_blank'}
+            aria-label='Visite a pagina do instituto Ayrton Senna'
+          >
             <Image
               src={AyrtonSenna}
               alt="Imagem de Logo do Instituto Ayrton Senna"
@@ -333,7 +344,7 @@ export default function Footer() {
         <div className="developed">
           Copyright © 2020 Consórcio Tradição. All Rights Reserved. | Developed
           By:
-          <Link href={'https://tropa.digital/'} target={'_blank'}>
+          <Link href={'https://tropa.digital/'} target={'_blank'} aria-label='Conheça a empresa que desenvolveu este site' >
             <Image
               src={Tropa}
               alt="Imagem de Logo da Tropa Digital"

@@ -7,38 +7,37 @@ type Props = {
 };
 
 export const HeaderContainer = styled.header<Props>`
-  ${({ showHeader }) =>
-    showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 0px;
-      opacity: 0;
-    `}
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 122px;
+  opacity: 1;
+  z-index: 99999;
 
-  ${({ showHeader }) =>
-    !showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 122px;
-      opacity: 1;
-      z-index: 99999;
-    `}
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 21px 150px;
   background-color: var(--white);
   width: 100%;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  &.nav-up {
+    top: 0;
+  }
+  &.nav-down {
+    top: -122px;
+  }
   .logo {
     padding-right: 30px;
   }
   .menu-container {
     position: relative;
+    .menuHamburguerContainer {
+      display: flex;
+      align-items: center;
+      height: 25px;
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 1600px) {
@@ -93,11 +92,7 @@ export const InfoContainer = styled.div<Props>`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  background: linear-gradient(
-    77.17deg,
-    var(--primary-dark) -0.7%,
-    var(--primary) 93.94%
-  );
+  background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
   height: 40px;
   padding: 6px 150px;
 
@@ -215,7 +210,7 @@ export const MenuHamburgerContainer = styled.div<Props>`
 export const MobileMenuModal = styled.div<Props>`
   position: absolute;
   background-color: var(--white);
-  top: 15px;
+  top: 30px;
   right: 0;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
@@ -241,7 +236,7 @@ export const MobileMenuModal = styled.div<Props>`
     display: none;
   }
   @media (max-width: 425px) {
-    top: 30px;
+    top: 50px;
   }
 `;
 

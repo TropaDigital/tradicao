@@ -1,6 +1,6 @@
 'use client';
 
-import { CloseIcon, LocationIcon } from '@/assets/icons';
+import { LocationIcon } from '@/assets/icons';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
@@ -9,68 +9,44 @@ import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
-import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
-import { Skeleton } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { Pagination, Skeleton } from '@mui/material';
+import { useEffect, useState } from 'react';
 import UnidadesBg from '../../../../public/images/unidades_bg.png';
 import * as S from './styles';
 
 const UnidadesPage = () => {
-  const [allUnits, setAllUnits] = useState<IGetUnit[]>();
-  const [actualUnit, setActualUnit] = useState<IGetUnit[]>();
   const [query, setQuery] = useState<string>('');
-  const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
+  const [actualPage, setActualPage] = useState<number>(1);
 
   const [allCities, setAllCities] = useState<string[]>();
   const [allStates, setAllStates] = useState<string[]>();
 
   const [cep, setCep] = useState<string>();
 
-  const { units, isLoadingUnits } = useGetUnitsByQuery(query.trim());
-  const unitsCopy = useGetUnitsByQuery('');
+  const { units, isLoadingUnits } = useGetUnitsByQuery(
+    query.trim() + `&perPage=16&currentPage=${actualPage}`
+  );
+  const allUnits = useGetUnitsByQuery(query.trim());
 
   useEffect(() => {
-    setAllUnits(unitsCopy.units);
-  }, [unitsCopy]);
-
-  useEffect(() => {
-    const getAllStates = () => {
-      const allStates = allUnits?.map((fullUnit: IGetUnit) => {
-        return fullUnit.uf;
-      });
-
-      const uniqueStates = [...new Set(allStates)].sort();
-
-      setAllStates(uniqueStates);
-    };
-
-    getAllStates();
-  }, [allUnits]);
-
-  useEffect(() => {
-    const getAllCities = (actualFilter: IGetUnit[]) => {
-      const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
-        return fullUnit.cidade;
-      });
-
-      const uniqueCities = [...new Set(allCities)].sort();
-
-      if (!query?.includes('cidade')) {
-        setAllCities(query?.includes('uf') ? uniqueCities : []);
+    getAllCities(allUnits?.units?.result);
+    if (!allUnits?.isLoadingUnits) {
+      if (!query?.includes('uf=')) {
+        getAllStates();
       }
-    };
-
-    getAllCities(units);
-  }, [units]);
+    }
+  }, [allUnits?.units?.result]);
 
   useEffect(() => {
     if (query?.includes('uf=')) {
       setCep('');
     }
+    if (query) {
+      setActualPage(1);
+    }
   }, [query]);
 
-  const unitsSkeletons = new Array(16);
-  unitsSkeletons.fill('a');
+  const unitsSkeletons = new Array(16).fill('_');
 
   const searchUnitByCep = (e: React.ChangeEvent) => {
     e.preventDefault();
@@ -87,15 +63,6 @@ const UnidadesPage = () => {
       }
   };
 
-  const getUnitById = (id: string | number) => {
-    const unit = units.filter((unit) => {
-      return unit.id === id;
-    });
-
-    setActualUnit(unit);
-    setIsMapModalOpen(true);
-  };
-
   const searchUnitByCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const actualQuery = query;
     const ufQuery = actualQuery?.split('&')?.shift()?.trim();
@@ -109,16 +76,43 @@ const UnidadesPage = () => {
       setQuery(actualQuery + '&cidade=' + e?.target?.value.trim());
       return;
     }
+
     setQuery(ufQuery + '&cidade=' + e.target.value.trim());
   };
 
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setIsMapModalOpen);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
+
+  const getAllStates = () => {
+    const allStatesFromUnits = allUnits?.units?.result?.map(
+      (fullUnit: IGetUnit) => {
+        return fullUnit?.uf;
+      }
+    );
+
+    const uniqueStates: any = [...new Set(allStatesFromUnits)].sort();
+
+    if (!allStates) {
+      setAllStates(uniqueStates);
+    }
+  };
+
+  const getAllCities = (actualFilter: IGetUnit[]) => {
+    const allCities = actualFilter?.map((fullUnit: IGetUnit) => {
+      return fullUnit?.cidade;
+    });
+
+    const uniqueCities = [...new Set(allCities)].sort();
+
+    if (!query?.includes('cidade')) {
+      setAllCities(query?.includes('uf') ? uniqueCities : []);
+    }
+  };
 
   return (
     <>
       <SkewContainer
-        size="tiny"
         imageSrc={UnidadesBg}
         imageAlt="Imagem do mapa do Brasil"
       />
@@ -147,7 +141,7 @@ const UnidadesPage = () => {
                   placeholder="CEP"
                   className="cep-input"
                   name="cep"
-                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+                  value={cep}
                   maxLength={8}
                   minLength={8}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -172,7 +166,7 @@ const UnidadesPage = () => {
                       : setQuery('')
                   }
                 >
-                  <option selected value="">
+                  <option defaultValue="" value="">
                     Selecione o estado
                   </option>
                   {allStates?.map((state: string) => (
@@ -187,11 +181,13 @@ const UnidadesPage = () => {
                   name="select-city"
                   onChange={searchUnitByCity}
                 >
-                  <option selected value="">
+                  <option defaultValue="" value="">
                     Selecione a Cidade
                   </option>
                   {allCities?.map((city: string) => (
-                    <option value={city}>{city}</option>
+                    <option value={city} key={city}>
+                      {city}
+                    </option>
                   ))}
                 </SelectDefault>
               </form>
@@ -202,12 +198,17 @@ const UnidadesPage = () => {
             <>
               {isLoadingUnits && (
                 <>
-                  {unitsSkeletons.map(() => (
-                    <Skeleton variant="rounded" height={207} animation="wave" />
+                  {unitsSkeletons.map((_, key) => (
+                    <Skeleton
+                      variant="rounded"
+                      height={207}
+                      animation="wave"
+                      key={key}
+                    />
                   ))}
                 </>
               )}
-              {units?.map((unit) => (
+              {units?.result?.map((unit) => (
                 <S.UnityCard key={unit.id}>
                   <div className="location-bg-icon">
                     <LocationIcon />
@@ -226,6 +227,17 @@ const UnidadesPage = () => {
               ))}
             </>
           </S.UnitsContainer>
+          {units?.pagination?.lastPage > 1 && (
+            <Pagination
+              count={units?.pagination?.lastPage}
+              shape="rounded"
+              color="primary"
+              page={actualPage}
+              onChange={handlePageChange}
+              size={window && window.innerWidth <= 375 ? 'small' : 'medium'}
+              className="paginationComponent"
+            />
+          )}
         </S.Container>
       </CenterWrapper>
     </>

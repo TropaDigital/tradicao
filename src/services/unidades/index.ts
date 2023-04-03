@@ -10,6 +10,15 @@ class UnidadesClass {
       const response: AxiosResponse = await API.get(
         `unidades${query && '?' + query}`
       );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async updateUnit(unitBody: IUnitBody, id: number | undefined) {
+    try {
+      const response: AxiosResponse = await API.put(`unidades/${id}`, unitBody);
       return response.data.result;
     } catch (err) {
       console.log(err);
@@ -18,10 +27,17 @@ class UnidadesClass {
 
   async createUnit(unitBody: IUnitBody) {
     try {
-      const response: AxiosResponse = await API.post(
-        `create-unidade`,
-        unitBody
-      );
+      const response: AxiosResponse = await API.post(`unidades`, unitBody);
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async deleteUnit(id: number) {
+    try {
+      const response: AxiosResponse = await API.delete(`unidades/${id}`);
+      return response.data;
     } catch (err) {
       console.log(err);
     }

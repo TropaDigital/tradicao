@@ -10,14 +10,13 @@ import CenterWrapper from '@/components/global/CenterWrapper';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 
 const DemonstracoesPage = () => {
-  const { allDemonstrations } = useGetAllDemonstrations();
+  const { allDemonstrations } = useGetAllDemonstrations('');
 
   return (
     <>
       <SkewContainer
-        size="tiny"
         imageSrc={GraphicDemonstrations}
-        imageAlt="Imamge de gráficos"
+        imageAlt="Imagem de gráficos"
       />
       <S.Container>
         <S.TitleContainer>
@@ -27,9 +26,10 @@ const DemonstracoesPage = () => {
 
         <CenterWrapper>
           <ul className="demonstracao-container">
-            {allDemonstrations?.map((demo) => {
+            {allDemonstrations?.dataPaginada?.map((demo) => {
+              if (demo.status === 'Inativo') return;
               return (
-                <li className="button-wrapper">
+                <li className="button-wrapper" key={demo.id_demo_financeira}>
                   <Button
                     radius="rounded"
                     degrade

@@ -1,139 +1,116 @@
 'use client';
 
-import React, { useState, useEffect, FormEvent } from 'react';
+import React from 'react';
 
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import * as S from './styles';
 
-import carBanner from '../../../../public/images/car_banner.jpg';
+import familyBanner from '../../../../public/images/family-on-grass.jpg';
 
-import { DefaultLogo } from '@/assets/icons';
+import { DefaultLogo, WhiteLogo } from '@/assets/icons';
 import Button from '@/components/UI/Button';
 
-import { toast } from 'react-toastify';
-import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
-import cookieClass from '@/utils/cookieClass';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { Form, Formik } from 'formik';
+import { loginSchema } from './yupSchema';
 import { useRouter } from 'next/navigation';
-
-interface IDTO {
-  login: string;
-  password: string;
-}
+import { toast } from 'react-toastify';
+import cookieClass from '@/utils/cookieClass';
 
 const PanelLoginComponent = () => {
-  const [currentBgImage, setCurrentBgImage] =
-    useState<StaticImageData>(carBanner);
-  const [DTO, setDTO] = useState<IDTO>({
-    login: '',
-    password: ''
-  });
-
   const router = useRouter();
 
-  useEffect(() => {
-    handleBgImage();
-  }, []);
-
-  function handleOnChange(pos: 'login' | 'password', value: string) {
-    const newDTO: IDTO = DTO;
-    newDTO[pos] = value;
-    setDTO({ ...newDTO });
-  }
-
-  function handleBgImage() {
-    const options: Array<StaticImageData> = [carBanner];
-    setInterval(() => {
-      var imagePos = Math.floor(Math.random() * options?.length);
-      setCurrentBgImage(options[imagePos]);
-    }, 5000);
-  }
-
-  async function checkDTO() {
-    try {
-      if (!DTO.login || !DTO.password)
-        throw new Error('Todos os campos são obrigatórios');
-      if (DTO.login != 'admin@consorcio.com')
-        throw new Error('O login está incorreto');
-      if (DTO.password !== 'consorcio123')
-        throw new Error('A senha está incorreta');
-
-      cookieClass.setCookie('AuthorizedAdminConsorcio', 'kYsZVB2spAMNpL');
-
-      router.push('/painel');
-    } catch (error: any) {
-      toast.error(error.message);
+  function checkCredentials(values: any) {
+    if (
+      values?.email !== 'admin@consorcio.com' ||
+      values?.senha !== 'consorcio123'
+    ) {
+      toast.error('E-mail ou Senha Inválidos');
+      return false;
     }
-  }
 
-  function handleSubmitAccessForm(e: FormEvent) {
-    e.preventDefault();
-    checkDTO();
+    return true;
   }
 
   return (
     <S.Container>
       <S.RightWrapper>
-        <div className="bgImageWrapper">
+        <div className="columnGreen">
+          <div className="bannerOverlay">
+            <div className="bannerLogo">
+              <WhiteLogo width={786} height={231} />
+            </div>
+          </div>
           <Image
-            className="bgImageWithBlur"
-            alt="imagem"
-            src={currentBgImage}
+            src={familyBanner}
+            alt="Login Banner"
             objectFit="cover"
             fill
+            className="bannerImage"
           />
         </div>
-        <div className="columnGreen"></div>
       </S.RightWrapper>
 
-      <S.FormWrapper>
-        <form
-          className="panelAccess"
-          onSubmit={(e: FormEvent) => {
-            handleSubmitAccessForm(e);
-          }}
-        >
-          <div className="logoGreenCasaAmazonia">
-            <DefaultLogo />
-          </div>
+      <Formik
+        initialValues={{
+          email: '',
+          senha: ''
+        }}
+        validationSchema={loginSchema}
+        onSubmit={(values) => {
+          const isAnAdmin = checkCredentials(values);
+          if (isAnAdmin) {
+            cookieClass?.setAdminCookie('AuthorizedAdminConsorcio');
+            router.push('/painel/contemplados');
+          }
+        }}
+      >
+        {({ values, errors, touched, handleChange, handleSubmit }) => (
+          <S.FormWrapper>
+            <Form onSubmit={handleSubmit} className="panelAccess">
+              <div className="logoGreenCasaAmazonia">
+                <DefaultLogo width={262 * 1.2} height={58 * 1.2} />
+              </div>
 
-          <h2 className="welcomeBack">Bem-vindo de volta!</h2>
-          <h3 className="subtitleForm">
-            Entre com sua conta para acessar o painel.
-          </h3>
-          <div className="inputWrapper">
-            <InputDefault
-              label="Email"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                handleOnChange('login', event?.target?.value);
-              }}
-              value={DTO?.login}
-              placeholder="email@exemplo.com"
-              type={'email'}
-            />
-          </div>
-          <div className="inputWrapper">
-            <InputPassword
-              label="Senha"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                handleOnChange('password', event?.target?.value);
-              }}
-              value={DTO?.password}
-              placeholder="Digite sua senha"
-            />
-          </div>
-          <Button
-            type="submit"
-            degrade
-            radius="rounded"
-            onClick={() => {
-              SubmitEvent;
-            }}
-          >
-            <p className="textSubmitPanel">Acessar minha conta</p>
-          </Button>
-        </form>
-      </S.FormWrapper>
+              <h2 className="welcomeBack">Bem-vindo de volta!</h2>
+              <h3 className="subtitleForm">
+                Entre com sua conta para acessar o painel.
+              </h3>
+              <div className="inputWrapper">
+                <InputDefault
+                  label="Email"
+                  onChange={handleChange}
+                  value={values?.email}
+                  placeholder="email@exemplo.com"
+                  name="email"
+                  error={touched?.email && errors?.email}
+                />
+              </div>
+              <div className="inputWrapper">
+                <InputPassword
+                  label="Senha"
+                  onChange={handleChange}
+                  value={values?.senha}
+                  placeholder="Digite sua senha"
+                  name="senha"
+                  error={touched?.senha && errors?.senha}
+                />
+              </div>
+              <Button
+                type="submit"
+                degrade
+                radius="rounded"
+                onClick={() => {
+                  SubmitEvent;
+                }}
+              >
+                <p className="textSubmitPanel">Acessar minha conta</p>
+              </Button>
+            </Form>
+          </S.FormWrapper>
+        )}
+      </Formik>
     </S.Container>
   );
 };
