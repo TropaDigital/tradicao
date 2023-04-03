@@ -43,6 +43,6 @@ export const Container = styled.section`
 export const TitleContainer = styled.div`
   .subtitle {
     font-weight: 400;
-    color: var(--gray-500);
+    color: var(--gray-600);
   }
 `;
