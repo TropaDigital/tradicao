@@ -14,6 +14,7 @@ import SelectSideBar from '../../../components/pages/Painel/components/SelectSid
 import panelConfig from '../../../components/pages/Painel/panelConfig.json';
 import LogoutPanel from '../../../components/pages/Painel/components/LogoutPanel';
 import Link from 'next/link';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 
 interface ILayoutPanelProps {
   children: ReactNode;
@@ -53,7 +54,7 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
                     <DefaultBrasao />
                   </Link>
 
-                  {panelConfig.pages.map((page, key) => {
+                  {panelConfig?.pages?.map((page, key) => {
                     return (
                       <Link href={`/painel/${page.path}`} key={key}>
                         {page.name}

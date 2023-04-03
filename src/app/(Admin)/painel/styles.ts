@@ -55,7 +55,7 @@ export const Container = styled.div<ISideBarProps>`
           width: 25px;
           border-radius: 3px;
           background-color: var(--white);
-          transition: 250ms;
+          transition: 150ms;
           &::before,
           &::after {
             content: '';
@@ -91,7 +91,7 @@ export const Container = styled.div<ISideBarProps>`
           width: 40%;
           background-color: var(--white);
           height: calc(100vh - 65px);
-          transition: 0.75s linear;
+          transition: 0.3s linear;
           box-shadow: 0px 4px 12px rgba(25, 73, 62, 0.1);
           display: flex;
           flex-direction: column;

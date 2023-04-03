@@ -70,8 +70,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
         <span
           onClick={() =>
             downloadFileFromExternalLink(
-              item[head.key][0]?.url_pdf,
-              item?.titulo
+              item[head.key][0]?.url_pdf ?? item[head.key],
+              item?.titulo ?? item?.nome
             )
           }
           style={{ cursor: 'pointer' }}

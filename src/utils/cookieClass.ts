@@ -4,7 +4,7 @@ import crypto from 'crypto';
 
 class CookieClass {
   private ADMIN_COOKIE_NAME = 'AuthorizedAdmin';
-  public ADMIN_COOKIE_VALUE: string | undefined;
+  private ADMIN_COOKIE_VALUE: string | undefined;
 
   private generateRandomCookieValue(length: number) {
     const buffer = crypto.randomBytes(Math.ceil(length / 2));
@@ -24,10 +24,6 @@ class CookieClass {
     this.ADMIN_COOKIE_NAME = cookieName;
     this.ADMIN_COOKIE_VALUE = this.generateRandomCookieValue(64);
     setCookie(this.ADMIN_COOKIE_NAME, this.ADMIN_COOKIE_VALUE);
-  }
-
-  public verifyIsAnAdmin(cookieValue: string) {
-    return cookieValue?.length === 64;
   }
 
   public removeCookie(cookieName: string) {

@@ -69,6 +69,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
         id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
       });
     }
+
     if (itemType === 'financeira') {
       deleteDemonstracao(itemID);
       deleteFile({
@@ -76,9 +77,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
         id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
       });
     }
+
     if (itemType === 'unidade') {
       deleteUnit(itemID);
     }
+
     if (itemType === 'relatorio') {
       deleteRelatorio(itemID);
     }
@@ -100,7 +103,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
             }}
             setData={() => {}}
           >
-            {pathname?.includes('contemplado') && (
+            {pathname?.includes('contemplados') && (
               <FormContemplados
                 modalOpen="editar"
                 actualItem={actualItem as IGetContemplados}
@@ -109,6 +112,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 }}
               />
             )}
+
             {pathname?.includes('demonstracoes') && (
               <FormDemonstracoes
                 modalOpen="editar"

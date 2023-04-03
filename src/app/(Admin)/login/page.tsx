@@ -16,6 +16,7 @@ import { Form, Formik } from 'formik';
 import { loginSchema } from './yupSchema';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import cookieClass from '@/utils/cookieClass';
 
 const PanelLoginComponent = () => {
   const router = useRouter();
@@ -58,7 +59,9 @@ const PanelLoginComponent = () => {
         }}
         validationSchema={loginSchema}
         onSubmit={(values) => {
-          if (checkCredentials(values)) {
+          const isAnAdmin = checkCredentials(values);
+          if (isAnAdmin) {
+            cookieClass?.setAdminCookie('AuthorizedAdminConsorcio');
             router.push('/painel/contemplados');
           }
         }}
@@ -67,7 +70,7 @@ const PanelLoginComponent = () => {
           <S.FormWrapper>
             <Form onSubmit={handleSubmit} className="panelAccess">
               <div className="logoGreenCasaAmazonia">
-                <DefaultLogo />
+                <DefaultLogo width={262 * 1.2} height={58 * 1.2} />
               </div>
 
               <h2 className="welcomeBack">Bem-vindo de volta!</h2>
