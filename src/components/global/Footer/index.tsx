@@ -194,13 +194,13 @@ export default function Footer() {
               <Link href={'/contato'}>
                 <TextButton>Fale com um Especialista</TextButton>
               </Link>
-              <Link href={'/relatorios-de-ouvidoria'}>
+              {/* <Link href={'/relatorios-de-ouvidoria'}>
                 <TextButton>Relatórios de Ouvidoria</TextButton>
-              </Link>
+              </Link> */}
             </div>
 
             <TitleColumns>Ouvidoria</TitleColumns>
-            <div style={{ marginTop: '10px' }}>
+            <div style={{ marginTop: '6px' }}>
               <TextButton>ouvidoria@consorciotradicao.com.br</TextButton>
               <Link href={'tel:08008770020'}>
                 <TextButton>0800 877 0020</TextButton>
