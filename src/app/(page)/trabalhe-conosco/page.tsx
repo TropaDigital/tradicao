@@ -137,7 +137,7 @@ const WorkWithUsPage = () => {
                     errors={touched.curriculum && errors.curriculum}
                     filename={fileName}
                   />
-                  <Button weight={500} type="submit">
+                  <Button weight={500} type="submit" degrade>
                     Enviar
                   </Button>
                 </Form>
@@ -200,7 +200,7 @@ const WorkWithUsPage = () => {
                     label="Contato"
                     error={touched.contact && errors.contact}
                   />
-                  <Button type="submit">Enviar</Button>
+                  <Button degrade type="submit">Enviar</Button>
                 </Form>
               )}
             </Formik>
