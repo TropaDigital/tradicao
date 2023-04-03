@@ -19,6 +19,7 @@ export const ButtonsWrapper = styled.div`
 
   .stage-form-button {
     height: 68px;
+    font-size: 16px;
   }
 
   @media (max-width: 450px) {
@@ -30,6 +31,6 @@ export const ButtonsWrapper = styled.div`
 export const TitleContainer = styled.div`
   .subtitle {
     font-weight: 400;
-    color: var(--gray-500);
+    color: var(--gray-600);
   }
 `

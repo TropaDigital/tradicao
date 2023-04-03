@@ -133,7 +133,9 @@ export const InfoIcon = styled.div`
     align-items: center;
     justify-content: center;
     width: 80px;
+    min-width: 80px;
     height: 80px;
+    min-height: 80px;
     border-radius: 10px;
     background-color: var(--primary);
     background: var(--degrade-primary);

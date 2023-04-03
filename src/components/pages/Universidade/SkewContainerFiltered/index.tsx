@@ -16,7 +16,12 @@ const SkewContainerFiltered = ({ imageAlt, imageSrc }: ISkewContainer) => {
     <S.Container>
       <S.SolidBackground />
       <S.SkewContainer>
-        <Image src={imageSrc} alt={imageAlt} className="skewImage" />
+        <Image 
+          src={imageSrc} 
+          alt={imageAlt} 
+          className="skewImage" 
+          placeholder='blur'
+        />
         <div className="logo-mask">
           <Image src={Logo} alt={'Logo da Universidade Tradição'} />
         </div>

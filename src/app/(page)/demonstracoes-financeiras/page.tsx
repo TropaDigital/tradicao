@@ -29,7 +29,7 @@ const DemonstracoesPage = () => {
             {allDemonstrations?.dataPaginada?.map((demo) => {
               if (demo.status === 'Inativo') return;
               return (
-                <li className="button-wrapper">
+                <li className="button-wrapper" key={demo.id_demo_financeira}>
                   <Button
                     radius="rounded"
                     degrade
