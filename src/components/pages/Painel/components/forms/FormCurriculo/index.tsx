@@ -6,14 +6,14 @@ import { CurriculoSchema } from './yupSchema';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
 
-const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
+const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   return (
     <S.Container>
       <Formik
         initialValues={{
           nome: actualItem?.nome ?? '',
-          cnpj: actualItem?.cnpj ?? [],
-          contato: actualItem?.contato ?? ''
+          cargo: actualItem?.cnpj ?? [],
+          curriculo_pdf: actualItem?.contato ?? ''
         }}
         validationSchema={CurriculoSchema}
         onSubmit={(values) => {
@@ -45,21 +45,21 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 />
 
                 <DefaultInput
-                  label="CNPJ"
+                  label="Cargo"
                   placeholder="CNPJ do Representante"
                   name="cnpj"
-                  value={values?.cnpj}
+                  value={values?.cargo}
                   onChange={handleChange}
-                  error={touched?.cnpj && errors?.cnpj}
+                  error={touched?.cargo && errors?.cargo}
                 />
 
                 <DefaultInput
                   label="Contato"
                   placeholder="Contato do Representante"
                   name="contato"
-                  value={values?.contato}
+                  value={values?.curriculo_pdf}
                   onChange={handleChange}
-                  error={touched?.contato && errors?.contato}
+                  error={touched?.curriculo_pdf && errors?.curriculo_pdf}
                 />
 
                 <div className="lineElementsWrapper buttonsWrapper">
@@ -88,4 +88,4 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   );
 };
 
-export default FormRepresentante;
+export default FormCurriculo;
