@@ -13,8 +13,8 @@ export default function Contemplated() {
   const SlideSettings = {
     dots: false,
     autoplay: true,
-    speed: 3000,
-    autoplaySpeed: 3000,
+    speed: 5000,
+    autoplaySpeed: 8000,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -35,7 +35,7 @@ export default function Contemplated() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          speed: 4500,
+          speed: 6000,
           autoplaySpeed: 6000
         }
       }

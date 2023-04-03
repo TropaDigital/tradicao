@@ -25,6 +25,13 @@ export const ContainerLogin = styled.div`
 
     }
 
+    @media (max-width: 800px) {
+      top: 250px;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+    }
+
     @media (max-width: 500px) {
       width: 100%;
       top: 0;
