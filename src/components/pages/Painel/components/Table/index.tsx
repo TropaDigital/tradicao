@@ -20,6 +20,7 @@ import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
 import FormProduct from '../forms/FormContemplados';
+import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
 import FormRepresentante from '../forms/FormRepresentante';
@@ -150,6 +151,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
             )}
             {pathname?.includes('representantes') && (
               <FormRepresentante
+                modalOpen="editar"
+                actualItem={actualItem as IGetRepresentante}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+            {pathname?.includes('curriculo') && (
+              <FormCurriculo
                 modalOpen="editar"
                 actualItem={actualItem as IGetRepresentante}
                 onSubmit={() => setModalOpen('')}

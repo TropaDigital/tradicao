@@ -6,7 +6,7 @@ import { CurriculoSchema } from './yupSchema';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
 
-const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
+const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   return (
     <S.Container>
       <Formik
@@ -45,7 +45,7 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 />
 
                 <DefaultInput
-                  label="CNPJ"
+                  label="Cargo"
                   placeholder="CNPJ do Representante"
                   name="cnpj"
                   value={values?.cnpj}
@@ -88,4 +88,4 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   );
 };
 
-export default FormRepresentante;
+export default FormCurriculo;
