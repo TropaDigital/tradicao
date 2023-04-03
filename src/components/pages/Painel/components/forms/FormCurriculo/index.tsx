@@ -12,8 +12,8 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           nome: actualItem?.nome ?? '',
-          cnpj: actualItem?.cnpj ?? [],
-          contato: actualItem?.contato ?? ''
+          cargo: actualItem?.cnpj ?? [],
+          curriculo_pdf: actualItem?.contato ?? ''
         }}
         validationSchema={CurriculoSchema}
         onSubmit={(values) => {
@@ -48,18 +48,18 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   label="Cargo"
                   placeholder="CNPJ do Representante"
                   name="cnpj"
-                  value={values?.cnpj}
+                  value={values?.cargo}
                   onChange={handleChange}
-                  error={touched?.cnpj && errors?.cnpj}
+                  error={touched?.cargo && errors?.cargo}
                 />
 
                 <DefaultInput
                   label="Contato"
                   placeholder="Contato do Representante"
                   name="contato"
-                  value={values?.contato}
+                  value={values?.curriculo_pdf}
                   onChange={handleChange}
-                  error={touched?.contato && errors?.contato}
+                  error={touched?.curriculo_pdf && errors?.curriculo_pdf}
                 />
 
                 <div className="lineElementsWrapper buttonsWrapper">
