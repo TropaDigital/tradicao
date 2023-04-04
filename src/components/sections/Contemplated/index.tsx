@@ -2,14 +2,12 @@
 import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
 
-// Image
-import Person from '/public/images/imagePerson.jpg';
-
 // Libraries
 import Slider from 'react-slick';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 
 export default function Contemplated() {
+  
   const SlideSettings = {
     dots: false,
     autoplay: true,
