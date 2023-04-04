@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import TruckBg from '../../../../public/images/consortiumTruck.png';
+import ServicesBg from '../../../../public/images/consortiumServices.png';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -12,15 +12,14 @@ import SimulationForm from '@/components/shared/SimulationForm';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import OurContemplated from '@/components/sections/OurContemplated';
-import TruckConsortium from '@/components/sections/TruckConsortium';
 
 export default function ConsortiumServices() {
   return (
     <>
       <S.ContainerTop>
         <SkewContainer
-          imageSrc={TruckBg}
-          imageAlt="Imagem de um caminhão de carga numa estrada"
+          imageSrc={ServicesBg}
+          imageAlt="Imagem de uma mulher com uma câmera digital em mãos"
         />
 
         <SimulationForm />
