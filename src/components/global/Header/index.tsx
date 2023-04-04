@@ -89,12 +89,12 @@ const Header = () => {
           path: '/pesados'
         },
         {
-          subTitle: 'Regulamento',
-          path: '/regulamento'
-        },
-        {
           subTitle: 'Serviços',
           path: '/servicos'
+        },
+        {
+          subTitle: 'Regulamento',
+          path: '/regulamento'
         }
       ]
     },
