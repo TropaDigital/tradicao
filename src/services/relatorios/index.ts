@@ -10,7 +10,7 @@ class RelatioriosClass {
       const response: AxiosResponse = await API.get(
         `relatorioOuvidoria${query && `?${query}`}`
       );
-      return response.data.result;
+      return response.data;
     } catch (err) {
       console.log(err);
     }

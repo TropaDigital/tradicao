@@ -27,6 +27,17 @@ class RepresentanteClass {
       console.log(err);
     }
   }
+
+  async deleteCandidate(id: number) {
+    try {
+      const response: AxiosResponse = await API.delete(
+        `delete-representante/${id}`
+      );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 export default new RepresentanteClass();

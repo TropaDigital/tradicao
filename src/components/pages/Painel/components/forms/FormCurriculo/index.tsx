@@ -5,6 +5,7 @@ import { Formik, Form } from 'formik';
 import { CurriculoSchema } from './yupSchema';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
+import UploadFile from '@/components/UI/UploadFile';
 
 const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   return (
@@ -46,20 +47,17 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                 <DefaultInput
                   label="Cargo"
-                  placeholder="CNPJ do Representante"
+                  placeholder="Auxiliar Administrativo"
                   name="cnpj"
                   value={values?.cargo}
                   onChange={handleChange}
                   error={touched?.cargo && errors?.cargo}
                 />
 
-                <DefaultInput
-                  label="Contato"
-                  placeholder="Contato do Representante"
-                  name="contato"
-                  value={values?.curriculo_pdf}
-                  onChange={handleChange}
-                  error={touched?.curriculo_pdf && errors?.curriculo_pdf}
+                <UploadFile
+                  filename="Abcedario"
+                  onPostFile={(file) => console.log(file)}
+                  label="Currículo"
                 />
 
                 <div className="lineElementsWrapper buttonsWrapper">
