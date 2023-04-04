@@ -1,21 +1,12 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
-import InputImage from '../../inputs/InputImage';
 import { SelectDefault } from '../../inputs/SelectDefault';
 import * as S from '../styles';
 import { Formik, Form } from 'formik';
 import { demonstracaoSchema } from './yupSchema';
-import { TrashIcon } from '@/assets/icons';
 import DefaultInput from '@/components/UI/DefaultInput';
-import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
-import { IContempladoImages } from '@/services/contemplados/types';
-import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
-import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
-import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
 import { IForm } from '../types';
 import UploadFile from '@/components/UI/UploadFile';
-import SelectInput from '@mui/material/Select/SelectInput';
 import { useCreateDemonstracao } from '@/services/demonstracoes/POST/useCreateDemonstracao';
 import { useUptadeDemonstracao } from '@/services/demonstracoes/PUT/useUpdateDemonstracoes';
 

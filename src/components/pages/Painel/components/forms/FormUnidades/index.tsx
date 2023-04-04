@@ -7,7 +7,8 @@ import { IForm } from '../types';
 import { UnitSchema } from './yupSchema';
 import { useCreateUnit } from '@/services/unidades/POST/useCreateUnit';
 import { useUpdateUnit } from '@/services/unidades/PUT/useUpdateUnit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ViaCepClass from '@/services/via-cep';
 
 const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const allStates = [
@@ -44,6 +45,18 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const { updateUnit } = useUpdateUnit();
 
   const [cep, setCep] = useState('');
+  const [fullAddress, setFullAddress] = useState<any>();
+
+  useEffect(() => {
+    getAddressByCep(cep);
+  }, [cep]);
+
+  async function getAddressByCep(cep: string) {
+    if (cep?.length === 8) {
+      const address = await ViaCepClass?.getAddress(cep);
+      setFullAddress(address);
+    }
+  }
 
   return (
     <S.Container>
@@ -143,31 +156,43 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   error={touched?.cep && errors?.cep}
                 />
 
-                <InputDefault
-                  label="Endereço"
-                  placeholder="Av. Monte Cruz, 1756 - Sala 2"
-                  name="endereco"
-                  value={values?.endereco}
-                  onChange={handleChange}
-                  error={touched?.endereco && errors?.endereco}
-                />
+                <div className="lineElementsWrapper">
+                  <InputDefault
+                    label="Endereço"
+                    placeholder="Endereço"
+                    name="endereco"
+                    value={fullAddress?.logradouro}
+                    onChange={handleChange}
+                    error={touched?.endereco && errors?.endereco}
+                    disabled
+                  />
+
+                  <InputDefault
+                    label="Número"
+                    placeholder="Número"
+                    name="numero"
+                    error={touched?.endereco && errors?.endereco}
+                  />
+                </div>
 
                 <div className="lineElementsWrapper">
                   <InputDefault
                     label="Cidade"
-                    placeholder="Santo Antonio"
+                    placeholder="Cidade"
                     name="cidade"
-                    value={values?.cidade}
+                    value={fullAddress?.localidade}
                     onChange={handleChange}
                     error={touched?.cidade && errors?.cidade}
+                    disabled
                   />
                   <InputDefault
                     label="Bairro"
-                    placeholder="Jardim Alvorada"
+                    placeholder="Bairro"
                     name="bairro"
-                    value={values?.bairro}
+                    value={fullAddress?.bairro}
                     onChange={handleChange}
                     error={touched?.bairro && errors?.bairro}
+                    disabled
                   />
                 </div>
 
@@ -176,8 +201,9 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   onChange={(e) => {
                     setFieldValue('uf', e?.target?.value);
                   }}
-                  value={values?.uf}
+                  value={fullAddress?.uf}
                   error={touched?.uf && errors?.uf}
+                  disabled
                 >
                   <option value="">Selecione o Estado da Unidade</option>
                   {allStates?.map((estado) => {

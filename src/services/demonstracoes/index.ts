@@ -3,8 +3,11 @@
 import { AxiosResponse } from 'axios';
 import API from '../api';
 import { IDemonstracaoBody } from './interface';
+import cookieClass from '@/utils/cookieClass';
 
 class DemonstracoesClass {
+  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+
   async getAllDemonstrations(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
@@ -20,7 +23,12 @@ class DemonstracoesClass {
     try {
       const response: AxiosResponse = await API.post(
         `create-demonstracao`,
-        demonstracaoBody
+        demonstracaoBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -35,7 +43,12 @@ class DemonstracoesClass {
     try {
       const response: AxiosResponse = await API.put(
         `update-demonstracao/${id}`,
-        demonstracaoBody
+        demonstracaoBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -46,7 +59,12 @@ class DemonstracoesClass {
   async deleteDemonstracao(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-demonstracao/${id}`
+        `delete-demonstracao/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data;
     } catch (err) {

@@ -19,5 +19,6 @@ export const contempladoSchema = yup?.object()?.shape({
       }
     )
     .required('O depoimento é obrigatório'),
-  status: yup?.string().required('')
+  categoria: yup?.string()?.required('O Consórcio é obrigatório'),
+  status: yup?.string().required('O Status é obrigatório')
 });
