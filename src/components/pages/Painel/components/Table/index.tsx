@@ -10,6 +10,7 @@ import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
 import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
 import { IGetRelatorio } from '@/services/relatorios/types';
+import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
 import { IGetRepresentante } from '@/services/representante/types';
 import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
@@ -41,6 +42,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteUnit } = useDeleteUnit();
   const { deleteRelatorio } = useDeleteRelatorio();
   const { deleteCurriculo } = useDeleteCurriculo();
+  const { deleteRepresentante } = useDeleteRepresentante();
 
   const pathname = usePathname();
 
@@ -57,7 +59,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
         | 'financeira'
         | 'unidade'
         | 'relatorio'
-        | 'candidato',
+        | 'candidato'
+        | 'representante',
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -68,7 +71,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
       | 'financeira'
       | 'unidade'
       | 'relatorio'
-      | 'candidato';
+      | 'candidato'
+      | 'representante';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -99,6 +103,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
 
     if (itemType === 'relatorio') {
       deleteRelatorio(itemID);
+    }
+
+    if (itemType === 'representante') {
+      deleteRepresentante(itemID);
     }
   };
 
@@ -159,7 +167,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {pathname?.includes('curriculo') && (
               <FormCurriculo
                 modalOpen="editar"
-                actualItem={actualItem as IGetRepresentante}
+                actualItem={actualItem}
                 onSubmit={() => setModalOpen('')}
               />
             )}

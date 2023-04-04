@@ -91,6 +91,10 @@ const Header = () => {
         {
           subTitle: 'Regulamento',
           path: '/regulamento'
+        },
+        {
+          subTitle: 'Serviços',
+          path: '/servicos'
         }
       ]
     },

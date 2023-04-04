@@ -96,12 +96,12 @@ const DemonstracoesPage = () => {
       </S.HeaderDashboard>
       <Table
         header={headerTable}
-        title={'Lista de Demonstrações'}
+        title={'Lista de Representantes'}
         data={allRepresentantes?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}
-            placeholder="Pesquise por demonstrações"
+            placeholder="Pesquise por representantes"
             onChange={debounced}
           />
         }

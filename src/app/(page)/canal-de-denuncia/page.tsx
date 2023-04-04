@@ -9,6 +9,7 @@ import Button from '@/components/UI/Button';
 import * as S from './styles';
 import ComplaintForm from '@/components/pages/Canal-de-denuncia/ComplaintForm';
 import FollowComplaintForm from '@/components/pages/Canal-de-denuncia/FollowComplaintForm';
+import Link from 'next/link';
 
 const CompliancePage = () => {
   const [isComplaintFormOpen, setIsComplaintFormOpen] =
@@ -54,7 +55,11 @@ const CompliancePage = () => {
             <Button degrade onClick={() => setIsComplaintFormOpen(true)}>
               Preencher Novo Formulário
             </Button>
-            <Button degrade>Consulte a Situação de sua Denúncia</Button>
+            <Button degrade>
+              <Link href="/contato" style={{ color: 'white' }}>
+                Consulte a Situação de sua Denúncia
+              </Link>
+            </Button>
           </S.ButtonsWrapper>
         </S.Container>
 
