@@ -163,7 +163,7 @@ export default function Footer() {
                 </div>
                 <div className="button">
                   <div className="text">
-                    <Link href="/" className="text">
+                    <Link href="/contato" className="text">
                       Fale Conosco
                     </Link>
                   </div>

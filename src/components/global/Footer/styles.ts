@@ -54,7 +54,7 @@ export const RightSide = styled.div`
     gap: 10px;
 
     .correct {
-        margin-bottom: -26px;
+        margin-bottom: -22px;
     }
 
     @media (max-width: 1350px) {
