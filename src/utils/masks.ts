@@ -25,7 +25,9 @@ export function cepMask(cep: string) {
 }
 
 export function phoneMask(phone: string) {
-  let value = phone?.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // 00 00000-0000
+  let value = phone?.replace(/[^\d\s()-]/g, '');
+
+  value = value?.replace(/(\d{2})(\d{5})(\d{4})/, '$1 $2-$3'); // 00 00000-0000
 
   return value;
 }
