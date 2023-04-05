@@ -50,7 +50,7 @@ const DemonstracoesPage = () => {
   const [actualPage, setActualPage] = useState(1);
 
   const { allRelatories } = useGetlAllRelatorios(
-    searchRelatorio + `perPage=5&currentPage=${actualPage}`
+    searchRelatorio + `limit=5&page=${actualPage}`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -102,7 +102,7 @@ const DemonstracoesPage = () => {
       <Table
         header={headerTable}
         title={'Lista de Relatórios'}
-        data={allRelatories?.result}
+        data={allRelatories?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}

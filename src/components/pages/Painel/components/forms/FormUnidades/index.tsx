@@ -56,6 +56,10 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       const address = await ViaCepClass?.getAddress(cep);
       setFullAddress(address);
     }
+
+    if (cep?.length < 8) {
+      setFullAddress({});
+    }
   }
 
   return (
@@ -72,6 +76,8 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={UnitSchema}
         onSubmit={(values) => {
+          console.log(values);
+
           if (modalOpen === 'publicar') {
             createUnit({
               titulo: values?.nome,
@@ -131,7 +137,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="00 00000-0000"
                   name="telefone"
                   value={values?.telefone?.replace(
-                    /^(\d{2})\s*(\d{5})[-\s]?(\d{4})$/,
+                    /(\d{2})(\d{5})(\d{4})/,
                     '$1 $2-$3'
                   )}
                   onChange={(e) => {
@@ -146,42 +152,38 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   label="CEP"
                   placeholder="00000-000"
                   name="cep"
-                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+                  value={values?.cep}
+                  mask="cep"
                   maxLength={8}
-                  minLength={8}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setCep(e.target.value.replace(/[^0-9]/g, ''));
-                    setFieldValue('cep', e?.target?.value);
+                  onChange={(e) => {
+                    handleChange(e);
+                    setCep(e?.currentTarget?.value);
                   }}
                   error={touched?.cep && errors?.cep}
                 />
 
-                <div className="lineElementsWrapper">
-                  <InputDefault
-                    label="Endereço"
-                    placeholder="Endereço"
-                    name="endereco"
-                    value={fullAddress?.logradouro}
-                    onChange={handleChange}
-                    error={touched?.endereco && errors?.endereco}
-                    disabled
-                  />
-
-                  <InputDefault
-                    label="Número"
-                    placeholder="Número"
-                    name="numero"
-                    error={touched?.endereco && errors?.endereco}
-                  />
-                </div>
+                <InputDefault
+                  label="Endereço"
+                  placeholder="Av. João Gomes, 1367 - Sala 03"
+                  name="endereco"
+                  value={values?.endereco}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('endereco', e?.target?.value);
+                  }}
+                  error={touched?.endereco && errors?.endereco}
+                />
 
                 <div className="lineElementsWrapper">
                   <InputDefault
                     label="Cidade"
                     placeholder="Cidade"
                     name="cidade"
-                    value={fullAddress?.localidade}
-                    onChange={handleChange}
+                    value={fullAddress?.localidade ?? values?.cidade}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue('cidade', fullAddress?.localidade);
+                    }}
                     error={touched?.cidade && errors?.cidade}
                     disabled
                   />
@@ -189,8 +191,11 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     label="Bairro"
                     placeholder="Bairro"
                     name="bairro"
-                    value={fullAddress?.bairro}
-                    onChange={handleChange}
+                    value={fullAddress?.bairro ?? values?.bairro}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue('bairro', e?.currentTarget?.value);
+                    }}
                     error={touched?.bairro && errors?.bairro}
                     disabled
                   />
@@ -201,11 +206,13 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   onChange={(e) => {
                     setFieldValue('uf', e?.target?.value);
                   }}
-                  value={fullAddress?.uf}
+                  value={fullAddress?.uf ?? values?.uf}
                   error={touched?.uf && errors?.uf}
                   disabled
                 >
-                  <option value="">Selecione o Estado da Unidade</option>
+                  <option value="" selected disabled>
+                    Estado
+                  </option>
                   {allStates?.map((estado) => {
                     return (
                       <option value={estado?.uf} key={estado?.uf}>

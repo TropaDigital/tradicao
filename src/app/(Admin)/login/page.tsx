@@ -23,12 +23,10 @@ const PanelLoginComponent = () => {
   const router = useRouter();
 
   async function checkCredentials(values: any) {
-    console.log(
-      await loginClass?.getAuthToken({
-        email: values?.email,
-        senha: values?.senha
-      })
-    );
+    await loginClass?.getAuthToken({
+      email: values?.email,
+      senha: values?.senha
+    });
   }
 
   return (

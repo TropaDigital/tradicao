@@ -25,7 +25,7 @@ const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           titulo: actualItem?.titulo ?? '',
-          url_pdf: actualItem?.demonstracaoPDF[0]?.url_pdf ?? [],
+          url_pdf: actualItem?.demonstracaoPDF[0]?.url_pdf ?? '',
           status: actualItem?.status ?? 'Ativo'
         }}
         validationSchema={demonstracaoSchema}
@@ -33,7 +33,7 @@ const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           if (modalOpen === 'publicar') {
             createDemonstracao({
               titulo: values?.titulo,
-              url_pdf: values?.url_pdf,
+              url_pdf: [values?.url_pdf],
               status: values?.status
             });
           }
@@ -42,7 +42,7 @@ const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
             updateDemonstracao({
               demonstracaoBody: {
                 titulo: values?.titulo,
-                url_pdf: values?.url_pdf,
+                url_pdf: [values?.url_pdf],
                 status: values?.status
               },
               id: actualItem?.id_demo_financeira
@@ -84,6 +84,7 @@ const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   filename={fileName}
                   className="inputField"
                   name="url_pdf"
+                  errors={touched?.url_pdf && errors?.url_pdf}
                 />
 
                 <SelectDefault

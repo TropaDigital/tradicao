@@ -54,7 +54,7 @@ export default function Contemplated() {
               width="360"
               heigth="300"
               padding="20"
-              image={contemplado?.contempladoImagens[0].url_foto}
+              image={contemplado?.contempladoImagens[0]?.url_foto}
               imageType={false}
               bigText={false}
               title={contemplado?.nome}

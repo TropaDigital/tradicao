@@ -25,7 +25,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           titulo: actualItem?.titulo ?? '',
-          url_pdf: actualItem?.pdfData[0]?.url_pdf ?? [],
+          url_pdf: actualItem?.pdfData[0]?.url_pdf ?? '',
           status: actualItem?.status ?? 'Ativo'
         }}
         validationSchema={relatoriesSchema}
@@ -33,7 +33,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           if (modalOpen === 'publicar') {
             createRelatorio({
               titulo: values?.titulo,
-              url_pdf: values?.url_pdf,
+              url_pdf: [values?.url_pdf],
               status: values?.status
             });
           }
@@ -42,7 +42,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
             updateRelatorio({
               putBody: {
                 titulo: values?.titulo,
-                url_pdf: values?.url_pdf,
+                url_pdf: [values?.url_pdf],
                 status: values?.status
               },
               id: actualItem?.id_relatorio
@@ -84,6 +84,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   filename={fileName}
                   className="inputField"
                   name="url_pdf"
+                  errors={touched?.url_pdf && errors?.url_pdf}
                 />
 
                 <SelectDefault
