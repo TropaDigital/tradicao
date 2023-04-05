@@ -9,6 +9,7 @@ import { IForm } from '../types';
 import UploadFile from '@/components/UI/UploadFile';
 import { useCreateDemonstracao } from '@/services/demonstracoes/POST/useCreateDemonstracao';
 import { useUptadeDemonstracao } from '@/services/demonstracoes/PUT/useUpdateDemonstracoes';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [fileName, setFileName] = useState('');
@@ -66,7 +67,7 @@ const FormDemonstracoes = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               <h2 className="formTitle">Demonstração Financeira</h2>
 
               <div className="inputsProductWrapper">
-                <DefaultInput
+                <InputDefault
                   label="Título"
                   placeholder="Título da Demonstração"
                   name="titulo"

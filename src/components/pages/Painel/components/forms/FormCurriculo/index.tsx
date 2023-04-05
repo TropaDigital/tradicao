@@ -7,6 +7,7 @@ import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
 import UploadFile from '@/components/UI/UploadFile';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { onlyLetterMask } from '@/utils/masks';
 
 const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [fileName, setFileName] = useState<string>('');
@@ -53,7 +54,10 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="Nome do Candidato"
                   name="nome"
                   value={values?.nome}
-                  onChange={handleChange}
+                  type="text"
+                  onChange={(e) => {
+                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.nome && errors?.nome}
                 />
 

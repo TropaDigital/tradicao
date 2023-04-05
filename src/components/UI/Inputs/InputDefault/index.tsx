@@ -9,14 +9,7 @@ import { IoMdHelpCircle } from 'react-icons/io';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, ContainerInput, Error, Alert } from './styles';
-import {
-  cepMask,
-  cnpjMask,
-  cpfMask,
-  currency,
-  dateTimeMask,
-  phoneMask
-} from './masks';
+import { dateTimeMask } from './masks';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -56,18 +49,6 @@ export function InputDefault({
     (e: React.FormEvent<HTMLInputElement>) => {
       if (mask === 'dateTime') {
         dateTimeMask(e);
-      }
-      if (mask === 'cpf') {
-        cpfMask(e);
-      }
-      if (mask === 'cep') {
-        cepMask(e);
-      }
-      if (mask === 'cnpj') {
-        cnpjMask(e);
-      }
-      if (mask === 'phone') {
-        phoneMask(e);
       }
       return;
     },

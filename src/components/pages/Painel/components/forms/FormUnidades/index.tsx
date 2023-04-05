@@ -9,6 +9,7 @@ import { useCreateUnit } from '@/services/unidades/POST/useCreateUnit';
 import { useUpdateUnit } from '@/services/unidades/PUT/useUpdateUnit';
 import { useEffect, useState } from 'react';
 import ViaCepClass from '@/services/via-cep';
+import { cepMask } from '@/utils/masks';
 
 const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const allStates = [
@@ -156,7 +157,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   mask="cep"
                   maxLength={8}
                   onChange={(e) => {
-                    handleChange(e);
+                    setFieldValue('cep', cepMask(e?.target?.value));
                     setCep(e?.currentTarget?.value);
                   }}
                   error={touched?.cep && errors?.cep}

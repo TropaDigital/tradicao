@@ -3,8 +3,9 @@ import ButtonDefault from '../../ButtonDefault';
 import * as S from '../styles';
 import { Formik, Form } from 'formik';
 import { RepresentanteSchema } from './yupSchema';
-import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { cnpjMask, onlyLetterMask } from '@/utils/masks';
 
 const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   return (
@@ -12,7 +13,7 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           nome: actualItem?.nome ?? '',
-          cnpj: actualItem?.cnpj ?? [],
+          cnpj: actualItem?.cnpj ?? '',
           contato: actualItem?.contato ?? ''
         }}
         validationSchema={RepresentanteSchema}
@@ -35,25 +36,31 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               <h2 className="formTitle">Representante</h2>
 
               <div className="inputsProductWrapper">
-                <DefaultInput
+                <InputDefault
                   label="Nome"
                   placeholder="Nome do Representante"
                   name="nome"
                   value={values?.nome}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.nome && errors?.nome}
                 />
 
-                <DefaultInput
+                <InputDefault
                   label="CNPJ"
                   placeholder="CNPJ do Representante"
                   name="cnpj"
                   value={values?.cnpj}
-                  onChange={handleChange}
+                  mask="cnpj"
+                  onChange={(e) => {
+                    setFieldValue('cnpj', cnpjMask(e?.currentTarget?.value));
+                  }}
+                  maxLength={14}
                   error={touched?.cnpj && errors?.cnpj}
                 />
 
-                <DefaultInput
+                <InputDefault
                   label="Contato"
                   placeholder="Contato do Representante"
                   name="contato"

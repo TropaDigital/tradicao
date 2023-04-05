@@ -14,6 +14,7 @@ import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateConte
 import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
 import { IForm } from '../types';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { onlyLetterMask } from '@/utils/masks';
 
 const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [newImages, setNewImages] = useState<string[]>([]);
@@ -90,7 +91,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           });
 
           const contempladoObjectPost = {
-            depoimento: values?.depoimento,
+            depoimento: values?.depoimento !== '' ? values?.depoimento : '⠀',
             url_foto: newImages,
             nome: values?.nome,
             categoria: values?.categoria,
@@ -167,7 +168,9 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="Nome do contemplado"
                   name="nome"
                   value={values?.nome}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.nome && errors?.nome}
                 />
 
@@ -190,11 +193,13 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 <SelectDefault
                   label="Consórcio"
                   className="inputField"
+                  name="categoria"
                   value={values?.categoria}
                   onChange={(e) => {
                     handleChange(e);
                     setFieldValue('categoria', e?.target?.value);
                   }}
+                  error={touched?.categoria && errors?.categoria}
                 >
                   <option value="">Selecione o consórcio</option>
                   <option value="Automóveis">Automóveis</option>
