@@ -74,7 +74,12 @@ export const ContainerInput = styled.div<ContainerProps>`
     border-color: inherit;
 
     &::placeholder {
-      color: #cccccc;
+      color: var(--gray-500);
+    }
+
+    &:disabled {
+      background-color: var(--gray-100);
+      cursor: not-allowed;
     }
 
     &:focus-visible {

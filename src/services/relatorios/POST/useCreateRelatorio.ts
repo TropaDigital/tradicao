@@ -17,9 +17,9 @@ export const useCreateRelatorio = () => {
           return response;
         },
         {
-          error: 'Erro',
-          pending: 'Pending',
-          success: 'Success'
+          error: 'Falha ao criar relatório',
+          pending: 'Criando relatório',
+          success: 'Relatório criado com sucesso'
         },
         {
           position: 'top-right',

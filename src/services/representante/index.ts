@@ -3,12 +3,20 @@
 import { AxiosResponse } from 'axios';
 import API from '../api';
 import { IGetRepresentante } from './types';
+import cookieClass from '@/utils/cookieClass';
 
 class RepresentanteClass {
+  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+
   async getAllCandidates(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
-        `getAll-representante${query && `?${query}`}`
+        `getAll-representante${query && `?${query}`}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -31,7 +39,12 @@ class RepresentanteClass {
   async deleteCandidate(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-representante/${id}`
+        `delete-representante/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data;
     } catch (err) {

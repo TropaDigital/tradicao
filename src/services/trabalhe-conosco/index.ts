@@ -3,8 +3,11 @@
 import { AxiosResponse } from 'axios';
 import API from '../api';
 import { ICadidateInfo } from './types';
+import cookieClass from '@/utils/cookieClass';
 
 class TrabalheConoscoClass {
+  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+
   async postCandidate(candidateInfo: ICadidateInfo) {
     try {
       const response: AxiosResponse = await API.post(
@@ -20,7 +23,12 @@ class TrabalheConoscoClass {
   async getAllCandidate(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
-        `getAll-TrabalheConosco${query && `?${query}`}`
+        `getAll-TrabalheConosco${query && `?${query}`}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response?.data;
     } catch (err) {
@@ -39,10 +47,32 @@ class TrabalheConoscoClass {
     }
   }
 
+  async updateCandidate(candidateBody: ICadidateInfo, id: number | undefined) {
+    try {
+      const response: AxiosResponse = await API.put(
+        `update-TrabalheConosco/${id}`,
+        candidateBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
+      );
+      return response?.data?.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async deleteCandidate(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-TrabalheConosco/${id}`
+        `delete-TrabalheConosco/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response?.data?.result;
     } catch (err) {

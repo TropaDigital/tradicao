@@ -24,7 +24,7 @@ const RelatoriosPage = () => {
             <p className="subtitle">Escolha abaixo o relatório desejado</p>
           </S.TitleContainer>
           <S.ButtonsContainer>
-            {allRelatories?.result?.map((relatorio) => {
+            {allRelatories?.dataPaginada?.map((relatorio) => {
               if (relatorio?.status === 'Inativo') return;
               return (
                 <>

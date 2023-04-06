@@ -20,12 +20,12 @@ const UnidadesPainelPage = () => {
     {
       key: 'titulo',
       label: 'Nome Unidade',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'endereco',
       label: 'Endereço',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'bairro',
@@ -35,7 +35,7 @@ const UnidadesPainelPage = () => {
     {
       key: 'cidade',
       label: 'Cidade',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'uf',

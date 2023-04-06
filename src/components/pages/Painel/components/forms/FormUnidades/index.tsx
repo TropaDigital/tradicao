@@ -7,7 +7,9 @@ import { IForm } from '../types';
 import { UnitSchema } from './yupSchema';
 import { useCreateUnit } from '@/services/unidades/POST/useCreateUnit';
 import { useUpdateUnit } from '@/services/unidades/PUT/useUpdateUnit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ViaCepClass from '@/services/via-cep';
+import { cepMask } from '@/utils/masks';
 
 const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const allStates = [
@@ -44,6 +46,22 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const { updateUnit } = useUpdateUnit();
 
   const [cep, setCep] = useState('');
+  const [fullAddress, setFullAddress] = useState<any>();
+
+  useEffect(() => {
+    getAddressByCep(cep);
+  }, [cep]);
+
+  async function getAddressByCep(cep: string) {
+    if (cep?.length === 8) {
+      const address = await ViaCepClass?.getAddress(cep);
+      setFullAddress(address);
+    }
+
+    if (cep?.length < 8) {
+      setFullAddress({});
+    }
+  }
 
   return (
     <S.Container>
@@ -59,6 +77,8 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={UnitSchema}
         onSubmit={(values) => {
+          console.log(values);
+
           if (modalOpen === 'publicar') {
             createUnit({
               titulo: values?.nome,
@@ -118,7 +138,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="00 00000-0000"
                   name="telefone"
                   value={values?.telefone?.replace(
-                    /^(\d{2})\s*(\d{5})[-\s]?(\d{4})$/,
+                    /(\d{2})(\d{5})(\d{4})/,
                     '$1 $2-$3'
                   )}
                   onChange={(e) => {
@@ -133,41 +153,52 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   label="CEP"
                   placeholder="00000-000"
                   name="cep"
-                  value={cep?.replace(/^(\d{5})(\d{3})$/, '$1-$2')}
+                  value={values?.cep}
+                  mask="cep"
                   maxLength={8}
-                  minLength={8}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setCep(e.target.value.replace(/[^0-9]/g, ''));
-                    setFieldValue('cep', e?.target?.value);
+                  onChange={(e) => {
+                    setFieldValue('cep', cepMask(e?.target?.value));
+                    setCep(e?.currentTarget?.value);
                   }}
                   error={touched?.cep && errors?.cep}
                 />
 
                 <InputDefault
                   label="Endereço"
-                  placeholder="Av. Monte Cruz, 1756 - Sala 2"
+                  placeholder="Av. João Gomes, 1367 - Sala 03"
                   name="endereco"
                   value={values?.endereco}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('endereco', e?.target?.value);
+                  }}
                   error={touched?.endereco && errors?.endereco}
                 />
 
                 <div className="lineElementsWrapper">
                   <InputDefault
                     label="Cidade"
-                    placeholder="Santo Antonio"
+                    placeholder="Cidade"
                     name="cidade"
-                    value={values?.cidade}
-                    onChange={handleChange}
+                    value={fullAddress?.localidade ?? values?.cidade}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue('cidade', fullAddress?.localidade);
+                    }}
                     error={touched?.cidade && errors?.cidade}
+                    disabled
                   />
                   <InputDefault
                     label="Bairro"
-                    placeholder="Jardim Alvorada"
+                    placeholder="Bairro"
                     name="bairro"
-                    value={values?.bairro}
-                    onChange={handleChange}
+                    value={fullAddress?.bairro ?? values?.bairro}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue('bairro', e?.currentTarget?.value);
+                    }}
                     error={touched?.bairro && errors?.bairro}
+                    disabled
                   />
                 </div>
 
@@ -176,10 +207,13 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   onChange={(e) => {
                     setFieldValue('uf', e?.target?.value);
                   }}
-                  value={values?.uf}
+                  value={fullAddress?.uf ?? values?.uf}
                   error={touched?.uf && errors?.uf}
+                  disabled
                 >
-                  <option value="">Selecione o Estado da Unidade</option>
+                  <option value="" selected disabled>
+                    Estado
+                  </option>
                   {allStates?.map((estado) => {
                     return (
                       <option value={estado?.uf} key={estado?.uf}>

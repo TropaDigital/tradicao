@@ -3,8 +3,10 @@
 import { AxiosResponse } from 'axios';
 import API from '../api';
 import { IContempladoBody } from './types';
-
+import cookieClass from '@/utils/cookieClass';
 class ContempladosClass {
+  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+
   async getAllContemplados(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
@@ -20,7 +22,12 @@ class ContempladosClass {
     try {
       const response: AxiosResponse = await API.post(
         `create-contemplado`,
-        contempladoBody
+        contempladoBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -35,7 +42,12 @@ class ContempladosClass {
     try {
       const response: AxiosResponse = await API.put(
         `update-contemplado/${id}`,
-        contempladoBody
+        contempladoBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -46,7 +58,12 @@ class ContempladosClass {
   async deleteContemplado(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-contemplado/${id}`
+        `delete-contemplado/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data;
     } catch (err) {

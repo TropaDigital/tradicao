@@ -9,6 +9,7 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
+import { loginClass } from '@/services/login-painel';
 import React, { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
@@ -20,6 +21,7 @@ const ContempladosPage = () => {
       label: 'Data de Criação',
       type: 'date'
     },
+
     {
       key: 'contempladoImagem',
       label: 'Foto',
@@ -34,6 +36,11 @@ const ContempladosPage = () => {
       key: 'depoimento',
       label: 'Depoimento',
       type: 'longText'
+    },
+    {
+      key: 'categoria',
+      label: 'Consórcio',
+      type: 'string'
     },
     {
       key: 'status',
