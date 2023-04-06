@@ -163,7 +163,7 @@ export default function Footer() {
                 </div>
                 <div className="button">
                   <div className="text">
-                    <Link href="/" className="text">
+                    <Link href="/contato" className="text">
                       Fale Conosco
                     </Link>
                   </div>
@@ -191,16 +191,17 @@ export default function Footer() {
                 <TextButton>Consórcio de Automóveis</TextButton>
               </Link>
 
-              <Link href={'/'}>
+              {/* <Link href={'/'}>
                 <TextButton>Simulador de Consórcio</TextButton>
-              </Link>
+              </Link> */}
 
               <Link href={'/contato'}>
                 <TextButton>Fale com um Especialista</TextButton>
               </Link>
-              {/* <Link href={'/relatorios-de-ouvidoria'}>
+
+              <Link href={'/relatorios-de-ouvidoria'}>
                 <TextButton>Relatórios de Ouvidoria</TextButton>
-              </Link> */}
+              </Link>
             </div>
 
             <TitleColumns>Ouvidoria</TitleColumns>
