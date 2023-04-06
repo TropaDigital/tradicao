@@ -8,5 +8,6 @@ export const RepresentanteSchema = yup?.object().shape({
     ?.test('Cnpj Length', 'CNPJ Inválido', (value) => {
       return validateCnpj(value);
     })
-    .required('O CNPJ é obrigatório')
+    .required('O CNPJ é obrigatório'),
+  contato: yup?.string()?.required('O contato é obrigatório')
 });

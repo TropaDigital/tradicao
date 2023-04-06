@@ -23,26 +23,24 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={RepresentanteSchema}
         onSubmit={(values) => {
-          console.log(values);
+          if (modalOpen === 'publicar') {
+            createAgent({
+              cnpj: values?.cnpj,
+              contato: values?.contato,
+              nome: values?.nome
+            });
+          }
 
-          // if (modalOpen === 'publicar') {
-          //   createAgent({
-          //     cnpj: values?.cnpj,
-          //     contato: values?.contato,
-          //     nome: values?.nome
-          //   });
-          // }
-
-          // if (modalOpen === 'editar') {
-          //   updateRepresentante({
-          //     putBody: {
-          //       cnpj: values?.cnpj,
-          //       contato: values?.contato,
-          //       nome: values?.nome
-          //     },
-          //     id: actualItem?.id_representante
-          //   });
-          // }
+          if (modalOpen === 'editar') {
+            updateRepresentante({
+              putBody: {
+                cnpj: values?.cnpj,
+                contato: values?.contato,
+                nome: values?.nome
+              },
+              id: actualItem?.id_representante
+            });
+          }
 
           onSubmit();
         }}

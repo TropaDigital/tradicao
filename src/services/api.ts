@@ -1,5 +1,6 @@
 'use client';
 
+import cookieClass from '@/utils/cookieClass';
 import axios from 'axios';
 
 var baseUrl;
