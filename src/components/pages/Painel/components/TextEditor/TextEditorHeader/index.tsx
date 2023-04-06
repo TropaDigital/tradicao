@@ -4,19 +4,19 @@ import {
   EditorHeader,
   MenuFontSize
 } from './style';
-// import {
-//   BoldIcon,
-//   ItalicIcon,
-//   ListOrderedIcon,
-//   ListUnorderedIcon,
-//   TextAlignCenterIcon,
-//   TextAlignJustifyIcon,
-//   TextAlignLeftIcon,
-//   TextAlignRightIcon,
-//   TextColorIcon,
-//   TextSizeIcon,
-//   UnderlineIcon,
-// } from '@/src/assets/icons';
+import {
+  BoldIcon,
+  ItalicIcon,
+  ListOrderedIcon,
+  ListUnorderedIcon,
+  TextAlignCenterIcon,
+  TextAlignJustifyIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
+  TextColorIcon,
+  TextSizeIcon,
+  UnderlineIcon
+} from '@/assets/icons';
 import { ITextEditorHeader } from './types';
 import { useEffect, useRef, useState } from 'react';
 
@@ -47,33 +47,33 @@ const TextEditorHeader = ({ editor }: any) => {
   return (
     <EditorHeader>
       <button onClick={() => editor?.chain().focus().toggleBold().run()}>
-        {/* <BoldIcon /> */}
+        <BoldIcon />
       </button>
 
       <button onClick={() => editor?.chain().focus().toggleItalic().run()}>
-        {/* <ItalicIcon /> */}
+        <ItalicIcon />
       </button>
 
       <button onClick={() => editor?.chain().focus().toggleUnderline().run()}>
-        {/* <UnderlineIcon /> */}
+        <UnderlineIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('left').run()}
       >
-        {/* <TextAlignLeftIcon /> */}
+        <TextAlignLeftIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('center').run()}
       >
-        {/* <TextAlignCenterIcon /> */}
+        <TextAlignCenterIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('right').run()}
       >
-        {/* <TextAlignRightIcon /> */}
+        <TextAlignRightIcon />
       </button>
 
       <button
@@ -81,19 +81,19 @@ const TextEditorHeader = ({ editor }: any) => {
           editor?.chain().focus().setTextAlign('justify').run();
         }}
       >
-        {/* <TextAlignJustifyIcon /> */}
+        <TextAlignJustifyIcon />
       </button>
 
       <button onClick={() => editor?.chain().focus().toggleBulletList().run()}>
-        {/* <ListUnorderedIcon /> */}
+        <ListUnorderedIcon />
       </button>
 
       <button onClick={() => editor?.chain().focus().toggleOrderedList().run()}>
-        {/* <ListOrderedIcon /> */}
+        <ListOrderedIcon />
       </button>
 
       <ChangeTextColor>
-        {/* <TextColorIcon /> */}
+        <TextColorIcon />
         <input
           type="color"
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
@@ -104,7 +104,7 @@ const TextEditorHeader = ({ editor }: any) => {
 
       <button onClick={() => setIsOpen(!isOpen)}>
         <MenuFontSize>
-          {/* <TextSizeIcon /> */}
+          <TextSizeIcon />
           <DropDownMenuFontSize isOpen={isOpen} ref={wrapperRef}>
             <ul>
               <li>

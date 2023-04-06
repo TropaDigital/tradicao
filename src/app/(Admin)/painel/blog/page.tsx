@@ -1,11 +1,19 @@
 'use client';
 
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
+import TextEditor from '@/components/pages/Painel/components/TextEditor';
 import Button from '@/components/UI/Button';
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
 import { HeaderDashboard } from '../styles';
 
 const BlogPanel = () => {
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: '<p>Hello World! 🌎️</p>'
+  });
+
   return (
     <>
       <HeaderDashboard>
@@ -22,7 +30,7 @@ const BlogPanel = () => {
           </Button>
         </div>
       </HeaderDashboard>
-      <span>Aqui será o painel de Blog :D</span>
+      <TextEditor editor={editor} />
     </>
   );
 };

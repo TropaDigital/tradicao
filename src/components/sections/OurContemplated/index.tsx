@@ -86,9 +86,12 @@ export default function OurContemplated() {
       marginBottom="87"
     >
       <Slider {...SlideSettings}>
-        {/* RENDERIZAÇÃO DE CARDS POR CONSÓRCIO */}
         {actualContemplated?.map((contemplated) => {
-          if (contemplated?.status === 'Inativo') return;
+          if (
+            contemplated?.status === 'Inativo' &&
+            contemplated?.contempladoImagens[0]?.url_foto
+          )
+            return;
           return (
             <CardCarousel
               width="276"
@@ -100,20 +103,6 @@ export default function OurContemplated() {
             />
           );
         })}
-
-        {/* {allContemplados?.dataPaginada?.map((contemplated) => {
-          if (contemplated?.status === 'Inativo') return;
-          return (
-            <CardCarousel
-              width="276"
-              heigth="276"
-              padding="8"
-              image={contemplated?.contempladoImagens[0]?.url_foto}
-              imageType={true}
-              bigText={false}
-            />
-          );
-        })} */}
       </Slider>
     </GreenCarousel>
   );

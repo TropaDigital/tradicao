@@ -5,7 +5,7 @@ export const TextEditorContainer = styled.div`
   margin: 32px 0;
 
   .ProseMirror {
-    border: 1px solid var(--dark);
+    border: 1px solid var(--gray-300);
     min-height: 405px;
     max-height: 550px;
     overflow-y: scroll;
@@ -13,6 +13,11 @@ export const TextEditorContainer = styled.div`
     padding: 12px;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+    outline: none;
+
+    :focus {
+      border: 1px solid var(--gray-500);
+    }
 
     ::-webkit-scrollbar {
       width: 10px;
