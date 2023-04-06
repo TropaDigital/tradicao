@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Blog",
+      "path": "blog"
+    },
+    {
       "name": "Contemplados",
       "path": "contemplados"
     },

@@ -23,10 +23,12 @@ const PanelLoginComponent = () => {
   const router = useRouter();
 
   async function checkCredentials(values: any) {
-    await loginClass?.getAuthToken({
+    const isAnAdmin = await loginClass?.getAuthToken({
       email: values?.email,
       senha: values?.senha
     });
+
+    if (isAnAdmin) router?.push('/painel/contemplados');
   }
 
   return (

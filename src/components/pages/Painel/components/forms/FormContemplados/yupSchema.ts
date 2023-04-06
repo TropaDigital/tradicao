@@ -1,11 +1,7 @@
 import * as yup from 'yup';
 
 export const contempladoSchema = yup?.object()?.shape({
-  images: yup
-    ?.array()
-    .of(yup.string())
-    .min(1, 'O contemplado deve conter pelo menos 1 imagem.')
-    .required(),
+  images: yup?.array().of(yup.string()),
   nome: yup?.string().required('O nome é obrigatório'),
   depoimento: yup?.string(),
   categoria: yup

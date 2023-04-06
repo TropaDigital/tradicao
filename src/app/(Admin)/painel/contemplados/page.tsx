@@ -23,7 +23,7 @@ const ContempladosPage = () => {
     },
 
     {
-      key: 'contempladoImagem',
+      key: 'contempladoImagens',
       label: 'Foto',
       type: 'image'
     },

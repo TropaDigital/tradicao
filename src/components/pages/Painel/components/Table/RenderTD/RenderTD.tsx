@@ -79,15 +79,13 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           <PdfIcon />
         </span>
       )}
-      {head.type === 'image' && (
+      {head.type === 'image' && item?.[head.key][0]?.url_foto && (
         <div className="imageWrapper">
           <Image
             alt={head?.label}
             width={90}
             height={90}
-            src={
-              item?.contempladoImagens && item?.contempladoImagens[0]?.url_foto
-            }
+            src={item?.[head.key][0]?.url_foto}
           />
         </div>
       )}

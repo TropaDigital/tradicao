@@ -247,6 +247,17 @@ export default function Table({ title, data, search, header }: ITableProps) {
           </tbody>
         </table>
       </Container>
+      {dataInternal?.length === 0 && (
+        <h3
+          style={{
+            marginTop: '30px',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          Nenhum item foi encontrado!
+        </h3>
+      )}
     </>
   );
 }
