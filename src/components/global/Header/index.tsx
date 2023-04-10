@@ -64,7 +64,7 @@ const Header = () => {
         },        
         {
           subTitle: 'Atendimento',
-          path: '/canal-de-denuncia'
+          path: '/contato'
         }
       ]
     },

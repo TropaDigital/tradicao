@@ -10,33 +10,8 @@ export const ContainerTop = styled.div`
   .margin {
     margin-top: 30px;
     position: relative;
-  }
+  }  
   
-  /* @media (max-width: 1400px) {
-    height: 440px;
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 800px) {
-    height: 800px;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 500px) {
-    height: 720px;
-
-    .margin {
-      padding-top: 420px;
-    }
-  }
-
-  @media (max-width: 330px) {
-    height: 800px;
-    .margin {
-      padding-top: 440px;
-    }
-  } */
-
 `;
 
 export const RegulationContainer = styled.div`
@@ -46,6 +21,10 @@ export const RegulationContainer = styled.div`
 
     height: fit-content;
     padding-bottom: 60px;
+
+    p {
+      color: var(--gray-600);
+    }
 
     .big-space {
         margin-bottom: 48px;
