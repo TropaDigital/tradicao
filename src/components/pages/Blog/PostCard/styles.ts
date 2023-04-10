@@ -45,6 +45,8 @@ export const Container = styled.div`
   .post-thumb {
     width: 100%;
     height: 100%;
+    max-height: 250px;
+    overflow: hidden;
   }
 
   .post-description-container {

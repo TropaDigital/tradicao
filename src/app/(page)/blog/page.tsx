@@ -9,11 +9,13 @@ import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import * as S from './styles';
 import PostCard from '@/components/pages/Blog/PostCard';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
+import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 
 const BlogPage = () => {
   const arrayFake = new Array(5).fill('lorem ipsum dolor amet.');
 
   const { allCategorias } = useGetAllCategorias();
+  const { allPosts } = useGetAllPosts('');
 
   return (
     <>
@@ -30,10 +32,14 @@ const BlogPage = () => {
             </div>
 
             <S.ListPostsContainer>
-              <PostCard />
-              <PostCard />
-              <PostCard />
-              <PostCard />
+              {allPosts?.result?.map((post) => (
+                <PostCard
+                  title={post?.titulo}
+                  date="23 Fev"
+                  image={post?.postagem_img}
+                  subtitle={post?.subtitulo}
+                />
+              ))}
             </S.ListPostsContainer>
           </div>
 

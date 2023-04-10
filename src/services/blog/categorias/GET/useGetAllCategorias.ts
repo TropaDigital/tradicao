@@ -4,7 +4,7 @@ import { IGetCategorias } from '../types';
 
 export const useGetAllCategorias = () => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllComplaints'],
+    ['AllCategorias'],
     async () => {
       return await CategoriasClass.getAllCategorias();
     }
