@@ -1,7 +1,7 @@
 'use client';
 
 import CenterWrapper from '@/components/global/CenterWrapper';
-import React, { useEffect } from 'react';
+import React from 'react';
 import SkewContainer from '@/components/shared/SkewContainer';
 import BlogBG from '../../../../public/images/blog_bg.png';
 import MainTitle from '@/components/UI/MainTitle';
@@ -10,6 +10,8 @@ import * as S from './styles';
 import PostCard from '@/components/pages/Blog/PostCard';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 const BlogPage = () => {
   const arrayFake = new Array(5).fill('lorem ipsum dolor amet.');
@@ -20,7 +22,7 @@ const BlogPage = () => {
   return (
     <>
       <SkewContainer
-        imageAlt="Mulher digitando no notebook"
+        imageAlt="Mulher digitando em um notebook"
         imageSrc={BlogBG}
       />
       <CenterWrapper>
@@ -35,7 +37,7 @@ const BlogPage = () => {
               {allPosts?.result?.map((post) => (
                 <PostCard
                   title={post?.titulo}
-                  date="23 Fev"
+                  date={moment(post?.criado).format('DD MMM')}
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
                 />
