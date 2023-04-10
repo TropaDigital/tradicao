@@ -26,7 +26,7 @@ const BlogPanel = () => {
             radius="rounded"
             className="styledButton"
           >
-            + Criar Postagem
+            + Adicionar Postagem
           </Button>
         </div>
       </HeaderDashboard>

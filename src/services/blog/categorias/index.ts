@@ -1,30 +1,20 @@
 'use client';
 
 import { AxiosResponse } from 'axios';
-import API from '../api';
-import { IDenunciaBody } from './types';
+import API from '../../api';
 import cookieClass from '@/utils/cookieClass';
 
-class DenunciaClass {
+class CategoriasClass {
   private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
 
-  async getAllComplaint() {
+  async getAllCategorias() {
     try {
-      const response: AxiosResponse = await API.get(`denuncia`, {
+      const response: AxiosResponse = await API.get(`/blog/categoria`, {
         headers: {
           Authorization: `Bearer ${this.AUTH_TOKEN}`
         }
       });
       return response?.data?.result;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async postComplaint(denunciaBody: IDenunciaBody) {
-    try {
-      const response: AxiosResponse = await API.post(`denuncia`, denunciaBody);
-      return response;
     } catch (err) {
       console.log(err);
     }
@@ -47,4 +37,4 @@ class DenunciaClass {
   }
 }
 
-export default new DenunciaClass();
+export default new CategoriasClass();

@@ -1,0 +1,73 @@
+'use client';
+
+import CenterWrapper from '@/components/global/CenterWrapper';
+import React, { useEffect } from 'react';
+import SkewContainer from '@/components/shared/SkewContainer';
+import BlogBG from '../../../../public/images/blog_bg.png';
+import MainTitle from '@/components/UI/MainTitle';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import * as S from './styles';
+import PostCard from '@/components/pages/Blog/PostCard';
+import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
+
+const BlogPage = () => {
+  const arrayFake = new Array(5).fill('lorem ipsum dolor amet.');
+
+  const { allCategorias } = useGetAllCategorias();
+
+  return (
+    <>
+      <SkewContainer
+        imageAlt="Mulher digitando no notebook"
+        imageSrc={BlogBG}
+      />
+      <CenterWrapper>
+        <S.Container>
+          <div>
+            <div>
+              <MainTitle title="Blog Tradição" />
+              <p className="blog-subtitle">Novidades e notícias</p>
+            </div>
+
+            <S.ListPostsContainer>
+              <PostCard />
+              <PostCard />
+              <PostCard />
+              <PostCard />
+            </S.ListPostsContainer>
+          </div>
+
+          <S.AsideContainer>
+            <InputDefault label="" placeholder="Pesquisar post" />
+
+            <S.ListAsideTopics>
+              <h4 className="topic-title">Mais Acessados</h4>
+
+              <div className="list-container">
+                {arrayFake?.map((list, key) => (
+                  <p className="topic-item" key={key}>
+                    {list}
+                  </p>
+                ))}
+              </div>
+            </S.ListAsideTopics>
+
+            <S.ListAsideTopics>
+              <h4 className="topic-title">Categorias</h4>
+
+              <div className="list-container">
+                {allCategorias?.map((category, key) => (
+                  <p className="topic-item" key={key}>
+                    {category?.categoria}
+                  </p>
+                ))}
+              </div>
+            </S.ListAsideTopics>
+          </S.AsideContainer>
+        </S.Container>
+      </CenterWrapper>
+    </>
+  );
+};
+
+export default BlogPage;

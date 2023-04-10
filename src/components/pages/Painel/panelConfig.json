@@ -17,6 +17,10 @@
       "path": "demonstracoes-financeiras"
     },
     {
+      "name": "Denúncias",
+      "path": "denuncias"
+    },
+    {
       "name": "Relatórios",
       "path": "relatorios-de-ouvidoria"
     },

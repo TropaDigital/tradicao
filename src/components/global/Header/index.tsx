@@ -61,10 +61,14 @@ const Header = () => {
         {
           subTitle: 'Compliance',
           path: '/canal-de-denuncia'
-        },        
+        },
+        {
+          subTitle: 'Universidade Tradição',
+          path: '/universidade'
+        },
         {
           subTitle: 'Atendimento',
-          path: '/contato'
+          path: '/canal-de-denuncia'
         }
       ]
     },

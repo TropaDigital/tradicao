@@ -1,11 +1,11 @@
 export interface IRenderTD {
   onClickOptions: (e: string, product: any) => void;
   head: {
-    key: 'peso' | 'status' | 'titulo' | 'produtoImagens' | 'id_produto';
+    key: string;
     label: string;
     type: string;
   };
-  item: any; //TYPAR
+  item: any;
   openMenu?: (modal: 'edit' | 'delete') => void;
   isLoading?: boolean;
 }
