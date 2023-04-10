@@ -85,6 +85,7 @@ export const InfoText = styled.div`
         font-size: var(--text-smal-md);
         font-weight: var(--weight-bold);
         color: var(--primary-mid);
+        padding-bottom: 4px;
 
         &.left {
             text-align: left;
