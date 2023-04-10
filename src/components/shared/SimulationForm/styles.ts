@@ -78,12 +78,12 @@ export const SectionSimulatorForm = styled.div<Props>`
     heroStyles === false &&
     css`
       @media (max-width: 1090px) {
-        top: 45%;
+        top: 40%;
         left: 50%;
         transform: translateX(-50%);
       }
       @media (max-width: 756px) {
-        top: 40%;
+        top: 35%;
       }
     `}
 
