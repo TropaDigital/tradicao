@@ -13,7 +13,7 @@ export const Container = styled.div`
     box-shadow: var(--shadow);
 
     .post-date {
-      background-color: var(--primary);
+      background-color: var(--secondary);
       color: var(--white);
     }
   }
@@ -21,11 +21,11 @@ export const Container = styled.div`
   .post-date {
     position: absolute;
     top: 15px;
-    left: -8px;
+    right: -11px;
     width: 80px;
     height: 40px;
     padding: 5px;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,8 +34,9 @@ export const Container = styled.div`
     gap: 5px;
     font-size: 14px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--secondary);
     transition: 150ms linear;
+    border-radius: 10px;
 
     .post-day {
       font-size: 16px;
@@ -44,13 +45,14 @@ export const Container = styled.div`
 
   .post-thumb {
     width: 100%;
-    height: 100%;
-    max-height: 250px;
+    max-height: 230px;
     overflow: hidden;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
 
   .post-description-container {
-    padding: 10px;
+    padding: 10px 10px 20px;
 
     .post-title {
       margin: 8px 0 15px;

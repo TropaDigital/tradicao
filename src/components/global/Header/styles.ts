@@ -98,13 +98,27 @@ export const HeaderNav = styled.nav`
 `;
 
 export const ClientAreaSubMenu = styled.div<PropsClient>`
-  display: ${({ isHovered }) => (isHovered ? 'flex' : 'none')};
+  display: ${({ isHovered }) => (isHovered ? 'block' : 'none')};
   position: absolute;
-  bottom: -30px;
+  top: 45px;
   background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
   padding: 10px;
-  color: var(--white);
-  left: 0;
+  gap: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  width: max-content;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ul > li > a {
+    color: var(--white);
+    font-size: 14px;
+  }
 
   :hover {
     display: flex;

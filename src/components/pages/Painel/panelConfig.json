@@ -21,6 +21,10 @@
       "path": "denuncias"
     },
     {
+      "name": "Regulamento",
+      "path": "regulamento"
+    },
+    {
       "name": "Relatórios",
       "path": "relatorios-de-ouvidoria"
     },

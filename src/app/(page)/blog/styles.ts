@@ -19,6 +19,7 @@ export const Container = styled.section`
 export const ListPostsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-top: 45px;
 `;

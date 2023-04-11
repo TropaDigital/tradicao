@@ -14,7 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
-const DemonstracoesPage = () => {
+const RelatoriosPage = () => {
   const headerTable = [
     {
       key: 'data',
@@ -126,4 +126,4 @@ const DemonstracoesPage = () => {
   );
 };
 
-export default DemonstracoesPage;
+export default RelatoriosPage;
