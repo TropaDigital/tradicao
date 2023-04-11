@@ -7,13 +7,14 @@ import * as S from '../styles';
 import { Formik, Form } from 'formik';
 import { contempladoSchema } from './yupSchema';
 import { TrashIcon } from '@/assets/icons';
-import DefaultInput from '@/components/UI/DefaultInput';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import { IContempladoImages } from '@/services/contemplados/types';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
 import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
 import { IForm } from '../types';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { onlyLetterMask } from '@/utils/masks';
 
 const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [newImages, setNewImages] = useState<string[]>([]);
@@ -73,7 +74,8 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         initialValues={{
           images: actualItemImages ?? [],
           nome: actualItem?.nome ?? '',
-          depoimento: actualItem?.depoimento ?? '',
+          depoimento: actualItem?.depoimento?.replaceAll('⠀', '') ?? '',
+          categoria: actualItem?.categoria ?? '',
           status: actualItem?.status ?? 'Ativo'
         }}
         validationSchema={contempladoSchema}
@@ -81,16 +83,20 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           images: string[];
           nome: string;
           depoimento: string;
+          categoria: string;
           status: 'Ativo' | 'Inativo';
         }) => {
+          console.log(values);
+
           imagesIdToRemove?.map((imageID) => {
             deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
           });
 
           const contempladoObjectPost = {
-            depoimento: values?.depoimento,
+            depoimento: values?.depoimento !== '' ? values?.depoimento : '⠀',
             url_foto: newImages,
-            nome: values?.nome,
+            nome: values?.nome?.trim(),
+            categoria: values?.categoria,
             status: values?.status
           };
 
@@ -99,7 +105,9 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               contempladoBody: contempladoObjectPost,
               id: actualItem?.id_contemplado
             });
-          } else if (modalOpen === 'publicar') {
+          }
+
+          if (modalOpen === 'publicar') {
             createContemplado(contempladoObjectPost);
           }
 
@@ -157,12 +165,14 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               </div>
 
               <div className="inputsProductWrapper">
-                <DefaultInput
+                <InputDefault
                   label="Nome"
                   placeholder="Nome do contemplado"
                   name="nome"
                   value={values?.nome}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.nome && errors?.nome}
                 />
 
@@ -181,6 +191,24 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   error={touched?.depoimento && errors?.depoimento}
                   maxCharLength={280}
                 />
+
+                <SelectDefault
+                  label="Consórcio"
+                  className="inputField"
+                  name="categoria"
+                  value={values?.categoria}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('categoria', e?.target?.value);
+                  }}
+                  error={touched?.categoria && errors?.categoria}
+                >
+                  <option value="">Selecione o consórcio</option>
+                  <option value="Automóveis">Automóveis</option>
+                  <option value="Imóveis">Imóveis</option>
+                  <option value="Pesados">Pesados</option>
+                  <option value="Serviços">Serviços</option>
+                </SelectDefault>
 
                 <SelectDefault
                   label="Status"

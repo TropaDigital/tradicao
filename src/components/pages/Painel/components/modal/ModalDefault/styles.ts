@@ -56,12 +56,12 @@ export const Container = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--dark);
+      background: var(--primary-light);
       border-radius: 12px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: var(--secondary-dark);
+      background: var(--primary);
       border-radius: 12px;
     }
   }

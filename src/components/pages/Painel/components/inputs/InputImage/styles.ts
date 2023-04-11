@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   .inputWrapper {
     position: relative;
     height: 200px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 
     display: flex;
     align-items: center;
@@ -49,4 +49,8 @@ export const Container = styled.div`
       }
     }
   }
-`
+  .errorValidation {
+    font-size: 15px;
+    color: var(--status-danger);
+  }
+`;

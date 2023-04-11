@@ -10,7 +10,7 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllRepresentantes } from '@/services/representante/GET/useGetAllRepresentantes';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
@@ -65,6 +65,12 @@ const DemonstracoesPage = () => {
     300
   );
 
+  useEffect(() => {
+    if (allRepresentantes?.dataPaginada?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [allRepresentantes]);
+
   return (
     <>
       {modalOpen === 'publicar' && (
@@ -96,12 +102,12 @@ const DemonstracoesPage = () => {
       </S.HeaderDashboard>
       <Table
         header={headerTable}
-        title={'Lista de Demonstrações'}
+        title={'Lista de Representantes'}
         data={allRepresentantes?.dataPaginada}
         search={
           <DefaultInput
             icon={<SearchIcon />}
-            placeholder="Pesquise por demonstrações"
+            placeholder="Pesquise por representantes"
             onChange={debounced}
           />
         }

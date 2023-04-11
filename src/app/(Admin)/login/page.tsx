@@ -17,20 +17,18 @@ import { loginSchema } from './yupSchema';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import cookieClass from '@/utils/cookieClass';
+import { loginClass } from '@/services/login-painel';
 
 const PanelLoginComponent = () => {
   const router = useRouter();
 
-  function checkCredentials(values: any) {
-    if (
-      values?.email !== 'admin@consorcio.com' ||
-      values?.senha !== 'consorcio123'
-    ) {
-      toast.error('E-mail ou Senha Inválidos');
-      return false;
-    }
+  async function checkCredentials(values: any) {
+    const isAnAdmin = await loginClass?.getAuthToken({
+      email: values?.email,
+      senha: values?.senha
+    });
 
-    return true;
+    if (isAnAdmin) router?.push('/painel/contemplados');
   }
 
   return (
@@ -58,12 +56,8 @@ const PanelLoginComponent = () => {
           senha: ''
         }}
         validationSchema={loginSchema}
-        onSubmit={(values) => {
-          const isAnAdmin = checkCredentials(values);
-          if (isAnAdmin) {
-            cookieClass?.setAdminCookie('AuthorizedAdminConsorcio');
-            router.push('/painel/contemplados');
-          }
+        onSubmit={async (values) => {
+          checkCredentials(values);
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (

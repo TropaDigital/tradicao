@@ -9,7 +9,7 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
@@ -20,8 +20,9 @@ const ContempladosPage = () => {
       label: 'Data de Criação',
       type: 'date'
     },
+
     {
-      key: 'contempladoImagem',
+      key: 'contempladoImagens',
       label: 'Foto',
       type: 'image'
     },
@@ -34,6 +35,11 @@ const ContempladosPage = () => {
       key: 'depoimento',
       label: 'Depoimento',
       type: 'longText'
+    },
+    {
+      key: 'categoria',
+      label: 'Consórcio',
+      type: 'string'
     },
     {
       key: 'status',
@@ -73,6 +79,12 @@ const ContempladosPage = () => {
     // delay in ms
     300
   );
+
+  useEffect(() => {
+    if (allContemplados?.dataPaginada?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [allContemplados]);
 
   return (
     <>

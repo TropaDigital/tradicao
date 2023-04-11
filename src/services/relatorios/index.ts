@@ -3,14 +3,17 @@
 import { AxiosResponse } from 'axios';
 import API from '../api';
 import { IRelatorioBody } from './types';
+import cookieClass from '@/utils/cookieClass';
 
 class RelatioriosClass {
+  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+
   async getAllRelatorios(query: string) {
     try {
       const response: AxiosResponse = await API.get(
         `relatorioOuvidoria${query && `?${query}`}`
       );
-      return response.data.result;
+      return response?.data?.result;
     } catch (err) {
       console.log(err);
     }
@@ -20,7 +23,12 @@ class RelatioriosClass {
     try {
       const response: AxiosResponse = await API.post(
         `relatorioOuvidoria`,
-        relatorio
+        relatorio,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {
@@ -31,7 +39,12 @@ class RelatioriosClass {
   async deleteRelatorio(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `relatorioOuvidoria/${id}`
+        `relatorioOuvidoria/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data;
     } catch (err) {
@@ -46,7 +59,12 @@ class RelatioriosClass {
     try {
       const response: AxiosResponse = await API.put(
         `relatorioOuvidoria/${id}`,
-        relatorioBody
+        relatorioBody,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
       );
       return response.data.result;
     } catch (err) {

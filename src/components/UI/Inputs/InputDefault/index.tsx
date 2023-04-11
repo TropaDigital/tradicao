@@ -9,14 +9,14 @@ import { IoMdHelpCircle } from 'react-icons/io';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, ContainerInput, Error, Alert } from './styles';
-import { currency, dateTimeMask } from './masks';
+import { dateTimeMask } from './masks';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string | any;
   icon?: React.ComponentType<IconBaseProps> | any;
   alert?: string;
-  mask?: 'currency' | 'dateTime';
+  mask?: 'currency' | 'dateTime' | 'cep' | 'cnpj' | 'cpf' | 'phone';
   labelColor?: string;
 }
 

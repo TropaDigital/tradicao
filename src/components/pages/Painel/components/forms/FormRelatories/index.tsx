@@ -9,6 +9,8 @@ import { IForm } from '../types';
 import UploadFile from '@/components/UI/UploadFile';
 import { useCreateRelatorio } from '@/services/relatorios/POST/useCreateRelatorio';
 import { useUpdateRelatorio } from '@/services/relatorios/PUT/useUpdateRelatorio';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { onlyLetterMask } from '@/utils/masks';
 
 const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [fileName, setFileName] = useState('');
@@ -25,7 +27,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           titulo: actualItem?.titulo ?? '',
-          url_pdf: actualItem?.pdfData[0]?.url_pdf ?? [],
+          url_pdf: actualItem?.pdfData[0]?.url_pdf ?? '',
           status: actualItem?.status ?? 'Ativo'
         }}
         validationSchema={relatoriesSchema}
@@ -33,7 +35,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           if (modalOpen === 'publicar') {
             createRelatorio({
               titulo: values?.titulo,
-              url_pdf: values?.url_pdf,
+              url_pdf: [values?.url_pdf],
               status: values?.status
             });
           }
@@ -42,7 +44,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
             updateRelatorio({
               putBody: {
                 titulo: values?.titulo,
-                url_pdf: values?.url_pdf,
+                url_pdf: [values?.url_pdf],
                 status: values?.status
               },
               id: actualItem?.id_relatorio
@@ -66,12 +68,14 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
               <h2 className="formTitle">Relatório de Ouvidoria</h2>
 
               <div className="inputsProductWrapper">
-                <DefaultInput
+                <InputDefault
                   label="Título"
                   placeholder="Título da Demonstração"
                   name="titulo"
                   value={values?.titulo}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setFieldValue('titulo', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.titulo && errors?.titulo}
                 />
 
@@ -80,10 +84,11 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     setFieldValue('url_pdf', file);
                     setFileName(e?.target?.value?.replace(/.*[\/\\]/, ''));
                   }}
-                  label="Arquivo de Demonstração Financeira"
+                  label="Arquivo de Relatório de Ouvidoria"
                   filename={fileName}
                   className="inputField"
                   name="url_pdf"
+                  errors={touched?.url_pdf && errors?.url_pdf}
                 />
 
                 <SelectDefault

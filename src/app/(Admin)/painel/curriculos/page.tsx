@@ -7,7 +7,7 @@ import PaginationData from '@/components/shared/PaginationData';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllCandidates } from '@/services/trabalhe-conosco/GET/useGetAllCurriculos';
 import { Pagination } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
@@ -58,6 +58,12 @@ const CurriculosPage = () => {
     // delay in ms
     300
   );
+
+  useEffect(() => {
+    if (allCandidates?.result?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [allCandidates]);
 
   return (
     <>

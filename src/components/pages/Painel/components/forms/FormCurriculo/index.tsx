@@ -5,15 +5,29 @@ import { Formik, Form } from 'formik';
 import { CurriculoSchema } from './yupSchema';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { IForm } from '../types';
+import UploadFile from '@/components/UI/UploadFile';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { onlyLetterMask } from '@/utils/masks';
 
 const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
+  const [fileName, setFileName] = useState<string>('');
+
+  useEffect(() => {
+    if (actualItem) {
+      setFileName(
+        `curriculo-${actualItem?.nome?.replaceAll(' ', '-')?.toLowerCase()}.pdf`
+      );
+    }
+    console.log(actualItem);
+  }, [actualItem]);
+
   return (
     <S.Container>
       <Formik
         initialValues={{
           nome: actualItem?.nome ?? '',
-          cargo: actualItem?.cnpj ?? [],
-          curriculo_pdf: actualItem?.contato ?? ''
+          cargo: actualItem?.vaga ?? '',
+          curriculo_pdf: actualItem?.curriculo_pdf ?? ''
         }}
         validationSchema={CurriculoSchema}
         onSubmit={(values) => {
@@ -32,34 +46,37 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }) => (
           <>
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
-              <h2 className="formTitle">Representante</h2>
+              <h2 className="formTitle">Currículo</h2>
 
               <div className="inputsProductWrapper">
-                <DefaultInput
+                <InputDefault
                   label="Nome"
-                  placeholder="Nome do Representante"
+                  placeholder="Nome do Candidato"
                   name="nome"
                   value={values?.nome}
-                  onChange={handleChange}
+                  type="text"
+                  onChange={(e) => {
+                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
+                  }}
                   error={touched?.nome && errors?.nome}
                 />
 
-                <DefaultInput
+                <InputDefault
                   label="Cargo"
-                  placeholder="CNPJ do Representante"
-                  name="cnpj"
+                  placeholder="Auxiliar Administrativo"
+                  name="cargo"
                   value={values?.cargo}
                   onChange={handleChange}
                   error={touched?.cargo && errors?.cargo}
                 />
 
-                <DefaultInput
-                  label="Contato"
-                  placeholder="Contato do Representante"
-                  name="contato"
-                  value={values?.curriculo_pdf}
-                  onChange={handleChange}
-                  error={touched?.curriculo_pdf && errors?.curriculo_pdf}
+                <UploadFile
+                  filename={fileName}
+                  onPostFile={(file, e) => {
+                    setFieldValue('url_pdf', file);
+                    setFileName(e?.target?.value?.replace(/.*[\/\\]/, ''));
+                  }}
+                  label="Currículo"
                 />
 
                 <div className="lineElementsWrapper buttonsWrapper">

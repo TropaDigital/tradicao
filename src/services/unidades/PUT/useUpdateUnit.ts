@@ -22,9 +22,9 @@ export const useUpdateUnit = () => {
           return response;
         },
         {
-          error: `Não foi possível atualizar contemplado`,
-          pending: 'Atualizando contemplado',
-          success: 'Contemplado atualizado com sucesso'
+          error: `Não foi possível atualizar unidade`,
+          pending: 'Atualizando unidade',
+          success: 'Unidade atualizada com sucesso'
         },
         {
           position: 'top-right',

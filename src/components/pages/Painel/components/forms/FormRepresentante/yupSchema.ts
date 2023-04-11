@@ -1,11 +1,13 @@
+import { validateCnpj } from '@/utils/validateCnpj';
 import * as yup from 'yup';
 
 export const RepresentanteSchema = yup?.object().shape({
-  nome: yup?.string()?.required(),
+  nome: yup?.string()?.required('O nome é obrigatório'),
   cnpj: yup
     ?.string()
-    ?.test('Cnpj Length', 'O CNPJ deve conter 14 dígitos', (values) => {
-      return values?.length === 14;
+    ?.test('Cnpj Length', 'CNPJ Inválido', (value) => {
+      return validateCnpj(value);
     })
-    .required()
+    .required('O CNPJ é obrigatório'),
+  contato: yup?.string()?.required('O contato é obrigatório')
 });

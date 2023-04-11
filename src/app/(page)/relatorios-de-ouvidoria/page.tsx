@@ -5,7 +5,6 @@ import SkewContainer from '@/components/shared/SkewContainer';
 import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
-import { IGetRelatorio } from '@/services/relatorios/types';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import React from 'react';
 import GraphicsBg from '../../../../public/images/demonstracoes_bg.png';

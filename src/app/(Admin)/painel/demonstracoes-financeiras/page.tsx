@@ -10,7 +10,7 @@ import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { Pagination } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
 
@@ -70,6 +70,12 @@ const DemonstracoesPage = () => {
     // delay in ms
     300
   );
+
+  useEffect(() => {
+    if (allDemonstrations?.dataPaginada?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [allDemonstrations]);
 
   return (
     <>

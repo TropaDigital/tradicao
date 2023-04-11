@@ -25,6 +25,8 @@ const Header = () => {
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
+  const [isHovered, setIsHovered] = useState(false);
+
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
@@ -87,6 +89,10 @@ const Header = () => {
         {
           subTitle: 'Pesados',
           path: '/pesados'
+        },
+        {
+          subTitle: 'Serviços',
+          path: '/servicos'
         },
         {
           subTitle: 'Regulamento',
@@ -165,6 +171,17 @@ const Header = () => {
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
   useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
+
+  function handleMouseEnter() {
+    setIsHovered(true);
+  }
+  function handleMouseLeave() {
+    let timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      setIsHovered(false);
+    }, 500); // 1 seg
+  }
 
   return (
     <>
@@ -266,15 +283,36 @@ const Header = () => {
                 return (
                   <>
                     {page.title === 'Área do Cliente' ? (
-                      <li key={key}>
+                      <li key={key} className="client-button-container">
                         <Button
                           radius="rounded"
                           icon={<PersonIcon color={'var(--white)'} />}
                           className="client-area-button"
-                          onClick={() => (location.href = `${page.path}`)}
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
                         >
                           Área do Cliente
                         </Button>
+
+                        <S.ClientAreaSubMenu isHovered={isHovered}>
+                          <ul>
+                            <li>
+                              <Link href="resultado-das-assembleias">
+                                Resultado das Assembleias
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="recursos-nao-procurados">
+                                Recursos não procurados
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="grupos-encerrados">
+                                Grupos encerrados
+                              </Link>
+                            </li>
+                          </ul>
+                        </S.ClientAreaSubMenu>
                       </li>
                     ) : page.subOptions ? (
                       <li key={key} className="submenu-options">

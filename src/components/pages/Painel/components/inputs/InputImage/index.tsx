@@ -33,7 +33,7 @@ export default function InputImage({ onPostImage, error }: IInputFileProps) {
           <p className="inputButton">Escolher Arquivo</p>
         </span>
       </div>
-      {error && <span>{error}</span>}
+      {error && <span className="errorValidation">{error}</span>}
     </Container>
   );
 }
