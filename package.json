@@ -41,6 +41,7 @@
     "eslint-config-next": "13.2.3",
     "eslint-plugin-react-hooks": "^4.6.0",
     "formik": "^2.2.9",
+    "jspdf": "^2.5.1",
     "moment": "^2.29.4",
     "next": "13.2.3",
     "nextjs-progressbar": "^0.0.16",

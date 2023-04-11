@@ -15,10 +15,18 @@ export const Container = styled.section`
   }
 `;
 
-export const ListPostsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 45px;
+export const BlogContent = styled.article`
+  padding: 30px 0;
+
+  p {
+    line-height: 26px;
+    font-size: 19px;
+    margin-bottom: 16px;
+    color: var(--gray-600);
+  }
+`;
+
+export const PostThumbnail = styled.div`
+  aspectio-ratio: 16/9;
+  width: 100%;
 `;

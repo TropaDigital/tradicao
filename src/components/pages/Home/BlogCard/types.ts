@@ -1,7 +1,6 @@
-export interface IPostCard {
+export interface IBlogCard {
   title: string;
   subtitle: string;
   image: string;
-  date: string;
   postId: number;
 }

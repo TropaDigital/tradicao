@@ -126,7 +126,7 @@ const Header = () => {
     },
     {
       icon: <JornalIcon />,
-      link: '/',
+      link: '/blog',
       text: 'Blog'
     },
     {
