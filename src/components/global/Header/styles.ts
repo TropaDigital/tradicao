@@ -6,6 +6,10 @@ type Props = {
   isOpen?: boolean;
 };
 
+type PropsClient = {
+  isHovered: boolean;
+};
+
 export const HeaderContainer = styled.header<Props>`
   position: sticky;
   top: 0;
@@ -74,17 +78,50 @@ export const HeaderNav = styled.nav`
       }
     }
 
-    .client-area-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 15px;
-      gap: 5px;
+    .client-button-container {
+      position: relative;
+
+      .client-area-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+        gap: 5px;
+        position: relative;
+      }
     }
 
     .submenu-options {
       position: relative;
     }
+  }
+`;
+
+export const ClientAreaSubMenu = styled.div<PropsClient>`
+  display: ${({ isHovered }) => (isHovered ? 'block' : 'none')};
+  position: absolute;
+  top: 45px;
+  background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
+  padding: 10px;
+  gap: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  width: max-content;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ul > li > a {
+    color: var(--white);
+    font-size: 14px;
+  }
+
+  :hover {
+    display: flex;
   }
 `;
 

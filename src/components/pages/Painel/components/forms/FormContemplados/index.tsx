@@ -74,7 +74,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         initialValues={{
           images: actualItemImages ?? [],
           nome: actualItem?.nome ?? '',
-          depoimento: actualItem?.depoimento ?? '',
+          depoimento: actualItem?.depoimento?.replaceAll('⠀', '') ?? '',
           categoria: actualItem?.categoria ?? '',
           status: actualItem?.status ?? 'Ativo'
         }}
@@ -86,6 +86,8 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           categoria: string;
           status: 'Ativo' | 'Inativo';
         }) => {
+          console.log(values);
+
           imagesIdToRemove?.map((imageID) => {
             deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
           });
@@ -93,7 +95,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           const contempladoObjectPost = {
             depoimento: values?.depoimento !== '' ? values?.depoimento : '⠀',
             url_foto: newImages,
-            nome: values?.nome,
+            nome: values?.nome?.trim(),
             categoria: values?.categoria,
             status: values?.status
           };

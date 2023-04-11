@@ -9,7 +9,7 @@ import { useCreateUnit } from '@/services/unidades/POST/useCreateUnit';
 import { useUpdateUnit } from '@/services/unidades/PUT/useUpdateUnit';
 import { useEffect, useState } from 'react';
 import ViaCepClass from '@/services/via-cep';
-import { cepMask } from '@/utils/masks';
+import { cepMask, phoneMask } from '@/utils/masks';
 
 const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const allStates = [
@@ -45,21 +45,33 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const { createUnit } = useCreateUnit();
   const { updateUnit } = useUpdateUnit();
 
-  const [cep, setCep] = useState('');
-  const [fullAddress, setFullAddress] = useState<any>();
+  const address = {
+    bairro: '',
+    logradouro: '',
+    localidade: '',
+    uf: '',
+    cep: '',
+    error: ''
+  };
+
+  const [fullAddress, setFullAddress] = useState(address);
 
   useEffect(() => {
-    getAddressByCep(cep);
-  }, [cep]);
+    getAddressByCep(fullAddress?.cep);
+  }, [fullAddress?.cep]);
 
   async function getAddressByCep(cep: string) {
-    if (cep?.length === 8) {
-      const address = await ViaCepClass?.getAddress(cep);
-      setFullAddress(address);
+    if (cep?.length === 8 && !cep?.includes('-')) {
+      try {
+        const address = await ViaCepClass?.getAddress(cep);
+        setFullAddress(address);
+      } catch (err) {
+        setFullAddress({ ...fullAddress, error: 'CEP Inválido' });
+      }
     }
 
-    if (cep?.length < 8) {
-      setFullAddress({});
+    if (cep?.length === 8 && cep?.includes('-')) {
+      setFullAddress({ ...address, cep: cep });
     }
   }
 
@@ -72,7 +84,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           uf: actualItem?.uf ?? '',
           bairro: actualItem?.bairro ?? '',
           cidade: actualItem?.cidade ?? '',
-          cep: actualItem?.cep ?? cep,
+          cep: actualItem?.cep ?? fullAddress?.cep,
           telefone: actualItem?.telefone ?? ''
         }}
         validationSchema={UnitSchema}
@@ -137,13 +149,9 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   label="Telefone"
                   placeholder="00 00000-0000"
                   name="telefone"
-                  value={values?.telefone?.replace(
-                    /(\d{2})(\d{5})(\d{4})/,
-                    '$1 $2-$3'
-                  )}
+                  value={values?.telefone}
                   onChange={(e) => {
-                    if (!/^[0-9 -]*$/.test(e?.target?.value)) return;
-                    handleChange(e);
+                    setFieldValue('telefone', phoneMask(e?.target?.value));
                   }}
                   maxLength={11}
                   error={touched?.telefone && errors?.telefone}
@@ -158,7 +166,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   maxLength={8}
                   onChange={(e) => {
                     setFieldValue('cep', cepMask(e?.target?.value));
-                    setCep(e?.currentTarget?.value);
+                    setFullAddress({ ...fullAddress, cep: e?.target?.value });
                   }}
                   error={touched?.cep && errors?.cep}
                 />

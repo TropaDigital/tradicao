@@ -116,11 +116,7 @@ const ComplaintForm = ({
           <S.ConfirmModal>
             <ShieldCheckMarkIcon />
 
-            <h3>Denúncia enviada, acompanhe o processo em nosso site</h3>
-            <p>
-              Acesse o status da sua denúncia através do protocolo: 0540198989
-            </p>
-
+            <h3>Denúncia enviada, acompanhe o processo entrando em contato</h3>
             <Button
               degrade
               radius="rounded"
@@ -129,7 +125,7 @@ const ComplaintForm = ({
                 closeFormComplaint();
               }}
             >
-              Continuar
+              Confirmar
             </Button>
           </S.ConfirmModal>
         )}

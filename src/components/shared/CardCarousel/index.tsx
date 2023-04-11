@@ -57,18 +57,20 @@ export default function CardCarousel({
         </CardImageSquare>
       )}
 
-      {!imageType && !bigText && image && (
+      {!imageType && !bigText && (
         <CardImageRounded>
-          <div className="image">
-            <Image
-              src={image}
-              width={0}
-              height={0}
-              sizes={'100vw'}
-              style={{ width: '100%', height: 'auto' }}
-              alt={'Imagem do card'}
-            />
-          </div>
+          {image && (
+            <div className="image">
+              <Image
+                src={image}
+                width={0}
+                height={0}
+                sizes={'100vw'}
+                style={{ width: '100%', height: 'auto' }}
+                alt={'Imagem do card'}
+              />
+            </div>
+          )}
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardImageRounded>

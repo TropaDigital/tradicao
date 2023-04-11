@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Blog",
+      "path": "blog"
+    },
+    {
       "name": "Contemplados",
       "path": "contemplados"
     },
@@ -11,6 +15,14 @@
     {
       "name": "Demonstrações",
       "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Denúncias",
+      "path": "denuncias"
+    },
+    {
+      "name": "Regulamento",
+      "path": "regulamento"
     },
     {
       "name": "Relatórios",

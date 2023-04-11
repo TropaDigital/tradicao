@@ -6,8 +6,13 @@ import { RepresentanteSchema } from './yupSchema';
 import { IForm } from '../types';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { cnpjMask, onlyLetterMask } from '@/utils/masks';
+import { useCreateAgent } from '@/services/representante/POST';
+import { useUpdateRepresentante } from '@/services/representante/PUT/useUpdateRepresentante';
 
 const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
+  const { createAgent } = useCreateAgent();
+  const { updateRepresentante } = useUpdateRepresentante();
+
   return (
     <S.Container>
       <Formik
@@ -18,7 +23,24 @@ const FormRepresentante = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={RepresentanteSchema}
         onSubmit={(values) => {
-          console.log(values);
+          if (modalOpen === 'publicar') {
+            createAgent({
+              cnpj: values?.cnpj,
+              contato: values?.contato,
+              nome: values?.nome
+            });
+          }
+
+          if (modalOpen === 'editar') {
+            updateRepresentante({
+              putBody: {
+                cnpj: values?.cnpj,
+                contato: values?.contato,
+                nome: values?.nome
+              },
+              id: actualItem?.id_representante
+            });
+          }
 
           onSubmit();
         }}

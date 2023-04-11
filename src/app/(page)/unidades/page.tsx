@@ -26,7 +26,7 @@ const UnidadesPage = () => {
   const { units, isLoadingUnits } = useGetUnitsByQuery(
     query.trim() + `&perPage=16&currentPage=${actualPage}`
   );
-  const allUnits = useGetUnitsByQuery(query.trim());
+  const allUnits = useGetUnitsByQuery(query.trim() + `&perPage=99999`);
 
   useEffect(() => {
     getAllCities(allUnits?.units?.result);

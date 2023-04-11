@@ -11,13 +11,7 @@ import { IRenderTD } from './types';
 export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   const [miniModal, setMiniModal] = useState<boolean>(false);
 
-  const labelKey:
-    | 'peso'
-    | 'status'
-    | 'titulo'
-    | 'produtoImagens'
-    | 'id_produto'
-    | 'criado' = head.key;
+  const labelKey: string = head.key;
 
   return (
     <S.Container id="td" className="td-block">
@@ -79,15 +73,13 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           <PdfIcon />
         </span>
       )}
-      {head.type === 'image' && (
+      {head.type === 'image' && item?.[head.key][0]?.url_foto && (
         <div className="imageWrapper">
           <Image
             alt={head?.label}
             width={90}
             height={90}
-            src={
-              item?.contempladoImagens && item?.contempladoImagens[0]?.url_foto
-            }
+            src={item?.[head.key][0]?.url_foto}
           />
         </div>
       )}

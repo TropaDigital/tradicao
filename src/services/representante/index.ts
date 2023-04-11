@@ -36,6 +36,23 @@ class RepresentanteClass {
     }
   }
 
+  async updateCandidate(agentInfo: IGetRepresentante, id: number) {
+    try {
+      const response: AxiosResponse = await API.put(
+        `update-representante/${id}`,
+        agentInfo,
+        {
+          headers: {
+            Authorization: `Bearer ${this.AUTH_TOKEN}`
+          }
+        }
+      );
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async deleteCandidate(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
