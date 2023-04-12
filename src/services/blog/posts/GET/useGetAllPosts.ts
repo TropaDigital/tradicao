@@ -4,7 +4,7 @@ import { IGetPosts } from '../types';
 
 export const useGetAllPosts = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllPosts'],
+    ['AllPosts', query],
     async () => {
       return await PostsClass.getAllPosts(query);
     }

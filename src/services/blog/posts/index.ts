@@ -9,14 +9,11 @@ class PostsClass {
 
   async getAllPosts(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(
-        `/blog/post${query ? `?${query}` : ''}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
+      const response: AxiosResponse = await API.get(`/blog/post${query}`, {
+        headers: {
+          Authorization: `Bearer ${this.AUTH_TOKEN}`
         }
-      );
+      });
       return response?.data;
     } catch (err) {
       console.log(err);

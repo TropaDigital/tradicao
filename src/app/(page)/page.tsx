@@ -9,6 +9,7 @@ import Speciality from '@/components/sections/Speciality';
 import BlueInfos from '@/components/pages/Home/BlueInfos';
 import ConsortiumWorks from '@/components/pages/Home/ConsortiumWorks';
 import SimulationForm from '@/components/shared/SimulationForm';
+import BlogContainer from '@/components/pages/Home/BlogContainer';
 
 export default function Home() {
   return (
@@ -29,6 +30,8 @@ export default function Home() {
       <ConsortiumWorks />
 
       <Contemplated />
+
+      <BlogContainer />
     </Container>
   );
 }

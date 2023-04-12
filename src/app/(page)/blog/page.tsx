@@ -1,7 +1,7 @@
 'use client';
 
 import CenterWrapper from '@/components/global/CenterWrapper';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SkewContainer from '@/components/shared/SkewContainer';
 import BlogBG from '../../../../public/images/blog_bg.png';
 import MainTitle from '@/components/UI/MainTitle';
@@ -12,11 +12,9 @@ import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCat
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import AsideBar from '@/components/pages/Blog/AsideBar';
 
 const BlogPage = () => {
-  const arrayFake = new Array(5).fill('lorem ipsum dolor amet.');
-
-  const { allCategorias } = useGetAllCategorias();
   const { allPosts } = useGetAllPosts('');
 
   return (
@@ -40,38 +38,13 @@ const BlogPage = () => {
                   date={moment(post?.criado).format('DD MMM')}
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
+                  postId={post?.postagem_id}
                 />
               ))}
             </S.ListPostsContainer>
           </div>
 
-          <S.AsideContainer>
-            <InputDefault label="" placeholder="Pesquisar post" />
-
-            <S.ListAsideTopics>
-              <h4 className="topic-title">Mais Acessados</h4>
-
-              <div className="list-container">
-                {arrayFake?.map((list, key) => (
-                  <p className="topic-item" key={key}>
-                    {list}
-                  </p>
-                ))}
-              </div>
-            </S.ListAsideTopics>
-
-            <S.ListAsideTopics>
-              <h4 className="topic-title">Categorias</h4>
-
-              <div className="list-container">
-                {allCategorias?.map((category, key) => (
-                  <p className="topic-item" key={key}>
-                    {category?.categoria}
-                  </p>
-                ))}
-              </div>
-            </S.ListAsideTopics>
-          </S.AsideContainer>
+          <AsideBar />
         </S.Container>
       </CenterWrapper>
     </>
