@@ -18,13 +18,12 @@ interface ContemplatedProps {
 
 
 export default function ContemplatedList({openModal, setOpenModal, listData}: ModalProps) {
-    console.log('log da lista', listData)
-
+    
     return (
         <>
             <ModalDefault openState={openModal} setOpenState={setOpenModal}>
                 <ModalWrapper>
-                    <ModalTitle>Suplência - 23/03/2023 - Consorcio Tradição</ModalTitle>
+                    <ModalTitle>{listData?.dateCard} - Consorcio Tradição</ModalTitle>
                     <Table>
                         <thead>
                             <tr>

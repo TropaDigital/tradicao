@@ -11,9 +11,10 @@ export const ModalTitle = styled.div`
     font-size: 32px;
     font-weight: 700;
     color: var(--primary);
+    text-align: center;
 `
 
-export const Table = styled.div`
+export const Table = styled.table`
     display: flex;
     flex-direction: column;
 
@@ -34,15 +35,22 @@ export const Table = styled.div`
     }
 
     tbody {
+        max-height: 344px;
+        overflow-y: auto;
         tr {
             &:nth-child(odd) {
-                background: var(--gray-200);
+                background: var(--background-secondary);
+            }
+
+            &:hover {
+                transition: all .3s;
+                background: #dfefff;
             }
         }             
     }
 `
 
-export const TdTitle = styled.div`
+export const TdTitle = styled.td`
     height: fit-content;
 
     font-size: 18px;
@@ -51,17 +59,21 @@ export const TdTitle = styled.div`
 
     padding: 8px 0;
 
+    text-transform: uppercase;
+
     &.first {
         padding-left: 8px;
     }
 `
 
-export const TdInfo = styled.div`
+export const TdInfo = styled.td`
     height: fit-content;
 
     color: var(--gray-900);
 
     padding: 8px 0;
+
+    text-transform: uppercase;
 
     &.first {
         padding-left: 8px;
