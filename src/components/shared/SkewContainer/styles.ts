@@ -15,6 +15,7 @@ export const SkewContainer = styled.div`
   overflow: hidden;
   position: relative;
   left: -83px;
+  margin-right: 150px;
 
   @media (max-width: 850px) {
     border-radius: 30px;
