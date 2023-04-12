@@ -16,8 +16,8 @@ export default function Home() {
     <Container>
       <HeroSkew
         backgroundImage={car_bg}
-        altBackgroundImage="Imagem de um carro com um pai e um filho ao lado"
-        subtitle="Você mais próximo dos seus sonhos!"
+        altBackgroundImage="Imagem de um carro com um homem e uma criança ao lado"
+        subtitle="Realizar sonhos se tornou Tradição!"
         solidHeight={'86%'}
       />
 

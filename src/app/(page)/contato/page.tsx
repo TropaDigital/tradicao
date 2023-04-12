@@ -51,6 +51,16 @@ export default function Contato() {
               </Link>
             </ul>
 
+            <S.ContactSubtitle>Ouvidoria</S.ContactSubtitle>
+            <ul>
+              <Link href={`tel:0800-877-0020`}>
+                <S.ContactText>0800-877-0020</S.ContactText>
+                <S.ContactText>
+                  ouvidoria@consorciotradicao.com.br
+                </S.ContactText>
+              </Link>
+            </ul>
+
             <S.ContactSubtitle>Endereço</S.ContactSubtitle>
             <S.ContactText>
               Alameda: Rio Negro, 1084 <br /> 12º andar – Alphaville, Barueri/SP{' '}

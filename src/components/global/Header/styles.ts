@@ -53,8 +53,8 @@ export const HeaderContainer = styled.header<Props>`
   }
 
   @media (max-width: 1360px) {
-    .logo svg {
-      width: 200px;
+    .logo {
+      width: calc(100% * 0.9);
     }
   }
 `;
