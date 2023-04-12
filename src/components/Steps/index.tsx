@@ -55,7 +55,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           onClick={() => handleOnClick('caminhao', 4)}
         >
           <TruckIcon />
-          <span className="option-text">Caminhão</span>
+          <span className="option-text">Pesados</span>
         </button>
 
         <div className="stepButtonInner" />
