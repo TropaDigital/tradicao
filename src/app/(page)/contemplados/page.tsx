@@ -1,4 +1,6 @@
 'use client';
+
+// React
 import { useState } from 'react';
 
 // Next
@@ -11,6 +13,7 @@ import * as S from './styles';
 import SkewContainer from '@/components/shared/SkewContainer';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
+import ContemplatedList from '@/components/pages/Contemplados/ListaContemplados';
 
 // Images
 import ContempladoBg from '../../../../public/images/contemplados-bg.jpg';
@@ -18,7 +21,6 @@ import teste from '../../../../public/images/teste.jpg';
 
 // Icons
 import { DefaultBrasao } from '@/assets/icons';
-import ContemplatedList from '@/components/pages/Contemplados/ListaContemplados';
 
 interface contemplatedProps {
     id: number,
@@ -44,7 +46,7 @@ export default function Contemplated() {
                     representative: 2180,
                 },
                 {
-                    id: 0,
+                    id: 1,
                     name: 'Railton de J',
                     group: 1025,
                     quota: 379,
@@ -52,7 +54,7 @@ export default function Contemplated() {
                     representative: 1946,
                 },
                 {
-                    id: 0,
+                    id: 2,
                     name: 'Rodrigo S',
                     group: 1025,
                     quota: 692,
@@ -60,7 +62,7 @@ export default function Contemplated() {
                     representative: 1312,
                 },
                 {
-                    id: 0,
+                    id: 3,
                     name: 'Diego A',
                     group: 1026,
                     quota: 600,
@@ -68,7 +70,7 @@ export default function Contemplated() {
                     representative: 1951,
                 },
                 {
-                    id: 0,
+                    id: 4,
                     name: 'Camila D',
                     group: 1026,
                     quota: 744,
@@ -76,12 +78,44 @@ export default function Contemplated() {
                     representative: 1842,
                 },
                 {
-                    id: 0,
+                    id: 5,
                     name: 'Jardane S',
                     group: 1027,
                     quota: 1210,
                     typeContemplated: 'Lance Livre',
                     representative: 2124,
+                },
+                {
+                    id: 6,
+                    name: 'Elicelia S',
+                    group: 1026,
+                    quota: 1452,
+                    typeContemplated: 'Lance Livre',
+                    representative: 1577,
+                },
+                {
+                    id: 7,
+                    name: 'Lucena V',
+                    group: 1029,
+                    quota: 8517,
+                    typeContemplated: 'Lance Livre',
+                    representative: 2061,
+                },
+                {
+                    id: 8,
+                    name: 'Geneci F',
+                    group: 1029,
+                    quota: 8533,
+                    typeContemplated: 'Lance Livre',
+                    representative: 1590,
+                },
+                {
+                    id: 9,
+                    name: 'Jairo J',
+                    group: 1026,
+                    quota: 1115,
+                    typeContemplated: 'Lance Livre',
+                    representative: 1842,
                 },
             ]
         },
@@ -141,7 +175,7 @@ export default function Contemplated() {
                         contemplatedInfos.map((row: contemplatedProps) => (
                             <S.CardContemplated 
                                 key={row.id}
-                                onClick={() => {console.log('log do id', row); setOpenList(true); setSelectedList(row)}}
+                                onClick={() => {setOpenList(true); setSelectedList(row)}}
                             >
                                 <S.CardTopContemplated>
                                     <span>{row.titleDate}</span>

@@ -109,7 +109,7 @@ export const CardBottomContemplated = styled.div`
   background: var(--white);
 
   font-size: 1.6rem;
-  color: var(--gray-600);
+  color: var(--primary-mid);
 
   padding: 10px;
   z-index: 13;
