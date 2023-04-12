@@ -52,3 +52,7 @@ export const SearchBar = styled.div`
       max-width: 140px;     
     }
 `
+
+export const ContainerResult = styled.div`
+    margin-bottom: 60px;
+`
