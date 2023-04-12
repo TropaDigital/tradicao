@@ -13,8 +13,8 @@ import SkewContainer from '@/components/shared/SkewContainer';
 
 export default function Contato() {
   const CALL_CENTERS_NUMBER: Array<string> = [
-    '(11) 4003-5090',
-    '0800-877-0020',
+    '0800 877 0020',
+    '4003-5090',
     '(11) 2928-4800'
   ];
 
@@ -38,23 +38,23 @@ export default function Contato() {
                 );
               })}
             </ul>
-            <S.ContactSubtitle>SAC</S.ContactSubtitle>
+            <S.ContactSubtitle>Whatsapp</S.ContactSubtitle>
 
-            <Link href={`mailto:sac@consorciotradicao.com.br`}>
-              <S.ContactText>sac@consorciotradicao.com.br</S.ContactText>
+            <Link href={`wa.me/551129284855`}>
+              <S.ContactText>(11) 2928-4855</S.ContactText>
             </Link>
 
-            <S.ContactSubtitle>Central de Atendimento</S.ContactSubtitle>
+            <S.ContactSubtitle>SAC</S.ContactSubtitle>
             <ul>
-              <Link href={`tel:0800-770-4139`}>
-                <S.ContactText>0800-770-4139</S.ContactText>
+              <Link href={`mailto:sac@consorciotradicao.com.br`}>
+                <S.ContactText>sac@consorciotradicao.com.br</S.ContactText>
               </Link>
             </ul>
 
-            <S.ContactSubtitle>Ouvidoria</S.ContactSubtitle>
+            <S.ContactSubtitle>Ouvidoria Tradição</S.ContactSubtitle>
             <ul>
-              <Link href={`tel:0800-877-0020`}>
-                <S.ContactText>0800-877-0020</S.ContactText>
+              <Link href={`tel:0800-770-4139`}>
+                <S.ContactText>0800-770-4139</S.ContactText>
                 <S.ContactText>
                   ouvidoria@consorciotradicao.com.br
                 </S.ContactText>
