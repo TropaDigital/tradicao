@@ -18,7 +18,7 @@ export default function ConsortiumWorks() {
                             <InfoText>
                                 <div className="info-title">Grupo</div>
                                 <div className="description right">
-                                    No Consórcio você faz parte de um grupo, com a finalidade de adquirir bens imóveis ou móveis. Cada participante desse grupo será chamado de consorciado e terá um número chamado cota.
+                                    No Consórcio você faz parte de um grupo, com a finalidade de adquirir bens imóveis ou móveis. Cada participante desse grupo será chamado de consorciado e terá um número chamado cota
                                 </div>
                             </InfoText>
 
@@ -45,7 +45,7 @@ export default function ConsortiumWorks() {
                             <InfoText>
                                 <div className="info-title">Análise de Crédito</div>
                                 <div className="description right">
-                                    Após a contemplação, o Consórcio Tradição, irá avaliar o potencial de pagamento do crédito.
+                                    Após a contemplação, o Consórcio Tradição, irá avaliar o potencial de pagamento do crédito, para que não prejudique a saúde do grupo.
                                 </div>
                             </InfoText>
 
@@ -73,7 +73,7 @@ export default function ConsortiumWorks() {
                             <InfoText>
                                 <div className="info-title left">Pagamento das parcelas</div>
                                 <div className="description left">
-                                    A partir da adesão é muito importante que pague as parcelas mensalmente para garantir sua participação nas assembleias.
+                                    A partir da adesão, é muito importante que pague as parcelas mensais em dia, assim garantindo sua participação nas assembleias.
                                 </div>
                             </InfoText>
                         </InfoWithIcon>
@@ -86,7 +86,7 @@ export default function ConsortiumWorks() {
                             <InfoText>
                                 <div className="info-title left">Lance</div>
                                 <div className="description left">
-                                   Uma maneira de aumentar suas chances de contemplação é por oferta de lances. No Tradição, você pode ser contemplado por lance: livre, embutido, fixo ou quitação.
+                                    Uma maneira de aumentar suas chances de contemplação é por oferta de lances. No Consórcio Tradição, você pode ser contemplado por lance: livre, embutido, fixo ou quitação.
                                 </div>
                             </InfoText>
                         </InfoWithIcon>
