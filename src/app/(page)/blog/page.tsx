@@ -1,21 +1,45 @@
 'use client';
 
 import CenterWrapper from '@/components/global/CenterWrapper';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SkewContainer from '@/components/shared/SkewContainer';
 import BlogBG from '../../../../public/images/blog_bg.png';
 import MainTitle from '@/components/UI/MainTitle';
-import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import * as S from './styles';
 import PostCard from '@/components/pages/Blog/PostCard';
-import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import AsideBar from '@/components/pages/Blog/AsideBar';
+import { useSearchParams } from 'next/navigation';
+import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 
 const BlogPage = () => {
-  const { allPosts } = useGetAllPosts('');
+  const [query, setQuery] = useState<string>('');
+  const params = useSearchParams();
+
+  const { allCategorias } = useGetAllCategorias();
+
+  function getCurrentCategory() {
+    const currentCategory = allCategorias?.filter((category) => {
+      return category?.categoria === params.get('categoria');
+    });
+
+    if (currentCategory) {
+      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}`);
+      return;
+    }
+
+    setQuery('');
+  }
+
+  useEffect(() => {
+    if (params.get('categoria') !== '') {
+      getCurrentCategory();
+    }
+  }, [params.get('categoria')]);
+
+  const { allPosts } = useGetAllPosts(query);
 
   return (
     <>

@@ -8,6 +8,7 @@ import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { HeaderDashboard } from '../styles';
 
@@ -15,33 +16,23 @@ const BlogPanel = () => {
   const headerTable = [
     {
       key: 'criado',
-      label: 'Data Postagem',
+      label: 'Postado',
       type: 'date'
     },
     {
       key: 'postagem_img',
       label: 'Imagem',
-      type: 'string'
+      type: 'image'
     },
     {
       key: 'titulo',
       label: 'Título',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'subtitulo',
       label: 'Sub-Título',
-      type: 'string'
-    },
-    {
-      key: 'conteudo',
-      label: 'Título',
-      type: 'string'
-    },
-    {
-      key: 'local',
-      label: 'Local',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'categoria',
@@ -55,7 +46,9 @@ const BlogPanel = () => {
     }
   ];
 
-  const { allPosts } = useGetAllPosts();
+  const { allPosts } = useGetAllPosts('');
+
+  const router = useRouter();
 
   return (
     <>
@@ -68,6 +61,7 @@ const BlogPanel = () => {
             degrade
             radius="rounded"
             className="styledButton"
+            onClick={() => router?.push('/painel/blog/criar')}
           >
             + Adicionar Postagem
           </Button>

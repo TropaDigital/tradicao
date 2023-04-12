@@ -7,6 +7,9 @@ export const useGetAllPosts = (query?: string) => {
     ['AllPosts', query],
     async () => {
       return await PostsClass.getAllPosts(query);
+    },
+    {
+      keepPreviousData: true
     }
   );
 
