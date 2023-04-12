@@ -1,6 +1,5 @@
 import { ServiceIcon } from '@/assets/icons';
 import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
-import { SelectDefault } from '@/components/pages/Painel/components/inputs/SelectDefault';
 import {
   FieldDefault,
   FieldGroup
@@ -47,6 +46,17 @@ export function InfoService({
             handleInputChange(e);
           }}
           error={error?.name}
+        />
+      </FieldDefault>
+
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          value={data.email}
+          onChange={handleInputChange}
+          error={error?.email}
         />
       </FieldDefault>
 

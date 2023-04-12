@@ -235,16 +235,14 @@ export default function SimulationForm() {
         setErrorInput('name', undefined);
       }
 
-      if (formData.conquest === 'veiculo' || formData.conquest === 'imovel') {
-        if (email === '') {
-          throw setErrorInput('email', 'Email é obrigatório!');
-        } else if (!email.includes('@')) {
-          throw setErrorInput('email', 'Email inválido!');
-        } else if (!email.includes('.')) {
-          throw setErrorInput('email', 'Email inválido!');
-        } else {
-          setErrorInput('email', undefined);
-        }
+      if (email === '') {
+        throw setErrorInput('email', 'Email é obrigatório!');
+      } else if (!email.includes('@')) {
+        throw setErrorInput('email', 'Email inválido!');
+      } else if (!email.includes('.')) {
+        throw setErrorInput('email', 'Email inválido!');
+      } else {
+        setErrorInput('email', undefined);
       }
 
       if (phone === '') {
