@@ -80,6 +80,12 @@ export const TextEditorContainer = styled.div`
       text-decoration: underline;
     }
 
+    .link {
+      color: var(--dark);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     ul,
     ol {
       padding-left: 20px;

@@ -17,6 +17,7 @@ import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
@@ -45,6 +46,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteRepresentante } = useDeleteRepresentante();
 
   const pathname = usePathname();
+  const router = useRouter();
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -116,6 +118,12 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }, [data]);
 
+  function sendPostTroughtPage() {
+    setModalOpen('');
+    router?.push('/painel/blog/postagem');
+    localStorage.setItem('actualPost', JSON.stringify(actualItem));
+  }
+
   return (
     <>
       <Container>
@@ -173,6 +181,12 @@ export default function Table({ title, data, search, header }: ITableProps) {
             )}
           </Modal>
         )}
+
+        <>
+          {modalOpen === 'editar' && pathname?.includes('blog')
+            ? sendPostTroughtPage()
+            : null}
+        </>
 
         {modalOpen === 'excluir' && (
           <Modal

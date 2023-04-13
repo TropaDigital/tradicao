@@ -7,7 +7,7 @@ export const usePostFile = () => {
     async (file: FormData) => {
       let response: AxiosResponse<any, any> | undefined =
         await FileClass.postFile(file);
-      return response?.data?.arquivo;
+      return await response?.data?.arquivo;
     },
     {
       retry: true

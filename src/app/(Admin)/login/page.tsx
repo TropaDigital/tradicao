@@ -64,7 +64,12 @@ const PanelLoginComponent = () => {
           <S.FormWrapper>
             <Form onSubmit={handleSubmit} className="panelAccess">
               <div className="logoGreenCasaAmazonia">
-                <DefaultLogo width={262 * 1.2} height={58 * 1.2} />
+                <Image
+                  src="/images/logo-default.png"
+                  alt="Logo do Consórcio Tradição"
+                  width={262 * 1.2}
+                  height={58 * 1.2}
+                />
               </div>
 
               <h2 className="welcomeBack">Bem-vindo de volta!</h2>

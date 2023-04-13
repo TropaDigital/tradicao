@@ -2,12 +2,9 @@
 
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
-import TextEditor from '@/components/pages/Painel/components/TextEditor';
 import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import { useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { HeaderDashboard } from '../styles';
@@ -61,7 +58,10 @@ const BlogPanel = () => {
             degrade
             radius="rounded"
             className="styledButton"
-            onClick={() => router?.push('/painel/blog/criar')}
+            onClick={() => {
+              localStorage?.removeItem('actualPost');
+              router?.push('/painel/blog/postagem');
+            }}
           >
             + Adicionar Postagem
           </Button>
