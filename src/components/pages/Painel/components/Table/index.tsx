@@ -118,10 +118,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }, [data]);
 
-  function sendPostTroughtPage() {
+  function sendPostThroughPage() {
     setModalOpen('');
     router?.push('/painel/blog/postagem');
-    localStorage.setItem('actualPost', JSON.stringify(actualItem));
+
+    if (localStorage !== undefined) {
+      localStorage.setItem('actualPost', JSON.stringify(actualItem));
+    }
   }
 
   return (
@@ -184,7 +187,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
 
         <>
           {modalOpen === 'editar' && pathname?.includes('blog')
-            ? sendPostTroughtPage()
+            ? sendPostThroughPage()
             : null}
         </>
 

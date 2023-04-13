@@ -97,7 +97,7 @@ const TextEditorHeader = ({ editor }: any) => {
         <input
           type="color"
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
-            editor?.chain().focus().setColor(e.currentTarget.value).run()
+            editor?.chain()?.focus()?.setColor(e.currentTarget.value)?.run()
           }
         />
       </ChangeTextColor>

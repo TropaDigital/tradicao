@@ -12,6 +12,14 @@ export const TextEditorContainer = styled.div`
     border-bottom-right-radius: 16px;
     outline: none;
 
+    p.is-editor-empty:first-child::before {
+      color: #adb5bd;
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
+
     :focus {
       border: 1px solid var(--gray-500);
     }
