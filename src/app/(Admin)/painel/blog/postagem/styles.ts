@@ -40,3 +40,13 @@ export const InitialPostWrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const ButtonsWrapper = styled.div`
+  /* display: flex;
+  justify-content: flex-end;
+  margin-top: 30px; */
+
+  .buttonContainer {
+    max-width: 500px;
+  }
+`;

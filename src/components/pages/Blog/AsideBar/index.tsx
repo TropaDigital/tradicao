@@ -80,7 +80,7 @@ export default function AsideBar() {
 
           <div className="list-container">
             {rankingPosts?.allPosts?.result?.map((rankPost, key) => {
-              if (key >= 4) return;
+              if (key > 4) return;
               return (
                 <Link
                   href={

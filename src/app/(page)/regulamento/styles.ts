@@ -10,31 +10,22 @@ export const ContainerTop = styled.div`
   .margin {
     margin-top: 30px;
     position: relative;
-  }  
-  
+  }
 `;
 
 export const RegulationContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  height: 0;
+  margin-bottom: 18px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  position: relative;
 
-    height: fit-content;
-    padding-bottom: 60px;
-
-    p {
-      color: var(--gray-600);
-    }
-
-    .big-space {
-        margin-bottom: 48px;
-    }
-
-    .mid-space {
-        margin-bottom: 24px;
-    }
-
-    .small-space {
-        margin-bottom: 12px;
-    }
-`
+  object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+`;

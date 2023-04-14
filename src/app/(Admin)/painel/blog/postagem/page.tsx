@@ -27,6 +27,7 @@ import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
 import Link from 'next/link';
 import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
 import { useRouter } from 'next/navigation';
+import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
@@ -218,7 +219,8 @@ const PostPanel = () => {
                     value={values?.titulo}
                     error={touched?.titulo && errors?.titulo}
                   />
-                  <InputDefault
+
+                  <TextAreaDefault
                     label="Subtítulo"
                     placeholder="Subtítulo da Postagem"
                     onChange={handleChange}
@@ -263,32 +265,28 @@ const PostPanel = () => {
                 </S.InputsWrapper>
               </S.InitialPostWrapper>
               <TextEditor editor={editor} />
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '12px',
-                  marginTop: '15px',
-                  maxWidth: '800px'
-                }}
-              >
-                <Button
-                  color="primary"
-                  radius="rounded"
-                  variant="outline"
-                  type="button"
-                >
-                  <Link href="/painel/blog">Cancelar</Link>
-                </Button>
-                <Button
-                  color="secondary"
-                  radius="rounded"
-                  degrade
-                  type="submit"
-                  onClick={() => setFieldValue('conteudo', editor?.getHTML())}
-                >
-                  Criar Postagem
-                </Button>
-              </div>
+
+              <S.ButtonsWrapper>
+                <div className="buttonContainer">
+                  <Button
+                    color="primary"
+                    radius="rounded"
+                    variant="outline"
+                    type="button"
+                  >
+                    <Link href="/painel/blog">Cancelar</Link>
+                  </Button>
+                  <Button
+                    color="secondary"
+                    radius="rounded"
+                    degrade
+                    type="submit"
+                    onClick={() => setFieldValue('conteudo', editor?.getHTML())}
+                  >
+                    Criar Postagem
+                  </Button>
+                </div>
+              </S.ButtonsWrapper>
             </Form>
           )}
         </Formik>
