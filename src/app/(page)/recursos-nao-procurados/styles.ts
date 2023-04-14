@@ -54,5 +54,41 @@ export const SearchBar = styled.div`
 `
 
 export const ContainerResult = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     margin-bottom: 60px;
+    max-width: 1000px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    .valid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary);
+      background: var(--degrade-secondary);
+
+      color: var(--primary-dark);
+      font-size: var(--text-smal-xl);
+      font-weight: var(--weight-semibold);
+    }
+
+    .invalid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      background: var(--degrade-primary);
+
+      color: var(--white);
+      font-size: var(--text-smal-xl);
+      font-weight: var(--weight-semibold);
+    }
 `

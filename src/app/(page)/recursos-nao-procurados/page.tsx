@@ -1,7 +1,7 @@
 'use client';
 
 // React
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 // Components
 import CenterWrapper from '@/components/global/CenterWrapper';
@@ -15,6 +15,9 @@ import * as S from './styles';
 
 // Images
 import notReceived from '../../../../public/images/nao_procurados_bg.jpg';
+
+// Utils
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 
 interface IReceiveProps {
     id: number,
@@ -87,6 +90,10 @@ export default function NotReceived() {
 
     }, [startSearch]);
 
+    useEffect(() => {
+        console.log('log do filter cpfs', filteredCpfs, startSearch, cpfSearch)
+    }, [filteredCpfs])
+
     return (
         <>
             <S.ContainerTop>
@@ -108,7 +115,7 @@ export default function NotReceived() {
             <CenterWrapper>
                 <S.ContainerMid>
 
-                    <S.TitleMid>Olá, digite seu CPF abaixo para saber se tem recursos a receber.</S.TitleMid>
+                    <S.TitleMid>Olá, digite seu CPF ou CNPJ abaixo para saber se tem recursos a receber.</S.TitleMid>
                     
                     <S.SubtitleMid>
                         Caso tenha alguma duvida, entre em contato pelo telefone 4003-5090 ou pelo WhatsApp (11) 98917-8189
@@ -118,7 +125,7 @@ export default function NotReceived() {
                         <InputDefault
                             label="Buscar CPF"
                             placeholder="Digite seu CPF"
-                            value={cpfSearch}
+                            value={formatCnpjAndCpf(cpfSearch)}
                             onChange={(e: any) => setCpfSearch(e.target.value)}
                             // maxLength={11}
                             // onKeyDown={(e: any) => onKeyPressed(e)}
@@ -135,19 +142,23 @@ export default function NotReceived() {
                     </S.SearchBar>
 
                 </S.ContainerMid>
-
-                <S.ContainerResult>
-                    {
-                        cpfSearch &&
-                        startSearch &&
-                        filteredCpfs
-                        ?   filteredCpfs.map((row: IReceiveProps) => (
-                                <div className="result">{row.cpf}</div>
-                            ))
-                        :   'nada'
-
-                    }                    
-                </S.ContainerResult>
+                {
+                    cpfSearch &&
+                    startSearch &&
+                    <S.ContainerResult>
+                        {
+                            cpfSearch &&
+                            startSearch &&
+                            filteredCpfs.length > 0 
+                            ?
+                                filteredCpfs.map((row: any) => (
+                                    <div className="valid" key={row.id}>{row.cpf}</div>
+                                ))                       
+                            :   <div className="invalid">Você não tem recurso a receber!</div>                       
+                                
+                        }            
+                    </S.ContainerResult>
+                }
             </CenterWrapper>
         </>
     )
