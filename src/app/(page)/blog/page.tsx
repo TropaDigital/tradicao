@@ -22,7 +22,9 @@ const BlogPage = () => {
   const params = useSearchParams();
 
   const { allCategorias } = useGetAllCategorias();
-  const { allPosts } = useGetAllPosts(query);
+  const { allPosts } = useGetAllPosts(
+    '?' + query + `currentPage=${actualPage}&perPage=10`
+  );
 
   useEffect(() => {
     if (params.get('categoria') !== null) {
@@ -36,7 +38,7 @@ const BlogPage = () => {
     });
 
     if (currentCategory) {
-      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}`);
+      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}&`);
       return;
     }
 
@@ -75,16 +77,15 @@ const BlogPage = () => {
                 <h3>Nenhuma postagem foi encontrada!</h3>
               )}
             </S.ListPostsContainer>
+            <PaginationData
+              data={allPosts}
+              handlePagination={handlePageChange}
+              page={actualPage}
+            />
           </div>
 
           <AsideBar />
         </S.Container>
-
-        <PaginationData
-          data={allPosts}
-          handlePagination={handlePageChange}
-          page={actualPage}
-        />
       </CenterWrapper>
     </>
   );
