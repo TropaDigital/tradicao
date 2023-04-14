@@ -8,6 +8,7 @@ import * as S from './styles';
 import { useDebouncedCallback } from 'use-debounce';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useScrollDirection } from '@/utils/detectScrollDirection';
 
 export default function AsideBar() {
   const [query, setQuery] = useState<string>('');
@@ -16,6 +17,7 @@ export default function AsideBar() {
   const { allCategorias } = useGetAllCategorias();
   const rankingPosts = useGetAllPosts('?ordem=acesso_mes');
   const { allPosts } = useGetAllPosts(query);
+  const scrollDirection = useScrollDirection();
 
   const debounced = useDebouncedCallback(
     // function
@@ -28,7 +30,7 @@ export default function AsideBar() {
 
   return (
     <>
-      <S.AsideContainer>
+      <S.AsideContainer className={scrollDirection}>
         <S.SuggestsSearchsContainer>
           <InputDefault
             label=""
@@ -77,21 +79,27 @@ export default function AsideBar() {
           <h4 className="topic-title">Mais Acessados</h4>
 
           <div className="list-container">
-            {rankingPosts?.allPosts?.result?.map((rankPost, key) => (
-              <Link
-                href={
-                  '/blog/' +
-                  rankPost?.titulo?.toLowerCase().trim().replaceAll(' ', '-')
-                }
-                className="topic-item"
-                key={key}
-                onClick={() =>
-                  localStorage.setItem('postId', String(rankPost?.postagem_id))
-                }
-              >
-                {rankPost?.titulo}
-              </Link>
-            ))}
+            {rankingPosts?.allPosts?.result?.map((rankPost, key) => {
+              if (key >= 4) return;
+              return (
+                <Link
+                  href={
+                    '/blog/' +
+                    rankPost?.titulo?.toLowerCase().trim().replaceAll(' ', '-')
+                  }
+                  className="topic-item"
+                  key={key}
+                  onClick={() =>
+                    localStorage.setItem(
+                      'postId',
+                      String(rankPost?.postagem_id)
+                    )
+                  }
+                >
+                  {rankPost?.titulo}
+                </Link>
+              );
+            })}
           </div>
         </S.ListAsideTopics>
 

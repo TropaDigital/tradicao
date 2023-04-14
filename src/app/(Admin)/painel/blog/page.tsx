@@ -72,7 +72,7 @@ const BlogPanel = () => {
         data={allPosts?.result}
         header={headerTable}
         title={'Todos os Posts'}
-        search={<InputDefault label="" />}
+        search={<InputDefault label="" placeholder="Pesquise a postagem" />}
       />
     </>
   );

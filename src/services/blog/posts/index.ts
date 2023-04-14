@@ -37,6 +37,32 @@ class PostsClass {
       console.log(err);
     }
   }
+
+  async createPost(postBody: IUpdatePostBody) {
+    try {
+      const response: AxiosResponse = await API.post(`/blog/post`, postBody, {
+        headers: {
+          Authorization: `Bearer ${this.AUTH_TOKEN}`
+        }
+      });
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async deletePost(id: number) {
+    try {
+      const response: AxiosResponse = await API.delete(`/blog/post/${id}`, {
+        headers: {
+          Authorization: `Bearer ${this.AUTH_TOKEN}`
+        }
+      });
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 export default new PostsClass();

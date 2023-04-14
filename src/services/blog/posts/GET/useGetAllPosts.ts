@@ -1,3 +1,4 @@
+import { IPagination } from '@/services/unidades/types';
 import { useQuery } from 'react-query';
 import PostsClass from '../index';
 import { IGetPosts } from '../types';
@@ -14,7 +15,7 @@ export const useGetAllPosts = (query?: string) => {
   );
 
   return {
-    allPosts: data as { result: IGetPosts[] },
+    allPosts: data as { result: IGetPosts[]; pagination: IPagination },
     isLoadingAllPosts: isLoading as boolean,
     isErrorAllPosts: isError as boolean,
     isSuccessAllPosts: isSuccess as boolean

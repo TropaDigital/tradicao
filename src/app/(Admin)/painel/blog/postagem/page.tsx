@@ -25,11 +25,15 @@ import Button from '@/components/UI/Button';
 import { PostagemSchema } from './yupSchema';
 import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
 import Link from 'next/link';
+import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
+import { useRouter } from 'next/navigation';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
   const { allCategorias } = useGetAllCategorias();
   const { updatePost } = useUpdatePost();
+  const { createPost } = useCreatePost();
+  const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
 
@@ -168,6 +172,12 @@ const PostPanel = () => {
             if (currentPost) {
               updatePost({ postagem: values, id: currentPost?.postagem_id });
             }
+
+            if (!currentPost) {
+              createPost(values);
+            }
+
+            router?.push('/painel/blog');
           }}
         >
           {({

@@ -2,6 +2,7 @@
 
 import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { IGetContemplados } from '@/services/contemplados/types';
@@ -44,6 +45,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteRelatorio } = useDeleteRelatorio();
   const { deleteCurriculo } = useDeleteCurriculo();
   const { deleteRepresentante } = useDeleteRepresentante();
+  const { deletePost } = useDeletePost();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -62,7 +64,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
         | 'unidade'
         | 'relatorio'
         | 'candidato'
-        | 'representante',
+        | 'representante'
+        | 'postagem',
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -74,7 +77,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
       | 'unidade'
       | 'relatorio'
       | 'candidato'
-      | 'representante';
+      | 'representante'
+      | 'postagem';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -109,6 +113,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
 
     if (itemType === 'representante') {
       deleteRepresentante(itemID);
+    }
+
+    if (itemType === 'postagem') {
+      deletePost(itemID);
     }
   };
 

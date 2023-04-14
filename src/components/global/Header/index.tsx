@@ -177,7 +177,7 @@ const Header = () => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       setIsHovered(false);
-    }, 500); // 1 seg
+    }, 500); // .5 seg
   }
 
   return (

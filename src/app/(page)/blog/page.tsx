@@ -13,12 +13,22 @@ import 'moment/locale/pt-br';
 import AsideBar from '@/components/pages/Blog/AsideBar';
 import { useSearchParams } from 'next/navigation';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
+import PaginationData from '@/components/shared/PaginationData';
 
 const BlogPage = () => {
   const [query, setQuery] = useState<string>('');
+  const [actualPage, setActualPage] = useState(1);
+
   const params = useSearchParams();
 
   const { allCategorias } = useGetAllCategorias();
+  const { allPosts } = useGetAllPosts(query);
+
+  useEffect(() => {
+    if (params.get('categoria') !== null) {
+      getCurrentCategory();
+    }
+  }, [params.get('categoria')]);
 
   function getCurrentCategory() {
     const currentCategory = allCategorias?.filter((category) => {
@@ -33,13 +43,9 @@ const BlogPage = () => {
     setQuery('');
   }
 
-  useEffect(() => {
-    if (params.get('categoria') !== null) {
-      getCurrentCategory();
-    }
-  }, [params.get('categoria')]);
-
-  const { allPosts } = useGetAllPosts(query);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
 
   return (
     <>
@@ -73,6 +79,12 @@ const BlogPage = () => {
 
           <AsideBar />
         </S.Container>
+
+        <PaginationData
+          data={allPosts}
+          handlePagination={handlePageChange}
+          page={actualPage}
+        />
       </CenterWrapper>
     </>
   );

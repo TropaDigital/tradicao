@@ -1,17 +1,28 @@
 import styled from 'styled-components';
 
-export const AsideContainer = styled.aside`
+export const AsideContainer: any = styled.aside`
   border-left: 1px solid var(--gray-300);
   padding-left: 30px;
   padding-bottom: 50px;
   height: 100%;
   margin: 30px 0;
   min-width: 255px;
+  position: sticky;
+  transition: all 0.3s;
+
+  &.down {
+    top: 30px;
+  }
+
+  &.up {
+    top: 137px;
+  }
 
   @media (max-width: 768px) {
     min-width: 0;
     border: none;
     padding: 0;
+    position: static;
   }
 
   display: flex;
@@ -62,7 +73,6 @@ export const ListAsideTopics = styled.div`
 
     :hover {
       border-color: var(--primary-light);
-      border-opacity: 0.7;
     }
 
     &:last-child {
