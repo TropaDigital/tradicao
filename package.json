@@ -16,6 +16,7 @@
     "@tiptap/extension-placeholder": "^2.0.3",
     "@tiptap/extension-text-align": "^2.0.3",
     "@tiptap/extension-text-style": "^2.0.3",
+    "@tiptap/extension-underline": "^2.0.3",
     "@tiptap/pm": "^2.0.2",
     "@types/moment": "^2.13.0",
     "@types/react-input-mask": "^3.0.2",

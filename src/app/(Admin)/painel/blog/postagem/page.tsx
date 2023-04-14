@@ -11,6 +11,7 @@ import ImageTipTap from '@tiptap/extension-image';
 import StarterKit from '@tiptap/starter-kit';
 import TextStyle from '@tiptap/extension-text-style';
 import Placeholder from '@tiptap/extension-placeholder';
+import Underline from '@tiptap/extension-underline';
 import TipTapLink from '@tiptap/extension-link';
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
@@ -49,6 +50,11 @@ const PostPanel = () => {
   const editor = useEditor({
     extensions: [
       TextStyle,
+      Underline.configure({
+        HTMLAttributes: {
+          class: 'underline'
+        }
+      }),
       Placeholder.configure({
         placeholder: 'Escreva uma postagem...'
       }),

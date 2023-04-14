@@ -53,6 +53,7 @@ export const EditorHeader = styled.div`
 export const ChangeTextColor = styled.label`
   position: relative;
   background-color: var(--gray-100);
+  cursor: pointer;
 
   input[type='color'] {
     appearance: none;
@@ -60,6 +61,7 @@ export const ChangeTextColor = styled.label`
     left: 0;
     top: 0;
     width: 0;
+    opacity: 0;
     border: none;
   }
 
