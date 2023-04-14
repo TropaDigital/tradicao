@@ -11,14 +11,14 @@ import React, { useEffect } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const actualPostToView = localStorage?.getItem('postId');
+  const viewedPost = localStorage?.getItem('postId');
 
-  const { allPosts } = useGetAllPosts(`?id=${actualPostToView}`);
+  const { allPosts } = useGetAllPosts(`/${viewedPost}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { postagem_id: actualPostToView });
+    API.post(`/blog/post-vizualizacao`, { postagem_id: viewedPost });
   }, []);
 
   return (

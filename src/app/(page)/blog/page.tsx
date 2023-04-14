@@ -25,7 +25,7 @@ const BlogPage = () => {
       return category?.categoria === params.get('categoria');
     });
 
-    if (currentCategory) {
+    if (currentCategory !== undefined) {
       setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}`);
       return;
     }

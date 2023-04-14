@@ -13,7 +13,11 @@ const PostCard = ({ date, image, subtitle, title, postId }: IPostCard) => {
     <Link
       href={
         '/blog/' +
-        title?.toLowerCase()?.normalize('NFD')?.trim()?.replaceAll(' ', '-')
+        title
+          ?.normalize('NFD')
+          ?.replace(/[\u0300-\u036f]/g, '')
+          ?.replaceAll(' ', '-')
+          ?.toLowerCase()
       }
       onClick={setPostIdToLocalStorage}
     >
