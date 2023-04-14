@@ -25,7 +25,7 @@ const BlogPage = () => {
       return category?.categoria === params.get('categoria');
     });
 
-    if (currentCategory !== undefined) {
+    if (currentCategory) {
       setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}`);
       return;
     }
@@ -34,7 +34,7 @@ const BlogPage = () => {
   }
 
   useEffect(() => {
-    if (params.get('categoria') !== '') {
+    if (params.get('categoria') !== null) {
       getCurrentCategory();
     }
   }, [params.get('categoria')]);
@@ -65,6 +65,9 @@ const BlogPage = () => {
                   postId={post?.postagem_id}
                 />
               ))}
+              {allPosts?.result?.length === 0 && (
+                <h3>Nenhuma postagem foi encontrada!</h3>
+              )}
             </S.ListPostsContainer>
           </div>
 
