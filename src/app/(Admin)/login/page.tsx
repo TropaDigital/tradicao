@@ -28,7 +28,7 @@ const PanelLoginComponent = () => {
       senha: values?.senha
     });
 
-    if (isAnAdmin) router?.push('/painel/contemplados');
+    if (isAnAdmin) router?.push('/painel/blog');
   }
 
   return (

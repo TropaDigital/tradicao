@@ -73,13 +73,19 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           <PdfIcon />
         </span>
       )}
-      {head.type === 'image' && item?.[head.key][0]?.url_foto && (
+      {head.type === 'image' && (
         <div className="imageWrapper">
           <Image
             alt={head?.label}
             width={90}
             height={90}
-            src={item?.[head.key][0]?.url_foto}
+            src={
+              item?.[head.key][0]?.url_foto
+                ? item?.[head.key][0]?.url_foto
+                : item?.[head.key]
+                ? item?.[head.key]
+                : 'https://via.placeholder.com/90'
+            }
           />
         </div>
       )}
