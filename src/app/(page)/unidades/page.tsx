@@ -120,10 +120,10 @@ const UnidadesPage = () => {
       <CenterWrapper>
         <S.Container>
           <S.TitleContainer>
-            <MainTitle title="Unidades Credenciadas" />
+            <MainTitle title="Representantes Autorizados" />
             <p className="subtitle">
-              Conheça nossas unidades. O Consórcio Tradição está sempre pronto
-              em atendê-lo
+              Conheça nossos representantes autorizados. O Consórcio Tradição
+              está sempre pronto para atendê-lo!
             </p>
           </S.TitleContainer>
 

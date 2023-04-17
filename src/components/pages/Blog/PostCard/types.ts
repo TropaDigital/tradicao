@@ -3,4 +3,5 @@ export interface IPostCard {
   subtitle: string;
   image: string;
   date: string;
+  postId: number;
 }

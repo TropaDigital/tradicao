@@ -50,6 +50,17 @@ export function InfoTruck({
         />
       </FieldDefault>
 
+      <FieldDefault style={{ marginBottom: '14px' }}>
+        <InputDefault
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          value={data.email}
+          onChange={handleInputChange}
+          error={error?.email}
+        />
+      </FieldDefault>
+
       {/* <FieldDefault style={{marginBottom: '14px'}}>
         <SelectDefault
           label='Selecione um Imovel'

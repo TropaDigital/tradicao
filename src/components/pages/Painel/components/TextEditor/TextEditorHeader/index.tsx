@@ -46,32 +46,44 @@ const TextEditorHeader = ({ editor }: any) => {
 
   return (
     <EditorHeader>
-      <button onClick={() => editor?.chain().focus().toggleBold().run()}>
+      <button
+        onClick={() => editor?.chain().focus().toggleBold().run()}
+        type="button"
+      >
         <BoldIcon />
       </button>
 
-      <button onClick={() => editor?.chain().focus().toggleItalic().run()}>
+      <button
+        onClick={() => editor?.chain().focus().toggleItalic().run()}
+        type="button"
+      >
         <ItalicIcon />
       </button>
 
-      <button onClick={() => editor?.chain().focus().toggleUnderline().run()}>
+      <button
+        onClick={() => editor?.chain().focus().toggleUnderline().run()}
+        type="button"
+      >
         <UnderlineIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('left').run()}
+        type="button"
       >
         <TextAlignLeftIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('center').run()}
+        type="button"
       >
         <TextAlignCenterIcon />
       </button>
 
       <button
         onClick={() => editor?.chain().focus().setTextAlign('right').run()}
+        type="button"
       >
         <TextAlignRightIcon />
       </button>
@@ -80,15 +92,22 @@ const TextEditorHeader = ({ editor }: any) => {
         onClick={() => {
           editor?.chain().focus().setTextAlign('justify').run();
         }}
+        type="button"
       >
         <TextAlignJustifyIcon />
       </button>
 
-      <button onClick={() => editor?.chain().focus().toggleBulletList().run()}>
+      <button
+        onClick={() => editor?.chain().focus().toggleBulletList().run()}
+        type="button"
+      >
         <ListUnorderedIcon />
       </button>
 
-      <button onClick={() => editor?.chain().focus().toggleOrderedList().run()}>
+      <button
+        onClick={() => editor?.chain().focus().toggleOrderedList().run()}
+        type="button"
+      >
         <ListOrderedIcon />
       </button>
 
@@ -97,7 +116,7 @@ const TextEditorHeader = ({ editor }: any) => {
         <input
           type="color"
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
-            editor?.chain().focus().setColor(e.currentTarget.value).run()
+            editor?.chain()?.focus()?.setColor(e.currentTarget.value)?.run()
           }
         />
       </ChangeTextColor>
@@ -112,6 +131,7 @@ const TextEditorHeader = ({ editor }: any) => {
                   onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 2 }).run()
                   }
+                  type="button"
                 >
                   Título
                 </button>
@@ -121,6 +141,7 @@ const TextEditorHeader = ({ editor }: any) => {
                   onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 3 }).run()
                   }
+                  type="button"
                 >
                   Sub-Título
                 </button>
@@ -128,6 +149,7 @@ const TextEditorHeader = ({ editor }: any) => {
               <li>
                 <button
                   onClick={() => editor.chain().focus().setParagraph().run()}
+                  type="button"
                 >
                   Texto
                 </button>

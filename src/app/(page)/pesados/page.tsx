@@ -28,7 +28,7 @@ export default function ConsortiumTrucks() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Consórcio de Pesados" />
-            <S.SubtitleTop>Realize o seu sonho</S.SubtitleTop>
+            <S.SubtitleTop>Comece ou amplie a sua frota!</S.SubtitleTop>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

@@ -4,6 +4,7 @@ import { ChevronTopIcon, LogoutIcon, PersonIcon } from '@/assets/icons';
 import { removeCookies } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import cookieClass from '@/utils/cookieClass';
+import Image from 'next/image';
 
 export default function LogoutPanel() {
   const [modalLogOutOpen, setModalLogOutOpen] = useState<boolean>(false);
@@ -36,7 +37,13 @@ export default function LogoutPanel() {
         }}
       >
         <div className="avatarPerson">
-          <PersonIcon />
+          {/* <PersonIcon /> */}
+          <Image
+            src="/images/consorlina.jpeg"
+            alt="Consorlina"
+            width={30}
+            height={30}
+          />
         </div>
         <ChevronTopIcon />
       </button>

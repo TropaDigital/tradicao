@@ -10,16 +10,16 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: var(--gray-200);
+    border: 1px dashed var(--dark);
     border-radius: 8px;
 
     .inputImage {
       position: absolute;
-      border: 1px dashed var(--dark);
       background-color: transparent;
-      border-radius: 8px;
       width: 100%;
       height: 100%;
       color: transparent;
+      opacity: 0;
 
       cursor: pointer;
 

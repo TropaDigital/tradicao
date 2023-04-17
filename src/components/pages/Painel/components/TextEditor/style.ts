@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-// import { colors } from '../../../../assets/styles/mixin'
 
 export const TextEditorContainer = styled.div`
-  margin: 32px 0;
-
   .ProseMirror {
     border: 1px solid var(--gray-300);
     min-height: 405px;
@@ -14,6 +11,14 @@ export const TextEditorContainer = styled.div`
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
     outline: none;
+
+    p.is-editor-empty:first-child::before {
+      color: #adb5bd;
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
 
     :focus {
       border: 1px solid var(--gray-500);
@@ -80,6 +85,12 @@ export const TextEditorContainer = styled.div`
     .strong .italic .underline {
       font-weight: bold;
       font-style: italic;
+      text-decoration: underline;
+    }
+
+    .link {
+      color: var(--dark);
+      cursor: pointer;
       text-decoration: underline;
     }
 

@@ -2,6 +2,7 @@
 
 import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { IGetContemplados } from '@/services/contemplados/types';
@@ -17,6 +18,7 @@ import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
@@ -43,8 +45,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteRelatorio } = useDeleteRelatorio();
   const { deleteCurriculo } = useDeleteCurriculo();
   const { deleteRepresentante } = useDeleteRepresentante();
+  const { deletePost } = useDeletePost();
 
   const pathname = usePathname();
+  const router = useRouter();
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -60,7 +64,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
         | 'unidade'
         | 'relatorio'
         | 'candidato'
-        | 'representante',
+        | 'representante'
+        | 'postagem',
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -72,7 +77,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
       | 'unidade'
       | 'relatorio'
       | 'candidato'
-      | 'representante';
+      | 'representante'
+      | 'postagem';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -108,6 +114,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
     if (itemType === 'representante') {
       deleteRepresentante(itemID);
     }
+
+    if (itemType === 'postagem') {
+      deletePost(itemID);
+    }
   };
 
   useEffect(() => {
@@ -115,6 +125,15 @@ export default function Table({ title, data, search, header }: ITableProps) {
       setDataInternal([...data]);
     }
   }, [data]);
+
+  function sendPostThroughPage() {
+    setModalOpen('');
+    router?.push('/painel/blog/postagem');
+
+    if (localStorage !== undefined) {
+      localStorage.setItem('actualPost', JSON.stringify(actualItem));
+    }
+  }
 
   return (
     <>
@@ -173,6 +192,12 @@ export default function Table({ title, data, search, header }: ITableProps) {
             )}
           </Modal>
         )}
+
+        <>
+          {modalOpen === 'editar' && pathname?.includes('blog')
+            ? sendPostThroughPage()
+            : null}
+        </>
 
         {modalOpen === 'excluir' && (
           <Modal

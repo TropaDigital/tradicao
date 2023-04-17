@@ -4,14 +4,22 @@ import React from 'react';
 import * as S from './styles';
 import { IPostCard } from './types';
 
-const PostCard = ({ date, image, subtitle, title }: IPostCard) => {
+const PostCard = ({ date, image, subtitle, title, postId }: IPostCard) => {
+  function setPostIdToLocalStorage() {
+    localStorage?.setItem('postId', postId?.toString());
+  }
+
   return (
     <Link
-      href={title
-        ?.toLowerCase()
-        ?.normalize('NFD')
-        ?.trim()
-        ?.replaceAll(' ', '-')}
+      href={
+        '/blog/' +
+        title
+          ?.normalize('NFD')
+          ?.replace(/[\u0300-\u036f]/g, '')
+          ?.replaceAll(' ', '-')
+          ?.toLowerCase()
+      }
+      onClick={setPostIdToLocalStorage}
     >
       <S.Container>
         <div className="post-date">{date}</div>

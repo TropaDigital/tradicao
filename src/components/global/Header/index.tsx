@@ -12,6 +12,7 @@ import {
 import Button from '@/components/UI/Button';
 import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -65,17 +66,13 @@ const Header = () => {
           path: '/canal-de-denuncia'
         },
         {
-          subTitle: 'Universidade Tradição',
-          path: '/universidade'
-        },
-        {
           subTitle: 'Atendimento',
           path: '/canal-de-denuncia'
         }
       ]
     },
     {
-      title: 'O Consórcio',
+      title: 'Consórcio',
       path: pathName,
       subOptions: [
         {
@@ -126,7 +123,7 @@ const Header = () => {
     },
     {
       icon: <JornalIcon />,
-      link: '/',
+      link: '/blog',
       text: 'Blog'
     },
     {
@@ -180,7 +177,7 @@ const Header = () => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       setIsHovered(false);
-    }, 500); // 1 seg
+    }, 500); // .5 seg
   }
 
   return (
@@ -220,7 +217,12 @@ const Header = () => {
       <S.HeaderContainer className={'nav-' + scrollDirection}>
         <Link href="/">
           <div className="logo">
-            <DefaultLogo width={262} height={77} />
+            <Image
+              src="/images/logo-default.png"
+              alt="Logo Consórcio Tradição"
+              width={262}
+              height={77}
+            />
           </div>
         </Link>
 

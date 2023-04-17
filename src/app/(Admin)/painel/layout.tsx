@@ -15,6 +15,7 @@ import panelConfig from '../../../components/pages/Painel/panelConfig.json';
 import LogoutPanel from '../../../components/pages/Painel/components/LogoutPanel';
 import Link from 'next/link';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import Image from 'next/image';
 
 interface ILayoutPanelProps {
   children: ReactNode;
@@ -30,7 +31,13 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
           <div className="leftSideWithLogo">
             <Link href="/">
               {sideBarIsOpen ? (
-                <DefaultLogo width={180} height={70} />
+                // <DefaultLogo width={180} height={70} />
+                <Image
+                  src="/images/logo-default.png"
+                  alt="Logo Consórcio Tradição"
+                  width={180}
+                  height={80}
+                />
               ) : (
                 <DefaultBrasao />
               )}

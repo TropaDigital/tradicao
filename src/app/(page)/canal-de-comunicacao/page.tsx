@@ -27,7 +27,7 @@ const CompliancePage = () => {
       />
       <CenterWrapper>
         <S.Container>
-          <MainTitle title="Canal de Denúncia" />
+          <MainTitle title="Canal de Comunicação" />
           <S.TextContainer>
             <p className="compliance-text">
               Temos como objetivo estabelecer um ambiente com condutas éticas,
@@ -43,21 +43,21 @@ const CompliancePage = () => {
 
             <p className="compliance-text">
               Caso tenha relatado alguma situação desse nível praticada por
-              algum colaborador, representante, fornecedor ou cliente da
-              tradição. Sinta-se seguro para nos relatar o ocorrido. este canal
-              é totalmente confidencial e caso deseje, pode-se realizar uma
-              denúncia anônima. Iremos analisar e investigar todas as denúncias,
-              para darmos a devida tratativa ao ocorrido.
+              algum colaborador, representante, fornecedor ou cliente do
+              Consórcio Tradição, sinta-se seguro para nos relatar o ocorrido.
+              Este canal é totalmente confidencial e caso deseje, pode-se
+              realizar uma denúncia anônima. Iremos analisar e investigar todas
+              as denúncias, para darmos a devida tratativa ao ocorrido.
             </p>
           </S.TextContainer>
 
           <S.ButtonsWrapper>
-            <Button degrade onClick={() => setIsComplaintFormOpen(true)}>
-              Preencher Novo Formulário
-            </Button>
             <Button degrade>
-              <Link href="/contato" style={{ color: 'white' }}>
-                Consulte a Situação de sua Denúncia
+              <Link
+                href="https://consorciotradicao.becompliance.com/canal-etica/canal-denuncias?origin=%242y%2410%24vDOtzlOH1iiZPMcSHdYQl.wBKTwexv53A90IsFq%2FsLrEPRoiB6t5a"
+                style={{ color: 'white' }}
+              >
+                Acessar Canal de Ética
               </Link>
             </Button>
           </S.ButtonsWrapper>
