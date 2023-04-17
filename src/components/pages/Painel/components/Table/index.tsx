@@ -2,6 +2,7 @@
 
 import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
 import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
@@ -46,6 +47,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteCurriculo } = useDeleteCurriculo();
   const { deleteRepresentante } = useDeleteRepresentante();
   const { deletePost } = useDeletePost();
+  const { deleteAssembleia } = useDeleteAssembleia();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -58,14 +60,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
-      itemType: getKey[0]?.split('_')?.pop() as
-        | 'contemplado'
-        | 'financeira'
-        | 'unidade'
-        | 'relatorio'
-        | 'candidato'
-        | 'representante'
-        | 'postagem',
+      itemType: getKey[0]?.split('_')?.pop() as any,
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -126,12 +121,16 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }, [data]);
 
-  function sendPostThroughPage() {
+  function sendItemThroughPage(url: string) {
     setModalOpen('');
-    router?.push('/painel/blog/postagem');
+    router?.push(`/painel/${url}`);
 
-    if (localStorage !== undefined) {
+    if (localStorage !== undefined && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
+    }
+
+    if (!url?.includes('postagem')) {
+      localStorage?.setItem('assembleia_id', actualItem?.assembleia_id);
     }
   }
 
@@ -195,7 +194,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
 
         <>
           {modalOpen === 'editar' && pathname?.includes('blog')
-            ? sendPostThroughPage()
+            ? sendItemThroughPage('blog/postagem')
+            : null}
+
+          {modalOpen === 'editar' && pathname?.includes('assembleias')
+            ? sendItemThroughPage('assembleias/visualizar-assembleia')
             : null}
         </>
 

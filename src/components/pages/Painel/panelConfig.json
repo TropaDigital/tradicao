@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Assembleias",
+      "path": "assembleias"
+    },
+    {
       "name": "Blog",
       "path": "blog"
     },

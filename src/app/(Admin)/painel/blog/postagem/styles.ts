@@ -30,10 +30,14 @@ export const InitialPostWrapper = styled.div`
   margin-bottom: 30px;
 
   .post-thumb-wrapper {
-    border-radius: 10px;
-    /* overflow: hidden; */
-    height: 100%;
-    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    height: fit-content;
+    width: fit-content;
+
+    img {
+      object-fit: fill;
+    }
   }
 
   @media (max-width: 1300px) {
@@ -42,11 +46,11 @@ export const InitialPostWrapper = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
-  /* display: flex;
-  justify-content: flex-end;
-  margin-top: 30px; */
+  margin-top: 30px;
 
   .buttonContainer {
+    display: flex;
+    gap: 18px;
     max-width: 500px;
   }
 `;

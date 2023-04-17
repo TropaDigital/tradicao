@@ -283,7 +283,7 @@ const PostPanel = () => {
                     type="submit"
                     onClick={() => setFieldValue('conteudo', editor?.getHTML())}
                   >
-                    Criar Postagem
+                    {currentPost ? 'Editar' : 'Publicar'} Postagem
                   </Button>
                 </div>
               </S.ButtonsWrapper>
