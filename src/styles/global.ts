@@ -1,6 +1,12 @@
-'use client'
+'use client';
 
 import { createGlobalStyle } from 'styled-components';
+import { Ubuntu } from 'next/font/google';
+
+const ubuntu = Ubuntu({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700']
+});
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -8,9 +14,11 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    list-style: none;
     text-decoration: none;
+    list-style: none;
 }
+
+
 
 :root {
   /*SCROLLBAR */
@@ -18,38 +26,41 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Colors ==========*/
 
+
   //Color-Primary
-  --primary: #0046B5;
-  --primary-dark: #101E36;
-  --primary-light: #3A6EC1;
+  --primary: #0036C6;
+  --primary-mid: #213365;
+  --primary-dark: #152347;
+  --primary-light: #3E65D0;
 
   //Color-Secundary
-  --secundary: #00C899;
-  --secundary-dark: #15473C;
-  --secundary-light: #3ED0AE;
+  --secondary: #00D35E;
+  --secondary-dark: #195434;
+  --secondary-light: #42DB87;
 
   //Status-Color
-  --success: #12B76A;
-  --Danger: #F04438;
-  --Warning: #F79009;
-  --Info: #0098FF;
+  --status-success: #06D6A0;
+  --status-danger: #E62965;
+  --status-waring: #FAAE42;
+  --status-info: #039BE5;
 
   //Gray-Color
-  --gray-25: #FCFCFD;
-  --gray-50: #F9FAFB;
-  --gray-100: #F2F4F7;
-  --gray-200: #EAECF0;
-  --gray-300: #D0D5DD;
-  --gray-400: #98A2B3;
-  --gray-500: #667085;
-  --gray-600: #475467;
-  --gray-700: #344054;
-  --gray-800: #1D2939;
-  --gray-900: #101828;
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
 
-  --dark: #18191A;
-  --light: #ffffff;
+  --dark: #242526;
+  --light: #EEEEEE;
+  --white: #FFFFFF;
+  --black: #000000;
   --background-primary: #ffffff;
+  --background-secondary: #F6F7FB;
 
   //Others-Colors
   --Purple: #8269B2;
@@ -60,6 +71,8 @@ export const GlobalStyles = createGlobalStyle`
   --Yellow: #FFD66E;
 
   //Degrade
+  --degrade-primary: linear-gradient(77.17deg, #0036C6 -0.7%, #3E65D0 93.94%);
+  --degrade-secondary: linear-gradient(77.17deg, #00D35E -0.7%, #42DB87 93.94%);
   --degrade-green: linear-gradient(250.88deg, #93E088 0%, #73B969 97.63%);
   --degrade-purple: linear-gradient(250.88deg, #8269B2 0%, #533D80 97.63%);
   --degrade-blue: linear-gradient(250.88deg, #37C3FF 0%, #2C98C6 97.63%);
@@ -100,7 +113,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /*========== Fonts ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: 'Inter', sans-serif;
+  --body-font: 'Ubuntu', sans-serif;
 
   --text-smal-xs: 0.75rem; // 12px
   --text-smal-sm: 0.875rem; // 14px
@@ -110,6 +123,7 @@ export const GlobalStyles = createGlobalStyle`
   --text-headline-sm: 1.5rem; // 24px
   --text-headline-md: 1.875rem; // 30px
   --text-headline-lg: 2.25rem; // 36px
+  --text-headline-lgx: 2.5rem; // 40px
   --text-display-sm: 3rem; // 48px
   --text-display-md: 3.75rem; // 60px
   --text-display-lg: 4.5rem; // 72px
@@ -149,10 +163,6 @@ a {
   text-decoration: none;
 }
 
-ul{
-    list-style: none;
-}
-
 img{
     max-width: 100%;
     height: auto;
@@ -171,10 +181,19 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+strong {
+  font-weight: var(--weight-bold);
+  /* color: var(--gray-600); */
+}
+
 fieldset {
-  margin-top: 12px;
+  margin-top: 1rem;
   min-inline-size: auto;
   border: 0;
+}
+
+ul, li, ol{
+  list-style: none;
 }
 
 legend {
@@ -182,11 +201,12 @@ legend {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-
+  margin-bottom: 10px;
+  
   font-size: var(--text-smal-sm);
-  font-weight: var(--weight-medium);
-  color: var(--gray-700);
+  font-weight: var(--weight-bold);
+  text-align: center;
+  color: #0036C6;
 }
 
  // font-size: 16px (desktop)
@@ -203,5 +223,53 @@ legend {
   button {
     cursor: pointer;
   }
-`;
 
+// RANGE
+  .SliderRoot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    touch-action: none;
+    width: 100%;
+    height: 20px;
+  }
+
+  .SliderRoot:hover {
+    /* background-color: #3E65D0; */
+    cursor: pointer;
+  }
+
+  .SliderTrack {
+    background-color: #D9D9D9;
+    position: relative;
+    flex-grow: 1;
+    border-radius: 9999px;
+    height: 4px;
+  }
+
+  .SliderRange {
+    position: absolute;
+    background-color: #D9D9D9;
+    border-radius: 9999px;
+    height: 100%;
+  }
+
+  .SliderThumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px #343A40;
+    border-radius: 10px;
+  }
+  .SliderThumb:hover {
+    background-color: #3E65D0;
+  }
+  .SliderThumb:focus {
+    outline: none;
+    /* box-shadow: 0 0 0 5px transparent; */
+    box-shadow: 0 2px 10px #343A40;
+  }
+
+`;

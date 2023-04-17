@@ -1,0 +1,48 @@
+{
+  "pages": [
+    {
+      "name": "Blog",
+      "path": "blog"
+    },
+    {
+      "name": "Contemplados",
+      "path": "contemplados"
+    },
+    {
+      "name": "Currículos",
+      "path": "curriculos"
+    },
+    {
+      "name": "Demonstrações",
+      "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Regulamento",
+      "path": "regulamento"
+    },
+    {
+      "name": "Relatórios",
+      "path": "relatorios-de-ouvidoria"
+    },
+    {
+      "name": "Representantes",
+      "path": "representantes"
+    },
+    {
+      "name": "Unidades",
+      "path": "unidades"
+    }
+  ],
+  "colors": {
+    "primary": "var(--primary)",
+    "primaryDark": "var(--primary-dark)",
+    "secondary": "var(--secondary)",
+    "secondaryDark": "var(--secondary-dark)",
+    "gray100": "var(--gray-100)",
+    "gray200": "var(--gray-200)",
+    "dark": "var(--dark)",
+    "light": "var(--light)",
+    "black": "var(--black)",
+    "white": "var(--white)"
+  }
+}

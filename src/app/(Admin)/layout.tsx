@@ -14,11 +14,8 @@ export default function RootLayout({
   return (
     <section>
       <StyledJsxRegistry>
-        <nav>
-          Layout Painel
-        </nav>
-        {children}
         <GlobalStyles />
+        {children}
       </StyledJsxRegistry>
     </section>
   );

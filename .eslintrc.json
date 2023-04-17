@@ -3,15 +3,13 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
+  "extends": ["plugin:react/recommended", "xo", "prettier"],
+  "overrides": [
+    {
+      "extends": ["xo-typescript", "prettier"],
+      "files": ["*.ts", "*.tsx"]
+    }
   ],
-  "overrides": [],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -28,26 +26,10 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off", // para trabalhar com NextJS apenas
-    "prettier/prettier": "error",
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        // example configuration
-        "newlinesBetween": "always",
-        "groups": [
-          ["/^react/", "/^next", "/@next"],
-          "/components",
-          "module",
-          "/^@shared/",
-          "/absolute",
-          ["parent", "sibling", "index"]
-        ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
-      }
-    ]
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "@typescript-eslint/space-infix-ops": "error",
+
+    "selector": "variable",
+    "format": ["PascalCase"]
   }
 }
