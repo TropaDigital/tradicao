@@ -2,6 +2,7 @@
 
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
+import PaginationData from '@/components/shared/PaginationData';
 import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../../styles';
@@ -46,17 +47,22 @@ const ViewAssembleiaPage = () => {
   ];
 
   const [query, setQuery] = useState('');
+  const [actualPage, setActualPage] = useState(1);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const currentAssembleia = localStorage?.getItem('assembleia_id');
-      setQuery(`-contemplados?assembleia_id=${currentAssembleia}`);
+      const currentAssembleia = localStorage?.getItem('id_assembleia');
+      setQuery(`-contemplados?ordem=desc&id_assembleia=${currentAssembleia}&`);
     }
   }, []);
 
-  const { allAssembleias } = useGetAllAssembleias(query);
+  const { allAssembleias } = useGetAllAssembleias(
+    query + `perPage=10&currentPage=${actualPage}`
+  );
 
-  console.log(allAssembleias);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
 
   return (
     <>
@@ -67,7 +73,14 @@ const ViewAssembleiaPage = () => {
       <Table
         data={allAssembleias?.result}
         header={headerTable}
-        title={`Assembleia de ${allAssembleias?.result[0]?.titulo}`}
+        title={`Assembleia
+        `}
+      />
+
+      <PaginationData
+        data={allAssembleias}
+        handlePagination={handlePageChange}
+        page={actualPage}
       />
     </>
   );

@@ -15,7 +15,7 @@ export default function AsideBar() {
   const [showSuggests, setShowSuggests] = useState<'show' | ''>('');
 
   const { allCategorias } = useGetAllCategorias();
-  const rankingPosts = useGetAllPosts('?ordem=acesso_mes');
+  const rankingPosts = useGetAllPosts('?ordem_tipo=acesso_mes');
   const { allPosts } = useGetAllPosts(query);
   const scrollDirection = useScrollDirection();
 
@@ -59,7 +59,7 @@ export default function AsideBar() {
                         onClick={() =>
                           localStorage?.setItem(
                             'postId',
-                            String(postSuggest?.postagem_id)
+                            String(postSuggest?.id_postagem)
                           )
                         }
                       >
@@ -92,7 +92,7 @@ export default function AsideBar() {
                   onClick={() =>
                     localStorage.setItem(
                       'postId',
-                      String(rankPost?.postagem_id)
+                      String(rankPost?.id_postagem)
                     )
                   }
                 >

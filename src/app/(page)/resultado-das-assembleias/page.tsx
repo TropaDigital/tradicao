@@ -21,6 +21,12 @@ import teste from '../../../../public/images/teste.jpg';
 
 // Icons
 import { DefaultBrasao } from '@/assets/icons';
+import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
+
+// Moment
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import { IAssembleia } from '@/services/assembleia/types';
 
 interface contemplatedProps {
   id: number;
@@ -150,7 +156,9 @@ export default function Contemplated() {
     }
   ];
   const [openList, setOpenList] = useState<boolean>(false);
-  const [selectedList, setSelectedList] = useState<contemplatedProps>();
+  const [selectedList, setSelectedList] = useState<IAssembleia>();
+
+  const { allAssembleias } = useGetAllAssembleias('');
 
   return (
     <>
@@ -169,16 +177,16 @@ export default function Contemplated() {
 
       <CenterWrapper>
         <S.ContainerMid>
-          {contemplatedInfos.map((row: contemplatedProps) => (
+          {allAssembleias?.result?.map((row: IAssembleia) => (
             <S.CardContemplated
-              key={row.id}
+              key={row.id_assembleia}
               onClick={() => {
                 setOpenList(true);
                 setSelectedList(row);
               }}
             >
               <S.CardTopContemplated>
-                <span>{row.titleDate}</span>
+                <span>{moment(row.criado).format('DD MMM')}</span>
                 <Image
                   src={teste}
                   width={400}
@@ -191,9 +199,7 @@ export default function Contemplated() {
                 </div>
               </S.CardTopContemplated>
 
-              <S.CardBottomContemplated>
-                {row.dateCard}
-              </S.CardBottomContemplated>
+              <S.CardBottomContemplated>{row.titulo}</S.CardBottomContemplated>
             </S.CardContemplated>
           ))}
         </S.ContainerMid>

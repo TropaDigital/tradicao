@@ -5,10 +5,8 @@ import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
 import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
-import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { IGetContemplados } from '@/services/contemplados/types';
 import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
-import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
 import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
 import { IGetRelatorio } from '@/services/relatorios/types';
@@ -17,13 +15,11 @@ import { IGetRepresentante } from '@/services/representante/types';
 import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
-import { Pagination, TablePagination } from '@mui/material';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ButtonDefault from '../ButtonDefault';
+import FormContempladoAssembleia from '../forms/FormContempladoAssembleia';
 import FormContemplados from '../forms/FormContemplados';
-import FormProduct from '../forms/FormContemplados';
 import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
@@ -73,7 +69,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
       | 'relatorio'
       | 'candidato'
       | 'representante'
-      | 'postagem';
+      | 'postagem'
+      | 'assembleia';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -113,6 +110,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
     if (itemType === 'postagem') {
       deletePost(itemID);
     }
+
+    if (itemType === 'assembleia') {
+      deleteAssembleia(itemID);
+    }
   };
 
   useEffect(() => {
@@ -130,7 +131,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
 
     if (!url?.includes('postagem')) {
-      localStorage?.setItem('assembleia_id', actualItem?.assembleia_id);
+      localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
     }
   }
 
@@ -189,6 +190,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 onSubmit={() => setModalOpen('')}
               />
             )}
+
+            {pathname?.includes('visualizar-assembleia') && (
+              <FormContempladoAssembleia
+                modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
           </Modal>
         )}
 
@@ -197,7 +206,9 @@ export default function Table({ title, data, search, header }: ITableProps) {
             ? sendItemThroughPage('blog/postagem')
             : null}
 
-          {modalOpen === 'editar' && pathname?.includes('assembleias')
+          {modalOpen === 'editar' &&
+          pathname?.includes('assembleias') &&
+          !pathname?.includes('visualizar')
             ? sendItemThroughPage('assembleias/visualizar-assembleia')
             : null}
         </>

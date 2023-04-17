@@ -11,6 +11,13 @@ class AssembleiaClass {
     const response: AxiosResponse = await API.delete(`/assembleia/${id}`);
     return response?.data;
   }
+
+  async createAssembleia(assembleiaBody: FormData) {
+    const response: AxiosResponse = await API.post(`/assembleia-upload`, {
+      assembleiaBody
+    });
+    return response?.data;
+  }
 }
 
 export default new AssembleiaClass();
