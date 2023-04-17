@@ -18,17 +18,20 @@ export const Container = styled.div`
     background-color: rgba(33, 37, 41, 0.5);
     backdrop-filter: blur(5px);
   }
-  .closeModal {
+  .closeModalContainer {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 15px;
-    cursor: pointer;
+    margin-bottom: 10px;
+    .closeModal {
+      cursor: pointer;
+    }
   }
   .modalContent {
     position: relative;
     background-color: var(--white);
     max-width: 528px;
     width: 100%;
+    max-height: 80%;
     height: auto;
     padding: 24px;
     border-radius: 12px;
@@ -53,12 +56,12 @@ export const Container = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--dark);
+      background: var(--primary-light);
       border-radius: 12px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: var(--secondary-dark);
+      background: var(--primary);
       border-radius: 12px;
     }
   }

@@ -10,7 +10,9 @@ import {
   UniversityIcon
 } from '@/assets/icons';
 import Button from '@/components/UI/Button';
+import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -24,10 +26,21 @@ const Header = () => {
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
   }, []);
+
+  useEffect(() => {
+    if (scrollDirection === 'down') {
+      setIsMobileOpen(false);
+      setIsSubMenuConsorcioOpen(false);
+      setIsSubMenuTradicaoOpen(false);
+    }
+  }, [scrollDirection]);
 
   const pathName = usePathname();
 
@@ -53,17 +66,13 @@ const Header = () => {
           path: '/canal-de-denuncia'
         },
         {
-          subTitle: 'Universidade Tradição',
-          path: '/universidade'
-        },
-        {
           subTitle: 'Atendimento',
           path: '/canal-de-denuncia'
         }
       ]
     },
     {
-      title: 'O Consórcio',
+      title: 'Consórcio',
       path: pathName,
       subOptions: [
         {
@@ -77,6 +86,10 @@ const Header = () => {
         {
           subTitle: 'Pesados',
           path: '/pesados'
+        },
+        {
+          subTitle: 'Serviços',
+          path: '/servicos'
         },
         {
           subTitle: 'Regulamento',
@@ -110,7 +123,7 @@ const Header = () => {
     },
     {
       icon: <JornalIcon />,
-      link: '/',
+      link: '/blog',
       text: 'Blog'
     },
     {
@@ -156,6 +169,17 @@ const Header = () => {
   useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
   useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
 
+  function handleMouseEnter() {
+    setIsHovered(true);
+  }
+  function handleMouseLeave() {
+    let timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      setIsHovered(false);
+    }, 500); // .5 seg
+  }
+
   return (
     <>
       <S.InfoContainer>
@@ -190,10 +214,15 @@ const Header = () => {
         </ul>
       </S.InfoContainer>
 
-      <S.HeaderContainer>
+      <S.HeaderContainer className={'nav-' + scrollDirection}>
         <Link href="/">
           <div className="logo">
-            <DefaultLogo width={262} height={77} />
+            <Image
+              src="/images/logo-default.png"
+              alt="Logo Consórcio Tradição"
+              width={262}
+              height={77}
+            />
           </div>
         </Link>
 
@@ -256,15 +285,36 @@ const Header = () => {
                 return (
                   <>
                     {page.title === 'Área do Cliente' ? (
-                      <li key={key}>
+                      <li key={key} className="client-button-container">
                         <Button
                           radius="rounded"
                           icon={<PersonIcon color={'var(--white)'} />}
                           className="client-area-button"
-                          onClick={() => (location.href = `${page.path}`)}
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
                         >
                           Área do Cliente
                         </Button>
+
+                        <S.ClientAreaSubMenu isHovered={isHovered}>
+                          <ul>
+                            <li>
+                              <Link href="resultado-das-assembleias">
+                                Resultado das Assembleias
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="recursos-nao-procurados">
+                                Recursos não procurados
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="grupos-encerrados">
+                                Grupos encerrados
+                              </Link>
+                            </li>
+                          </ul>
+                        </S.ClientAreaSubMenu>
                       </li>
                     ) : page.subOptions ? (
                       <li key={key} className="submenu-options">

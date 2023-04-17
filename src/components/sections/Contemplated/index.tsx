@@ -2,9 +2,6 @@
 import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
 
-// Image
-import Person from '/public/images/imagePerson.jpg';
-
 // Libraries
 import Slider from 'react-slick';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
@@ -48,13 +45,17 @@ export default function Contemplated() {
     <GreenCarousel title="Contemplados" height="350" marginBottom="110">
       <Slider {...SlideSettings}>
         {allContemplados?.dataPaginada?.map((contemplado) => {
-          if (contemplado?.status === 'Inativo') return;
+          if (
+            contemplado?.status === 'Inativo' ||
+            contemplado?.depoimento === '⠀'
+          )
+            return;
           return (
             <CardCarousel
               width="360"
               heigth="300"
               padding="20"
-              image={contemplado?.contempladoImagens[0].url_foto}
+              image={contemplado?.contempladoImagens[0]?.url_foto ?? ''}
               imageType={false}
               bigText={false}
               title={contemplado?.nome}

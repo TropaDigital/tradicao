@@ -20,12 +20,12 @@ const UnidadesPainelPage = () => {
     {
       key: 'titulo',
       label: 'Nome Unidade',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'endereco',
       label: 'Endereço',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'bairro',
@@ -35,7 +35,7 @@ const UnidadesPainelPage = () => {
     {
       key: 'cidade',
       label: 'Cidade',
-      type: 'string'
+      type: 'longText'
     },
     {
       key: 'uf',
@@ -59,7 +59,7 @@ const UnidadesPainelPage = () => {
   const [searchUnit, setSearchUnit] = useState<string>('');
 
   const { units } = useGetUnitsByQuery(
-    searchUnit + `limit=16&page=${actualPage}`
+    searchUnit + `perPage=16&currentPage=${actualPage}`
   );
 
   const debounced = useDebouncedCallback(
@@ -78,6 +78,12 @@ const UnidadesPainelPage = () => {
   const handleSearch = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
   };
+
+  useEffect(() => {
+    if (units?.result?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [units]);
 
   return (
     <>
@@ -110,7 +116,7 @@ const UnidadesPainelPage = () => {
       </S.HeaderDashboard>
       <Table
         header={headerTable}
-        data={units?.dataPaginada}
+        data={units?.result}
         title="Todas as unidades"
         search={
           <DefaultInput

@@ -1,4 +1,4 @@
-import { usePostCurriculum } from '@/services/curriculum/POST/usePostCurriculum';
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 
@@ -25,13 +25,13 @@ const UploadFile = ({
     if (errors) setError(errors);
   }, [errors]);
 
-  const { postCurriculum } = usePostCurriculum();
+  const { postFile } = usePostFile();
 
   const loadCurriculum = async (e: React.ChangeEvent<HTMLInputElement>) => {
     let formData = new FormData();
     if (e?.target?.files?.length) {
       formData.set('file', e?.target?.files[0]);
-      let response = await postCurriculum(formData);
+      let response = await postFile(formData);
       onPostFile(response, e);
     }
   };

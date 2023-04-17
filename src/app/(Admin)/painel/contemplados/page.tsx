@@ -2,7 +2,6 @@
 
 import { SearchIcon } from '@/assets/icons';
 import FormContemplados from '@/components/pages/Painel/components/forms/FormContemplados';
-import FormProduct from '@/components/pages/Painel/components/forms/FormContemplados';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';
@@ -10,11 +9,8 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
-import cookieClass from '@/utils/cookieClass';
-import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { useDebounce } from 'use-debounce';
 import * as S from '../styles';
 
 const ContempladosPage = () => {
@@ -24,8 +20,9 @@ const ContempladosPage = () => {
       label: 'Data de Criação',
       type: 'date'
     },
+
     {
-      key: 'contempladoImagem',
+      key: 'contempladoImagens',
       label: 'Foto',
       type: 'image'
     },
@@ -37,6 +34,11 @@ const ContempladosPage = () => {
     {
       key: 'depoimento',
       label: 'Depoimento',
+      type: 'longText'
+    },
+    {
+      key: 'categoria',
+      label: 'Consórcio',
       type: 'string'
     },
     {
@@ -77,6 +79,12 @@ const ContempladosPage = () => {
     // delay in ms
     300
   );
+
+  useEffect(() => {
+    if (allContemplados?.dataPaginada?.length === 0) {
+      setActualPage((state) => state - 1);
+    }
+  }, [allContemplados]);
 
   return (
     <>

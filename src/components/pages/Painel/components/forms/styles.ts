@@ -29,6 +29,10 @@ export const Container = styled.div`
   }
   .buttonsWrapper {
     justify-content: flex-end;
+    @media (max-width: 420px) {
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
   }
   .button {
     max-width: min-content;

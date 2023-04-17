@@ -14,6 +14,8 @@ import SelectSideBar from '../../../components/pages/Painel/components/SelectSid
 import panelConfig from '../../../components/pages/Painel/panelConfig.json';
 import LogoutPanel from '../../../components/pages/Painel/components/LogoutPanel';
 import Link from 'next/link';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
+import Image from 'next/image';
 
 interface ILayoutPanelProps {
   children: ReactNode;
@@ -29,7 +31,13 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
           <div className="leftSideWithLogo">
             <Link href="/">
               {sideBarIsOpen ? (
-                <DefaultLogo width={180} height={70} />
+                // <DefaultLogo width={180} height={70} />
+                <Image
+                  src="/images/logo-default.png"
+                  alt="Logo Consórcio Tradição"
+                  width={180}
+                  height={80}
+                />
               ) : (
                 <DefaultBrasao />
               )}
@@ -38,7 +46,10 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
           <div className="rigthSideWithAvatar">
             <div className="navigateOptions">
               <div className="sideBarMenuWrapper">
-                <div onClick={() => setSideBarIsOpen(!sideBarIsOpen)}>
+                <div
+                  onClick={() => setSideBarIsOpen(!sideBarIsOpen)}
+                  className="menuHamburguerContainer"
+                >
                   <div
                     className={`menuHamburger ${
                       sideBarIsOpen ? 'opened' : 'closed'
@@ -46,7 +57,11 @@ export default function LayoutPainel({ children }: ILayoutPanelProps) {
                   ></div>
                 </div>
                 <div className="sideBarMenu">
-                  {panelConfig.pages.map((page, key) => {
+                  <Link href="/" className="logoSideBarMenu">
+                    <DefaultBrasao />
+                  </Link>
+
+                  {panelConfig?.pages?.map((page, key) => {
                     return (
                       <Link href={`/painel/${page.path}`} key={key}>
                         {page.name}

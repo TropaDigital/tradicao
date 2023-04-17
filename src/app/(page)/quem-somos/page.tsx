@@ -136,8 +136,8 @@ export default function QuemSomos() {
           autoridade na modalidade alternativa de investimento a longo prazo.
           Sempre possibilitando conquistas, sem juros, com parcelas flexíveis,
           sendo assim, uma forma acessível de investir dinheiro para todos. Além
-          disso, contamos com representantes por todo o Brasil, nossa missão é a
-          realização do consumidor possuir o próprio bem, sempre com
+          disso, contamos com representantes por todo o Brasil, tendo como
+          missão a realização do consumidor possuir o próprio bem, sempre com
           transparência e qualidade!
         </S.AboutUsContent>
         <S.AboutUsSubtitle>
@@ -223,7 +223,7 @@ export default function QuemSomos() {
             <div className="gridTemplateValuesCard">
               {MORAL_VALUES_CARD_ITENS.map(
                 (row: any | 'tipar', index: number) => (
-                  <S.MoralValuesCardItem>
+                  <S.MoralValuesCardItem key={index}>
                     {row.icon}
                     <p className="moralValuesCardItemText">{row.text}</p>
                   </S.MoralValuesCardItem>
@@ -244,7 +244,7 @@ export default function QuemSomos() {
             className="bgHomeVideo"
             poster={'images/bgImageVideo.png'}
           >
-            <source src={'/videos/testVideo.mp4'} type={'video/mp4'} />
+            <source src={'/videos/quem_somos.mp4'} type={'video/mp4'} />
           </video>
 
           <div className="overlayPlay">

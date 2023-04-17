@@ -106,7 +106,7 @@ export const Container = styled.div<ISideBarProps>`
           padding: 60px 20px;
 
           a {
-            color: var(--secondary-dark);
+            color: var(--dark);
             font-weight: 500;
           }
 

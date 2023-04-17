@@ -13,8 +13,10 @@ export default function Modal({ onClose, setData, children }: modalProps) {
         }}
       ></div>
       <div className="modalContent">
-        <div className="closeModal" onClick={() => onClose()}>
-          <CloseIcon size={30} color={`var(--status-danger)`} />
+        <div className="closeModalContainer">
+          <div className="closeModal" onClick={() => onClose()}>
+            <CloseIcon size={30} color={`var(--status-danger)`} />
+          </div>
         </div>
         {children}
       </div>

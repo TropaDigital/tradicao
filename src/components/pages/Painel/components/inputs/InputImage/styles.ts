@@ -1,25 +1,25 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   .inputWrapper {
     position: relative;
     height: 200px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--gray-200);
+    border: 1px dashed var(--dark);
     border-radius: 8px;
 
     .inputImage {
       position: absolute;
-      border: 1px dashed var(--dark);
       background-color: transparent;
-      border-radius: 8px;
       width: 100%;
       height: 100%;
       color: transparent;
+      opacity: 0;
 
       cursor: pointer;
 
@@ -49,4 +49,8 @@ export const Container = styled.div`
       }
     }
   }
-`
+  .errorValidation {
+    font-size: 15px;
+    color: var(--status-danger);
+  }
+`;

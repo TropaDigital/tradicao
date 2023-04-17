@@ -2,6 +2,7 @@
 
 import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
 import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { IGetContemplados } from '@/services/contemplados/types';
@@ -10,16 +11,22 @@ import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
 import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
 import { IGetRelatorio } from '@/services/relatorios/types';
+import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
+import { IGetRepresentante } from '@/services/representante/types';
+import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, TablePagination } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ButtonDefault from '../ButtonDefault';
 import FormContemplados from '../forms/FormContemplados';
 import FormProduct from '../forms/FormContemplados';
+import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
+import FormRepresentante from '../forms/FormRepresentante';
 import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
@@ -36,8 +43,12 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteDemonstracao } = useDeleteDemonstracoes();
   const { deleteUnit } = useDeleteUnit();
   const { deleteRelatorio } = useDeleteRelatorio();
+  const { deleteCurriculo } = useDeleteCurriculo();
+  const { deleteRepresentante } = useDeleteRepresentante();
+  const { deletePost } = useDeletePost();
 
   const pathname = usePathname();
+  const router = useRouter();
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -51,13 +62,23 @@ export default function Table({ title, data, search, header }: ITableProps) {
         | 'contemplado'
         | 'financeira'
         | 'unidade'
-        | 'relatorio',
+        | 'relatorio'
+        | 'candidato'
+        | 'representante'
+        | 'postagem',
       itemID: actualItem[getKey[0]] as number
     };
   };
 
   const removeItem = (itemToDelete: {
-    itemType: 'contemplado' | 'financeira' | 'unidade' | 'relatorio';
+    itemType:
+      | 'contemplado'
+      | 'financeira'
+      | 'unidade'
+      | 'relatorio'
+      | 'candidato'
+      | 'representante'
+      | 'postagem';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -69,6 +90,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
         id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
       });
     }
+
     if (itemType === 'financeira') {
       deleteDemonstracao(itemID);
       deleteFile({
@@ -76,11 +98,25 @@ export default function Table({ title, data, search, header }: ITableProps) {
         id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
       });
     }
+
+    if (itemType === 'candidato') {
+      deleteCurriculo(itemID);
+    }
+
     if (itemType === 'unidade') {
       deleteUnit(itemID);
     }
+
     if (itemType === 'relatorio') {
       deleteRelatorio(itemID);
+    }
+
+    if (itemType === 'representante') {
+      deleteRepresentante(itemID);
+    }
+
+    if (itemType === 'postagem') {
+      deletePost(itemID);
     }
   };
 
@@ -89,6 +125,15 @@ export default function Table({ title, data, search, header }: ITableProps) {
       setDataInternal([...data]);
     }
   }, [data]);
+
+  function sendPostThroughPage() {
+    setModalOpen('');
+    router?.push('/painel/blog/postagem');
+
+    if (localStorage !== undefined) {
+      localStorage.setItem('actualPost', JSON.stringify(actualItem));
+    }
+  }
 
   return (
     <>
@@ -100,7 +145,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
             }}
             setData={() => {}}
           >
-            {pathname?.includes('contemplado') && (
+            {pathname?.includes('contemplados') && (
               <FormContemplados
                 modalOpen="editar"
                 actualItem={actualItem as IGetContemplados}
@@ -109,6 +154,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 }}
               />
             )}
+
             {pathname?.includes('demonstracoes') && (
               <FormDemonstracoes
                 modalOpen="editar"
@@ -130,8 +176,28 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 onSubmit={() => setModalOpen('')}
               />
             )}
+            {pathname?.includes('representantes') && (
+              <FormRepresentante
+                modalOpen="editar"
+                actualItem={actualItem as IGetRepresentante}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+            {pathname?.includes('curriculo') && (
+              <FormCurriculo
+                modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
           </Modal>
         )}
+
+        <>
+          {modalOpen === 'editar' && pathname?.includes('blog')
+            ? sendPostThroughPage()
+            : null}
+        </>
 
         {modalOpen === 'excluir' && (
           <Modal
@@ -206,6 +272,17 @@ export default function Table({ title, data, search, header }: ITableProps) {
           </tbody>
         </table>
       </Container>
+      {dataInternal?.length === 0 && (
+        <h3
+          style={{
+            marginTop: '30px',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          Nenhum item foi encontrado!
+        </h3>
+      )}
     </>
   );
 }

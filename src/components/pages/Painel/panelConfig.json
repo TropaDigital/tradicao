@@ -1,8 +1,28 @@
 {
   "pages": [
     {
+      "name": "Blog",
+      "path": "blog"
+    },
+    {
       "name": "Contemplados",
       "path": "contemplados"
+    },
+    {
+      "name": "Currículos",
+      "path": "curriculos"
+    },
+    {
+      "name": "Demonstrações",
+      "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Regulamento",
+      "path": "regulamento"
+    },
+    {
+      "name": "Relatórios",
+      "path": "relatorios-de-ouvidoria"
     },
     {
       "name": "Representantes",
@@ -11,14 +31,6 @@
     {
       "name": "Unidades",
       "path": "unidades"
-    },
-    {
-      "name": "Demonstrações",
-      "path": "demonstracoes-financeiras"
-    },
-    {
-      "name": "Relatórios",
-      "path": "relatorios-de-ouvidoria"
     }
   ],
   "colors": {

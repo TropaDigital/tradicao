@@ -1,18 +1,19 @@
 import { useQuery } from 'react-query';
-import RelatioriosClass from '../index';
+import RepresentanteClass from '../index';
+import { IResponseRepresentante } from './types';
 
-export const useGetAllRepresentantes = () => {
+export const useGetAllRepresentantes = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['AllRepresentantes'],
+    ['AllRepresentantes', query],
     async () => {
-      return await RelatioriosClass.getAllCandidates();
+      return await RepresentanteClass.getAllCandidates(query);
     }
   );
 
   return {
-    allRepresentantes: data as any[],
-    isLoadingAllDemonsrations: isLoading as boolean,
-    isErrorAllDemonstrations: isError as boolean,
-    isSuccessAllDemonstrations: isSuccess as boolean
+    allRepresentantes: data as IResponseRepresentante,
+    isLoadingAllCandidates: isLoading as boolean,
+    isErrorAllDCandidates: isError as boolean,
+    isSuccessAllDCandidates: isSuccess as boolean
   };
 };

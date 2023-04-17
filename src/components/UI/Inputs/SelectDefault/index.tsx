@@ -2,7 +2,7 @@ import React, {
   useRef,
   useState,
   useCallback,
-  InputHTMLAttributes,
+  InputHTMLAttributes
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { FaAngleDown } from 'react-icons/fa';
@@ -16,12 +16,19 @@ interface ErrorInput {
 
 interface InputProps extends InputHTMLAttributes<HTMLSelectElement> {
   label: string;
-  error?: ErrorInput;
+  error?: ErrorInput | any;
   icon?: React.ComponentType<IconBaseProps>;
   placeHolder?: string;
 }
 
-export function SelectDefault({ label, error, placeHolder, children, icon: Icon, ...rest }: InputProps) {
+export function SelectDefault({
+  label,
+  error,
+  placeHolder,
+  children,
+  icon: Icon,
+  ...rest
+}: InputProps) {
   const inputRef = useRef<HTMLSelectElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -47,9 +54,8 @@ export function SelectDefault({ label, error, placeHolder, children, icon: Icon,
         isFilled={isFilled}
         isIcon={!!Icon}
       >
-
         <div className="leftInputElement">
-          {Icon && <Icon color='#CCCCCC' />}
+          {Icon && <Icon color="#CCCCCC" />}
         </div>
 
         <select
@@ -59,13 +65,12 @@ export function SelectDefault({ label, error, placeHolder, children, icon: Icon,
           id={label}
           {...rest}
         >
-        {/* <option value="0">{placeHolder ?? 'Selecione uma opção'}</option> */}
+          {/* <option value="0">{placeHolder ?? 'Selecione uma opção'}</option> */}
           {children}
         </select>
 
-
         <div className="rightInputElement">
-          <FaAngleDown color='rgba(204, 204, 204, 1)' />
+          <FaAngleDown color="rgba(204, 204, 204, 1)" />
         </div>
 
         {/* {error?.isError && (

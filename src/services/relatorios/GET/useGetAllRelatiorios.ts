@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import RelatioriosClass from '../index';
-import { IGetRelatorio } from '../types';
+import { IResponseRelatories } from './types';
 
 export const useGetlAllRelatorios = (query: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
@@ -11,13 +11,9 @@ export const useGetlAllRelatorios = (query: string) => {
   );
 
   return {
-    allRelatories: data as {
-      dataPaginada: IGetRelatorio[];
-      total: number;
-      paginas: number;
-    },
-    isLoadingAllDemonsrations: isLoading as boolean,
-    isErrorAllDemonstrations: isError as boolean,
-    isSuccessAllDemonstrations: isSuccess as boolean
+    allRelatories: data as IResponseRelatories,
+    isLoadingAllRelatories: isLoading as boolean,
+    isErrorAllDRelatories: isError as boolean,
+    isSuccessAllDRelatories: isSuccess as boolean
   };
 };

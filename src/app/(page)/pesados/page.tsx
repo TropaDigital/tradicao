@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import TruckBg from '../../../../public/images/ConsortiumTruck.png';
+import TruckBg from '../../../../public/images/consortiumTruck.png';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -28,7 +28,7 @@ export default function ConsortiumTrucks() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Consórcio de Pesados" />
-            <S.SubtitleTop>Realize o seu sonho</S.SubtitleTop>
+            <S.SubtitleTop>Comece ou amplie a sua frota!</S.SubtitleTop>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

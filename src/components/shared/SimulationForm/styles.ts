@@ -54,22 +54,32 @@ export const SectionSimulatorForm = styled.div<Props>`
     heroStyles === true &&
     css`
       @media (max-width: 1090px) {
-        top: 22%;
+        top: 16%;
         left: 50%;
         transform: translateX(-50%);
       }
       @media (max-width: 985px) {
-        top: 20%;
-      }
-      @media (max-width: 758px) {
-        top: 18%;
-      }
-      @media (max-width: 640px) {
         top: 15%;
       }
-      @media (max-width: 528px) {
+      @media (max-width: 768px) {
+        top: 14%;
+      }
+      @media (max-width: 665px) {
+        top: 13%;
+      }
+      @media (max-width: 600px) {
         left: 50%;
-        top: 12%;
+        top: 10%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 516px) {
+        left: 50%;
+        top: 8%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 356px) {
+        left: 50%;
+        top: 76%;
         transform: translateX(-50%);
       }
     `}
@@ -78,12 +88,12 @@ export const SectionSimulatorForm = styled.div<Props>`
     heroStyles === false &&
     css`
       @media (max-width: 1090px) {
-        top: 45%;
+        top: 40%;
         left: 50%;
         transform: translateX(-50%);
       }
       @media (max-width: 756px) {
-        top: 40%;
+        top: 35%;
       }
     `}
 

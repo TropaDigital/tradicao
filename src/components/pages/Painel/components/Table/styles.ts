@@ -13,10 +13,9 @@ export const Container = styled.div`
     gap: 30px;
     padding: 28px 24px;
     background-color: var(--white);
-    @media (max-width: 835px) {
-      position: absolute;
-      z-index: 1;
-    }
+    width: 100%;
+    position: sticky;
+    left: 0;
     .titleHeaderTable {
       font-style: normal;
       font-weight: 400;
@@ -34,14 +33,7 @@ export const Container = styled.div`
     width: 100%;
     border-collapse: 0px;
     border-spacing: 0px;
-    @media (max-width: 833px) {
-      position: relative;
-      top: 105px;
-    }
-    @media (max-width: 617px) {
-      position: relative;
-      top: 166px;
-    }
+    position: relative;
     thead {
       tr {
         th {

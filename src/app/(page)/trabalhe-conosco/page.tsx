@@ -156,7 +156,7 @@ const WorkWithUsPage = () => {
               onSubmit={(values, { resetForm }) => {
                 createAgent({
                   nome: values.fullName.trim(),
-                  cnpj: values.cnpj.replaceAll(/\D+/g, ''),
+                  cnpj: formatCnpj(values.cnpj),
                   contato: values.contact.trim()
                 });
 
@@ -200,7 +200,9 @@ const WorkWithUsPage = () => {
                     label="Contato"
                     error={touched.contact && errors.contact}
                   />
-                  <Button degrade type="submit">Enviar</Button>
+                  <Button degrade type="submit">
+                    Enviar
+                  </Button>
                 </Form>
               )}
             </Formik>

@@ -82,9 +82,7 @@ export default function ConsortiumProperties() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Consórcio de Imóveis" />
-            <S.SubtitleTop>
-              Realize o seu sonho de ter sua casa própria
-            </S.SubtitleTop>
+            <S.SubtitleTop>Realize o sonho da casa própria!</S.SubtitleTop>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

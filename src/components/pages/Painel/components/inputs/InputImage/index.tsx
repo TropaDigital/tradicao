@@ -5,7 +5,11 @@ import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 import { Container } from './styles';
 import { IInputFileProps } from './types';
 
-export default function InputImage({ onPostImage, error }: IInputFileProps) {
+export default function InputImage({
+  onPostImage,
+  title = 'Adicionar Miniatura',
+  error
+}: IInputFileProps) {
   const { postFile } = usePostFile();
 
   async function LoadImage(e: React.ChangeEvent<HTMLInputElement>) {
@@ -29,11 +33,11 @@ export default function InputImage({ onPostImage, error }: IInputFileProps) {
         />
         <span className="inputContent">
           <CameraIcon />
-          <p className="inputTitle">Adicionar Miniatura</p>
+          <p className="inputTitle">{title}</p>
           <p className="inputButton">Escolher Arquivo</p>
         </span>
       </div>
-      {error && <span>{error}</span>}
+      {error && <span className="errorValidation">{error}</span>}
     </Container>
   );
 }

@@ -9,14 +9,15 @@ import Speciality from '@/components/sections/Speciality';
 import BlueInfos from '@/components/pages/Home/BlueInfos';
 import ConsortiumWorks from '@/components/pages/Home/ConsortiumWorks';
 import SimulationForm from '@/components/shared/SimulationForm';
+import BlogContainer from '@/components/pages/Home/BlogContainer';
 
 export default function Home() {
   return (
     <Container>
       <HeroSkew
         backgroundImage={car_bg}
-        altBackgroundImage="Imagem de um carro com um pai e um filho ao lado"
-        subtitle="Você mais próximo dos seus sonhos!"
+        altBackgroundImage="Imagem de um carro com um homem e uma criança ao lado"
+        subtitle="Realizar sonhos se tornou Tradição!"
         solidHeight={'86%'}
       />
 
@@ -29,6 +30,8 @@ export default function Home() {
       <ConsortiumWorks />
 
       <Contemplated />
+
+      <BlogContainer />
     </Container>
   );
 }

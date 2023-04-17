@@ -1,7 +1,6 @@
 export interface IResponseUnits {
-  total: number;
-  paginas: number;
-  dataPaginada: IGetUnit[];
+  pagination: IPagination;
+  result: IGetUnit[];
 }
 
 export interface IGetUnit {
@@ -32,4 +31,13 @@ export interface IUnitBody {
   telefone: string;
   latitude?: string;
   longitutde?: string;
+}
+
+export interface IPagination {
+  total: number;
+  lastPage: number;
+  perPage: number;
+  currentPage: number;
+  from: number;
+  to: number;
 }

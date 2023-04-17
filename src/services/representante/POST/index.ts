@@ -1,15 +1,18 @@
 import { AxiosResponse } from 'axios';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import RepresentanteClass from '../index';
-import { IAgentInfo } from '../types';
+import { IGetRepresentante } from '../types';
 import { toast } from 'react-toastify';
 
 export const useCreateAgent = () => {
+  const queryClient = useQueryClient();
+
   const { mutateAsync } = useMutation(
-    async (agent: IAgentInfo) => {
+    async (agent: IGetRepresentante) => {
       let response = toast.promise(
         async () => {
-          let response: any = await RepresentanteClass.postCandidate(agent);
+          let response: AxiosResponse | undefined =
+            await RepresentanteClass.postCandidate(agent);
           return response;
         },
         {
@@ -18,14 +21,17 @@ export const useCreateAgent = () => {
           success: 'Representante cadastrado com sucesso'
         },
         {
-          position: 'bottom-left',
+          position: 'top-right',
           autoClose: 3000
         }
       );
       return response;
     },
     {
-      retry: true
+      retry: true,
+      onSuccess: () => {
+        queryClient.invalidateQueries('AllRepresentantes');
+      }
     }
   );
 

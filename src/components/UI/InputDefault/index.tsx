@@ -14,7 +14,7 @@ interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   className?: string;
   title?: string;
   disabled?: boolean;
-  error?: string;
+  error?: string | any;
 }
 
 const InputDefault: React.FC<InputProps> = ({

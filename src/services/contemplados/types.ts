@@ -6,6 +6,7 @@ export interface IGetContemplados {
   id_contemplado: number;
   modificado: string;
   nome: string;
+  categoria: string;
   status: 'Ativo' | 'Inativo';
 }
 

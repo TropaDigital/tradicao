@@ -35,24 +35,35 @@ import {
 } from './styles';
 
 // Images
-import WizImage from '../../../../public/images/ImageWiz.svg';
 import ReclameLogo from '../../../../public/images/ReclameAqui.svg';
-import NoFrontiers from '../../../../public/images/NoFrontiers.svg';
-import AyrtonSenna from '../../../../public/images/AyrtonSenna.svg';
+import NoFrontiers from '../../../../public/images/NoFrontiers.png';
+import AyrtonSenna from '../../../../public/images/AyrtonSenna.png';
+import MamaRenascer from '../../../../public/images/mama_renascer.png';
+import Apala from '../../../../public/images/apala.png';
 import Tropa from '../../../../public/images/TropaLogo.svg';
+import ButtonChatIa from '../ChatIA/ButtonChatIa';
+import ChatIA from '../ChatIA/ChatIA';
+import { useState } from 'react';
 
 export default function Footer() {
+  const [modalChat, setModalChat] = useState(false);
+
   return (
     <Container>
       <FooterWrapper>
         <TopFooter>
           <LeftSide>
-            <WhiteLogo />
+            <Image
+              src="/images/logo-branca.png"
+              alt="Logo consórcio tradição"
+              width={379}
+              height={111}
+            />
             <SocialMedia>
               <Link
                 href={'https://www.facebook.com/ConsorcioTradicao/'}
                 target="_blank"
-                aria-label='Visite a pagina no Facebook do Consórcio Tradição'
+                aria-label="Visite a pagina no Facebook do Consórcio Tradição"
               >
                 <FacebookIcon />
               </Link>
@@ -60,15 +71,17 @@ export default function Footer() {
               <Link
                 href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
                 target="_blank"
-                aria-label='Visite a pagina no Instagram do Consórcio Tradição'
+                aria-label="Visite a pagina no Instagram do Consórcio Tradição"
               >
                 <InstagramIcon />
               </Link>
 
               <Link
-                href={'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'}
+                href={
+                  'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'
+                }
                 target="_blank"
-                aria-label='Visite a pagina no Youtube do Consórcio Tradição'
+                aria-label="Visite a pagina no Youtube do Consórcio Tradição"
               >
                 <YoutubeIcon />
               </Link>
@@ -76,7 +89,7 @@ export default function Footer() {
               <Link
                 href={'https://www.tiktok.com/@consorciotradicao'}
                 target="_blank"
-                aria-label='Visite a pagina no Tik Tok do Consórcio Tradição'
+                aria-label="Visite a pagina no Tik Tok do Consórcio Tradição"
               >
                 <TikTokIcon />
               </Link>
@@ -84,7 +97,7 @@ export default function Footer() {
               <Link
                 href={'https://www.linkedin.com/company/consorciotradicao/'}
                 target="_blank"
-                aria-label='Visite a pagina no Linkedin do Consórcio Tradição'
+                aria-label="Visite a pagina no Linkedin do Consórcio Tradição"
               >
                 <LinkedinIcon />
               </Link>
@@ -92,31 +105,19 @@ export default function Footer() {
           </LeftSide>
 
           <RightSide>
-            <div className="correct">
-              <Link 
-                href={'https://wiz.co/'} 
-                target="_blank"
-                aria-label='Visite a pagina do parceiro Consórcio Tradição'
-              >
-                <Image
-                  src={WizImage}
-                  alt="Imagem de logo da empresa Wi3"
-                  width={231}
-                  height={86}
-                />
-              </Link>
-            </div>
             <Link
-              href={'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'}
+              href={
+                'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'
+              }
               target="_blank"
-              aria-label='Visite a pagina do Reclame Aqui do Consórcio Tradição'
+              aria-label="Visite a pagina do Reclame Aqui do Consórcio Tradição"
             >
               <Image
                 src={ReclameLogo}
                 alt="Imagem de logo da empresa Reclame Aqui"
                 width={175}
                 height={64}
-                className='reclame-logo'
+                className="reclame-logo"
               />
             </Link>
           </RightSide>
@@ -127,11 +128,14 @@ export default function Footer() {
             <div style={{ marginBottom: '20px' }}>
               <TitleColumns>A Tradição</TitleColumns>
               <div style={{ marginTop: '10px' }}>
-                <Link href={'/'}>
+                <Link
+                  href={'https://www.youtube.com/watch?v=wNRruL96RYI'}
+                  target="_blank"
+                >
                   <TextButton>História</TextButton>
                 </Link>
 
-                <Link href={'/'}>
+                <Link href={'/unidades'}>
                   <TextButton>Parceiros</TextButton>
                 </Link>
 
@@ -145,8 +149,8 @@ export default function Footer() {
               <TitleColumns>Está com dúvidas?</TitleColumns>
               <div style={{ marginTop: '10px', marginBottom: '25px' }}>
                 <TextField>
-                  Se sinta a vontade para entrar em contato conosco. Entre em
-                  contato por <span>este link</span> ou envie um e-mail para:{' '}
+                  Se sinta à vontade para entrar em contato conosco. Envie um
+                  e-mail para:
                   <span>sac@consorciotradicao.com.br</span>
                 </TextField>
               </div>
@@ -159,7 +163,7 @@ export default function Footer() {
                 </div>
                 <div className="button">
                   <div className="text">
-                    <Link href="/" className="text">
+                    <Link href="/contato" className="text">
                       Fale Conosco
                     </Link>
                   </div>
@@ -175,7 +179,7 @@ export default function Footer() {
                 <TextButton>Consórcio de Pesados</TextButton>
               </Link>
 
-              <Link href={'/'}>
+              <Link href={'/servicos'}>
                 <TextButton>Consórcio de Serviços</TextButton>
               </Link>
 
@@ -187,16 +191,20 @@ export default function Footer() {
                 <TextButton>Consórcio de Automóveis</TextButton>
               </Link>
 
-              <Link href={'/'}>
+              {/* <Link href={'/'}>
                 <TextButton>Simulador de Consórcio</TextButton>
-              </Link>
+              </Link> */}
 
-              <Link href={'/contato'}>
+              <Link
+                href={'https://api.whatsapp.com/send?phone=551129284855'}
+                target="_blank"
+              >
                 <TextButton>Fale com um Especialista</TextButton>
               </Link>
-              {/* <Link href={'/relatorios-de-ouvidoria'}>
+
+              <Link href={'/relatorios-de-ouvidoria'}>
                 <TextButton>Relatórios de Ouvidoria</TextButton>
-              </Link> */}
+              </Link>
             </div>
 
             <TitleColumns>Ouvidoria</TitleColumns>
@@ -211,7 +219,10 @@ export default function Footer() {
           <Column>
             <TitleColumns>Entenda o Consórcio</TitleColumns>
             <div style={{ marginTop: '10px', marginBottom: '18px' }}>
-              <Link href={'/'}>
+              <Link
+                href={'https://www.youtube.com/watch?v=EMsarv8WQCs'}
+                target="_blank"
+              >
                 <TextButton>O que é um consórcio</TextButton>
               </Link>
 
@@ -234,7 +245,11 @@ export default function Footer() {
 
             <TitleColumns>Parceria</TitleColumns>
             <div style={{ marginTop: '10px', marginBottom: '6px' }}>
-              <TextButton>Área do parceiro</TextButton>
+              <Link
+                href={'http://consorciotradicao.ddns.com.br:8090/newconplus/'}
+              >
+                <TextButton>Área do parceiro</TextButton>
+              </Link>
             </div>
 
             <GreenButton>
@@ -245,7 +260,7 @@ export default function Footer() {
               </div>
               <div className="button">
                 <div className="text">
-                  <Link href="/" className="text">
+                  <Link href="/trabalhe-conosco" className="text">
                     Seja um Parceiro
                   </Link>
                 </div>
@@ -260,12 +275,6 @@ export default function Footer() {
                 Alameda Rio Negro, 1084 <br />
                 Alphaville Industrial, Barueri/SP <br />
                 CEP: 06454-000{' '}
-                <Link
-                  href={'tel:08008770020'}
-                  style={{ color: 'var(--white)' }}
-                >
-                  0800 877 0020
-                </Link>
               </TextField>
               <Link href={'tel:11 40035090'}>
                 <TextButton>
@@ -308,7 +317,8 @@ export default function Footer() {
           <Link
             href={'https://www.fraternidadesemfronteiras.org.br/'}
             target={'_blank'}
-            aria-label='Site Fraternidade Sem Fronteiras'
+            aria-label="Site Fraternidade Sem Fronteiras"
+            className="square-image"
           >
             <Image
               src={NoFrontiers}
@@ -317,14 +327,38 @@ export default function Footer() {
               height={79}
             />
           </Link>
-          <Link 
-            href={'https://institutoayrtonsenna.org.br/'} 
+          <Link
+            href={'https://institutoayrtonsenna.org.br/'}
             target={'_blank'}
-            aria-label='Visite a pagina do instituto Ayrton Senna'
+            aria-label="Visite a pagina do instituto Ayrton Senna"
           >
             <Image
               src={AyrtonSenna}
               alt="Imagem de Logo do Instituto Ayrton Senna"
+              width={177}
+              height={79}
+            />
+          </Link>
+          <Link
+            href={'https://www.instagram.com/mamarenascer/'}
+            target={'_blank'}
+            aria-label="Visite a pagina do instituto Ayrton Senna"
+          >
+            <Image
+              src={MamaRenascer}
+              alt="Imagem de Logo da Ong Mama Renascer"
+              width={177}
+              height={79}
+            />
+          </Link>
+          <Link
+            href={'https://www.apala.org.br/'}
+            target={'_blank'}
+            aria-label="Visite a pagina do instituto Ayrton Senna"
+          >
+            <Image
+              src={Apala}
+              alt="Imagem de Logo da Ong Apala"
               width={177}
               height={79}
             />
@@ -344,7 +378,11 @@ export default function Footer() {
         <div className="developed">
           Copyright © 2020 Consórcio Tradição. All Rights Reserved. | Developed
           By:
-          <Link href={'https://tropa.digital/'} target={'_blank'} aria-label='Conheça a empresa que desenvolveu este site' >
+          <Link
+            href={'https://tropa.digital/'}
+            target={'_blank'}
+            aria-label="Conheça a empresa que desenvolveu este site"
+          >
             <Image
               src={Tropa}
               alt="Imagem de Logo da Tropa Digital"
@@ -354,6 +392,8 @@ export default function Footer() {
           </Link>
         </div>
       </Copyright>
+      <ChatIA opened={modalChat} onClose={() => setModalChat(false)} />
+      <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" />
     </Container>
   );
 }

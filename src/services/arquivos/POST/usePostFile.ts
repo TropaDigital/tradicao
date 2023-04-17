@@ -4,9 +4,10 @@ import FileClass from '../index';
 
 export const usePostFile = () => {
   const { mutateAsync } = useMutation(
-    async (file: any) => {
-      let response: any = await FileClass.postFile(file);
-      return response?.data?.arquivo;
+    async (file: FormData) => {
+      let response: AxiosResponse<any, any> | undefined =
+        await FileClass.postFile(file);
+      return await response?.data?.arquivo;
     },
     {
       retry: true

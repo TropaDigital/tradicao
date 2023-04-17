@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import DemonstracoesClass from '../index';
-import { IGetDemonstrations } from '../interface';
+import { IResponseDemonstrations } from './types';
 
 export const useGetAllDemonstrations = (query?: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
@@ -11,11 +11,7 @@ export const useGetAllDemonstrations = (query?: string) => {
   );
 
   return {
-    allDemonstrations: data as {
-      dataPaginada: IGetDemonstrations[];
-      total: number;
-      paginas: number;
-    },
+    allDemonstrations: data as IResponseDemonstrations,
     isLoadingAllDemonsrations: isLoading as boolean,
     isErrorAllDemonstrations: isError as boolean,
     isSuccessAllDemonstrations: isSuccess as boolean

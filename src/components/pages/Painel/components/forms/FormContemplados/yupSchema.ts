@@ -4,20 +4,15 @@ export const contempladoSchema = yup?.object()?.shape({
   images: yup
     ?.array()
     .of(yup.string())
-    .min(1, 'O contemplado deve conter pelo menos 1 imagem.')
+    .min(1, 'A imagem é obrigatória')
     .required(),
-  nome: yup?.string().required('O nome é obrigatório'),
-  depoimento: yup
+  nome: yup?.string().required('O nome é obrigatório!'),
+  depoimento: yup?.string(),
+  categoria: yup
     ?.string()
-    .test(
-      'min length',
-      'O depoimento deve ter no máximo 280 caracteres.',
-      (value) => {
-        if (value && value?.length <= 280) return true;
-
-        return false;
-      }
-    )
-    .required('O depoimento é obrigatório'),
-  status: yup?.string().required('')
+    ?.test('must be a consortium', 'O Consórcio é obrigatório', (value) => {
+      return value !== '';
+    })
+    ?.required('O Consórcio é obrigatório'),
+  status: yup?.string().required('O Status é obrigatório')
 });

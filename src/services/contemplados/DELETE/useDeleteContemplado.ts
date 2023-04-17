@@ -8,12 +8,24 @@ export const useDeleteContemplado = () => {
 
   const { mutateAsync } = useMutation(
     async (id: number) => {
-      try {
-        let response: any = await ContempladosClass.deleteContemplado(id);
-        return response;
-      } catch (err) {
-        console.log(err);
-      }
+      let response = toast.promise(
+        async () => {
+          let response: AxiosResponse =
+            await ContempladosClass.deleteContemplado(id);
+
+          return response;
+        },
+        {
+          error: 'Não foi possível deletar contemplado',
+          pending: 'Deletando contemplado',
+          success: 'Contemplado deletado com sucesso'
+        },
+        {
+          position: 'top-right',
+          autoClose: 3000
+        }
+      );
+      return response;
     },
     {
       onSuccess: () => {

@@ -2,12 +2,7 @@ import { AxiosResponse } from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import ContempladoClass from '../index';
-import { IContempladoBody } from '../types';
-
-interface IContempladoPost {
-  contempladoBody: IContempladoBody;
-  id: number | undefined;
-}
+import { IContempladoPost } from './types';
 
 export const useUpdateContemplado = () => {
   const queryClient = useQueryClient();
@@ -15,10 +10,11 @@ export const useUpdateContemplado = () => {
     async (contempladoPost: IContempladoPost) => {
       let response = toast.promise(
         async () => {
-          let response: any = await ContempladoClass.updateContemplado(
-            contempladoPost?.contempladoBody,
-            contempladoPost?.id
-          );
+          let response: AxiosResponse =
+            await ContempladoClass.updateContemplado(
+              contempladoPost?.contempladoBody,
+              contempladoPost?.id
+            );
           return response;
         },
         {

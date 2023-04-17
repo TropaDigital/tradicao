@@ -6,34 +6,31 @@ type Props = {
   isOpen?: boolean;
 };
 
-export const HeaderContainer = styled.header<Props>`
-  ${({ showHeader }) =>
-    showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 0px;
-      opacity: 0;
-    `}
+type PropsClient = {
+  isHovered: boolean;
+};
 
-  ${({ showHeader }) =>
-    !showHeader &&
-    css`
-      position: sticky;
-      top: 0;
-      left: 0;
-      height: 122px;
-      opacity: 1;
-      z-index: 99999;
-    `}
+export const HeaderContainer = styled.header<Props>`
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 122px;
+  opacity: 1;
+  z-index: 99999;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 21px 150px;
   background-color: var(--white);
   width: 100%;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  &.nav-up {
+    top: 0;
+  }
+  &.nav-down {
+    top: -122px;
+  }
   .logo {
     padding-right: 30px;
   }
@@ -56,8 +53,8 @@ export const HeaderContainer = styled.header<Props>`
   }
 
   @media (max-width: 1360px) {
-    .logo svg {
-      width: 200px;
+    .logo {
+      width: calc(100% * 0.9);
     }
   }
 `;
@@ -81,17 +78,50 @@ export const HeaderNav = styled.nav`
       }
     }
 
-    .client-area-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 15px;
-      gap: 5px;
+    .client-button-container {
+      position: relative;
+
+      .client-area-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+        gap: 5px;
+        position: relative;
+      }
     }
 
     .submenu-options {
       position: relative;
     }
+  }
+`;
+
+export const ClientAreaSubMenu = styled.div<PropsClient>`
+  display: ${({ isHovered }) => (isHovered ? 'block' : 'none')};
+  position: absolute;
+  top: 45px;
+  background: linear-gradient(77.17deg, #0036c6 -0.7%, #3e65d0 93.94%);
+  padding: 10px;
+  gap: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  width: max-content;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ul > li > a {
+    color: var(--white);
+    font-size: 14px;
+  }
+
+  :hover {
+    display: flex;
   }
 `;
 

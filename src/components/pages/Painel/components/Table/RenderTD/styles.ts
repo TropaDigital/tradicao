@@ -53,4 +53,12 @@ export const Container = styled.td`
     width: 90px;
     border-radius: 8px;
   }
+  .longText {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 350px;
+    text-overflow: ellipsis;
+  }
 `;
