@@ -124,7 +124,7 @@ export default function NotReceived() {
                     <S.SearchBar>
                         <InputDefault
                             label="Buscar CPF"
-                            placeholder="Digite seu CPF"
+                            placeholder="Digite seu CPF ou CNPJ"
                             value={formatCnpjAndCpf(cpfSearch)}
                             onChange={(e: any) => setCpfSearch(e.target.value)}
                             // maxLength={11}
@@ -135,7 +135,7 @@ export default function NotReceived() {
                             degrade
                             className="button-search"
                             type="button"
-                            onClick={() => {console.log('loguei na busca do cpf', cpfSearch); setStartSearch(new Date())}}
+                            onClick={() => setStartSearch(new Date())}
                         >
                             Buscar
                         </Button>
