@@ -1485,7 +1485,7 @@ export const WatchIcon = ({ color = '#000000', size = 18 }) => {
         stroke={color}
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       >
         <path d="M16 16.472V20a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-3.528m0-8.944V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.528" />
         <path d="M18 12a6 6 0 1 0-12 0a6 6 0 0 0 12 0Z" />
@@ -1557,21 +1557,21 @@ export const MenuIcon = ({ color = '#069CD1', size = 18 }: any) => (
     <path
       d="M12.497 17.5022C12.2219 17.5022 11.9968 17.7273 11.9998 18.0024C11.9998 18.2775 12.2249 18.5026 12.5 18.5026C12.7751 18.5026 13.0002 18.2775 13.0002 18.0024C13.0002 17.7273 12.7751 17.5022 12.497 17.5022"
       stroke="#212529"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M12.497 11.4996C12.2219 11.4996 11.9968 11.7247 11.9998 11.9998C11.9998 12.275 12.2249 12.5001 12.5 12.5001C12.7751 12.5001 13.0002 12.275 13.0002 11.9998C13.0002 11.7247 12.7751 11.4996 12.497 11.4996"
       stroke="#212529"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M12.497 5.49719C12.2219 5.49719 11.9968 5.72229 11.9998 5.9974C11.9998 6.27252 12.2249 6.49761 12.5 6.49761C12.7751 6.49761 13.0002 6.27252 13.0002 5.9974C13.0002 5.72229 12.7751 5.49719 12.497 5.49719"
       stroke="#212529"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -1654,7 +1654,7 @@ export const AlertIcon = ({ color = '#069CD1', size = 18 }: any) => (
     <path
       d="M28 24V28M28 32H28.01M38 28C38 33.5228 33.5228 38 28 38C22.4772 38 18 33.5228 18 28C18 22.4772 22.4772 18 28 18C33.5228 18 38 22.4772 38 28Z"
       stroke="#D92D20"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -1665,7 +1665,7 @@ export const AlertIcon = ({ color = '#069CD1', size = 18 }: any) => (
       height="48"
       rx="24"
       stroke="#FEF3F2"
-      stroke-width="8"
+      strokeWidth="8"
     />
   </svg>
 );
@@ -1695,7 +1695,7 @@ export const CameraIcon = ({ color = '#069CD1', size = 18 }: any) => (
     <path
       d="M20.3389 13.557C22.4149 15.633 22.4149 18.999 20.3389 21.075C18.2629 23.151 14.897 23.151 12.8209 21.075C10.7449 18.999 10.7449 15.633 12.8209 13.557C14.897 11.481 18.2629 11.481 20.3389 13.557"
       stroke="#869693"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -1704,7 +1704,7 @@ export const CameraIcon = ({ color = '#069CD1', size = 18 }: any) => (
       clip-rule="evenodd"
       d="M28.5 12V24C28.5 25.4734 27.3067 26.6667 25.8333 26.6667H7.16667C5.69333 26.6667 4.5 25.4734 4.5 24V12C4.5 10.5267 5.69333 9.33337 7.16667 9.33337H9.83333L11.7827 5.99471C12.0213 5.58537 12.46 5.33337 12.9347 5.33337H20.0067C20.4747 5.33337 20.908 5.57871 21.1493 5.97871L23.1667 9.33337H25.8333C27.3067 9.33337 28.5 10.5267 28.5 12Z"
       stroke="#869693"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -1722,7 +1722,7 @@ export const SearchIcon = ({ color = '#069CD1', size = 18 }: any) => (
     <path
       d="M16 16.5L12.375 12.875M14.3333 8.16667C14.3333 11.8486 11.3486 14.8333 7.66667 14.8333C3.98477 14.8333 1 11.8486 1 8.16667C1 4.48477 3.98477 1.5 7.66667 1.5C11.3486 1.5 14.3333 4.48477 14.3333 8.16667Z"
       stroke="#667085"
-      stroke-width="1.66667"
+      strokeWidth="1.66667"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
