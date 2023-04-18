@@ -18,6 +18,8 @@ import notReceived from '../../../../public/images/nao_procurados_bg.jpg';
 
 // Utils
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import { useGetAllRecursos } from "@/services/recursos/GET/useGetAllRecursos";
+import { CloseIcon } from "@/assets/icons";
 
 interface IReceiveProps {
     id: number,
@@ -83,16 +85,14 @@ export default function NotReceived() {
         },
     ]
 
+    const { allRecursos } = useGetAllRecursos('');
+
     const filteredCpfs = useMemo(() => {
         const searchLowercase = cpfSearch?.toLowerCase();
 
-        return listReceive.filter((obj) => obj.cpf.toLowerCase().includes(searchLowercase))
+        return allRecursos?.result.filter((obj) => obj.cpf.toLowerCase().includes(searchLowercase))
 
     }, [startSearch]);
-
-    useEffect(() => {
-        console.log('log do filter cpfs', filteredCpfs, startSearch, cpfSearch)
-    }, [filteredCpfs])
 
     return (
         <>
@@ -131,11 +131,22 @@ export default function NotReceived() {
                             // onKeyDown={(e: any) => onKeyPressed(e)}
                         />
 
+                        {
+                            cpfSearch &&
+                            <S.ClearButton
+                                onClick={() => {setCpfSearch(''); setStartSearch('')}}
+                            >
+                                <CloseIcon />
+                            </S.ClearButton>
+                        }
+
+
                         <Button
                             degrade
                             className="button-search"
                             type="button"
-                            onClick={() => setStartSearch(new Date())}
+                            disabled={!cpfSearch}
+                            onClick={() => {setStartSearch(new Date()); console.log('log do disabled')}}
                         >
                             Buscar
                         </Button>
@@ -152,7 +163,7 @@ export default function NotReceived() {
                             filteredCpfs.length > 0 
                             ?
                                 filteredCpfs.map((row: any) => (
-                                    <div className="valid" key={row.id}>{row.cpf}</div>
+                                    <div className="valid" key={row.id}>Você tem recursos a receber!</div>
                                 ))                       
                             :   <div className="invalid">Você não tem recurso a receber!</div>                       
                                 

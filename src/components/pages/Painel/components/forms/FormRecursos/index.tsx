@@ -4,11 +4,12 @@ import ButtonDefault from '../../ButtonDefault';
 import * as S from '../styles';
 import { IForm } from '../types';
 import { InputWrapper } from './styles';
+import { useCreateRecursos } from '@/services/recursos/POST/useCreateRecursos';
 
 const FormRecursos = ({ onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
 
-  // const { createAssembleia } = useCreateAssembleia();
+  const { createRecursos } = useCreateRecursos();
 
   return (
     <S.Container>
@@ -22,9 +23,8 @@ const FormRecursos = ({ onSubmit }: IForm) => {
             const formData = new FormData();
 
             formData?.append('planilha', planilhaPost);
-            formData?.append('tipo', values?.tipo);
 
-            // createAssembleia(formData);
+            createRecursos(formData);
           }
 
           onSubmit();
