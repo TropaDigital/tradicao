@@ -72,7 +72,7 @@ const DemonstracoesPage = () => {
   );
 
   useEffect(() => {
-    if (allDemonstrations?.dataPaginada?.length === 0) {
+    if (allDemonstrations?.dataPaginada?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [allDemonstrations]);

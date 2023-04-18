@@ -25,6 +25,10 @@
       "path": "recursos-nao-procurados"
     },
     {
+      "name": "Gp. Encerrados",
+      "path": "grupos-encerrados"
+    },
+    {
       "name": "Regulamento",
       "path": "regulamento"
     },
