@@ -41,8 +41,13 @@ import AyrtonSenna from '../../../../public/images/AyrtonSenna.png';
 import MamaRenascer from '../../../../public/images/mama_renascer.png';
 import Apala from '../../../../public/images/apala.png';
 import Tropa from '../../../../public/images/TropaLogo.svg';
+import ButtonChatIa from '../ChatIA/ButtonChatIa';
+import ChatIA from '../ChatIA/ChatIA';
+import { useState } from 'react';
 
 export default function Footer() {
+  const [modalChat, setModalChat] = useState(false);
+
   return (
     <Container>
       <FooterWrapper>
@@ -390,6 +395,8 @@ export default function Footer() {
           </Link>
         </div>
       </Copyright>
+      <ChatIA opened={modalChat} onClose={() => setModalChat(false)} />
+      <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" />
     </Container>
   );
 }

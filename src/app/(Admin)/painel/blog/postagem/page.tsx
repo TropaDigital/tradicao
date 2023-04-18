@@ -11,7 +11,8 @@ import ImageTipTap from '@tiptap/extension-image';
 import StarterKit from '@tiptap/starter-kit';
 import TextStyle from '@tiptap/extension-text-style';
 import Placeholder from '@tiptap/extension-placeholder';
-import Link from '@tiptap/extension-link';
+import Underline from '@tiptap/extension-underline';
+import TipTapLink from '@tiptap/extension-link';
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
@@ -22,10 +23,18 @@ import { Formik, Form } from 'formik';
 import Image from 'next/image';
 import Button from '@/components/UI/Button';
 import { PostagemSchema } from './yupSchema';
+import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
+import Link from 'next/link';
+import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
+import { useRouter } from 'next/navigation';
+import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
   const { allCategorias } = useGetAllCategorias();
+  const { updatePost } = useUpdatePost();
+  const { createPost } = useCreatePost();
+  const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
 
@@ -35,14 +44,22 @@ const PostPanel = () => {
         localStorage?.getItem('actualPost') as any
       );
 
-      editor?.commands?.insertContent(storagePost?.conteudo);
       setCurrentPost(storagePost);
     }
   }, []);
 
+  useEffect(() => {
+    if (currentPost) editor?.commands?.insertContent(currentPost?.conteudo);
+  }, [currentPost]);
+
   const editor = useEditor({
     extensions: [
       TextStyle,
+      Underline.configure({
+        HTMLAttributes: {
+          class: 'underline'
+        }
+      }),
       Placeholder.configure({
         placeholder: 'Escreva uma postagem...'
       }),
@@ -86,7 +103,7 @@ const PostPanel = () => {
       ImageTipTap.configure({
         allowBase64: true
       }),
-      Link.configure({
+      TipTapLink.configure({
         protocols: ['mailto', 'tel'],
         validate: (href) => /^https?:\/\//.test(href),
         HTMLAttributes: {
@@ -144,15 +161,24 @@ const PostPanel = () => {
         <Formik
           initialValues={{
             postagem_img: currentPost?.postagem_img ?? '',
-            titulo: currentPost?.subtitulo ?? '',
+            titulo: currentPost?.titulo ?? '',
             subtitulo: currentPost?.subtitulo ?? '',
             autor: currentPost?.autor ?? '',
             local: currentPost?.local ?? '',
-            categoria_id: currentPost?.categoria_id ?? ''
+            categoria_id: currentPost?.categoria_id ?? '',
+            conteudo: ''
           }}
-          validationSchema={PostagemSchema}
+          // validationSchema={PostagemSchema}
           onSubmit={(values) => {
-            console.log(values);
+            if (currentPost) {
+              updatePost({ postagem: values, id: currentPost?.id_postagem });
+            }
+
+            if (!currentPost) {
+              createPost(values);
+            }
+
+            router?.push('/painel/blog');
           }}
         >
           {({
@@ -165,12 +191,25 @@ const PostPanel = () => {
           }) => (
             <Form onSubmit={handleSubmit}>
               <S.InitialPostWrapper>
-                <InputImage
-                  onPostImage={(imageUrl) => {
-                    setFieldValue('postagem_img', imageUrl);
-                  }}
-                  title="Adicionar Capa"
-                />
+                {values?.postagem_img && (
+                  <div className="post-thumb-wrapper">
+                    <Image
+                      src={values?.postagem_img}
+                      alt={`Capa da postagem ${values?.titulo}`}
+                      width={500}
+                      height={281}
+                    />
+                  </div>
+                )}
+                {!values?.postagem_img && (
+                  <InputImage
+                    onPostImage={(imageUrl) => {
+                      setFieldValue('postagem_img', imageUrl);
+                    }}
+                    title="Adicionar Capa"
+                    error={touched?.postagem_img && errors?.postagem_img}
+                  />
+                )}
                 <S.InputsWrapper>
                   <InputDefault
                     label="Título"
@@ -178,13 +217,16 @@ const PostPanel = () => {
                     onChange={handleChange}
                     name="titulo"
                     value={values?.titulo}
+                    error={touched?.titulo && errors?.titulo}
                   />
-                  <InputDefault
+
+                  <TextAreaDefault
                     label="Subtítulo"
                     placeholder="Subtítulo da Postagem"
                     onChange={handleChange}
                     name="subtitulo"
                     value={values?.subtitulo}
+                    error={touched?.subtitulo && errors?.subtitulo}
                   />
 
                   <S.LineInputsWrapper>
@@ -194,6 +236,7 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="autor"
                       value={values?.autor}
+                      error={touched?.autor && errors?.autor}
                     />
                     <InputDefault
                       label="Local"
@@ -201,6 +244,7 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="local"
                       value={values?.local}
+                      error={touched?.local && errors?.local}
                     />
                     <SelectDefault
                       label="Categoria"
@@ -208,6 +252,7 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="categoria_id"
                       value={values?.categoria_id}
+                      error={touched?.categoria_id && errors?.categoria_id}
                     >
                       <option>Selecione uma categoria</option>
                       {allCategorias?.map((categoria) => (
@@ -220,21 +265,28 @@ const PostPanel = () => {
                 </S.InputsWrapper>
               </S.InitialPostWrapper>
               <TextEditor editor={editor} />
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '12px',
-                  marginTop: '15px',
-                  maxWidth: '800px'
-                }}
-              >
-                <Button color="primary" radius="rounded" variant="outline">
-                  Cancelar
-                </Button>
-                <Button color="secondary" radius="rounded" degrade>
-                  Criar Postagem
-                </Button>
-              </div>
+
+              <S.ButtonsWrapper>
+                <div className="buttonContainer">
+                  <Button
+                    color="primary"
+                    radius="rounded"
+                    variant="outline"
+                    type="button"
+                  >
+                    <Link href="/painel/blog">Cancelar</Link>
+                  </Button>
+                  <Button
+                    color="secondary"
+                    radius="rounded"
+                    degrade
+                    type="submit"
+                    onClick={() => setFieldValue('conteudo', editor?.getHTML())}
+                  >
+                    {currentPost ? 'Editar' : 'Publicar'} Postagem
+                  </Button>
+                </div>
+              </S.ButtonsWrapper>
             </Form>
           )}
         </Formik>

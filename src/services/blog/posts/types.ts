@@ -1,5 +1,5 @@
 export interface IGetPosts {
-  postagem_id: number;
+  id_postagem: number;
   titulo: string;
   conteudo: string;
   data: string;

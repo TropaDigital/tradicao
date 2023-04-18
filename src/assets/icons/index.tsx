@@ -1933,6 +1933,40 @@ export function TextSizeIcon() {
   );
 }
 
+export function ArrowLeftIcon({ color = 'var(--white)', size = 24 }: any) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill={color}
+        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"
+      />
+    </svg>
+  );
+}
+
 export const ExampleIcon = ({ color = '#000000', size = 18 }) => {
   return <svg />;
+};
+
+import React from 'react';
+
+export const CalculatorIcon = ({ color = '#000000', size = 18 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+    >
+      <path
+        fill="currentColor"
+        d="M416 80a48.05 48.05 0 0 0-48-48H144a48.05 48.05 0 0 0-48 48v352a48.05 48.05 0 0 0 48 48h224a48.05 48.05 0 0 0 48-48ZM168 432a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm0-80a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm0-80a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm88 160a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm0-80a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm0-80a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm112 136a24 24 0 0 1-48 0v-80a24 24 0 0 1 48 0Zm-24-136a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm19.31-100.69A16 16 0 0 1 352 176H160a16 16 0 0 1-16-16V96a16 16 0 0 1 16-16h192a16 16 0 0 1 16 16v64a16 16 0 0 1-4.69 11.31Z"
+      />
+    </svg>
+  );
 };

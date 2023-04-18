@@ -1,7 +1,9 @@
 'use client';
 
+import { ArrowLeftIcon } from '@/assets/icons';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import AsideBar from '@/components/pages/Blog/AsideBar';
+import Button from '@/components/UI/Button';
 import API from '@/services/api';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
@@ -11,14 +13,14 @@ import React, { useEffect } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const actualPostToView = localStorage?.getItem('postId');
+  const viewedPost = localStorage?.getItem('postId');
 
-  const { allPosts } = useGetAllPosts(`?id=${actualPostToView}`);
+  const { allPosts } = useGetAllPosts(`/${viewedPost}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { postagem_id: actualPostToView });
+    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
   }, []);
 
   return (

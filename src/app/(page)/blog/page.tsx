@@ -13,12 +13,24 @@ import 'moment/locale/pt-br';
 import AsideBar from '@/components/pages/Blog/AsideBar';
 import { useSearchParams } from 'next/navigation';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
+import PaginationData from '@/components/shared/PaginationData';
 
 const BlogPage = () => {
   const [query, setQuery] = useState<string>('');
+  const [actualPage, setActualPage] = useState(1);
+
   const params = useSearchParams();
 
   const { allCategorias } = useGetAllCategorias();
+  const { allPosts } = useGetAllPosts(
+    '?' + query + `currentPage=${actualPage}&perPage=10`
+  );
+
+  useEffect(() => {
+    if (params.get('categoria') !== null) {
+      getCurrentCategory();
+    }
+  }, [params.get('categoria')]);
 
   function getCurrentCategory() {
     const currentCategory = allCategorias?.filter((category) => {
@@ -26,20 +38,16 @@ const BlogPage = () => {
     });
 
     if (currentCategory) {
-      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}`);
+      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}&`);
       return;
     }
 
     setQuery('');
   }
 
-  useEffect(() => {
-    if (params.get('categoria') !== '') {
-      getCurrentCategory();
-    }
-  }, [params.get('categoria')]);
-
-  const { allPosts } = useGetAllPosts(query);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
 
   return (
     <>
@@ -62,10 +70,18 @@ const BlogPage = () => {
                   date={moment(post?.criado).format('DD MMM')}
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
-                  postId={post?.postagem_id}
+                  postId={post?.id_postagem}
                 />
               ))}
+              {allPosts?.result?.length === 0 && (
+                <h3>Nenhuma postagem foi encontrada!</h3>
+              )}
             </S.ListPostsContainer>
+            <PaginationData
+              data={allPosts}
+              handlePagination={handlePageChange}
+              page={actualPage}
+            />
           </div>
 
           <AsideBar />

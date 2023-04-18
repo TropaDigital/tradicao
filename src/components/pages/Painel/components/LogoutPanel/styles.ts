@@ -21,6 +21,7 @@ export const Container = styled.div<propsModal>`
     border-radius: 50%;
     border: none;
     cursor: pointer;
+    overflow: hidden;
   }
   .chevronHandleLogOutVisibility {
     background-color: transparent;

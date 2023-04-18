@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Assembleias",
+      "path": "assembleias"
+    },
+    {
       "name": "Blog",
       "path": "blog"
     },
@@ -15,10 +19,6 @@
     {
       "name": "Demonstrações",
       "path": "demonstracoes-financeiras"
-    },
-    {
-      "name": "Denúncias",
-      "path": "denuncias"
     },
     {
       "name": "Regulamento",

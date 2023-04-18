@@ -27,6 +27,11 @@ export const Container = styled.div`
     .post-title {
       margin: 8px 0 15px;
       position: relative;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
 
       ::before {
         content: '';

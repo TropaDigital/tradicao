@@ -18,6 +18,10 @@ export const ButtonContainer = styled.button<Props>`
   height: 40px;
   width: 100%;
 
+  a {
+    color: inherit;
+  }
+
   font-weight: ${({ weight = 500 }) => weight};
   border-radius: ${({ radius = 'default' }) =>
     radius === 'default' ? '4px' : '30px'};

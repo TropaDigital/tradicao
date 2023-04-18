@@ -18,7 +18,7 @@ const BlogContainer = () => {
         {lastFourPosts?.map((post) => (
           <BlogCard
             image={post?.postagem_img}
-            postId={post?.postagem_id}
+            postId={post?.id_postagem}
             title={post?.titulo}
             subtitle={post?.subtitulo}
           />

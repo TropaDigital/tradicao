@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  CalculatorIcon,
   ChevronIcon,
   DefaultLogo,
   JornalIcon,
@@ -122,6 +123,11 @@ const Header = () => {
     //   text: 'Televendas: 4003-5090'
     // },
     {
+      icon: <CalculatorIcon />,
+      link: '/',
+      text: 'Simular Consórcio'
+    },
+    {
       icon: <JornalIcon />,
       link: '/blog',
       text: 'Blog'
@@ -177,7 +183,7 @@ const Header = () => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       setIsHovered(false);
-    }, 500); // 1 seg
+    }, 500); // .5 seg
   }
 
   return (
