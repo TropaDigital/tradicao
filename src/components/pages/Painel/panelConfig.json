@@ -21,6 +21,10 @@
       "path": "demonstracoes-financeiras"
     },
     {
+      "name": "Recursos",
+      "path": "recursos-nao-procurados"
+    },
+    {
       "name": "Regulamento",
       "path": "regulamento"
     },
