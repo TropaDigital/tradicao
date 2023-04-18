@@ -19,24 +19,48 @@ export const SearchField = styled.div`
 export const Table = styled.table`
     width: 100%;
 
-    tr {
-        .first {
-            padding-left: 10px;
-        }
-
-        td {
-            text-transform: uppercase;
-            color: var(--gray-700);
-            font-size: var(--text-smal-md);
-            font-weight: var(--weight-semibold);
+    thead {
+        tr {
+            .first {
+                padding-left: 10px;
+            }
+    
+            td {                
+                height: 20px;
+                padding: 6px 0;
+                
+                text-transform: uppercase;
+                color: var(--gray-700);
+                font-size: var(--text-smal-md);
+                font-weight: var(--weight-semibold);
+            }
         }
     }
+
+    tbody {
+        tr {
+            height: 30px;
+            &:nth-child(odd) {
+                background: var(--background-secondary);
+            }
+
+            &:hover {
+                transition: all .3s;
+                background: #dfefff;
+            }
+            
+            td {
+                padding-left: 4px;
+
+                color: var(--gray-500);
+                font-size: var(--text-smal-sm);
+                font-weight: var(--weight-medium);
+            }
+        }
+    }
+
 `
 
 export const THead = styled.thead`
-    
-`
-
-export const TrHead = styled.div`
-
+    height: 40px;
 `
