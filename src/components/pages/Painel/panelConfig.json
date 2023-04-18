@@ -21,6 +21,10 @@
       "path": "demonstracoes-financeiras"
     },
     {
+      "name": "Gp. Encerrados",
+      "path": "grupos-encerrados"
+    },
+    {
       "name": "Regulamento",
       "path": "regulamento"
     },

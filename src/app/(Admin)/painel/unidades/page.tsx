@@ -80,7 +80,7 @@ const UnidadesPainelPage = () => {
   };
 
   useEffect(() => {
-    if (units?.result?.length === 0) {
+    if (units?.result?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [units]);

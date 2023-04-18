@@ -9,7 +9,7 @@ interface ICandidatePost {
   id: number | undefined;
 }
 
-export const useUpdateUnit = () => {
+export const useUpdateCandidate = () => {
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation(
     async (candidatePost: ICandidatePost) => {
@@ -35,9 +35,9 @@ export const useUpdateUnit = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('AllDemonstrations');
+        queryClient.invalidateQueries('AllCandidates');
       }
     }
   );
-  return { updateUnit: mutateAsync };
+  return { updateCandidate: mutateAsync };
 };

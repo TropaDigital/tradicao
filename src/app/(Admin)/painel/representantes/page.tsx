@@ -66,7 +66,7 @@ const DemonstracoesPage = () => {
   );
 
   useEffect(() => {
-    if (allRepresentantes?.dataPaginada?.length === 0) {
+    if (allRepresentantes?.dataPaginada?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [allRepresentantes]);
