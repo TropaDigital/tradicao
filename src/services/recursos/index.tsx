@@ -3,7 +3,7 @@ import API from '../api';
 
 class RecursosClass {
     async getAllRecursos(query?: string) {
-        const response: AxiosResponse = await API.get(`/recursos${query ?? ''}`);
+        const response: AxiosResponse = await API.get(`/nao-procurados${query ?? ''}`);
         return response?.data;
     }
 
@@ -14,7 +14,7 @@ class RecursosClass {
 
     async createRecursos(formData: FormData) {
         const response: AxiosResponse = await API.post(
-            `/recursos-upload`,
+            `/nao-procurados-upload`,
             formData
         );
         return response?.data;

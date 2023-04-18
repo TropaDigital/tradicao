@@ -56,7 +56,7 @@ const NotReceivedPanel = () => {
                         className="styledButton"
                         onClick={() => setModalOpen(!modalOpen)}
                     >
-                        + Adicionar clientes
+                        + Atualizar recursos
                     </Button>
                 </div>
             </HeaderDashboard>

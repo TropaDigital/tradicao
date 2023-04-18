@@ -112,4 +112,6 @@ export const CardBottomContemplated = styled.div`
 
   padding: 10px;
   z-index: 13;
+
+  text-transform: capitalize;
 `;

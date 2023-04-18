@@ -12,6 +12,7 @@ import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import { useMemo, useState } from 'react';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { useGetAllGrupos } from '@/services/grupos-encerrados/GET/useGetAllGrupos';
 
 interface IGroupsProps {
     groupdId: string,
@@ -56,11 +57,24 @@ export default function ClosedGroups() {
         },
     ]
 
+    const { allGrupos } = useGetAllGrupos('');
+
+    console.log('log do groups', allGrupos)
+
     const filteredGroups = useMemo(() => {
 
         return groups.filter((obj: any) => obj.groupdId.includes(searchGroups))
         
     }, [searchGroups]);
+
+
+    criado: "2023-04-17T15:51:37.000Z"
+    data_encerramento: "2022-04-17T00:00:00.000Z"
+    grupo: 554
+    id_grupo: 25
+    modificado: "2023-04-18T15:55:42.000Z"
+    primeiro_rateio: "2025-04-17T00:00:00.000Z"
+    ultimo_rateio: "2025-04-17T00:00:00.000Z"
 
 
     return (
