@@ -34,14 +34,8 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           if (planilhaPost) {
             const formData = new FormData();
 
-            console.log(formData);
-            console.log(planilhaPost);
-            console.log(values?.tipo);
-
             formData?.append('planilha', planilhaPost);
             formData?.append('tipo', values?.tipo);
-
-            console.log(formData?.get('planilha'));
 
             createAssembleia(formData);
           }
