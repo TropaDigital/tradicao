@@ -16,7 +16,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   return (
     <S.Container id="td" className="td-block">
       {head.type === 'date' && (
-        <span>{moment(item.criado).format('DD/MM/YYYY')}</span>
+        <span>{moment(item[labelKey]).format('DD/MM/YYYY')}</span>
       )}
       {head.type === 'options' && (
         <div
