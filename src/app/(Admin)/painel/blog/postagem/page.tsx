@@ -171,7 +171,7 @@ const PostPanel = () => {
           // validationSchema={PostagemSchema}
           onSubmit={(values) => {
             if (currentPost) {
-              updatePost({ postagem: values, id: currentPost?.postagem_id });
+              updatePost({ postagem: values, id: currentPost?.id_postagem });
             }
 
             if (!currentPost) {
@@ -283,7 +283,7 @@ const PostPanel = () => {
                     type="submit"
                     onClick={() => setFieldValue('conteudo', editor?.getHTML())}
                   >
-                    Criar Postagem
+                    {currentPost ? 'Editar' : 'Publicar'} Postagem
                   </Button>
                 </div>
               </S.ButtonsWrapper>

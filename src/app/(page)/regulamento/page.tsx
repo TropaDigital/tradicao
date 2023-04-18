@@ -26,11 +26,9 @@ export default function Regulamento() {
           </div>
         </CenterWrapper>
       </S.ContainerTop>
-
       <CenterWrapper>
         <S.RegulationContainer>
           <object
-            data="https://bucket.backendtropa.com.br/file/098b994c-e5ee-4fa9-84e3-b1793deadc85"
             type="application/pdf"
             height="800px"
             width="100%"

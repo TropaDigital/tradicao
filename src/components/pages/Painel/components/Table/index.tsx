@@ -2,12 +2,11 @@
 
 import { AlertIcon } from '@/assets/icons';
 import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
 import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
-import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
 import { IGetContemplados } from '@/services/contemplados/types';
 import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
-import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import { IGetDemonstrations } from '@/services/demonstracoes/interface';
 import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
 import { IGetRelatorio } from '@/services/relatorios/types';
@@ -16,13 +15,11 @@ import { IGetRepresentante } from '@/services/representante/types';
 import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { IGetUnit } from '@/services/unidades/types';
-import { Pagination, TablePagination } from '@mui/material';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ButtonDefault from '../ButtonDefault';
+import FormContempladoAssembleia from '../forms/FormContempladoAssembleia';
 import FormContemplados from '../forms/FormContemplados';
-import FormProduct from '../forms/FormContemplados';
 import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
@@ -46,6 +43,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteCurriculo } = useDeleteCurriculo();
   const { deleteRepresentante } = useDeleteRepresentante();
   const { deletePost } = useDeletePost();
+  const { deleteAssembleia } = useDeleteAssembleia();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -58,14 +56,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
-      itemType: getKey[0]?.split('_')?.pop() as
-        | 'contemplado'
-        | 'financeira'
-        | 'unidade'
-        | 'relatorio'
-        | 'candidato'
-        | 'representante'
-        | 'postagem',
+      itemType: getKey[0]?.split('_')?.pop() as any,
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -78,7 +69,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
       | 'relatorio'
       | 'candidato'
       | 'representante'
-      | 'postagem';
+      | 'postagem'
+      | 'assembleia';
     itemID: number;
   }) => {
     const { itemID, itemType } = itemToDelete;
@@ -118,6 +110,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
     if (itemType === 'postagem') {
       deletePost(itemID);
     }
+
+    if (itemType === 'assembleia') {
+      deleteAssembleia(itemID);
+    }
   };
 
   useEffect(() => {
@@ -126,12 +122,16 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }, [data]);
 
-  function sendPostThroughPage() {
+  function sendItemThroughPage(url: string) {
     setModalOpen('');
-    router?.push('/painel/blog/postagem');
+    router?.push(`/painel/${url}`);
 
-    if (localStorage !== undefined) {
+    if (localStorage !== undefined && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
+    }
+
+    if (!url?.includes('postagem')) {
+      localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
     }
   }
 
@@ -190,12 +190,26 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 onSubmit={() => setModalOpen('')}
               />
             )}
+
+            {pathname?.includes('visualizar-assembleia') && (
+              <FormContempladoAssembleia
+                modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
           </Modal>
         )}
 
         <>
           {modalOpen === 'editar' && pathname?.includes('blog')
-            ? sendPostThroughPage()
+            ? sendItemThroughPage('blog/postagem')
+            : null}
+
+          {modalOpen === 'editar' &&
+          pathname?.includes('assembleias') &&
+          !pathname?.includes('visualizar')
+            ? sendItemThroughPage('assembleias/visualizar-assembleia')
             : null}
         </>
 

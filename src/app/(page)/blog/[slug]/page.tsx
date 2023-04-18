@@ -20,7 +20,7 @@ const BlogPostPage = () => {
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { postagem_id: viewedPost });
+    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
   }, []);
 
   return (

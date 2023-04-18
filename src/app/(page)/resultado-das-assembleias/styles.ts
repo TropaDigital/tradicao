@@ -1,23 +1,22 @@
-'use client'
-import styled from "styled-components";
+'use client';
+import styled from 'styled-components';
 
 export const ContainerTop = styled.div`
-  
   .margin {
     margin-top: 30px;
   }
 `;
 
 export const ContainerMid = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
 
-    max-width: 1000px;
-    margin-top: 40px;
+  max-width: 1000px;
+  margin-top: 40px;
 
-    padding-bottom: 60px;
-`
+  padding-bottom: 60px;
+`;
 
 export const CardContemplated = styled.div`
   display: flex;
@@ -25,18 +24,18 @@ export const CardContemplated = styled.div`
 
   width: 438px;
   height: fit-content;
-  
+
   border-radius: 10px;
   border: 1px solid var(--gray-300);
   overflow: hidden;
 
   cursor: pointer;
-  transition: ease-in .3s;
+  transition: ease-in 0.3s;
 
   &:hover {
     transform: scale(1.03);
   }
-`
+`;
 
 export const CardTopContemplated = styled.div`
   display: flex;
@@ -46,7 +45,7 @@ export const CardTopContemplated = styled.div`
 
   padding: 20px;
 
-  position: relative; 
+  position: relative;
 
   span {
     align-self: flex-start;
@@ -56,7 +55,7 @@ export const CardTopContemplated = styled.div`
     color: var(--gray-100);
     z-index: 9;
     padding-top: 20px;
-  }  
+  }
 
   .icon {
     display: flex;
@@ -85,7 +84,7 @@ export const CardTopContemplated = styled.div`
     top: 0;
     z-index: 0;
   }
-  
+
   &::before {
     content: '';
     width: 20%;
@@ -97,7 +96,7 @@ export const CardTopContemplated = styled.div`
     transform: translateY(-50%);
     z-index: 8;
   }
-`
+`;
 
 export const CardBottomContemplated = styled.div`
   display: flex;
@@ -113,4 +112,4 @@ export const CardBottomContemplated = styled.div`
 
   padding: 10px;
   z-index: 13;
-`
+`;

@@ -70,7 +70,7 @@ const BlogPage = () => {
                   date={moment(post?.criado).format('DD MMM')}
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
-                  postId={post?.postagem_id}
+                  postId={post?.id_postagem}
                 />
               ))}
               {allPosts?.result?.length === 0 && (
