@@ -71,7 +71,7 @@ const RelatoriosPage = () => {
   );
 
   useEffect(() => {
-    if (allRelatories?.dataPaginada?.length === 0) {
+    if (allRelatories?.dataPaginada?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [allRelatories]);

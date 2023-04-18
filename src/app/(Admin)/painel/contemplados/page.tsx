@@ -81,7 +81,7 @@ const ContempladosPage = () => {
   );
 
   useEffect(() => {
-    if (allContemplados?.dataPaginada?.length === 0) {
+    if (allContemplados?.dataPaginada?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [allContemplados]);

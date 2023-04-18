@@ -8,9 +8,12 @@ import { IForm } from '../types';
 import UploadFile from '@/components/UI/UploadFile';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { onlyLetterMask } from '@/utils/masks';
+import { useUpdateCandidate } from '@/services/trabalhe-conosco/PUT/useUpdateCandidate';
 
 const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [fileName, setFileName] = useState<string>('');
+
+  const { updateCandidate } = useUpdateCandidate();
 
   useEffect(() => {
     if (actualItem) {
@@ -18,7 +21,6 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         `curriculo-${actualItem?.nome?.replaceAll(' ', '-')?.toLowerCase()}.pdf`
       );
     }
-    console.log(actualItem);
   }, [actualItem]);
 
   return (
@@ -26,12 +28,15 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       <Formik
         initialValues={{
           nome: actualItem?.nome ?? '',
-          cargo: actualItem?.vaga ?? '',
+          vaga: actualItem?.vaga ?? '',
           curriculo_pdf: actualItem?.curriculo_pdf ?? ''
         }}
         validationSchema={CurriculoSchema}
         onSubmit={(values) => {
-          console.log(values);
+          updateCandidate({
+            candidateBody: values,
+            id: actualItem?.id_candidato
+          });
 
           onSubmit();
         }}
@@ -62,12 +67,12 @@ const FormCurriculo = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 />
 
                 <InputDefault
-                  label="Cargo"
+                  label="Vaga"
                   placeholder="Auxiliar Administrativo"
-                  name="cargo"
-                  value={values?.cargo}
+                  name="vaga"
+                  value={values?.vaga}
                   onChange={handleChange}
-                  error={touched?.cargo && errors?.cargo}
+                  error={touched?.vaga && errors?.vaga}
                 />
 
                 <UploadFile

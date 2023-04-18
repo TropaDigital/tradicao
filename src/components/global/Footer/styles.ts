@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   /* width: 100vw; */
   height: fit-content;
-  background: var(--primary);
+  background: var(--primary-dark);
   background: var(--degrade-primary);
 `;
 
@@ -222,10 +222,13 @@ export const Divider = styled.div`
 export const BottomFooter = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 25px;
   max-width: 1140px;
   margin: 0 auto;
+  /* background: var(--gray-100);
+  border-radius: 10px; */
+  padding: 8px;
 
   .text {
     color: var(--white);
@@ -233,8 +236,25 @@ export const BottomFooter = styled.div`
     font-weight: var(--weight-bold);
   }
 
+  .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 124px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 8px;
+  }
+
   .square-image {
-    max-width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 193px;
+    height: 124px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 8px;
   }
 
   @media (max-width: 800px) {
