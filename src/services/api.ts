@@ -5,7 +5,8 @@ import axios from 'axios';
 import cookieClass from '@/utils/cookieClass';
 
 var baseUrl;
-var auth_key = cookieClass.getCookie('AuthorizedAdminConsorcio');
+var AUTH_KEY_COOKIE = cookieClass.getCookie('AuthorizedAdminConsorcio');
+var AUTH_KEY_STORAGE = localStorage?.getItem('AuthorizedAdminConsorcio');
 
 if (process.env.NODE_ENV === 'development') {
   // baseUrl = 'https://tradicao.backendtropa.com.br/';
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 const API = axios.create({
   baseURL: baseUrl,
   headers: {
-    Authorization: `Bearer ${auth_key}`
+    Authorization: `Bearer ${AUTH_KEY_STORAGE ?? AUTH_KEY_COOKIE}`
   }
 });
 

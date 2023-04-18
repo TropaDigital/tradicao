@@ -29,14 +29,30 @@ export const InitialPostWrapper = styled.div`
   align-items: center;
   margin-bottom: 30px;
 
-  .post-thumb-wrapper {
+  .post-thumb-container {
+    position: relative;
     border-radius: 16px;
     overflow: hidden;
-    height: fit-content;
-    width: fit-content;
+    height: 280px;
 
-    img {
-      object-fit: fill;
+    .post-thumb-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: var(--status-danger);
+      transition: all 0.7s linear;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+
+    .post-thumb-wrapper:hover .post-thumb-overlay {
+      opacity: 0.5;
+      cursor: pointer;
     }
   }
 

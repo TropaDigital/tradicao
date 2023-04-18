@@ -22,12 +22,13 @@ import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCat
 import { Formik, Form } from 'formik';
 import Image from 'next/image';
 import Button from '@/components/UI/Button';
-import { PostagemSchema } from './yupSchema';
 import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
 import Link from 'next/link';
 import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
 import { useRouter } from 'next/navigation';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { RemoveImageIcon } from '@/assets/icons';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
@@ -37,6 +38,7 @@ const PostPanel = () => {
   const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
+  const [currentImage, setCurrentImage] = useState<string>('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -191,20 +193,28 @@ const PostPanel = () => {
           }) => (
             <Form onSubmit={handleSubmit}>
               <S.InitialPostWrapper>
-                {values?.postagem_img && (
-                  <div className="post-thumb-wrapper">
-                    <Image
-                      src={values?.postagem_img}
-                      alt={`Capa da postagem ${values?.titulo}`}
-                      width={500}
-                      height={281}
-                    />
+                {currentImage && (
+                  <div className="post-thumb-container">
+                    <div className="post-thumb-wrapper">
+                      <div
+                        className="post-thumb-overlay"
+                        onClick={() => setCurrentImage('')}
+                      >
+                        <RemoveImageIcon size={64} />
+                      </div>
+                      <Image
+                        src={currentImage}
+                        alt={`Capa da postagem ${values?.titulo}`}
+                        width={500}
+                        height={281}
+                      />
+                    </div>
                   </div>
                 )}
-                {!values?.postagem_img && (
+                {!currentImage && (
                   <InputImage
                     onPostImage={(imageUrl) => {
-                      setFieldValue('postagem_img', imageUrl);
+                      setCurrentImage(imageUrl);
                     }}
                     title="Adicionar Capa"
                     error={touched?.postagem_img && errors?.postagem_img}

@@ -3,10 +3,8 @@
 import { Axios, AxiosResponse } from 'axios';
 import API from '../api';
 import { IUnitBody } from './types';
-import cookieClass from '@/utils/cookieClass';
-
 class UnidadesClass {
-  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
+  private AUTH_TOKEN = localStorage.getItem('AuthorizedAdminConsorcio');
 
   async getUnits(query: string) {
     try {

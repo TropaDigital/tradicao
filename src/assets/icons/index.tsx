@@ -1970,3 +1970,19 @@ export const CalculatorIcon = ({ color = '#000000', size = 18 }) => {
     </svg>
   );
 };
+
+export const RemoveImageIcon = ({ color = '#FFFFFF', size = 24 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill={color}
+        d="m21 18.15l-2-2V5H7.85l-2-2H19q.825 0 1.413.588T21 5v13.15Zm-1.9 3.75l-.9-.9H5q-.825 0-1.413-.588T3 19V5.8l-.9-.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l17 17q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM11.25 16l.825-1.1L5 7.825V19h11.175l-2-2H7q-.3 0-.45-.275t.05-.525l2-2.675q.15-.2.4-.2t.4.2L11.25 16Zm.75-4Zm-1.4 1.4Z"
+      />
+    </svg>
+  );
+};
