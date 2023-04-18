@@ -24,6 +24,7 @@ import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
 import FormRepresentante from '../forms/FormRepresentante';
+import FormGrupos from '../forms/FormGrupos';
 import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
@@ -194,6 +195,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {pathname?.includes('visualizar-assembleia') && (
               <FormContempladoAssembleia
                 modalOpen="editar"
+                actualItem={actualItem}
+                onSubmit={() => setModalOpen('')}
+              />
+            )}
+
+            {pathname?.includes('grupos-encerrados') && (
+              <FormGrupos
+                modalOpen={modalOpen}
                 actualItem={actualItem}
                 onSubmit={() => setModalOpen('')}
               />
