@@ -7,11 +7,11 @@ export const useCreateAssembleia = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (assembleiaBody: FormData) => {
+    async (formData: FormData) => {
       let response = toast.promise(
         async () => {
           let response: AxiosResponse = await AssembleiaClass.createAssembleia(
-            assembleiaBody
+            formData
           );
           return response;
         },

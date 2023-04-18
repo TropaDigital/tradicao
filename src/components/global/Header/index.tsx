@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  CalculatorIcon,
   ChevronIcon,
   DefaultLogo,
   JornalIcon,
@@ -117,9 +118,9 @@ const Header = () => {
 
   const infoLinks: IInfoOptions[] = [
     {
-      icon: <PhoneIcon />,
-      link: 'tel: 40035090',
-      text: 'Televendas: 4003-5090'
+      icon: <CalculatorIcon />,
+      link: '/',
+      text: 'Simular Consórcio'
     },
     {
       icon: <JornalIcon />,

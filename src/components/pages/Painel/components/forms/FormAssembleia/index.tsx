@@ -19,7 +19,7 @@ import { InputWrapper } from './styles';
 import { contempladoSchema } from './yupSchema';
 
 const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
-  const [planilha, setPlanilha] = useState<File>();
+  const [planilhaPost, setPlanilhaPost] = useState<File>();
 
   const { createAssembleia } = useCreateAssembleia();
 
@@ -30,15 +30,19 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           planilha: {} as File,
           tipo: ''
         }}
-        onSubmit={(values) => {
-          values.planilha = planilha as File;
+        onSubmit={async (values) => {
+          if (planilhaPost) {
+            const formData = new FormData();
 
-          const formData = new FormData();
+            console.log(formData);
+            console.log(planilhaPost);
+            console.log(values?.tipo);
 
-          formData.append('planilha', values?.planilha);
-          formData.append('tipo', values?.tipo);
+            formData?.append('planilha', planilhaPost);
+            formData?.append('tipo', values?.tipo);
 
-          for (const value of formData.values()) {
+            console.log(formData?.get('planilha'));
+
             createAssembleia(formData);
           }
 
@@ -58,11 +62,11 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       placeholder="Selecione o arquivo"
                       onChange={(e) => {
                         if (e?.target?.files) {
-                          setPlanilha(e?.target?.files[0]);
+                          setPlanilhaPost(e?.target?.files[0]);
                         }
                       }}
                     />
-                    <p>{planilha?.name ?? 'Selecione uma planilha'}</p>
+                    <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>
                   </label>
                 </InputWrapper>

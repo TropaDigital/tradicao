@@ -12,10 +12,11 @@ class AssembleiaClass {
     return response?.data;
   }
 
-  async createAssembleia(assembleiaBody: FormData) {
-    const response: AxiosResponse = await API.post(`/assembleia-upload`, {
-      assembleiaBody
-    });
+  async createAssembleia(formData: FormData) {
+    const response: AxiosResponse = await API.post(
+      `/assembleia-upload`,
+      formData
+    );
     return response?.data;
   }
 }
