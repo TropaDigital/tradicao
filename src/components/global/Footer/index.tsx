@@ -65,7 +65,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Visite a pagina no Facebook do Consórcio Tradição"
               >
-                <FacebookIcon />
+                <FacebookIcon /> 
               </Link>
 
               <Link
@@ -395,6 +395,7 @@ export default function Footer() {
           </Link>
         </div>
       </Copyright>
+      
       <ChatIA opened={modalChat} onClose={() => setModalChat(false)} />
       <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" />
     </Container>

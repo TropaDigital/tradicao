@@ -56,7 +56,7 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                   <ButtonDefault
                     color="transparent"
                     type="button"
-                    onClick={() => onSubmit()}
+                    // onClick={() => onSubmit()}
                     className="button"
                   >
                     Cancelar
@@ -65,6 +65,7 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                     color="darkButton"
                     className="button"
                     type="submit"
+                    onClick={() => onSubmit()}
                   >
                     Adicionar
                   </ButtonDefault>

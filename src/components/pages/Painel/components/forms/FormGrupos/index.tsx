@@ -139,7 +139,10 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                       <InputDefault
                         label="Último Rateio"
-                        value={values?.ultimo_rateio}
+                        value={values?.ultimo_rateio?.replace(
+                          /(\d{2})(\d{2})(\d{4})/,
+                          '$1/$2/$3'
+                        )}
                         onChange={handleChange}
                         maxLength={10}
                         minLength={10}

@@ -1,22 +1,11 @@
-import { TrashIcon } from '@/assets/icons';
-import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
-import UploadFile from '@/components/UI/UploadFile';
-import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useCreateAssembleia } from '@/services/assembleia/POST/useCreateAssembleia';
-import { useCreateContemplado } from '@/services/contemplados/POST/useCreateContemplado';
-import { useUpdateContemplado } from '@/services/contemplados/PUT/useUpdateContemplado';
-import { IContempladoImages } from '@/services/contemplados/types';
-import { onlyLetterMask } from '@/utils/masks';
 import { Form, Formik } from 'formik';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
-import InputImage from '../../inputs/InputImage';
 import * as S from '../styles';
 import { IForm } from '../types';
 import { InputWrapper } from './styles';
-import { contempladoSchema } from './yupSchema';
 
 const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();

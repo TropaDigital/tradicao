@@ -16,7 +16,7 @@ class RegulamentoClass {
   async getRegulamento() {
     try {
       let response: AxiosResponse = await API.get(`/regulamento`);
-      return response?.data;
+      return response?.data?.result[0]?.regulamento;
     } catch (err) {
       console.log(err);
     }

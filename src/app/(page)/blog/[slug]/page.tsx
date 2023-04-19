@@ -15,17 +15,20 @@ import * as S from './styles';
 const BlogPostPage = () => {
   const [viewedPost, setViwedPost] = useState<any>();
 
-  if (typeof window !== 'undefined') {
-    setViwedPost(localStorage?.getItem('postId'));
-  }
-
   const { allPosts } = useGetAllPosts(`/${viewedPost}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
+    if (typeof window !== 'undefined') {
+      setViwedPost(localStorage?.getItem('postId'));
+    }
   }, []);
+
+  useEffect(() => {
+    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
+    console.log('teste');
+  }, [viewedPost]);
 
   return (
     <>
@@ -42,7 +45,6 @@ const BlogPostPage = () => {
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {/* Postado dia 6 de Abril de 2023 por Consorlina */}
                 {`Postado em ${moment(allPosts?.result[0]?.criado).format(
                   'DD MMMM'
                 )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}
