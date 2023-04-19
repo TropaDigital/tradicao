@@ -10,7 +10,7 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
-import WorkWithUsBg from '../../../../public/images/work_with_us_bg.png';
+import WorkWithUsBg from '../../../../public/images/work_with_us_bg.jpg';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useCreateCandidate } from '@/services/trabalhe-conosco/POST/useCreateCadidate';
 import { useCreateAgent } from '@/services/representante/POST';
