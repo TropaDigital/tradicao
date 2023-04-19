@@ -1,5 +1,8 @@
 'use client';
 
+// React
+import { useState } from 'react';
+
 // Styles
 import * as S from './styles';
 
@@ -10,72 +13,26 @@ import closedGroups_bg from '../../../../public/images/nao_procurados_bg.jpg';
 import SkewContainer from '@/components/shared/SkewContainer';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
-import { useMemo, useState } from 'react';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllGrupos } from '@/services/grupos-encerrados/GET/useGetAllGrupos';
+import moment from 'moment';
+import PaginationData from '@/components/shared/PaginationData';
 
 interface IGroupsProps {
-    groupdId: string,
-    closeDate: any,
-    firstApportionment: string,
-    lastApportionment: string,
+    grupo: number,
+    data_encerramento: any,
+    primeiro_rateio: string,
+    ultimo_rateio: string,
 }
 
 export default function ClosedGroups() {
     const [ searchGroups, setSearchGroups ] = useState<any>('');
+    const [actualPage, setActualPage] = useState<number>(1);
+    const { allGrupos } = useGetAllGrupos(`?pesquisa=${searchGroups}&perPage=10&currentPage=${actualPage}`);   
 
-    const groups: IGroupsProps[] = [
-        {
-            groupdId: '0001',
-            closeDate: '01/01/2021',
-            firstApportionment: '31/12/2011',
-            lastApportionment: '31/12/2011',
-        },
-        {
-            groupdId: '0002',
-            closeDate: '01/01/2021',
-            firstApportionment: '31/12/2011',
-            lastApportionment: '31/12/2011',
-        },
-        {
-            groupdId: '0003',
-            closeDate: '01/01/2021',
-            firstApportionment: '31/12/2011',
-            lastApportionment: '31/12/2011',
-        },
-        {
-            groupdId: '0004',
-            closeDate: '01/01/2021',
-            firstApportionment: '31/12/2011',
-            lastApportionment: '31/12/2011',
-        },
-        {
-            groupdId: '0005',
-            closeDate: '01/01/2021',
-            firstApportionment: '31/12/2011',
-            lastApportionment: '31/12/2011',
-        },
-    ]
-
-    const { allGrupos } = useGetAllGrupos('');
-
-    console.log('log do groups', allGrupos)
-
-    const filteredGroups = useMemo(() => {
-
-        return groups.filter((obj: any) => obj.groupdId.includes(searchGroups))
-        
-    }, [searchGroups]);
-
-
-    criado: "2023-04-17T15:51:37.000Z"
-    data_encerramento: "2022-04-17T00:00:00.000Z"
-    grupo: 554
-    id_grupo: 25
-    modificado: "2023-04-18T15:55:42.000Z"
-    primeiro_rateio: "2025-04-17T00:00:00.000Z"
-    ultimo_rateio: "2025-04-17T00:00:00.000Z"
-
+    const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+        setActualPage(value);
+    };
 
     return (
         <>
@@ -100,7 +57,7 @@ export default function ClosedGroups() {
                             label="Buscar"
                             placeholder="Digite o número do seu grupo"
                             value={searchGroups}
-                            onChange={(e: any) => setSearchGroups(e.target.value)}                        
+                            onChange={(e: any) => setSearchGroups(e.target.value)}
                         />
                     </S.SearchField>
 
@@ -115,19 +72,26 @@ export default function ClosedGroups() {
                         </S.THead>
                         <tbody>
                             {
-                                filteredGroups.map((row: IGroupsProps) => (
-                                    <tr key={row.groupdId}>
-                                        <td>{row.groupdId}</td>
-                                        <td>{row.closeDate}</td>
-                                        <td>{row.firstApportionment}</td>
-                                        <td>{row.lastApportionment}</td>
+                                allGrupos?.result.map((row: IGroupsProps) => (
+                                    <tr key={row.grupo}>
+                                        <td>{row.grupo}</td>
+                                        <td>{moment(row.data_encerramento).format('DD/MM/YYYY')}</td>
+                                        <td>{moment(row.primeiro_rateio).format('DD/MM/YYYY')}</td>
+                                        <td>{moment(row.ultimo_rateio).format('DD/MM/YYYY')}</td>
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </S.Table>
+
+                    <PaginationData
+                        data={allGrupos}
+                        page={actualPage}
+                        handlePagination={handlePageChange}
+                    />
                 </CenterWrapper>
             </S.ContainerMid>
+
         </>
     )
 }
