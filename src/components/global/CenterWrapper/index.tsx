@@ -13,4 +13,4 @@ export default function CenterWrapper({ children }:ICenterWrapper){
             </div>
         </S.ContentWrapper>
     )
-}
+} 
