@@ -29,6 +29,7 @@ import { useRouter } from 'next/navigation';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import { RemoveImageIcon } from '@/assets/icons';
 import { PostagemSchema } from './yupSchema';
+import { toSlug } from '@/utils/masks';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
@@ -171,18 +172,27 @@ const PostPanel = () => {
             autor: currentPost?.autor ?? '',
             local: currentPost?.local ?? '',
             categoria_id: currentPost?.categoria_id ?? '',
-            conteudo: ''
+            conteudo: '',
+            slug: ''
           }}
           validationSchema={PostagemSchema}
           onSubmit={(values) => {
+            const postDetails = { ...values };
+            postDetails.slug = toSlug(values?.titulo);
+
             if (currentPost) {
               values.postagem_img = currentImage;
-              updatePost({ postagem: values, id: currentPost?.id_postagem });
+
+              updatePost({
+                postagem: postDetails,
+                id: currentPost?.id_postagem
+              });
             }
 
             if (!currentPost) {
               values.postagem_img = currentImage;
-              createPost(values);
+
+              createPost(postDetails);
             }
 
             router?.push('/painel/blog');
