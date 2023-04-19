@@ -36,8 +36,8 @@ const NotReceivedPanel = () => {
     const [ actualPage, setActualPage ] = useState<number>(1);
     const [ search, setSearch ] = useState('');
 
-    const { allRecursos } = useGetAllRecursos(
-        '?' + search + `ordem=desc&perPage=10&currentPage=${actualPage}`
+    const { getRecursos } = useGetAllRecursos(
+        `?ordem=desc&pesquisa=${search}&perPage=10&currentPage=${actualPage}`
     );
 
     const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -62,13 +62,13 @@ const NotReceivedPanel = () => {
             </HeaderDashboard>
             
             <Table 
-                data={allRecursos?.result}
+                data={getRecursos?.result}
                 header={headerTable}
                 title="Clientes com valores a receber"
             />
 
             <PaginationData
-                data={allRecursos}
+                data={getRecursos}
                 page={actualPage}
                 handlePagination={handlePageChange}
             />
