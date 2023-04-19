@@ -8,6 +8,7 @@ import { IconBaseProps } from 'react-icons';
 import { FaAngleDown } from 'react-icons/fa';
 
 import { Container, ContainerInput, Error } from './styles';
+import { FiAlertCircle } from 'react-icons/fi';
 
 interface ErrorInput {
   message: string;
@@ -73,11 +74,11 @@ export function SelectDefault({
           <FaAngleDown color="rgba(204, 204, 204, 1)" />
         </div>
 
-        {/* {error?.isError && (
+        {error?.isError && (
           <Error title={error.message}>
             <FiAlertCircle size={20} color="#E62965" />
           </Error>
-        )} */}
+        )}
       </ContainerInput>
     </Container>
   );

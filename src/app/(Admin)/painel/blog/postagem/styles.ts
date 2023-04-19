@@ -34,6 +34,7 @@ export const InitialPostWrapper = styled.div`
     border-radius: 16px;
     overflow: hidden;
     height: 280px;
+    width: fit-content;
 
     .post-thumb-overlay {
       position: absolute;
