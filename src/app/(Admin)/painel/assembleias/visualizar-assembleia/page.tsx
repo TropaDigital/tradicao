@@ -4,6 +4,7 @@ import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
+import { useGetAllAssembleiaContemplados } from '@/services/assembleia-contemplado/GET/useGetAllAssembleiaContemplados';
 import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../../styles';
@@ -53,12 +54,12 @@ const ViewAssembleiaPage = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const currentAssembleia = localStorage?.getItem('id_assembleia');
-      setQuery(`-contemplados?ordem=desc&id_assembleia=${currentAssembleia}&`);
+      setQuery(`?ordem=desc&id_assembleia=${currentAssembleia}&`);
     }
   }, []);
 
-  const { allAssembleias } = useGetAllAssembleias(
-    query + `perPage=10&currentPage=${actualPage}`
+  const { allContemplados } = useGetAllAssembleiaContemplados(
+    `${query}perPage=10&currentPage=${actualPage}`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -70,20 +71,26 @@ const ViewAssembleiaPage = () => {
       <HeaderDashboard>
         <HeaderPage title="Visualizar Assembleia" />
 
-        <Button color="secondary" degrade>
-          + Adicionar Pessoa
-        </Button>
+        <div className="buttonWrapper">
+          <Button
+            color="secondary"
+            className="styledButton"
+            radius="rounded"
+            degrade
+          >
+            + Adicionar Pessoa
+          </Button>
+        </div>
       </HeaderDashboard>
 
       <Table
-        data={allAssembleias?.result}
+        data={allContemplados?.result}
         header={headerTable}
-        title={`Assembleia
-        `}
+        title={`Resultado da Assembleia`}
       />
 
       <PaginationData
-        data={allAssembleias}
+        data={allContemplados}
         handlePagination={handlePageChange}
         page={actualPage}
       />

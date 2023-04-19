@@ -1,4 +1,5 @@
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { useUpdateAssembleiaContemplado } from '@/services/assembleia-contemplado/PUT/useUpdateAssembleiaContemplado';
 import { onlyLetterMask } from '@/utils/masks';
 import { Form, Formik } from 'formik';
 import ButtonDefault from '../../ButtonDefault';
@@ -11,6 +12,8 @@ const FormContempladoAssembleia = ({
   actualItem,
   onSubmit
 }: IForm) => {
+  const { updateContemplado } = useUpdateAssembleiaContemplado();
+
   return (
     <S.Container>
       <Formik
@@ -21,8 +24,12 @@ const FormContempladoAssembleia = ({
           tipo_de_contemplacao: actualItem?.tipo_de_contemplacao ?? '',
           representante: actualItem?.representante ?? ''
         }}
-        validationSchema={CurriculoSchema}
         onSubmit={(values) => {
+          updateContemplado({
+            id: actualItem?.contemplado_assembleia_id,
+            contemplado: values
+          });
+
           onSubmit();
         }}
       >
