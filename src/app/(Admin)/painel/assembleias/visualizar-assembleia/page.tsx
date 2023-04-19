@@ -3,6 +3,7 @@
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
+import Button from '@/components/UI/Button';
 import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../../styles';
@@ -68,6 +69,10 @@ const ViewAssembleiaPage = () => {
     <>
       <HeaderDashboard>
         <HeaderPage title="Visualizar Assembleia" />
+
+        <Button color="secondary" degrade>
+          + Adicionar Pessoa
+        </Button>
       </HeaderDashboard>
 
       <Table
