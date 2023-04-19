@@ -60,8 +60,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
-      {head.type === 'string' && head.key !== 'cpf' && <span>{item[labelKey] as string}</span>}
-      {head.type === 'string' && head.key === 'cpf' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
+      {head.type === 'string' && head.key !== 'pessoa' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'string' && head.key === 'pessoa' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
       {head.type === 'longText' && (
         <span className="longText">{item[labelKey] as string}</span>
       )}

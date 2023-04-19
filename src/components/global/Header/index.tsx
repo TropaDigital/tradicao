@@ -305,6 +305,11 @@ const Header = () => {
                         <S.ClientAreaSubMenu isHovered={isHovered}>
                           <ul>
                             <li>
+                              <Link href="area">
+                                Área do Cliente
+                              </Link>
+                            </li>
+                            <li>
                               <Link href="resultado-das-assembleias">
                                 Resultado das Assembleias
                               </Link>
