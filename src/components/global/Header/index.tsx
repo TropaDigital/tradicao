@@ -305,7 +305,7 @@ const Header = () => {
                         <S.ClientAreaSubMenu isHovered={isHovered}>
                           <ul>
                             <li>
-                              <Link href="area">
+                              <Link href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp" target='_blank'>
                                 Área do Cliente
                               </Link>
                             </li>
