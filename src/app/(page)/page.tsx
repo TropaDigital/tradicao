@@ -1,6 +1,6 @@
 'use client';
 import HeroSkew from '@/components/pages/Home/HeroSkew';
-import car_bg from '../../../public/images/car_banner.jpg';
+import home_bg from '../../../public/images/home_bg.jpg';
 
 import Contemplated from '@/components/sections/Contemplated';
 
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Container>
       <HeroSkew
-        backgroundImage={car_bg}
+        backgroundImage={home_bg}
         altBackgroundImage="Imagem de um carro com um homem e uma criança ao lado"
         subtitle="Realizar sonhos se tornou Tradição!"
         solidHeight={'86%'}
