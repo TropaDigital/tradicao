@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const FooterWrapper = styled.div`
   background: var(--degrade-primary);
-  padding: 44px 150px 17px 150px;
+  padding: 88px 150px 88px 150px;
 
   @media (max-width: 450px) {
     padding: 30px 5% 17px 5%;
