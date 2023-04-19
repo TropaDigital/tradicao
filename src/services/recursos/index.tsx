@@ -7,11 +7,6 @@ class RecursosClass {
         return response?.data;
     }
 
-    async deleteRecursos(id: number) {
-        const response: AxiosResponse = await API.delete(`/recursos/${id}`);
-        return response?.data;
-    }
-
     async createRecursos(formData: FormData) {
         const response: AxiosResponse = await API.post(
             `/nao-procurados-upload`,
