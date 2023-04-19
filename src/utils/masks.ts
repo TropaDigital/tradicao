@@ -119,3 +119,13 @@ export function formatDate(data: string) {
     return `${dia}/${mes}/${ano}`;
   }
 }
+
+export function toSlug(str: string) {
+  str = str.trim().toLowerCase();
+  str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  str = str
+    .replace(/[^a-z0-9 -]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+  return str;
+}

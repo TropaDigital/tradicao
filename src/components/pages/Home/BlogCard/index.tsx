@@ -3,6 +3,7 @@ import React from 'react';
 import { IBlogCard } from './types';
 import * as S from './styles';
 import Image from 'next/image';
+import { toSlug } from '@/utils/masks';
 
 const BlogCard = ({ image, subtitle, title, postId }: IBlogCard) => {
   function setPostIdToLocalStorage() {
@@ -12,14 +13,7 @@ const BlogCard = ({ image, subtitle, title, postId }: IBlogCard) => {
   }
 
   return (
-    <Link
-      href={`/blog/${title
-        ?.toLowerCase()
-        ?.normalize('NFD')
-        ?.trim()
-        ?.replaceAll(' ', '-')}`}
-      onClick={setPostIdToLocalStorage}
-    >
+    <Link href={`/blog/${toSlug(title)}`} onClick={setPostIdToLocalStorage}>
       <S.Container>
         <div className="post-thumb">
           <Image src={image} alt="Placeholder" width={435} height={250} />
