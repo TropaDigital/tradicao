@@ -127,11 +127,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
     setModalOpen('');
     router?.push(`/painel/${url}`);
 
-    if (localStorage !== undefined && url?.includes('postagem')) {
+    if (typeof window !== 'undefined' && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
     }
 
-    if (!url?.includes('postagem')) {
+    if (typeof window !== 'undefined' && !url?.includes('postagem')) {
       localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
     }
   }
@@ -231,10 +231,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
           >
             <ModalDeleteProduct>
               <AlertIcon />
-              <div className="modalTitleWarning">Excluir item</div>
+              <div className="modalTitleWarning">
+                Excluir {getItemType(actualItem)?.itemType ?? 'item'}
+              </div>
               <div className="modalDescription">
-                Tem certeza de que deseja excluir esse item ? Essa ação não
-                poderá ser desfeita
+                Tem certeza de que deseja excluir essa{' '}
+                {getItemType(actualItem)?.itemType ?? 'item'}? Essa ação não
+                poderá ser desfeita.
               </div>
               <span className="buttonWrapper">
                 <ButtonDefault

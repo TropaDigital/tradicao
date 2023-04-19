@@ -9,19 +9,26 @@ import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const viewedPost = localStorage?.getItem('postId');
+  const [viewedPost, setViwedPost] = useState<any>();
 
   const { allPosts } = useGetAllPosts(`/${viewedPost}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
+    if (typeof window !== 'undefined') {
+      setViwedPost(localStorage?.getItem('postId'));
+    }
   }, []);
+
+  useEffect(() => {
+    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
+    console.log('teste');
+  }, [viewedPost]);
 
   return (
     <>
@@ -38,7 +45,6 @@ const BlogPostPage = () => {
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {/* Postado dia 6 de Abril de 2023 por Consorlina */}
                 {`Postado em ${moment(allPosts?.result[0]?.criado).format(
                   'DD MMMM'
                 )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}

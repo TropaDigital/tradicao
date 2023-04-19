@@ -56,12 +56,14 @@ export default function AsideBar() {
                             .toLowerCase()
                         }
                         className="suggest-option"
-                        onClick={() =>
-                          localStorage?.setItem(
-                            'postId',
-                            String(postSuggest?.id_postagem)
-                          )
-                        }
+                        onClick={() => {
+                          if (typeof window !== 'undefined') {
+                            localStorage?.setItem(
+                              'postId',
+                              String(postSuggest?.id_postagem)
+                            );
+                          }
+                        }}
                       >
                         {postSuggest?.titulo}
                       </Link>
@@ -89,12 +91,14 @@ export default function AsideBar() {
                   }
                   className="topic-item"
                   key={key}
-                  onClick={() =>
-                    localStorage.setItem(
-                      'postId',
-                      String(rankPost?.id_postagem)
-                    )
-                  }
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      localStorage.setItem(
+                        'postId',
+                        String(rankPost?.id_postagem)
+                      );
+                    }
+                  }}
                 >
                   {rankPost?.titulo}
                 </Link>

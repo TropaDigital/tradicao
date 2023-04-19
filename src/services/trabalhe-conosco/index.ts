@@ -6,8 +6,6 @@ import { ICadidateInfo } from './types';
 import cookieClass from '@/utils/cookieClass';
 
 class TrabalheConoscoClass {
-  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
-
   async postCandidate(candidateInfo: ICadidateInfo) {
     try {
       const response: AxiosResponse = await API.post(
@@ -23,12 +21,7 @@ class TrabalheConoscoClass {
   async getAllCandidate(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
-        `getAll-TrabalheConosco${query && `?${query}`}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        `getAll-TrabalheConosco${query && `?${query}`}`
       );
       return response?.data;
     } catch (err) {
@@ -51,12 +44,7 @@ class TrabalheConoscoClass {
     try {
       const response: AxiosResponse = await API.put(
         `update-TrabalheConosco/${id}`,
-        candidateBody,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        candidateBody
       );
       return response?.data?.result;
     } catch (err) {
@@ -67,12 +55,7 @@ class TrabalheConoscoClass {
   async deleteCandidate(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-TrabalheConosco/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        `delete-TrabalheConosco/${id}`
       );
       return response?.data?.result;
     } catch (err) {

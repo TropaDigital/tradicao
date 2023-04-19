@@ -1,3 +1,4 @@
+import { toSlug } from '@/utils/masks';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,21 +7,13 @@ import { IPostCard } from './types';
 
 const PostCard = ({ date, image, subtitle, title, postId }: IPostCard) => {
   function setPostIdToLocalStorage() {
-    localStorage?.setItem('postId', postId?.toString());
+    if (typeof window !== 'undefined') {
+      localStorage?.setItem('postId', postId?.toString());
+    }
   }
 
   return (
-    <Link
-      href={
-        '/blog/' +
-        title
-          ?.normalize('NFD')
-          ?.replace(/[\u0300-\u036f]/g, '')
-          ?.replaceAll(' ', '-')
-          ?.toLowerCase()
-      }
-      onClick={setPostIdToLocalStorage}
-    >
+    <Link href={`/blog/${toSlug(title)}`} onClick={setPostIdToLocalStorage}>
       <S.Container>
         <div className="post-date">{date}</div>
 

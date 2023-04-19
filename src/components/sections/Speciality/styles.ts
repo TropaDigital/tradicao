@@ -44,6 +44,13 @@ export const GroupLogos = styled.div`
   align-items: center;
   gap: 2rem;
 
+  width: 100%;
+  justify-content: center;
+
+  @media(max-width: 800px){
+    flex-direction: column;
+  }
+
   .logos {
     display: flex;
     flex-direction: column;

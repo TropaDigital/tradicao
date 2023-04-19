@@ -6,17 +6,10 @@ import { IGetRepresentante } from './types';
 import cookieClass from '@/utils/cookieClass';
 
 class RepresentanteClass {
-  private AUTH_TOKEN = cookieClass.getCookie('AuthorizedAdminConsorcio');
-
   async getAllCandidates(query?: string) {
     try {
       const response: AxiosResponse = await API.get(
-        `getAll-representante${query && `?${query}`}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        `getAll-representante${query && `?${query}`}`
       );
       return response.data.result;
     } catch (err) {
@@ -40,12 +33,7 @@ class RepresentanteClass {
     try {
       const response: AxiosResponse = await API.put(
         `update-representante/${id}`,
-        agentInfo,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        agentInfo
       );
       return response;
     } catch (err) {
@@ -56,12 +44,7 @@ class RepresentanteClass {
   async deleteCandidate(id: number) {
     try {
       const response: AxiosResponse = await API.delete(
-        `delete-representante/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
+        `delete-representante/${id}`
       );
       return response.data;
     } catch (err) {

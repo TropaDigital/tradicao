@@ -16,9 +16,9 @@ export const useCreateGrupo = () => {
           return response;
         },
         {
-          error: 'Não foi possível criar Grupo',
-          pending: 'Criando Grupo Encerrado',
-          success: 'Grupo Encerrado criado com sucesso'
+          error: 'Não foi possível atualziar os Grupos Encerrados',
+          pending: 'Atualizando Grupos Encerrados',
+          success: 'Grupos Encerrados atualizados com sucesso'
         },
         {
           position: 'top-right',

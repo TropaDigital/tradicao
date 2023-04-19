@@ -20,11 +20,7 @@ export default function SelectSideBar({
   openSideBar,
   ...rest
 }: ISelectProps) {
-  const [selectIsOpen, setSelectIsOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setSelectIsOpen(false);
-  }, [sideBarIsOpen]);
+  const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
 
   function handleToogleSideBar() {
     if (!sideBarIsOpen) {

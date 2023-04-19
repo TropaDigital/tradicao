@@ -10,10 +10,8 @@ export const useCreateAssembleia = () => {
     async (formData: FormData) => {
       let response = toast.promise(
         async () => {
-          let response: AxiosResponse = await AssembleiaClass.createAssembleia(
-            formData
-          );
-          return response;
+          let response = await AssembleiaClass.createAssembleia(formData);
+          return response?.message;
         },
         {
           error: 'Não foi possível criar Assembleia',
@@ -28,7 +26,6 @@ export const useCreateAssembleia = () => {
       return response;
     },
     {
-      retry: true,
       onSuccess: () => {
         queryClient.invalidateQueries('allAssembleias');
       }

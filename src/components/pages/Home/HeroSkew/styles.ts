@@ -79,7 +79,7 @@ export const SubTitleWrapper = styled.div`
   position: absolute;
   bottom: -20px;
   height: 74px;
-  width: 35%;
+  width: 50%;
   background: linear-gradient(77.17deg, #00d35e -0.7%, #42db87 93.94%);
   transform: skew(-18deg);
   border-top-right-radius: 20px;
@@ -92,7 +92,7 @@ export const SubTitleWrapper = styled.div`
   @media (max-width: 1320px) {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    width: 40%;
+    width: 45%;
   }
 
   @media (max-width: 1090px) {
