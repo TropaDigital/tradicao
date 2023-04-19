@@ -4,7 +4,7 @@ import car_bg from '../../../public/images/car_banner.jpg';
 
 import Contemplated from '@/components/sections/Contemplated';
 
-import { Container } from './styles';
+import { Container, SimulationFormContainer } from './styles';
 import Speciality from '@/components/sections/Speciality';
 import BlueInfos from '@/components/pages/Home/BlueInfos';
 import ConsortiumWorks from '@/components/pages/Home/ConsortiumWorks';
@@ -21,7 +21,9 @@ export default function Home() {
         solidHeight={'86%'}
       />
 
-      <SimulationForm />
+      <SimulationFormContainer>
+        <SimulationForm />
+      </SimulationFormContainer>
 
       <Speciality />
 
