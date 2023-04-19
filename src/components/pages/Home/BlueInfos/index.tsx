@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   BlueContainer,
   BlueLeft,
@@ -18,7 +18,6 @@ export default function BlueInfos({
   quotasTotal,
   creditsTotal
 }: IBlueInfoProps) {
-
   const numero = parseInt(quotasTotal);
   const numero2 = parseInt(creditsTotal);
 
@@ -30,9 +29,32 @@ export default function BlueInfos({
   const intervalo2 = duracao / numero2;
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          iniciarContagem();
+          iniciarContagem2()
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (countRef.current) {
+        observer.observe(countRef.current);
+      }
+  
+      return () => {
+        observer.disconnect();
+      };
+
+    
+  }, []); 
+
+  function iniciarContagem() {
     let contador = 0;
     const timer = setInterval(() => {
-      contador += 100
+      contador += 100;
       const tempo = contador * intervalo;
       const progresso = tempo / duracao;
       const interpolacao = eases.circInOut(progresso);
@@ -43,13 +65,14 @@ export default function BlueInfos({
         setValorCotas(numero);
       }
     }, intervalo);
-    return () => clearInterval(timer);
-  }, [numero, duracao, intervalo]);
 
-  useEffect(() => {
+    return () => clearInterval(timer);
+  }
+
+  function iniciarContagem2(){
     let contador = 0;
     const timer = setInterval(() => {
-      contador+= 88
+      contador += 88;
       const tempo = contador * intervalo2;
       const progresso = tempo / duracao2;
       const interpolacao = eases.circInOut(progresso);
@@ -61,13 +84,20 @@ export default function BlueInfos({
       }
     }, intervalo2);
     return () => clearInterval(timer);
-  }, [numero2, duracao2, intervalo2]);
+  }
+
+  function formatarNumero(numero: number) {
+    const regex = /(\d)(?=(\d{3})+$)/g;
+    return numero.toString().replace(regex, '$1.');
+  }
+
+  const countRef = useRef(null);
 
   return (
-    <BlueContainer>
+    <BlueContainer ref={countRef}>
       <BlueLeft>
         <BlueLeftInfo>
-          +{valorCotas}
+          +{formatarNumero(valorCotas)}
           <div className="title">cotas contempladas</div>
         </BlueLeftInfo>
       </BlueLeft>
@@ -75,7 +105,7 @@ export default function BlueInfos({
       <BlueRight>
         <BlueRightInfo>
           +<span>R$</span>
-          {valorCredito}
+          {formatarNumero(valorCredito)}
           <div className="title">em créditos</div>
         </BlueRightInfo>
       </BlueRight>
