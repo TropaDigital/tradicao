@@ -9,26 +9,23 @@ import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const [viewedPost, setViwedPost] = useState<any>();
-
-  const { allPosts } = useGetAllPosts(`/${viewedPost}`);
+  const pathName = usePathname();
+  const { allPosts } = useGetAllPosts(`?slug=${pathName?.split('/')?.pop()}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setViwedPost(localStorage?.getItem('postId'));
+    if (allPosts) {
+      API.post(`/blog/post-vizualizacao`, {
+        id_postagem: allPosts?.result[0]?.id_postagem
+      });
     }
-  }, []);
-
-  useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { id_postagem: viewedPost });
-    console.log('teste');
-  }, [viewedPost]);
+  }, [allPosts]);
 
   return (
     <>
