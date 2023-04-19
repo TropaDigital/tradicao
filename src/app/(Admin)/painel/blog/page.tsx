@@ -79,8 +79,10 @@ const BlogPanel = () => {
             radius="rounded"
             className="styledButton"
             onClick={() => {
-              localStorage?.removeItem('actualPost');
-              router?.push('/painel/blog/postagem');
+              if (typeof window !== 'undefined') {
+                localStorage?.removeItem('actualPost');
+                router?.push('/painel/blog/postagem');
+              }
             }}
           >
             + Adicionar Postagem

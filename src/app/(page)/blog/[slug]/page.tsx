@@ -9,11 +9,15 @@ import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const viewedPost = localStorage?.getItem('postId');
+  const [viewedPost, setViwedPost] = useState<any>();
+
+  if (typeof window !== 'undefined') {
+    setViwedPost(localStorage?.getItem('postId'));
+  }
 
   const { allPosts } = useGetAllPosts(`/${viewedPost}`);
 

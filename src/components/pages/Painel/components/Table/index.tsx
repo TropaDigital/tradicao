@@ -127,11 +127,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
     setModalOpen('');
     router?.push(`/painel/${url}`);
 
-    if (localStorage !== undefined && url?.includes('postagem')) {
+    if (typeof window !== 'undefined' && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
     }
 
-    if (!url?.includes('postagem')) {
+    if (typeof window !== 'undefined' && !url?.includes('postagem')) {
       localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
     }
   }

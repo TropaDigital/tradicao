@@ -4,8 +4,6 @@ import { Axios, AxiosResponse } from 'axios';
 import API from '../api';
 import { IUnitBody } from './types';
 class UnidadesClass {
-  private AUTH_TOKEN = localStorage.getItem('AuthorizedAdminConsorcio');
-
   async getUnits(query: string) {
     try {
       const response: AxiosResponse = await API.get(
@@ -19,15 +17,7 @@ class UnidadesClass {
 
   async updateUnit(unitBody: IUnitBody, id: number | undefined) {
     try {
-      const response: AxiosResponse = await API.put(
-        `unidades/${id}`,
-        unitBody,
-        {
-          headers: {
-            Authorization: `Bearer ${this.AUTH_TOKEN}`
-          }
-        }
-      );
+      const response: AxiosResponse = await API.put(`unidades/${id}`, unitBody);
       return response.data.result;
     } catch (err) {
       console.log(err);
@@ -36,11 +26,7 @@ class UnidadesClass {
 
   async createUnit(unitBody: IUnitBody) {
     try {
-      const response: AxiosResponse = await API.post(`unidades`, unitBody, {
-        headers: {
-          Authorization: `Bearer ${this.AUTH_TOKEN}`
-        }
-      });
+      const response: AxiosResponse = await API.post(`unidades`, unitBody);
       return response;
     } catch (err) {
       console.log(err);
@@ -49,11 +35,7 @@ class UnidadesClass {
 
   async deleteUnit(id: number) {
     try {
-      const response: AxiosResponse = await API.delete(`unidades/${id}`, {
-        headers: {
-          Authorization: `Bearer ${this.AUTH_TOKEN}`
-        }
-      });
+      const response: AxiosResponse = await API.delete(`unidades/${id}`);
       return response.data;
     } catch (err) {
       console.log(err);
