@@ -6,7 +6,10 @@ export const useGetAllRecursos = (query?: string) => {
     const { data, isLoading, isError, isSuccess } = useQuery(
         ['allRecursos', query],
         async () => {
-            return await RecursosClass.getAllRecursos(query);
+            if (query !== '') {
+
+                return await RecursosClass.getAllRecursos(query);
+            }
         },
         {
             keepPreviousData: true
@@ -14,8 +17,7 @@ export const useGetAllRecursos = (query?: string) => {
     );
 
     return {
-        allRecursos: data as {
-            pagination: any;
+        getRecursos: data as {
             result: any[];
         },
         isLoadingAllRecursos: isLoading as boolean,
