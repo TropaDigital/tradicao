@@ -8,10 +8,15 @@ import MiniModal from '../../modal/MiniModal';
 import * as S from './styles';
 import { IRenderTD } from './types';
 
+// Utils
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+
 export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   const [miniModal, setMiniModal] = useState<boolean>(false);
 
   const labelKey: string = head.key;
+
+  console.log('log do head', head)
 
   return (
     <S.Container id="td" className="td-block">
@@ -55,7 +60,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
-      {head.type === 'string' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'string' && head.key !== 'cpf' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'string' && head.key === 'cpf' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
       {head.type === 'longText' && (
         <span className="longText">{item[labelKey] as string}</span>
       )}
