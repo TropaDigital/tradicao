@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import AssembleiaClass from '../index';
+import cookieClass from '@/utils/cookieClass';
 
 export const useCreateAssembleia = () => {
   const queryClient = useQueryClient();

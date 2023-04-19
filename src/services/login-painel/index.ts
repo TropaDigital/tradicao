@@ -17,7 +17,10 @@ class LoginClass {
         throw new Error('Token de autenticação inválido');
       }
       this.AUTH_TOKEN = authToken;
-      CookieClass.setCookie('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
+      CookieClass?.setCookie('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
+      if (typeof window !== 'undefined') {
+        localStorage?.setItem('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
+      }
       return true;
     } catch (err) {
       toast.error('E-mail ou senha inválidos');

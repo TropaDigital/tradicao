@@ -7,8 +7,6 @@ import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
-import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
-import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
 import { useGetAllGrupos } from '@/services/grupos-encerrados/GET/useGetAllGrupos';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../styles';

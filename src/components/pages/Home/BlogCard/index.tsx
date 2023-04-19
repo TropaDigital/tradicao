@@ -6,15 +6,18 @@ import Image from 'next/image';
 
 const BlogCard = ({ image, subtitle, title, postId }: IBlogCard) => {
   function setPostIdToLocalStorage() {
-    localStorage?.setItem('postId', postId?.toString());
+    if (typeof window !== 'undefined') {
+      localStorage?.setItem('postId', postId?.toString());
+    }
   }
 
   return (
     <Link
-      href={
-        '/blog/' +
-        title?.toLowerCase()?.normalize('NFD')?.trim()?.replaceAll(' ', '-')
-      }
+      href={`/blog/${title
+        ?.toLowerCase()
+        ?.normalize('NFD')
+        ?.trim()
+        ?.replaceAll(' ', '-')}`}
       onClick={setPostIdToLocalStorage}
     >
       <S.Container>

@@ -6,7 +6,9 @@ import { IPostCard } from './types';
 
 const PostCard = ({ date, image, subtitle, title, postId }: IPostCard) => {
   function setPostIdToLocalStorage() {
-    localStorage?.setItem('postId', postId?.toString());
+    if (typeof window !== 'undefined') {
+      localStorage?.setItem('postId', postId?.toString());
+    }
   }
 
   return (

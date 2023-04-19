@@ -9,6 +9,7 @@ import { InputWrapper } from './styles';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useUpdateGrupo } from '@/services/grupos-encerrados/PUT/useUpdateGrupo';
+import { formatDate, formatISOToDate, toISODate } from '@/utils/masks';
 
 const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
@@ -22,9 +23,12 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         initialValues={{
           planilha: {} as File,
           grupo: actualItem?.grupo ?? '',
-          data_encerramento: actualItem?.primeiro_rateio ?? '',
-          primeiro_rateio: actualItem?.primeiro_rateio ?? '',
-          ultimo_rateio: actualItem?.ultimo_rateio ?? ''
+          data_encerramento:
+            formatDate(actualItem?.primeiro_rateio?.split('T')[0]) ?? '',
+          primeiro_rateio:
+            formatDate(actualItem?.primeiro_rateio?.split('T')[0]) ?? '',
+          ultimo_rateio:
+            formatDate(actualItem?.ultimo_rateio?.split('T')[0]) ?? ''
         }}
         onSubmit={(values) => {
           if (planilhaPost) {
@@ -36,8 +40,6 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           }
 
           if (!planilhaPost) {
-            console.log(values?.primeiro_rateio);
-
             updateGrupo({
               putBody: {
                 grupo: values?.grupo,
@@ -53,7 +55,7 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           onSubmit();
         }}
       >
-        {({ handleSubmit, handleChange, values }) => (
+        {({ handleSubmit, handleChange, values, setFieldValue }) => (
           <>
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               {modalOpen === 'publicar' && (
@@ -110,22 +112,37 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       name="grupo"
                     />
 
+                    <InputDefault
+                      label="Data encerramento"
+                      value={values?.data_encerramento?.replace(
+                        /(\d{2})(\d{2})(\d{4})/,
+                        '$1/$2/$3'
+                      )}
+                      maxLength={10}
+                      minLength={10}
+                      onChange={handleChange}
+                      name="data_encerramento"
+                    />
+
                     <div className="lineElementsWrapper">
                       <InputDefault
                         label="1° Rateio"
-                        value={moment(values?.primeiro_rateio).format(
-                          'DD/MM/YYYY'
+                        value={values?.primeiro_rateio?.replace(
+                          /(\d{2})(\d{2})(\d{4})/,
+                          '$1/$2/$3'
                         )}
+                        maxLength={10}
+                        minLength={10}
                         onChange={handleChange}
                         name="primeiro_rateio"
                       />
 
                       <InputDefault
                         label="Último Rateio"
-                        value={moment(values?.ultimo_rateio).format(
-                          'DD/MM/YYYY'
-                        )}
+                        value={values?.ultimo_rateio}
                         onChange={handleChange}
+                        maxLength={10}
+                        minLength={10}
                         name="ultimo_rateio"
                       />
                     </div>

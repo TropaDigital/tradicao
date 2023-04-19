@@ -22,12 +22,13 @@ import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCat
 import { Formik, Form } from 'formik';
 import Image from 'next/image';
 import Button from '@/components/UI/Button';
-import { PostagemSchema } from './yupSchema';
 import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
 import Link from 'next/link';
 import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
 import { useRouter } from 'next/navigation';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
+import { RemoveImageIcon } from '@/assets/icons';
+import { PostagemSchema } from './yupSchema';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
@@ -37,6 +38,7 @@ const PostPanel = () => {
   const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
+  const [currentImage, setCurrentImage] = useState<string>('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -49,7 +51,10 @@ const PostPanel = () => {
   }, []);
 
   useEffect(() => {
-    if (currentPost) editor?.commands?.insertContent(currentPost?.conteudo);
+    if (currentPost) {
+      editor?.commands?.insertContent(currentPost?.conteudo);
+      setCurrentImage(currentPost?.postagem_img);
+    }
   }, [currentPost]);
 
   const editor = useEditor({
@@ -160,7 +165,7 @@ const PostPanel = () => {
       <S.Container>
         <Formik
           initialValues={{
-            postagem_img: currentPost?.postagem_img ?? '',
+            postagem_img: currentImage,
             titulo: currentPost?.titulo ?? '',
             subtitulo: currentPost?.subtitulo ?? '',
             autor: currentPost?.autor ?? '',
@@ -168,13 +173,15 @@ const PostPanel = () => {
             categoria_id: currentPost?.categoria_id ?? '',
             conteudo: ''
           }}
-          // validationSchema={PostagemSchema}
+          validationSchema={PostagemSchema}
           onSubmit={(values) => {
             if (currentPost) {
+              values.postagem_img = currentImage;
               updatePost({ postagem: values, id: currentPost?.id_postagem });
             }
 
             if (!currentPost) {
+              values.postagem_img = currentImage;
               createPost(values);
             }
 
@@ -191,23 +198,36 @@ const PostPanel = () => {
           }) => (
             <Form onSubmit={handleSubmit}>
               <S.InitialPostWrapper>
-                {values?.postagem_img && (
-                  <div className="post-thumb-wrapper">
-                    <Image
-                      src={values?.postagem_img}
-                      alt={`Capa da postagem ${values?.titulo}`}
-                      width={500}
-                      height={281}
-                    />
+                {currentImage && (
+                  <div className="post-thumb-container">
+                    <div className="post-thumb-wrapper">
+                      <div
+                        className="post-thumb-overlay"
+                        onClick={() => setCurrentImage('')}
+                      >
+                        <RemoveImageIcon size={64} />
+                      </div>
+                      <Image
+                        src={currentImage}
+                        alt={`Capa da postagem ${values?.titulo}`}
+                        width={500}
+                        height={281}
+                      />
+                    </div>
                   </div>
                 )}
-                {!values?.postagem_img && (
+                {!currentImage && (
                   <InputImage
                     onPostImage={(imageUrl) => {
-                      setFieldValue('postagem_img', imageUrl);
+                      setCurrentImage(imageUrl);
                     }}
                     title="Adicionar Capa"
-                    error={touched?.postagem_img && errors?.postagem_img}
+                    error={
+                      touched?.postagem_img &&
+                      currentImage?.length === 0 &&
+                      'A imagem é obrigatória.'
+                    }
+                    name="postagem_img"
                   />
                 )}
                 <S.InputsWrapper>
@@ -252,7 +272,12 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="categoria_id"
                       value={values?.categoria_id}
-                      error={touched?.categoria_id && errors?.categoria_id}
+                      error={
+                        touched?.categoria_id && {
+                          message: errors?.categoria_id,
+                          isError: true
+                        }
+                      }
                     >
                       <option>Selecione uma categoria</option>
                       {allCategorias?.map((categoria) => (
