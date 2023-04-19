@@ -21,7 +21,7 @@ const NotReceivedPanel = () => {
             type: 'date'
         },
         {
-            key: 'titulo',
+            key: 'cpf',
             label: 'CPF/CNPJ',
             type: 'string'
         },
