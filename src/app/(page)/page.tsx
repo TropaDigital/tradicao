@@ -27,7 +27,7 @@ export default function Home() {
 
       <Speciality />
 
-      <BlueInfos quotasTotal="39583" creditsTotal="501260000" />
+      <BlueInfos quotasTotal="42150" creditsTotal="592000000" />
 
       <ConsortiumWorks />
 
