@@ -21,9 +21,29 @@ const AssembleiaPage = () => {
       type: 'date'
     },
     {
+      key: 'url_imagem',
+      label: 'Capa',
+      type: 'image'
+    },
+    {
       key: 'titulo',
-      label: 'Assembleia',
+      label: 'Título',
       type: 'string'
+    },
+    {
+      key: 'tipo',
+      label: 'Tipo',
+      type: 'string'
+    },
+    {
+      key: 'data',
+      label: 'Data',
+      type: 'date'
+    },
+    {
+      key: 'url_planilha',
+      label: 'Planilha',
+      type: 'file'
     },
     {
       key: '',

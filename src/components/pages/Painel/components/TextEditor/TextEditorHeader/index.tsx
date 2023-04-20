@@ -6,6 +6,7 @@ import {
 } from './style';
 import {
   BoldIcon,
+  ClipFileIcon,
   ItalicIcon,
   ListOrderedIcon,
   ListUnorderedIcon,
@@ -19,6 +20,9 @@ import {
 } from '@/assets/icons';
 import { ITextEditorHeader } from './types';
 import { useEffect, useRef, useState } from 'react';
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
+import UploadFile from '@/components/UI/UploadFile';
+import InputImage from '../../inputs/InputImage';
 
 type TextEditorHeaderType = {
   editor: ITextEditorHeader;
@@ -26,6 +30,8 @@ type TextEditorHeaderType = {
 
 const TextEditorHeader = ({ editor }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { postFile } = usePostFile();
 
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
@@ -157,6 +163,31 @@ const TextEditorHeader = ({ editor }: any) => {
             </ul>
           </DropDownMenuFontSize>
         </MenuFontSize>
+      </button>
+
+      <button type="button" style={{ position: 'relative' }}>
+        <ClipFileIcon color="var(--black)" size={17} />
+        <input
+          type="file"
+          onChange={(e: any) => {
+            let formData = new FormData();
+            formData.set('file', e?.target?.files[0]);
+
+            let imageUrl = postFile(formData);
+
+            editor.chain().focus().setImage({ url: imageUrl }).run();
+          }}
+          style={{
+            width: '17px',
+            height: '21px',
+            opacity: '0',
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            cursor: 'pointer',
+            zIndex: '1'
+          }}
+        />
       </button>
     </EditorHeader>
   );
