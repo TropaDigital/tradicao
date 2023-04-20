@@ -15,8 +15,6 @@ import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 export default function Home() {
   const { getCounters } = useGetAllCounters();
 
-  console.log('log do counter', getCounters?.result[0]?.cotas_contemplados);
-
   return (
     <Container>
       <HeroSkew
@@ -35,7 +33,7 @@ export default function Home() {
       {getCounters && (
         <BlueInfos
           quotasTotal={getCounters?.result[0]?.cotas_contemplados}
-          creditsTotal={getCounters?.result[0]?.cotas_contemplados}
+          creditsTotal={getCounters?.result[0]?.creditos}
         />
       )}
 
