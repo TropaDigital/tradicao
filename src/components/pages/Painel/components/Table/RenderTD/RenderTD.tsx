@@ -16,8 +16,6 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
 
   const labelKey: string = head.key;
 
-  console.log('log do head', head)
-
   return (
     <S.Container id="td" className="td-block">
       {head.type === 'date' && (
