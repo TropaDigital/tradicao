@@ -14,23 +14,23 @@ import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import FormRecursos from '@/components/pages/Painel/components/forms/FormRecursos';
 
 const NotReceivedPanel = () => {
-  const headerTable = [
-    {
-      key: 'data',
-      label: 'Data do Recurso',
-      type: 'date'
-    },
-    {
-      key: 'pessoa',
-      label: 'CPF/CNPJ',
-      type: 'string'
-    },
-    {
-      key: '',
-      label: '',
-      type: 'options'
-    }
-  ];
+    const headerTable = [
+        {
+            key: 'data',
+            label: 'Data do Recurso',
+            type: 'date'
+        },
+        {
+            key: 'pessoa',
+            label: 'CPF/CNPJ',
+            type: 'string'
+        },
+        {
+            key: '',
+            label: '',
+            type: 'options'
+        }
+    ];
 
   const [modalOpen, setModalOpen] = useState<boolean>();
   const [actualPage, setActualPage] = useState<number>(1);
