@@ -10,7 +10,7 @@ import {
 import eases from 'eases';
 
 interface IBlueInfoProps {
-  quotasTotal: string;
+  quotasTotal: any;
   creditsTotal: string;
 }
 

@@ -10,8 +10,13 @@ import BlueInfos from '@/components/pages/Home/BlueInfos';
 import ConsortiumWorks from '@/components/pages/Home/ConsortiumWorks';
 import SimulationForm from '@/components/shared/SimulationForm';
 import BlogContainer from '@/components/pages/Home/BlogContainer';
+import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 
 export default function Home() {
+  const { getCounters } = useGetAllCounters();
+
+  console.log('log do counter', getCounters?.result[0]?.cotas_contemplados)
+
   return (
     <Container>
       <HeroSkew
@@ -27,7 +32,7 @@ export default function Home() {
 
       <Speciality />
 
-      <BlueInfos quotasTotal="42150" creditsTotal="592000000" />
+      <BlueInfos quotasTotal={getCounters?.result[0]?.cotas_contemplados} creditsTotal={getCounters?.result[0]?.cotas_contemplados} />
 
       <ConsortiumWorks />
 
