@@ -20,7 +20,6 @@ const ContempladosPage = () => {
       label: 'Data de Criação',
       type: 'date'
     },
-
     {
       key: 'contempladoImagens',
       label: 'Foto',

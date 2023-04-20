@@ -1,8 +1,8 @@
 const formatCnpjAndCpf = (value: string) => {
-  let formattedValue = value.replace(/\D/g, '');
+  let formattedValue = value?.replace(/\D/g, '');
 
   if (value?.length === 11) {
-    formattedValue = value.replace(
+    formattedValue = value?.replace(
       /^(\d{3})(\d{3})(\d{3})(\d{2})$/,
       '$1.$2.$3-$4'
     );

@@ -4,7 +4,7 @@ import SkewContainer from '@/components/shared/SkewContainer';
 import Image from 'next/image';
 import * as S from './styles';
 
-import bgAboutUsImage from '../../../../public/images/aboutUsHeader.png';
+import bgAboutUsImage from '../../../../public/images/aboutUsHeader.jpg';
 
 import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
 import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';

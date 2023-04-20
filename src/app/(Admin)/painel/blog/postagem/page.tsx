@@ -166,7 +166,7 @@ const PostPanel = () => {
       <S.Container>
         <Formik
           initialValues={{
-            postagem_img: currentImage,
+            postagem_img: '',
             titulo: currentPost?.titulo ?? '',
             subtitulo: currentPost?.subtitulo ?? '',
             autor: currentPost?.autor ?? '',
@@ -179,10 +179,9 @@ const PostPanel = () => {
           onSubmit={(values) => {
             const postDetails = { ...values };
             postDetails.slug = toSlug(values?.titulo);
+            postDetails.postagem_img = currentImage;
 
             if (currentPost) {
-              values.postagem_img = currentImage;
-
               updatePost({
                 postagem: postDetails,
                 id: currentPost?.id_postagem
@@ -190,8 +189,6 @@ const PostPanel = () => {
             }
 
             if (!currentPost) {
-              values.postagem_img = currentImage;
-
               createPost(postDetails);
             }
 

@@ -115,6 +115,10 @@ export const ClientAreaSubMenu = styled.div<PropsClient>`
     gap: 8px;
   }
 
+  ul > li {
+    padding: 2px;
+  }
+
   ul > li > a {
     color: var(--white);
     font-size: 14px;
