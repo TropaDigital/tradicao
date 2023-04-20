@@ -1,6 +1,8 @@
 'use client';
 
+import FormContempladoAssembleia from '@/components/pages/Painel/components/forms/FormContempladoAssembleia';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
+import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
@@ -50,6 +52,9 @@ const ViewAssembleiaPage = () => {
 
   const [query, setQuery] = useState('');
   const [actualPage, setActualPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState<'editar' | 'publicar' | null>(
+    null
+  );
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -68,6 +73,20 @@ const ViewAssembleiaPage = () => {
 
   return (
     <>
+      {modalOpen === 'publicar' && (
+        <Modal
+          onClose={() => {
+            setModalOpen(null);
+          }}
+          setData={() => {}}
+        >
+          <FormContempladoAssembleia
+            modalOpen={modalOpen}
+            onSubmit={() => setModalOpen(null)}
+          />
+        </Modal>
+      )}
+
       <HeaderDashboard>
         <HeaderPage title="Visualizar Assembleia" />
 
@@ -77,6 +96,7 @@ const ViewAssembleiaPage = () => {
             className="styledButton"
             radius="rounded"
             degrade
+            onClick={() => setModalOpen('publicar')}
           >
             + Adicionar Pessoa
           </Button>

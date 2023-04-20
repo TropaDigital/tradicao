@@ -1,18 +1,32 @@
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { useCreateAssembleiaContemplado } from '@/services/assembleia-contemplado/POST/useCreateAssembleiaContemplado';
 import { useUpdateAssembleiaContemplado } from '@/services/assembleia-contemplado/PUT/useUpdateAssembleiaContemplado';
+import { useCreateAssembleia } from '@/services/assembleia/POST/useCreateAssembleia';
 import { onlyLetterMask } from '@/utils/masks';
 import { Form, Formik } from 'formik';
 import ButtonDefault from '../../ButtonDefault';
 import * as S from '../styles';
 import { IForm } from '../types';
 import { CurriculoSchema } from './yupSchema';
+import { useEffect, useState } from 'react';
 
 const FormContempladoAssembleia = ({
   modalOpen,
   actualItem,
   onSubmit
 }: IForm) => {
+  const [currentAssembleia, setCurrentAssembleia] = useState<string>('');
+
   const { updateContemplado } = useUpdateAssembleiaContemplado();
+  const { createContemplado } = useCreateAssembleiaContemplado();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const currentAssembleia = localStorage?.getItem('id_assembleia');
+
+      currentAssembleia && setCurrentAssembleia(currentAssembleia);
+    }
+  }, []);
 
   return (
     <S.Container>
@@ -22,13 +36,21 @@ const FormContempladoAssembleia = ({
           grupo: actualItem?.grupo ?? '',
           cota: actualItem?.cota ?? '',
           tipo_de_contemplacao: actualItem?.tipo_de_contemplacao ?? '',
-          representante: actualItem?.representante ?? ''
+          representante: actualItem?.representante ?? '',
+          id_assembleia: currentAssembleia
         }}
         onSubmit={(values) => {
-          updateContemplado({
-            id: actualItem?.contemplado_assembleia_id,
-            contemplado: values
-          });
+          if (modalOpen === 'editar') {
+            updateContemplado({
+              id: actualItem?.contemplado_assembleia_id,
+              contemplado: values
+            });
+          }
+
+          if (modalOpen === 'publicar') {
+            values.id_assembleia = currentAssembleia;
+            createContemplado(values);
+          }
 
           onSubmit();
         }}
