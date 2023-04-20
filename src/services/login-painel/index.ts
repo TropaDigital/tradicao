@@ -16,10 +16,15 @@ class LoginClass {
       if (!authToken) {
         throw new Error('Token de autenticação inválido');
       }
+
       this.AUTH_TOKEN = authToken;
+
+      API.defaults.headers.authorization = `Bearer ${authToken}`;
+
       CookieClass?.setCookie('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
+
       if (typeof window !== 'undefined') {
-        localStorage?.setItem('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
+        localStorage.setItem('AuthorizedAdminConsorcio', this?.AUTH_TOKEN);
       }
       return true;
     } catch (err) {
