@@ -7,7 +7,7 @@ import { Form, Formik } from 'formik';
 import ButtonDefault from '../../ButtonDefault';
 import * as S from '../styles';
 import { IForm } from '../types';
-import { CurriculoSchema } from './yupSchema';
+import { AssembleiaContempladoSchema } from './yupSchema';
 import { useEffect, useState } from 'react';
 
 const FormContempladoAssembleia = ({
@@ -39,6 +39,7 @@ const FormContempladoAssembleia = ({
           representante: actualItem?.representante ?? '',
           id_assembleia: currentAssembleia
         }}
+        validationSchema={AssembleiaContempladoSchema}
         onSubmit={(values) => {
           if (modalOpen === 'editar') {
             updateContemplado({
@@ -87,7 +88,7 @@ const FormContempladoAssembleia = ({
                     name="grupo"
                     value={values?.grupo}
                     onChange={handleChange}
-                    // error={touched?.cargo && errors?.cargo}
+                    error={touched?.grupo && errors?.grupo}
                   />
 
                   <InputDefault
@@ -96,7 +97,7 @@ const FormContempladoAssembleia = ({
                     name="cota"
                     value={values?.cota}
                     onChange={handleChange}
-                    // error={touched?.cargo && errors?.cargo}
+                    error={touched?.cota && errors?.cota}
                   />
                 </div>
 
@@ -107,7 +108,10 @@ const FormContempladoAssembleia = ({
                     name="tipo_de_contemplacao"
                     value={values?.tipo_de_contemplacao}
                     onChange={handleChange}
-                    // error={touched?.cargo && errors?.cargo}
+                    error={
+                      touched?.tipo_de_contemplacao &&
+                      errors?.tipo_de_contemplacao
+                    }
                   />
 
                   <InputDefault
@@ -116,7 +120,7 @@ const FormContempladoAssembleia = ({
                     name="representante"
                     value={values?.representante}
                     onChange={handleChange}
-                    // error={touched?.cargo && errors?.cargo}+
+                    error={touched?.representante && errors?.representante}
                   />
                 </div>
 
