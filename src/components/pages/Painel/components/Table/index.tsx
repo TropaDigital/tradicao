@@ -79,7 +79,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
       itemType: getKey[0]?.split('_')?.pop() as any,
-      itemID: actualItem[getKey[1 ? 1 : 0]] as number
+      itemID: actualItem[getKey[0]] as number
     };
   };
 
@@ -194,8 +194,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 <ButtonDefault
                   color="darkButton"
                   onClick={() => {
-                    const itemToDelete = getItemType(actualItem);
-                    removeItem(itemToDelete);
+                    const idKey = Object.keys(actualItem)[0];
+
+                    removeItem({
+                      itemID: actualItem[idKey]
+                    });
                     setModalOpen('');
                   }}
                 >
