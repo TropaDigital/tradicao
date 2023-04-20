@@ -30,11 +30,13 @@ import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
+import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplado/DELETE/useDeleteAssembleiaContemplado';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
+  const [currentPage, setCurrentPage] = useState<string>('');
 
   const { deleteFile } = useDeleteFile();
   const { deleteContemplado } = useDeleteContemplado();
@@ -45,6 +47,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteRepresentante } = useDeleteRepresentante();
   const { deletePost } = useDeletePost();
   const { deleteAssembleia } = useDeleteAssembleia();
+  const { deleteAssembleiaContemplado } = useDeleteAssembleiaContemplado();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -112,8 +115,12 @@ export default function Table({ title, data, search, header }: ITableProps) {
       deletePost(itemID);
     }
 
-    if (itemType === 'assembleia') {
+    if (itemType === 'assembleia' && !pathname?.includes('visualizar')) {
       deleteAssembleia(itemID);
+    }
+
+    if (itemType === 'assembleia' && pathname?.includes('visualizar')) {
+      deleteAssembleiaContemplado(itemID);
     }
   };
 
@@ -122,6 +129,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
       setDataInternal([...data]);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (pathname) {
+      const pathName: string | undefined = pathname?.split('/')?.pop();
+      setCurrentPage(pathName ? pathName : '');
+    }
+  }, [pathname]);
 
   function sendItemThroughPage(url: string) {
     setModalOpen('');
@@ -136,6 +150,19 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }
 
+  const FORM_MAP: any = {
+    contemplados: FormContemplados,
+    'demonstracoes-financeiras': FormDemonstracoes,
+    unidades: FormUnidades,
+    'relatorio-de-ouvidoria': FormRelatories,
+    representantes: FormRepresentante,
+    curriculos: FormCurriculo,
+    'visualizar-assembleia': FormContempladoAssembleia,
+    'grupos-encerrados': FormGrupos
+  };
+
+  const FormComponent = FORM_MAP[currentPage];
+
   return (
     <>
       <Container>
@@ -146,67 +173,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
             }}
             setData={() => {}}
           >
-            {pathname?.includes('contemplados') && (
-              <FormContemplados
-                modalOpen="editar"
-                actualItem={actualItem as IGetContemplados}
-                onSubmit={() => {
-                  setModalOpen('');
-                }}
-              />
-            )}
-
-            {pathname?.includes('demonstracoes') && (
-              <FormDemonstracoes
-                modalOpen="editar"
-                actualItem={actualItem as IGetDemonstrations}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('unidades') && (
-              <FormUnidades
-                modalOpen="editar"
-                actualItem={actualItem as IGetUnit}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('relatorio') && (
-              <FormRelatories
-                modalOpen="editar"
-                actualItem={actualItem as IGetRelatorio}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('representantes') && (
-              <FormRepresentante
-                modalOpen="editar"
-                actualItem={actualItem as IGetRepresentante}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('curriculo') && (
-              <FormCurriculo
-                modalOpen="editar"
-                actualItem={actualItem}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-
-            {pathname?.includes('visualizar-assembleia') && (
-              <FormContempladoAssembleia
-                modalOpen="editar"
-                actualItem={actualItem}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-
-            {pathname?.includes('grupos-encerrados') && (
-              <FormGrupos
-                modalOpen={modalOpen}
-                actualItem={actualItem}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
+            <FormComponent
+              modalOpen="editar"
+              actualItem={actualItem}
+              onSubmit={() => setModalOpen('')}
+            />
           </Modal>
         )}
 
