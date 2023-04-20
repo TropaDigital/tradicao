@@ -10,16 +10,17 @@ import {
 import eases from 'eases';
 
 interface IBlueInfoProps {
-  quotasTotal: any;
-  creditsTotal: string;
+  quotasTotal: number;
+  creditsTotal: number;
 }
 
 export default function BlueInfos({
   quotasTotal,
   creditsTotal
 }: IBlueInfoProps) {
-  const numero = parseInt(quotasTotal);
-  const numero2 = parseInt(creditsTotal);
+
+  const numero = quotasTotal
+  const numero2 = creditsTotal
 
   const [valorCotas, setValorCotas] = useState(0);
   const [valorCredito, setValorCredito] = useState(0);
@@ -92,6 +93,7 @@ export default function BlueInfos({
   }
 
   const countRef = useRef(null);
+
 
   return (
     <BlueContainer ref={countRef}>

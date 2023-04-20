@@ -15,7 +15,7 @@ import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 export default function Home() {
   const { getCounters } = useGetAllCounters();
 
-  console.log('log do counter', getCounters?.result[0]?.cotas_contemplados)
+  console.log('log do counter', getCounters?.result[0]?.cotas_contemplados);
 
   return (
     <Container>
@@ -32,7 +32,12 @@ export default function Home() {
 
       <Speciality />
 
-      <BlueInfos quotasTotal={getCounters?.result[0]?.cotas_contemplados} creditsTotal={getCounters?.result[0]?.cotas_contemplados} />
+      {getCounters && (
+        <BlueInfos
+          quotasTotal={getCounters?.result[0]?.cotas_contemplados}
+          creditsTotal={getCounters?.result[0]?.cotas_contemplados}
+        />
+      )}
 
       <ConsortiumWorks />
 
