@@ -1,22 +1,12 @@
 'use client';
 
-import { AlertIcon } from '@/assets/icons';
-import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
-import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
-import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
-import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
-import { IGetContemplados } from '@/services/contemplados/types';
-import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
-import { IGetDemonstrations } from '@/services/demonstracoes/interface';
-import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
-import { IGetRelatorio } from '@/services/relatorios/types';
-import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
-import { IGetRepresentante } from '@/services/representante/types';
-import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
-import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
-import { IGetUnit } from '@/services/unidades/types';
-import { usePathname, useRouter } from 'next/navigation';
+// Librarys
+
 import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+// Components
+
 import ButtonDefault from '../ButtonDefault';
 import FormContempladoAssembleia from '../forms/FormContempladoAssembleia';
 import FormContemplados from '../forms/FormContemplados';
@@ -30,7 +20,23 @@ import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
+
+// Services
+
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
+import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
+import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
+import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
+import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
+import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
+import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
+import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplado/DELETE/useDeleteAssembleiaContemplado';
+
+// Icons
+
+import { AlertIcon } from '@/assets/icons';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
@@ -38,7 +44,6 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const [actualItem, setActualItem] = useState<any>();
   const [currentPage, setCurrentPage] = useState<string>('');
 
-  const { deleteFile } = useDeleteFile();
   const { deleteContemplado } = useDeleteContemplado();
   const { deleteDemonstracao } = useDeleteDemonstracoes();
   const { deleteUnit } = useDeleteUnit();
@@ -51,78 +56,6 @@ export default function Table({ title, data, search, header }: ITableProps) {
 
   const pathname = usePathname();
   const router = useRouter();
-
-  function handleModal(modalType: string, product: any) {
-    setModalOpen(modalType);
-  }
-
-  const getItemType = (actualItem: any) => {
-    const actualItemKeys = Object.keys(actualItem);
-    const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
-    return {
-      itemType: getKey[0]?.split('_')?.pop() as any,
-      itemID: actualItem[getKey[0]] as number
-    };
-  };
-
-  const removeItem = (itemToDelete: {
-    itemType:
-      | 'contemplado'
-      | 'financeira'
-      | 'unidade'
-      | 'relatorio'
-      | 'candidato'
-      | 'representante'
-      | 'postagem'
-      | 'assembleia';
-    itemID: number;
-  }) => {
-    const { itemID, itemType } = itemToDelete;
-
-    if (itemType === 'contemplado') {
-      deleteContemplado(itemID);
-      deleteFile({
-        endpoint: 'delete-contemplado-foto',
-        id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
-      });
-    }
-
-    if (itemType === 'financeira') {
-      deleteDemonstracao(itemID);
-      deleteFile({
-        endpoint: 'delete-demonstracao-pdf',
-        id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
-      });
-    }
-
-    if (itemType === 'candidato') {
-      deleteCurriculo(itemID);
-    }
-
-    if (itemType === 'unidade') {
-      deleteUnit(itemID);
-    }
-
-    if (itemType === 'relatorio') {
-      deleteRelatorio(itemID);
-    }
-
-    if (itemType === 'representante') {
-      deleteRepresentante(itemID);
-    }
-
-    if (itemType === 'postagem') {
-      deletePost(itemID);
-    }
-
-    if (itemType === 'assembleia' && !pathname?.includes('visualizar')) {
-      deleteAssembleia(itemID);
-    }
-
-    if (itemType === 'assembleia' && pathname?.includes('visualizar')) {
-      deleteAssembleiaContemplado(itemID);
-    }
-  };
 
   useEffect(() => {
     if (data) {
@@ -137,24 +70,64 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }, [pathname]);
 
+  function handleModal(modalType: string, product: any) {
+    setModalOpen(modalType);
+  }
+
+  const getItemType = (actualItem: any) => {
+    const actualItemKeys = Object.keys(actualItem);
+    const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
+    return {
+      itemType: getKey[0]?.split('_')?.pop() as any,
+      itemID: actualItem[getKey[1 ? 1 : 0]] as number
+    };
+  };
+
   function sendItemThroughPage(url: string) {
     setModalOpen('');
     router?.push(`/painel/${url}`);
 
-    if (typeof window !== 'undefined' && url?.includes('postagem')) {
+    const isWindowDefined = typeof window !== undefined;
+
+    if (isWindowDefined && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
     }
 
-    if (typeof window !== 'undefined' && !url?.includes('postagem')) {
+    if (isWindowDefined && !url?.includes('postagem')) {
       localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
     }
   }
+
+  const deleteFunctions: any = {
+    contemplado: deleteContemplado,
+    'demonstracoes-financeiras': deleteDemonstracao,
+    curriculos: deleteCurriculo,
+    unidades: deleteUnit,
+    'relatorios-de-ouvidoria': deleteRelatorio,
+    representantes: deleteRepresentante,
+    blog: deletePost,
+    'visualizar-assembleia': deleteAssembleiaContemplado,
+    assembleias: deleteAssembleia
+  };
+
+  const removeItem = (itemToDelete: { itemID: number }) => {
+    const { itemID } = itemToDelete;
+    const deleteFunction = deleteFunctions[currentPage];
+
+    if (!deleteFunction) {
+      console.error(
+        `Não foi encontrada nenhuma função para deletar o item da página ${currentPage}`
+      );
+    }
+
+    deleteFunction(itemID);
+  };
 
   const FORM_MAP: any = {
     contemplados: FormContemplados,
     'demonstracoes-financeiras': FormDemonstracoes,
     unidades: FormUnidades,
-    'relatorio-de-ouvidoria': FormRelatories,
+    'relatorios-de-ouvidoria': FormRelatories,
     representantes: FormRepresentante,
     curriculos: FormCurriculo,
     'visualizar-assembleia': FormContempladoAssembleia,
@@ -174,7 +147,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
             setData={() => {}}
           >
             <FormComponent
-              modalOpen="editar"
+              modalOpen={modalOpen}
               actualItem={actualItem}
               onSubmit={() => setModalOpen('')}
             />
@@ -182,15 +155,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
         )}
 
         <>
-          {modalOpen === 'editar' && pathname?.includes('blog')
-            ? sendItemThroughPage('blog/postagem')
-            : null}
+          {modalOpen === 'editar' &&
+            pathname?.includes('blog') &&
+            sendItemThroughPage('blog/postagem')}
 
           {modalOpen === 'editar' &&
-          pathname?.includes('assembleias') &&
-          !pathname?.includes('visualizar')
-            ? sendItemThroughPage('assembleias/visualizar-assembleia')
-            : null}
+            pathname?.includes('assembleias') &&
+            !pathname?.includes('visualizar') &&
+            sendItemThroughPage('assembleias/visualizar-assembleia')}
         </>
 
         {modalOpen === 'excluir' && (

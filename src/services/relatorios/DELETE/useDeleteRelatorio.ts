@@ -16,9 +16,9 @@ export const useDeleteRelatorio = () => {
           return response;
         },
         {
-          error: 'Erro',
-          pending: 'Pending',
-          success: 'Success'
+          error: 'Erro ao exluir relatório de ouvidoria',
+          pending: 'Excluíndo relatório de ouvidoria',
+          success: 'Relatório de ouvidiria excluído com sucesso'
         },
         {
           position: 'top-right',
