@@ -1,19 +1,32 @@
 'use client';
-import CenterWrapper from '@/components/global/CenterWrapper';
-import SkewContainer from '@/components/shared/SkewContainer';
+
+// React
+import { useEffect, useRef, useState } from 'react';
+
+// Next
 import Image from 'next/image';
+
+// Styles
 import * as S from './styles';
 
-import bgAboutUsImage from '../../../../public/images/aboutUsHeader.jpg';
-
-import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
-import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';
-
-import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
+// Components
+import CenterWrapper from '@/components/global/CenterWrapper';
+import SkewContainer from '@/components/shared/SkewContainer';
 import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
-import Slider from 'react-slick';
 import MainTitle from '@/components/UI/MainTitle';
+import ContemplatedValueCard from '@/components/pages/quem-somos/ContemplatedValueCard';
+
+// Images
+import bgAboutUsImage from '../../../../public/images/aboutUsHeader.jpg';
+import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
+import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';
+import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
+
+// Libraries
+import Slider from 'react-slick';
+
+// Icons
 import {
   EyeIcon,
   HeartIcon,
@@ -24,13 +37,16 @@ import {
   RadialPlayIcon,
   WatchIcon
 } from '@/assets/icons';
-import ContemplatedValueCard from '@/components/pages/quem-somos/ContemplatedValueCard';
-import { useRef, useState } from 'react';
 
-import { BsPauseCircle } from 'react-icons/bs';
+// Services
+import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 
 export default function QuemSomos() {
+  const { getCounters } = useGetAllCounters();
+  const [ credits, setCredits ] = useState<any>();
+
   const [videoStats, setVideoStats] = useState<boolean>(false);
+  
   const BENEFITS_WITH_CONSORCIO_TRADICAO: Array<string> = [
     'Consórcio digital',
     'Compra planejada',
@@ -125,6 +141,14 @@ export default function QuemSomos() {
       setVideoStats(true);
     }
   }
+
+  function splitIntoArray(num: any) {
+    return Array.from(String(num), Number);
+  }
+
+  useEffect(() => {
+    setCredits(splitIntoArray(getCounters?.result[0]?.creditos))
+  }, []);
 
   return (
     <S.QuemSomosContainer>
@@ -284,7 +308,7 @@ export default function QuemSomos() {
         <CenterWrapper>
           <S.ContemplatedTitle>Em 20 anos de mercado</S.ContemplatedTitle>
           <S.ContemplatedQuotasWrapper>
-            <div className="contemplatedQuotesNumber">42.150</div>
+            <div className="contemplatedQuotesNumber">{getCounters?.result[0]?.cotas_contemplados?.toLocaleString()}</div>
             <span className="contemplatedQuotesTextWrapper">
               <h3 className="contemplatedQuotesTitle">Cotas</h3>
               <p className="contemplatedQuotesText">contempladas</p>
@@ -315,7 +339,7 @@ export default function QuemSomos() {
             </S.ContemplatedQuotasWrapper> */}
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">222</div>
+              <div className="contemplatedQuotesNumber cl-white">{getCounters?.result[0]?.grupos.toLocaleString()}</div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Grupos</h3>
                 <p className="contemplatedQuotesText cl-white">formados</p>
@@ -323,7 +347,7 @@ export default function QuemSomos() {
             </S.ContemplatedQuotasWrapper>
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">185.400</div>
+              <div className="contemplatedQuotesNumber cl-white">{getCounters?.result[0]?.contas_total?.toLocaleString()}</div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Total</h3>
                 <p className="contemplatedQuotesText cl-white">de cotas</p>
