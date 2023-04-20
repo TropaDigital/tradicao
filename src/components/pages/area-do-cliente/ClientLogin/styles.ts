@@ -14,9 +14,9 @@ export const ContainerLogin = styled.div`
 
     padding: 48px;
 
-    position: absolute;
+    /* position: absolute;
     top: -110px;
-    right: 0;
+    right: 0; */
 
     .university-form {
       display: flex;
@@ -45,15 +45,26 @@ export const LoginTitle = styled.div`
   color: var(--white);
   font-size: var(--text-headline-sm);
   font-weight: var(--weight-bold);
-
-  text-align: center;
 `;
+
+export const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  .containerAlert {
+    label {
+      color: white;
+    }
+  }
+`
 
 export const CheckboxLogin = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
   height: 16px;
+  margin-top: -4px;
 
   input {
 
@@ -81,4 +92,10 @@ export const TextButton = styled.button`
   font-style: italic;
 
   margin-left: auto;
+  transition: all .2s;
+
+  &:hover {
+    text-shadow: 0 0 10px #FFFFFF;
+    transform: scale(1.05);
+  }
 `

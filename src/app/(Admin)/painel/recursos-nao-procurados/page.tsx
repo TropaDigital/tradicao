@@ -12,6 +12,12 @@ import { useGetAllRecursos } from '@/services/recursos/GET/useGetAllRecursos';
 import PaginationData from '@/components/shared/PaginationData';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import FormRecursos from '@/components/pages/Painel/components/forms/FormRecursos';
+import DefaultInput from '@/components/UI/DefaultInput';
+import { SearchIcon } from '@/assets/icons';
+
+// Utils
+import { useDebouncedCallback } from 'use-debounce';
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 
 const NotReceivedPanel = () => {
     const headerTable = [
@@ -44,6 +50,19 @@ const NotReceivedPanel = () => {
     setActualPage(value);
   };
 
+  const debounced = useDebouncedCallback(
+    // function
+    (value) => {
+      if (value?.target?.value) {
+        setSearch(value?.target?.value);
+        return;
+      }
+      setSearch('');
+    },
+    // delay in ms
+    300
+  );
+
   return (
     <>
       <HeaderDashboard>
@@ -65,6 +84,14 @@ const NotReceivedPanel = () => {
         data={getRecursos?.result}
         header={headerTable}
         title="Clientes com valores a receber"
+        search={
+          <DefaultInput
+            icon={<SearchIcon />}
+            placeholder="Pesquise por CPF/CNPJ"
+            onChange={debounced}
+            name="search"
+          />
+        }
       />
 
       <PaginationData
