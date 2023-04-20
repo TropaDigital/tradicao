@@ -112,7 +112,7 @@ const Header = () => {
     },
     {
       title: 'Área do Cliente',
-      path: 'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp'
+      path: ''
     }
   ];
 
@@ -306,8 +306,7 @@ const Header = () => {
                           <ul>
                             <li>
                               <Link
-                                href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp"
-                                target="_blank"
+                                href="area-do-cliente"
                               >
                                 Área do Cliente
                               </Link>
