@@ -64,11 +64,11 @@ const Header = () => {
         },
         {
           subTitle: 'Compliance',
-          path: '/canal-de-denuncia'
+          path: '/canal-de-comunicacao'
         },
         {
           subTitle: 'Atendimento',
-          path: '/canal-de-denuncia'
+          path: '/contato'
         }
       ]
     },
@@ -305,9 +305,7 @@ const Header = () => {
                         <S.ClientAreaSubMenu isHovered={isHovered}>
                           <ul>
                             <li>
-                              <Link href="area">
-                                Área do Cliente
-                              </Link>
+                              <Link href="area">Área do Cliente</Link>
                             </li>
                             <li>
                               <Link href="resultado-das-assembleias">
