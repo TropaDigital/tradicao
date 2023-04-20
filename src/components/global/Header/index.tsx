@@ -64,11 +64,11 @@ const Header = () => {
         },
         {
           subTitle: 'Compliance',
-          path: '/canal-de-denuncia'
+          path: '/canal-de-comunicacao'
         },
         {
           subTitle: 'Atendimento',
-          path: '/canal-de-denuncia'
+          path: '/contato'
         }
       ]
     },
@@ -305,7 +305,10 @@ const Header = () => {
                         <S.ClientAreaSubMenu isHovered={isHovered}>
                           <ul>
                             <li>
-                              <Link href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp" target='_blank'>
+                              <Link
+                                href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp"
+                                target="_blank"
+                              >
                                 Área do Cliente
                               </Link>
                             </li>
