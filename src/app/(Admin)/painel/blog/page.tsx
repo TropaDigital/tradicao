@@ -30,7 +30,7 @@ const BlogPanel = () => {
     },
     {
       key: 'subtitulo',
-      label: 'Sub-Título',
+      label: 'Subtítulo',
       type: 'longText'
     },
     {

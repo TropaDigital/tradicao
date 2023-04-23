@@ -2,7 +2,7 @@
 
 // Librarys
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 // Components
@@ -227,9 +227,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {dataInternal?.map((row: any, key: any) => (
               <tr key={key}>
                 {header?.map((head: string | any, keyHead) => (
-                  <>
+                  <React.Fragment key={keyHead}>
                     <RenderTD
-                      key={keyHead}
                       head={head}
                       item={row}
                       onClickOptions={(modalType, product) => {
@@ -237,7 +236,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
                         setActualItem(product);
                       }}
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </tr>
             ))}

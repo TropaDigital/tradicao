@@ -144,7 +144,7 @@ const TextEditorHeader = ({ editor }: any) => {
                   }
                   type="button"
                 >
-                  Sub-Título
+                  Subtítulo
                 </button>
               </li>
               <li>

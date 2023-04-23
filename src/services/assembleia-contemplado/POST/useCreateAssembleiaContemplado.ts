@@ -15,7 +15,7 @@ export const useCreateAssembleiaContemplado = () => {
             await AssembleiaContempladoClass.createAssembleiaContemplado(
               assembleiaContempladoBody
             );
-          return response.data?.result;
+          return response?.data?.result;
         },
         {
           error: 'Não foi possível cadastrar contemplado',
