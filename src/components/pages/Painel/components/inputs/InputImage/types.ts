@@ -6,6 +6,7 @@ import {
 
 export interface IInputFileProps extends InputHTMLAttributes<HTMLInputElement> {
   onPostImage: (image: string) => void;
+  styleComponent?: any;
   title?: string;
   error?: any;
 }

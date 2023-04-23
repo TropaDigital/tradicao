@@ -233,11 +233,28 @@ export const HeaderDashboard = styled.div`
     gap: 10px;
   }
 
+  .multiButtonsContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
   .buttonWrapper {
     display: flex;
+    flex-wrap: wrap;
 
     .styledButton {
       padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 `;

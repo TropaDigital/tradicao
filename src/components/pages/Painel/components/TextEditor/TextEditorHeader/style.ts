@@ -1,3 +1,4 @@
+import UploadFile from '@/components/UI/UploadFile';
 import styled from 'styled-components';
 
 type Props = {

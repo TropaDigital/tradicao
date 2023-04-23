@@ -1,5 +1,6 @@
 'use client';
 
+import { ClipFileIcon } from '@/assets/icons';
 import FormAssembleia from '@/components/pages/Painel/components/forms/FormAssembleia';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
@@ -8,6 +9,7 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../styles';
 
@@ -19,9 +21,29 @@ const AssembleiaPage = () => {
       type: 'date'
     },
     {
+      key: 'url_imagem',
+      label: 'Capa',
+      type: 'image'
+    },
+    {
       key: 'titulo',
-      label: 'Assembleia',
+      label: 'Título',
       type: 'string'
+    },
+    {
+      key: 'tipo',
+      label: 'Tipo',
+      type: 'string'
+    },
+    {
+      key: 'data',
+      label: 'Data',
+      type: 'date'
+    },
+    {
+      key: 'url_planilha',
+      label: 'Planilha',
+      type: 'file'
     },
     {
       key: '',
@@ -66,16 +88,32 @@ const AssembleiaPage = () => {
 
       <HeaderDashboard>
         <HeaderPage title="Resultado de Assembleias" />
-        <div className="buttonWrapper">
-          <Button
-            degrade
-            color="secondary"
-            radius="rounded"
-            className="styledButton"
-            onClick={() => setModalOpen('publicar')}
-          >
-            + Criar Assembleia
-          </Button>
+        <div className="multiButtonsContainer">
+          <div className="buttonWrapper">
+            <Button
+              degrade
+              color="secondary"
+              radius="rounded"
+              className="styledButton"
+            >
+              <a href="/archives/exemplo-assembleia.xlsx" download>
+                <ClipFileIcon size={18} />
+                Baixar Modelo
+              </a>
+            </Button>
+          </div>
+
+          <div className="buttonWrapper">
+            <Button
+              degrade
+              color="secondary"
+              radius="rounded"
+              className="styledButton"
+              onClick={() => setModalOpen('publicar')}
+            >
+              + Criar Assembleia
+            </Button>
+          </div>
         </div>
       </HeaderDashboard>
       <Table

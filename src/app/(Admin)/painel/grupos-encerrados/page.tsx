@@ -11,6 +11,7 @@ import { useGetAllGrupos } from '@/services/grupos-encerrados/GET/useGetAllGrupo
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../styles';
 import { useDebouncedCallback } from 'use-debounce';
+import { ClipFileIcon } from '@/assets/icons';
 
 const AssembleiaPage = () => {
   const headerTable = [
@@ -86,16 +87,32 @@ const AssembleiaPage = () => {
 
       <HeaderDashboard>
         <HeaderPage title="Grupos Encerrados" />
-        <div className="buttonWrapper">
-          <Button
-            degrade
-            color="secondary"
-            radius="rounded"
-            className="styledButton"
-            onClick={() => setModalOpen('publicar')}
-          >
-            + Atualizar Grupos Encerrados
-          </Button>
+        <div className="multiButtonsContainer">
+          <div className="buttonWrapper">
+            <Button
+              degrade
+              color="secondary"
+              radius="rounded"
+              className="styledButton"
+            >
+              <a href="/archives/exemplo-nao-procurados.ods" download>
+                <ClipFileIcon size={18} />
+                Baixar Modelo
+              </a>
+            </Button>
+          </div>
+
+          <div className="buttonWrapper">
+            <Button
+              degrade
+              color="secondary"
+              radius="rounded"
+              className="styledButton"
+              onClick={() => setModalOpen('publicar')}
+            >
+              + Atualizar Grupos Encerrados
+            </Button>
+          </div>
         </div>
       </HeaderDashboard>
       <Table
