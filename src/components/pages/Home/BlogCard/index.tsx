@@ -21,12 +21,7 @@ const BlogCard = ({ image, subtitle, title, postId }: IBlogCard) => {
         <div className="post-description-container">
           <h3 className="post-title">{title}</h3>
           <p className="post-description">{subtitle}</p>
-          <Link
-            href={title?.toLowerCase().trim().replaceAll(' ', '-')}
-            className="read-more"
-          >
-            Ler mais
-          </Link>
+          <span className="read-more">Ler mais</span>
         </div>
       </S.Container>
     </Link>

@@ -287,8 +287,8 @@ const PostPanel = () => {
                       }
                     >
                       <option>Selecione uma categoria</option>
-                      {allCategorias?.map((categoria) => (
-                        <option value={categoria?.categoria_id}>
+                      {allCategorias?.map((categoria, key) => (
+                        <option value={categoria?.categoria_id} key={key}>
                           {categoria?.categoria}
                         </option>
                       ))}

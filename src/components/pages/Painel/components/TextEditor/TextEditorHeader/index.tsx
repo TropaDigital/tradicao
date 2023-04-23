@@ -21,28 +21,15 @@ import {
 } from '@/assets/icons';
 import { useEffect, useRef, useState } from 'react';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 
 const TextEditorHeader = ({ editor }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { postFile } = usePostFile();
 
-  function useOutsideAlerter(ref: any) {
-    useEffect(() => {
-      function handleClickOutside(event: any) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setIsOpen(false);
-        }
-      }
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [ref]);
-  }
-
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useOutsideAlerter(wrapperRef, setIsOpen);
 
   async function setImage(e: any) {
     let formData = new FormData();
@@ -135,7 +122,7 @@ const TextEditorHeader = ({ editor }: any) => {
         />
       </ChangeTextColor>
 
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <div onClick={() => setIsOpen(!isOpen)}>
         <MenuFontSize>
           <TextSizeIcon />
           <DropDownMenuFontSize isOpen={isOpen} ref={wrapperRef}>
@@ -171,7 +158,7 @@ const TextEditorHeader = ({ editor }: any) => {
             </ul>
           </DropDownMenuFontSize>
         </MenuFontSize>
-      </button>
+      </div>
 
       <InsetImageWrapper type="button">
         <ClipFileIcon color="var(--black)" size={17} />

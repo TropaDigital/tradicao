@@ -77,5 +77,10 @@ export const Container = styled.div`
       line-clamp: 2;
       -webkit-box-orient: vertical;
     }
+
+    .read-more {
+      font-weight: 700;
+      color: var(--primary-light);
+    }
   }
 `;

@@ -71,6 +71,7 @@ const BlogPage = () => {
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
                   postId={post?.id_postagem}
+                  key={post?.id_postagem}
                 />
               ))}
               {allPosts?.result?.length === 0 && (

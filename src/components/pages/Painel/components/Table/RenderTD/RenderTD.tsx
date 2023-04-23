@@ -58,8 +58,12 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
-      {head.type === 'string' && head.key !== 'pessoa' && <span>{item[labelKey] as string}</span>}
-      {head.type === 'string' && head.key === 'pessoa' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
+      {head.type === 'string' && head.key !== 'pessoa' && (
+        <span>{item[labelKey] as string}</span>
+      )}
+      {head.type === 'string' && head.key === 'pessoa' && (
+        <span>{formatCnpjAndCpf(item[labelKey])}</span>
+      )}
       {head.type === 'longText' && (
         <span className="longText">{item[labelKey] as string}</span>
       )}
@@ -84,11 +88,9 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
             width={90}
             height={90}
             src={
-              item?.[head.key][0]?.url_foto
-                ? item?.[head.key][0]?.url_foto
-                : item?.[head.key]
-                ? item?.[head.key]
-                : 'https://via.placeholder.com/90'
+              item?.[head.key][0]?.url_foto ??
+              item?.[head.key] ??
+              'https://bucket.backendtropa.com.br/file/b345de6e-c7af-4d2d-b910-619ddce5bf67'
             }
           />
         </div>
