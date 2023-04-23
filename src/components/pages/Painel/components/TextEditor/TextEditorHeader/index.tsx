@@ -2,6 +2,7 @@ import {
   ChangeTextColor,
   DropDownMenuFontSize,
   EditorHeader,
+  InsetImageWrapper,
   MenuFontSize
 } from './style';
 import {
@@ -18,15 +19,8 @@ import {
   TextSizeIcon,
   UnderlineIcon
 } from '@/assets/icons';
-import { ITextEditorHeader } from './types';
 import { useEffect, useRef, useState } from 'react';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
-import UploadFile from '@/components/UI/UploadFile';
-import InputImage from '../../inputs/InputImage';
-
-type TextEditorHeaderType = {
-  editor: ITextEditorHeader;
-};
 
 const TextEditorHeader = ({ editor }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +43,20 @@ const TextEditorHeader = ({ editor }: any) => {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
+
+  async function setImage(e: any) {
+    let formData = new FormData();
+    formData.set('file', e?.target?.files[0]);
+
+    let responseUrl = await postFile(formData);
+
+    editor.commands.setImage({
+      src: responseUrl,
+      alt: 'Imagem relacionada à postagem'
+    });
+
+    e.target.value = '';
+  }
 
   return (
     <EditorHeader>
@@ -165,30 +173,10 @@ const TextEditorHeader = ({ editor }: any) => {
         </MenuFontSize>
       </button>
 
-      <button type="button" style={{ position: 'relative' }}>
+      <InsetImageWrapper type="button">
         <ClipFileIcon color="var(--black)" size={17} />
-        <input
-          type="file"
-          onChange={(e: any) => {
-            let formData = new FormData();
-            formData.set('file', e?.target?.files[0]);
-
-            let imageUrl = postFile(formData);
-
-            editor.chain().focus().setImage({ url: imageUrl }).run();
-          }}
-          style={{
-            width: '17px',
-            height: '21px',
-            opacity: '0',
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            cursor: 'pointer',
-            zIndex: '1'
-          }}
-        />
-      </button>
+        <input type="file" onChange={setImage} className="insertImageInput" />
+      </InsetImageWrapper>
     </EditorHeader>
   );
 };

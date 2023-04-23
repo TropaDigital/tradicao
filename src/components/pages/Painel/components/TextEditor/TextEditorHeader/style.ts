@@ -95,3 +95,17 @@ export const DropDownMenuFontSize = styled.div<Props>`
     background-color: rgba(3, 3, 3, 0.1);
   }
 `;
+
+export const InsetImageWrapper = styled.button`
+  position: relative;
+
+  .insertImageInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 17px;
+    opacity: 0;
+    cursor: pointer;
+  }
+`;
