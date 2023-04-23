@@ -229,6 +229,7 @@ const PostPanel = () => {
                       setCurrentImage(imageUrl);
                     }}
                     title="Adicionar Capa"
+                    subtitle="Tamanho recomendado 1024x768"
                     error={
                       touched?.postagem_img &&
                       currentImage?.length === 0 &&
