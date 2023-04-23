@@ -10,6 +10,7 @@ import { useGetAllAssembleiaContemplados } from '@/services/assembleia-contempla
 import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembleia';
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../../styles';
+import InputImage from '@/components/pages/Painel/components/inputs/InputImage';
 
 const ViewAssembleiaPage = () => {
   const headerTable = [
@@ -102,6 +103,13 @@ const ViewAssembleiaPage = () => {
           </Button>
         </div>
       </HeaderDashboard>
+
+      <div>
+        <InputImage
+          onPostImage={(imageUrl) => console.log(imageUrl)}
+          title="Adicionar Capa"
+        />
+      </div>
 
       <Table
         data={allContemplados?.result}

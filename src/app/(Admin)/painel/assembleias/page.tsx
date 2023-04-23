@@ -43,7 +43,7 @@ const AssembleiaPage = () => {
     {
       key: 'url_planilha',
       label: 'Planilha',
-      type: 'file'
+      type: 'file-csv'
     },
     {
       key: '',

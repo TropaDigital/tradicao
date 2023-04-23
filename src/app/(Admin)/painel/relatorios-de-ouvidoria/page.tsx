@@ -29,7 +29,7 @@ const RelatoriosPage = () => {
     {
       key: 'pdfData',
       label: 'Arquivo PDF',
-      type: 'file'
+      type: 'file-pdf'
     },
     {
       key: 'status',

@@ -2352,3 +2352,29 @@ export const ClipFileIcon = ({ size = 24, color = 'var(--white)' }) => {
     </svg>
   );
 };
+
+export const SpreadsheetFileIcon = ({
+  size = 24,
+  color = 'var(--primary)'
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+        <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" />
+        <path d="M8 11h8v7H8zm0 4h8m-5-4v7" />
+      </g>
+    </svg>
+  );
+};

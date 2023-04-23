@@ -1,4 +1,10 @@
-import { CloseIcon, MenuIcon, PdfIcon, PencilIcon } from '@/assets/icons';
+import {
+  CloseIcon,
+  MenuIcon,
+  PdfIcon,
+  PencilIcon,
+  SpreadsheetFileIcon
+} from '@/assets/icons';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import moment from 'moment';
 import Image from 'next/image';
@@ -68,7 +74,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
         <span className="longText">{item[labelKey] as string}</span>
       )}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
-      {head.type === 'file' && (
+      {head.type?.includes('file') && (
         <span
           onClick={() =>
             downloadFileFromExternalLink(
@@ -78,7 +84,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           }
           style={{ cursor: 'pointer' }}
         >
-          <PdfIcon />
+          {head.type?.includes('pdf') && <PdfIcon />}
+          {head.type?.includes('csv') && <SpreadsheetFileIcon />}
         </span>
       )}
       {head.type === 'image' && (
@@ -88,9 +95,9 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
             width={90}
             height={90}
             src={
-              item?.[head.key][0]?.url_foto ??
-              item?.[head.key] ??
-              'https://bucket.backendtropa.com.br/file/b345de6e-c7af-4d2d-b910-619ddce5bf67'
+              item?.[head.key][0]?.url_foto ?? item?.[head.key]
+                ? item?.[head.key]
+                : 'https://bucket.backendtropa.com.br/file/78090df2-8d1d-4ccd-a324-1140b2fe2a59'
             }
           />
         </div>
