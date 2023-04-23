@@ -38,7 +38,7 @@ const BlogPage = () => {
     });
 
     if (currentCategory) {
-      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}&`);
+      setQuery(`categoria_id=${currentCategory[0]?.categoria_id}&`);
       return;
     }
 
