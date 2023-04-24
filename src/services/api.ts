@@ -9,8 +9,7 @@ var AUTH_KEY_COOKIE = cookieClass.getCookie('AuthorizedAdminConsorcio');
 var AUTH_KEY_STORAGE;
 
 if (process.env.NODE_ENV === 'development') {
-  // baseUrl = 'http://192.168.15.14:33333/';
-  baseUrl = 'http://192.168.0.66:33333/';
+  baseUrl = 'http://192.168.15.14:33333/';
 
   if (typeof window !== 'undefined') {
     AUTH_KEY_STORAGE = localStorage?.getItem('AuthorizedAdminConsorcio');

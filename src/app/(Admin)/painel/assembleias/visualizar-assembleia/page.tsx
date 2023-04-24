@@ -11,6 +11,9 @@ import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembl
 import React, { useEffect, useState } from 'react';
 import { HeaderDashboard } from '../../styles';
 import InputImage from '@/components/pages/Painel/components/inputs/InputImage';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
+import { Form, Formik } from 'formik';
 
 const ViewAssembleiaPage = () => {
   const headerTable = [
@@ -56,11 +59,13 @@ const ViewAssembleiaPage = () => {
   const [modalOpen, setModalOpen] = useState<'editar' | 'publicar' | null>(
     null
   );
+  const [currentAssembleia, setCurrentAssembleia] = useState<any>();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const currentAssembleia = localStorage?.getItem('id_assembleia');
-      setQuery(`?ordem=desc&id_assembleia=${currentAssembleia}&`);
+      const actualAssembleia = localStorage?.getItem('id_assembleia');
+      setCurrentAssembleia(actualAssembleia);
+      setQuery(`?ordem=desc&id_assembleia=${actualAssembleia}&`);
     }
   }, []);
 
@@ -68,9 +73,13 @@ const ViewAssembleiaPage = () => {
     `${query}perPage=10&currentPage=${actualPage}`
   );
 
+  const { allAssembleias } = useGetAllAssembleias(`/${currentAssembleia}`);
+
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
   };
+
+  const tiposDeAssembleias = ['Excluídos', 'Contemplados', 'Suplência'];
 
   return (
     <>
@@ -104,17 +113,53 @@ const ViewAssembleiaPage = () => {
         </div>
       </HeaderDashboard>
 
-      <div>
-        <InputImage
-          onPostImage={(imageUrl) => console.log(imageUrl)}
-          title="Adicionar Capa"
-        />
-      </div>
+      <Formik
+        initialValues={{
+          capa: allAssembleias?.result[0]?.url_imagem ?? '',
+          titulo: allAssembleias?.result[0]?.titulo ?? '',
+          tipo: allAssembleias?.result[0]?.tipo ?? ''
+        }}
+        onSubmit={(values) => console.log(values)}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit }) => (
+          <Form onSubmit={handleSubmit}>
+            <InputImage
+              title="Adicionar Capa"
+              src={values?.capa}
+              alt={values?.titulo}
+              name="capa"
+              onPostImage={(imageUrl) => console.log(imageUrl)}
+            />
+            <InputDefault
+              label="Título"
+              value={values?.titulo}
+              name="titulo"
+              onChange={handleChange}
+            />
+            <SelectDefault
+              label="Tipo de Assembleia"
+              onChange={handleChange}
+              value={values?.tipo}
+              name="tipo"
+            >
+              {tiposDeAssembleias?.map((tipo) => (
+                <option value={tipo} key={tipo}>
+                  {tipo}
+                </option>
+              ))}
+            </SelectDefault>
+
+            <Button degrade radius="rounded">
+              Atualizar
+            </Button>
+          </Form>
+        )}
+      </Formik>
 
       <Table
         data={allContemplados?.result}
         header={headerTable}
-        title={`Resultado da Assembleia`}
+        title={`Resultado da Assembleia de ${allAssembleias?.result[0]?.tipo}`}
       />
 
       <PaginationData

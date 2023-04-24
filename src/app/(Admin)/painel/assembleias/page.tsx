@@ -70,6 +70,8 @@ const AssembleiaPage = () => {
     setActualPage(value);
   };
 
+  const tiposDeAssembleia = ['Todos', 'Excluídos', 'Contemplados', 'Suplência'];
+
   return (
     <>
       {modalOpen === 'publicar' && (
@@ -129,10 +131,11 @@ const AssembleiaPage = () => {
                 : setQuery('')
             }
           >
-            <option value="">Escolha um filtro</option>
-            <option value="excluido">Excluídos</option>
-            <option value="contemplados">Contemplados</option>
-            <option value="suplencia">Suplência</option>
+            {tiposDeAssembleia?.map((filtro) => (
+              <option value={filtro === 'Todos' ? '' : filtro} key={filtro}>
+                {filtro}
+              </option>
+            ))}
           </SelectDefault>
         }
       />
