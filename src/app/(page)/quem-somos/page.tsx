@@ -142,14 +142,6 @@ export default function QuemSomos() {
     }
   }
 
-  function splitIntoArray(num: any) {
-    return Array.from(String(num), Number);
-  }
-
-  useEffect(() => {
-    setCredits(splitIntoArray(getCounters?.result[0]?.creditos))
-  }, []);
-
   return (
     <S.QuemSomosContainer>
       <SkewContainer imageAlt="imagem teste" imageSrc={bgAboutUsImage} />
