@@ -4,6 +4,7 @@ import CenterWrapper from '@/components/global/CenterWrapper';
 import AsideBar from '@/components/pages/Blog/AsideBar';
 import API from '@/services/api';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
+import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -39,9 +40,9 @@ const BlogPostPage = () => {
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {`Postado em ${allPosts?.result[0]?.data} por ${
-                  allPosts?.result[0]?.autor ?? 'Consorlina'
-                }`}
+                {`Postado em ${moment(allPosts?.result[0]?.data).format(
+                  'DD MMMM'
+                )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}
               </span>
             </S.BlogHeader>
             <S.PostThumbnail>

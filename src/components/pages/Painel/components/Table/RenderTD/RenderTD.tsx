@@ -97,7 +97,9 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
             width={90}
             height={90}
             src={
-              item?.[head.key][0]?.url_foto ?? item?.[head.key]
+              item?.[head.key][0]?.url_foto
+                ? item?.[head.key][0]?.url_foto
+                : item?.[head.key]
                 ? item?.[head.key]
                 : 'https://bucket.backendtropa.com.br/file/78090df2-8d1d-4ccd-a324-1140b2fe2a59'
             }
