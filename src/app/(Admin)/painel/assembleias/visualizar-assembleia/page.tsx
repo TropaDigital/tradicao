@@ -15,7 +15,12 @@ import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { Form, Formik } from 'formik';
 import Image from 'next/image';
-import { AssembleiaDetailsContainer } from './styles';
+import { AssembleiaDetailsContainer, AssembleiaThumbnail } from './styles';
+import { RemoveImageIcon } from '@/assets/icons';
+import moment from 'moment';
+import { useUpdateAssembleia } from '@/services/assembleia/PUT/useUpdateAssembleia';
+import { toast } from 'react-toastify';
+import { formatStringToDate } from '@/utils/masks';
 
 const ViewAssembleiaPage = () => {
   const headerTable = [
@@ -61,29 +66,35 @@ const ViewAssembleiaPage = () => {
   const [modalOpen, setModalOpen] = useState<'editar' | 'publicar' | null>(
     null
   );
+  const [currentAssembleiaId, setCurrentAssembleiaId] = useState<any>();
   const [currentAssembleia, setCurrentAssembleia] = useState<any>();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const actualAssembleia = localStorage?.getItem('id_assembleia');
-      setCurrentAssembleia(actualAssembleia);
-      setQuery(`?ordem=desc&id_assembleia=${actualAssembleia}&`);
+      const actualAssembleiaId = localStorage?.getItem('id_assembleia');
+      setCurrentAssembleiaId(actualAssembleiaId);
+      setQuery(`?ordem=desc&id_assembleia=${actualAssembleiaId}&`);
     }
-  }, [localStorage]);
+  }, []);
 
-  const { allAssembleias } = useGetAllAssembleias(`/${currentAssembleia}`);
+  const { allAssembleias } = useGetAllAssembleias(`/${currentAssembleiaId}`);
+  const { updateAssembleia } = useUpdateAssembleia();
 
   const { allContemplados } = useGetAllAssembleiaContemplados(
     `${query}perPage=10&currentPage=${actualPage}`
   );
+
+  useEffect(() => {
+    if (allAssembleias) {
+      setCurrentAssembleia(allAssembleias?.result[0]);
+    }
+  }, [allAssembleias]);
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
   };
 
   const tiposDeAssembleias = ['Excluídos', 'Contemplados', 'Suplência'];
-
-  const { data, tipo, url_imagem, titulo } = allAssembleias?.result[0];
 
   return (
     <>
@@ -117,67 +128,121 @@ const ViewAssembleiaPage = () => {
         </div>
       </HeaderDashboard>
 
-      <Formik
-        initialValues={{
-          url_imagem: url_imagem,
-          titulo: titulo,
-          tipo: tipo
-        }}
-        onSubmit={(values) => console.log(values)}
-      >
-        {({ values, handleChange, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <AssembleiaDetailsContainer>
-              {values?.url_imagem && (
-                <Image
-                  src={values?.url_imagem}
-                  alt={`Imagem de capa da assembleia ${values?.titulo}`}
-                  width={500}
-                  height={200}
-                />
-              )}
-              {!values?.url_imagem && (
-                <InputImage
-                  title="Adicionar Capa"
-                  src={values?.url_imagem}
-                  alt={values?.titulo}
-                  name="capa"
-                  onPostImage={(imageUrl) => console.log(imageUrl)}
-                />
-              )}
+      {currentAssembleia && (
+        <Formik
+          initialValues={{
+            url_imagem: currentAssembleia?.url_imagem,
+            titulo: currentAssembleia?.titulo,
+            tipo: currentAssembleia?.tipo,
+            data: moment(currentAssembleia?.data, 'YYYY-MM-DD').format(
+              'DD/MM/YYYY'
+            )
+          }}
+          onSubmit={(values) => {
+            const assembleiaData = { ...values };
+            assembleiaData.data = moment(values.data, 'DD/MM/YYYY').format(
+              'YYYY-MM-DD'
+            );
 
-              <div className="assembleiaDetails">
-                <InputDefault
-                  label="Título"
-                  value={values?.titulo}
-                  name="titulo"
-                  onChange={handleChange}
-                />
+            updateAssembleia({
+              id: currentAssembleiaId,
+              assembleiaPutBody: assembleiaData
+            });
+          }}
+        >
+          {({ values, handleChange, handleSubmit, setFieldValue }) => (
+            <Form onSubmit={handleSubmit}>
+              <AssembleiaDetailsContainer>
+                <AssembleiaThumbnail>
+                  {values?.url_imagem && (
+                    <div>
+                      <div
+                        className="removeImageOverlay"
+                        onClick={() => setFieldValue('url_imagem', '')}
+                      >
+                        <RemoveImageIcon size={64} />
+                      </div>
+                      <Image
+                        src={values?.url_imagem}
+                        alt={`Imagem de capa da assembleia ${values?.titulo}`}
+                        width={613}
+                        height={200}
+                      />
+                    </div>
+                  )}
+                  {!values?.url_imagem && (
+                    <InputImage
+                      title="Adicionar Capa"
+                      src={values?.url_imagem}
+                      alt={values?.titulo}
+                      name="url_imagem"
+                      onPostImage={(imageUrl) =>
+                        setFieldValue('url_imagem', imageUrl)
+                      }
+                    />
+                  )}
+                </AssembleiaThumbnail>
 
-                <SelectDefault
-                  label="Tipo de Assembleia"
-                  onChange={handleChange}
-                  value={values?.tipo}
-                  name="tipo"
-                >
-                  {tiposDeAssembleias?.map((tipo) => (
-                    <option value={tipo} key={tipo}>
-                      {tipo}
-                    </option>
-                  ))}
-                </SelectDefault>
+                <div className="assembleiaDetails">
+                  <InputDefault
+                    label="Título"
+                    value={values?.titulo}
+                    name="titulo"
+                    onChange={handleChange}
+                  />
 
-                <Button degrade>Atualizar</Button>
-              </div>
-            </AssembleiaDetailsContainer>
-          </Form>
-        )}
-      </Formik>
+                  <InputDefault
+                    label="Data de Assembleia"
+                    value={values?.data}
+                    name="data"
+                    onChange={(e) => {
+                      if (!/^[0-9/]*$/.test(e?.target?.value)) return;
+
+                      handleChange(e);
+
+                      if (e?.currentTarget?.value?.length === 8) {
+                        setFieldValue(
+                          'data',
+                          e.target.value.replace(
+                            /(\d{2})(\d{2})(\d{4})/,
+                            '$1/$2/$3'
+                          )
+                        );
+                      }
+                    }}
+                    maxLength={10}
+                  />
+
+                  <SelectDefault
+                    label="Tipo de Assembleia"
+                    onChange={handleChange}
+                    value={values?.tipo}
+                    name="tipo"
+                  >
+                    {tiposDeAssembleias?.map((tipo) => (
+                      <option value={tipo} key={tipo}>
+                        {tipo}
+                      </option>
+                    ))}
+                  </SelectDefault>
+
+                  <Button degrade type="submit">
+                    Atualizar
+                  </Button>
+                </div>
+              </AssembleiaDetailsContainer>
+            </Form>
+          )}
+        </Formik>
+      )}
 
       <Table
         data={allContemplados?.result}
         header={headerTable}
-        title={`Resultado da Assembleia de ${allAssembleias?.result[0]?.tipo}`}
+        title={`Resultado da Assembleia ${
+          allAssembleias?.result[0]?.tipo &&
+          `de ${allAssembleias?.result[0]?.tipo}`
+        }`}
       />
 
       <PaginationData

@@ -134,7 +134,7 @@ const PostPanel = () => {
           let formData = new FormData();
           formData?.set('file', event?.dataTransfer?.files[0]);
 
-          postFile(formData).then((imageUrl) => {
+          postFile(formData)?.then((imageUrl: string) => {
             const { schema } = view?.state;
             const coordinates = view?.posAtCoords({
               left: event?.clientX,

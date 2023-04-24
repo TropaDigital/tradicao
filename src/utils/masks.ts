@@ -42,9 +42,9 @@ export function onlyLetterMask(value: string) {
 
 export function formatStringToDate(date_string: string) {
   // Extrai o dia, mês e ano da string de data
-  const day: string = date_string.substring(0, 2);
-  const month: string = date_string.substring(2, 4);
-  const year: string = date_string.substring(4, 8);
+  const day: string = date_string?.substring(0, 2);
+  const month: string = date_string?.substring(2, 4);
+  const year: string = date_string?.substring(4, 8);
 
   // Cria um objeto Date com a data formatada corretamente
   const formatted_date: Date = new Date(
