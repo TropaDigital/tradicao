@@ -86,8 +86,6 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           categoria: string;
           status: 'Ativo' | 'Inativo';
         }) => {
-          console.log(values);
-
           imagesIdToRemove?.map((imageID) => {
             deleteFile({ endpoint: 'delete-contemplado-foto', id: imageID });
           });

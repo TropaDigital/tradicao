@@ -297,8 +297,7 @@ const PostPanel = () => {
                       value={values?.categoria_id}
                       error={
                         touched?.categoria_id && {
-                          message: errors?.categoria_id,
-                          isError: true
+                          message: errors?.categoria_id
                         }
                       }
                     >

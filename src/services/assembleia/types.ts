@@ -18,6 +18,8 @@ export interface IAssembleia {
   modificado: string;
   excluido: string;
   data: string;
-  tipo: 'contemplados' | 'excluidos' | 'suplencia';
+  tipo: 'Contemplados' | 'Excluídos' | 'Suplência';
   contemplados: IContempladoAssembleia[];
+  url_imagem: string;
+  url_planilha: string;
 }

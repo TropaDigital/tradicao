@@ -40,12 +40,7 @@ export function onlyLetterMask(value: string) {
   return value.replace(/[^a-zA-Záéíóúâêîôûàèìòùãõç\s]/g, '');
 }
 
-export function formatStringToDate(date_string: string): string {
-  // Verifica se a string tem o comprimento correto
-  if (date_string.length !== 8) {
-    return 'Formato de data inválido';
-  }
-
+export function formatStringToDate(date_string: string) {
   // Extrai o dia, mês e ano da string de data
   const day: string = date_string.substring(0, 2);
   const month: string = date_string.substring(2, 4);
@@ -59,7 +54,9 @@ export function formatStringToDate(date_string: string): string {
   );
 
   // Retorna a data formatada como uma string no formato "DD/MM/YYYY"
-  return formatted_date.toLocaleDateString('pt-BR');
+  if (date_string?.length === 8) {
+    return formatted_date.toLocaleDateString('pt-BR');
+  }
 }
 
 export function toISODate(date_string: string): string {

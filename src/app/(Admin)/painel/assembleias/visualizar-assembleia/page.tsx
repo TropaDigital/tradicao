@@ -14,6 +14,8 @@ import InputImage from '@/components/pages/Painel/components/inputs/InputImage';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { Form, Formik } from 'formik';
+import Image from 'next/image';
+import { AssembleiaDetailsContainer } from './styles';
 
 const ViewAssembleiaPage = () => {
   const headerTable = [
@@ -67,19 +69,21 @@ const ViewAssembleiaPage = () => {
       setCurrentAssembleia(actualAssembleia);
       setQuery(`?ordem=desc&id_assembleia=${actualAssembleia}&`);
     }
-  }, []);
+  }, [localStorage]);
+
+  const { allAssembleias } = useGetAllAssembleias(`/${currentAssembleia}`);
 
   const { allContemplados } = useGetAllAssembleiaContemplados(
     `${query}perPage=10&currentPage=${actualPage}`
   );
-
-  const { allAssembleias } = useGetAllAssembleias(`/${currentAssembleia}`);
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
   };
 
   const tiposDeAssembleias = ['Excluídos', 'Contemplados', 'Suplência'];
+
+  const { data, tipo, url_imagem, titulo } = allAssembleias?.result[0];
 
   return (
     <>
@@ -115,43 +119,57 @@ const ViewAssembleiaPage = () => {
 
       <Formik
         initialValues={{
-          capa: allAssembleias?.result[0]?.url_imagem ?? '',
-          titulo: allAssembleias?.result[0]?.titulo ?? '',
-          tipo: allAssembleias?.result[0]?.tipo ?? ''
+          url_imagem: url_imagem,
+          titulo: titulo,
+          tipo: tipo
         }}
         onSubmit={(values) => console.log(values)}
       >
-        {({ values, handleChange, handleBlur, handleSubmit }) => (
+        {({ values, handleChange, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <InputImage
-              title="Adicionar Capa"
-              src={values?.capa}
-              alt={values?.titulo}
-              name="capa"
-              onPostImage={(imageUrl) => console.log(imageUrl)}
-            />
-            <InputDefault
-              label="Título"
-              value={values?.titulo}
-              name="titulo"
-              onChange={handleChange}
-            />
-            <SelectDefault
-              label="Tipo de Assembleia"
-              onChange={handleChange}
-              value={values?.tipo}
-              name="tipo"
-            >
-              {tiposDeAssembleias?.map((tipo) => (
-                <option value={tipo} key={tipo}>
-                  {tipo}
-                </option>
-              ))}
-            </SelectDefault>
+            <AssembleiaDetailsContainer>
+              {values?.url_imagem && (
+                <Image
+                  src={values?.url_imagem}
+                  alt={`Imagem de capa da assembleia ${values?.titulo}`}
+                  width={500}
+                  height={200}
+                />
+              )}
+              {!values?.url_imagem && (
+                <InputImage
+                  title="Adicionar Capa"
+                  src={values?.url_imagem}
+                  alt={values?.titulo}
+                  name="capa"
+                  onPostImage={(imageUrl) => console.log(imageUrl)}
+                />
+              )}
 
-            <Button degrade radius="rounded">
-              Atualizar
-            </Button>
+              <div className="assembleiaDetails">
+                <InputDefault
+                  label="Título"
+                  value={values?.titulo}
+                  name="titulo"
+                  onChange={handleChange}
+                />
+
+                <SelectDefault
+                  label="Tipo de Assembleia"
+                  onChange={handleChange}
+                  value={values?.tipo}
+                  name="tipo"
+                >
+                  {tiposDeAssembleias?.map((tipo) => (
+                    <option value={tipo} key={tipo}>
+                      {tipo}
+                    </option>
+                  ))}
+                </SelectDefault>
+
+                <Button degrade>Atualizar</Button>
+              </div>
+            </AssembleiaDetailsContainer>
           </Form>
         )}
       </Formik>

@@ -26,7 +26,7 @@ const PanelLoginComponent = () => {
       senha: values?.senha
     });
 
-    if (isAnAdmin) router?.push('/painel/blog');
+    if (isAnAdmin) router?.push('/painel/assembleias');
   }
 
   return (
