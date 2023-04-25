@@ -9,6 +9,13 @@ export const InputWrapper = styled.div`
   color: var(--gray-300);
   cursor: pointer;
 
+  .validationError {
+    font-size: 14px;
+    color: var(--status-danger);
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
   label {
     display: block;
     display: flex;

@@ -17,8 +17,6 @@ import { ClipFileIcon, SearchIcon } from '@/assets/icons';
 
 // Utils
 import { useDebouncedCallback } from 'use-debounce';
-import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
-import Link from 'next/link';
 
 const NotReceivedPanel = () => {
   const headerTable = [

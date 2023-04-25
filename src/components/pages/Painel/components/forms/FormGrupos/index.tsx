@@ -13,9 +13,16 @@ import { formatDate, formatISOToDate, toISODate } from '@/utils/masks';
 
 const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
+  const [planilhaError, setPLanilhaError] = useState<string>();
 
   const { createGrupo } = useCreateGrupo();
   const { updateGrupo } = useUpdateGrupo();
+
+  function validatePlanilhaField() {
+    if (!planilhaPost) return true;
+
+    return false;
+  }
 
   return (
     <S.Container>
@@ -31,6 +38,11 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
             formatDate(actualItem?.ultimo_rateio?.split('T')[0]) ?? ''
         }}
         onSubmit={(values) => {
+          if (validatePlanilhaField()) {
+            setPLanilhaError('A planilha é obrigatória!');
+            return;
+          }
+
           if (planilhaPost) {
             const formData = new FormData();
 
@@ -77,6 +89,9 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                         <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                         <button>Buscar</button>
                       </label>
+                      {planilhaError && (
+                        <span className="validationError">{planilhaError}</span>
+                      )}
                     </InputWrapper>
 
                     <div className="lineElementsWrapper buttonsWrapper">

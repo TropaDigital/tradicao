@@ -34,9 +34,9 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   }
 
   function validatePlanilhaField() {
-    if (!planilhaPost && !planilhaUrl) return 'A planilha é obrigatória!';
+    if (!planilhaPost && !planilhaUrl) return true;
 
-    return true;
+    return false;
   }
 
   const tiposDeAssembleias = [
