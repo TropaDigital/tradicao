@@ -1,4 +1,10 @@
-import { CloseIcon, MenuIcon, PdfIcon, PencilIcon } from '@/assets/icons';
+import {
+  CloseIcon,
+  MenuIcon,
+  PdfIcon,
+  PencilIcon,
+  SpreadsheetFileIcon
+} from '@/assets/icons';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import moment from 'moment';
 import Image from 'next/image';
@@ -16,12 +22,12 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
 
   const labelKey: string = head.key;
 
-  console.log('log do head', head)
-
   return (
     <S.Container id="td" className="td-block">
       {head.type === 'date' && (
-        <span>{moment(item[labelKey]).format('DD/MM/YYYY')}</span>
+        <span>
+          {moment(item[labelKey]).add(1, 'days').format('DD/MM/YYYY')}
+        </span>
       )}
       {head.type === 'options' && (
         <div
@@ -60,13 +66,17 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
-      {head.type === 'string' && head.key !== 'pessoa' && <span>{item[labelKey] as string}</span>}
-      {head.type === 'string' && head.key === 'pessoa' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
+      {head.type === 'string' && head.key !== 'pessoa' && (
+        <span>{item[labelKey] as string}</span>
+      )}
+      {head.type === 'string' && head.key === 'pessoa' && (
+        <span>{formatCnpjAndCpf(item[labelKey])}</span>
+      )}
       {head.type === 'longText' && (
         <span className="longText">{item[labelKey] as string}</span>
       )}
       {head.type === 'number' && <span>{item[labelKey] as number}</span>}
-      {head.type === 'file' && (
+      {head.type?.includes('file') && (
         <span
           onClick={() =>
             downloadFileFromExternalLink(
@@ -76,7 +86,8 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           }
           style={{ cursor: 'pointer' }}
         >
-          <PdfIcon />
+          {head.type?.includes('pdf') && <PdfIcon />}
+          {head.type?.includes('csv') && <SpreadsheetFileIcon />}
         </span>
       )}
       {head.type === 'image' && (
@@ -90,7 +101,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
                 ? item?.[head.key][0]?.url_foto
                 : item?.[head.key]
                 ? item?.[head.key]
-                : 'https://via.placeholder.com/90'
+                : 'https://bucket.backendtropa.com.br/file/78090df2-8d1d-4ccd-a324-1140b2fe2a59'
             }
           />
         </div>

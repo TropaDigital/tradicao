@@ -37,6 +37,13 @@ export const Container = styled.div`
     position: relative;
     z-index: 1;
     background: #fff;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    transition: all 0.3s;
+
+    :hover {
+      background: rgba(0, 54, 198, 0.1);
+    }
   }
 
   .stepButton {

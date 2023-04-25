@@ -27,6 +27,16 @@ class AssembleiaContempladoClass {
     );
     return response?.data;
   }
+
+  async createAssembleiaContemplado(
+    assembleiaContempladoBody: IAssembleiaContempladoBody
+  ) {
+    const response: AxiosResponse = await API.post(
+      `/assembleia-contemplados`,
+      assembleiaContempladoBody
+    );
+    return response?.data;
+  }
 }
 
 export default new AssembleiaContempladoClass();

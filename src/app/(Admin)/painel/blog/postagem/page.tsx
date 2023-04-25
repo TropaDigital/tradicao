@@ -30,12 +30,17 @@ import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import { RemoveImageIcon } from '@/assets/icons';
 import { PostagemSchema } from './yupSchema';
 import { toSlug } from '@/utils/masks';
+import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
+import { toast } from 'react-toastify';
 
 const PostPanel = () => {
+  const [slug, setSlug] = useState<string>('');
+
   const { postFile } = usePostFile();
   const { allCategorias } = useGetAllCategorias();
   const { updatePost } = useUpdatePost();
   const { createPost } = useCreatePost();
+  const { allPosts } = useGetAllPosts(`?slug=${slug}`);
   const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
@@ -129,7 +134,7 @@ const PostPanel = () => {
           let formData = new FormData();
           formData?.set('file', event?.dataTransfer?.files[0]);
 
-          postFile(formData).then((imageUrl) => {
+          postFile(formData)?.then((imageUrl: string) => {
             const { schema } = view?.state;
             const coordinates = view?.posAtCoords({
               left: event?.clientX,
@@ -189,6 +194,16 @@ const PostPanel = () => {
             }
 
             if (!currentPost) {
+              setSlug(postDetails?.slug);
+
+              const messageError =
+                'Já existe uma postagem com esse título, por favor, altere o título da postagem.';
+
+              if (allPosts?.result?.length) {
+                toast.error(messageError);
+                return;
+              }
+
               createPost(postDetails);
             }
 
@@ -229,6 +244,7 @@ const PostPanel = () => {
                       setCurrentImage(imageUrl);
                     }}
                     title="Adicionar Capa"
+                    subtitle="Tamanho recomendado 1024x768"
                     error={
                       touched?.postagem_img &&
                       currentImage?.length === 0 &&
@@ -281,14 +297,13 @@ const PostPanel = () => {
                       value={values?.categoria_id}
                       error={
                         touched?.categoria_id && {
-                          message: errors?.categoria_id,
-                          isError: true
+                          message: errors?.categoria_id
                         }
                       }
                     >
                       <option>Selecione uma categoria</option>
-                      {allCategorias?.map((categoria) => (
-                        <option value={categoria?.categoria_id}>
+                      {allCategorias?.map((categoria, key) => (
+                        <option value={categoria?.categoria_id} key={key}>
                           {categoria?.categoria}
                         </option>
                       ))}

@@ -8,12 +8,12 @@ import MainTitle from '@/components/UI/MainTitle';
 import * as S from './styles';
 import PostCard from '@/components/pages/Blog/PostCard';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import moment from 'moment';
 import 'moment/locale/pt-br';
 import AsideBar from '@/components/pages/Blog/AsideBar';
 import { useSearchParams } from 'next/navigation';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import PaginationData from '@/components/shared/PaginationData';
+import moment from 'moment';
 
 const BlogPage = () => {
   const [query, setQuery] = useState<string>('');
@@ -38,7 +38,7 @@ const BlogPage = () => {
     });
 
     if (currentCategory) {
-      setQuery(`?categoria_id=${currentCategory[0]?.categoria_id}&`);
+      setQuery(`categoria_id=${currentCategory[0]?.categoria_id}&`);
       return;
     }
 
@@ -71,6 +71,7 @@ const BlogPage = () => {
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
                   postId={post?.id_postagem}
+                  key={post?.id_postagem}
                 />
               ))}
               {allPosts?.result?.length === 0 && (

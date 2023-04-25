@@ -21,6 +21,7 @@ const BlogContainer = () => {
             postId={post?.id_postagem}
             title={post?.titulo}
             subtitle={post?.subtitulo}
+            key={post?.id_postagem}
           />
         ))}
       </S.Container>

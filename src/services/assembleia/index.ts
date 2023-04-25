@@ -19,6 +19,14 @@ class AssembleiaClass {
     );
     return response?.data;
   }
+
+  async updateAssembleia(id: number, assembleiaFormData: FormData) {
+    const response: AxiosResponse = await API.put(
+      `/assembleia/${id}`,
+      assembleiaFormData
+    );
+    return response?.data;
+  }
 }
 
 export default new AssembleiaClass();

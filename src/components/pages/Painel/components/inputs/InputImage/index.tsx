@@ -7,7 +7,9 @@ import { IInputFileProps } from './types';
 
 export default function InputImage({
   onPostImage,
+  styleComponent,
   title = 'Adicionar Miniatura',
+  subtitle = 'Escolher Arquivo',
   error
 }: IInputFileProps) {
   const { postFile } = usePostFile();
@@ -22,7 +24,7 @@ export default function InputImage({
   }
 
   return (
-    <Container>
+    <Container style={styleComponent}>
       <div className="inputWrapper">
         <input
           type={'file'}
@@ -34,7 +36,7 @@ export default function InputImage({
         <span className="inputContent">
           <CameraIcon />
           <p className="inputTitle">{title}</p>
-          <p className="inputButton">Escolher Arquivo</p>
+          <p className="inputButton">{subtitle}</p>
         </span>
       </div>
       {error && <span className="errorValidation">{error}</span>}

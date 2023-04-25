@@ -12,7 +12,7 @@ export const useCreatePost = () => {
       let response = toast.promise(
         async () => {
           let response: AxiosResponse = await PostClass.createPost(postBody);
-          return response.data?.result;
+          return response?.data?.result;
         },
         {
           error: 'Não foi possível publicar postagem',

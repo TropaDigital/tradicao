@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface IPropsStyle {
-  color: "primaryButton" | "darkButton" | "transparent"
+  color: 'primaryButton' | 'darkButton' | 'transparent';
 }
 
 export const Button = styled.button<IPropsStyle>`
@@ -35,5 +35,10 @@ export const Button = styled.button<IPropsStyle>`
       background-color: transparent;
       border: 1px solid var(--primary-dark);
       color: var(--primary-dark);
+      transition: all 0.2s;
+
+      :hover {
+        background: rgba(0, 54, 198, 0.1);
+      }
     `}
 `;

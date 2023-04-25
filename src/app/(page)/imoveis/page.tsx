@@ -7,7 +7,7 @@ import Image from 'next/image';
 import * as S from './styles';
 
 // Images
-import Imovel from '../../../../public/images/realEstateConsortium.png';
+import Imovel from '../../../../public/images/realEstateConsortium.jpg';
 import Apto from '../../../../public/images/Apartment.svg';
 import Casa from '../../../../public/images/House.svg';
 import Financiamento from '../../../../public/images/Financing.svg';

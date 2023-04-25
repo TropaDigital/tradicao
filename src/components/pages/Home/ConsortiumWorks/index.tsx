@@ -43,14 +43,14 @@ export default function ConsortiumWorks() {
 
                         <InfoWithIcon>
                             <InfoText>
-                                <div className="info-title">Análise de Crédito</div>
+                                <div className="info-title">Contemplação</div>
                                 <div className="description right">
-                                    Após a contemplação, o Consórcio Tradição, irá avaliar o potencial de pagamento do crédito, para que não prejudique a saúde do grupo.
+                                    É quando você recebe o crédito para adquirir seu bem. Os participantes contemplados devem continuar pagando as parcelas, conforme o plano adquirido.
                                 </div>
                             </InfoText>
 
                             <InfoIcon>
-                                <BsStar />
+                                <HeartEyeIcon />
                             </InfoIcon>
                         </InfoWithIcon>
                     </TimeLineInfo>
@@ -93,17 +93,16 @@ export default function ConsortiumWorks() {
 
                         <InfoWithIcon>
                             <InfoIcon>
-                                <HeartEyeIcon />
+                                <BsStar />
                             </InfoIcon>
 
                             <InfoText>
-                                <div className="info-title left">Contemplação</div>
+                                <div className="info-title left">Análise de Crédito</div>
                                 <div className="description left">
-                                    É quando você recebe o crédito para adquirir seu bem. Os participantes contemplados devem continuar pagando as parcelas, conforme o plano adquirido.
+                                    Após a contemplação, o Consórcio Tradição, irá avaliar o potencial de pagamento do crédito, para que não prejudique a saúde do grupo.
                                 </div>
                             </InfoText>
                         </InfoWithIcon>
-
                     </TimeLineInfo>
 
                 </ConsortiumTimeLine>

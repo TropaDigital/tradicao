@@ -89,8 +89,6 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={UnitSchema}
         onSubmit={(values) => {
-          console.log(values);
-
           if (modalOpen === 'publicar') {
             createUnit({
               titulo: values?.nome,

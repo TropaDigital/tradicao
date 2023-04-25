@@ -26,7 +26,7 @@ const CurriculosPage = () => {
     {
       key: 'curriculo_pdf',
       label: 'Currículo',
-      type: 'file'
+      type: 'file-pdf'
     },
     {
       key: '',

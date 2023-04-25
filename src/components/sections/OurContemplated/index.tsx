@@ -70,8 +70,6 @@ export default function OurContemplated() {
       (contemplado) => clearString(contemplado?.categoria) === category
     );
 
-    console.log(allFilteredContemplated);
-
     setActualContemplated(allFilteredContemplated);
   }
 

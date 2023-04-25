@@ -29,6 +29,14 @@ export const InitialPostWrapper = styled.div`
   align-items: center;
   margin-bottom: 30px;
 
+  .inputWrapper {
+    /* min-height: 100%; */
+    /* height: unset; */
+    height: 280px;
+    margin: 0;
+    border-radius: 16px;
+  }
+
   .post-thumb-container {
     position: relative;
     border-radius: 16px;

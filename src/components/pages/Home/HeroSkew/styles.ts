@@ -13,13 +13,16 @@ export const Container = styled.div`
 export const SkewContainer = styled.div`
   max-height: 434px;
   transform: skew(-18deg);
-  /* width: 965px; */
   width: 75%;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   overflow: hidden;
   position: relative;
   left: -138px;
+
+  @media (min-width: 1920px) {
+    width: 1500px;
+  }
 
   @media (max-width: 1600px) {
     margin-bottom: 80px;
@@ -88,6 +91,10 @@ export const SubTitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
   left: -18px;
+
+  @media (min-width: 1920px) {
+    width: 750px;
+  }
 
   @media (max-width: 1320px) {
     border-top-right-radius: 15px;

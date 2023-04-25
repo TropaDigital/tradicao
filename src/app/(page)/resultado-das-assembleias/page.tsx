@@ -188,7 +188,7 @@ export default function Contemplated() {
               <S.CardTopContemplated>
                 <span>{moment(row.criado).format('DD MMM')}</span>
                 <Image
-                  src={teste}
+                  src={row?.url_imagem ? row?.url_imagem : teste}
                   width={400}
                   height={200}
                   className="image"

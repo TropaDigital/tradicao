@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   label {
@@ -10,7 +10,7 @@ export const Container = styled.div`
       font-weight: 400;
     }
   }
-`
+`;
 
 export const CheckRemember = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
@@ -30,4 +30,4 @@ export const CheckRemember = styled.input.attrs({ type: 'checkbox' })`
     background-repeat: no-repeat;
     background-position: center center;
   }
-`
+`;

@@ -8,7 +8,7 @@ import SkewContainer from '@/components/shared/SkewContainer';
 import * as S from './styles';
 
 // Images
-import AutoMovel from '../../../../public/images/consortiumAuto.png';
+import AutoMovel from '../../../../public/images/consortiumAuto.jpg';
 import SimulationForm from '@/components/shared/SimulationForm';
 import MainTitle from '@/components/UI/MainTitle';
 import AutoConsortium from '@/components/sections/AutoConsortium';

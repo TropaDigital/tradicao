@@ -2,10 +2,12 @@ import {
   ChangeTextColor,
   DropDownMenuFontSize,
   EditorHeader,
+  InsetImageWrapper,
   MenuFontSize
 } from './style';
 import {
   BoldIcon,
+  ClipFileIcon,
   ItalicIcon,
   ListOrderedIcon,
   ListUnorderedIcon,
@@ -17,32 +19,31 @@ import {
   TextSizeIcon,
   UnderlineIcon
 } from '@/assets/icons';
-import { ITextEditorHeader } from './types';
 import { useEffect, useRef, useState } from 'react';
-
-type TextEditorHeaderType = {
-  editor: ITextEditorHeader;
-};
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
+import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 
 const TextEditorHeader = ({ editor }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  function useOutsideAlerter(ref: any) {
-    useEffect(() => {
-      function handleClickOutside(event: any) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setIsOpen(false);
-        }
-      }
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [ref]);
-  }
+  const { postFile } = usePostFile();
 
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useOutsideAlerter(wrapperRef, setIsOpen);
+
+  async function setImage(e: any) {
+    let formData = new FormData();
+    formData.set('file', e?.target?.files[0]);
+
+    let responseUrl = await postFile(formData);
+
+    editor.commands.setImage({
+      src: responseUrl,
+      alt: 'Imagem relacionada à postagem'
+    });
+
+    e.target.value = '';
+  }
 
   return (
     <EditorHeader>
@@ -121,7 +122,7 @@ const TextEditorHeader = ({ editor }: any) => {
         />
       </ChangeTextColor>
 
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <div onClick={() => setIsOpen(!isOpen)}>
         <MenuFontSize>
           <TextSizeIcon />
           <DropDownMenuFontSize isOpen={isOpen} ref={wrapperRef}>
@@ -143,7 +144,7 @@ const TextEditorHeader = ({ editor }: any) => {
                   }
                   type="button"
                 >
-                  Sub-Título
+                  Subtítulo
                 </button>
               </li>
               <li>
@@ -157,7 +158,12 @@ const TextEditorHeader = ({ editor }: any) => {
             </ul>
           </DropDownMenuFontSize>
         </MenuFontSize>
-      </button>
+      </div>
+
+      <InsetImageWrapper type="button">
+        <ClipFileIcon color="var(--black)" size={17} />
+        <input type="file" onChange={setImage} className="insertImageInput" />
+      </InsetImageWrapper>
     </EditorHeader>
   );
 };

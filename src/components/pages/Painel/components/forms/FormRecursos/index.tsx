@@ -50,13 +50,12 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                     <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>
                   </label>
-                </InputWrapper>                
+                </InputWrapper>
 
                 <div className="lineElementsWrapper buttonsWrapper">
                   <ButtonDefault
                     color="transparent"
                     type="button"
-                    // onClick={() => onSubmit()}
                     className="button"
                   >
                     Cancelar
@@ -65,7 +64,6 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                     color="darkButton"
                     className="button"
                     type="submit"
-                    onClick={() => onSubmit()}
                   >
                     Adicionar
                   </ButtonDefault>

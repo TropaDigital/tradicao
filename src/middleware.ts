@@ -6,7 +6,7 @@ export function middleware(req: NextRequest) {
   const adminCookieValue = req.cookies.get('AuthorizedAdminConsorcio')?.value;
 
   if (req?.nextUrl?.pathname === '/painel') {
-    url.pathname = '/painel/blog';
+    url.pathname = '/painel/assembleias';
     if (adminCookieValue?.length === 64) return NextResponse.redirect(url);
 
     url.pathname = '/login';
@@ -23,7 +23,7 @@ export function middleware(req: NextRequest) {
   if (req?.nextUrl?.pathname?.includes('/login')) {
     if (!adminCookieValue) return NextResponse.next();
 
-    url.pathname = '/painel/blog';
+    url.pathname = '/painel/assembleias';
     return NextResponse.redirect(url);
   }
 

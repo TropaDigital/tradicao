@@ -16,7 +16,7 @@ import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
@@ -26,13 +26,15 @@ const Header = () => {
     useState<boolean>(false);
   const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
     useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>();
+  const [windowWidth, setWindowWidth] = useState<any>();
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window?.innerWidth);
+    }
   }, []);
 
   useEffect(() => {
@@ -112,16 +114,11 @@ const Header = () => {
     },
     {
       title: 'Área do Cliente',
-      path: 'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp'
+      path: ''
     }
   ];
 
   const infoLinks: IInfoOptions[] = [
-    // {
-    //   icon: <PhoneIcon />,
-    //   link: 'tel: 40035090',
-    //   text: 'Televendas: 4003-5090'
-    // },
     {
       icon: <CalculatorIcon />,
       link: '/',
@@ -246,7 +243,7 @@ const Header = () => {
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
               {mainPages.map((page, key) => {
                 return (
-                  <>
+                  <React.Fragment key={key}>
                     <Link
                       href={page.path ? page.path : ''}
                       key={key}
@@ -279,7 +276,7 @@ const Header = () => {
                         ))}
                       </S.SubMobileMenu>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </S.MobileMenuModal>
@@ -289,7 +286,7 @@ const Header = () => {
             <ul className="header-options">
               {mainPages.map((page, key) => {
                 return (
-                  <>
+                  <React.Fragment key={key}>
                     {page.title === 'Área do Cliente' ? (
                       <li key={key} className="client-button-container">
                         <Button
@@ -305,12 +302,7 @@ const Header = () => {
                         <S.ClientAreaSubMenu isHovered={isHovered}>
                           <ul>
                             <li>
-                              <Link
-                                href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp"
-                                target="_blank"
-                              >
-                                Área do Cliente
-                              </Link>
+                              <Link href="">Área do Cliente</Link>
                             </li>
                             <li>
                               <Link href="resultado-das-assembleias">
@@ -385,7 +377,7 @@ const Header = () => {
                         </Link>
                       </li>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </ul>

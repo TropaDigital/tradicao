@@ -176,4 +176,8 @@ export const TitleSimulator = styled.div`
 
 export const ContentSimulation = styled.fieldset`
   animation: ${appearFromRight} 0.35s ease;
+
+  .buttonSimulatorPlan:hover {
+    background: rgba(0, 54, 198, 0, 4);
+  }
 `;

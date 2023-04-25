@@ -1,16 +1,14 @@
 'use client';
 
-import { ArrowLeftIcon } from '@/assets/icons';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import AsideBar from '@/components/pages/Blog/AsideBar';
-import Button from '@/components/UI/Button';
 import API from '@/services/api';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
@@ -42,7 +40,7 @@ const BlogPostPage = () => {
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {`Postado em ${moment(allPosts?.result[0]?.criado).format(
+                {`Postado em ${moment(allPosts?.result[0]?.data).format(
                   'DD MMMM'
                 )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}
               </span>

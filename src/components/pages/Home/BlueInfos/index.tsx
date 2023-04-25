@@ -10,16 +10,16 @@ import {
 import eases from 'eases';
 
 interface IBlueInfoProps {
-  quotasTotal: string;
-  creditsTotal: string;
+  quotasTotal: number;
+  creditsTotal: number;
 }
 
 export default function BlueInfos({
   quotasTotal,
   creditsTotal
 }: IBlueInfoProps) {
-  const numero = parseInt(quotasTotal);
-  const numero2 = parseInt(creditsTotal);
+  const numero = quotasTotal;
+  const numero2 = creditsTotal;
 
   const [valorCotas, setValorCotas] = useState(0);
   const [valorCredito, setValorCredito] = useState(0);
@@ -33,7 +33,7 @@ export default function BlueInfos({
       (entries) => {
         if (entries[0].isIntersecting) {
           iniciarContagem();
-          iniciarContagem2()
+          iniciarContagem2();
           observer.disconnect();
         }
       },
@@ -41,15 +41,13 @@ export default function BlueInfos({
     );
 
     if (countRef.current) {
-        observer.observe(countRef.current);
-      }
-  
-      return () => {
-        observer.disconnect();
-      };
+      observer.observe(countRef.current);
+    }
 
-    
-  }, []); 
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   function iniciarContagem() {
     let contador = 0;
@@ -69,7 +67,7 @@ export default function BlueInfos({
     return () => clearInterval(timer);
   }
 
-  function iniciarContagem2(){
+  function iniciarContagem2() {
     let contador = 0;
     const timer = setInterval(() => {
       contador += 88;

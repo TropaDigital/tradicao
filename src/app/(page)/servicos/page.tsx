@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import ServicesBg from '../../../../public/images/consortiumServices.png';
+import ServicesBg from '../../../../public/images/consortiumServices.jpg';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';

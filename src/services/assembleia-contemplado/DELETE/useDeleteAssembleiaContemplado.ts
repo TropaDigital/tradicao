@@ -17,5 +17,5 @@ export const useDeleteAssembleiaContemplado = () => {
     }
   );
 
-  return { deleteContemplado: mutateAsync };
+  return { deleteAssembleiaContemplado: mutateAsync };
 };
