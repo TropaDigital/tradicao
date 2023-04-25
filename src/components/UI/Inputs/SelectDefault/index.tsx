@@ -74,11 +74,7 @@ export function SelectDefault({
           <FaAngleDown color="rgba(204, 204, 204, 1)" />
         </div>
 
-        {error?.isError && (
-          <Error title={error.message}>
-            <FiAlertCircle size={20} color="#E62965" />
-          </Error>
-        )}
+        {error && <span className="errorValidation">{error}</span>}
       </ContainerInput>
     </Container>
   );

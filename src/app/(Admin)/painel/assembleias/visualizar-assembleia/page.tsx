@@ -134,19 +134,12 @@ const ViewAssembleiaPage = () => {
             url_imagem: currentAssembleia?.url_imagem,
             titulo: currentAssembleia?.titulo,
             tipo: currentAssembleia?.tipo,
-            data: moment(currentAssembleia?.data, 'YYYY-MM-DD').format(
-              'DD/MM/YYYY'
-            )
+            data: currentAssembleia?.data?.split('T')[0]
           }}
           onSubmit={(values) => {
-            const assembleiaData = { ...values };
-            assembleiaData.data = moment(values.data, 'DD/MM/YYYY').format(
-              'YYYY-MM-DD'
-            );
-
             updateAssembleia({
               id: currentAssembleiaId,
-              assembleiaPutBody: assembleiaData
+              assembleiaPutBody: values
             });
           }}
         >
@@ -155,7 +148,7 @@ const ViewAssembleiaPage = () => {
               <AssembleiaDetailsContainer>
                 <AssembleiaThumbnail>
                   {values?.url_imagem && (
-                    <div>
+                    <div className="imageContainer">
                       <div
                         className="removeImageOverlay"
                         onClick={() => setFieldValue('url_imagem', '')}
@@ -185,7 +178,7 @@ const ViewAssembleiaPage = () => {
 
                 <div className="assembleiaDetails">
                   <InputDefault
-                    label="Título"
+                    label="Título *"
                     value={values?.titulo}
                     name="titulo"
                     onChange={handleChange}
@@ -195,22 +188,8 @@ const ViewAssembleiaPage = () => {
                     label="Data de Assembleia"
                     value={values?.data}
                     name="data"
-                    onChange={(e) => {
-                      if (!/^[0-9/]*$/.test(e?.target?.value)) return;
-
-                      handleChange(e);
-
-                      if (e?.currentTarget?.value?.length === 8) {
-                        setFieldValue(
-                          'data',
-                          e.target.value.replace(
-                            /(\d{2})(\d{2})(\d{4})/,
-                            '$1/$2/$3'
-                          )
-                        );
-                      }
-                    }}
-                    maxLength={10}
+                    type="date"
+                    onChange={handleChange}
                   />
 
                   <SelectDefault

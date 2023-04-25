@@ -1,3 +1,4 @@
+import { RemoveImageIcon } from '@/assets/icons';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
@@ -11,10 +12,12 @@ import InputImage from '../../inputs/InputImage';
 import * as S from '../styles';
 import { IForm } from '../types';
 import { InputWrapper } from './styles';
+import { assembleiaSchema } from './yupSchema';
 
 const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
   const [planilhaUrl, setPlanilhaUrl] = useState<string>();
+  const [planilhaError, setPlanilhaError] = useState<string>();
 
   const { createAssembleia } = useCreateAssembleia();
   const { postFile } = usePostFile();
@@ -28,6 +31,12 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
       setPlanilhaPost(e?.target?.files[0]);
     }
+  }
+
+  function validatePlanilhaField() {
+    if (!planilhaPost && !planilhaUrl) return 'A planilha é obrigatória!';
+
+    return true;
   }
 
   const tiposDeAssembleias = [
@@ -48,7 +57,13 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           url_planilha: '',
           url_imagem: ''
         }}
+        validationSchema={assembleiaSchema}
         onSubmit={async (values) => {
+          if (validatePlanilhaField()) {
+            setPlanilhaError('A planilha é obrigatória!');
+
+            return;
+          }
           if (planilhaPost) {
             const formData = new FormData();
 
@@ -65,20 +80,27 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           onSubmit();
         }}
       >
-        {({ handleSubmit, handleChange, setFieldValue, values }) => (
+        {({
+          handleSubmit,
+          handleChange,
+          setFieldValue,
+          values,
+          touched,
+          errors
+        }) => (
           <>
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               <h2 className="formTitle">Criar Assembleia</h2>
 
               <div className="inputsProductWrapper">
                 {values?.url_imagem && (
-                  <div
-                    style={{
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      height: '200px'
-                    }}
-                  >
+                  <div className="assembleiaCapaContainer">
+                    <div
+                      className="removeImageOverlay"
+                      onClick={() => setFieldValue('url_imagem', '')}
+                    >
+                      <RemoveImageIcon size={64} />
+                    </div>
                     <Image
                       src={values?.url_imagem}
                       alt="Imagem de Assembleia"
@@ -93,22 +115,25 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       setFieldValue('url_imagem', imageUrl)
                     }
                     title="Adicionar Capa"
+                    error={touched?.url_imagem && errors?.url_imagem}
                   />
                 )}
 
                 <div className="lineElementsWrapper">
                   <InputDefault
-                    label="Título"
+                    label="Título *"
                     placeholder="Contemplados"
                     value={values?.titulo}
                     name="titulo"
                     onChange={handleChange}
+                    error={touched?.titulo && errors?.titulo}
                   />
 
                   <SelectDefault
                     label="Tipo de Assembleia *"
                     name="tipo"
                     onChange={handleChange}
+                    error={touched?.tipo && errors?.tipo}
                   >
                     {tiposDeAssembleias?.map((tipo, key) => (
                       <option
@@ -125,8 +150,10 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   label="Data de Assembleia *"
                   placeholder="18/07/2021"
                   name="data_assembleia"
-                  value={formatStringToDate(values?.data_assembleia)}
+                  type="date"
+                  value={values?.data_assembleia}
                   onChange={handleChange}
+                  error={touched?.data_assembleia && errors?.data_assembleia}
                 />
 
                 <InputWrapper>
@@ -139,6 +166,9 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>
                   </label>
+                  {planilhaError && (
+                    <span className="validationError">{planilhaError}</span>
+                  )}
                 </InputWrapper>
 
                 <div className="lineElementsWrapper buttonsWrapper">

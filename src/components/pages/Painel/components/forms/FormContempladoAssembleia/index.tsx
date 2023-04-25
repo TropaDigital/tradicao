@@ -36,8 +36,7 @@ const FormContempladoAssembleia = ({
           grupo: actualItem?.grupo ?? '',
           cota: actualItem?.cota ?? '',
           tipo_de_contemplacao: actualItem?.tipo_de_contemplacao ?? '',
-          representante: actualItem?.representante ?? '',
-          id_assembleia: currentAssembleia
+          representante: actualItem?.representante ?? ''
         }}
         validationSchema={AssembleiaContempladoSchema}
         onSubmit={(values) => {
@@ -49,7 +48,6 @@ const FormContempladoAssembleia = ({
           }
 
           if (modalOpen === 'publicar') {
-            values.id_assembleia = currentAssembleia;
             createContemplado(values);
           }
 

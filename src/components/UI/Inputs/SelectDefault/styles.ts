@@ -36,6 +36,13 @@ export const ContainerInput = styled.div<ContainerProps>`
       border-color: #e62965;
     `}
 
+  .errorValidation {
+    font-size: 14px;
+    color: var(--status-danger);
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
   select {
     padding-inline-end: 2rem;
     width: 100%;

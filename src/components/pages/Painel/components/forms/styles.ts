@@ -17,6 +17,11 @@ export const Container = styled.div`
       background-color: var(--white);
       color: var(--dark);
     }
+
+    .removeImageOverlay {
+      background: #000000;
+      position: absolute;
+    }
   }
   .lineElementsWrapper {
     display: flex;
@@ -26,6 +31,32 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    .assembleiaCapaContainer {
+      border-radius: 16px;
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+
+      .removeImageOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--status-danger);
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+
+        :hover {
+          opacity: 0.5;
+        }
+      }
+    }
   }
   .buttonsWrapper {
     justify-content: flex-end;
