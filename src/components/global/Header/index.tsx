@@ -3,10 +3,8 @@
 import {
   CalculatorIcon,
   ChevronIcon,
-  DefaultLogo,
   JornalIcon,
   PersonIcon,
-  PhoneIcon,
   SuitCaseIcon,
   UniversityIcon
 } from '@/assets/icons';

@@ -28,6 +28,14 @@ export default function SelectSideBar({
     }
   }
 
+  useEffect(() => {
+    if (!sideBarIsOpen) {
+      setSelectIsOpen(false);
+    } else {
+      setSelectIsOpen(true);
+    }
+  }, [sideBarIsOpen]);
+
   return (
     <Select
       {...rest}
