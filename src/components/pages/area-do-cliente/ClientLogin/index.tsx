@@ -15,6 +15,7 @@ import {
 } from './styles';
 import { EyeIcon } from '@/assets/icons';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
+import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 
 interface ILoginProps {
   bbwCpfCnpj: string;
@@ -48,7 +49,7 @@ export default function ClientLogin() {
           name="bbwCpfCnpj"
           type={'text'}
           placeholder={'Nome'}
-          value={DTOLogin?.bbwCpfCnpj}
+          value={formatCnpjAndCpf(DTOLogin?.bbwCpfCnpj)}
           onChange={handleOnChange}
         />
 

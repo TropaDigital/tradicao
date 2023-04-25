@@ -69,8 +69,8 @@ const Header = () => {
           path: '/canal-de-comunicacao'
         },
         {
-          subTitle: 'Atendimento',
-          path: '/contato'
+          subTitle: 'Relatórios de Ouvidoria',
+          path: '/relatorios-de-ouvidoria'
         }
       ]
     },
