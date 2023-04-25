@@ -325,10 +325,7 @@ export default function SimulationForm() {
   }, [formData.typePlan, formData.conquest]);
 
   return (
-    <SectionSimulatorForm
-      heroStyles={pathName === '/' ? true : false}
-      data-aos="fade-left"
-    >
+    <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
       <form onSubmit={handleOnSubmit}>
         {!isSimulator && (
           <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
