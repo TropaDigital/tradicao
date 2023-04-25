@@ -31,7 +31,7 @@ export default function ClientLogin() {
     const value = input.target.value;
 
     const newDTO: any = DTOLogin;
-    newDTO[name] = value;
+    newDTO[name] = value?.replace(/\D/g, '');
     setDTOLogin({ ...newDTO });
   }
 
@@ -44,12 +44,12 @@ export default function ClientLogin() {
         method="post"
       >
         <InputDefault
-          label="Usuário"
+          label="CPF ou CNPJ"
           labelColor="white"
           name="bbwCpfCnpj"
           type={'text'}
-          placeholder={'Nome'}
-          value={formatCnpjAndCpf(DTOLogin?.bbwCpfCnpj)}
+          placeholder={'Digite seu CPF ou CNPJ'}
+          value={DTOLogin?.bbwCpfCnpj}
           onChange={handleOnChange}
         />
 
