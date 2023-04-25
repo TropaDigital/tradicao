@@ -36,6 +36,13 @@ export const InputWrapper = styled.div`
     }
   }
 
+  .validationError {
+    font-size: 14px;
+    color: var(--status-danger);
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
   input {
     display: none;
   }

@@ -45,6 +45,14 @@ export const SectionSimulatorForm = styled.div<Props>`
   top: 20px;
   right: 20px;
 
+  .simulateButton {
+    transition: all 0.3s;
+
+    :hover {
+      scale: 1.02;
+    }
+  }
+
   /* 
   left: 50%;
   top: 22%;

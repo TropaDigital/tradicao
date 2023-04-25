@@ -92,7 +92,7 @@ export default function BlueInfos({
   const countRef = useRef(null);
 
   return (
-    <BlueContainer ref={countRef}>
+    <BlueContainer ref={countRef} data-aos="fade-up">
       <BlueLeft>
         <BlueLeftInfo>
           +{formatarNumero(valorCotas)}

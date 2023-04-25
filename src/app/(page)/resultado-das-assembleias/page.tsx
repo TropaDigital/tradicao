@@ -27,6 +27,7 @@ import { useGetAllAssembleias } from '@/services/assembleia/GET/useGetAllAssembl
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { IAssembleia } from '@/services/assembleia/types';
+import PaginationData from '@/components/shared/PaginationData';
 
 interface contemplatedProps {
   id: number;
@@ -36,129 +37,17 @@ interface contemplatedProps {
 }
 
 export default function Contemplated() {
-  const contemplatedInfos: contemplatedProps[] = [
-    {
-      id: 0,
-      titleDate: '28 Mar',
-      dateCard: 'Suplência - 23/03/2023',
-      contemplated: [
-        {
-          id: 0,
-          name: 'Cristina L',
-          group: 1023,
-          quota: 938,
-          typeContemplated: 'Lance Livre',
-          representative: 2180
-        },
-        {
-          id: 1,
-          name: 'Railton de J',
-          group: 1025,
-          quota: 379,
-          typeContemplated: 'Lance Livre',
-          representative: 1946
-        },
-        {
-          id: 2,
-          name: 'Rodrigo S',
-          group: 1025,
-          quota: 692,
-          typeContemplated: 'Lance Livre',
-          representative: 1312
-        },
-        {
-          id: 3,
-          name: 'Diego A',
-          group: 1026,
-          quota: 600,
-          typeContemplated: 'Lance Livre',
-          representative: 1951
-        },
-        {
-          id: 4,
-          name: 'Camila D',
-          group: 1026,
-          quota: 744,
-          typeContemplated: 'Lance Livre',
-          representative: 1842
-        },
-        {
-          id: 5,
-          name: 'Jardane S',
-          group: 1027,
-          quota: 1210,
-          typeContemplated: 'Lance Livre',
-          representative: 2124
-        },
-        {
-          id: 6,
-          name: 'Elicelia S',
-          group: 1026,
-          quota: 1452,
-          typeContemplated: 'Lance Livre',
-          representative: 1577
-        },
-        {
-          id: 7,
-          name: 'Lucena V',
-          group: 1029,
-          quota: 8517,
-          typeContemplated: 'Lance Livre',
-          representative: 2061
-        },
-        {
-          id: 8,
-          name: 'Geneci F',
-          group: 1029,
-          quota: 8533,
-          typeContemplated: 'Lance Livre',
-          representative: 1590
-        },
-        {
-          id: 9,
-          name: 'Jairo J',
-          group: 1026,
-          quota: 1115,
-          typeContemplated: 'Lance Livre',
-          representative: 1842
-        }
-      ]
-    },
-    {
-      id: 1,
-      titleDate: '23 Mar',
-      dateCard: 'Excluídos - 23/03/2023',
-      contemplated: []
-    },
-    {
-      id: 2,
-      titleDate: '23 Mar',
-      dateCard: 'Contemplados - 23/03/2023',
-      contemplated: []
-    },
-    {
-      id: 3,
-      titleDate: '22 Mar',
-      dateCard: 'Suplência - 20/03/2023',
-      contemplated: []
-    },
-    {
-      id: 4,
-      titleDate: '20 Mar',
-      dateCard: 'Excluídos - 20/03/2023',
-      contemplated: []
-    },
-    {
-      id: 5,
-      titleDate: '20 Mar',
-      dateCard: 'Contemplados - 20/03/2023',
-      contemplated: []
-    }
-  ];
   const [openList, setOpenList] = useState<boolean>(false);
   const [selectedList, setSelectedList] = useState<IAssembleia>();
+  const [actualPage, setActualPage] = useState<number>(1);
 
-  const { allAssembleias } = useGetAllAssembleias('');
+  const { allAssembleias } = useGetAllAssembleias(
+    `?ordem_tipo=data&currentPage=${actualPage}&perPage=10`
+  );
+
+  const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setActualPage(value);
+  };
 
   return (
     <>
@@ -203,6 +92,13 @@ export default function Contemplated() {
             </S.CardContemplated>
           ))}
         </S.ContainerMid>
+        <div style={{ marginBottom: '32px', marginRight: '220px' }}>
+          <PaginationData
+            data={allAssembleias}
+            handlePagination={handlePageChange}
+            page={actualPage}
+          />
+        </div>
       </CenterWrapper>
 
       <ContemplatedList

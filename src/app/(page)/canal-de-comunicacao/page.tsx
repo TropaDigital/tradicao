@@ -26,7 +26,7 @@ const CompliancePage = () => {
         imageAlt="Homem em uma mesa trabalhando"
       />
       <CenterWrapper>
-        <S.Container>
+        <S.Container data-aos="fade-up">
           <MainTitle title="Canal de Comunicação" />
           <S.TextContainer>
             <p className="compliance-text">

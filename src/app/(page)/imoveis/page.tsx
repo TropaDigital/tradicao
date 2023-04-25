@@ -71,7 +71,7 @@ export default function ConsortiumProperties() {
 
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={Imovel}
           imageAlt="Imagem de uma família se abraçando na sala de casa"
@@ -88,7 +88,7 @@ export default function ConsortiumProperties() {
       </S.ContainerTop>
 
       <CenterWrapper>
-        <S.PropertiesConsortiumType>
+        <S.PropertiesConsortiumType data-aos="fade-up">
           {propertiesArray.map((row: any, key: any) => (
             <S.ConsortiumCard key={row.id}>
               <S.ConsortiumCardImage>

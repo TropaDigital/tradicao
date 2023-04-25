@@ -10,11 +10,11 @@ const BlogContainer = () => {
 
   return (
     <CenterWrapper>
-      <S.Title>
+      <S.Title data-aos="fade-up">
         Blog <strong>Tradição</strong>
       </S.Title>
 
-      <S.Container>
+      <S.Container data-aos="fade-up">
         {lastFourPosts?.map((post) => (
           <BlogCard
             image={post?.postagem_img}

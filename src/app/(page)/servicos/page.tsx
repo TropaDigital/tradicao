@@ -16,7 +16,7 @@ import OurContemplated from '@/components/sections/OurContemplated';
 export default function ConsortiumServices() {
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={ServicesBg}
           imageAlt="Imagem de uma mulher com uma câmera digital em mãos"

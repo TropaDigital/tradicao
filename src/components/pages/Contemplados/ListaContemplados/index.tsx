@@ -31,9 +31,7 @@ export default function ContemplatedList({
     <>
       <ModalDefault openState={openModal} setOpenState={setOpenModal}>
         <ModalWrapper>
-          <ModalTitle>
-            {moment(listData?.dateCard).format('DD MMM')} - Consorcio Tradição
-          </ModalTitle>
+          <ModalTitle>{listData?.titulo}</ModalTitle>
           <Table>
             <thead>
               <tr>

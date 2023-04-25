@@ -24,12 +24,19 @@ export const AssembleiaThumbnail = styled.div`
   align-items: center;
   height: 280px;
   width: fit-content;
-  overflow: hidden;
   position: relative;
+
+  .imageContainer {
+    overflow: hidden;
+    width: 613px;
+    height: 280px;
+    border-radius: 16px;
+  }
 
   .inputWrapper {
     width: 613px;
     height: 280px;
+    margin: 0;
   }
 
   .removeImageOverlay {
@@ -45,6 +52,7 @@ export const AssembleiaThumbnail = styled.div`
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     opacity: 0;
+    border-radius: 16px;
 
     :hover {
       opacity: 0.5;

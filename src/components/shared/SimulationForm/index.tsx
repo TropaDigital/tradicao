@@ -292,40 +292,43 @@ export default function SimulationForm() {
 
   useEffect(() => {
     if (formData.conquest === 'veiculo' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 700 });      
-    };
+      setFormData({ ...formData, ['value']: 700 });
+    }
 
     if (formData.conquest === 'veiculo' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 210000 });      
-    };
+      setFormData({ ...formData, ['value']: 210000 });
+    }
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 1750 });      
-    };
+      setFormData({ ...formData, ['value']: 1750 });
+    }
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 166000 });      
-    };
+      setFormData({ ...formData, ['value']: 166000 });
+    }
 
     if (formData.conquest === 'servicos' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 500 });      
-    };
+      setFormData({ ...formData, ['value']: 500 });
+    }
 
     if (formData.conquest === 'servicos' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 10000 });      
-    };
+      setFormData({ ...formData, ['value']: 10000 });
+    }
 
     if (formData.conquest === 'caminhao' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 3850 });      
-    };
+      setFormData({ ...formData, ['value']: 3850 });
+    }
 
     if (formData.conquest === 'caminhao' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 170000 });      
-    };
-  }, [formData.typePlan, formData.conquest])
+      setFormData({ ...formData, ['value']: 170000 });
+    }
+  }, [formData.typePlan, formData.conquest]);
 
   return (
-    <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
+    <SectionSimulatorForm
+      heroStyles={pathName === '/' ? true : false}
+      data-aos="fade-left"
+    >
       <form onSubmit={handleOnSubmit}>
         {!isSimulator && (
           <TitleSimulator>Qual sua próxima conquista?</TitleSimulator>
@@ -399,6 +402,7 @@ export default function SimulationForm() {
             radius="rounded"
             degrade
             onClick={() => setSimulator(!isSimulator)}
+            className="simulateButton"
           >
             Simular
           </Button>

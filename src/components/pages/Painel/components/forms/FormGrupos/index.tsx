@@ -10,9 +10,11 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useUpdateGrupo } from '@/services/grupos-encerrados/PUT/useUpdateGrupo';
 import { formatDate, formatISOToDate, toISODate } from '@/utils/masks';
+import { validatePlanilhaExtension } from '@/utils/validatePlanilhaExtension';
 
 const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
+  const [planilhaError, setPLanilhaError] = useState<string>();
 
   const { createGrupo } = useCreateGrupo();
   const { updateGrupo } = useUpdateGrupo();
@@ -69,14 +71,23 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                           type="file"
                           placeholder="Selecione o arquivo"
                           onChange={(e) => {
-                            if (e?.target?.files) {
+                            if (
+                              validatePlanilhaExtension(e) &&
+                              e?.target?.files
+                            ) {
                               setPlanilhaPost(e?.target?.files[0]);
+                              return;
                             }
+                            setPLanilhaError('Formato de arquivo inválido!');
                           }}
+                          accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
                         />
                         <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                         <button>Buscar</button>
                       </label>
+                      {planilhaError && (
+                        <span className="validationError">{planilhaError}</span>
+                      )}
                     </InputWrapper>
 
                     <div className="lineElementsWrapper buttonsWrapper">

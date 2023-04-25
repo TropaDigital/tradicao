@@ -18,14 +18,14 @@ const DemonstracoesPage = () => {
         imageSrc={GraphicDemonstrations}
         imageAlt="Imagem de gráficos"
       />
-      <S.Container>
+      <S.Container data-aos="fade-up">
         <S.TitleContainer>
           <MainTitle title="Demonstrações Financeiras" />
           <p className="subtitle">Escolha abaixo o demonstrativo desejado</p>
         </S.TitleContainer>
 
         <CenterWrapper>
-          <ul className="demonstracao-container">
+          <ul className="demonstracao-container" data-aos="fade-up">
             {allDemonstrations?.dataPaginada?.map((demo) => {
               if (demo.status === 'Inativo') return;
               return (

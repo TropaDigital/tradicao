@@ -8,8 +8,15 @@ import { useCreateRecursos } from '@/services/recursos/POST/useCreateRecursos';
 
 const FormRecursos = ({ onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
+  const [planilhaError, setPLanilhaError] = useState<string>();
 
   const { createRecursos } = useCreateRecursos();
+
+  function validatePlanilhaField() {
+    if (!planilhaPost) return true;
+
+    return false;
+  }
 
   return (
     <S.Container>
@@ -19,6 +26,11 @@ const FormRecursos = ({ onSubmit }: IForm) => {
           tipo: ''
         }}
         onSubmit={async (values) => {
+          if (validatePlanilhaField()) {
+            setPLanilhaError('A planilha é obrigatória!');
+            return;
+          }
+
           if (planilhaPost) {
             const formData = new FormData();
 
@@ -50,6 +62,9 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                     <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>
                   </label>
+                  {planilhaError && (
+                    <span className="validationError">{planilhaError}</span>
+                  )}
                 </InputWrapper>
 
                 <div className="lineElementsWrapper buttonsWrapper">

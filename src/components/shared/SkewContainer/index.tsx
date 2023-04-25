@@ -5,7 +5,7 @@ import * as S from './styles';
 
 const SkewContainer = ({ imageAlt, imageSrc }: ISkewContainer) => {
   return (
-    <S.Container>
+    <S.Container data-aos="fade-up">
       <S.SolidBackground />
       <S.SkewContainer>
         <Image

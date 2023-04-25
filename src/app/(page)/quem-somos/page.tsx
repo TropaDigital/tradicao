@@ -43,10 +43,10 @@ import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 
 export default function QuemSomos() {
   const { getCounters } = useGetAllCounters();
-  const [ credits, setCredits ] = useState<any>();
+  const [credits, setCredits] = useState<any>();
 
   const [videoStats, setVideoStats] = useState<boolean>(false);
-  
+
   const BENEFITS_WITH_CONSORCIO_TRADICAO: Array<string> = [
     'Consórcio digital',
     'Compra planejada',
@@ -143,25 +143,38 @@ export default function QuemSomos() {
   }
 
   return (
-    <S.QuemSomosContainer>
+    <S.QuemSomosContainer data-aos="fade-up">
       <SkewContainer imageAlt="imagem teste" imageSrc={bgAboutUsImage} />
       <CenterWrapper>
         <MainTitle title="Quem Somos" />
         <S.AboutUsContent>
           <p>
-            Somos uma administradora de consórcio que tem como objetivo oferecer soluções financeiras inteligentes e personalizadas para nossos clientes. Com mais de 20 anos de experiência no mercado, trabalhamos com transparência, ética e responsabilidade para proporcionar aos nossos clientes uma experiência única e satisfatória.
+            Somos uma administradora de consórcio que tem como objetivo oferecer
+            soluções financeiras inteligentes e personalizadas para nossos
+            clientes. Com mais de 20 anos de experiência no mercado, trabalhamos
+            com transparência, ética e responsabilidade para proporcionar aos
+            nossos clientes uma experiência única e satisfatória.
           </p>
 
           <p>
-            Nossa equipe é formada por profissionais altamente capacitados, que estão sempre atualizados com as novidades do mercado e prontos para auxiliar nossos consorciados em todas as etapas do processo de consórcio, desde a escolha do plano até a contemplação.
+            Nossa equipe é formada por profissionais altamente capacitados, que
+            estão sempre atualizados com as novidades do mercado e prontos para
+            auxiliar nossos consorciados em todas as etapas do processo de
+            consórcio, desde a escolha do plano até a contemplação.
           </p>
 
           <p>
-            Acreditamos que o consórcio é uma forma inteligente e segura de adquirir bens e serviços, e por isso, investimos constantemente em tecnologia e inovação para tornar o processo ainda mais fácil e acessível para nossos clientes.            
+            Acreditamos que o consórcio é uma forma inteligente e segura de
+            adquirir bens e serviços, e por isso, investimos constantemente em
+            tecnologia e inovação para tornar o processo ainda mais fácil e
+            acessível para nossos clientes.
           </p>
 
-          <p>
-            Nosso compromisso é oferecer sempre o melhor atendimento e as melhores soluções para nossos clientes, visando sua satisfação e fidelização. Se você busca uma administradora de consórcio confiável e comprometida com o seu sucesso, conte com o Consórcio Tradição.
+          <p data-aos="fade-up">
+            Nosso compromisso é oferecer sempre o melhor atendimento e as
+            melhores soluções para nossos clientes, visando sua satisfação e
+            fidelização. Se você busca uma administradora de consórcio confiável
+            e comprometida com o seu sucesso, conte com o Consórcio Tradição.
           </p>
         </S.AboutUsContent>
         <S.AboutUsSubtitle>
@@ -242,7 +255,7 @@ export default function QuemSomos() {
             padding="20px"
             width="357"
           />
-          <S.MoralValuesCard>
+          <S.MoralValuesCard data-aos="fade-up">
             <h3 className="moralValuesTitle">Valores</h3>
             <div className="gridTemplateValuesCard">
               {MORAL_VALUES_CARD_ITENS.map(
@@ -259,7 +272,7 @@ export default function QuemSomos() {
       </GreenCarousel>
 
       <CenterWrapper>
-        <S.VideoWrapper videoIsRunning={videoStats}>
+        <S.VideoWrapper videoIsRunning={videoStats} data-aos="fade-up">
           <video
             webkit-playsInline
             playsInline
@@ -300,7 +313,9 @@ export default function QuemSomos() {
         <CenterWrapper>
           <S.ContemplatedTitle>Em 20 anos de mercado</S.ContemplatedTitle>
           <S.ContemplatedQuotasWrapper>
-            <div className="contemplatedQuotesNumber">{getCounters?.result[0]?.cotas_contemplados?.toLocaleString()}</div>
+            <div className="contemplatedQuotesNumber">
+              {getCounters?.result[0]?.cotas_contemplados?.toLocaleString()}
+            </div>
             <span className="contemplatedQuotesTextWrapper">
               <h3 className="contemplatedQuotesTitle">Cotas</h3>
               <p className="contemplatedQuotesText">contempladas</p>
@@ -331,7 +346,9 @@ export default function QuemSomos() {
             </S.ContemplatedQuotasWrapper> */}
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">{getCounters?.result[0]?.grupos.toLocaleString()}</div>
+              <div className="contemplatedQuotesNumber cl-white">
+                {getCounters?.result[0]?.grupos.toLocaleString()}
+              </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Grupos</h3>
                 <p className="contemplatedQuotesText cl-white">formados</p>
@@ -339,7 +356,9 @@ export default function QuemSomos() {
             </S.ContemplatedQuotasWrapper>
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">{getCounters?.result[0]?.contas_total?.toLocaleString()}</div>
+              <div className="contemplatedQuotesNumber cl-white">
+                {getCounters?.result[0]?.contas_total?.toLocaleString()}
+              </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Total</h3>
                 <p className="contemplatedQuotesText cl-white">de cotas</p>

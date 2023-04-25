@@ -17,7 +17,7 @@ import TruckConsortium from '@/components/sections/TruckConsortium';
 export default function ConsortiumTrucks() {
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={TruckBg}
           imageAlt="Imagem de um caminhão de carga numa estrada"

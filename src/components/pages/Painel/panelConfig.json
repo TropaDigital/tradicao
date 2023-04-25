@@ -1,47 +1,47 @@
 {
   "pages": [
     {
-      "name": "Assembleias",
+      "name": "📄 Assembleias",
       "path": "assembleias"
     },
     {
-      "name": "Blog",
+      "name": "📝 Blog",
       "path": "blog"
     },
     {
-      "name": "Contemplados",
+      "name": "👪 Contemplados",
       "path": "contemplados"
     },
     {
-      "name": "Currículos",
+      "name": "📎Currículos",
       "path": "curriculos"
     },
     {
-      "name": "Demonstrações",
+      "name": "📈 Demonstrações",
       "path": "demonstracoes-financeiras"
     },
     {
-      "name": "Recursos",
+      "name": "🔎 Recursos",
       "path": "recursos-nao-procurados"
     },
     {
-      "name": "Gp. Encerrados",
+      "name": "📃 Gp. Encerrados",
       "path": "grupos-encerrados"
     },
     {
-      "name": "Regulamento",
+      "name": "📜 Regulamento",
       "path": "regulamento"
     },
     {
-      "name": "Relatórios",
+      "name": "📊 Relatórios",
       "path": "relatorios-de-ouvidoria"
     },
     {
-      "name": "Representantes",
+      "name": "🤵 Representantes",
       "path": "representantes"
     },
     {
-      "name": "Unidades",
+      "name": "🏬 Unidades",
       "path": "unidades"
     }
   ],
