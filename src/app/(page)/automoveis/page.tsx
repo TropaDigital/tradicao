@@ -23,7 +23,7 @@ export default function ConsortiumAuto() {
         <SimulationForm />
 
         <CenterWrapper>
-          <div className="margin">
+          <div className="margin" data-aos="fade-up">
             <MainTitle title="Consórcio de Automóveis" />
             <S.SubtitleTop>
               Realize o seu sonho de ter o seu carro 0 KM ou seminovo*

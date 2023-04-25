@@ -19,7 +19,7 @@ export default function Contato() {
   ];
 
   return (
-    <S.Container>
+    <S.Container data-aos="fade-up">
       <SkewContainer
         imageSrc={contato_bg}
         imageAlt="Imagem de operadores de telemarketing"

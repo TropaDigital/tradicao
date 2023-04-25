@@ -4,6 +4,7 @@ import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 import { useCreateAssembleia } from '@/services/assembleia/POST/useCreateAssembleia';
 import { formatDate, formatStringToDate } from '@/utils/masks';
+import { validatePlanilhaExtension } from '@/utils/validatePlanilhaExtension';
 import { Form, Formik } from 'formik';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -24,32 +25,14 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
   async function handleSetPlanilha(e: React.ChangeEvent<HTMLInputElement>) {
     if (e?.target?.files) {
+      setPlanilhaError('');
+
       const formData = new FormData();
       formData.set('file', e?.target?.files[0]);
 
       setPlanilhaUrl(await postFile(formData));
 
       setPlanilhaPost(e?.target?.files[0]);
-    }
-  }
-
-  function validatePlanilhaExtension(e: React.ChangeEvent<HTMLInputElement>) {
-    const acceptedFiles = ['xlsx', 'xls', 'csv', 'ods', 'xltx', 'xlsm'];
-
-    if (e?.target?.files) {
-      const file = e?.target?.files[0];
-
-      const extension = file?.name?.split('.')?.pop()?.toLowerCase();
-
-      acceptedFiles?.forEach((extensionType) => {
-        if (extensionType !== extension) {
-          setPlanilhaError('Arquivo inválido!');
-          return true;
-        } else {
-          setPlanilhaError('');
-          return false;
-        }
-      });
     }
   }
 
@@ -72,6 +55,12 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           url_imagem: ''
         }}
         validationSchema={assembleiaSchema}
+        validate={({}) => {
+          if (!planilhaUrl && !planilhaPost) {
+            setPlanilhaError('É necessário enviar uma planilha!');
+            return;
+          }
+        }}
         onSubmit={async (values) => {
           if (planilhaPost) {
             const formData = new FormData();
@@ -172,8 +161,11 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       type="file"
                       placeholder="Selecione o arquivo"
                       onChange={(e) => {
-                        validatePlanilhaExtension(e);
-                        handleSetPlanilha(e);
+                        if (validatePlanilhaExtension(e)) {
+                          handleSetPlanilha(e);
+                          return;
+                        }
+                        setPlanilhaError('Formato de arquivo inválido!');
                       }}
                       accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
                     />

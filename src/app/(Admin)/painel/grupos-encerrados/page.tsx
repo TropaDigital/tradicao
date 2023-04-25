@@ -49,7 +49,9 @@ const AssembleiaPage = () => {
   );
 
   const { allGrupos } = useGetAllGrupos(
-    '?' + query + `ordem=desc&perPage=10&currentPage=${actualPage}`
+    '?' +
+      query +
+      `ordem_tipo=grupo&ordem=desc&perPage=10&currentPage=${actualPage}`
   );
 
   useEffect(() => {
@@ -95,7 +97,7 @@ const AssembleiaPage = () => {
               radius="rounded"
               className="styledButton"
             >
-              <a href="/archives/exemplo-nao-procurados.ods" download>
+              <a href="/archives/exemplo-grupos-encerrados.ods" download>
                 <ClipFileIcon size={18} />
                 Baixar Modelo
               </a>
@@ -127,6 +129,7 @@ const AssembleiaPage = () => {
           />
         }
       />
+
       <PaginationData
         data={allGrupos}
         page={actualPage}

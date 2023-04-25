@@ -59,7 +59,9 @@ const AssembleiaPage = () => {
   );
 
   const { allAssembleias } = useGetAllAssembleias(
-    '?' + query + `ordem=desc&perPage=10&currentPage=${actualPage}`
+    '?' +
+      query +
+      `ordem=asc&ordem_tipo=data&perPage=10&currentPage=${actualPage}`
   );
 
   useEffect(() => {
