@@ -39,7 +39,6 @@ const PostPanel = () => {
   const { postFile } = usePostFile();
   const { allCategorias } = useGetAllCategorias();
   const { updatePost } = useUpdatePost();
-  const { createPost } = useCreatePost();
   const { allPosts } = useGetAllPosts(`?slug=${slug}`);
   const router = useRouter();
 
@@ -182,32 +181,31 @@ const PostPanel = () => {
           }}
           validationSchema={PostagemSchema}
           onSubmit={(values) => {
-            const postDetails = { ...values };
-            postDetails.slug = toSlug(values?.titulo);
-            postDetails.postagem_img = currentImage;
+            try {
+              values.slug = toSlug(values?.titulo);
+              values.postagem_img = currentImage;
 
-            if (currentPost) {
-              updatePost({
-                postagem: postDetails,
-                id: currentPost?.id_postagem
-              });
-            }
-
-            if (!currentPost) {
-              setSlug(postDetails?.slug);
-
-              const messageError =
-                'Já existe uma postagem com esse título, por favor, altere o título da postagem.';
-
-              if (allPosts?.result?.length) {
-                toast.error(messageError);
-                return;
+              if (currentPost) {
+                updatePost({
+                  postagem: values,
+                  id: currentPost?.id_postagem
+                });
               }
 
-              createPost(postDetails);
-            }
+              if (!currentPost) {
+                setSlug(values.slug);
 
-            router?.push('/painel/blog');
+                if (allPosts?.result?.length) {
+                  throw 'Já existe uma postagem com esse título, por favor, altere o título da postagem.';
+                }
+                console.log(values);
+              }
+
+              router?.push('/painel/blog');
+            } catch (err: any) {
+              console.log('ERROR', err);
+              toast.error(err.toString());
+            }
           }}
         >
           {({
@@ -295,11 +293,7 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="categoria_id"
                       value={values?.categoria_id}
-                      error={
-                        touched?.categoria_id && {
-                          message: errors?.categoria_id
-                        }
-                      }
+                      error={touched?.categoria_id && errors.categoria_id}
                     >
                       <option>Selecione uma categoria</option>
                       {allCategorias?.map((categoria, key) => (

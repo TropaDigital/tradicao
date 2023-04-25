@@ -1,86 +1,87 @@
 // React
-import { useState } from "react";
+import { useState } from 'react';
 
 // Components
-import Button from "@/components/UI/Button";
-import { InputDefault } from "@/components/UI/Inputs/InputDefault";
+import Button from '@/components/UI/Button';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 // Styles
-import { CheckboxLogin, ContainerLogin, LoginForm, LoginTitle, TextButton } from "./styles";
-import { EyeIcon } from "@/assets/icons";
-import { InputPassword } from "@/components/UI/Inputs/InputPassword";
+import {
+  CheckboxLogin,
+  ContainerLogin,
+  LoginForm,
+  LoginTitle,
+  TextButton
+} from './styles';
+import { EyeIcon } from '@/assets/icons';
+import { InputPassword } from '@/components/UI/Inputs/InputPassword';
 
 interface ILoginProps {
-    j_username: string,
-    j_password: string,
+  bbwCpfCnpj: string;
+  bbwSenha: string;
 }
 
 export default function ClientLogin() {
-    const [ checked, setChecked ] = useState<boolean>(false);
-    const [ DTOLogin, setDTOLogin ] = useState<ILoginProps>({
-        j_username: '',
-        j_password: '',
-    });
+  const [checked, setChecked] = useState<boolean>(false);
+  const [DTOLogin, setDTOLogin] = useState<ILoginProps>({} as ILoginProps);
 
-    function handleOnChange(input: any) {
-        const name = input.target.name;
-        const value = input.target.value;
-        
-        const newDTO: any = DTOLogin
-        newDTO[name] = value
-        setDTOLogin({ ...newDTO })
+  function handleOnChange(input: any) {
+    const name = input.target.name;
+    const value = input.target.value;
 
-    }
+    const newDTO: any = DTOLogin;
+    newDTO[name] = value;
+    setDTOLogin({ ...newDTO });
+  }
 
-    return (
-        <ContainerLogin>
-            <LoginTitle>Acesse sua conta</LoginTitle>
+  return (
+    <ContainerLogin>
+      <LoginTitle>Acesse sua conta</LoginTitle>
 
-            <LoginForm
-                action="http://consorciotradicao.ddns.com.br:8090/newconplus/index.asp"
-                method="post"
-            >
-                <InputDefault
-                    label='Usuário'
-                    labelColor='white'
-                    name="j_username"
-                    type={'text'}
-                    placeholder={'Nome'}
-                    value={DTOLogin?.j_username}
-                    onChange={handleOnChange}                    
-                /> 
+      <LoginForm
+        action="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/identifica.asp?TipoAcesso=Login"
+        method="post"
+      >
+        <InputDefault
+          label="Usuário"
+          labelColor="white"
+          name="bbwCpfCnpj"
+          type={'text'}
+          placeholder={'Nome'}
+          value={DTOLogin?.bbwCpfCnpj}
+          onChange={handleOnChange}
+        />
 
-                <InputPassword 
-                    label='Senha'
-                    name="j_password"
-                    placeholder={'Digite sua senha'}
-                    value={DTOLogin?.j_password}
-                    onChange={handleOnChange} 
-                />
+        <InputPassword
+          label="Senha"
+          name="bbwSenha"
+          placeholder={'Digite sua senha'}
+          value={DTOLogin?.bbwSenha}
+          onChange={handleOnChange}
+        />
 
-                <CheckboxLogin>
-                    <input 
-                        type="checkbox" 
-                        name="" 
-                        id="" 
-                        checked={checked}
-                        onChange={() => setChecked(!checked)}
-                    />
-                    <span>Manter conectado</span>
-                </CheckboxLogin>
+        <CheckboxLogin>
+          <input
+            type="checkbox"
+            name=""
+            id=""
+            checked={checked}
+            onChange={() => setChecked(!checked)}
+          />
+          <span>Manter conectado</span>
+        </CheckboxLogin>
 
-                <Button
-                    radius="rounded"
-                    color='secondary'
-                    degrade={true}
-                    type={'submit'}
-                >
-                    Logar
-                </Button>
+        <Button
+          radius="rounded"
+          color="secondary"
+          degrade={true}
+          type={'submit'}
+        >
+          Logar
+        </Button>
+      </LoginForm>
 
-            </LoginForm>
-
-            <TextButton>Esqueci minha senha</TextButton>
-        </ContainerLogin>
-    )
+      <TextButton>Esqueci minha senha</TextButton>
+    </ContainerLogin>
+  );
 }
