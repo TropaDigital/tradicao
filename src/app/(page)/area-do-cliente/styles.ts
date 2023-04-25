@@ -6,6 +6,11 @@ export const MainWrapper = styled.div`
   gap: 80px;
 
   padding: 60px 0 120px 0;
+
+  @media (max-width: 1260px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 `;
 
 export const AppWrapper = styled.div`
@@ -13,8 +18,10 @@ export const AppWrapper = styled.div`
   align-items: center;
   height: 400px;
 
-  .app-image {
-    /* width: 100; */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 50px;
+    height: 750px;
   }
 `;
 
@@ -40,7 +47,7 @@ export const AppTitleLinks = styled.h1`
   font-weight: var(--weight-bold);
 `;
 
-export const AppSubtitleLinks = styled.p`
+export const AppSubtitleLinks = styled.div`
   max-width: 380px;
   color: var(--gray-600);
   font-size: var(--text-smal-md);
