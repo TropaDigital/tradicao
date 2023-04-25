@@ -16,7 +16,7 @@ import { HeaderDashboard } from '../styles';
 const AssembleiaPage = () => {
   const headerTable = [
     {
-      key: 'data',
+      key: 'criado',
       label: 'Data de Criação',
       type: 'date'
     },
@@ -61,7 +61,7 @@ const AssembleiaPage = () => {
   const { allAssembleias } = useGetAllAssembleias(
     '?' +
       query +
-      `ordem=asc&ordem_tipo=data&perPage=10&currentPage=${actualPage}`
+      `ordem=desc&ordem_tipo=criado&perPage=10&currentPage=${actualPage}`
   );
 
   useEffect(() => {
