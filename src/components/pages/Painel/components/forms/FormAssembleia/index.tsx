@@ -33,10 +33,24 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
     }
   }
 
-  function validatePlanilhaField() {
-    if (!planilhaPost && !planilhaUrl) return true;
+  function validatePlanilhaExtension(e: React.ChangeEvent<HTMLInputElement>) {
+    const acceptedFiles = ['xlsx', 'xls', 'csv', 'ods', 'xltx', 'xlsm'];
 
-    return false;
+    if (e?.target?.files) {
+      const file = e?.target?.files[0];
+
+      const extension = file?.name?.split('.')?.pop()?.toLowerCase();
+
+      acceptedFiles?.forEach((extensionType) => {
+        if (extensionType !== extension) {
+          setPlanilhaError('Arquivo inválido!');
+          return true;
+        } else {
+          setPlanilhaError('');
+          return false;
+        }
+      });
+    }
   }
 
   const tiposDeAssembleias = [
@@ -59,11 +73,6 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         validationSchema={assembleiaSchema}
         onSubmit={async (values) => {
-          if (validatePlanilhaField()) {
-            setPlanilhaError('A planilha é obrigatória!');
-
-            return;
-          }
           if (planilhaPost) {
             const formData = new FormData();
 
@@ -115,6 +124,7 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       setFieldValue('url_imagem', imageUrl)
                     }
                     title="Adicionar Capa"
+                    accept="image/*"
                     error={touched?.url_imagem && errors?.url_imagem}
                   />
                 )}
@@ -161,7 +171,11 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                     <input
                       type="file"
                       placeholder="Selecione o arquivo"
-                      onChange={handleSetPlanilha}
+                      onChange={(e) => {
+                        validatePlanilhaExtension(e);
+                        handleSetPlanilha(e);
+                      }}
+                      accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
                     />
                     <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>
