@@ -11,6 +11,12 @@ import PaperClip from '@/../public/images/paperclip.svg';
 import FamilyIcon from '@/../public/images/familyIcon.svg';
 import ChartIncreasing from '@/../public/images/chartIncreasing.svg';
 import Papiro from '@/../public/images/papiro.svg';
+import Paper from '@/../public/images/paper.svg';
+import WhitePaper from '@/../public/images/white-paper.svg';
+import MagnifyngGlass from '@/../public/images/magnifying-glass.svg';
+import ChartBar from '@/../public/images/chart-bar.svg';
+import PersonInSmoking from '@/../public/images/person-in-smoking.svg';
+import OfficeBuilding from '@/../public/images/office-building.svg';
 
 // Componentes
 import Image from 'next/image';
@@ -33,15 +39,37 @@ export default function SelectSideBar({
 }: ISelectProps) {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
 
+  type IconInfo = {
+    src: string;
+    alt: string;
+  };
+
+  type IconsPagesMap = {
+    [key: string]: IconInfo;
+  };
+
+  const createImageTag = ({ src, alt }: IconInfo) => (
+    <Image src={src} alt={alt} width={20} height={20} />
+  );
+
   const iconsPagesMap: any = {
-    Assembleias: <a />,
-    Blog: <Image src={MemoIcon} alt="Abc" width={20} height={20} />,
-    Contemplados: <Image src={FamilyIcon} alt="Abc" width={20} height={20} />,
-    Currículos: <Image src={PaperClip} alt="Abc" width={20} height={20} />,
-    Demonstrações: (
-      <Image src={ChartIncreasing} alt="Abc" width={20} height={20} />
-    ),
-    Regulamento: <Image src={Papiro} alt="Abc" width={20} height={20} />
+    Assembleias: createImageTag({ src: WhitePaper, alt: 'Abc' }),
+    Blog: createImageTag({ src: MemoIcon, alt: 'Abc' }),
+    Contemplados: createImageTag({ src: FamilyIcon, alt: 'Abc' }),
+    Currículos: createImageTag({ src: PaperClip, alt: 'Abc' }),
+    Demonstrações: createImageTag({
+      src: ChartIncreasing,
+      alt: 'Abc'
+    }),
+    Regulamento: createImageTag({ src: Papiro, alt: 'Abc' }),
+    Recursos: createImageTag({ src: MagnifyngGlass, alt: 'Abc' }),
+    'Gp. Encerrados': createImageTag({ src: Paper, alt: 'Abc' }),
+    Relatórios: createImageTag({ src: ChartBar, alt: 'Abc' }),
+    Representantes: createImageTag({
+      src: PersonInSmoking,
+      alt: 'Abc'
+    }),
+    Unidades: createImageTag({ src: OfficeBuilding, alt: 'Abc' })
   };
 
   function handleToogleSideBar() {

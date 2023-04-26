@@ -279,6 +279,14 @@ export const Copyright = styled.div`
 
   padding: 30px 150px;
 
+  @media (max-width: 768px) {
+    padding: 30px 80px;
+  }
+
+  @media (max-width: 450px) {
+    padding: 30px 10%;
+  }
+
   .text {
     max-width: 1140px;
 
