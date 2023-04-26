@@ -16,7 +16,7 @@ import MainTitle from '@/components/UI/MainTitle';
 import ContemplatedList from '@/components/pages/Contemplados/ListaContemplados';
 
 // Images
-import ContempladoBg from '../../../../public/images/contemplados-bg.jpg';
+import ResultadoAssembleiaBg from '../../../../public/images/resultado-assembleia.jpg';
 import teste from '../../../../public/images/teste.jpg';
 
 // Icons
@@ -53,7 +53,7 @@ export default function Contemplated() {
     <>
       <S.ContainerTop>
         <SkewContainer
-          imageSrc={ContempladoBg}
+          imageSrc={ResultadoAssembleiaBg}
           imageAlt="Imagem de uma família se abraçando na sala de casa"
         />
 

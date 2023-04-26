@@ -1,8 +1,19 @@
 import { propsPage } from '../../interface';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { Select } from './styles';
-import { ChevronTopIcon, ClipFileIcon } from '@/assets/icons';
+import { AnalyticsIcon, ChevronTopIcon, ClipFileIcon } from '@/assets/icons';
 import Link from 'next/link';
+
+// Icons
+
+import MemoIcon from '@/../public/images/memo.svg';
+import PaperClip from '@/../public/images/paperclip.svg';
+import FamilyIcon from '@/../public/images/familyIcon.svg';
+import ChartIncreasing from '@/../public/images/chartIncreasing.svg';
+import Papiro from '@/../public/images/papiro.svg';
+
+// Componentes
+import Image from 'next/image';
 
 interface ISelectProps {
   pages: Array<propsPage>;
@@ -22,11 +33,15 @@ export default function SelectSideBar({
 }: ISelectProps) {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
 
-  const iconsPagesMap = {
+  const iconsPagesMap: any = {
     Assembleias: <a />,
-    Blog: <a />,
-    Contemplados: <a />,
-    Currículos: <ClipFileIcon />
+    Blog: <Image src={MemoIcon} alt="Abc" width={20} height={20} />,
+    Contemplados: <Image src={FamilyIcon} alt="Abc" width={20} height={20} />,
+    Currículos: <Image src={PaperClip} alt="Abc" width={20} height={20} />,
+    Demonstrações: (
+      <Image src={ChartIncreasing} alt="Abc" width={20} height={20} />
+    ),
+    Regulamento: <Image src={Papiro} alt="Abc" width={20} height={20} />
   };
 
   function handleToogleSideBar() {
@@ -75,6 +90,8 @@ export default function SelectSideBar({
       <div className="optionsSelect">
         {pages.map((row: propsPage, key: number) => (
           <Link href={`/painel/${row.path}`} className="cardToPage" key={key}>
+            {iconsPagesMap[row.name]}
+            {'  '}
             {row.name}
           </Link>
         ))}

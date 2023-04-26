@@ -2,7 +2,7 @@
 
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
-import ComplianceBg from '../../../../public/images/compliance_bg.png';
+import ComplianceBg from '../../../../public/images/compliance.jpg';
 import React, { useState } from 'react';
 import MainTitle from '@/components/UI/MainTitle';
 import Button from '@/components/UI/Button';
