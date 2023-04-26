@@ -30,16 +30,15 @@ import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import { RemoveImageIcon } from '@/assets/icons';
 import { PostagemSchema } from './yupSchema';
 import { toSlug } from '@/utils/masks';
-import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import { toast } from 'react-toastify';
+import API from '@/services/api';
+import { AxiosResponse } from 'axios';
 
 const PostPanel = () => {
-  const [slug, setSlug] = useState<string>('');
-
   const { postFile } = usePostFile();
   const { allCategorias } = useGetAllCategorias();
   const { updatePost } = useUpdatePost();
-  const { allPosts } = useGetAllPosts(`?slug=${slug}`);
+  const { createPost } = useCreatePost();
   const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
@@ -180,7 +179,7 @@ const PostPanel = () => {
             slug: ''
           }}
           validationSchema={PostagemSchema}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             try {
               values.slug = toSlug(values?.titulo);
               values.postagem_img = currentImage;
@@ -193,18 +192,12 @@ const PostPanel = () => {
               }
 
               if (!currentPost) {
-                setSlug(values.slug);
-
-                if (allPosts?.result?.length) {
-                  throw 'Já existe uma postagem com esse título, por favor, altere o título da postagem.';
-                }
-                console.log(values);
+                createPost(values);
               }
 
               router?.push('/painel/blog');
             } catch (err: any) {
-              console.log('ERROR', err);
-              toast.error(err.toString());
+              console.log(err);
             }
           }}
         >
