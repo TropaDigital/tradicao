@@ -1,7 +1,7 @@
 import { propsPage } from '../../interface';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { Select } from './styles';
-import { ChevronTopIcon } from '@/assets/icons';
+import { ChevronTopIcon, ClipFileIcon } from '@/assets/icons';
 import Link from 'next/link';
 
 interface ISelectProps {
@@ -21,6 +21,13 @@ export default function SelectSideBar({
   ...rest
 }: ISelectProps) {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
+
+  const iconsPagesMap = {
+    Assembleias: <a />,
+    Blog: <a />,
+    Contemplados: <a />,
+    Currículos: <ClipFileIcon />
+  };
 
   function handleToogleSideBar() {
     if (!sideBarIsOpen) {

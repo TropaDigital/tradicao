@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 // Components
 import Button from '@/components/UI/Button';
@@ -26,30 +26,46 @@ export default function ClientLogin() {
   const [checked, setChecked] = useState<boolean>(false);
   const [DTOLogin, setDTOLogin] = useState<ILoginProps>({} as ILoginProps);
 
-  function handleOnChange(input: any) {
+  function handleOnChange(input: React.ChangeEvent<HTMLInputElement>) {
     const name = input.target.name;
     const value = input.target.value;
 
     const newDTO: any = DTOLogin;
-    newDTO[name] = value?.replace(/\D/g, '');
+    newDTO[name] = value;
     setDTOLogin({ ...newDTO });
+
+    console.log(newDTO);
+  }
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    formRef.current?.submit();
   }
 
   return (
     <ContainerLogin>
       <LoginTitle>Acesse sua conta</LoginTitle>
 
-      <LoginForm
+      <form
+        style={{ display: 'none' }}
+        ref={formRef}
         action="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/identifica.asp?TipoAcesso=Login"
         method="post"
       >
+        <input name="bbwCpfCnpj" value={DTOLogin?.bbwCpfCnpj} />
+        <input name="bbwSenha" value={DTOLogin?.bbwSenha} />
+        <input type={'submit'} value="Logar" />
+      </form>
+      <LoginForm onSubmit={handleSubmit}>
         <InputDefault
           label="CPF ou CNPJ"
           labelColor="white"
           name="bbwCpfCnpj"
           type={'text'}
           placeholder={'Digite seu CPF ou CNPJ'}
-          value={DTOLogin?.bbwCpfCnpj}
+          value={formatCnpjAndCpf(DTOLogin?.bbwCpfCnpj)}
           onChange={handleOnChange}
         />
 
