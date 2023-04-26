@@ -28,6 +28,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import { IAssembleia } from '@/services/assembleia/types';
 import PaginationData from '@/components/shared/PaginationData';
+import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 
 interface contemplatedProps {
   id: number;
@@ -40,9 +41,10 @@ export default function Contemplated() {
   const [openList, setOpenList] = useState<boolean>(false);
   const [selectedList, setSelectedList] = useState<IAssembleia>();
   const [actualPage, setActualPage] = useState<number>(1);
+  const [order, setOrder] = useState<string>('desc');
 
   const { allAssembleias } = useGetAllAssembleias(
-    `?ordem_tipo=data&currentPage=${actualPage}&perPage=10`
+    `?ordem_tipo=criado&ordem=${order}&currentPage=${actualPage}&perPage=10`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -60,6 +62,16 @@ export default function Contemplated() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Resultado das Assembleias" />
+
+            <div className="orderFilter">
+              <SelectDefault
+                label="Ordenar por"
+                onChange={(e) => setOrder(e?.target?.value)}
+              >
+                <option value="desc">Mais Recente</option>
+                <option value="asc">Mais Antigas</option>
+              </SelectDefault>
+            </div>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

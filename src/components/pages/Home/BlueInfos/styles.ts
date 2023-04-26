@@ -66,6 +66,10 @@ export const BlueRight = styled.div`
     width: 53%;
   }
 
+  @media (max-width: 1200px) {
+    width: 58%;
+  }
+
   @media (max-width: 800px) {
     display: flex;
     align-items: center;
@@ -97,6 +101,10 @@ export const BlueLeftInfo = styled.div`
     font-weight: var(--weight-regular);
   }
 
+  @media (max-width: 920px) {
+    font-size: 3.5rem;
+  }
+
   @media (max-width: 800px) {
     font-size: var(--text-headline-lgx);
   }
@@ -120,6 +128,14 @@ export const BlueRightInfo = styled.div`
   .title {
     font-size: var(--text-smal-sm);
     font-weight: var(--weight-regular);
+  }
+
+  @media (max-width: 1080px) {
+    font-size: 4rem;
+  }
+
+  @media (max-width: 920px) {
+    font-size: 3.5rem;
   }
 
   @media (max-width: 800px) {

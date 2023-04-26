@@ -69,6 +69,9 @@ export const SectionSimulatorForm = styled.div<Props>`
       @media (max-width: 985px) {
         top: 15%;
       }
+      @media (max-width: 920px) {
+        top: 16%;
+      }
       @media (max-width: 768px) {
         top: 14%;
       }
@@ -77,17 +80,17 @@ export const SectionSimulatorForm = styled.div<Props>`
       }
       @media (max-width: 600px) {
         left: 50%;
-        top: 10%;
+        top: 12%;
         transform: translateX(-50%);
       }
       @media (max-width: 516px) {
         left: 50%;
-        top: 8%;
+        top: 9%;
         transform: translateX(-50%);
       }
       @media (max-width: 356px) {
         left: 50%;
-        top: 76%;
+        top: 7%;
         transform: translateX(-50%);
       }
     `}

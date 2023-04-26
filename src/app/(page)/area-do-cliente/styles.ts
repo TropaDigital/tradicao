@@ -40,11 +40,11 @@ export const AppLinks = styled.div`
 `;
 
 export const AppTitleLinks = styled.h1`
-  width: 348px;
+  max-width: 348px;
 
-  color: var(--primary-dark);
+  color: var(--primary);
   font-size: var(--text-headline-lgx);
-  font-weight: var(--weight-bold);
+  font-weight: 700;
 `;
 
 export const AppSubtitleLinks = styled.div`
@@ -58,13 +58,22 @@ export const AppSubtitleLinks = styled.div`
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 20px;
 
     li {
-      color: var(--dark);
+      color: var(--primary);
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
+      font-weight: 700;
+
+      ::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: var(--secondary);
+        border-radius: 50%;
+      }
     }
   }
 `;
