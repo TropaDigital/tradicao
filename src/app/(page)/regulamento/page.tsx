@@ -8,7 +8,8 @@ import { useGetRegulamento } from '@/services/regulamento/GET/useGetRegulamento'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import Regulation from '../../../../public/images/regulamento_bg.jpeg';
+// Imagens
+import Regulation from '../../../../public/images/regulamento.jpg';
 
 // Styles
 import * as S from './styles';

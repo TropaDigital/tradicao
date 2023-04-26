@@ -4,12 +4,21 @@ import styled from 'styled-components';
 export const ContainerTop = styled.div`
   .margin {
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .orderFilter {
+      max-width: 280px;
+    }
   }
 `;
 
 export const ContainerMid = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
 
   max-width: 1000px;

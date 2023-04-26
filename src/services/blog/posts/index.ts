@@ -1,8 +1,7 @@
 'use client';
 
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import API from '../../api';
-import cookieClass from '@/utils/cookieClass';
 import { IUpdatePostBody } from './PUT/types';
 
 class PostsClass {
@@ -29,10 +28,11 @@ class PostsClass {
 
   async createPost(postBody: IUpdatePostBody) {
     try {
-      const response: AxiosResponse = await API.post(`/blog/post`, postBody);
+      let response: AxiosResponse = await API.post(`/blog/post`, postBody);
       return response?.data;
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
+      throw err?.response?.data?.result[0]?.erro;
     }
   }
 

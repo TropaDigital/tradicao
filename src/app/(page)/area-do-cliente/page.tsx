@@ -31,32 +31,16 @@ export default function ClientArea() {
         <S.MainWrapper>
           <S.AppWrapper>
             <S.AppLinks>
-              <S.AppTitleLinks>Tudo isso na palma da sua mão</S.AppTitleLinks>
+              <S.AppTitleLinks>Tudo isso na palma da sua mão!</S.AppTitleLinks>
+              <h3 style={{ color: 'var(--primary)' }}>
+                Com o aplicativo Tradcon você pode:
+              </h3>
               <S.AppSubtitleLinks>
                 <ul>
-                  <li>
-                    <SmartphoneIcon />
-                    Consórcio Digital
-                  </li>
-                  <li>
-                    <CartIcon />
-                    Compra planejada
-                  </li>
-                  <li>
-                    <MoneyIcon />
-                    Sem entrada
-                  </li>
-                  <li>
-                    <UnlockIcon size={24} />
-                    Sem juros
-                  </li>
-                  <li>
-                    <LikeHandIcon /> Parcelas mensais que cabem no seu bolso
-                  </li>
-                  <li>
-                    <AnalyticsIcon size={24} />
-                    Compra parcelada
-                  </li>
+                  <li>Retirar 2° Via do Boleto;</li>
+                  <li>Ofertar Lances;</li>
+                  <li>Obter Resultado das Assembleias</li>
+                  <li>Informações Sobre a Cota.</li>
                 </ul>
               </S.AppSubtitleLinks>
 

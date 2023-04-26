@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import styled, { css } from 'styled-components';
 import Tooltip from '../../Tooltip';
 
@@ -15,13 +15,6 @@ export const Container = styled.label`
   align-items: center;
   gap: 10px;
 
-  .labelInput {
-    font-size: var(--text-smal-sm);
-    font-weight: var(--weight-medium);
-    color: var(--gray-500);
-    user-select: none;
-  }
-
   input {
     position: absolute;
     transform: scale(0);
@@ -30,19 +23,19 @@ export const Container = styled.label`
     background-color: ##0046B5;
   } */
 
-  /* &:checked ~ .checkbox .checkbox-tick {
+    /* &:checked ~ .checkbox .checkbox-tick {
     opacity: 1;
   } */
   }
 
   input:checked ~ .checkbox {
-    background-color: #0046B5;
-    border-color: #0046B5;
+    background-color: #0046b5;
+    border-color: #0046b5;
   }
 
   input:checked ~ .checkbox .checkbox-tick {
     opacity: 1;
-    border-color: #0046B5;
+    border-color: #0046b5;
   }
 
   .checkbox {
@@ -70,12 +63,10 @@ export const Container = styled.label`
     border-style: solid;
     border-image: initial;
     border-radius: 0.125rem;
-    border-color: #6C757D;
+    border-color: #6c757d;
     color: #fff;
-    --checkbox-size:1rem;
+    --checkbox-size: 1rem;
   }
-
-  
 `;
 
 export const ContainerInput = styled.div<ContainerProps>`
@@ -89,7 +80,7 @@ export const ContainerInput = styled.div<ContainerProps>`
   ${(props) =>
     props.isErrored &&
     css`
-      border-color: #E62965;
+      border-color: #e62965;
     `}
 `;
 
@@ -112,10 +103,31 @@ export const Error = styled(Tooltip)`
     margin: 0px;
   }
   span {
-    background: #E62965;
+    background: #e62965;
     color: #fff;
     &::before {
-      border-color: #E62965 transparent;
+      border-color: #e62965 transparent;
+    }
+  }
+`;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .labelInput {
+    font-size: var(--text-smal-sm);
+    font-weight: var(--weight-medium);
+    color: var(--gray-500);
+    user-select: none;
+
+    a {
+      font-size: var(--text-smal-sm);
+      font-weight: var(--weight-medium);
+      color: var(--gray-600);
+      text-decoration: underline;
+      user-select: none;
     }
   }
 `;
