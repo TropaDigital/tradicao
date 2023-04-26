@@ -7,7 +7,7 @@ import React, {
 import { IconBaseProps } from 'react-icons';
 import { BsCheck } from 'react-icons/bs';
 
-import { Container, ContainerInput, Error } from './styles';
+import { Container, ContainerInput, ContainerWrapper, Error } from './styles';
 import { ErrorInputMessage } from '@/components/UI/Inputs/InputDefault/styles';
 
 interface ErrorInput {
@@ -16,7 +16,7 @@ interface ErrorInput {
 }
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label: string | any;
   error?: string;
   icon?: React.ComponentType<IconBaseProps>;
 }
@@ -43,7 +43,7 @@ export function CheckboxDefault({
   }, []);
 
   return (
-    <>
+    <ContainerWrapper>
       <Container>
         <input
           type="checkbox"
@@ -57,8 +57,6 @@ export function CheckboxDefault({
           <BsCheck />
         </span>
 
-        <span className="labelInput">{label}</span>
-
         {/* {error?.isError && (
           <Error title={error.message}>
           <FiAlertCircle size={20} color="#E62965" />
@@ -66,11 +64,13 @@ export function CheckboxDefault({
         )} */}
         {/* </ContainerInput> */}
       </Container>
+      <span className="labelInput">{label}</span>
+
       {error && (
         <ErrorInputMessage style={{ marginTop: '6px' }} title={error}>
           <span>{error}</span>
         </ErrorInputMessage>
       )}
-    </>
+    </ContainerWrapper>
   );
 }

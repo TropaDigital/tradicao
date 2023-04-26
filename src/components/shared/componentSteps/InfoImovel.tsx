@@ -117,7 +117,17 @@ export function InfoImovel({
 
       <FieldDefault style={{ marginBottom: '8px' }}>
         <CheckboxDefault
-          label="Aceito o termo de privacidade"
+          label={
+            <>
+              Aceito o{' '}
+              <a
+                href="/archives/aviso-de-privacidade.pdf"
+                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
+              >
+                termo de privacidade
+              </a>
+            </>
+          }
           name="terms"
           checked={data.terms}
           onChange={handleOnChangeCheckbox}
@@ -166,7 +176,17 @@ export function ConfirmImovel({
 
       <FieldDefault style={{ marginBottom: '8px' }}>
         <CheckboxDefault
-          label="Aceito o termo de privacidade"
+          label={
+            <>
+              Aceito o{' '}
+              <a
+                href="/archives/aviso-de-privacidade.pdf"
+                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
+              >
+                termo de privacidade
+              </a>
+            </>
+          }
           name="regulation"
           checked={data.regulation}
           onChange={handleOnChangeCheckbox}
