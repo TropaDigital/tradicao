@@ -1,44 +1,49 @@
 'use client';
 
-import { AlertIcon } from '@/assets/icons';
-import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
-import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
-import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
-import { useGetAllContemplados } from '@/services/contemplados/GET/useGetAllContemplados';
-import { IGetContemplados } from '@/services/contemplados/types';
-import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
-import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
-import { IGetDemonstrations } from '@/services/demonstracoes/interface';
-import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
-import { IGetRelatorio } from '@/services/relatorios/types';
-import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
-import { IGetRepresentante } from '@/services/representante/types';
-import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
-import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
-import { IGetUnit } from '@/services/unidades/types';
-import { Pagination, TablePagination } from '@mui/material';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+// Librarys
+
+import React, { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+// Components
+
 import ButtonDefault from '../ButtonDefault';
+import FormContempladoAssembleia from '../forms/FormContempladoAssembleia';
 import FormContemplados from '../forms/FormContemplados';
-import FormProduct from '../forms/FormContemplados';
 import FormCurriculo from '../forms/FormCurriculo';
 import FormDemonstracoes from '../forms/FormDemonstracoes';
 import FormRelatories from '../forms/FormRelatories';
 import FormRepresentante from '../forms/FormRepresentante';
+import FormGrupos from '../forms/FormGrupos';
 import FormUnidades from '../forms/FormUnidades';
 import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
 
+// Services
+
+import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
+import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
+import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
+import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
+import { useDeleteDemonstracoes } from '@/services/demonstracoes/DELETE/useDeleteDemonstracoes';
+import { useDeleteRelatorio } from '@/services/relatorios/DELETE/useDeleteRelatorio';
+import { useDeleteRepresentante } from '@/services/representante/DELETE/useDeleteRepresentante';
+import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
+import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
+import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplado/DELETE/useDeleteAssembleiaContemplado';
+
+// Icons
+
+import { AlertIcon } from '@/assets/icons';
+
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const [actualItem, setActualItem] = useState<any>();
+  const [currentPage, setCurrentPage] = useState<string>('');
 
-  const { deleteFile } = useDeleteFile();
   const { deleteContemplado } = useDeleteContemplado();
   const { deleteDemonstracao } = useDeleteDemonstracoes();
   const { deleteUnit } = useDeleteUnit();
@@ -46,9 +51,24 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteCurriculo } = useDeleteCurriculo();
   const { deleteRepresentante } = useDeleteRepresentante();
   const { deletePost } = useDeletePost();
+  const { deleteAssembleia } = useDeleteAssembleia();
+  const { deleteAssembleiaContemplado } = useDeleteAssembleiaContemplado();
 
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    if (data) {
+      setDataInternal([...data]);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (pathname) {
+      const pathName: string | undefined = pathname?.split('/')?.pop();
+      setCurrentPage(pathName ? pathName : '');
+    }
+  }, [pathname]);
 
   function handleModal(modalType: string, product: any) {
     setModalOpen(modalType);
@@ -58,82 +78,63 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
-      itemType: getKey[0]?.split('_')?.pop() as
-        | 'contemplado'
-        | 'financeira'
-        | 'unidade'
-        | 'relatorio'
-        | 'candidato'
-        | 'representante'
-        | 'postagem',
+      itemType: getKey[0]?.split('_')?.pop() as any,
       itemID: actualItem[getKey[0]] as number
     };
   };
 
-  const removeItem = (itemToDelete: {
-    itemType:
-      | 'contemplado'
-      | 'financeira'
-      | 'unidade'
-      | 'relatorio'
-      | 'candidato'
-      | 'representante'
-      | 'postagem';
-    itemID: number;
-  }) => {
-    const { itemID, itemType } = itemToDelete;
-
-    if (itemType === 'contemplado') {
-      deleteContemplado(itemID);
-      deleteFile({
-        endpoint: 'delete-contemplado-foto',
-        id: actualItem?.contempladoImagens[0]?.id_contemplado_foto
-      });
-    }
-
-    if (itemType === 'financeira') {
-      deleteDemonstracao(itemID);
-      deleteFile({
-        endpoint: 'delete-demonstracao-pdf',
-        id: actualItem?.demonstracaoPDF[0]?.id_demo_financeira_PDF
-      });
-    }
-
-    if (itemType === 'candidato') {
-      deleteCurriculo(itemID);
-    }
-
-    if (itemType === 'unidade') {
-      deleteUnit(itemID);
-    }
-
-    if (itemType === 'relatorio') {
-      deleteRelatorio(itemID);
-    }
-
-    if (itemType === 'representante') {
-      deleteRepresentante(itemID);
-    }
-
-    if (itemType === 'postagem') {
-      deletePost(itemID);
-    }
-  };
-
-  useEffect(() => {
-    if (data) {
-      setDataInternal([...data]);
-    }
-  }, [data]);
-
-  function sendPostThroughPage() {
+  function sendItemThroughPage(url: string) {
     setModalOpen('');
-    router?.push('/painel/blog/postagem');
+    router?.push(`/painel/${url}`);
 
-    if (localStorage !== undefined) {
+    const isWindowDefined = typeof window !== undefined;
+
+    if (isWindowDefined && url?.includes('postagem')) {
       localStorage.setItem('actualPost', JSON.stringify(actualItem));
     }
+
+    if (isWindowDefined && !url?.includes('postagem')) {
+      localStorage?.setItem('id_assembleia', actualItem?.id_assembleia);
+    }
   }
+
+  const deleteFunctions: any = {
+    contemplado: deleteContemplado,
+    'demonstracoes-financeiras': deleteDemonstracao,
+    curriculos: deleteCurriculo,
+    unidades: deleteUnit,
+    'relatorios-de-ouvidoria': deleteRelatorio,
+    representantes: deleteRepresentante,
+    blog: deletePost,
+    'visualizar-assembleia': deleteAssembleiaContemplado,
+    assembleias: deleteAssembleia
+  };
+
+  const removeItem = (itemToDelete: { itemID: number }) => {
+    const { itemID } = itemToDelete;
+    const deleteFunction = deleteFunctions[currentPage];
+
+    if (!deleteFunction) {
+      console.error(
+        `Não foi encontrada nenhuma função para deletar o item da página ${currentPage}`
+      );
+    }
+
+    deleteFunction(itemID);
+  };
+
+  const FORM_MAP: any = {
+    contemplados: FormContemplados,
+    'demonstracoes-financeiras': FormDemonstracoes,
+    unidades: FormUnidades,
+    'relatorios-de-ouvidoria': FormRelatories,
+    representantes: FormRepresentante,
+    curriculos: FormCurriculo,
+    'visualizar-assembleia': FormContempladoAssembleia,
+    'grupos-encerrados': FormGrupos
+  };
+
+  const FormComponent = FORM_MAP[currentPage];
 
   return (
     <>
@@ -145,58 +146,23 @@ export default function Table({ title, data, search, header }: ITableProps) {
             }}
             setData={() => {}}
           >
-            {pathname?.includes('contemplados') && (
-              <FormContemplados
-                modalOpen="editar"
-                actualItem={actualItem as IGetContemplados}
-                onSubmit={() => {
-                  setModalOpen('');
-                }}
-              />
-            )}
-
-            {pathname?.includes('demonstracoes') && (
-              <FormDemonstracoes
-                modalOpen="editar"
-                actualItem={actualItem as IGetDemonstrations}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('unidades') && (
-              <FormUnidades
-                modalOpen="editar"
-                actualItem={actualItem as IGetUnit}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('relatorio') && (
-              <FormRelatories
-                modalOpen="editar"
-                actualItem={actualItem as IGetRelatorio}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('representantes') && (
-              <FormRepresentante
-                modalOpen="editar"
-                actualItem={actualItem as IGetRepresentante}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
-            {pathname?.includes('curriculo') && (
-              <FormCurriculo
-                modalOpen="editar"
-                actualItem={actualItem}
-                onSubmit={() => setModalOpen('')}
-              />
-            )}
+            <FormComponent
+              modalOpen={modalOpen}
+              actualItem={actualItem}
+              onSubmit={() => setModalOpen('')}
+            />
           </Modal>
         )}
 
         <>
-          {modalOpen === 'editar' && pathname?.includes('blog')
-            ? sendPostThroughPage()
-            : null}
+          {modalOpen === 'editar' &&
+            pathname?.includes('blog') &&
+            sendItemThroughPage('blog/postagem')}
+
+          {modalOpen === 'editar' &&
+            pathname?.includes('assembleias') &&
+            !pathname?.includes('visualizar') &&
+            sendItemThroughPage('assembleias/visualizar-assembleia')}
         </>
 
         {modalOpen === 'excluir' && (
@@ -208,10 +174,13 @@ export default function Table({ title, data, search, header }: ITableProps) {
           >
             <ModalDeleteProduct>
               <AlertIcon />
-              <div className="modalTitleWarning">Excluir item</div>
+              <div className="modalTitleWarning">
+                Excluir {getItemType(actualItem)?.itemType ?? 'item'}
+              </div>
               <div className="modalDescription">
-                Tem certeza de que deseja excluir esse item ? Essa ação não
-                poderá ser desfeita
+                Tem certeza de que deseja excluir essa{' '}
+                {getItemType(actualItem)?.itemType ?? 'item'}? Essa ação não
+                poderá ser desfeita.
               </div>
               <span className="buttonWrapper">
                 <ButtonDefault
@@ -225,8 +194,11 @@ export default function Table({ title, data, search, header }: ITableProps) {
                 <ButtonDefault
                   color="darkButton"
                   onClick={() => {
-                    const itemToDelete = getItemType(actualItem);
-                    removeItem(itemToDelete);
+                    const idKey = Object.keys(actualItem)[0];
+
+                    removeItem({
+                      itemID: actualItem[idKey]
+                    });
                     setModalOpen('');
                   }}
                 >
@@ -255,9 +227,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
             {dataInternal?.map((row: any, key: any) => (
               <tr key={key}>
                 {header?.map((head: string | any, keyHead) => (
-                  <>
+                  <React.Fragment key={keyHead}>
                     <RenderTD
-                      key={keyHead}
                       head={head}
                       item={row}
                       onClickOptions={(modalType, product) => {
@@ -265,7 +236,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
                         setActualItem(product);
                       }}
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </tr>
             ))}

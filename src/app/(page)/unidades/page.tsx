@@ -11,7 +11,7 @@ import { useGetUnitsByQuery } from '@/services/unidades/GET/useGetUnits';
 import { IGetUnit } from '@/services/unidades/types';
 import { Pagination, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
-import UnidadesBg from '../../../../public/images/unidades_bg.png';
+import UnidadesBg from '../../../../public/images/unidades_bg.jpg';
 import * as S from './styles';
 
 const UnidadesPage = () => {

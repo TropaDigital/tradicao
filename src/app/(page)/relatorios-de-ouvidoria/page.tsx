@@ -7,7 +7,7 @@ import MainTitle from '@/components/UI/MainTitle';
 import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import React from 'react';
-import GraphicsBg from '../../../../public/images/demonstracoes_bg.png';
+import GraphicsBg from '../../../../public/images/demonstracoes_bg.jpg';
 import * as S from './styles';
 
 const RelatoriosPage = () => {

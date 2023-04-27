@@ -323,44 +323,47 @@ export default function Footer() {
             <Image
               src={NoFrontiers}
               alt="Imagem de Logo do Fraternidade Sem Fronteiras"
-              width={217}
-              height={79}
+              width={120}
+              height={70}
             />
           </Link>
           <Link
             href={'https://institutoayrtonsenna.org.br/'}
             target={'_blank'}
             aria-label="Visite a pagina do instituto Ayrton Senna"
+            className="square"
           >
             <Image
               src={AyrtonSenna}
               alt="Imagem de Logo do Instituto Ayrton Senna"
               width={177}
-              height={79}
+              height={70}
             />
           </Link>
           <Link
             href={'https://www.instagram.com/mamarenascer/'}
             target={'_blank'}
-            aria-label="Visite a pagina do instituto Ayrton Senna"
+            aria-label="Visite a pagina do instituto Mama Renascer"
+            className="square"
           >
             <Image
               src={MamaRenascer}
               alt="Imagem de Logo da Ong Mama Renascer"
               width={177}
-              height={79}
+              height={70}
             />
           </Link>
           <Link
             href={'https://www.apala.org.br/'}
             target={'_blank'}
-            aria-label="Visite a pagina do instituto Ayrton Senna"
+            aria-label="Visite a pagina do instituto Apala"
+            className="square"
           >
             <Image
               src={Apala}
               alt="Imagem de Logo da Ong Apala"
               width={177}
-              height={79}
+              height={70}
             />
           </Link>
         </BottomFooter>
@@ -376,7 +379,7 @@ export default function Footer() {
         </div>
 
         <div className="developed">
-          Copyright © 2020 Consórcio Tradição. All Rights Reserved. | Developed
+          Copyright © 2023 Consórcio Tradição. All Rights Reserved. | Developed
           By:
           <Link
             href={'https://tropa.digital/'}
@@ -392,6 +395,7 @@ export default function Footer() {
           </Link>
         </div>
       </Copyright>
+
       <ChatIA opened={modalChat} onClose={() => setModalChat(false)} />
       <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" />
     </Container>

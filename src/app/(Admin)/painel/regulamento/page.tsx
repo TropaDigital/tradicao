@@ -5,16 +5,25 @@ import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Modal from '@/components/pages/Painel/components/modal/ModalDefault';
 import Button from '@/components/UI/Button';
 import UploadFile from '@/components/UI/UploadFile';
+import { useGetRegulamento } from '@/services/regulamento/GET/useGetRegulamento';
 import { useUpdateRegulamento } from '@/services/regulamento/PUT/useUpdateRegulamento';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 
 const RegulamentoPanel = () => {
   const { updateRegulamento } = useUpdateRegulamento();
+  const { regulamento } = useGetRegulamento();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [fileName, setFileName] = useState('');
+  const [regulamentoUrl, setRegulamentoUrl] = useState<string>('');
+
+  useEffect(() => {
+    if (regulamento) {
+      setRegulamentoUrl(regulamento);
+    }
+  }, [regulamento]);
 
   return (
     <>
@@ -23,7 +32,7 @@ const RegulamentoPanel = () => {
       <CenterWrapper>
         <S.ObjectWrapper>
           <object
-            data="https://bucket.backendtropa.com.br/file/098b994c-e5ee-4fa9-84e3-b1793deadc85"
+            data={regulamentoUrl}
             type="application/pdf"
             height="800px"
             width="100%"
@@ -31,10 +40,7 @@ const RegulamentoPanel = () => {
           >
             <p>
               Não foi possível mostrar o Regulamento, faça o{' '}
-              <Link
-                href="https://bucket.backendtropa.com.br/file/098b994c-e5ee-4fa9-84e3-b1793deadc85"
-                download="Regulamento-Geral"
-              >
+              <Link href={regulamentoUrl} download="Regulamento-Geral">
                 download{' '}
               </Link>
               ao invés.

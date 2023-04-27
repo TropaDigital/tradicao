@@ -11,13 +11,18 @@ export const QuemSomosContainer = styled.div`
 `;
 
 export const AboutUsContent = styled.p`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 28px;
   max-width: 747px;
 
-  font-weight: var(--weight-regular);
-  font-size: var(--text-smal-sm);
-  line-height: 18px;
-  color: var(--text-color-light);
+  p {
+    font-weight: var(--weight-regular);
+    font-size: var(--text-smal-sm);
+    line-height: 18px;
+    color: var(--text-color-light);
+  }
 `;
 
 export const AboutUsSubtitle = styled.h2`
@@ -431,7 +436,7 @@ export const GenericFlexWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   @media (max-width: 1024px) {
     flex-direction: column;

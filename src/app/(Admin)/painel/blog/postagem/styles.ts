@@ -29,11 +29,40 @@ export const InitialPostWrapper = styled.div`
   align-items: center;
   margin-bottom: 30px;
 
-  .post-thumb-wrapper {
-    border-radius: 10px;
-    /* overflow: hidden; */
-    height: 100%;
-    width: 100%;
+  .inputWrapper {
+    /* min-height: 100%; */
+    /* height: unset; */
+    height: 280px;
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  .post-thumb-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 280px;
+    width: fit-content;
+
+    .post-thumb-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: var(--status-danger);
+      transition: all 0.7s linear;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+
+    .post-thumb-wrapper:hover .post-thumb-overlay {
+      opacity: 0.5;
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 1300px) {
@@ -42,11 +71,11 @@ export const InitialPostWrapper = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
-  /* display: flex;
-  justify-content: flex-end;
-  margin-top: 30px; */
+  margin-top: 30px;
 
   .buttonContainer {
+    display: flex;
+    gap: 18px;
     max-width: 500px;
   }
 `;

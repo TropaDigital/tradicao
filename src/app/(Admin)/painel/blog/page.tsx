@@ -9,6 +9,7 @@ import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { HeaderDashboard } from '../styles';
+import { useDebouncedCallback } from 'use-debounce';
 
 const BlogPanel = () => {
   const headerTable = [
@@ -29,7 +30,7 @@ const BlogPanel = () => {
     },
     {
       key: 'subtitulo',
-      label: 'Sub-Título',
+      label: 'Subtítulo',
       type: 'longText'
     },
     {
@@ -45,14 +46,26 @@ const BlogPanel = () => {
   ];
 
   const [actualPage, setActualPage] = useState(1);
+  const [query, setQuery] = useState<string>('');
 
-  const { allPosts } = useGetAllPosts(`?currentPage=${actualPage}&perPage=10`);
+  const { allPosts } = useGetAllPosts(
+    `?${query}currentPage=${actualPage}&perPage=10`
+  );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setActualPage(value);
   };
 
   const router = useRouter();
+
+  const debounced = useDebouncedCallback(
+    // function
+    (e) => {
+      setQuery(`pesquisa=${e?.target?.value}&`);
+    },
+    // delay in ms
+    300
+  );
 
   return (
     <>
@@ -66,8 +79,10 @@ const BlogPanel = () => {
             radius="rounded"
             className="styledButton"
             onClick={() => {
-              localStorage?.removeItem('actualPost');
-              router?.push('/painel/blog/postagem');
+              if (typeof window !== 'undefined') {
+                localStorage?.removeItem('actualPost');
+                router?.push('/painel/blog/postagem');
+              }
             }}
           >
             + Adicionar Postagem
@@ -79,7 +94,13 @@ const BlogPanel = () => {
         data={allPosts?.result}
         header={headerTable}
         title={'Todos os Posts'}
-        search={<InputDefault label="" placeholder="Pesquise a postagem" />}
+        search={
+          <InputDefault
+            label=""
+            placeholder="Pesquise a postagem"
+            onChange={debounced}
+          />
+        }
       />
       <PaginationData
         data={allPosts}

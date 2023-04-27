@@ -11,7 +11,7 @@ import SkewContainerFiltered from '@/components/pages/Universidade/SkewContainer
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import SearchCourses from '@/components/pages/Universidade/SearchCourses';
-import UniversityLogin from '@/components/pages/Universidade/UniversityLogin';
+// import UniversityLogin from '@/components/pages/Universidade/ClientLogin';
 
 export default function University() {
 
@@ -27,7 +27,7 @@ export default function University() {
           <div className="margin">
             <MainTitle title="A Universidade" />
 
-            <UniversityLogin />
+            {/* <UniversityLogin /> */}
           </div>
 
           <S.UniversityInfo>

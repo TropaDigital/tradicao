@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import TruckBg from '../../../../public/images/consortiumTruck.png';
+import TruckBg from '../../../../public/images/consortiumTruck.jpg';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -17,7 +17,7 @@ import TruckConsortium from '@/components/sections/TruckConsortium';
 export default function ConsortiumTrucks() {
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={TruckBg}
           imageAlt="Imagem de um caminhão de carga numa estrada"

@@ -67,7 +67,7 @@ export const Select = styled.nav<props>`
       numberOfOptions &&
       css`
         transition: all 0.3s;
-        max-height: unset;
+        max-height: 400px;
         height: ${(numberOfOptions * 42).toString() + 'px'};
       `}
     .cardToPage {

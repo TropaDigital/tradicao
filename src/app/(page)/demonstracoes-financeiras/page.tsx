@@ -4,7 +4,7 @@ import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetAllDemonstrations } from '@/services/demonstracoes/GET';
 import * as S from './styles';
-import GraphicDemonstrations from '../../../../public/images/demonstracoes_bg.png';
+import GraphicDemonstrations from '../../../../public/images/demonstracoes_bg.jpg';
 import SkewContainer from '@/components/shared/SkewContainer';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
@@ -18,14 +18,14 @@ const DemonstracoesPage = () => {
         imageSrc={GraphicDemonstrations}
         imageAlt="Imagem de gráficos"
       />
-      <S.Container>
+      <S.Container data-aos="fade-up">
         <S.TitleContainer>
           <MainTitle title="Demonstrações Financeiras" />
           <p className="subtitle">Escolha abaixo o demonstrativo desejado</p>
         </S.TitleContainer>
 
         <CenterWrapper>
-          <ul className="demonstracao-container">
+          <ul className="demonstracao-container" data-aos="fade-up">
             {allDemonstrations?.dataPaginada?.map((demo) => {
               if (demo.status === 'Inativo') return;
               return (

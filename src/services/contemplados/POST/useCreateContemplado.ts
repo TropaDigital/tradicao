@@ -13,7 +13,7 @@ export const useCreateContemplado = () => {
         async () => {
           let response: AxiosResponse =
             await ContempladoClass.createContemplado(contempladoBody);
-          return response.data?.result;
+          return response?.data?.result;
         },
         {
           error: 'Não foi possível cadastrar contemplado',

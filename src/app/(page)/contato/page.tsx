@@ -7,7 +7,7 @@ import * as S from './styles';
 
 const inter = Inter({ subsets: ['latin'] });
 
-import contato_bg from '../../../../public/images/contato_bg.png';
+import contato_bg from '../../../../public/images/contato_bg.jpg';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
 
@@ -19,7 +19,7 @@ export default function Contato() {
   ];
 
   return (
-    <S.Container>
+    <S.Container data-aos="fade-up">
       <SkewContainer
         imageSrc={contato_bg}
         imageAlt="Imagem de operadores de telemarketing"

@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Assembleias",
+      "path": "assembleias"
+    },
+    {
       "name": "Blog",
       "path": "blog"
     },
@@ -15,6 +19,14 @@
     {
       "name": "Demonstrações",
       "path": "demonstracoes-financeiras"
+    },
+    {
+      "name": "Recursos",
+      "path": "recursos-nao-procurados"
+    },
+    {
+      "name": "Gp. Encerrados",
+      "path": "grupos-encerrados"
     },
     {
       "name": "Regulamento",

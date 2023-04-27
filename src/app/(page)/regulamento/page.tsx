@@ -4,14 +4,27 @@
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
 import MainTitle from '@/components/UI/MainTitle';
+import { useGetRegulamento } from '@/services/regulamento/GET/useGetRegulamento';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-import Regulation from '../../../../public/images/regulamento_bg.jpeg';
+// Imagens
+import Regulation from '../../../../public/images/regulamento.jpg';
 
 // Styles
 import * as S from './styles';
 
 export default function Regulamento() {
+  const { regulamento } = useGetRegulamento();
+
+  const [regulamentoUrl, setRegulamentoUrl] = useState<string>('');
+
+  useEffect(() => {
+    if (regulamento) {
+      setRegulamentoUrl(regulamento);
+    }
+  }, [regulamento]);
+
   return (
     <>
       <S.ContainerTop>
@@ -26,23 +39,18 @@ export default function Regulamento() {
           </div>
         </CenterWrapper>
       </S.ContainerTop>
-
       <CenterWrapper>
         <S.RegulationContainer>
           <object
-            data="https://bucket.backendtropa.com.br/file/098b994c-e5ee-4fa9-84e3-b1793deadc85"
             type="application/pdf"
             height="800px"
             width="100%"
-            aria-controls="off"
             name="Regulamento Consórcio Tradição"
+            data={regulamentoUrl}
           >
             <p>
               Não foi possível mostrar o{' '}
-              <Link
-                href="https://bucket.backendtropa.com.br/file/098b994c-e5ee-4fa9-84e3-b1793deadc85"
-                download="Regulamento-Geral"
-              >
+              <Link href={regulamentoUrl} download="Regulamento-Geral">
                 Regulamento
               </Link>
             </p>

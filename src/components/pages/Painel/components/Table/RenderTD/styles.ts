@@ -52,6 +52,14 @@ export const Container = styled.td`
     height: 90px;
     width: 90px;
     border-radius: 8px;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
   .longText {
     display: inline-block;

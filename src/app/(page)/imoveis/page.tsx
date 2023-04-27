@@ -7,7 +7,7 @@ import Image from 'next/image';
 import * as S from './styles';
 
 // Images
-import Imovel from '../../../../public/images/realEstateConsortium.png';
+import Imovel from '../../../../public/images/realEstateConsortium.jpg';
 import Apto from '../../../../public/images/Apartment.svg';
 import Casa from '../../../../public/images/House.svg';
 import Financiamento from '../../../../public/images/Financing.svg';
@@ -71,7 +71,7 @@ export default function ConsortiumProperties() {
 
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={Imovel}
           imageAlt="Imagem de uma família se abraçando na sala de casa"
@@ -88,7 +88,7 @@ export default function ConsortiumProperties() {
       </S.ContainerTop>
 
       <CenterWrapper>
-        <S.PropertiesConsortiumType>
+        <S.PropertiesConsortiumType data-aos="fade-up">
           {propertiesArray.map((row: any, key: any) => (
             <S.ConsortiumCard key={row.id}>
               <S.ConsortiumCardImage>

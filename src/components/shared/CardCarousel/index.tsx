@@ -43,7 +43,12 @@ export default function CardCarousel({
   padding
 }: ICardCarousel) {
   return (
-    <CardWrapper width={width} height={heigth} padding={padding}>
+    <CardWrapper
+      width={width}
+      height={heigth}
+      padding={padding}
+      data-aos="fade-up"
+    >
       {imageType && image && (
         <CardImageSquare>
           <div className="image">

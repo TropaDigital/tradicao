@@ -13,13 +13,16 @@ export const Container = styled.div`
 export const SkewContainer = styled.div`
   max-height: 434px;
   transform: skew(-18deg);
-  /* width: 965px; */
   width: 75%;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   overflow: hidden;
   position: relative;
   left: -138px;
+
+  @media (min-width: 1920px) {
+    width: 1500px;
+  }
 
   @media (max-width: 1600px) {
     margin-bottom: 80px;
@@ -79,7 +82,7 @@ export const SubTitleWrapper = styled.div`
   position: absolute;
   bottom: -20px;
   height: 74px;
-  width: 35%;
+  width: 50%;
   background: linear-gradient(77.17deg, #00d35e -0.7%, #42db87 93.94%);
   transform: skew(-18deg);
   border-top-right-radius: 20px;
@@ -89,10 +92,14 @@ export const SubTitleWrapper = styled.div`
   justify-content: center;
   left: -18px;
 
+  @media (min-width: 1920px) {
+    width: 750px;
+  }
+
   @media (max-width: 1320px) {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    width: 40%;
+    width: 45%;
   }
 
   @media (max-width: 1090px) {

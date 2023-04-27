@@ -5,6 +5,7 @@ import * as S from './styles';
 interface IUploadFile extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   errors?: string | any;
+  styleComponent?: any;
   onPostFile: (
     curriculum: string,
     e: React.ChangeEvent<HTMLInputElement>
@@ -16,6 +17,7 @@ const UploadFile = ({
   label,
   errors,
   onPostFile,
+  styleComponent,
   filename,
   ...rest
 }: IUploadFile) => {
@@ -58,7 +60,7 @@ const UploadFile = ({
   };
 
   return (
-    <S.Container>
+    <S.Container style={styleComponent}>
       {label && <label className="input-label">{label}</label>}
       <S.InputWrapper>
         <label>

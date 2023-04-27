@@ -48,11 +48,66 @@ export const SearchBar = styled.div`
 
     padding: 12px;
 
+    position: relative;
+
     .button-search {
       max-width: 140px;     
     }
 `
 
 export const ContainerResult = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     margin-bottom: 60px;
+    max-width: 1000px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    .valid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary);
+      background: var(--degrade-secondary);
+
+      color: var(--white);
+      font-size: var(--text-smal-xl);
+      font-weight: var(--weight-semibold);
+    }
+
+    .invalid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      background: var(--degrade-primary);
+
+      color: var(--white);
+      font-size: var(--text-smal-xl);
+      font-weight: var(--weight-semibold);
+    }
+`
+
+export const ClearButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  position: absolute;
+  right: 170px;
+  bottom: 17px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
 `

@@ -6,6 +6,9 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import StyledJsxRegistry from './registry';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 export default function RootLayout({
   children
@@ -13,6 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const queryClient = new QueryClient();
+
+  useEffect(() => {
+    AOS.init({
+      delay: 300
+    });
+  }, []);
 
   return (
     <html lang="pt-BR">
@@ -32,6 +41,11 @@ export default function RootLayout({
             <GlobalStyles />
           </StyledJsxRegistry>
         </QueryClientProvider>
+
+        <script
+          src="//titulares.becompliance.com/becompliance.js"
+          defer
+        ></script>
       </body>
     </html>
   );

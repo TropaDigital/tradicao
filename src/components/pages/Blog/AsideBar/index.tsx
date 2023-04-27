@@ -3,11 +3,10 @@
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './styles';
 import { useDebouncedCallback } from 'use-debounce';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useScrollDirection } from '@/utils/detectScrollDirection';
 
 export default function AsideBar() {
@@ -15,7 +14,7 @@ export default function AsideBar() {
   const [showSuggests, setShowSuggests] = useState<'show' | ''>('');
 
   const { allCategorias } = useGetAllCategorias();
-  const rankingPosts = useGetAllPosts('?ordem=acesso_mes');
+  const rankingPosts = useGetAllPosts('?ordem_tipo=acesso_mes');
   const { allPosts } = useGetAllPosts(query);
   const scrollDirection = useScrollDirection();
 
@@ -46,7 +45,7 @@ export default function AsideBar() {
               {allPosts?.result?.length > 0 ? (
                 <>
                   {allPosts?.result?.map((postSuggest) => (
-                    <li>
+                    <li key={postSuggest?.id_postagem}>
                       <Link
                         href={
                           '/blog/' +
@@ -56,12 +55,14 @@ export default function AsideBar() {
                             .toLowerCase()
                         }
                         className="suggest-option"
-                        onClick={() =>
-                          localStorage?.setItem(
-                            'postId',
-                            String(postSuggest?.postagem_id)
-                          )
-                        }
+                        onClick={() => {
+                          if (typeof window !== 'undefined') {
+                            localStorage?.setItem(
+                              'postId',
+                              String(postSuggest?.id_postagem)
+                            );
+                          }
+                        }}
                       >
                         {postSuggest?.titulo}
                       </Link>
@@ -89,12 +90,14 @@ export default function AsideBar() {
                   }
                   className="topic-item"
                   key={key}
-                  onClick={() =>
-                    localStorage.setItem(
-                      'postId',
-                      String(rankPost?.postagem_id)
-                    )
-                  }
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      localStorage.setItem(
+                        'postId',
+                        String(rankPost?.id_postagem)
+                      );
+                    }
+                  }}
                 >
                   {rankPost?.titulo}
                 </Link>

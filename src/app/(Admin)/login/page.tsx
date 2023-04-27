@@ -15,8 +15,6 @@ import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { Form, Formik } from 'formik';
 import { loginSchema } from './yupSchema';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
-import cookieClass from '@/utils/cookieClass';
 import { loginClass } from '@/services/login-painel';
 
 const PanelLoginComponent = () => {
@@ -28,7 +26,7 @@ const PanelLoginComponent = () => {
       senha: values?.senha
     });
 
-    if (isAnAdmin) router?.push('/painel/blog');
+    if (isAnAdmin) router?.push('/painel/assembleias');
   }
 
   return (

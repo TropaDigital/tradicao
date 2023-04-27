@@ -22,12 +22,17 @@ import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCat
 import { Formik, Form } from 'formik';
 import Image from 'next/image';
 import Button from '@/components/UI/Button';
-import { PostagemSchema } from './yupSchema';
 import { useUpdatePost } from '@/services/blog/posts/PUT/useUpdatePost';
 import Link from 'next/link';
 import { useCreatePost } from '@/services/blog/posts/POST/useCreatePost';
 import { useRouter } from 'next/navigation';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
+import { RemoveImageIcon } from '@/assets/icons';
+import { PostagemSchema } from './yupSchema';
+import { toSlug } from '@/utils/masks';
+import { toast } from 'react-toastify';
+import API from '@/services/api';
+import { AxiosResponse } from 'axios';
 
 const PostPanel = () => {
   const { postFile } = usePostFile();
@@ -37,6 +42,7 @@ const PostPanel = () => {
   const router = useRouter();
 
   const [currentPost, setCurrentPost] = useState<IGetPosts | undefined>();
+  const [currentImage, setCurrentImage] = useState<string>('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -49,7 +55,10 @@ const PostPanel = () => {
   }, []);
 
   useEffect(() => {
-    if (currentPost) editor?.commands?.insertContent(currentPost?.conteudo);
+    if (currentPost) {
+      editor?.commands?.insertContent(currentPost?.conteudo);
+      setCurrentImage(currentPost?.postagem_img);
+    }
   }, [currentPost]);
 
   const editor = useEditor({
@@ -123,7 +132,7 @@ const PostPanel = () => {
           let formData = new FormData();
           formData?.set('file', event?.dataTransfer?.files[0]);
 
-          postFile(formData).then((imageUrl) => {
+          postFile(formData)?.then((imageUrl: string) => {
             const { schema } = view?.state;
             const coordinates = view?.posAtCoords({
               left: event?.clientX,
@@ -160,25 +169,36 @@ const PostPanel = () => {
       <S.Container>
         <Formik
           initialValues={{
-            postagem_img: currentPost?.postagem_img ?? '',
+            postagem_img: '',
             titulo: currentPost?.titulo ?? '',
             subtitulo: currentPost?.subtitulo ?? '',
             autor: currentPost?.autor ?? '',
             local: currentPost?.local ?? '',
             categoria_id: currentPost?.categoria_id ?? '',
-            conteudo: ''
+            conteudo: '',
+            slug: ''
           }}
-          // validationSchema={PostagemSchema}
-          onSubmit={(values) => {
-            if (currentPost) {
-              updatePost({ postagem: values, id: currentPost?.postagem_id });
-            }
+          validationSchema={PostagemSchema}
+          onSubmit={async (values) => {
+            try {
+              values.slug = toSlug(values?.titulo);
+              values.postagem_img = currentImage;
 
-            if (!currentPost) {
-              createPost(values);
-            }
+              if (currentPost) {
+                updatePost({
+                  postagem: values,
+                  id: currentPost?.id_postagem
+                });
+              }
 
-            router?.push('/painel/blog');
+              if (!currentPost) {
+                createPost(values);
+              }
+
+              router?.push('/painel/blog');
+            } catch (err: any) {
+              console.log(err);
+            }
           }}
         >
           {({
@@ -191,23 +211,37 @@ const PostPanel = () => {
           }) => (
             <Form onSubmit={handleSubmit}>
               <S.InitialPostWrapper>
-                {values?.postagem_img && (
-                  <div className="post-thumb-wrapper">
-                    <Image
-                      src={values?.postagem_img}
-                      alt={`Capa da postagem ${values?.titulo}`}
-                      width={500}
-                      height={281}
-                    />
+                {currentImage && (
+                  <div className="post-thumb-container">
+                    <div className="post-thumb-wrapper">
+                      <div
+                        className="post-thumb-overlay"
+                        onClick={() => setCurrentImage('')}
+                      >
+                        <RemoveImageIcon size={64} />
+                      </div>
+                      <Image
+                        src={currentImage}
+                        alt={`Capa da postagem ${values?.titulo}`}
+                        width={500}
+                        height={281}
+                      />
+                    </div>
                   </div>
                 )}
-                {!values?.postagem_img && (
+                {!currentImage && (
                   <InputImage
                     onPostImage={(imageUrl) => {
-                      setFieldValue('postagem_img', imageUrl);
+                      setCurrentImage(imageUrl);
                     }}
                     title="Adicionar Capa"
-                    error={touched?.postagem_img && errors?.postagem_img}
+                    subtitle="Tamanho recomendado 1024x768"
+                    error={
+                      touched?.postagem_img &&
+                      currentImage?.length === 0 &&
+                      'A imagem é obrigatória.'
+                    }
+                    name="postagem_img"
                   />
                 )}
                 <S.InputsWrapper>
@@ -252,11 +286,11 @@ const PostPanel = () => {
                       onChange={handleChange}
                       name="categoria_id"
                       value={values?.categoria_id}
-                      error={touched?.categoria_id && errors?.categoria_id}
+                      error={touched?.categoria_id && errors.categoria_id}
                     >
                       <option>Selecione uma categoria</option>
-                      {allCategorias?.map((categoria) => (
-                        <option value={categoria?.categoria_id}>
+                      {allCategorias?.map((categoria, key) => (
+                        <option value={categoria?.categoria_id} key={key}>
                           {categoria?.categoria}
                         </option>
                       ))}
@@ -283,7 +317,7 @@ const PostPanel = () => {
                     type="submit"
                     onClick={() => setFieldValue('conteudo', editor?.getHTML())}
                   >
-                    Criar Postagem
+                    {currentPost ? 'Editar' : 'Publicar'} Postagem
                   </Button>
                 </div>
               </S.ButtonsWrapper>

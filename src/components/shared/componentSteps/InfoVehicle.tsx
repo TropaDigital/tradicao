@@ -91,7 +91,17 @@ export function InfoVehicle({
 
       <FieldDefault style={{ marginBottom: '8px' }}>
         <CheckboxDefault
-          label="Aceito o termo de privacidade"
+          label={
+            <>
+              Aceito o{' '}
+              <a
+                href="/archives/aviso-de-privacidade.pdf"
+                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
+              >
+                termo de privacidade
+              </a>
+            </>
+          }
           name="terms"
           onChange={handleOnChangeCheckbox}
           error={error?.terms}
@@ -140,7 +150,17 @@ export function ConfirmVehicle({
 
       <FieldDefault style={{ marginBottom: '8px' }}>
         <CheckboxDefault
-          label="Aceito o termo de privacidade"
+          label={
+            <>
+              Aceito o{' '}
+              <a
+                href="/archives/aviso-de-privacidade.pdf"
+                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
+              >
+                termo de privacidade
+              </a>
+            </>
+          }
           name="regulation"
           onChange={handleOnChangeCheckbox}
           checked={data.regulation}

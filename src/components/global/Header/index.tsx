@@ -1,11 +1,10 @@
 'use client';
 
 import {
+  CalculatorIcon,
   ChevronIcon,
-  DefaultLogo,
   JornalIcon,
   PersonIcon,
-  PhoneIcon,
   SuitCaseIcon,
   UniversityIcon
 } from '@/assets/icons';
@@ -15,34 +14,29 @@ import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
-  const [isSubMenuTradicaoOpen, setIsSubMenuTradicaoOpen] =
-    useState<boolean>(false);
-  const [isSubMenuConsorcioOpen, setIsSubMenuConsorcioOpen] =
-    useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>();
-  const [isHovered, setIsHovered] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<any>();
+  const [subMenusHeader, setSubMenusHeader] = useState({} as any);
 
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') setWindowWidth(window?.innerWidth);
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window?.innerWidth);
+    }
   }, []);
 
   useEffect(() => {
     if (scrollDirection === 'down') {
       setIsMobileOpen(false);
-      setIsSubMenuConsorcioOpen(false);
-      setIsSubMenuTradicaoOpen(false);
+      updateHeaderSubmenusState('');
     }
   }, [scrollDirection]);
-
-  const pathName = usePathname();
 
   const mainPages: IHeaderOptions[] = [
     {
@@ -51,7 +45,7 @@ const Header = () => {
     },
     {
       title: 'A Tradição',
-      path: pathName,
+      path: '',
       subOptions: [
         {
           subTitle: 'Quem somos',
@@ -63,17 +57,17 @@ const Header = () => {
         },
         {
           subTitle: 'Compliance',
-          path: '/canal-de-denuncia'
+          path: '/canal-de-comunicacao'
         },
         {
-          subTitle: 'Atendimento',
-          path: '/canal-de-denuncia'
+          subTitle: 'Relatórios de Ouvidoria',
+          path: '/relatorios-de-ouvidoria'
         }
       ]
     },
     {
       title: 'Consórcio',
-      path: pathName,
+      path: '',
       subOptions: [
         {
           subTitle: 'Automóveis',
@@ -111,15 +105,33 @@ const Header = () => {
     },
     {
       title: 'Área do Cliente',
-      path: 'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/index.asp'
+      path: '',
+      subOptions: [
+        {
+          subTitle: 'Área do Cliente',
+          path: '/area-do-cliente'
+        },
+        {
+          subTitle: 'Resultado das Assembleias',
+          path: '/resultado-das-assembleias'
+        },
+        {
+          subTitle: 'Recursos não procurados',
+          path: '/recursos-nao-procurados'
+        },
+        {
+          subTitle: 'Grupos encerrados',
+          path: '/grupos-encerrados'
+        }
+      ]
     }
   ];
 
   const infoLinks: IInfoOptions[] = [
     {
-      icon: <PhoneIcon />,
-      link: 'tel: 40035090',
-      text: 'Televendas: 4003-5090'
+      icon: <CalculatorIcon />,
+      link: '/',
+      text: 'Simular Consórcio'
     },
     {
       icon: <JornalIcon />,
@@ -128,7 +140,7 @@ const Header = () => {
     },
     {
       icon: <UniversityIcon />,
-      link: '/universidade',
+      link: 'http://universidadetradicao.com.br/',
       text: 'Universidade'
     },
     {
@@ -138,17 +150,41 @@ const Header = () => {
     }
   ];
 
+  const subMenusState: any = {
+    'A Tradição': false,
+    Consórcio: false,
+    'Área do Cliente': false
+  };
+
+  function updateHeaderSubmenusState(key: string) {
+    for (const prop in subMenusState) {
+      if (prop !== key) {
+        subMenusState[prop] = false;
+      }
+    }
+    subMenusState[key] = true;
+
+    setSubMenusHeader(subMenusState);
+  }
+
   const handlePageChangeMobileMenu = (page: IHeaderOptions) => {
+    if (subMenusHeader[page?.title] === true) {
+      updateHeaderSubmenusState('');
+      return;
+    }
+
     if (page.title === 'A Tradição') {
-      setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen);
-      setIsSubMenuConsorcioOpen(false);
-    } else if (page.title === 'O Consórcio') {
-      setIsSubMenuConsorcioOpen(!isSubMenuConsorcioOpen);
-      setIsSubMenuTradicaoOpen(false);
+      updateHeaderSubmenusState('A Tradição');
+    } else if (page.title === 'Consórcio') {
+      updateHeaderSubmenusState('Consórcio');
+    } else if (page.title === 'Área do Cliente') {
+      updateHeaderSubmenusState('Área do Cliente');
     }
 
     if (
-      (page.title !== 'A Tradição' && page.title !== 'O Consórcio') ||
+      (page.title !== 'A Tradição' &&
+        page.title !== 'Consórcio' &&
+        page.title !== 'Área do Cliente') ||
       isMobileOpen === false
     ) {
       setIsMobileOpen(false);
@@ -165,18 +201,19 @@ const Header = () => {
 
   const wrapperRef = useRef(null);
   const tradicaoWrapperRef = useRef(null);
+
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
-  useOutsideAlerter(wrapperRef, setIsSubMenuConsorcioOpen);
-  useOutsideAlerter(tradicaoWrapperRef, setIsSubMenuTradicaoOpen);
+  useOutsideAlerter(wrapperRef, updateHeaderSubmenusState);
+  useOutsideAlerter(tradicaoWrapperRef, updateHeaderSubmenusState);
 
   function handleMouseEnter() {
-    setIsHovered(true);
+    updateHeaderSubmenusState('Área do Cliente');
   }
   function handleMouseLeave() {
     let timeout;
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      setIsHovered(false);
+      updateHeaderSubmenusState('');
     }, 500); // .5 seg
   }
 
@@ -240,9 +277,8 @@ const Header = () => {
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
               {mainPages.map((page, key) => {
                 return (
-                  <>
-                    <Link
-                      href={page.path ? page.path : ''}
+                  <React.Fragment key={key}>
+                    <a
                       key={key}
                       className="mobile-option"
                       onClick={() => handlePageChangeMobileMenu(page)}
@@ -251,16 +287,10 @@ const Header = () => {
                       <span className="chevron-icon">
                         {page.subOptions && <ChevronIcon />}
                       </span>
-                    </Link>
+                    </a>
 
                     {page.subOptions && (
-                      <S.SubMobileMenu
-                        isOpen={
-                          page.title === 'A Tradição'
-                            ? isSubMenuTradicaoOpen
-                            : isSubMenuConsorcioOpen
-                        }
-                      >
+                      <S.SubMobileMenu isOpen={subMenusHeader[page?.title]}>
                         {page.subOptions?.map((subOption, key) => (
                           <Link
                             key={key}
@@ -273,7 +303,7 @@ const Header = () => {
                         ))}
                       </S.SubMobileMenu>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </S.MobileMenuModal>
@@ -283,7 +313,7 @@ const Header = () => {
             <ul className="header-options">
               {mainPages.map((page, key) => {
                 return (
-                  <>
+                  <React.Fragment key={key}>
                     {page.title === 'Área do Cliente' ? (
                       <li key={key} className="client-button-container">
                         <Button
@@ -296,8 +326,15 @@ const Header = () => {
                           Área do Cliente
                         </Button>
 
-                        <S.ClientAreaSubMenu isHovered={isHovered}>
+                        <S.ClientAreaSubMenu
+                          isHovered={subMenusHeader['Área do Cliente']}
+                        >
                           <ul>
+                            <li>
+                              <Link href="area-do-cliente">
+                                Área do Cliente
+                              </Link>
+                            </li>
                             <li>
                               <Link href="resultado-das-assembleias">
                                 Resultado das Assembleias
@@ -320,40 +357,21 @@ const Header = () => {
                       <li key={key} className="submenu-options">
                         <div
                           className="option-title"
-                          onClick={() => {
-                            page.title === 'A Tradição'
-                              ? setIsSubMenuTradicaoOpen(!isSubMenuTradicaoOpen)
-                              : setIsSubMenuConsorcioOpen(
-                                  !isSubMenuConsorcioOpen
-                                );
-                          }}
+                          onClick={() => updateHeaderSubmenusState(page?.title)}
                         >
                           {page.title}
                         </div>
 
-                        <S.SubMenuOptions
-                          isOpen={
-                            page.title === 'A Tradição'
-                              ? isSubMenuTradicaoOpen
-                              : isSubMenuConsorcioOpen
-                          }
-                        >
+                        <S.SubMenuOptions isOpen={subMenusHeader[page?.title]}>
                           <div
-                            ref={
-                              page.title === 'A Tradição'
-                                ? tradicaoWrapperRef
-                                : wrapperRef
-                            }
+                            onMouseLeave={handleMouseLeave}
                             className="sub-menu-container"
                           >
                             {page.subOptions.map((subOption, key) => (
                               <Link
                                 href={subOption.path}
                                 key={key}
-                                onClick={() => {
-                                  setIsSubMenuConsorcioOpen(false);
-                                  setIsSubMenuTradicaoOpen(false);
-                                }}
+                                onClick={() => updateHeaderSubmenusState('')}
                               >
                                 {subOption.subTitle}
                               </Link>
@@ -371,7 +389,7 @@ const Header = () => {
                         </Link>
                       </li>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </ul>

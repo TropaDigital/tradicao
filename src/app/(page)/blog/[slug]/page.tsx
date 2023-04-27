@@ -1,27 +1,31 @@
 'use client';
 
-import { ArrowLeftIcon } from '@/assets/icons';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import AsideBar from '@/components/pages/Blog/AsideBar';
-import Button from '@/components/UI/Button';
 import API from '@/services/api';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 import * as S from './styles';
 
 const BlogPostPage = () => {
-  const viewedPost = localStorage?.getItem('postId');
-
-  const { allPosts } = useGetAllPosts(`/${viewedPost}`);
+  const pathName = usePathname();
+  const { allPosts } = useGetAllPosts(`?slug=${pathName?.split('/')?.pop()}`);
 
   const markupPost = { __html: allPosts?.result[0]?.conteudo };
 
+  moment.locale('pt-br');
+
   useEffect(() => {
-    API.post(`/blog/post-vizualizacao`, { postagem_id: viewedPost });
-  }, []);
+    if (allPosts) {
+      API.post(`/blog/post-vizualizacao`, {
+        id_postagem: allPosts?.result[0]?.id_postagem
+      });
+    }
+  }, [allPosts]);
 
   return (
     <>
@@ -31,17 +35,27 @@ const BlogPostPage = () => {
             <S.BlogHeader>
               <span className="post-category">
                 <Link
-                  href={`/blog?categoria=${allPosts?.result[0]?.categoria}`}
+                  href={{
+                    pathname: `/blog`,
+                    query: `categoria=${allPosts?.result[0]?.categoria}`
+                  }}
                 >
                   {allPosts?.result[0]?.categoria}
                 </Link>
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {/* Postado dia 6 de Abril de 2023 por Consorlina */}
-                {`Postado em ${moment(allPosts?.result[0]?.criado).format(
-                  'DD MMMM'
-                )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}
+                Postado em{' '}
+                {moment(allPosts?.result[0]?.data).format('DD [de] MMMM')} por{' '}
+                <Link
+                  href={{
+                    pathname: `/blog`,
+                    query: `autor=${allPosts?.result[0]?.autor}`
+                  }}
+                  style={{ color: 'var(--dark)' }}
+                >
+                  {allPosts?.result[0]?.autor ?? 'Consorlina'}
+                </Link>
               </span>
             </S.BlogHeader>
             <S.PostThumbnail>

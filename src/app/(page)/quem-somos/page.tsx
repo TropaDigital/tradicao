@@ -1,19 +1,32 @@
 'use client';
-import CenterWrapper from '@/components/global/CenterWrapper';
-import SkewContainer from '@/components/shared/SkewContainer';
+
+// React
+import { useEffect, useRef, useState } from 'react';
+
+// Next
 import Image from 'next/image';
+
+// Styles
 import * as S from './styles';
 
-import bgAboutUsImage from '../../../../public/images/aboutUsHeader.png';
-
-import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
-import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';
-
-import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
+// Components
+import CenterWrapper from '@/components/global/CenterWrapper';
+import SkewContainer from '@/components/shared/SkewContainer';
 import GreenCarousel from '@/components/global/GreenCarousel';
 import CardCarousel from '@/components/shared/CardCarousel';
-import Slider from 'react-slick';
 import MainTitle from '@/components/UI/MainTitle';
+import ContemplatedValueCard from '@/components/pages/quem-somos/ContemplatedValueCard';
+
+// Images
+import bgAboutUsImage from '../../../../public/images/aboutUsHeader.jpg';
+import abacEmpresaImg from '../../../../public/images/abacEmpresaImg.png';
+import bancoCenterBrasilImg from '../../../../public/images/bancoCenterBrasilImg.png';
+import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
+
+// Libraries
+import Slider from 'react-slick';
+
+// Icons
 import {
   EyeIcon,
   HeartIcon,
@@ -24,20 +37,23 @@ import {
   RadialPlayIcon,
   WatchIcon
 } from '@/assets/icons';
-import ContemplatedValueCard from '@/components/pages/quem-somos/ContemplatedValueCard';
-import { useRef, useState } from 'react';
 
-import { BsPauseCircle } from 'react-icons/bs';
+// Services
+import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 
 export default function QuemSomos() {
+  const { getCounters } = useGetAllCounters();
+  const [credits, setCredits] = useState<any>();
+
   const [videoStats, setVideoStats] = useState<boolean>(false);
+
   const BENEFITS_WITH_CONSORCIO_TRADICAO: Array<string> = [
-    'Consórcio Delivery 100% Digital',
-    'Prazos flexíveis',
-    'Prestação menores que um financiamento',
-    'Depois de contemplado entrega rápida do bem',
-    'Contemplações por sorteio e lance todos os meses (extraído pela loteria federal)',
-    'Representação em nível nacional'
+    'Consórcio digital',
+    'Compra planejada',
+    'Sem entrada',
+    'Sem juros',
+    'Parcelas mensais que cabem no seu bolso',
+    'Representantes em todo território nacional'
   ];
 
   const SLIDER_SETTINGS = {
@@ -100,11 +116,11 @@ export default function QuemSomos() {
   const CONTEMPLATED_VALUE_DELIVERED: Array<string> = [
     'R$',
     '5',
-    '0',
-    '1',
-    '.',
+    '9',
     '2',
-    '6',
+    '.',
+    '0',
+    '0',
     '0',
     '.',
     '0',
@@ -127,18 +143,39 @@ export default function QuemSomos() {
   }
 
   return (
-    <S.QuemSomosContainer>
+    <S.QuemSomosContainer data-aos="fade-up">
       <SkewContainer imageAlt="imagem teste" imageSrc={bgAboutUsImage} />
       <CenterWrapper>
         <MainTitle title="Quem Somos" />
         <S.AboutUsContent>
-          Com mais de 20 anos no mercado de Consórcio, a Tradição se tornou
-          autoridade na modalidade alternativa de investimento a longo prazo.
-          Sempre possibilitando conquistas, sem juros, com parcelas flexíveis,
-          sendo assim, uma forma acessível de investir dinheiro para todos. Além
-          disso, contamos com representantes por todo o Brasil, tendo como
-          missão a realização do consumidor possuir o próprio bem, sempre com
-          transparência e qualidade!
+          <p>
+            Somos uma administradora de consórcio que tem como objetivo oferecer
+            soluções financeiras inteligentes e personalizadas para nossos
+            clientes. Com mais de 20 anos de experiência no mercado, trabalhamos
+            com transparência, ética e responsabilidade para proporcionar aos
+            nossos clientes uma experiência única e satisfatória.
+          </p>
+
+          <p>
+            Nossa equipe é formada por profissionais altamente capacitados, que
+            estão sempre atualizados com as novidades do mercado e prontos para
+            auxiliar nossos consorciados em todas as etapas do processo de
+            consórcio, desde a escolha do plano até a contemplação.
+          </p>
+
+          <p>
+            Acreditamos que o consórcio é uma forma inteligente e segura de
+            adquirir bens e serviços, e por isso, investimos constantemente em
+            tecnologia e inovação para tornar o processo ainda mais fácil e
+            acessível para nossos clientes.
+          </p>
+
+          <p data-aos="fade-up">
+            Nosso compromisso é oferecer sempre o melhor atendimento e as
+            melhores soluções para nossos clientes, visando sua satisfação e
+            fidelização. Se você busca uma administradora de consórcio confiável
+            e comprometida com o seu sucesso, conte com o Consórcio Tradição.
+          </p>
         </S.AboutUsContent>
         <S.AboutUsSubtitle>
           O melhor jeito de realizar seu sonho
@@ -174,7 +211,7 @@ export default function QuemSomos() {
                 <Image
                   alt="imagem com a logotipo da ABAC"
                   src={abacEmpresaImg}
-                  width={150}
+                  width={200}
                   height={56}
                 />
               </div>
@@ -183,7 +220,7 @@ export default function QuemSomos() {
                 <Image
                   alt="imagem com a logotipo do banco central"
                   src={bancoCenterBrasilImg}
-                  width={150}
+                  width={200}
                   height={56}
                 />
               </div>
@@ -218,7 +255,7 @@ export default function QuemSomos() {
             padding="20px"
             width="357"
           />
-          <S.MoralValuesCard>
+          <S.MoralValuesCard data-aos="fade-up">
             <h3 className="moralValuesTitle">Valores</h3>
             <div className="gridTemplateValuesCard">
               {MORAL_VALUES_CARD_ITENS.map(
@@ -276,7 +313,9 @@ export default function QuemSomos() {
         <CenterWrapper>
           <S.ContemplatedTitle>Em 20 anos de mercado</S.ContemplatedTitle>
           <S.ContemplatedQuotasWrapper>
-            <div className="contemplatedQuotesNumber">40.050</div>
+            <div className="contemplatedQuotesNumber">
+              {getCounters?.result[0]?.cotas_contemplados?.toLocaleString()}
+            </div>
             <span className="contemplatedQuotesTextWrapper">
               <h3 className="contemplatedQuotesTitle">Cotas</h3>
               <p className="contemplatedQuotesText">contempladas</p>
@@ -298,16 +337,18 @@ export default function QuemSomos() {
           <S.Separator />
 
           <S.GenericFlexWrapper>
-            <S.ContemplatedQuotasWrapper>
+            {/* <S.ContemplatedQuotasWrapper>
               <div className="contemplatedQuotesNumber cl-white">57.927</div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Cotas</h3>
                 <p className="contemplatedQuotesText cl-white">ativas</p>
               </span>
-            </S.ContemplatedQuotasWrapper>
+            </S.ContemplatedQuotasWrapper> */}
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">214</div>
+              <div className="contemplatedQuotesNumber cl-white">
+                {getCounters?.result[0]?.grupos.toLocaleString()}
+              </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Grupos</h3>
                 <p className="contemplatedQuotesText cl-white">formados</p>
@@ -315,7 +356,9 @@ export default function QuemSomos() {
             </S.ContemplatedQuotasWrapper>
 
             <S.ContemplatedQuotasWrapper>
-              <div className="contemplatedQuotesNumber cl-white">218.500</div>
+              <div className="contemplatedQuotesNumber cl-white">
+                {getCounters?.result[0]?.contas_total?.toLocaleString()}
+              </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Total</h3>
                 <p className="contemplatedQuotesText cl-white">de cotas</p>

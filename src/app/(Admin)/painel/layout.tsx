@@ -22,7 +22,7 @@ interface ILayoutPanelProps {
 }
 
 export default function LayoutPainel({ children }: ILayoutPanelProps) {
-  const [sideBarIsOpen, setSideBarIsOpen] = useState<boolean>(false);
+  const [sideBarIsOpen, setSideBarIsOpen] = useState<boolean>(true);
 
   return (
     <>

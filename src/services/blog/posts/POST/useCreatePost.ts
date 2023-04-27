@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import PostClass from '../index';
+import PostsClass from '../index';
 import { IUpdatePostBody } from '../PUT/types';
 
 export const useCreatePost = () => {
@@ -9,22 +9,24 @@ export const useCreatePost = () => {
 
   const { mutateAsync } = useMutation(
     async (postBody: IUpdatePostBody) => {
-      let response = toast.promise(
-        async () => {
-          let response: AxiosResponse = await PostClass.createPost(postBody);
-          return response.data?.result;
-        },
-        {
-          error: 'Não foi possível publicar postagem',
-          pending: 'Publicando postagem',
-          success: 'Postagem publicada com sucesso'
-        },
-        {
-          position: 'top-right',
-          autoClose: 3000
-        }
-      );
-      return response;
+      let response = toast
+        .promise(
+          async () => {
+            let response: any = await PostsClass.createPost(postBody).then(
+              (data) => console.log(data)
+            );
+            return response;
+          },
+          {
+            pending: 'Criando Postagem',
+            success: 'Postagem criada com sucesso'
+          }
+        )
+        .catch((err) => {
+          toast.error(String(err));
+        });
+
+      return await response;
     },
     {
       onSuccess: () => {
@@ -32,6 +34,8 @@ export const useCreatePost = () => {
       }
     }
   );
+
+  // console.log(mutateAsync());
 
   return { createPost: mutateAsync };
 };

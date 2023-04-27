@@ -4,7 +4,7 @@
 import * as S from './styles';
 
 // Images
-import ServicesBg from '../../../../public/images/consortiumServices.png';
+import ServicesBg from '../../../../public/images/consortiumServices.jpg';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -16,7 +16,7 @@ import OurContemplated from '@/components/sections/OurContemplated';
 export default function ConsortiumServices() {
   return (
     <>
-      <S.ContainerTop>
+      <S.ContainerTop data-aos="fade-up">
         <SkewContainer
           imageSrc={ServicesBg}
           imageAlt="Imagem de uma mulher com uma câmera digital em mãos"

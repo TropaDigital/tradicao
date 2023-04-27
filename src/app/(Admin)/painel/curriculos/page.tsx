@@ -26,7 +26,7 @@ const CurriculosPage = () => {
     {
       key: 'curriculo_pdf',
       label: 'Currículo',
-      type: 'file'
+      type: 'file-pdf'
     },
     {
       key: '',
@@ -60,7 +60,7 @@ const CurriculosPage = () => {
   );
 
   useEffect(() => {
-    if (allCandidates?.result?.length === 0) {
+    if (allCandidates?.result?.length < 0) {
       setActualPage((state) => state - 1);
     }
   }, [allCandidates]);

@@ -45,6 +45,14 @@ export const SectionSimulatorForm = styled.div<Props>`
   top: 20px;
   right: 20px;
 
+  .simulateButton {
+    transition: all 0.3s;
+
+    :hover {
+      scale: 1.02;
+    }
+  }
+
   /* 
   left: 50%;
   top: 22%;
@@ -61,6 +69,9 @@ export const SectionSimulatorForm = styled.div<Props>`
       @media (max-width: 985px) {
         top: 15%;
       }
+      @media (max-width: 920px) {
+        top: 16%;
+      }
       @media (max-width: 768px) {
         top: 14%;
       }
@@ -69,17 +80,17 @@ export const SectionSimulatorForm = styled.div<Props>`
       }
       @media (max-width: 600px) {
         left: 50%;
-        top: 10%;
+        top: 12%;
         transform: translateX(-50%);
       }
       @media (max-width: 516px) {
         left: 50%;
-        top: 8%;
+        top: 9%;
         transform: translateX(-50%);
       }
       @media (max-width: 356px) {
         left: 50%;
-        top: 76%;
+        top: 7%;
         transform: translateX(-50%);
       }
     `}
@@ -176,4 +187,8 @@ export const TitleSimulator = styled.div`
 
 export const ContentSimulation = styled.fieldset`
   animation: ${appearFromRight} 0.35s ease;
+
+  .buttonSimulatorPlan:hover {
+    background: rgba(0, 54, 198, 0, 4);
+  }
 `;
