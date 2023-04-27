@@ -41,6 +41,11 @@ export default function RootLayout({
             <GlobalStyles />
           </StyledJsxRegistry>
         </QueryClientProvider>
+
+        <script
+          src="//titulares.becompliance.com/becompliance.js"
+          defer
+        ></script>
       </body>
     </html>
   );

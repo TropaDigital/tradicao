@@ -140,7 +140,7 @@ const Header = () => {
     },
     {
       icon: <UniversityIcon />,
-      link: '/universidade',
+      link: 'http://universidadetradicao.com.br/',
       text: 'Universidade'
     },
     {
