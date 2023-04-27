@@ -201,6 +201,7 @@ const Header = () => {
 
   const wrapperRef = useRef(null);
   const tradicaoWrapperRef = useRef(null);
+
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
   useOutsideAlerter(wrapperRef, updateHeaderSubmenusState);
   useOutsideAlerter(tradicaoWrapperRef, updateHeaderSubmenusState);
@@ -363,11 +364,7 @@ const Header = () => {
 
                         <S.SubMenuOptions isOpen={subMenusHeader[page?.title]}>
                           <div
-                            ref={
-                              page.title === 'A Tradição'
-                                ? tradicaoWrapperRef
-                                : wrapperRef
-                            }
+                            onMouseLeave={handleMouseLeave}
                             className="sub-menu-container"
                           >
                             {page.subOptions.map((subOption, key) => (

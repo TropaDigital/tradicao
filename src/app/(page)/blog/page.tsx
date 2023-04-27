@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import PaginationData from '@/components/shared/PaginationData';
 import moment from 'moment';
+import Link from 'next/link';
 
 const BlogPage = () => {
   const [query, setQuery] = useState<string>('');
@@ -29,6 +30,10 @@ const BlogPage = () => {
   useEffect(() => {
     if (params.get('categoria') !== null) {
       getCurrentCategory();
+    }
+
+    if (params.get('autor') !== null) {
+      setQuery(`pesquisa=${params.get('autor')}&`);
     }
   }, [params.get('categoria')]);
 
@@ -63,6 +68,12 @@ const BlogPage = () => {
               <p className="blog-subtitle">Novidades e notícias</p>
             </div>
 
+            {params.get('autor') && (
+              <S.SearchPostsByAuthor>
+                Todas as postagem de
+                <span className="authorWrapper"> {params.get('autor')}</span>
+              </S.SearchPostsByAuthor>
+            )}
             <S.ListPostsContainer>
               {allPosts?.result?.map((post) => (
                 <PostCard

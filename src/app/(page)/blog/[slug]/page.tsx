@@ -33,16 +33,27 @@ const BlogPostPage = () => {
             <S.BlogHeader>
               <span className="post-category">
                 <Link
-                  href={`/blog?categoria=${allPosts?.result[0]?.categoria}`}
+                  href={{
+                    pathname: `/blog`,
+                    query: `categoria=${allPosts?.result[0]?.categoria}`
+                  }}
                 >
                   {allPosts?.result[0]?.categoria}
                 </Link>
               </span>
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
-                {`Postado em ${moment(allPosts?.result[0]?.data).format(
-                  'DD MMMM'
-                )} por ${allPosts?.result[0]?.autor ?? 'Consorlina'}`}
+                Postado em {moment(allPosts?.result[0]?.data).format('DD MMMM')}{' '}
+                por{' '}
+                <Link
+                  href={{
+                    pathname: `/blog`,
+                    query: `autor=${allPosts?.result[0]?.autor}`
+                  }}
+                  style={{ color: 'var(--dark)' }}
+                >
+                  {allPosts?.result[0]?.autor ?? 'Consorlina'}
+                </Link>
               </span>
             </S.BlogHeader>
             <S.PostThumbnail>
