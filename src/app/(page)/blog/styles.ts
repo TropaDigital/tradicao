@@ -29,4 +29,5 @@ export const SearchPostsByAuthor = styled.div`
   font-size: 18px;
   display: flex;
   justify-content: center;
+  gap: 4px;
 `;

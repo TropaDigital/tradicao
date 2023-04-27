@@ -70,7 +70,7 @@ const BlogPage = () => {
 
             {params.get('autor') && (
               <S.SearchPostsByAuthor>
-                Todas as postagem de
+                Todas as postagens de
                 <span className="authorWrapper"> {params.get('autor')}</span>
               </S.SearchPostsByAuthor>
             )}
