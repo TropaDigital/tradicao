@@ -272,7 +272,7 @@ export default function QuemSomos() {
       </GreenCarousel>
 
       <CenterWrapper>
-        <S.VideoWrapper videoIsRunning={videoStats} data-aos="fade-up">
+        <S.VideoWrapper videoIsRunning={videoStats}>
           <video
             webkit-playsInline
             playsInline
