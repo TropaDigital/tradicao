@@ -23,3 +23,10 @@ export const ListPostsContainer = styled.div`
   gap: 20px;
   margin-top: 45px;
 `;
+
+export const SearchPostsByAuthor = styled.div`
+  margin-top: 10px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+`;
