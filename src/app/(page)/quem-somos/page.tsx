@@ -25,6 +25,7 @@ import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
 
 // Libraries
 import Slider from 'react-slick';
+import eases from 'eases';
 
 // Icons
 import {
@@ -40,10 +41,47 @@ import {
 
 // Services
 import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
+import { iniciarContagem } from '@/utils/iniciarContagem';
 
 export default function QuemSomos() {
   const { getCounters } = useGetAllCounters();
-  const [credits, setCredits] = useState<any>();
+
+  const [values, setValues] = useState({
+    creditos: 592000000,
+    quotas: 42150,
+    grupos: 222,
+    cotasTotal: 185400
+  });
+
+  const [credits, setCredits] = useState<number>(0);
+  const [quotas, setQuotas] = useState<number>(0);
+  const [grupos, setGrupos] = useState<number>(0);
+  const [cotasTotal, setCotasTotal] = useState<number>(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          iniciarContagem(values?.creditos, setCredits, 1000000);
+          iniciarContagem(values?.quotas, setQuotas, 75);
+          iniciarContagem(values?.grupos, setGrupos, 1);
+          iniciarContagem(values?.cotasTotal, setCotasTotal, 1000);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const countRef = useRef(null);
 
   const [videoStats, setVideoStats] = useState<boolean>(false);
 
@@ -115,17 +153,7 @@ export default function QuemSomos() {
 
   const CONTEMPLATED_VALUE_DELIVERED: Array<string> = [
     'R$',
-    '5',
-    '9',
-    '2',
-    '.',
-    '0',
-    '0',
-    '0',
-    '.',
-    '0',
-    '0',
-    '0'
+    ...String(credits.toLocaleString())?.split('')
   ];
 
   const videoRef: any = useRef();
@@ -314,7 +342,8 @@ export default function QuemSomos() {
           <S.ContemplatedTitle>Em 20 anos de mercado</S.ContemplatedTitle>
           <S.ContemplatedQuotasWrapper>
             <div className="contemplatedQuotesNumber">
-              {getCounters?.result[0]?.cotas_contemplados?.toLocaleString()}
+              {/* {getCounters?.result[0]?.cotas_contemplados?.toLocaleString()} */}
+              {quotas?.toLocaleString()}
             </div>
             <span className="contemplatedQuotesTextWrapper">
               <h3 className="contemplatedQuotesTitle">Cotas</h3>
@@ -325,9 +354,11 @@ export default function QuemSomos() {
           <S.Separator />
 
           <S.ContemplatedValueWrapper>
-            {CONTEMPLATED_VALUE_DELIVERED.map((row: string, key: number) => (
-              <ContemplatedValueCard text={row} key={key} />
-            ))}
+            <div ref={countRef} style={{ display: 'flex', gap: '8px' }}>
+              {CONTEMPLATED_VALUE_DELIVERED.map((row: string, key: number) => (
+                <ContemplatedValueCard text={row} key={key} />
+              ))}
+            </div>
           </S.ContemplatedValueWrapper>
 
           <S.ContemplatedValueText>
@@ -347,7 +378,8 @@ export default function QuemSomos() {
 
             <S.ContemplatedQuotasWrapper>
               <div className="contemplatedQuotesNumber cl-white">
-                {getCounters?.result[0]?.grupos.toLocaleString()}
+                {/* {getCounters?.result[0]?.grupos.toLocaleString()} */}
+                {grupos?.toLocaleString()}
               </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Grupos</h3>
@@ -357,7 +389,8 @@ export default function QuemSomos() {
 
             <S.ContemplatedQuotasWrapper>
               <div className="contemplatedQuotesNumber cl-white">
-                {getCounters?.result[0]?.contas_total?.toLocaleString()}
+                {/* {getCounters?.result[0]?.contas_total?.toLocaleString()} */}
+                {cotasTotal?.toLocaleString()}
               </div>
               <span className="contemplatedQuotesTextWrapper">
                 <h3 className="contemplatedQuotesTitle cl-white">Total</h3>

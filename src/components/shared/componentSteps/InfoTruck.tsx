@@ -109,13 +109,7 @@ export function InfoTruck({
         <CheckboxDefault
           label={
             <>
-              Aceito o{' '}
-              <a
-                href="/archives/aviso-de-privacidade.pdf"
-                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
-              >
-                termo de privacidade
-              </a>
+              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
             </>
           }
           name="terms"
@@ -167,13 +161,7 @@ export function ConfirmTruck({
         <CheckboxDefault
           label={
             <>
-              Aceito o{' '}
-              <a
-                href="/archives/aviso-de-privacidade.pdf"
-                download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
-              >
-                termo de privacidade
-              </a>
+              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
             </>
           }
           name="regulation"

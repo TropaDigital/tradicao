@@ -2,7 +2,6 @@ import * as yup from 'yup';
 
 export const assembleiaSchema = yup?.object()?.shape({
   url_imagem: yup?.string()?.required('A capa é obrigatória!'),
-  titulo: yup?.string().required('O título é obrigatório!'),
   tipo: yup
     ?.string()
     .test(

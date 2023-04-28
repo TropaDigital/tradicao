@@ -1,34 +1,44 @@
 'use client';
 
-import CenterWrapper from '@/components/global/CenterWrapper';
-import HeroSkew from '@/components/pages/Home/HeroSkew';
-import SkewContainer from '@/components/shared/SkewContainer';
-import Button from '@/components/UI/Button';
-import MainTitle from '@/components/UI/MainTitle';
-import UploadFile from '@/components/UI/UploadFile';
-import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
+// React
+import React, { useState } from 'react';
+
+// Styles
 import * as S from './styles';
-import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
+
+// Imagens
 import WorkWithUsBg from '../../../../public/images/work_with_us_bg.jpg';
+
+// Componentes
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useCreateCandidate } from '@/services/trabalhe-conosco/POST/useCreateCadidate';
 import { useCreateAgent } from '@/services/representante/POST';
 import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
+import { Form, Formik } from 'formik';
+import CenterWrapper from '@/components/global/CenterWrapper';
+import UploadFile from '@/components/UI/UploadFile';
+import MainTitle from '@/components/UI/MainTitle';
+import SkewContainer from '@/components/shared/SkewContainer';
+import Button from '@/components/UI/Button';
+
+// Validações
+import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
+import { formatCnpj } from '@/utils/formatCnpj';
 
 const WorkWithUsPage = () => {
-  const [formStage, setFormStage] = useState<'curriculo' | 'representante'>(
-    'curriculo'
-  );
+  const [formStage, setFormStage] = useState<string>('curriculo');
   const [fileName, setFileName] = useState<string>('');
 
-  const formatCnpj = (cnpj: string) => {
-    cnpj = cnpj?.replace(/\D/g, '');
-    return cnpj?.replace(
-      /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-      '$1.$2.$3/$4-$5'
-    );
-  };
+  const FORM_STAGES = [
+    {
+      label: 'Enviar Currículo',
+      value: 'curriculo'
+    },
+    {
+      label: 'Seja um Representante',
+      value: 'representante'
+    }
+  ];
 
   const { createCandidate } = useCreateCandidate();
   const { createAgent } = useCreateAgent();
@@ -42,27 +52,18 @@ const WorkWithUsPage = () => {
       <CenterWrapper>
         <S.Container>
           <S.ButtonsWrapper>
-            <Button
-              weight={700}
-              variant="default"
-              onClick={() => setFormStage('curriculo')}
-              color={formStage === 'curriculo' ? 'primary' : 'secondary'}
-              degrade
-              className="stage-form-button"
-            >
-              Enviar Currículo
-            </Button>
-            <Button
-              weight={700}
-              variant="default"
-              onClick={() => setFormStage('representante')}
-              color={formStage === 'representante' ? 'primary' : 'secondary'}
-              type="submit"
-              degrade
-              className="stage-form-button"
-            >
-              Seja um Representante
-            </Button>
+            {FORM_STAGES?.map((stage) => (
+              <Button
+                weight={700}
+                variant="default"
+                onClick={() => setFormStage(stage?.value)}
+                color={formStage === stage?.value ? 'secondary' : 'primary'}
+                degrade
+                className="stage-form-button"
+              >
+                {stage?.label}
+              </Button>
+            ))}
           </S.ButtonsWrapper>
 
           {formStage === 'curriculo' && (
@@ -143,10 +144,7 @@ const WorkWithUsPage = () => {
                     label={
                       <>
                         Aceito o{' '}
-                        <a
-                          href="/archives/aviso-de-privacidade.pdf"
-                          download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
-                        >
+                        <a href="/termos-de-privacidade">
                           termo de privacidade
                         </a>
                       </>
@@ -221,10 +219,7 @@ const WorkWithUsPage = () => {
                     label={
                       <>
                         Aceito o{' '}
-                        <a
-                          href="/archives/aviso-de-privacidade.pdf"
-                          download="AVISO DE PRIVACIDADE CONSÓRCIO TRADIÇÃO"
-                        >
+                        <a href="/termos-de-privacidade">
                           termo de privacidade
                         </a>
                       </>
