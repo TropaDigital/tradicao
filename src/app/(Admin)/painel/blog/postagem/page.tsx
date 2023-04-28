@@ -196,7 +196,7 @@ const PostPanel = () => {
               }
 
               router?.push('/painel/blog');
-            } catch (err: any) {
+            } catch (err) {
               console.log(err);
             }
           }}

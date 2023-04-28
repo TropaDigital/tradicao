@@ -7,15 +7,14 @@ import React, { useState } from 'react';
 import { HeaderDashboard } from '../styles';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
-import Button from '@/components/UI/Button';
 import PaginationData from '@/components/shared/PaginationData';
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 // Services
 import { useGetAllParceiros } from '@/services/seja-um-parceiro/GET/useGetAllParceiros';
 
 //Hooks
 import { useDebouncedCallback } from 'use-debounce';
-import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 
 const ParceirosPage = () => {
   const headerTable = [
@@ -53,10 +52,9 @@ const ParceirosPage = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [query, setQuery] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
 
   const { allParceiros } = useGetAllParceiros(
-    `?${query}&currentPage=${currentPage}&perPage=10`
+    `?${query}&currentPage=${currentPage}&perPage=10&ordem=desc`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -76,17 +74,6 @@ const ParceirosPage = () => {
     <>
       <HeaderDashboard>
         <HeaderPage title="Parceiros" />
-
-        <div className="buttonWrapper">
-          <Button
-            degrade
-            radius="rounded"
-            color="secondary"
-            className="styledButton"
-          >
-            + Adicionar Parceiro
-          </Button>
-        </div>
       </HeaderDashboard>
 
       <Table

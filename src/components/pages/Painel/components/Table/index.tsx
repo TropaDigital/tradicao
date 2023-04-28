@@ -20,10 +20,9 @@ import Modal from '../modal/ModalDefault';
 import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
+import FormParceiros from '../forms/FormParceiros';
 
 // Services
-
-import { useDeleteFile } from '@/services/arquivos/DELETE/useDeleteFile';
 import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
 import { useDeletePost } from '@/services/blog/posts/DELETE/useDeletePost';
 import { useDeleteContemplado } from '@/services/contemplados/DELETE/useDeleteContemplado';
@@ -33,11 +32,15 @@ import { useDeleteRepresentante } from '@/services/representante/DELETE/useDelet
 import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDeleteCurriculo';
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplado/DELETE/useDeleteAssembleiaContemplado';
+import { useDeleteParceiro } from '@/services/seja-um-parceiro/DELETE/useDeleteParceiro';
+
+// Types
+import { AxiosResponse } from 'axios';
+import { IForm } from '../forms/types';
+import { UseMutateAsyncFunction } from 'react-query';
 
 // Icons
-
 import { AlertIcon } from '@/assets/icons';
-import { useDeleteParceiro } from '@/services/seja-um-parceiro/DELETE/useDeleteParceiro';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
@@ -80,7 +83,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const actualItemKeys = Object.keys(actualItem);
     const getKey = actualItemKeys?.filter((key) => key.includes('id_'));
     return {
-      itemType: getKey[0]?.split('_')?.pop() as any,
+      itemType: getKey[0]?.split('_')?.pop() as string,
       itemID: actualItem[getKey[0]] as number
     };
   };
@@ -100,7 +103,14 @@ export default function Table({ title, data, search, header }: ITableProps) {
     }
   }
 
-  const deleteFunctions: any = {
+  const deleteFunctions: {
+    [key: string]: UseMutateAsyncFunction<
+      AxiosResponse<any, any>,
+      unknown,
+      number,
+      unknown
+    >;
+  } = {
     contemplado: deleteContemplado,
     'demonstracoes-financeiras': deleteDemonstracao,
     curriculos: deleteCurriculo,
@@ -126,7 +136,9 @@ export default function Table({ title, data, search, header }: ITableProps) {
     deleteFunction(itemID);
   };
 
-  const FORM_MAP: any = {
+  const FORM_MAP: {
+    [key: string]: ({ modalOpen, actualItem, onSubmit }: IForm) => JSX.Element;
+  } = {
     contemplados: FormContemplados,
     'demonstracoes-financeiras': FormDemonstracoes,
     unidades: FormUnidades,
@@ -134,7 +146,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
     representantes: FormRepresentante,
     curriculos: FormCurriculo,
     'visualizar-assembleia': FormContempladoAssembleia,
-    'grupos-encerrados': FormGrupos
+    'grupos-encerrados': FormGrupos,
+    parceiros: FormParceiros
   };
 
   const FormComponent = FORM_MAP[currentPage];
