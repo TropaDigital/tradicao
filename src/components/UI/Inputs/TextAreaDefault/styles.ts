@@ -61,7 +61,7 @@ export const ContainerInput = styled.div<ContainerProps>`
     resize: none;
 
     &::placeholder {
-      color: var(--gray-200);
+      color: var(--gray-300);
     }
 
     &:focus-visible {
