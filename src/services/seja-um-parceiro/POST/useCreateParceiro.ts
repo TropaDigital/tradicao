@@ -19,7 +19,7 @@ export const useCreateParceiro = () => {
           success: 'Cadastro enviado com sucesso'
         },
         {
-          position: 'top-right',
+          position: 'bottom-right',
           autoClose: 3000
         }
       );

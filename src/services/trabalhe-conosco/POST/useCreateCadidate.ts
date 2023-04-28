@@ -20,7 +20,7 @@ export const useCreateCandidate = () => {
           success: 'Currículo cadastrado com sucesso'
         },
         {
-          position: 'bottom-left',
+          position: 'bottom-right',
           autoClose: 3000
         }
       );

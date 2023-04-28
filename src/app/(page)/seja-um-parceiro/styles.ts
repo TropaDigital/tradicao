@@ -12,6 +12,10 @@ export const FormWrapper = styled.div`
   .lineWrapperInputs {
     display: flex;
     gap: 10px;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
   }
 
   .multiRowsField {

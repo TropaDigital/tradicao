@@ -29,6 +29,10 @@
       "path": "grupos-encerrados"
     },
     {
+      "name": "Parceiros",
+      "path": "parceiros"
+    },
+    {
       "name": "Regulamento",
       "path": "regulamento"
     },
