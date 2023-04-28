@@ -13,7 +13,7 @@ import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { IHeaderOptions, IInfoOptions } from './types';
@@ -237,7 +237,7 @@ const Header = () => {
               </li>
             );
           })}
-          <li>
+          <li className="partner-button">
             <S.PartnerButton href="/seja-um-parceiro">
               Seja um Parceiro
             </S.PartnerButton>

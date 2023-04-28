@@ -19,7 +19,7 @@ export function cnpjMask(cnpj: string) {
 export function cepMask(cep: string) {
   let value = cep?.replace(/\D/g, '');
 
-  value = value.replace(/(\d{5})(\d{3})/, '$1-$2'); // 00000-000
+  value = value?.replace(/(\d{5})(\d{3})/, '$1-$2'); // 00000-000
 
   return value;
 }
