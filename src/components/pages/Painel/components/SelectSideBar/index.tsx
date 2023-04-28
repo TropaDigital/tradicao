@@ -17,6 +17,7 @@ import MagnifyngGlass from '@/../public/images/magnifying-glass.svg';
 import ChartBar from '@/../public/images/chart-bar.svg';
 import PersonInSmoking from '@/../public/images/person-in-smoking.svg';
 import OfficeBuilding from '@/../public/images/office-building.svg';
+import HandShake from '@/../public/images/handshake.svg';
 
 // Componentes
 import Image from 'next/image';
@@ -52,24 +53,19 @@ export default function SelectSideBar({
     <Image src={src} alt={alt} width={20} height={20} />
   );
 
-  const iconsPagesMap: any = {
-    Assembleias: createImageTag({ src: WhitePaper, alt: 'Abc' }),
-    Blog: createImageTag({ src: MemoIcon, alt: 'Abc' }),
-    Contemplados: createImageTag({ src: FamilyIcon, alt: 'Abc' }),
-    Currículos: createImageTag({ src: PaperClip, alt: 'Abc' }),
-    Demonstrações: createImageTag({
-      src: ChartIncreasing,
-      alt: 'Abc'
-    }),
-    Regulamento: createImageTag({ src: Papiro, alt: 'Abc' }),
-    Recursos: createImageTag({ src: MagnifyngGlass, alt: 'Abc' }),
-    'Gp. Encerrados': createImageTag({ src: Paper, alt: 'Abc' }),
-    Relatórios: createImageTag({ src: ChartBar, alt: 'Abc' }),
-    Representantes: createImageTag({
-      src: PersonInSmoking,
-      alt: 'Abc'
-    }),
-    Unidades: createImageTag({ src: OfficeBuilding, alt: 'Abc' })
+  const iconsPagesMap: { [key: string]: string } = {
+    Assembleias: '&#128196;',
+    Blog: '&#128221;',
+    Contemplados: '&#128106;',
+    Currículos: '&#128206;',
+    Demonstrações: '&#128200;',
+    Regulamento: '&#128220;',
+    Recursos: '&#128269;',
+    'Gp. Encerrados': '&#128195;',
+    Parceiros: '&#129309;',
+    Relatórios: '&#128202;',
+    Representantes: '&#129333;',
+    Unidades: '&#127970;'
   };
 
   function handleToogleSideBar() {
@@ -118,7 +114,9 @@ export default function SelectSideBar({
       <div className="optionsSelect">
         {pages.map((row: propsPage, key: number) => (
           <Link href={`/painel/${row.path}`} className="cardToPage" key={key}>
-            {iconsPagesMap[row.name]}
+            <span
+              dangerouslySetInnerHTML={{ __html: iconsPagesMap[row.name] }}
+            />
             {'  '}
             {row.name}
           </Link>

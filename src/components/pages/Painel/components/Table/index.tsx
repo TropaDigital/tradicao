@@ -37,6 +37,7 @@ import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplad
 // Icons
 
 import { AlertIcon } from '@/assets/icons';
+import { useDeleteParceiro } from '@/services/seja-um-parceiro/DELETE/useDeleteParceiro';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
@@ -53,6 +54,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deletePost } = useDeletePost();
   const { deleteAssembleia } = useDeleteAssembleia();
   const { deleteAssembleiaContemplado } = useDeleteAssembleiaContemplado();
+  const { deleteParceiro } = useDeleteParceiro();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -107,7 +109,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
     representantes: deleteRepresentante,
     blog: deletePost,
     'visualizar-assembleia': deleteAssembleiaContemplado,
-    assembleias: deleteAssembleia
+    assembleias: deleteAssembleia,
+    parceiros: deleteParceiro
   };
 
   const removeItem = (itemToDelete: { itemID: number }) => {
