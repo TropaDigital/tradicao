@@ -121,13 +121,23 @@ const PartnerPage = () => {
   const SLIDER_SETTINGS = {
     dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    speed: 1000,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    className: 'slider-Container',
+    arrows: false,
+    swipeToSlide: true,
+    cssEase: 'linear',
     responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true
+        }
+      },
       {
         breakpoint: 875,
         settings: {

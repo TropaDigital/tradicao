@@ -64,7 +64,7 @@ const FormUnidades = ({ modalOpen, actualItem, onSubmit }: IForm) => {
     if (cep?.length === 8 && !cep?.includes('-')) {
       try {
         const address = await ViaCepClass?.getAddress(cep);
-        setFullAddress(address);
+        setFullAddress(address as any);
       } catch (err) {
         setFullAddress({ ...fullAddress, error: 'CEP Inválido' });
       }
