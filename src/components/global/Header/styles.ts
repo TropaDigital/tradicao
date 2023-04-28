@@ -184,6 +184,17 @@ export const InfoContainer = styled.div<Props>`
   }
 `;
 
+export const PartnerButton = styled.a`
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--degrade-secondary);
+  border-radius: 30px;
+  font-weight: 400;
+  white-space: nowrap;
+`;
+
 export const BoletoButton = styled.a`
   padding: 6px 20px;
   display: flex;

@@ -33,4 +33,10 @@ export const TitleContainer = styled.div`
     font-weight: 400;
     color: var(--gray-600);
   }
-`
+`;
+
+export const LineWrapperInputs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;

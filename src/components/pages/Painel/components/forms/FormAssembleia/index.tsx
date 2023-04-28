@@ -120,7 +120,7 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
                 <div className="lineElementsWrapper">
                   <InputDefault
-                    label="Título *"
+                    label="Título"
                     placeholder="Contemplados"
                     value={values?.titulo}
                     name="titulo"

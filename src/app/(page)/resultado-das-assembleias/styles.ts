@@ -113,7 +113,7 @@ export const CardBottomContemplated = styled.div`
   align-items: center;
   gap: 8px;
 
-  height: fit-content;
+  height: 48px;
   background: var(--white);
 
   font-size: var(--text-headline-sm);

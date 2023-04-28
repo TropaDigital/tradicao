@@ -200,11 +200,8 @@ const Header = () => {
   getWindowWidth();
 
   const wrapperRef = useRef(null);
-  const tradicaoWrapperRef = useRef(null);
 
   useOutsideAlerter(wrapperRef, setIsMobileOpen);
-  useOutsideAlerter(wrapperRef, updateHeaderSubmenusState);
-  useOutsideAlerter(tradicaoWrapperRef, updateHeaderSubmenusState);
 
   function handleMouseEnter() {
     updateHeaderSubmenusState('Área do Cliente');
@@ -241,6 +238,11 @@ const Header = () => {
             );
           })}
           <li>
+            <S.PartnerButton href="/seja-um-parceiro">
+              Seja um Parceiro
+            </S.PartnerButton>
+          </li>
+          <li>
             <S.BoletoButton
               href="https://consorciotradicao.enviodeboleto.com.br/Principal"
               target={'_blank'}
@@ -269,9 +271,7 @@ const Header = () => {
               className="menuHamburguerContainer"
               onClick={() => setIsMobileOpen(!isMobileOpen)}
             >
-              <S.MenuHamburgerContainer
-                isOpen={isMobileOpen}
-              ></S.MenuHamburgerContainer>
+              <S.MenuHamburgerContainer isOpen={isMobileOpen} />
             </div>
 
             <S.MobileMenuModal isOpen={isMobileOpen} ref={wrapperRef}>
@@ -353,7 +353,7 @@ const Header = () => {
                           </ul>
                         </S.ClientAreaSubMenu>
                       </li>
-                    ) : page.subOptions ? (
+                    ) : page?.subOptions ? (
                       <li key={key} className="submenu-options">
                         <div
                           className="option-title"
@@ -367,7 +367,7 @@ const Header = () => {
                             onMouseLeave={handleMouseLeave}
                             className="sub-menu-container"
                           >
-                            {page.subOptions.map((subOption, key) => (
+                            {page?.subOptions?.map((subOption, key) => (
                               <Link
                                 href={subOption.path}
                                 key={key}

@@ -1,11 +1,13 @@
+import { HTMLAttributes } from 'react';
 import * as S from './styles';
 import { IContemplatedCardProps } from './types';
 
 export default function ContemplatedValueCard({
-  text
+  text,
+  ...rest
 }: IContemplatedCardProps) {
   return (
-    <S.ContemplatedCardValue>
+    <S.ContemplatedCardValue {...rest}>
       {text === 'R$' ? (
         <S.ContemplatedCardTextSmall>{text}</S.ContemplatedCardTextSmall>
       ) : (

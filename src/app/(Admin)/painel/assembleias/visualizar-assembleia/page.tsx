@@ -178,7 +178,7 @@ const ViewAssembleiaPage = () => {
 
                 <div className="assembleiaDetails">
                   <InputDefault
-                    label="Título *"
+                    label="Título"
                     value={values?.titulo}
                     name="titulo"
                     onChange={handleChange}
