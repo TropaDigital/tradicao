@@ -87,7 +87,9 @@ export default function Contemplated() {
               }}
             >
               <S.CardTopContemplated>
-                <span>{moment(row.data).format('DD MMM')}</span>
+                <span>
+                  {moment(row?.data?.split('T')[0])?.format('DD MMM')}
+                </span>
                 <Image
                   src={row?.url_imagem ? row?.url_imagem : teste}
                   width={400}

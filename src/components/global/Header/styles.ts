@@ -140,6 +140,11 @@ export const InfoContainer = styled.div<Props>`
   @media (max-width: 1600px) {
     padding: 6px 43px;
   }
+  @media (max-width: 1020px) {
+    .partner-button {
+      display: none;
+    }
+  }
   @media (max-width: 900px) {
     .blog {
       display: none;

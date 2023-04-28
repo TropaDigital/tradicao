@@ -7,7 +7,18 @@ export const Container = styled.section`
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+
+  .lineWrapperInputs {
+    display: flex;
+    gap: 10px;
+  }
+
+  .multiRowsField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const CarousselWrapper = styled.div`
