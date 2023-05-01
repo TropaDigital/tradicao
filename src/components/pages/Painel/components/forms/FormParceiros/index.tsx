@@ -1,8 +1,12 @@
 // Components
-import { IPartnerInitialValues } from '@/app/(page)/seja-um-parceiro/types';
+import {
+  IPartnerInitialValues,
+  IPartnerPayload
+} from '@/app/(page)/seja-um-parceiro/types';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
 import { SelectDefault } from '../../inputs/SelectDefault';
+import ButtonDefault from '../../ButtonDefault';
 
 // Bibliotecas
 import { Form, Formik } from 'formik';
@@ -10,7 +14,8 @@ import { Form, Formik } from 'formik';
 // Styles
 import * as S from '../styles';
 import { IForm } from '../types';
-import Button from '@/components/UI/Button';
+import { useUpdateParceiro } from '@/services/seja-um-parceiro/PUT/useUpdateParceiro';
+import { onlyNumbersMask } from '@/utils/masks';
 
 const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
   const allStates = [
@@ -43,12 +48,36 @@ const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
     { uf: 'TO', nome: 'Tocantins' }
   ];
 
+  const { updateParceiro } = useUpdateParceiro();
+
   return (
     <S.Container>
       <Formik
         initialValues={actualItem as IPartnerInitialValues}
-        onSubmit={(values: any) => {
-          console.log(values);
+        onSubmit={(values) => {
+          const partnerPayload: IPartnerPayload = {
+            nome_da_empresa: values?.nome_da_empresa,
+            cnpj: onlyNumbersMask(values?.cnpj),
+            ramo_de_atividade: values?.ramo_de_atividade,
+            nome_de_contato: values?.nome_de_contato,
+            email_de_contato: values?.email_de_contato,
+            telefone_de_contato: values?.telefone_de_contato,
+            campo_aberto: values?.campo_aberto,
+            endereco: {
+              cep: onlyNumbersMask(values?.cep),
+              logradouro: values?.logradouro,
+              numero: values?.numero,
+              complemento: values?.complemento,
+              bairro: values?.bairro,
+              cidade: values?.cidade,
+              estado: values?.estado
+            }
+          };
+
+          updateParceiro({
+            id: actualItem?.id_parceiro,
+            putBody: partnerPayload
+          });
         }}
       >
         {({
@@ -184,9 +213,24 @@ const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
                   />
                 </div>
               </div>
-              <Button degrade color="secondary" radius="rounded">
-                Atualizar
-              </Button>
+
+              <div className="lineElementsWrapper buttonsWrapper">
+                <ButtonDefault
+                  color="transparent"
+                  type="button"
+                  onClick={() => onSubmit()}
+                  className="button"
+                >
+                  Cancelar
+                </ButtonDefault>
+                <ButtonDefault
+                  color="darkButton"
+                  className="button"
+                  type="submit"
+                >
+                  {modalOpen === 'publicar' ? 'Adicionar' : 'Atualizar'}
+                </ButtonDefault>
+              </div>
             </div>
           </Form>
         )}

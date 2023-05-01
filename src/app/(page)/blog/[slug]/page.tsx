@@ -46,7 +46,10 @@ const BlogPostPage = () => {
               <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
               <span className="post-date">
                 Postado em{' '}
-                {moment(allPosts?.result[0]?.data).format('DD [de] MMMM')} por{' '}
+                {moment(allPosts?.result[0]?.data?.split('T')[0]).format(
+                  'DD [de] MMMM'
+                )}{' '}
+                por{' '}
                 <Link
                   href={{
                     pathname: `/blog`,
