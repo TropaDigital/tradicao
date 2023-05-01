@@ -2,7 +2,7 @@
 import { IPartnerInitialValues } from '@/app/(page)/seja-um-parceiro/types';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { TextAreaDefault } from '@/components/UI/Inputs/TextAreaDefault';
-import { useGetAllParceiros } from '@/services/seja-um-parceiro/GET/useGetAllParceiros';
+import { SelectDefault } from '../../inputs/SelectDefault';
 
 // Bibliotecas
 import { Form, Formik } from 'formik';
@@ -10,8 +10,39 @@ import { Form, Formik } from 'formik';
 // Styles
 import * as S from '../styles';
 import { IForm } from '../types';
+import Button from '@/components/UI/Button';
 
 const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
+  const allStates = [
+    { uf: 'AC', nome: 'Acre' },
+    { uf: 'AL', nome: 'Alagoas' },
+    { uf: 'AP', nome: 'Amapá' },
+    { uf: 'AM', nome: 'Amazonas' },
+    { uf: 'BA', nome: 'Bahia' },
+    { uf: 'CE', nome: 'Ceará' },
+    { uf: 'DF', nome: 'Distrito Federal' },
+    { uf: 'ES', nome: 'Espirito Santo' },
+    { uf: 'GO', nome: 'Goiás' },
+    { uf: 'MA', nome: 'Maranhão' },
+    { uf: 'MS', nome: 'Mato Grosso do Sul' },
+    { uf: 'MT', nome: 'Mato Grosso' },
+    { uf: 'MG', nome: 'Minas Gerais' },
+    { uf: 'PA', nome: 'Pará' },
+    { uf: 'PB', nome: 'Paraíba' },
+    { uf: 'PR', nome: 'Paraná' },
+    { uf: 'PE', nome: 'Pernambuco' },
+    { uf: 'PI', nome: 'Piauí' },
+    { uf: 'RJ', nome: 'Rio de Janeiro' },
+    { uf: 'RN', nome: 'Rio Grande do Norte' },
+    { uf: 'RS', nome: 'Rio Grande do Sul' },
+    { uf: 'RO', nome: 'Rondônia' },
+    { uf: 'RR', nome: 'Roraima' },
+    { uf: 'SC', nome: 'Santa Catarina' },
+    { uf: 'SP', nome: 'São Paulo' },
+    { uf: 'SE', nome: 'Sergipe' },
+    { uf: 'TO', nome: 'Tocantins' }
+  ];
+
   return (
     <S.Container>
       <Formik
@@ -84,12 +115,78 @@ const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
                 />
               </div>
 
-              <TextAreaDefault
-                label="Descrição da Empresa"
-                value={values?.campo_aberto}
-                onChange={handleChange}
-                error={touched?.campo_aberto && errors?.campo_aberto}
-              />
+              <div className="inputsProductWrapper">
+                <TextAreaDefault
+                  label="Descrição da Empresa"
+                  value={values?.campo_aberto}
+                  onChange={handleChange}
+                  error={touched?.campo_aberto && errors?.campo_aberto}
+                />
+              </div>
+
+              <div className="lineElementsWrapper">
+                <InputDefault
+                  label="CEP"
+                  onChange={handleChange}
+                  value={values?.cep}
+                  error={touched?.cep && errors?.cep}
+                />
+
+                <SelectDefault
+                  label="Estado"
+                  value={values?.estado}
+                  onChange={handleChange}
+                  error={touched?.estado && errors?.estado}
+                >
+                  {allStates?.map((estado) => (
+                    <option value={estado?.uf}>{estado?.nome}</option>
+                  ))}
+                </SelectDefault>
+              </div>
+
+              <div className="lineElementsWrapper">
+                <InputDefault
+                  label="Cidade"
+                  value={values?.cidade}
+                  onChange={handleChange}
+                  error={touched?.cidade && errors?.cidade}
+                />
+
+                <InputDefault
+                  label="Bairro"
+                  value={values?.bairro}
+                  onChange={handleChange}
+                  error={touched?.bairro && errors?.bairro}
+                />
+              </div>
+
+              <div className="lineElementsWrapper">
+                <InputDefault
+                  label="Logradouro"
+                  value={values?.logradouro}
+                  onChange={handleChange}
+                  error={touched?.logradouro && errors?.logradouro}
+                />
+
+                <div className="lineElementsWrapper">
+                  <InputDefault
+                    label="Número"
+                    value={values?.numero}
+                    onChange={handleChange}
+                    error={touched?.numero && errors?.numero}
+                  />
+
+                  <InputDefault
+                    label="Complemento"
+                    value={values?.complemento}
+                    onChange={handleChange}
+                    error={touched?.complemento && errors?.complemento}
+                  />
+                </div>
+              </div>
+              <Button degrade color="secondary" radius="rounded">
+                Atualizar
+              </Button>
             </div>
           </Form>
         )}
