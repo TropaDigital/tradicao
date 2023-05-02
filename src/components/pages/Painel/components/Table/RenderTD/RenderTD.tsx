@@ -17,9 +17,12 @@ import { IRenderTD } from './types';
 // Utils
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
 import { formatCurrency } from '@/utils/formatCurrency';
+import { usePathname } from 'next/navigation';
 
 export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   const [miniModal, setMiniModal] = useState<boolean>(false);
+
+  const pathName = usePathname();
 
   const labelKey: string = head.key;
 
@@ -38,7 +41,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           }}
         >
           <MenuIcon />
-          {miniModal && (
+          {miniModal && !pathName?.includes('blog') && (
             <MiniModal
               onClick={(modalType) => {
                 onClickOptions(modalType, item);
@@ -50,6 +53,33 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
                 {
                   label: 'Editar',
                   value: 'editar',
+                  icon: <PencilIcon />
+                },
+                {
+                  label: 'Excluir',
+                  value: 'excluir',
+                  icon: <CloseIcon />
+                }
+              ]}
+            />
+          )}
+          {miniModal && pathName?.includes('blog') && (
+            <MiniModal
+              onClick={(modalType) => {
+                onClickOptions(modalType, item);
+              }}
+              closeModal={() => {
+                setMiniModal(false);
+              }}
+              options={[
+                {
+                  label: 'Editar',
+                  value: 'editar',
+                  icon: <PencilIcon />
+                },
+                {
+                  label: 'Comentários',
+                  value: 'comentarios',
                   icon: <PencilIcon />
                 },
                 {

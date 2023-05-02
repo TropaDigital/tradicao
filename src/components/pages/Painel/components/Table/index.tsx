@@ -187,6 +187,10 @@ export default function Table({ title, data, search, header }: ITableProps) {
             pathname?.includes('assembleias') &&
             !pathname?.includes('visualizar') &&
             sendItemThroughPage('assembleias/visualizar-assembleia')}
+
+          {modalOpen === 'comentarios' &&
+            pathname?.includes('blog') &&
+            sendItemThroughPage('blog/postagem/comentarios')}
         </>
 
         {modalOpen === 'excluir' && (
