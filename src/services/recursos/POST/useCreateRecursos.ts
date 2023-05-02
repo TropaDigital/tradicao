@@ -7,11 +7,11 @@ export const useCreateRecursos = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (formData: FormData) => {
+    async (urlPlanilha: string) => {
       let response = toast.promise(
         async () => {
           let response: AxiosResponse = await RecursosClass.createRecursos(
-            formData
+            urlPlanilha
           );
           return response;
         },
@@ -28,7 +28,6 @@ export const useCreateRecursos = () => {
       return response;
     },
     {
-      retry: true,
       onSuccess: () => {
         queryClient.invalidateQueries('allRecursos');
       }

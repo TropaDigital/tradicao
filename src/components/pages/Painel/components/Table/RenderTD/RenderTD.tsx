@@ -16,6 +16,7 @@ import { IRenderTD } from './types';
 
 // Utils
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
   const [miniModal, setMiniModal] = useState<boolean>(false);
@@ -66,11 +67,10 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           {item?.status?.toLowerCase() === 'ativo' ? 'Ativo' : 'Inativo'}
         </span>
       )}
-      {head.type === 'string' && head.key !== 'pessoa' && (
-        <span>{item[labelKey] as string}</span>
-      )}
-      {head.type === 'string' && head.key === 'pessoa' && (
-        <span>{formatCnpjAndCpf(item[labelKey])}</span>
+      {head.type === 'string' && <span>{item[labelKey] as string}</span>}
+      {head.type === 'cpf' && <span>{formatCnpjAndCpf(item[labelKey])}</span>}
+      {head.type === 'currency' && (
+        <span>{formatCurrency(parseInt(item[labelKey]))}</span>
       )}
       {head.type === 'longText' && (
         <span className="longText">{item[labelKey] as string}</span>

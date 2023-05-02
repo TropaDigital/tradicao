@@ -20,14 +20,9 @@ const SimulacaoPage = () => {
       key: 'nome'
     },
     {
-      type: 'string',
+      type: 'cpf',
       label: 'CPF',
       key: 'cpf'
-    },
-    {
-      type: 'string',
-      label: 'Email',
-      key: 'email'
     },
     {
       type: 'string',
@@ -37,17 +32,17 @@ const SimulacaoPage = () => {
     {
       type: 'string',
       label: 'Conquista',
-      key: 'tipoDeConsorcio'
+      key: 'tipo_consorcio'
     },
     {
-      type: 'string',
+      type: 'currency',
       label: 'Valor',
-      key: 'valorDoBem'
+      key: 'valor_bem'
     },
     {
       type: 'string',
       label: 'Tipo de Plano',
-      key: 'tipoDePlano'
+      key: 'tipo_simulacao'
     },
     {
       type: 'options',

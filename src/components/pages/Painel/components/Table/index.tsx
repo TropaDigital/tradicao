@@ -1,12 +1,12 @@
 'use client';
 
-// Librarys
-
+// Libraries
 import React, { useEffect, useState } from 'react';
+
+// Next
 import { usePathname, useRouter } from 'next/navigation';
 
 // Components
-
 import ButtonDefault from '../ButtonDefault';
 import FormContempladoAssembleia from '../forms/FormContempladoAssembleia';
 import FormContemplados from '../forms/FormContemplados';
@@ -21,6 +21,7 @@ import RenderTD from './RenderTD/RenderTD';
 import { Container, ModalDeleteProduct } from './styles';
 import { ITableProps } from './types';
 import FormParceiros from '../forms/FormParceiros';
+import FormSimulacao from '../forms/FormSimulacao';
 
 // Services
 import { useDeleteAssembleia } from '@/services/assembleia/DELETE/useDeleteAssembleia';
@@ -33,6 +34,8 @@ import { useDeleteCurriculo } from '@/services/trabalhe-conosco/DELETE/useDelete
 import { useDeleteUnit } from '@/services/unidades/DELETE/useDeleteUnit';
 import { useDeleteAssembleiaContemplado } from '@/services/assembleia-contemplado/DELETE/useDeleteAssembleiaContemplado';
 import { useDeleteParceiro } from '@/services/seja-um-parceiro/DELETE/useDeleteParceiro';
+import { useDeleteGrupo } from '@/services/grupos-encerrados/DELETE/useDeleteGrupo';
+import { useDeleteSimulacao } from '@/services/simulacao/DELETE/useDeleteSimulacao';
 
 // Types
 import { AxiosResponse } from 'axios';
@@ -41,8 +44,6 @@ import { UseMutateAsyncFunction } from 'react-query';
 
 // Icons
 import { AlertIcon } from '@/assets/icons';
-import { useDeleteSimulacao } from '@/services/simulacao/DELETE/useDeleteSimulacao';
-import { useDeleteGrupo } from '@/services/grupos-encerrados/DELETE/useDeleteGrupo';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
@@ -153,7 +154,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
     curriculos: FormCurriculo,
     'visualizar-assembleia': FormContempladoAssembleia,
     'grupos-encerrados': FormGrupos,
-    parceiros: FormParceiros
+    parceiros: FormParceiros,
+    simulacao: FormSimulacao
   };
 
   const FormComponent = FORM_MAP[currentPage];

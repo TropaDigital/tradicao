@@ -13,8 +13,48 @@ import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import OurContemplated from '@/components/sections/OurContemplated';
 import TruckConsortium from '@/components/sections/TruckConsortium';
+import PropertiesConsortium from '@/components/shared/PropertiesConsortium';
 
 export default function ConsortiumTrucks() {
+  const propertiesArray = [
+    {
+      id: 1,
+      title: '0Km ou com até 12 anos de uso',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de um edifício'
+    },
+    {
+      id: 2,
+      title: 'Caminhões',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de uma casa pequena na mão de um casal'
+    },
+    {
+      id: 3,
+      title: 'Micro-ônibus',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de uma casa pequena na mão de um casal'
+    },
+    {
+      id: 4,
+      title: 'Carretas',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de uma casa pequena na mão de um casal'
+    },
+    {
+      id: 5,
+      title: 'Ônibus',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de uma casa pequena na mão de um casal'
+    },
+    {
+      id: 6,
+      title: 'Motorhomes',
+      image: 'https://via.placeholder.com/150',
+      altImg: 'Imagem de uma casa pequena na mão de um casal'
+    }
+  ];
+
   return (
     <>
       <S.ContainerTop data-aos="fade-up">
@@ -34,6 +74,7 @@ export default function ConsortiumTrucks() {
       </S.ContainerTop>
 
       <CenterWrapper>
+        <PropertiesConsortium data={propertiesArray} />
         <TruckConsortium />
       </CenterWrapper>
 

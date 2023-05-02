@@ -6,10 +6,9 @@ import ButtonDefault from '../../ButtonDefault';
 import * as S from '../styles';
 import { IForm } from '../types';
 import { InputWrapper } from './styles';
-import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useUpdateGrupo } from '@/services/grupos-encerrados/PUT/useUpdateGrupo';
-import { formatDate, formatISOToDate, toISODate } from '@/utils/masks';
+import { formatDate } from '@/utils/masks';
 import { validatePlanilhaExtension } from '@/utils/validatePlanilhaExtension';
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 
@@ -43,11 +42,7 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
           planilha: {} as File,
           grupo: actualItem?.grupo ?? '',
           data_encerramento:
-            formatDate(actualItem?.primeiro_rateio?.split('T')[0]) ?? '',
-          primeiro_rateio:
-            formatDate(actualItem?.primeiro_rateio?.split('T')[0]) ?? '',
-          ultimo_rateio:
-            formatDate(actualItem?.ultimo_rateio?.split('T')[0]) ?? ''
+            formatDate(actualItem?.primeiro_rateio?.split('T')[0]) ?? ''
         }}
         onSubmit={(values) => {
           if (planilhaPost) {
@@ -58,9 +53,7 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
             updateGrupo({
               putBody: {
                 grupo: values?.grupo,
-                data_encerramento: values?.data_encerramento,
-                primeiro_rateio: values?.primeiro_rateio,
-                ultimo_rateio: values?.ultimo_rateio
+                data_encerramento: values?.data_encerramento
               },
               id: actualItem?.id_grupo
             });
@@ -138,32 +131,6 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       onChange={handleChange}
                       name="data_encerramento"
                     />
-
-                    <div className="lineElementsWrapper">
-                      <InputDefault
-                        label="1° Rateio"
-                        value={values?.primeiro_rateio?.replace(
-                          /(\d{2})(\d{2})(\d{4})/,
-                          '$1/$2/$3'
-                        )}
-                        maxLength={10}
-                        minLength={10}
-                        onChange={handleChange}
-                        name="primeiro_rateio"
-                      />
-
-                      <InputDefault
-                        label="Último Rateio"
-                        value={values?.ultimo_rateio?.replace(
-                          /(\d{2})(\d{2})(\d{4})/,
-                          '$1/$2/$3'
-                        )}
-                        onChange={handleChange}
-                        maxLength={10}
-                        minLength={10}
-                        name="ultimo_rateio"
-                      />
-                    </div>
 
                     <div
                       className="lineElementsWrapper buttonsWrapper"

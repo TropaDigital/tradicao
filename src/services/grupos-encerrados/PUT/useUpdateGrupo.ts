@@ -8,8 +8,6 @@ interface IGrupoPost {
   putBody: {
     grupo: string;
     data_encerramento: string;
-    primeiro_rateio: string;
-    ultimo_rateio: string;
   };
   id: number;
 }

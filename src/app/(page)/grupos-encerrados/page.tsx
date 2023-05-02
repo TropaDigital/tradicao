@@ -58,7 +58,9 @@ export default function ClosedGroups() {
               label="Buscar"
               placeholder="Digite o número do seu grupo"
               value={searchGroups}
-              onChange={(e: any) => setSearchGroups(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearchGroups(e.target.value)
+              }
             />
           </S.SearchField>
 
@@ -67,17 +69,17 @@ export default function ClosedGroups() {
               <tr>
                 <td className="first">Grupo</td>
                 <td>Data encerramento</td>
-                <td>1º Rateio</td>
-                <td>Ultimo Rateio</td>
               </tr>
             </S.THead>
             <tbody>
               {allGrupos?.result.map((row: IGroupsProps) => (
                 <tr key={row.grupo}>
                   <td>{row.grupo}</td>
-                  <td>{moment(row.data_encerramento).format('DD/MM/YYYY')}</td>
-                  <td>{moment(row.primeiro_rateio).format('DD/MM/YYYY')}</td>
-                  <td>{moment(row.ultimo_rateio).format('DD/MM/YYYY')}</td>
+                  <td>
+                    {moment(row.data_encerramento?.split('T')[0]).format(
+                      'DD/MM/YYYY'
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
