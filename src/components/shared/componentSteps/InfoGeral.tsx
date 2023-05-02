@@ -67,19 +67,17 @@ export default function InfoGeral({
       </ContentSimulation>
 
       <ContentSimulation>
-        {
-          simulatorPlan === 'parcela' &&
-            <legend>
-              <h2>Escolha o valor da parcela</h2>
-            </legend>
-        }
+        {simulatorPlan === 'parcela' && (
+          <legend>
+            <h2>Escolha o valor da parcela</h2>
+          </legend>
+        )}
 
-        {
-          simulatorPlan === 'credito' &&
+        {simulatorPlan === 'credito' && (
           <legend>
             <h2>Escolha o valor do crédito</h2>
           </legend>
-        }
+        )}
         <strong>
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
@@ -87,86 +85,70 @@ export default function InfoGeral({
           }).format(defaultValue ?? 0)}
         </strong>
 
-        {
-          selectedType === 'veiculo' &&
-          simulatorPlan === 'parcela' &&
+        {selectedType === 'veiculo' && simulatorPlan === 'parcela' && (
           <InputRange
-            defaultValue={defaultValue !== 700 ? 700 : defaultValue}
-            maxValue={1000}
-            minValue={400}
+            defaultValue={defaultValue !== 1366.58 ? 1366.58 : defaultValue}
+            maxValue={2326.43}
+            minValue={406.73}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'veiculo' &&
-          simulatorPlan === 'credito' &&
+        )}
+        {selectedType === 'veiculo' && simulatorPlan === 'credito' && (
           <InputRange
-            defaultValue={defaultValue !== 210000 ? 210000 : defaultValue}
-            maxValue={400000}
-            minValue={20000}
+            defaultValue={defaultValue !== 71984.96 ? 71984.96 : defaultValue}
+            maxValue={118969.93}
+            minValue={25000}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'imovel' &&
-          simulatorPlan === 'parcela' &&
+        )}
+        {selectedType === 'imovel' && simulatorPlan === 'parcela' && (
           <InputRange
-            defaultValue={defaultValue !== 1750 ? 1750 : defaultValue}
-            maxValue={3000}
-            minValue={500}
+            defaultValue={defaultValue !== 1313.84 ? 1313.84 : defaultValue}
+            maxValue={1998.93}
+            minValue={628.75}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'imovel' &&
-          simulatorPlan === 'credito' &&
+        )}
+        {selectedType === 'imovel' && simulatorPlan === 'credito' && (
           <InputRange
-            defaultValue={defaultValue !== 166000 ? 166000 : defaultValue}
-            maxValue={276000}
-            minValue={56000}
+            defaultValue={defaultValue !== 155954.88 ? 155954.88 : defaultValue}
+            maxValue={239930.59}
+            minValue={71979.18}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'servicos' &&
-          simulatorPlan === 'parcela' &&
+        )}
+        {selectedType === 'servicos' && simulatorPlan === 'parcela' && (
           <InputRange
-            defaultValue={defaultValue !== 500 ? 500 : defaultValue}
-            maxValue={800}
-            minValue={200}
+            defaultValue={defaultValue !== 382.92 ? 382.92 : defaultValue}
+            maxValue={510.56}
+            minValue={255.28}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'servicos' &&
-          simulatorPlan === 'credito' &&
+        )}
+        {selectedType === 'servicos' && simulatorPlan === 'credito' && (
           <InputRange
-            defaultValue={defaultValue !== 10000 ? 10000 : defaultValue}
+            defaultValue={defaultValue !== 15000 ? 15000 : defaultValue}
             maxValue={20000}
-            minValue={0}
+            minValue={10000}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'caminhao' &&
-          simulatorPlan === 'parcela' &&
+        )}
+        {selectedType === 'caminhao' && simulatorPlan === 'parcela' && (
           <InputRange
-            defaultValue={defaultValue !== 3850 ? 3850 : defaultValue}
-            maxValue={6700}
-            minValue={1000}
+            defaultValue={defaultValue !== 5236.25 ? 5236.25 : defaultValue}
+            maxValue={6320.48}
+            minValue={4152.02}
             handleOnChange={handleOnChangeValue}
           />
-        }
-        {
-          selectedType === 'caminhao' &&
-          simulatorPlan === 'credito' &&
+        )}
+        {selectedType === 'caminhao' && simulatorPlan === 'credito' && (
           <InputRange
-            defaultValue={defaultValue !== 170000 ? 170000 : defaultValue}
-            maxValue={340000}
-            minValue={0}
+            defaultValue={defaultValue !== 303373.32 ? 303373.32 : defaultValue}
+            maxValue={404497.76}
+            minValue={202248.88}
             handleOnChange={handleOnChangeValue}
           />
-        }
+        )}
       </ContentSimulation>
     </div>
   );

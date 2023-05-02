@@ -3,9 +3,9 @@ import { AxiosResponse } from 'axios';
 import API from '../api';
 
 class ParceiroClass {
-  async getParceiro() {
+  async getParceiro(query?: string) {
     try {
-      const response: AxiosResponse = await API.get(`/sejaUmParceiro`);
+      const response: AxiosResponse = await API.get(`/sejaUmParceiro${query}`);
       return response?.data;
     } catch (err) {
       console.log(err);

@@ -7,7 +7,7 @@ export const useCreateAssembleia = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (formData: FormData) => {
+    async (formData: any) => {
       let response = toast
         .promise(
           async () => {
@@ -24,7 +24,7 @@ export const useCreateAssembleia = () => {
           }
         )
         .catch((err) => {
-          toast.error(err?.response?.data?.result[0]?.erro);
+          toast.error(err?.response?.data?.result[0]?.error);
         });
       return response;
     },

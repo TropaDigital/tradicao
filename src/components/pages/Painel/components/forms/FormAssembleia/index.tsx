@@ -23,7 +23,10 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const { createAssembleia } = useCreateAssembleia();
   const { postFile } = usePostFile();
 
-  async function handleSetPlanilha(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleSetPlanilha(
+    e: React.ChangeEvent<HTMLInputElement>,
+    setFieldValue: any
+  ) {
     if (e?.target?.files) {
       setPlanilhaError('');
 
@@ -31,6 +34,7 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
       formData.set('file', e?.target?.files[0]);
 
       setPlanilhaUrl(await postFile(formData));
+      setFieldValue('url_planilha', await postFile(formData));
 
       setPlanilhaPost(e?.target?.files[0]);
     }
@@ -47,33 +51,21 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
     <S.Container>
       <Formik
         initialValues={{
-          planilha: {} as File,
           tipo: '',
           titulo: '',
-          data_assembleia: '',
+          data: '',
           url_planilha: '',
           url_imagem: ''
         }}
         validationSchema={assembleiaSchema}
         validate={({}) => {
-          if (!planilhaUrl && !planilhaPost) {
+          if (!planilhaUrl) {
             setPlanilhaError('É necessário enviar uma planilha!');
             return;
           }
         }}
-        onSubmit={async (values) => {
-          if (planilhaPost) {
-            const formData = new FormData();
-
-            formData?.append('planilha', planilhaPost);
-            formData?.append('tipo', values?.tipo);
-            formData?.append('titulo', values?.titulo);
-            formData?.append('url_planilha', planilhaUrl ? planilhaUrl : '');
-            formData?.append('url_imagem', values?.url_imagem);
-            formData?.append('data', values?.data_assembleia);
-
-            createAssembleia(formData);
-          }
+        onSubmit={(values) => {
+          createAssembleia(values);
 
           onSubmit();
         }}
@@ -148,11 +140,11 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                 <InputDefault
                   label="Data de Assembleia *"
                   placeholder="18/07/2021"
-                  name="data_assembleia"
+                  name="data"
                   type="date"
-                  value={values?.data_assembleia}
+                  value={values?.data}
                   onChange={handleChange}
-                  error={touched?.data_assembleia && errors?.data_assembleia}
+                  error={touched?.data && errors?.data}
                 />
 
                 <InputWrapper>
@@ -162,7 +154,7 @@ const FormAssembleia = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                       placeholder="Selecione o arquivo"
                       onChange={(e) => {
                         if (validatePlanilhaExtension(e)) {
-                          handleSetPlanilha(e);
+                          handleSetPlanilha(e, setFieldValue);
                           return;
                         }
                         setPlanilhaError('Formato de arquivo inválido!');

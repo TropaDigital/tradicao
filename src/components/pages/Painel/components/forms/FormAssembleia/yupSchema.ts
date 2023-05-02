@@ -10,5 +10,5 @@ export const assembleiaSchema = yup?.object()?.shape({
       (values) => values !== ''
     )
     .required('O tipo é obrigatório!'),
-  data_assembleia: yup?.date()?.required('A data é obrigatória!')
+  data: yup?.date()?.required('A data é obrigatória!')
 });

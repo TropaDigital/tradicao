@@ -14,6 +14,7 @@ import { SectionSimulatorForm, TitleSimulator } from './styles';
 import { usePathname } from 'next/navigation';
 import { validateCnpj } from '@/utils/validateCnpj';
 import { validateCpf } from '@/utils/validateCpf';
+import { useCreateSimulacao } from '@/services/simulacao/POST/useCreateSimulacao';
 
 type HandleOnChange = (
   event:
@@ -55,7 +56,7 @@ export default function SimulationForm() {
   const [formData, setFormData] = useState({
     conquest: 'veiculo',
     typePlan: 'parcela',
-    value: 700,
+    value: 1366.58,
     name: '',
     email: '',
     phone: '',
@@ -64,6 +65,8 @@ export default function SimulationForm() {
     cpf: '',
     regulation: false
   } as PlanProps);
+
+  const { createSimulacao } = useCreateSimulacao();
 
   const handleOnChange: HandleOnChange = (event) => {
     const { name, value } = event.target;
@@ -75,7 +78,7 @@ export default function SimulationForm() {
     setFormData({ ...formData, [name]: checked });
   };
 
-  // console.log('FORMDATA =>', formData);
+  console.log('FORMDATA =>', formData);
 
   const newComponents = [
     {
@@ -243,6 +246,17 @@ export default function SimulationForm() {
         throw setErrorInput('email', 'Email inválido!');
       } else {
         setErrorInput('email', undefined);
+
+        createSimulacao({
+          cpf: formData?.cpf,
+          celular: formData?.phone,
+          cep: formData?.cep,
+          email: formData?.email,
+          nome: formData?.name,
+          valor_bem: String(formData?.value),
+          tipo_consorcio: formData?.conquest,
+          tipo_simulacao: formData?.typePlan
+        });
       }
 
       if (phone === '') {
@@ -292,35 +306,35 @@ export default function SimulationForm() {
 
   useEffect(() => {
     if (formData.conquest === 'veiculo' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 700 });
+      setFormData({ ...formData, ['value']: 1366.58 });
     }
 
     if (formData.conquest === 'veiculo' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 210000 });
+      setFormData({ ...formData, ['value']: 71984.96 });
     }
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 1750 });
+      setFormData({ ...formData, ['value']: 1313.84 });
     }
 
     if (formData.conquest === 'imovel' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 166000 });
+      setFormData({ ...formData, ['value']: 155954.88 });
     }
 
     if (formData.conquest === 'servicos' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 500 });
+      setFormData({ ...formData, ['value']: 382.92 });
     }
 
     if (formData.conquest === 'servicos' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 10000 });
+      setFormData({ ...formData, ['value']: 15000 });
     }
 
     if (formData.conquest === 'caminhao' && formData.typePlan === 'parcela') {
-      setFormData({ ...formData, ['value']: 3850 });
+      setFormData({ ...formData, ['value']: 5236.25 });
     }
 
     if (formData.conquest === 'caminhao' && formData.typePlan === 'credito') {
-      setFormData({ ...formData, ['value']: 170000 });
+      setFormData({ ...formData, ['value']: 303373.32 });
     }
   }, [formData.typePlan, formData.conquest]);
 
@@ -377,7 +391,12 @@ export default function SimulationForm() {
               </Button>
 
               {!subIsLastStep ? (
-                <Button radius="rounded" degrade onClick={handleOnNextStep}>
+                <Button
+                  radius="rounded"
+                  type="button"
+                  degrade
+                  onClick={handleOnNextStep}
+                >
                   Avançar
                 </Button>
               ) : (
@@ -398,6 +417,7 @@ export default function SimulationForm() {
           <Button
             radius="rounded"
             degrade
+            type="button"
             onClick={() => setSimulator(!isSimulator)}
             className="simulateButton"
           >

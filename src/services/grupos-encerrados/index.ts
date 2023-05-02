@@ -16,10 +16,10 @@ class GrupoEncerradoClass {
     return response?.data;
   }
 
-  async createGrupo(formData: FormData) {
+  async createGrupo(formData: string) {
     const response: AxiosResponse = await API.post(
       `/grupos-encerrados-upload`,
-      formData
+      { url_planilha: formData }
     );
     return response?.data;
   }

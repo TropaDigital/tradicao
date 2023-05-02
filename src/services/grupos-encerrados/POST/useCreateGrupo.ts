@@ -7,7 +7,7 @@ export const useCreateGrupo = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (formData: FormData) => {
+    async (formData: string) => {
       let response = toast
         .promise(
           async () => {

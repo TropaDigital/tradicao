@@ -83,6 +83,11 @@ export default function ClosedGroups() {
             </tbody>
           </S.Table>
 
+          <S.KnowMore>
+            Para maiores informações entre em contato pelo Whatsapp: (11)
+            2928-4855
+          </S.KnowMore>
+
           <PaginationData
             data={allGrupos}
             page={actualPage}

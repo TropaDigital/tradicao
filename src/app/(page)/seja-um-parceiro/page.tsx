@@ -121,14 +121,12 @@ const PartnerPage = () => {
   const SLIDER_SETTINGS = {
     dots: false,
     infinite: true,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    swipeToSlide: true,
-    cssEase: 'linear',
     responsive: [
       {
         breakpoint: 1100,
@@ -229,7 +227,7 @@ const PartnerPage = () => {
             onSubmit={(values) => {
               const partnerPayload: IPartnerPayload = {
                 nome_da_empresa: values?.nome_da_empresa,
-                cnpj: values?.cnpj,
+                cnpj: onlyNumbersMask(values?.cnpj),
                 ramo_de_atividade: values?.ramo_de_atividade,
                 nome_de_contato: values?.nome_de_contato,
                 email_de_contato: values?.email_de_contato,
