@@ -168,9 +168,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="Nome do contemplado"
                   name="nome"
                   value={values?.nome}
-                  onChange={(e) => {
-                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
-                  }}
+                  onChange={handleChange}
                   error={touched?.nome && errors?.nome}
                 />
 

@@ -73,9 +73,7 @@ const FormRelatories = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   placeholder="Título da Demonstração"
                   name="titulo"
                   value={values?.titulo}
-                  onChange={(e) => {
-                    setFieldValue('titulo', onlyLetterMask(e?.target?.value));
-                  }}
+                  onChange={handleChange}
                   error={touched?.titulo && errors?.titulo}
                 />
 
