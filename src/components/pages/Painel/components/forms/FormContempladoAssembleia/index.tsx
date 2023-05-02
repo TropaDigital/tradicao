@@ -73,9 +73,7 @@ const FormContempladoAssembleia = ({
                   name="nome"
                   value={values?.nome}
                   type="text"
-                  onChange={(e) => {
-                    setFieldValue('nome', onlyLetterMask(e?.target?.value));
-                  }}
+                  onChange={handleChange}
                   error={touched?.nome && errors?.nome}
                 />
 
