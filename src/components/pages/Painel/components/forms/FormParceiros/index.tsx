@@ -216,19 +216,12 @@ const FormParceiros = ({ actualItem, modalOpen, onSubmit }: IForm) => {
 
               <div className="lineElementsWrapper buttonsWrapper">
                 <ButtonDefault
-                  color="transparent"
+                  color="darkButton"
                   type="button"
                   onClick={() => onSubmit()}
                   className="button"
                 >
-                  Cancelar
-                </ButtonDefault>
-                <ButtonDefault
-                  color="darkButton"
-                  className="button"
-                  type="submit"
-                >
-                  {modalOpen === 'publicar' ? 'Adicionar' : 'Atualizar'}
+                  Voltar
                 </ButtonDefault>
               </div>
             </div>
