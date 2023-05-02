@@ -65,6 +65,7 @@ export default function SelectSideBar({
     Parceiros: '&#129309;',
     Relatórios: '&#128202;',
     Representantes: '&#129333;',
+    ['Simulação']: '&#9997;',
     Unidades: '&#127970;'
   };
 

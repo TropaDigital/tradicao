@@ -41,6 +41,8 @@ import { UseMutateAsyncFunction } from 'react-query';
 
 // Icons
 import { AlertIcon } from '@/assets/icons';
+import { useDeleteSimulacao } from '@/services/simulacao/DELETE/useDeleteSimulacao';
+import { useDeleteGrupo } from '@/services/grupos-encerrados/DELETE/useDeleteGrupo';
 
 export default function Table({ title, data, search, header }: ITableProps) {
   const [dataInternal, setDataInternal] = useState<any>();
@@ -58,6 +60,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
   const { deleteAssembleia } = useDeleteAssembleia();
   const { deleteAssembleiaContemplado } = useDeleteAssembleiaContemplado();
   const { deleteParceiro } = useDeleteParceiro();
+  const { deleteSimulacao } = useDeleteSimulacao();
+  const { deleteGrupo } = useDeleteGrupo();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -120,7 +124,9 @@ export default function Table({ title, data, search, header }: ITableProps) {
     blog: deletePost,
     'visualizar-assembleia': deleteAssembleiaContemplado,
     assembleias: deleteAssembleia,
-    parceiros: deleteParceiro
+    parceiros: deleteParceiro,
+    simulacao: deleteSimulacao,
+    'grupos-encerrados': deleteGrupo
   };
 
   const removeItem = (itemToDelete: { itemID: number }) => {

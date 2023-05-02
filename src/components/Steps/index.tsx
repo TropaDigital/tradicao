@@ -29,7 +29,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           onClick={() => handleOnClick('imovel', 2)}
         >
           <MovelIcon />
-          <span className="option-text">Imóvel</span>
+          <span className="option-text">Imóveis</span>
         </button>
 
         <div className="stepButtonInner" />

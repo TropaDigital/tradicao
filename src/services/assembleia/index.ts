@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
 import API from '../api';
 
 class AssembleiaClass {
@@ -12,12 +13,17 @@ class AssembleiaClass {
     return response?.data;
   }
 
-  async createAssembleia(formData: FormData) {
-    const response: AxiosResponse = await API.post(
-      `/assembleia-upload`,
-      formData
-    );
-    return response?.data;
+  async createAssembleia(formData: any) {
+    try {
+      const response: AxiosResponse = await API.post(
+        `/assembleia-upload`,
+        formData
+      );
+      return response?.data;
+    } catch (err: any) {
+      toast.error(err?.response?.data?.result[0]?.error);
+      throw 'Error';
+    }
   }
 
   async updateAssembleia(id: number, assembleiaFormData: FormData) {

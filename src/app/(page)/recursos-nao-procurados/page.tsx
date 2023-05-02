@@ -58,7 +58,7 @@ export default function NotReceived() {
 
           <S.SubtitleMid>
             Caso tenha alguma duvida, entre em contato pelo telefone 4003-5090
-            ou pelo WhatsApp (11) 98917-8189
+            ou pelo WhatsApp (11) 2928-4855
           </S.SubtitleMid>
 
           <S.SearchBar>

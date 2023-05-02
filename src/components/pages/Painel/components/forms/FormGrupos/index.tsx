@@ -11,13 +11,30 @@ import 'moment/locale/pt-br';
 import { useUpdateGrupo } from '@/services/grupos-encerrados/PUT/useUpdateGrupo';
 import { formatDate, formatISOToDate, toISODate } from '@/utils/masks';
 import { validatePlanilhaExtension } from '@/utils/validatePlanilhaExtension';
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 
 const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
   const [planilhaError, setPLanilhaError] = useState<string>();
+  const [planilhaUrl, setPlanilhaUrl] = useState<string>();
 
   const { createGrupo } = useCreateGrupo();
   const { updateGrupo } = useUpdateGrupo();
+  const { postFile } = usePostFile();
+
+  async function handlePanilhaChange(e: any) {
+    if (validatePlanilhaExtension(e) && e?.target?.files) {
+      const formData = new FormData();
+
+      formData?.append('file', e?.target?.files[0]);
+      setPlanilhaPost(e.target.files[0]);
+
+      const urlFile = await postFile(formData);
+      setPlanilhaUrl(urlFile);
+      return;
+    }
+    setPLanilhaError('Formato de arquivo inválido!');
+  }
 
   return (
     <S.Container>
@@ -34,11 +51,7 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
         }}
         onSubmit={(values) => {
           if (planilhaPost) {
-            const formData = new FormData();
-
-            formData?.append('planilha', planilhaPost);
-
-            createGrupo(formData);
+            createGrupo(planilhaUrl as string);
           }
 
           if (!planilhaPost) {
@@ -70,16 +83,7 @@ const FormGrupos = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                         <input
                           type="file"
                           placeholder="Selecione o arquivo"
-                          onChange={(e) => {
-                            if (
-                              validatePlanilhaExtension(e) &&
-                              e?.target?.files
-                            ) {
-                              setPlanilhaPost(e?.target?.files[0]);
-                              return;
-                            }
-                            setPLanilhaError('Formato de arquivo inválido!');
-                          }}
+                          onChange={handlePanilhaChange}
                           accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet"
                         />
                         <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
