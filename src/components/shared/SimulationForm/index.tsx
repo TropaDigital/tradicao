@@ -15,6 +15,8 @@ import { usePathname } from 'next/navigation';
 import { validateCnpj } from '@/utils/validateCnpj';
 import { validateCpf } from '@/utils/validateCpf';
 import { useCreateSimulacao } from '@/services/simulacao/POST/useCreateSimulacao';
+import { useUpdateSimulacao } from '@/services/simulacao/PUT/useUpdateSimulacao';
+import FinalStep from '../componentSteps/finalStep/index';
 
 type HandleOnChange = (
   event:
@@ -65,8 +67,10 @@ export default function SimulationForm() {
     cpf: '',
     regulation: false
   } as PlanProps);
+  const [currentLead, setCurrentLead] = useState<number>();
 
   const { createSimulacao } = useCreateSimulacao();
+  const { updateSimulacao } = useUpdateSimulacao();
 
   const handleOnChange: HandleOnChange = (event) => {
     const { name, value } = event.target;
@@ -110,7 +114,8 @@ export default function SimulationForm() {
           handleInputChange={handleOnChange}
           handleOnChangeCheckbox={handleOnChangeCheckbox}
           error={error}
-        />
+        />,
+        <FinalStep />
       ]
     },
     {
@@ -127,7 +132,8 @@ export default function SimulationForm() {
           handleInputChange={handleOnChange}
           handleOnChangeCheckbox={handleOnChangeCheckbox}
           error={error}
-        />
+        />,
+        <FinalStep />
       ]
     },
     {
@@ -144,7 +150,8 @@ export default function SimulationForm() {
           handleInputChange={handleOnChange}
           handleOnChangeCheckbox={handleOnChangeCheckbox}
           error={error}
-        />
+        />,
+        <FinalStep />
       ]
     },
     {
@@ -161,7 +168,8 @@ export default function SimulationForm() {
           handleInputChange={handleOnChange}
           handleOnChangeCheckbox={handleOnChangeCheckbox}
           error={error}
-        />
+        />,
+        <FinalStep />
       ]
     }
   ];
@@ -224,6 +232,11 @@ export default function SimulationForm() {
     } catch (err: any) {
       console.log('ERROR => ', error);
     }
+
+    updateSimulacao({
+      id: currentLead as number,
+      putBody: { cpf: formData.cpf }
+    });
   };
 
   const handleOnNextStep = () => {
@@ -244,17 +257,6 @@ export default function SimulationForm() {
         throw setErrorInput('email', 'Email inválido!');
       } else {
         setErrorInput('email', undefined);
-
-        createSimulacao({
-          cpf: formData?.cpf,
-          celular: formData?.phone,
-          cep: formData?.cep,
-          email: formData?.email,
-          nome: formData?.name,
-          valor_bem: String(formData?.value),
-          tipo_consorcio: formData?.conquest,
-          tipo_simulacao: formData?.typePlan
-        });
       }
 
       if (phone === '') {
@@ -278,6 +280,17 @@ export default function SimulationForm() {
       } else {
         setErrorInput('terms', undefined);
       }
+
+      createSimulacao({
+        cpf: formData?.cpf,
+        celular: formData?.phone,
+        cep: formData?.cep,
+        email: formData?.email,
+        nome: formData?.name,
+        valor_bem: String(formData?.value),
+        tipo_consorcio: formData?.conquest,
+        tipo_simulacao: formData?.typePlan
+      }).then((data: any) => setCurrentLead(data?.result));
 
       subChangeStep(subCurrentStep + 1);
     } catch (error: any) {
@@ -373,20 +386,22 @@ export default function SimulationForm() {
         {isSimulator && (
           <FieldGroup style={{ flex: '0 1 0' }}>
             <>
-              <Button
-                radius="rounded"
-                degrade
-                type={'button'}
-                onClick={() => {
-                  if (subCurrentStep === 0) {
-                    setSimulator(!isSimulator);
+              {!subIsLastStep && (
+                <Button
+                  radius="rounded"
+                  degrade
+                  type={'button'}
+                  onClick={() => {
+                    if (subCurrentStep === 0) {
+                      setSimulator(!isSimulator);
+                      subChangeStep(subCurrentStep - 1);
+                    }
                     subChangeStep(subCurrentStep - 1);
-                  }
-                  subChangeStep(subCurrentStep - 1);
-                }}
-              >
-                Voltar
-              </Button>
+                  }}
+                >
+                  Voltar
+                </Button>
+              )}
 
               {!subIsLastStep ? (
                 <Button
@@ -400,11 +415,11 @@ export default function SimulationForm() {
               ) : (
                 <Button
                   radius="rounded"
-                  type="submit"
+                  type="button"
                   degrade
-                  onClick={handleOnSaveStep}
+                  onClick={() => setSimulator(!isSimulator)}
                 >
-                  Salvar
+                  Simular novamente
                 </Button>
               )}
             </>
