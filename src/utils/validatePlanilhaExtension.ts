@@ -13,7 +13,5 @@ export function validatePlanilhaExtension(
     (extensionType) => extensionType !== extension
   );
 
-  console.log(isAValidExtension);
-
   return isAValidExtension.includes(false);
 }

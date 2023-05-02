@@ -78,8 +78,6 @@ export default function SimulationForm() {
     setFormData({ ...formData, [name]: checked });
   };
 
-  console.log('FORMDATA =>', formData);
-
   const newComponents = [
     {
       name: 'homeComponents',

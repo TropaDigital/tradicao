@@ -28,7 +28,7 @@ const NotReceivedPanel = () => {
     {
       key: 'pessoa',
       label: 'CPF/CNPJ',
-      type: 'string'
+      type: 'cpf'
     },
     {
       key: '',

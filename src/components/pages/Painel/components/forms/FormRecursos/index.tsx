@@ -5,17 +5,30 @@ import * as S from '../styles';
 import { IForm } from '../types';
 import { InputWrapper } from './styles';
 import { useCreateRecursos } from '@/services/recursos/POST/useCreateRecursos';
+import { usePostFile } from '@/services/arquivos/POST/usePostFile';
 
 const FormRecursos = ({ onSubmit }: IForm) => {
   const [planilhaPost, setPlanilhaPost] = useState<File>();
   const [planilhaError, setPLanilhaError] = useState<string>();
+  const [planilhaUrl, setPlanilhaUrl] = useState<string>();
 
   const { createRecursos } = useCreateRecursos();
+  const { postFile } = usePostFile();
 
   function validatePlanilhaField() {
     if (!planilhaPost) return true;
 
     return false;
+  }
+
+  async function handlePlanilhaChange(e: any) {
+    if (e?.target?.files) {
+      setPlanilhaPost(e?.target?.files[0]);
+
+      const planilhaUrl = await postFile(e?.target?.files[0]);
+
+      setPlanilhaUrl(planilhaUrl);
+    }
   }
 
   return (
@@ -32,17 +45,13 @@ const FormRecursos = ({ onSubmit }: IForm) => {
           }
 
           if (planilhaPost) {
-            const formData = new FormData();
-
-            formData?.append('planilha', planilhaPost);
-
-            createRecursos(formData);
+            createRecursos(planilhaUrl as string);
           }
 
           onSubmit();
         }}
       >
-        {({ handleSubmit, handleChange }) => (
+        {({ handleSubmit }) => (
           <>
             <Form onSubmit={handleSubmit} className="formAddProductWrapper">
               <h2 className="formTitle">Atualizar Recursos</h2>
@@ -53,11 +62,7 @@ const FormRecursos = ({ onSubmit }: IForm) => {
                     <input
                       type="file"
                       placeholder="Selecione o arquivo"
-                      onChange={(e) => {
-                        if (e?.target?.files) {
-                          setPlanilhaPost(e?.target?.files[0]);
-                        }
-                      }}
+                      onChange={handlePlanilhaChange}
                     />
                     <p>{planilhaPost?.name ?? 'Selecione uma planilha'}</p>
                     <button>Buscar</button>

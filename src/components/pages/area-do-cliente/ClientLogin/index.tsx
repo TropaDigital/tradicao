@@ -33,8 +33,6 @@ export default function ClientLogin() {
     const newDTO: any = DTOLogin;
     newDTO[name] = value;
     setDTOLogin({ ...newDTO });
-
-    console.log(newDTO);
   }
 
   const formRef = useRef<HTMLFormElement | null>(null);

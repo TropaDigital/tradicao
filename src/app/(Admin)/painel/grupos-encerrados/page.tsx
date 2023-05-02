@@ -26,16 +26,6 @@ const AssembleiaPage = () => {
       type: 'date'
     },
     {
-      key: 'primeiro_rateio',
-      label: 'Primeiro Rateio',
-      type: 'date'
-    },
-    {
-      key: 'ultimo_rateio',
-      label: 'Último Rateio',
-      type: 'date'
-    },
-    {
       key: '',
       label: '',
       type: 'options'

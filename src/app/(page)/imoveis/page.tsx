@@ -21,16 +21,10 @@ import SimulationForm from '@/components/shared/SimulationForm';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
 import OurContemplated from '@/components/sections/OurContemplated';
-
-interface IRealStateProperties {
-  id: number;
-  image: any;
-  title: string;
-  altImg: string;
-}
+import PropertiesConsortium from '@/components/shared/PropertiesConsortium';
 
 export default function ConsortiumProperties() {
-  const propertiesArray: IRealStateProperties[] = [
+  const propertiesArray = [
     {
       id: 1,
       title: 'Apartamento',
@@ -88,21 +82,7 @@ export default function ConsortiumProperties() {
       </S.ContainerTop>
 
       <CenterWrapper>
-        <S.PropertiesConsortiumType data-aos="fade-up">
-          {propertiesArray.map((row: any, key: any) => (
-            <S.ConsortiumCard key={row.id}>
-              <S.ConsortiumCardImage>
-                <Image
-                  width={165}
-                  height={155}
-                  src={row.image}
-                  alt={row.altImg}
-                />
-              </S.ConsortiumCardImage>
-              <S.ConsortiumCardText>{row.title}</S.ConsortiumCardText>
-            </S.ConsortiumCard>
-          ))}
-        </S.PropertiesConsortiumType>
+        <PropertiesConsortium data={propertiesArray} />
       </CenterWrapper>
 
       <OurContemplated />
