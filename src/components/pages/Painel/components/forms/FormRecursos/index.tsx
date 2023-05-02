@@ -23,10 +23,13 @@ const FormRecursos = ({ onSubmit }: IForm) => {
 
   async function handlePlanilhaChange(e: any) {
     if (e?.target?.files) {
+      const formData = new FormData();
+
+      formData.append('file', e?.target?.files[0]);
+
+      const planilhaUrl = await postFile(formData);
+
       setPlanilhaPost(e?.target?.files[0]);
-
-      const planilhaUrl = await postFile(e?.target?.files[0]);
-
       setPlanilhaUrl(planilhaUrl);
     }
   }

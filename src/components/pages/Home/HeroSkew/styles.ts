@@ -28,7 +28,7 @@ export const SkewContainer = styled.div`
     margin-bottom: 80px;
   }
 
-  @media (max-width: 1090px) {
+  @media (max-width: 1024px) {
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     margin-bottom: 500px;
