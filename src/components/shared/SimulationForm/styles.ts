@@ -62,39 +62,36 @@ export const SectionSimulatorForm = styled.div<Props>`
     heroStyles === true &&
     css`
       @media (max-width: 1090px) {
-        top: 20%;
+        top: 15%;
         left: 50%;
         transform: translateX(-50%);
       }
       @media (max-width: 963px) {
-        top: 18%;
+        top: 14%;
       }
       @media (max-width: 920px) {
-        top: 19%;
+        top: 14.5%;
       }
       @media (max-width: 820px) {
-        top: 18%;
+        top: 13.5%;
       }
       @media (max-width: 730px) {
-        top: 16%;
+        top: 12%;
       }
       @media (max-width: 600px) {
         left: 50%;
-        top: 14%;
+        top: 10.5%;
         transform: translateX(-50%);
       }
-      @media (max-width: 525px) {
+      @media (max-width: 599px) {
         left: 50%;
-        top: 13%;
+        top: 8%;
         transform: translateX(-50%);
       }
-      @media (max-width: 475px) {
+      @media (max-width: 356px) {
         left: 50%;
-        top: 11%;
+        top: 7%;
         transform: translateX(-50%);
-      }
-      @media (max-width: 425px) {
-        top: 10%;
       }
     `}
 
