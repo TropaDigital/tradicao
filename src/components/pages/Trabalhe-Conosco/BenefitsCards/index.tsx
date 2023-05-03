@@ -15,8 +15,8 @@ const BenefitsCard = ({ image, title }: BenefitsCardsProps) => {
         <Image
           src={image}
           alt={`Imagem do card sobre ${title}`}
-          height={250}
-          width={250}
+          height={165}
+          width={155}
           className="image"
         />
       </S.ImageWrapper>

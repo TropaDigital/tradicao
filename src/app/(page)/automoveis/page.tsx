@@ -3,30 +3,32 @@
 // Components
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
+import PropertiesConsortium from '@/components/shared/PropertiesConsortium';
+import SimulationForm from '@/components/shared/SimulationForm';
+import MainTitle from '@/components/UI/MainTitle';
+import AutoConsortium from '@/components/sections/AutoConsortium';
+import OurContemplated from '@/components/sections/OurContemplated';
 
 // Styles
 import * as S from './styles';
 
 // Images
 import AutoMovel from '../../../../public/images/consortiumAuto.jpg';
-import SimulationForm from '@/components/shared/SimulationForm';
-import MainTitle from '@/components/UI/MainTitle';
-import AutoConsortium from '@/components/sections/AutoConsortium';
-import OurContemplated from '@/components/sections/OurContemplated';
-import PropertiesConsortium from '@/components/shared/PropertiesConsortium';
+import AutoTwelveYears from '../../../../public/images/auto_twelve_yeas.jpg';
+import AutoZeroKm from '../../../../public/images/auto_zero_km.jpg';
 
 export default function ConsortiumAuto() {
   const propertiesArray = [
     {
       id: 1,
       title: 'Carro zero Km',
-      image: 'https://via.placeholder.com/150',
+      image: AutoZeroKm,
       altImg: 'Imagem de um edifício'
     },
     {
       id: 2,
       title: 'Com até 12 anos de uso',
-      image: 'https://via.placeholder.com/150',
+      image: AutoTwelveYears,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     }
   ];

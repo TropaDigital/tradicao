@@ -20,7 +20,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Formik, Form, useFormikContext, FormikProps } from 'formik';
 
 // Imagens
-import workWithUs from '../../../../public/images/work_with_us_bg.jpg';
+import BeAPartner from '../../../../public/images/beAPartnerBg.jpg';
 import ConsorcioBenefit from '../../../../public/images/benefits_consorcio.jpg';
 import PhoneBenefit from '../../../../public/images/phone_benefits.jpg';
 import MoneyBenefit from '../../../../public/images/money-benefit.jpg';
@@ -207,7 +207,7 @@ const PartnerPage = () => {
 
   return (
     <>
-      <SkewContainer imageAlt="Seja um parceiro" imageSrc={workWithUs} />
+      <SkewContainer imageAlt="Seja um parceiro" imageSrc={BeAPartner} />
 
       <CenterWrapper>
         <S.Container>

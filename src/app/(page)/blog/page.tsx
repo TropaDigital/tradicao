@@ -3,7 +3,7 @@
 import CenterWrapper from '@/components/global/CenterWrapper';
 import React, { useState, useEffect } from 'react';
 import SkewContainer from '@/components/shared/SkewContainer';
-import BlogBG from '../../../../public/images/blog_bg.png';
+import BlogBG from '../../../../public/images/blog_bg.jpg';
 import MainTitle from '@/components/UI/MainTitle';
 import * as S from './styles';
 import PostCard from '@/components/pages/Blog/PostCard';
