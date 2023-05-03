@@ -1,9 +1,13 @@
 'use client';
 
+import { SpreadsheetFileIcon } from '@/assets/icons';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
+import Button from '@/components/UI/Button';
 import { useGetAllSimulacao } from '@/services/simulacao/GET/useGetAllSimulacao';
+import { downloadSpreadSheet } from '@/utils/downloadSpreadSheet';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { HeaderDashboard } from '../styles';
 
@@ -65,6 +69,24 @@ const SimulacaoPage = () => {
     <>
       <HeaderDashboard>
         <HeaderPage title="Simulação" />
+
+        <div className="buttonWrapper">
+          <Button
+            degrade
+            color="secondary"
+            radius="rounded"
+            className="styledButton"
+            onClick={() =>
+              downloadSpreadSheet(
+                '/simulacao-download',
+                `Planilha Simulações - ${moment().format('DD-MM-YYYY')}`
+              )
+            }
+          >
+            <SpreadsheetFileIcon size={18} />
+            Baixar Dados
+          </Button>
+        </div>
       </HeaderDashboard>
 
       <Table

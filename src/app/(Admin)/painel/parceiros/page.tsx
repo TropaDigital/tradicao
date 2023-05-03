@@ -15,6 +15,10 @@ import { useGetAllParceiros } from '@/services/seja-um-parceiro/GET/useGetAllPar
 
 //Hooks
 import { useDebouncedCallback } from 'use-debounce';
+import { SpreadsheetFileIcon } from '@/assets/icons';
+import Button from '@/components/UI/Button';
+import { downloadSpreadSheet } from '@/utils/downloadSpreadSheet';
+import moment from 'moment';
 
 const ParceirosPage = () => {
   const headerTable = [
@@ -74,6 +78,24 @@ const ParceirosPage = () => {
     <>
       <HeaderDashboard>
         <HeaderPage title="Parceiros" />
+
+        <div className="buttonWrapper">
+          <Button
+            degrade
+            color="secondary"
+            radius="rounded"
+            className="styledButton"
+            onClick={() =>
+              downloadSpreadSheet(
+                '/SejaUmParceiro-download',
+                `Planilha Parceiros - ${moment().format('DD-MM-YYYY')}`
+              )
+            }
+          >
+            <SpreadsheetFileIcon size={18} />
+            Baixar Dados
+          </Button>
+        </div>
       </HeaderDashboard>
 
       <Table
