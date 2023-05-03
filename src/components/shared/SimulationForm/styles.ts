@@ -83,11 +83,11 @@ export const SectionSimulatorForm = styled.div<Props>`
         top: 10.5%;
         transform: translateX(-50%);
       }
-      /* @media (max-width: 600px) {
+      @media (max-width: 599px) {
         left: 50%;
         top: 8%;
         transform: translateX(-50%);
-      } */
+      }
       @media (max-width: 356px) {
         left: 50%;
         top: 7%;

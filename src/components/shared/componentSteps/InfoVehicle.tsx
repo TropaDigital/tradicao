@@ -42,7 +42,6 @@ export function InfoVehicle({
           name="name"
           value={data.name}
           onChange={(e) => {
-            if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
             handleInputChange(e);
           }}
           error={error?.name}

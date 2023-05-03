@@ -111,7 +111,6 @@ const WorkWithUsPage = () => {
                     placeholder="Nome"
                     value={values.fullName}
                     onChange={(e) => {
-                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
                       handleChange(e);
                     }}
                     label="Nome Completo"
@@ -190,7 +189,6 @@ const WorkWithUsPage = () => {
                     placeholder="Nome"
                     name="fullName"
                     onChange={(e) => {
-                      if (!/^[a-zA-Z\s]*$/.test(e?.target?.value)) return;
                       handleChange(e);
                     }}
                     value={values.fullName}
