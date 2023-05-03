@@ -5,6 +5,12 @@ import * as S from './styles';
 
 // Images
 import TruckBg from '../../../../public/images/consortiumTruck.jpg';
+import TruckTwelveYears from '../../../../public/images/trucks_twelve_years.jpg';
+import Trucks from '../../../../public/images/trucks.jpg';
+import MicroBus from '../../../../public/images/micro_bus.jpg';
+import Carreta from '../../../../public/images/carreta.jpg';
+import Bus from '../../../../public/images/bus.jpg';
+import MotorHomes from '../../../../public/images/motorhomes.jpg';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';
@@ -20,37 +26,37 @@ export default function ConsortiumTrucks() {
     {
       id: 1,
       title: '0Km ou com até 12 anos de uso',
-      image: 'https://via.placeholder.com/150',
+      image: TruckTwelveYears,
       altImg: 'Imagem de um edifício'
     },
     {
       id: 2,
       title: 'Caminhões',
-      image: 'https://via.placeholder.com/150',
+      image: Trucks,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     },
     {
       id: 3,
       title: 'Micro-ônibus',
-      image: 'https://via.placeholder.com/150',
+      image: MicroBus,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     },
     {
       id: 4,
       title: 'Carretas',
-      image: 'https://via.placeholder.com/150',
+      image: Carreta,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     },
     {
       id: 5,
       title: 'Ônibus',
-      image: 'https://via.placeholder.com/150',
+      image: Bus,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     },
     {
       id: 6,
       title: 'Motorhomes',
-      image: 'https://via.placeholder.com/150',
+      image: MotorHomes,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     }
   ];

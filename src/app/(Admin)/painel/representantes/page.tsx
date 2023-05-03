@@ -1,6 +1,6 @@
 'use client';
 
-import { SearchIcon } from '@/assets/icons';
+import { SearchIcon, SpreadsheetFileIcon } from '@/assets/icons';
 import FormDemonstracoes from '@/components/pages/Painel/components/forms/FormDemonstracoes';
 import FormRepresentante from '@/components/pages/Painel/components/forms/FormRepresentante';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
@@ -10,6 +10,8 @@ import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
 import DefaultInput from '@/components/UI/DefaultInput';
 import { useGetAllRepresentantes } from '@/services/representante/GET/useGetAllRepresentantes';
+import { downloadSpreadSheet } from '@/utils/downloadSpreadSheet';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import * as S from '../styles';
@@ -88,16 +90,36 @@ const DemonstracoesPage = () => {
       )}
       <S.HeaderDashboard>
         <HeaderPage title="Reprensentantes" />
-        <div className="buttonWrapper">
-          <Button
-            className="styledButton"
-            onClick={() => setModalOpen('publicar')}
-            radius="rounded"
-            color="secondary"
-            degrade
-          >
-            + Adicionar Representante
-          </Button>
+
+        <div className="multiButtonsContainer">
+          <div className="buttonWrapper">
+            <Button
+              degrade
+              color="secondary"
+              radius="rounded"
+              className="styledButton"
+              onClick={() =>
+                downloadSpreadSheet(
+                  '/representante-download',
+                  `Planilha Representantes - ${moment().format('DD-MM-YYYY')}`
+                )
+              }
+            >
+              <SpreadsheetFileIcon size={18} />
+              Baixar Dados
+            </Button>
+          </div>
+          <div className="buttonWrapper">
+            <Button
+              className="styledButton"
+              onClick={() => setModalOpen('publicar')}
+              radius="rounded"
+              color="secondary"
+              degrade
+            >
+              + Adicionar Representante
+            </Button>
+          </div>
         </div>
       </S.HeaderDashboard>
       <Table

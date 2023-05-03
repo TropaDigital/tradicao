@@ -8,12 +8,12 @@ import * as S from './styles';
 
 // Images
 import Imovel from '../../../../public/images/realEstateConsortium.jpg';
-import Apto from '../../../../public/images/Apartment.svg';
-import Casa from '../../../../public/images/House.svg';
-import Financiamento from '../../../../public/images/Financing.svg';
-import Construcao from '../../../../public/images/Construction.svg';
-import Reforma from '../../../../public/images/Reform.svg';
-import Terreno from '../../../../public/images/Land.svg';
+import Apto from '../../../../public/images/apartment.jpg';
+import Casa from '../../../../public/images/house.jpg';
+import Financiamento from '../../../../public/images/financing.jpg';
+import Construcao from '../../../../public/images/construction.jpg';
+import Reforma from '../../../../public/images/reform.jpg';
+import Terreno from '../../../../public/images/land.jpg';
 
 // Components
 import SkewContainer from '@/components/shared/SkewContainer';

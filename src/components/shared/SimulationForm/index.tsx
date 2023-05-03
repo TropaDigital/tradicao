@@ -229,14 +229,16 @@ export default function SimulationForm() {
       } else {
         setErrorInput('regulation', undefined);
       }
+
+      updateSimulacao({
+        id: currentLead as number,
+        putBody: { cpf: formData.cpf }
+      });
+
+      subChangeStep(subCurrentStep + 1);
     } catch (err: any) {
       console.log('ERROR => ', error);
     }
-
-    updateSimulacao({
-      id: currentLead as number,
-      putBody: { cpf: formData.cpf }
-    });
   };
 
   const handleOnNextStep = () => {
@@ -281,17 +283,6 @@ export default function SimulationForm() {
         setErrorInput('terms', undefined);
       }
 
-      createSimulacao({
-        cpf: formData?.cpf,
-        celular: formData?.phone,
-        cep: formData?.cep,
-        email: formData?.email,
-        nome: formData?.name,
-        valor_bem: String(formData?.value),
-        tipo_consorcio: formData?.conquest,
-        tipo_simulacao: formData?.typePlan
-      }).then((data: any) => setCurrentLead(data?.result));
-
       subChangeStep(subCurrentStep + 1);
     } catch (error: any) {
       console.log('ERROR', error);
@@ -312,6 +303,12 @@ export default function SimulationForm() {
       console.log(err);
     }
   }, []);
+
+  function handleOnSimulateAgain() {
+    subChangeStep(0);
+    setSimulator(!isSimulator);
+    setFormData({ ...formData, cpf: '' });
+  }
 
   const pathName = usePathname();
 
@@ -348,6 +345,23 @@ export default function SimulationForm() {
       setFormData({ ...formData, ['value']: 303373.32 });
     }
   }, [formData.typePlan, formData.conquest]);
+
+  useEffect(() => {
+    if (subCurrentStep === 1) {
+      createSimulacao({
+        cpf: formData?.cpf,
+        celular: formData?.phone,
+        cep: formData?.cep,
+        email: formData?.email,
+        nome: formData?.name,
+        valor_bem: String(formData?.value),
+        tipo_consorcio: formData?.conquest,
+        tipo_simulacao: formData?.typePlan
+      }).then((data: any) => setCurrentLead(data?.result));
+
+      console.log('Criou simulação');
+    }
+  }, [subCurrentStep]);
 
   return (
     <SectionSimulatorForm heroStyles={pathName === '/' ? true : false}>
@@ -408,7 +422,13 @@ export default function SimulationForm() {
                   radius="rounded"
                   type="button"
                   degrade
-                  onClick={handleOnNextStep}
+                  onClick={() => {
+                    if (subCurrentStep === 1) {
+                      handleOnSaveStep();
+                      return;
+                    }
+                    handleOnNextStep();
+                  }}
                 >
                   Avançar
                 </Button>
@@ -417,7 +437,7 @@ export default function SimulationForm() {
                   radius="rounded"
                   type="button"
                   degrade
-                  onClick={() => setSimulator(!isSimulator)}
+                  onClick={handleOnSimulateAgain}
                 >
                   Simular novamente
                 </Button>
