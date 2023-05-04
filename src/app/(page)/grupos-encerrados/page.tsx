@@ -29,7 +29,7 @@ export default function ClosedGroups() {
   const [searchGroups, setSearchGroups] = useState<any>('');
   const [actualPage, setActualPage] = useState<number>(1);
   const { allGrupos } = useGetAllGrupos(
-    `?pesquisa=${searchGroups}&perPage=10&currentPage=${actualPage}`
+    `?pesquisa=${searchGroups}&perPage=10&currentPage=${actualPage}&ordem=desc`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {

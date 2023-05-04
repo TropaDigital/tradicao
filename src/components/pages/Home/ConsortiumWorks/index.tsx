@@ -50,7 +50,7 @@ export default function ConsortiumWorks() {
                 <div className="info-title">Assembleia</div>
                 <div className="description right">
                   Mensalmente são realizadas assembleias de contemplação,
-                  através de sorteios extraídos pelo Loteria Federal.
+                  através de sorteios extraídos pela Loteria Federal.
                 </div>
               </InfoText>
 
@@ -182,7 +182,7 @@ export default function ConsortiumWorks() {
                 <div className="info-title left">Assembleia</div>
                 <div className="description left">
                   Mensalmente são realizadas assembleias de contemplação,
-                  através de sorteios extraídos pelo Loteria Federal.
+                  através de sorteios extraídos pela Loteria Federal.
                 </div>
               </InfoText>
             </InfoWithIcon>

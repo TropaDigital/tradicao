@@ -34,3 +34,9 @@ export const CarousselWrapper = styled.div`
     align-items: center;
   }
 `;
+
+export const Subtitle = styled.div`
+  font-size: var(--text-smal-xl);
+  font-weight: var(--weight-bold);
+  color: var(--gray-600);
+`;

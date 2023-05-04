@@ -40,20 +40,11 @@ export default function SelectSideBar({
 }: ISelectProps) {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
 
-  type IconInfo = {
-    src: string;
-    alt: string;
-  };
-
   type IconsPagesMap = {
-    [key: string]: IconInfo;
+    [key: string]: string;
   };
 
-  const createImageTag = ({ src, alt }: IconInfo) => (
-    <Image src={src} alt={alt} width={20} height={20} />
-  );
-
-  const iconsPagesMap: { [key: string]: string } = {
+  const iconsPagesMap: IconsPagesMap = {
     Assembleias: '&#128196;',
     Blog: '&#128221;',
     Contemplados: '&#128106;',

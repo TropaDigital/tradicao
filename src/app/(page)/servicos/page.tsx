@@ -62,7 +62,7 @@ export default function ConsortiumServices() {
     },
     {
       id: 7,
-      title: 'Salão de Cabelereiro',
+      title: 'Salão de Cabeleireiro',
       image: Cabelereiro,
       altImg: 'Imagem de uma casa pequena na mão de um casal'
     },
@@ -87,7 +87,11 @@ export default function ConsortiumServices() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Consórcio de Serviços" />
-            <S.SubtitleTop>Realize o seu sonho</S.SubtitleTop>
+            <S.SubtitleTop>
+              Com planejamento e disciplina, o consórcio de serviço pode ser a
+              chave para alcançar seu sonho, proporcionando a tranquilidade
+              financeira necessária para conquistar seus objetivos!
+            </S.SubtitleTop>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

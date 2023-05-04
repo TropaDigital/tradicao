@@ -212,6 +212,10 @@ const PartnerPage = () => {
       <CenterWrapper>
         <S.Container>
           <MainTitle title="Seja um parceiro" />
+          <S.Subtitle>
+            Sua empresa possui uma extensa rede em vendas e equipe de vendas?
+            Então venha ser o nosso parceiro.
+          </S.Subtitle>
 
           <S.CarousselWrapper>
             <Slider {...SLIDER_SETTINGS}>

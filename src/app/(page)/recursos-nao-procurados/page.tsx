@@ -44,7 +44,6 @@ export default function NotReceived() {
         <CenterWrapper>
           <div className="margin">
             <MainTitle title="Recursos não procurados" />
-            <S.SubtitleTop>Consulte valores a receber</S.SubtitleTop>
           </div>
         </CenterWrapper>
       </S.ContainerTop>

@@ -81,7 +81,7 @@ export default function ConsortiumTrucks() {
 
       <CenterWrapper>
         <PropertiesConsortium data={propertiesArray} />
-        <TruckConsortium />
+        {/* <TruckConsortium /> */}
       </CenterWrapper>
 
       <OurContemplated />
