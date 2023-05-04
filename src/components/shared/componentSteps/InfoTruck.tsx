@@ -7,6 +7,7 @@ import {
 } from '@/components/pages/Painel/components/UiElements/styles';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import Link from 'next/link';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
@@ -109,9 +110,9 @@ export function InfoTruck({
           label={
             <>
               Aceito o{' '}
-              <a href="/termos-de-privacidade" target="_blank">
+              <Link href="/termos-de-privacidade" target="_blank">
                 termo de privacidade
-              </a>
+              </Link>
             </>
           }
           name="terms"
@@ -164,9 +165,9 @@ export function ConfirmTruck({
           label={
             <>
               Aceito o{' '}
-              <a href="/termos-de-privacidade" target="_blank">
+              <Link href="/termos-de-privacidade" target="_blank">
                 termo de privacidade
-              </a>
+              </Link>
             </>
           }
           name="regulation"
