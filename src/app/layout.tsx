@@ -6,7 +6,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import StyledJsxRegistry from './registry';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useEffect } from 'react';
+import { useEffect, useDeferredValue } from 'react';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
