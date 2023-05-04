@@ -24,6 +24,7 @@ import Button from '@/components/UI/Button';
 // Validações
 import { curriulumFormSchema, representanteFormSchema } from './yupSchemas';
 import { formatCnpj } from '@/utils/formatCnpj';
+import Link from 'next/link';
 
 const WorkWithUsPage = () => {
   const [formStage, setFormStage] = useState<string>('curriculo');
@@ -143,9 +144,9 @@ const WorkWithUsPage = () => {
                     label={
                       <>
                         Aceito o{' '}
-                        <a href="/termos-de-privacidade" target="_blank">
+                        <Link href="/termos-de-privacidade" target="_blank">
                           termo de privacidade
-                        </a>
+                        </Link>
                       </>
                     }
                   />
@@ -217,9 +218,9 @@ const WorkWithUsPage = () => {
                     label={
                       <>
                         Aceito o{' '}
-                        <a href="/termos-de-privacidade" target="_blank">
+                        <Link href="/termos-de-privacidade" target="_blank">
                           termo de privacidade
-                        </a>
+                        </Link>
                       </>
                     }
                   />
