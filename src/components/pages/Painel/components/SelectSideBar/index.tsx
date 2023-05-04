@@ -66,7 +66,8 @@ export default function SelectSideBar({
     Relatórios: '&#128202;',
     Representantes: '&#129333;',
     ['Simulação']: '&#9997;',
-    Unidades: '&#127970;'
+    Unidades: '&#127970;',
+    ['Vídeo Institucional']: '&#127902;'
   };
 
   function handleToogleSideBar() {

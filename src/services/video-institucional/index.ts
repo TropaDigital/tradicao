@@ -7,8 +7,8 @@ class VideoClass {
     return response?.data;
   }
 
-  async updateVideo() {
-    let response: AxiosResponse = await API.put(`/video`);
+  async updateVideo(videoObject: { url_video: string; url_thumb: string }) {
+    let response: AxiosResponse = await API.put(`/video`, videoObject);
     return response?.data;
   }
 }

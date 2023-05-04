@@ -51,6 +51,10 @@
     {
       "name": "Unidades",
       "path": "unidades"
+    },
+    {
+      "name": "Vídeo Institucional",
+      "path": "video-institucional"
     }
   ],
   "colors": {
