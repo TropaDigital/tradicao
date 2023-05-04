@@ -7,7 +7,7 @@ import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState, useDeferredValue } from 'react';
 import { HeaderDashboard } from '../styles';
 import { useDebouncedCallback } from 'use-debounce';
 
