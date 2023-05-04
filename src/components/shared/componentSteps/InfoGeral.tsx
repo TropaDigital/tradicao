@@ -30,17 +30,17 @@ export default function InfoGeral({
           <ButtonDefault
             type="button"
             className={`buttonSimulatorPlan ${
-              simulatorPlan === 'parcela' ? 'planActive' : ''
+              simulatorPlan === 'Parcela' ? 'planActive' : ''
             }`}
-            onClick={() => setSimulatorPlan('parcela')}
+            onClick={() => setSimulatorPlan('Parcela')}
             color={`${
-              simulatorPlan === 'parcela' ? 'primaryButton' : 'transparent'
+              simulatorPlan === 'Parcela' ? 'primaryButton' : 'transparent'
             }`}
             style={{
               ...styleButtonPlan,
               borderRadius: '5px 0 0 5px',
               borderRightColor: '#0036C6',
-              color: `${simulatorPlan === 'parcela' ? '#fff' : '#0036C6'}`
+              color: `${simulatorPlan === 'Parcela' ? '#fff' : '#0036C6'}`
             }}
           >
             Parcela
@@ -48,17 +48,17 @@ export default function InfoGeral({
           <ButtonDefault
             type="button"
             className={`buttonSimulatorPlan ${
-              simulatorPlan === 'credito' ? 'planActive' : ''
+              simulatorPlan === 'Crédito' ? 'planActive' : ''
             }`}
-            onClick={() => setSimulatorPlan('credito')}
+            onClick={() => setSimulatorPlan('Crédito')}
             color={`${
-              simulatorPlan === 'credito' ? 'primaryButton' : 'transparent'
+              simulatorPlan === 'Crédito' ? 'primaryButton' : 'transparent'
             }`}
             style={{
               ...styleButtonPlan,
               borderRadius: '0 5px 5px 0',
               borderLeftColor: '#0036C6',
-              color: `${simulatorPlan === 'credito' ? '#fff' : '#0036C6'}`
+              color: `${simulatorPlan === 'Crédito' ? '#fff' : '#0036C6'}`
             }}
           >
             Crédito
@@ -67,13 +67,13 @@ export default function InfoGeral({
       </ContentSimulation>
 
       <ContentSimulation>
-        {simulatorPlan === 'parcela' && (
+        {simulatorPlan === 'Parcela' && (
           <legend>
-            <h2>Escolha o valor da parcela</h2>
+            <h2>Escolha o valor da Parcela</h2>
           </legend>
         )}
 
-        {simulatorPlan === 'credito' && (
+        {simulatorPlan === 'Crédito' && (
           <legend>
             <h2>Escolha o valor do crédito</h2>
           </legend>
@@ -85,7 +85,7 @@ export default function InfoGeral({
           }).format(defaultValue ?? 0)}
         </strong>
 
-        {selectedType === 'veiculo' && simulatorPlan === 'parcela' && (
+        {selectedType === 'Veículos' && simulatorPlan === 'Parcela' && (
           <InputRange
             defaultValue={defaultValue !== 1366.58 ? 1366.58 : defaultValue}
             maxValue={2326.43}
@@ -93,7 +93,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'veiculo' && simulatorPlan === 'credito' && (
+        {selectedType === 'Veículos' && simulatorPlan === 'Crédito' && (
           <InputRange
             defaultValue={defaultValue !== 71984.96 ? 71984.96 : defaultValue}
             maxValue={118969.93}
@@ -101,7 +101,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'imovel' && simulatorPlan === 'parcela' && (
+        {selectedType === 'Imóveis' && simulatorPlan === 'Parcela' && (
           <InputRange
             defaultValue={defaultValue !== 1313.84 ? 1313.84 : defaultValue}
             maxValue={1998.93}
@@ -109,7 +109,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'imovel' && simulatorPlan === 'credito' && (
+        {selectedType === 'Imóveis' && simulatorPlan === 'Crédito' && (
           <InputRange
             defaultValue={defaultValue !== 155954.88 ? 155954.88 : defaultValue}
             maxValue={239930.59}
@@ -117,7 +117,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'servicos' && simulatorPlan === 'parcela' && (
+        {selectedType === 'Serviços' && simulatorPlan === 'Parcela' && (
           <InputRange
             defaultValue={defaultValue !== 382.92 ? 382.92 : defaultValue}
             maxValue={510.56}
@@ -125,7 +125,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'servicos' && simulatorPlan === 'credito' && (
+        {selectedType === 'Serviços' && simulatorPlan === 'Crédito' && (
           <InputRange
             defaultValue={defaultValue !== 15000 ? 15000 : defaultValue}
             maxValue={20000}
@@ -133,7 +133,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'caminhao' && simulatorPlan === 'parcela' && (
+        {selectedType === 'Pesados' && simulatorPlan === 'Parcela' && (
           <InputRange
             defaultValue={defaultValue !== 5236.25 ? 5236.25 : defaultValue}
             maxValue={6320.48}
@@ -141,7 +141,7 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
-        {selectedType === 'caminhao' && simulatorPlan === 'credito' && (
+        {selectedType === 'Pesados' && simulatorPlan === 'Crédito' && (
           <InputRange
             defaultValue={defaultValue !== 303373.32 ? 303373.32 : defaultValue}
             maxValue={404497.76}

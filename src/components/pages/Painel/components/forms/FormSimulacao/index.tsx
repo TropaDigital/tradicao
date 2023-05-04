@@ -19,15 +19,6 @@ import ButtonDefault from '../../ButtonDefault';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 const FormSimulacao = ({ modalOpen, actualItem, onSubmit }: IForm) => {
-  const handleNames: any = {
-    parcela: 'Parcela',
-    credito: 'Crédito',
-    veiculo: 'Veículo',
-    imovel: 'Imóvel',
-    servico: 'Serviço',
-    caminhao: 'Pesados'
-  };
-
   return (
     <S.Container>
       <Formik
@@ -50,34 +41,27 @@ const FormSimulacao = ({ modalOpen, actualItem, onSubmit }: IForm) => {
 
             <div className="inputsProductWrapper">
               <div className="lineElementsWrapper">
-                <InputDefault label="Nome" value={values?.nome} disabled />
-                <InputDefault label="CPF" value={values?.cpf} disabled />
+                <InputDefault label="Nome" value={values?.nome} />
+                <InputDefault label="CPF" value={values?.cpf} />
               </div>
 
               <div className="lineElementsWrapper">
-                <InputDefault
-                  label="Celular"
-                  value={values?.celular}
-                  disabled
-                />
-                <InputDefault label="Email" value={values?.email} disabled />
+                <InputDefault label="Celular" value={values?.celular} />
+                <InputDefault label="Email" value={values?.email} />
               </div>
 
               <div className="lineElementsWrapper">
                 <InputDefault
                   label="Tipo de Consórcio"
-                  value={handleNames[values?.tipo_consorcio]}
-                  disabled
+                  value={values?.tipo_consorcio}
                 />
                 <InputDefault
                   label="Tipo de Simulação"
-                  value={handleNames[values?.tipo_simulacao]}
-                  disabled
+                  value={values?.tipo_simulacao}
                 />
                 <InputDefault
                   label="Valor Simulado"
                   value={formatCurrency(parseInt(values?.valor_bem))}
-                  disabled
                 />
               </div>
 

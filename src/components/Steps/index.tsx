@@ -13,7 +13,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button
           type="button"
           className="stepButton"
-          onClick={() => handleOnClick('veiculo', 1)}
+          onClick={() => handleOnClick('Veículos', 1)}
         >
           <CarIcon />
           <span className="option-text">Veículos</span>
@@ -26,7 +26,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button
           type="button"
           className="stepButton"
-          onClick={() => handleOnClick('imovel', 2)}
+          onClick={() => handleOnClick('Imóveis', 2)}
         >
           <MovelIcon />
           <span className="option-text">Imóveis</span>
@@ -39,7 +39,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button
           type="button"
           className="stepButton"
-          onClick={() => handleOnClick('servicos', 3)}
+          onClick={() => handleOnClick('Serviços', 3)}
         >
           <ServiceIcon />
           <span className="option-text">Serviços</span>
@@ -52,7 +52,7 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         <button
           type="button"
           className="stepButton"
-          onClick={() => handleOnClick('caminhao', 4)}
+          onClick={() => handleOnClick('Pesados', 4)}
         >
           <TruckIcon />
           <span className="option-text">Pesados</span>

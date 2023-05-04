@@ -260,7 +260,7 @@ export default function Footer() {
               </div>
               <div className="button">
                 <div className="text">
-                  <Link href="/trabalhe-conosco" className="text">
+                  <Link href="/seja-um-parceiro" className="text">
                     Seja um Parceiro
                   </Link>
                 </div>

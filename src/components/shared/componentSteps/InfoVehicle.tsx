@@ -92,7 +92,10 @@ export function InfoVehicle({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <a href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </a>
             </>
           }
           name="terms"
@@ -145,7 +148,10 @@ export function ConfirmVehicle({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <a href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </a>
             </>
           }
           name="regulation"

@@ -66,14 +66,6 @@ export default function Contato() {
               Alameda: Rio Negro, 1084 <br /> 12º andar – Alphaville, Barueri/SP{' '}
               <br /> CEP: 06454-000
             </S.ContactText>
-
-            <S.ServiceCard>
-              <p className="titleCard">Atendimento na CNP Consórcio</p>
-              <p className="textCard">
-                <Link href={`tel:08002722021`}>0800 272 2021</Link> sugestões,
-                elogios, esclarecimentos e reclamações www.cnpconsorcio.com.br
-              </p>
-            </S.ServiceCard>
           </S.LeftContent>
 
           <S.MapsContainer>
