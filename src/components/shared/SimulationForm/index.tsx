@@ -54,10 +54,10 @@ const styleButtonPlan = {
 export default function SimulationForm() {
   const [error, setError] = useState<StateProps>({});
   const [isSimulator, setSimulator] = useState(false);
-  const [selectStep, setSelectStep] = useState('veiculo');
+  const [selectStep, setSelectStep] = useState('Veículos');
   const [formData, setFormData] = useState({
-    conquest: 'veiculo',
-    typePlan: 'parcela',
+    conquest: 'Veículos',
+    typePlan: 'Parcela',
     value: 1366.58,
     name: '',
     email: '',
@@ -101,7 +101,7 @@ export default function SimulationForm() {
       ]
     },
     {
-      name: 'veiculo',
+      name: 'Veículos',
       componet: [
         <InfoVehicle
           data={formData}
@@ -119,7 +119,7 @@ export default function SimulationForm() {
       ]
     },
     {
-      name: 'imovel',
+      name: 'Imóveis',
       componet: [
         <InfoImovel
           data={formData}
@@ -137,7 +137,7 @@ export default function SimulationForm() {
       ]
     },
     {
-      name: 'servicos',
+      name: 'Serviços',
       componet: [
         <InfoService
           data={formData}
@@ -155,7 +155,7 @@ export default function SimulationForm() {
       ]
     },
     {
-      name: 'caminhao',
+      name: 'Pesados',
       componet: [
         <InfoTruck
           data={formData}
@@ -224,7 +224,7 @@ export default function SimulationForm() {
       if (regulation === false) {
         throw setErrorInput(
           'regulation',
-          'Aceite o regulamento para continuar'
+          'É necessário aceitar nosso Termo de Privacidade para seguir.'
         );
       } else {
         setErrorInput('regulation', undefined);
@@ -269,16 +269,11 @@ export default function SimulationForm() {
         setErrorInput('phone', undefined);
       }
 
-      if (cep === '') {
-        throw setErrorInput('cep', 'Cep é obrigatório!');
-      } else if (cep?.replace(/\D/g, '')?.length < 8) {
-        throw setErrorInput('cep', 'Cep inválido');
-      } else {
-        setErrorInput('cep', undefined);
-      }
-
       if (terms === false) {
-        throw setErrorInput('terms', 'Aceite os termos para continuar');
+        throw setErrorInput(
+          'terms',
+          'É necessário aceitar nosso Termo de Privacidade para seguir.'
+        );
       } else {
         setErrorInput('terms', undefined);
       }
@@ -313,35 +308,35 @@ export default function SimulationForm() {
   const pathName = usePathname();
 
   useEffect(() => {
-    if (formData.conquest === 'veiculo' && formData.typePlan === 'parcela') {
+    if (formData.conquest === 'Veículos' && formData.typePlan === 'Parcela') {
       setFormData({ ...formData, ['value']: 1366.58 });
     }
 
-    if (formData.conquest === 'veiculo' && formData.typePlan === 'credito') {
+    if (formData.conquest === 'Veículos' && formData.typePlan === 'Crédito') {
       setFormData({ ...formData, ['value']: 71984.96 });
     }
 
-    if (formData.conquest === 'imovel' && formData.typePlan === 'parcela') {
+    if (formData.conquest === 'Imóveis' && formData.typePlan === 'Parcela') {
       setFormData({ ...formData, ['value']: 1313.84 });
     }
 
-    if (formData.conquest === 'imovel' && formData.typePlan === 'credito') {
+    if (formData.conquest === 'Imóveis' && formData.typePlan === 'Crédito') {
       setFormData({ ...formData, ['value']: 155954.88 });
     }
 
-    if (formData.conquest === 'servicos' && formData.typePlan === 'parcela') {
+    if (formData.conquest === 'Serviços' && formData.typePlan === 'Parcela') {
       setFormData({ ...formData, ['value']: 382.92 });
     }
 
-    if (formData.conquest === 'servicos' && formData.typePlan === 'credito') {
+    if (formData.conquest === 'Serviços' && formData.typePlan === 'Crédito') {
       setFormData({ ...formData, ['value']: 15000 });
     }
 
-    if (formData.conquest === 'caminhao' && formData.typePlan === 'parcela') {
+    if (formData.conquest === 'Pesados' && formData.typePlan === 'Parcela') {
       setFormData({ ...formData, ['value']: 5236.25 });
     }
 
-    if (formData.conquest === 'caminhao' && formData.typePlan === 'credito') {
+    if (formData.conquest === 'Pesados' && formData.typePlan === 'Crédito') {
       setFormData({ ...formData, ['value']: 303373.32 });
     }
   }, [formData.typePlan, formData.conquest]);
@@ -358,8 +353,6 @@ export default function SimulationForm() {
         tipo_consorcio: formData?.conquest,
         tipo_simulacao: formData?.typePlan
       }).then((data: any) => setCurrentLead(data?.result));
-
-      console.log('Criou simulação');
     }
   }, [subCurrentStep]);
 

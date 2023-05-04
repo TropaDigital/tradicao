@@ -43,34 +43,35 @@ export function CheckboxDefault({
   }, []);
 
   return (
-    <ContainerWrapper>
-      <Container>
-        <input
-          type="checkbox"
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          ref={inputRef}
-          {...rest}
-        />
+    <>
+      <ContainerWrapper>
+        <Container>
+          <input
+            type="checkbox"
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            ref={inputRef}
+            {...rest}
+          />
 
-        <span className="checkbox">
-          <BsCheck />
-        </span>
+          <span className="checkbox">
+            <BsCheck />
+          </span>
 
-        {/* {error?.isError && (
+          {/* {error?.isError && (
           <Error title={error.message}>
           <FiAlertCircle size={20} color="#E62965" />
           </Error>
         )} */}
-        {/* </ContainerInput> */}
-      </Container>
-      <span className="labelInput">{label}</span>
-
+          {/* </ContainerInput> */}
+        </Container>
+        <span className="labelInput">{label}</span>
+      </ContainerWrapper>
       {error && (
         <ErrorInputMessage style={{ marginTop: '6px' }} title={error}>
           <span>{error}</span>
         </ErrorInputMessage>
       )}
-    </ContainerWrapper>
+    </>
   );
 }
