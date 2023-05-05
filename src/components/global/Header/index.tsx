@@ -13,6 +13,7 @@ import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
@@ -24,6 +25,7 @@ const Header = () => {
   const [subMenusHeader, setSubMenusHeader] = useState({} as any);
 
   const scrollDirection = useScrollDirection();
+  const pathName = usePathname();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -214,6 +216,14 @@ const Header = () => {
     }, 500); // .5 seg
   }
 
+  function scrollToTop() {
+    if (typeof window === 'undefined') return;
+
+    if (pathName === '/') {
+      window?.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   return (
     <>
       <S.InfoContainer>
@@ -255,7 +265,7 @@ const Header = () => {
 
       <S.HeaderContainer className={'nav-' + scrollDirection}>
         <Link href="/">
-          <div className="logo">
+          <div className="logo" onClick={scrollToTop}>
             <Image
               src="/images/logo-default.png"
               alt="Logo Consórcio Tradição"
@@ -384,6 +394,9 @@ const Header = () => {
                         <Link
                           href={page.path ? page?.path : '/'}
                           className="option-title"
+                          onClick={() =>
+                            page?.title === 'Início' ? scrollToTop() : {}
+                          }
                         >
                           {page.title}
                         </Link>
