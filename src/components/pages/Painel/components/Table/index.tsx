@@ -116,7 +116,7 @@ export default function Table({ title, data, search, header }: ITableProps) {
       unknown
     >;
   } = {
-    contemplado: deleteContemplado,
+    contemplados: deleteContemplado,
     'demonstracoes-financeiras': deleteDemonstracao,
     curriculos: deleteCurriculo,
     unidades: deleteUnit,
