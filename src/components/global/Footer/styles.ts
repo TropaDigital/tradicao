@@ -27,6 +27,7 @@ export const TopFooter = styled.div`
   @media (max-width: 1350px) {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
   }
 `;
