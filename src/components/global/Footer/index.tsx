@@ -44,6 +44,7 @@ import Tropa from '../../../../public/images/TropaLogo.svg';
 import ButtonChatIa from '../ChatIA/ButtonChatIa';
 import ChatIA from '../ChatIA/ChatIA';
 import { useState } from 'react';
+import ReclameAquiSelo from '@/components/shared/ReclameAquiSelo';
 
 export default function Footer() {
   const [modalChat, setModalChat] = useState(false);
@@ -59,77 +60,54 @@ export default function Footer() {
               width={379}
               height={111}
             />
-            <SocialMedia>
-              <Link
-                href={'https://www.facebook.com/ConsorcioTradicao/'}
-                target="_blank"
-                aria-label="Visite a pagina no Facebook do Consórcio Tradição"
-              >
-                <FacebookIcon />
-              </Link>
-
-              <Link
-                href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
-                target="_blank"
-                aria-label="Visite a pagina no Instagram do Consórcio Tradição"
-              >
-                <InstagramIcon />
-              </Link>
-
-              <Link
-                href={
-                  'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'
-                }
-                target="_blank"
-                aria-label="Visite a pagina no Youtube do Consórcio Tradição"
-              >
-                <YoutubeIcon />
-              </Link>
-
-              <Link
-                href={'https://www.tiktok.com/@consorciotradicao'}
-                target="_blank"
-                aria-label="Visite a pagina no Tik Tok do Consórcio Tradição"
-              >
-                <TikTokIcon />
-              </Link>
-
-              <Link
-                href={'https://www.linkedin.com/company/consorciotradicao/'}
-                target="_blank"
-                aria-label="Visite a pagina no Linkedin do Consórcio Tradição"
-              >
-                <LinkedinIcon />
-              </Link>
-            </SocialMedia>
           </LeftSide>
 
-          <RightSide>
-            {/* <Link
-              href={
-                'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'
-              }
+          <SocialMedia>
+            <Link
+              href={'https://www.facebook.com/ConsorcioTradicao/'}
               target="_blank"
-              aria-label="Visite a pagina do Reclame Aqui do Consórcio Tradição"
-            > */}
-            {/* <Image
-                src={ReclameLogo}
-                alt="Imagem de logo da empresa Reclame Aqui"
-                width={175}
-                height={64}
-                className="reclame-logo"
-              /> */}
+              aria-label="Visite a pagina no Facebook do Consórcio Tradição"
+            >
+              <FacebookIcon />
+            </Link>
+
+            <Link
+              href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
+              target="_blank"
+              aria-label="Visite a pagina no Instagram do Consórcio Tradição"
+            >
+              <InstagramIcon />
+            </Link>
+
+            <Link
+              href={'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'}
+              target="_blank"
+              aria-label="Visite a pagina no Youtube do Consórcio Tradição"
+            >
+              <YoutubeIcon />
+            </Link>
+
+            <Link
+              href={'https://www.tiktok.com/@consorciotradicao'}
+              target="_blank"
+              aria-label="Visite a pagina no Tik Tok do Consórcio Tradição"
+            >
+              <TikTokIcon />
+            </Link>
+
+            <Link
+              href={'https://www.linkedin.com/company/consorciotradicao/'}
+              target="_blank"
+              aria-label="Visite a pagina no Linkedin do Consórcio Tradição"
+            >
+              <LinkedinIcon />
+            </Link>
+          </SocialMedia>
+
+          <RightSide>
             <div id="reputation-ra">
-              <script
-                type="text/javascript"
-                id="ra-embed-reputation"
-                src="https://s3.amazonaws.com/raichu-beta/selos/bundle.js"
-                data-id="MTAxNjc6Y29uc29yY2lvLW5hY2lvbmFsLXRyYWRpY2Fv"
-                data-target="reputation-ra"
-                data-model="2"
-              ></script>
+              <ReclameAquiSelo />
             </div>
-            {/* </Link> */}
           </RightSide>
         </TopFooter>
 
