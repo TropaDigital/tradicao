@@ -105,21 +105,31 @@ export default function Footer() {
           </LeftSide>
 
           <RightSide>
-            <Link
+            {/* <Link
               href={
                 'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/'
               }
               target="_blank"
               aria-label="Visite a pagina do Reclame Aqui do Consórcio Tradição"
-            >
-              <Image
+            > */}
+            {/* <Image
                 src={ReclameLogo}
                 alt="Imagem de logo da empresa Reclame Aqui"
                 width={175}
                 height={64}
                 className="reclame-logo"
-              />
-            </Link>
+              /> */}
+            <div id="reputation-ra">
+              <script
+                type="text/javascript"
+                id="ra-embed-reputation"
+                src="https://s3.amazonaws.com/raichu-beta/selos/bundle.js"
+                data-id="MTAxNjc6Y29uc29yY2lvLW5hY2lvbmFsLXRyYWRpY2Fv"
+                data-target="reputation-ra"
+                data-model="2"
+              ></script>
+            </div>
+            {/* </Link> */}
           </RightSide>
         </TopFooter>
 
