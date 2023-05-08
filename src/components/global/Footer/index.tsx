@@ -15,6 +15,9 @@ import {
   YoutubeIcon
 } from '@/assets/icons';
 
+// Components
+import ReclameAquiSelo from '@/components/shared/ReclameAquiSelo';
+
 // Styles
 import {
   BottomFooter,
@@ -44,7 +47,6 @@ import Tropa from '../../../../public/images/TropaLogo.svg';
 import ButtonChatIa from '../ChatIA/ButtonChatIa';
 import ChatIA from '../ChatIA/ChatIA';
 import { useState } from 'react';
-import ReclameAquiSelo from '@/components/shared/ReclameAquiSelo';
 
 export default function Footer() {
   const [modalChat, setModalChat] = useState(false);
