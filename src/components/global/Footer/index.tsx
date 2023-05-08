@@ -15,7 +15,7 @@ import {
   YoutubeIcon
 } from '@/assets/icons';
 
-// Components
+// Component
 import ReclameAquiSelo from '@/components/shared/ReclameAquiSelo';
 
 // Styles
