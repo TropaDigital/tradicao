@@ -1,26 +1,8 @@
 import { propsPage } from '../../interface';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { Select } from './styles';
-import { AnalyticsIcon, ChevronTopIcon, ClipFileIcon } from '@/assets/icons';
+import { ChevronTopIcon } from '@/assets/icons';
 import Link from 'next/link';
-
-// Icons
-
-import MemoIcon from '@/../public/images/memo.svg';
-import PaperClip from '@/../public/images/paperclip.svg';
-import FamilyIcon from '@/../public/images/familyIcon.svg';
-import ChartIncreasing from '@/../public/images/chartIncreasing.svg';
-import Papiro from '@/../public/images/papiro.svg';
-import Paper from '@/../public/images/paper.svg';
-import WhitePaper from '@/../public/images/white-paper.svg';
-import MagnifyngGlass from '@/../public/images/magnifying-glass.svg';
-import ChartBar from '@/../public/images/chart-bar.svg';
-import PersonInSmoking from '@/../public/images/person-in-smoking.svg';
-import OfficeBuilding from '@/../public/images/office-building.svg';
-import HandShake from '@/../public/images/handshake.svg';
-
-// Componentes
-import Image from 'next/image';
 
 interface ISelectProps {
   pages: Array<propsPage>;
@@ -40,20 +22,11 @@ export default function SelectSideBar({
 }: ISelectProps) {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(true);
 
-  type IconInfo = {
-    src: string;
-    alt: string;
-  };
-
   type IconsPagesMap = {
-    [key: string]: IconInfo;
+    [key: string]: string;
   };
 
-  const createImageTag = ({ src, alt }: IconInfo) => (
-    <Image src={src} alt={alt} width={20} height={20} />
-  );
-
-  const iconsPagesMap: { [key: string]: string } = {
+  const iconsPagesMap: IconsPagesMap = {
     Assembleias: '&#128196;',
     Blog: '&#128221;',
     Contemplados: '&#128106;',
@@ -65,8 +38,9 @@ export default function SelectSideBar({
     Parceiros: '&#129309;',
     Relatórios: '&#128202;',
     Representantes: '&#129333;',
-    ['Simulação']: '&#9997;',
-    Unidades: '&#127970;'
+    ['Simulações Site']: '&#9997;',
+    Unidades: '&#127970;',
+    ['Vídeo Institucional']: '&#127902;'
   };
 
   function handleToogleSideBar() {

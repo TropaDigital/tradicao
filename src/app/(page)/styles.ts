@@ -17,7 +17,7 @@ export const SimulationFormContainer = styled.div`
   @media (min-width: 2300px) {
     margin-right: 300px;
   }
-  @media( max-width: 1024px){
+  @media (max-width: 1024px) {
     position: unset;
     top: unset;
     right: unset;

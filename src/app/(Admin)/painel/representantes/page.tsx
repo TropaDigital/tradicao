@@ -89,7 +89,7 @@ const DemonstracoesPage = () => {
         </Modal>
       )}
       <S.HeaderDashboard>
-        <HeaderPage title="Reprensentantes" />
+        <HeaderPage title="Representantes" />
 
         <div className="multiButtonsContainer">
           <div className="buttonWrapper">

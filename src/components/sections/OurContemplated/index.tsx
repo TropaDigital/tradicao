@@ -70,7 +70,18 @@ export default function OurContemplated() {
       (contemplado) => clearString(contemplado?.categoria) === category
     );
 
-    setActualContemplated(allFilteredContemplated);
+    const contemplatedWithPhotoAndActive = allFilteredContemplated?.filter(
+      (contemplated) => {
+        if (
+          contemplated?.status === 'Ativo' &&
+          contemplated?.contempladoImagens[0]?.url_foto
+        ) {
+          return contemplated;
+        }
+      }
+    );
+
+    setActualContemplated(contemplatedWithPhotoAndActive);
   }
 
   useEffect(() => {
@@ -78,30 +89,34 @@ export default function OurContemplated() {
   }, [allContemplados]);
 
   return (
-    <GreenCarousel
-      title="Nossos consorciados contemplados"
-      height="350"
-      marginBottom="87"
-    >
-      <Slider {...SlideSettings}>
-        {actualContemplated?.map((contemplated) => {
-          if (
-            contemplated?.status === 'Inativo' &&
-            contemplated?.contempladoImagens[0]?.url_foto
-          )
-            return;
-          return (
-            <CardCarousel
-              width="276"
-              heigth="276"
-              padding="8"
-              image={contemplated?.contempladoImagens[0]?.url_foto}
-              imageType={true}
-              bigText={false}
-            />
-          );
-        })}
-      </Slider>
-    </GreenCarousel>
+    <>
+      {actualContemplated?.length && (
+        <GreenCarousel
+          title="Nossos consorciados contemplados"
+          height="350"
+          marginBottom="87"
+        >
+          <Slider {...SlideSettings}>
+            {actualContemplated?.map((contemplated) => {
+              if (
+                contemplated?.status === 'Inativo' &&
+                contemplated?.contempladoImagens[0]?.url_foto
+              )
+                return;
+              return (
+                <CardCarousel
+                  width="276"
+                  heigth="276"
+                  padding="8"
+                  image={contemplated?.contempladoImagens[0]?.url_foto}
+                  imageType={true}
+                  bigText={false}
+                />
+              );
+            })}
+          </Slider>
+        </GreenCarousel>
+      )}
+    </>
   );
 }

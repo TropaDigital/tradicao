@@ -44,15 +44,18 @@ export default function ConsortiumAuto() {
           <div className="margin" data-aos="fade-up">
             <MainTitle title="Consórcio de Automóveis" />
             <S.SubtitleTop>
-              Realize o seu sonho de ter o seu carro 0 KM ou seminovo*
+              O consórcio de veículos pode ser a oportunidade que faltava para
+              realizar o sonho de ter seu próprio carro, de forma planejada e
+              sem comprometer seu orçamento. Invista em seu futuro e comece a
+              realizar seus objetivos hoje mesmo!
             </S.SubtitleTop>
-            <S.Spantop>*Carros seminovos com até 12 anos de uso.</S.Spantop>
+            {/* <S.Spantop>*Carros seminovos com até 12 anos de uso.</S.Spantop> */}
           </div>
         </CenterWrapper>
       </S.ContainerTop>
 
       <PropertiesConsortium data={propertiesArray} />
-      <AutoConsortium />
+      {/* <AutoConsortium /> */}
 
       <OurContemplated />
     </>

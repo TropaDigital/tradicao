@@ -25,7 +25,6 @@ import bgTradicaoImage from '../../../../public/images/completeBrasao.png';
 
 // Libraries
 import Slider from 'react-slick';
-import eases from 'eases';
 
 // Icons
 import {
@@ -42,6 +41,7 @@ import {
 // Services
 import { useGetAllCounters } from '@/services/contadores/GET/useGetAllCounters';
 import { iniciarContagem } from '@/utils/iniciarContagem';
+import { useGetVideo } from '@/services/video-institucional/GET/useGetVideo';
 
 export default function QuemSomos() {
   const { getCounters } = useGetAllCounters();
@@ -82,6 +82,8 @@ export default function QuemSomos() {
   }, []);
 
   const countRef = useRef(null);
+
+  const { video } = useGetVideo();
 
   const [videoStats, setVideoStats] = useState<boolean>(false);
 
@@ -307,9 +309,10 @@ export default function QuemSomos() {
             autoPlay={false}
             ref={videoRef}
             className="bgHomeVideo"
-            poster={'images/bgImageVideo.png'}
+            poster={video?.url_thumb}
+            src={video?.url_video}
           >
-            <source src={'/videos/quem_somos.mp4'} type={'video/mp4'} />
+            {/* <source src={video?.url_video} type={'video/mp4'} /> */}
           </video>
 
           <div className="overlayPlay">

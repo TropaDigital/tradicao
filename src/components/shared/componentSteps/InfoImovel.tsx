@@ -6,6 +6,7 @@ import {
 } from '@/components/pages/Painel/components/UiElements/styles';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import Link from 'next/link';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
@@ -43,7 +44,7 @@ export function InfoImovel({
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <MovelIcon width={23} height={20} />
-        <h2>Consórcio de Imóvel</h2>
+        <h2>Consórcio de Imóveis</h2>
       </legend>
       <FieldDefault style={{ marginBottom: '14px' }}>
         <InputDefault
@@ -118,7 +119,10 @@ export function InfoImovel({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="terms"
@@ -171,7 +175,10 @@ export function ConfirmImovel({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="regulation"

@@ -7,6 +7,7 @@ import {
 } from '@/components/pages/Painel/components/UiElements/styles';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import Link from 'next/link';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
@@ -34,7 +35,7 @@ export function InfoTruck({
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <TruckIcon width={23} height={21} />
-        <h2>Consórcio de Caminhão</h2>
+        <h2>Consórcio de Pesados</h2>
       </legend>
       <FieldDefault style={{ marginBottom: '14px' }}>
         <InputDefault
@@ -108,7 +109,10 @@ export function InfoTruck({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="terms"
@@ -131,7 +135,7 @@ export function ConfirmTruck({
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <TruckIcon width={23} height={21} />
-        <h2>Consórcio de Caminhão</h2>
+        <h2>Consórcio de Pesados</h2>
       </legend>
 
       <aside>
@@ -160,7 +164,10 @@ export function ConfirmTruck({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="regulation"

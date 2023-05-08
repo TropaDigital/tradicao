@@ -39,7 +39,7 @@ export default function ClientArea() {
                 <ul>
                   <li>Retirar 2° Via do Boleto;</li>
                   <li>Ofertar Lances;</li>
-                  <li>Obter Resultado das Assembleias</li>
+                  <li>Obter Resultado das Assembleias;</li>
                   <li>Informações Sobre a Cota.</li>
                 </ul>
               </S.AppSubtitleLinks>

@@ -6,6 +6,7 @@ import {
 } from '@/components/pages/Painel/components/UiElements/styles';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import Link from 'next/link';
 import { ContentSimulation } from '../SimulationForm/styles';
 
 interface FormProps {
@@ -92,7 +93,10 @@ export function InfoService({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="terms"
@@ -144,7 +148,10 @@ export function ConfirmService({
         <CheckboxDefault
           label={
             <>
-              Aceito o <a href="/termos-de-privacidade">termo de privacidade</a>
+              Aceito o{' '}
+              <Link href="/termos-de-privacidade" target="_blank">
+                termo de privacidade
+              </Link>
             </>
           }
           name="regulation"
