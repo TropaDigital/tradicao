@@ -10,7 +10,7 @@ class FileClass {
   async postFile(file: FormData) {
     try {
       const response: AxiosResponse<any> = await axios.post(
-        `https://bucket.backendtropa.com.br/upload`,
+        `https://bucket.trad1.com.br/upload`,
         file,
         {
           headers: {

@@ -4,7 +4,11 @@ const nextConfig = {
     appDir: true
   },
   images: {
-    domains: ['via.placeholder.com', 'bucket.backendtropa.com.br']
+    domains: [
+      'via.placeholder.com',
+      'bucket.backendtropa.com.br',
+      'bucket.trad1.com.br'
+    ]
   }
 };
 
