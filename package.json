@@ -58,6 +58,7 @@
     "moment": "^2.24.0",
     "next": "13.2.3",
     "nextjs-progressbar": "^0.0.16",
+    "pdfjs-dist": "^3.4.120",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",

@@ -8,6 +8,7 @@ import GraphicDemonstrations from '../../../../public/images/demonstracoes_bg.jp
 import SkewContainer from '@/components/shared/SkewContainer';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
+import Link from 'next/link';
 
 const DemonstracoesPage = () => {
   const { allDemonstrations } = useGetAllDemonstrations('');
@@ -33,15 +34,15 @@ const DemonstracoesPage = () => {
                   <Button
                     radius="rounded"
                     degrade
-                    onClick={() =>
-                      downloadFileFromExternalLink(
-                        demo?.demonstracaoPDF[0]?.url_pdf,
-                        demo?.titulo
-                      )
-                    }
                     className="demonstracao-button"
                   >
-                    {demo?.titulo}
+                    <Link
+                      href={`/demonstracoes-financeiras/${demo?.demonstracaoPDF[0]?.url_pdf
+                        ?.split('/')
+                        ?.pop()}`}
+                    >
+                      {demo?.titulo}
+                    </Link>
                   </Button>
                 </li>
               );

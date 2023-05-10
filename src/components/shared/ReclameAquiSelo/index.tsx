@@ -11,13 +11,13 @@ const ReclameAquiSelo = () => {
       'data-id',
       'MTAxNjc6Y29uc29yY2lvLW5hY2lvbmFsLXRyYWRpY2Fv'
     );
-    script.setAttribute('data-target', 'reputation-ra');
-    script.setAttribute('data-model', '2');
+    script?.setAttribute('data-target', 'reputation-ra');
+    script?.setAttribute('data-model', '2');
 
-    document.body.appendChild(script);
+    document?.body?.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      document?.body?.removeChild(script);
     };
   }, []);
 
