@@ -386,8 +386,8 @@ export default function Footer() {
         </div>
       </Copyright>
 
-      <ChatIA opened={modalChat} onClose={() => setModalChat(false)} />
-      <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" />
+      {/* <ChatIA opened={modalChat} onClose={() => setModalChat(false)} /> */}
+      {/* <ButtonChatIa onClick={() => setModalChat(true)} color="0, 54, 198" /> */}
     </Container>
   );
 }
