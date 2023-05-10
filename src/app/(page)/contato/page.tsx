@@ -40,7 +40,7 @@ export default function Contato() {
             </ul>
             <S.ContactSubtitle>Whatsapp</S.ContactSubtitle>
 
-            <Link href={`wa.me/551129284855`}>
+            <Link href={`https://wa.me/551129284855`} target="_blank">
               <S.ContactText>(11) 2928-4855</S.ContactText>
             </Link>
 

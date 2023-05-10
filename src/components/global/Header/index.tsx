@@ -169,6 +169,14 @@ const Header = () => {
     setSubMenusHeader(subMenusState);
   }
 
+  function handleTargetBlank(link: string) {
+    if (link === 'Universidade' || link === 'Área do Representante') {
+      return '_blank';
+    }
+
+    return '_self';
+  }
+
   const handlePageChangeMobileMenu = (page: IHeaderOptions) => {
     if (subMenusHeader[page?.title] === true) {
       updateHeaderSubmenusState('');
@@ -240,7 +248,7 @@ const Header = () => {
                   .replace(/[\u0300-\u036f]/g, '')}
                 key={key}
               >
-                <Link href={info.link}>
+                <Link href={info.link} target={handleTargetBlank(info?.text)}>
                   {info.icon}
                   {info.text}
                 </Link>
