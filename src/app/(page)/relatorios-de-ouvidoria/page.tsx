@@ -6,6 +6,7 @@ import Button from '@/components/UI/Button';
 import MainTitle from '@/components/UI/MainTitle';
 import { useGetlAllRelatorios } from '@/services/relatorios/GET/useGetAllRelatiorios';
 import { downloadFileFromExternalLink } from '@/utils/downloadFile';
+import Link from 'next/link';
 import React from 'react';
 import GraphicsBg from '../../../../public/images/demonstracoes_bg.jpg';
 import * as S from './styles';
@@ -32,15 +33,15 @@ const RelatoriosPage = () => {
                     degrade
                     radius="rounded"
                     className="relatorio-button"
-                    onClick={() =>
-                      downloadFileFromExternalLink(
-                        relatorio?.pdfData[0]['url_pdf'],
-                        relatorio?.titulo
-                      )
-                    }
                     key={relatorio?.id_relatorio}
                   >
-                    {relatorio?.titulo}
+                    <Link
+                      href={`/relatorios-de-ouvidoria/${relatorio?.pdfData[0]?.url_pdf
+                        ?.split('/')
+                        ?.pop()}`}
+                    >
+                      {relatorio?.titulo}
+                    </Link>
                   </Button>
                 </>
               );

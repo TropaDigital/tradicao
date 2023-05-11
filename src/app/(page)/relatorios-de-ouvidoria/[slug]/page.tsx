@@ -10,12 +10,12 @@ import Link from 'next/link';
 // Components
 import CenterWrapper from '@/components/global/CenterWrapper';
 import MainTitle from '@/components/UI/MainTitle';
-import Button from '@/components/UI/Button';
 
 // Styles
 import { ButtonWrapper, Container } from './styles';
+import Button from '@/components/UI/Button';
 
-const DemonstracaoView = () => {
+const RelatorioView = () => {
   const pathName = usePathname();
 
   const filePath = pathName?.split('/')?.pop();
@@ -25,11 +25,11 @@ const DemonstracaoView = () => {
       <Container>
         <ButtonWrapper>
           <Button degrade radius="rounded">
-            <Link href="/demonstracoes-financeiras">Voltar</Link>
+            <Link href="/relatorios-de-ouvidoria">Voltar</Link>
           </Button>
         </ButtonWrapper>
 
-        <MainTitle title="Visualização Demonstração" />
+        <MainTitle title="Visualização Relatório" />
 
         <iframe
           src={`https://bucket.trad1.com.br/file/${filePath}#toolbar=0`}
@@ -46,4 +46,4 @@ const DemonstracaoView = () => {
   );
 };
 
-export default DemonstracaoView;
+export default RelatorioView;

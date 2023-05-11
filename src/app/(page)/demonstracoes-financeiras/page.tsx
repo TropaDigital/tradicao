@@ -7,7 +7,6 @@ import * as S from './styles';
 import GraphicDemonstrations from '../../../../public/images/demonstracoes_bg.jpg';
 import SkewContainer from '@/components/shared/SkewContainer';
 import CenterWrapper from '@/components/global/CenterWrapper';
-import { downloadFileFromExternalLink } from '@/utils/downloadFile';
 import Link from 'next/link';
 
 const DemonstracoesPage = () => {
