@@ -3,19 +3,20 @@
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useDebouncedCallback } from 'use-debounce';
 import Link from 'next/link';
 import { useScrollDirection } from '@/utils/detectScrollDirection';
+import { useGetPostInfo } from '@/services/blog/posts/GET/useGetPostInfo';
 
 export default function AsideBar() {
   const [query, setQuery] = useState<string>('');
   const [showSuggests, setShowSuggests] = useState<'show' | ''>('');
 
   const { allCategorias } = useGetAllCategorias();
-  const rankingPosts = useGetAllPosts('?ordem_tipo=acesso_mes');
-  const { allPosts } = useGetAllPosts(query);
+  const rankingPosts = useGetPostInfo('?ordem_tipo=acesso_mes');
+  const { postsInfo } = useGetPostInfo(query);
   const scrollDirection = useScrollDirection();
 
   const debounced = useDebouncedCallback(
@@ -26,6 +27,11 @@ export default function AsideBar() {
     // delay in ms
     300
   );
+
+  function handleSlug(title: string): string {
+    const slug = title?.trim()?.replaceAll(' ', '-').toLowerCase();
+    return slug;
+  }
 
   return (
     <>
@@ -42,18 +48,12 @@ export default function AsideBar() {
 
           <div className={'suggest-container' + showSuggests}>
             <ul>
-              {allPosts?.result?.length > 0 ? (
+              {postsInfo?.data?.length > 0 ? (
                 <>
-                  {allPosts?.result?.map((postSuggest) => (
+                  {postsInfo?.data?.map((postSuggest) => (
                     <li key={postSuggest?.id_postagem}>
                       <Link
-                        href={
-                          '/blog/' +
-                          postSuggest?.titulo
-                            ?.trim()
-                            ?.replaceAll(' ', '-')
-                            .toLowerCase()
-                        }
+                        href={'/blog/' + handleSlug(postSuggest?.titulo)}
                         className="suggest-option"
                         onClick={() => {
                           if (typeof window !== 'undefined') {
@@ -80,7 +80,7 @@ export default function AsideBar() {
           <h4 className="topic-title">Mais Acessados</h4>
 
           <div className="list-container">
-            {rankingPosts?.allPosts?.result?.map((rankPost, key) => {
+            {rankingPosts?.postsInfo?.data?.map((rankPost, key) => {
               if (key > 4) return;
               return (
                 <Link
@@ -89,7 +89,7 @@ export default function AsideBar() {
                     rankPost?.titulo?.toLowerCase().trim().replaceAll(' ', '-')
                   }
                   className="topic-item"
-                  key={key}
+                  key={rankPost?.id_postagem}
                   onClick={() => {
                     if (typeof window !== 'undefined') {
                       localStorage.setItem(

@@ -3,4 +3,5 @@ export interface IBlogCard {
   subtitle: string;
   image: string;
   postId: number;
+  slug: string;
 }

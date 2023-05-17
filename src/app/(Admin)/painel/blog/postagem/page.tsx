@@ -110,7 +110,7 @@ const PostPanel = () => {
         types: ['paragraph', 'heading']
       }),
       ImageTipTap.configure({
-        allowBase64: true
+        allowBase64: false
       }),
       TipTapLink.configure({
         protocols: ['mailto', 'tel'],

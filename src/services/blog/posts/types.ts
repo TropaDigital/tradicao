@@ -14,3 +14,18 @@ export interface IGetPosts {
   categoria_id: number;
   categoria: string;
 }
+
+export interface IPostInfo {
+  id_postagem: number;
+  slug: string;
+  titulo: string;
+}
+
+export interface IPostList {
+  id_postagem: number;
+  titulo: string;
+  subtitulo: string;
+  postagem_img: string;
+  slug: string;
+  data: string;
+}

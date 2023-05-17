@@ -14,6 +14,28 @@ class PostsClass {
     }
   }
 
+  async getPostInfo(query?: string) {
+    try {
+      const response: AxiosResponse = await API.get(
+        `/blog/post-mais-acessados${query}`
+      );
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getPostList(query?: string) {
+    try {
+      const response: AxiosResponse = await API.get(
+        `/blog/post-listar${query}`
+      );
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async updatePost(postBody: IUpdatePostBody, id: number) {
     try {
       const response: AxiosResponse = await API.put(

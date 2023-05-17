@@ -1,19 +1,32 @@
 'use client';
 
-import CenterWrapper from '@/components/global/CenterWrapper';
-import React, { useState, useEffect } from 'react';
-import SkewContainer from '@/components/shared/SkewContainer';
-import BlogBG from '../../../../public/images/blog_bg.jpg';
-import MainTitle from '@/components/UI/MainTitle';
-import * as S from './styles';
-import PostCard from '@/components/pages/Blog/PostCard';
-import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import 'moment/locale/pt-br';
-import AsideBar from '@/components/pages/Blog/AsideBar';
+// Next
 import { useSearchParams } from 'next/navigation';
-import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
+
+// React
+import React, { useState, useEffect } from 'react';
+
+// Components
+import CenterWrapper from '@/components/global/CenterWrapper';
+import SkewContainer from '@/components/shared/SkewContainer';
+import MainTitle from '@/components/UI/MainTitle';
+import PostCard from '@/components/pages/Blog/PostCard';
+import AsideBar from '@/components/pages/Blog/AsideBar';
 import PaginationData from '@/components/shared/PaginationData';
+
+// Images
+import BlogBG from '../../../../public/images/blog_bg.jpg';
+
+// Styles
+import * as S from './styles';
+
+// Libraries
+import 'moment/locale/pt-br';
 import moment from 'moment';
+
+// Services
+import { useGetPostList } from '@/services/blog/posts/GET/useGetPostList';
+import { useGetAllCategorias } from '@/services/blog/categorias/GET/useGetAllCategorias';
 
 const BlogPage = () => {
   const [query, setQuery] = useState<string>('');
@@ -22,7 +35,7 @@ const BlogPage = () => {
   const params = useSearchParams();
 
   const { allCategorias } = useGetAllCategorias();
-  const { allPosts } = useGetAllPosts(
+  const { postsList } = useGetPostList(
     '?' + query + `currentPage=${actualPage}&perPage=10`
   );
 
@@ -74,22 +87,22 @@ const BlogPage = () => {
               </S.SearchPostsByAuthor>
             )}
             <S.ListPostsContainer>
-              {allPosts?.result?.map((post) => (
+              {postsList?.result?.map((post) => (
                 <PostCard
                   title={post?.titulo}
-                  date={moment(post?.criado?.split('T')[0]).format('DD MMM')}
+                  date={moment(post?.data?.split('T')[0]).format('DD MMM')}
                   image={post?.postagem_img}
                   subtitle={post?.subtitulo}
                   postId={post?.id_postagem}
                   key={post?.id_postagem}
                 />
               ))}
-              {allPosts?.result?.length === 0 && (
+              {postsList?.result?.length === 0 && (
                 <h3>Nenhuma postagem foi encontrada!</h3>
               )}
             </S.ListPostsContainer>
             <PaginationData
-              data={allPosts}
+              data={postsList}
               handlePagination={handlePageChange}
               page={actualPage}
             />

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 const ReclameAquiSelo = () => {
   useEffect(() => {
-    const script = document.createElement('script');
+    const script = document?.createElement('script');
     script.type = 'text/javascript';
     script.id = 'ra-embed-reputation';
     script.src = 'https://s3.amazonaws.com/raichu-beta/selos/bundle.js';

@@ -1,12 +1,18 @@
-import CenterWrapper from '@/components/global/CenterWrapper';
-import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
+// React
 import React from 'react';
+
+// Components
+import CenterWrapper from '@/components/global/CenterWrapper';
 import BlogCard from '../BlogCard';
+
+// Styles
 import * as S from './styles';
 
+// Services
+import { useGetPostList } from '@/services/blog/posts/GET/useGetPostList';
+
 const BlogContainer = () => {
-  const { allPosts } = useGetAllPosts('');
-  const lastFourPosts = allPosts?.result?.slice(0, 4);
+  const { postsList } = useGetPostList('?currentPage=1&perPage=4');
 
   return (
     <CenterWrapper>
@@ -15,13 +21,14 @@ const BlogContainer = () => {
       </S.Title>
 
       <S.Container data-aos="fade-up">
-        {lastFourPosts?.map((post) => (
+        {postsList?.result?.map((post) => (
           <BlogCard
             image={post?.postagem_img}
             postId={post?.id_postagem}
             title={post?.titulo}
             subtitle={post?.subtitulo}
             key={post?.id_postagem}
+            slug={post?.slug}
           />
         ))}
       </S.Container>
