@@ -72,15 +72,18 @@ const WorkWithUsPage = () => {
               initialValues={{
                 fullName: '',
                 role: '',
-                curriculum: []
+                curriculum: [],
+                privacyTerm: false
               }}
               validationSchema={curriulumFormSchema}
               onSubmit={(values, { resetForm }) => {
-                createCandidate({
-                  nome: values.fullName.trim(),
-                  vaga: values.role.trim(),
-                  curriculo_pdf: values.curriculum
-                });
+                // createCandidate({
+                //   nome: values.fullName.trim(),
+                //   vaga: values.role.trim(),
+                //   curriculo_pdf: values.curriculum
+                // });
+
+                console.log(values);
 
                 setFileName('');
                 resetForm();
@@ -140,16 +143,24 @@ const WorkWithUsPage = () => {
                     filename={fileName}
                   />
 
-                  <CheckboxDefault
-                    label={
-                      <>
-                        Aceito o{' '}
-                        <Link href="/termos-de-privacidade" target="_blank">
-                          termo de privacidade
-                        </Link>
-                      </>
-                    }
-                  />
+                  <div>
+                    <CheckboxDefault
+                      label={
+                        <>
+                          Aceito o{' '}
+                          <Link href="/termos-de-privacidade" target="_blank">
+                            termo de privacidade
+                          </Link>
+                        </>
+                      }
+                      name="privacyTerm"
+                      checked={values?.privacyTerm}
+                      onChange={handleChange}
+                      error={
+                        touched?.privacyTerm ? errors?.privacyTerm : undefined
+                      }
+                    />
+                  </div>
 
                   <Button weight={500} type="submit" degrade>
                     Enviar
@@ -164,7 +175,8 @@ const WorkWithUsPage = () => {
               initialValues={{
                 fullName: '',
                 cnpj: '',
-                contact: ''
+                contact: '',
+                privacyTerm: false
               }}
               validationSchema={representanteFormSchema}
               onSubmit={(values, { resetForm }) => {
@@ -214,16 +226,24 @@ const WorkWithUsPage = () => {
                     error={touched.contact && errors.contact}
                   />
 
-                  <CheckboxDefault
-                    label={
-                      <>
-                        Aceito o{' '}
-                        <Link href="/termos-de-privacidade" target="_blank">
-                          termo de privacidade
-                        </Link>
-                      </>
-                    }
-                  />
+                  <div>
+                    <CheckboxDefault
+                      label={
+                        <>
+                          Aceito o{' '}
+                          <Link href="/termos-de-privacidade" target="_blank">
+                            termo de privacidade
+                          </Link>
+                        </>
+                      }
+                      name="privacyTerm"
+                      onChange={handleChange}
+                      checked={values?.privacyTerm}
+                      error={
+                        touched?.privacyTerm ? errors?.privacyTerm : undefined
+                      }
+                    />
+                  </div>
 
                   <Button degrade type="submit">
                     Enviar

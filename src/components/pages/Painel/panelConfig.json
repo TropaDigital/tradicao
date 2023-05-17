@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "Leads Site",
+      "path": "simulacao"
+    },
+    {
       "name": "Assembleias",
       "path": "assembleias"
     },
@@ -43,10 +47,6 @@
     {
       "name": "Representantes",
       "path": "representantes"
-    },
-    {
-      "name": "Simulações Site",
-      "path": "simulacao"
     },
     {
       "name": "Unidades",

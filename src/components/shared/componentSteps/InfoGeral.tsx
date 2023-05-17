@@ -143,9 +143,9 @@ export default function InfoGeral({
         )}
         {selectedType === 'Pesados' && simulatorPlan === 'Crédito' && (
           <InputRange
-            defaultValue={defaultValue !== 303373.32 ? 303373.32 : defaultValue}
-            maxValue={404497.76}
-            minValue={202248.88}
+            defaultValue={defaultValue !== 185914.31 ? 185914.31 : defaultValue}
+            maxValue={247885.75}
+            minValue={123942.87}
             handleOnChange={handleOnChangeValue}
           />
         )}

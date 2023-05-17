@@ -6,9 +6,9 @@ const initialInformationValidation: any = {
   cnpj: yup
     .string()
     .test('should be a valid cnpj', 'CNPJ Inválido', (value) =>
-      validateCnpj(value)
+      value ? validateCnpj(value) : true
     )
-    .required('O CNPJ é obrigatório!'),
+    .optional(),
   ramo_de_atividade: yup.string().required('O ramo de atividade é obrigatório!')
 };
 

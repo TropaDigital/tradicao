@@ -38,7 +38,7 @@ export default function SelectSideBar({
     Parceiros: '&#129309;',
     Relatórios: '&#128202;',
     Representantes: '&#129333;',
-    ['Simulações Site']: '&#9997;',
+    ['Leads Site']: '&#9997;',
     Unidades: '&#127970;',
     ['Vídeo Institucional']: '&#127902;'
   };

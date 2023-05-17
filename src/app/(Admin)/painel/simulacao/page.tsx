@@ -5,6 +5,7 @@ import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
+import { SelectDefault } from '@/components/UI/Inputs/SelectDefault';
 import { useGetAllSimulacao } from '@/services/simulacao/GET/useGetAllSimulacao';
 import { downloadSpreadSheet } from '@/utils/downloadSpreadSheet';
 import moment from 'moment';
@@ -58,7 +59,7 @@ const SimulacaoPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { allSimulacao } = useGetAllSimulacao(
-    `?currentPage=${currentPage}&perPage=10`
+    `?currentPage=${currentPage}&perPage=25`
   );
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {

@@ -337,7 +337,7 @@ export default function SimulationForm() {
     }
 
     if (formData.conquest === 'Pesados' && formData.typePlan === 'Crédito') {
-      setFormData({ ...formData, ['value']: 303373.32 });
+      setFormData({ ...formData, ['value']: 185914.31 });
     }
   }, [formData.typePlan, formData.conquest]);
 
