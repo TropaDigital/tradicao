@@ -16,6 +16,7 @@ import {
 import { EyeIcon } from '@/assets/icons';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
+import Link from 'next/link';
 
 interface ILoginProps {
   bbwCpfCnpj: string;
@@ -96,7 +97,14 @@ export default function ClientLogin() {
         </Button>
       </LoginForm>
 
-      <TextButton>Esqueci minha senha</TextButton>
+      <TextButton>
+        <Link
+          href="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/recupera_senha.asp?TipoAcesso=Login"
+          target="_blank"
+        >
+          Esqueci minha senha
+        </Link>
+      </TextButton>
     </ContainerLogin>
   );
 }

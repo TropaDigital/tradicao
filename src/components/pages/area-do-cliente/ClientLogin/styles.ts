@@ -2,44 +2,43 @@
 import styled from 'styled-components';
 
 export const ContainerLogin = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-    width: 458px;
-    height: fit-content;
-    background-color: var(--primary);
-    background: var(--degrade-primary);
-    border-radius: 10px;
+  width: 458px;
+  height: fit-content;
+  background-color: var(--primary);
+  background: var(--degrade-primary);
+  border-radius: 10px;
 
-    padding: 48px;
+  padding: 48px;
 
-    /* position: absolute;
+  /* position: absolute;
     top: -110px;
     right: 0; */
 
-    .university-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+  .university-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-    }
+  @media (max-width: 800px) {
+    top: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+  }
 
-    @media (max-width: 800px) {
-      top: 250px;
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-    }
-
-    @media (max-width: 500px) {
-      width: 100%;
-      top: 0;
-      left: auto;
-      right: auto;
-      /* display: none; */
-    }
-`
+  @media (max-width: 500px) {
+    width: 100%;
+    top: 0;
+    left: auto;
+    right: auto;
+    /* display: none; */
+  }
+`;
 
 export const LoginTitle = styled.div`
   color: var(--white);
@@ -57,7 +56,7 @@ export const LoginForm = styled.form`
       color: white;
     }
   }
-`
+`;
 
 export const CheckboxLogin = styled.div`
   display: flex;
@@ -67,7 +66,6 @@ export const CheckboxLogin = styled.div`
   margin-top: -4px;
 
   input {
-
     &:focus-visible {
       outline: none;
     }
@@ -79,8 +77,7 @@ export const CheckboxLogin = styled.div`
     font-size: var(--text-smal-sm);
     font-weight: var(--weight-regular);
   }
-
-` 
+`;
 
 export const TextButton = styled.button`
   background-color: transparent;
@@ -92,10 +89,14 @@ export const TextButton = styled.button`
   font-style: italic;
 
   margin-left: auto;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
-    text-shadow: 0 0 10px #FFFFFF;
+    text-shadow: 0 0 10px #ffffff;
     transform: scale(1.05);
   }
-`
+
+  a {
+    color: inherit;
+  }
+`;
