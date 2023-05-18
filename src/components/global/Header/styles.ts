@@ -16,7 +16,7 @@ export const HeaderContainer = styled.header<Props>`
   left: 0;
   height: 122px;
   opacity: 1;
-  z-index: 99999;
+  z-index: 9999;
 
   display: flex;
   align-items: center;
