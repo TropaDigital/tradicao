@@ -10,11 +10,9 @@ var AUTH_KEY_STORAGE;
 
 if (process.env.NODE_ENV === 'development') {
   // baseUrl = 'http://192.168.15.14:33333';
-  // baseUrl = 'https://backend.trad1.com.br/';
-  baseUrl = 'https://tradicao.backendtropa.com.br/';
+  baseUrl = 'https://backend.trad1.com.br/';
 } else {
-  // baseUrl = 'https://backend.trad1.com.br/';
-  baseUrl = 'https://tradicao.backendtropa.com.br/';
+  baseUrl = 'https://backend.trad1.com.br/';
 }
 
 const API = axios.create({
