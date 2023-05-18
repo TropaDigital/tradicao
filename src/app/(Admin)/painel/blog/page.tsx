@@ -1,14 +1,25 @@
 'use client';
 
+// Next
+import { useRouter } from 'next/navigation';
+
+// React
+import React, { useState } from 'react';
+
+// Componentes
+import { InputDefault } from '@/components/UI/Inputs/InputDefault';
 import HeaderPage from '@/components/pages/Painel/components/HeaderPage';
 import Table from '@/components/pages/Painel/components/Table';
 import PaginationData from '@/components/shared/PaginationData';
 import Button from '@/components/UI/Button';
-import { InputDefault } from '@/components/UI/Inputs/InputDefault';
-import { useGetAllPosts } from '@/services/blog/posts/GET/useGetAllPosts';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+
+// Styles
 import { HeaderDashboard } from '../styles';
+
+// Libraries
+import { useGetPostList } from '@/services/blog/posts/GET/useGetPostList';
+
+// Libraries
 import { useDebouncedCallback } from 'use-debounce';
 
 const BlogPanel = () => {
@@ -48,7 +59,7 @@ const BlogPanel = () => {
   const [actualPage, setActualPage] = useState(1);
   const [query, setQuery] = useState<string>('');
 
-  const { allPosts } = useGetAllPosts(
+  const { postsList } = useGetPostList(
     `?${query}currentPage=${actualPage}&perPage=10`
   );
 
@@ -91,7 +102,7 @@ const BlogPanel = () => {
       </HeaderDashboard>
 
       <Table
-        data={allPosts?.result}
+        data={postsList?.result}
         header={headerTable}
         title={'Todos os Posts'}
         search={
@@ -103,7 +114,7 @@ const BlogPanel = () => {
         }
       />
       <PaginationData
-        data={allPosts}
+        data={postsList}
         handlePagination={handlePageChange}
         page={actualPage}
       />

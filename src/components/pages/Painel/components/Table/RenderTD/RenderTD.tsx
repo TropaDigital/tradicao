@@ -41,7 +41,7 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
           }}
         >
           <MenuIcon />
-          {miniModal && !pathName?.includes('blog') && (
+          {miniModal && (
             <MiniModal
               onClick={(modalType) => {
                 onClickOptions(modalType, item);
@@ -53,33 +53,6 @@ export default function RenderTD({ head, item, onClickOptions }: IRenderTD) {
                 {
                   label: 'Editar',
                   value: 'editar',
-                  icon: <PencilIcon />
-                },
-                {
-                  label: 'Excluir',
-                  value: 'excluir',
-                  icon: <CloseIcon />
-                }
-              ]}
-            />
-          )}
-          {miniModal && pathName?.includes('blog') && (
-            <MiniModal
-              onClick={(modalType) => {
-                onClickOptions(modalType, item);
-              }}
-              closeModal={() => {
-                setMiniModal(false);
-              }}
-              options={[
-                {
-                  label: 'Editar',
-                  value: 'editar',
-                  icon: <PencilIcon />
-                },
-                {
-                  label: 'Comentários',
-                  value: 'comentarios',
                   icon: <PencilIcon />
                 },
                 {
