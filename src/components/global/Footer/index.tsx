@@ -200,8 +200,14 @@ export default function Footer() {
             <TitleColumns>Ouvidoria</TitleColumns>
             <div style={{ marginTop: '6px' }}>
               <TextButton>ouvidoria@consorciotradicao.com.br</TextButton>
-              <Link href={'tel:08008770020'}>
-                <TextButton>0800 877 0020</TextButton>
+              <Link href={'tel:08007704139'}>
+                <TextButton>0800 770 4139</TextButton>
+              </Link>
+              <Link
+                href={'https://api.whatsapp.com/send?phone=551129284855'}
+                target={'_blank'}
+              >
+                <TextButton>11 2928-4855</TextButton>
               </Link>
             </div>
           </Column>

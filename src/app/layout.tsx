@@ -1,14 +1,21 @@
 'use client';
 
+// React
+import { useEffect, useDeferredValue } from 'react';
+
+// Styles
+import StyledJsxRegistry from './registry';
 import { GlobalStyles } from '@/styles/global';
 import { Toasted } from '@/styles/toast';
+
+// Libraries
 import { QueryClientProvider, QueryClient } from 'react-query';
+
 import { ToastContainer } from 'react-toastify';
-import StyledJsxRegistry from './registry';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useEffect, useDeferredValue } from 'react';
-import 'aos/dist/aos.css';
+
 import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function RootLayout({
   children
