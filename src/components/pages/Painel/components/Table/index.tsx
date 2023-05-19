@@ -100,7 +100,8 @@ export default function Table({ title, data, search, header }: ITableProps) {
     const isWindowDefined = typeof window !== undefined;
 
     if (isWindowDefined && url?.includes('postagem')) {
-      localStorage.setItem('actualPost', JSON.stringify(actualItem));
+      localStorage.removeItem('postSlug');
+      localStorage.setItem('postSlug', actualItem?.slug);
     }
 
     if (isWindowDefined && !url?.includes('postagem')) {

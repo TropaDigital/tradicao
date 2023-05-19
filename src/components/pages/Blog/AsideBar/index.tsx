@@ -9,6 +9,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import Link from 'next/link';
 import { useScrollDirection } from '@/utils/detectScrollDirection';
 import { useGetPostInfo } from '@/services/blog/posts/GET/useGetPostInfo';
+import { toSlug } from '@/utils/masks';
 
 export default function AsideBar() {
   const [query, setQuery] = useState<string>('');
@@ -27,11 +28,6 @@ export default function AsideBar() {
     // delay in ms
     300
   );
-
-  function handleSlug(title: string): string {
-    const slug = title?.trim()?.replaceAll(' ', '-').toLowerCase();
-    return slug;
-  }
 
   return (
     <>
@@ -53,7 +49,7 @@ export default function AsideBar() {
                   {postsInfo?.data?.map((postSuggest) => (
                     <li key={postSuggest?.id_postagem}>
                       <Link
-                        href={'/blog/' + handleSlug(postSuggest?.titulo)}
+                        href={'/blog/' + toSlug(postSuggest?.titulo)}
                         className="suggest-option"
                         onClick={() => {
                           if (typeof window !== 'undefined') {

@@ -91,7 +91,7 @@ const BlogPanel = () => {
             className="styledButton"
             onClick={() => {
               if (typeof window !== 'undefined') {
-                localStorage?.removeItem('actualPost');
+                localStorage?.removeItem('postSlug');
                 router?.push('/painel/blog/postagem');
               }
             }}

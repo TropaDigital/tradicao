@@ -12,9 +12,7 @@ export const useCreatePost = () => {
       let response = toast
         .promise(
           async () => {
-            let response: any = await PostsClass.createPost(postBody).then(
-              (data) => console.log(data)
-            );
+            let response: any = await PostsClass.createPost(postBody);
             return response;
           },
           {

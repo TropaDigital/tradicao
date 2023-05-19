@@ -77,13 +77,11 @@ const WorkWithUsPage = () => {
               }}
               validationSchema={curriulumFormSchema}
               onSubmit={(values, { resetForm }) => {
-                // createCandidate({
-                //   nome: values.fullName.trim(),
-                //   vaga: values.role.trim(),
-                //   curriculo_pdf: values.curriculum
-                // });
-
-                console.log(values);
+                createCandidate({
+                  nome: values.fullName.trim(),
+                  vaga: values.role.trim(),
+                  curriculo_pdf: values.curriculum
+                });
 
                 setFileName('');
                 resetForm();

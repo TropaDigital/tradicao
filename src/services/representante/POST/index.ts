@@ -21,7 +21,7 @@ export const useCreateAgent = () => {
           success: 'Representante cadastrado com sucesso'
         },
         {
-          position: 'top-right',
+          position: 'bottom-right',
           autoClose: 3000
         }
       );

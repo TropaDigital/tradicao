@@ -8,11 +8,24 @@ export interface IGetPosts {
   criado: string;
   modificado: string;
   postagem_img: string;
-  local: string | null;
-  autor: string | null;
+  local: string;
+  slug: string;
+  autor: string;
   subtitulo: string;
   categoria_id: number;
   categoria: string;
+}
+
+export interface IUpdatePostBody {
+  postagem_img: string;
+  titulo: string;
+  subtitulo: string;
+  autor: string;
+  local: string;
+  categoria_id: number | string;
+  conteudo: string;
+  slug: string;
+  id_postagem: number;
 }
 
 export interface IPostInfo {
