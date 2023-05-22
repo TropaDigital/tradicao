@@ -1,11 +1,22 @@
+'use client';
+
 import ModalDefault from '@/components/shared/Modal';
 import {
   IAssembleia,
   IContempladoAssembleia
 } from '@/services/assembleia/types';
-import { ModalTitle, ModalWrapper, Table, TdInfo, TdTitle } from './styles';
+import {
+  ModalTable,
+  ModalTitle,
+  ModalWrapper,
+  Table,
+  TdInfo,
+  TdTitle
+} from './styles';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+
+import { useRef } from 'react';
 
 interface ModalProps {
   openModal: boolean;
@@ -27,12 +38,18 @@ export default function ContemplatedList({
   setOpenModal,
   listData
 }: ModalProps) {
+  const tableBodyRef = useRef<any>(null);
+
   return (
     <>
-      <ModalDefault openState={openModal} setOpenState={setOpenModal}>
+      <ModalTable openState={openModal} setOpenState={setOpenModal}>
         <ModalWrapper>
           <ModalTitle>{listData?.titulo}</ModalTitle>
-          <Table>
+          <Table
+            tableWidth={
+              tableBodyRef?.current && tableBodyRef?.current?.offsetWidth
+            }
+          >
             <thead>
               <tr>
                 <TdTitle className="first">Nome</TdTitle>
@@ -42,7 +59,7 @@ export default function ContemplatedList({
                 <TdTitle>Representante</TdTitle>
               </tr>
             </thead>
-            <tbody>
+            <tbody ref={tableBodyRef}>
               {listData?.contemplados.length > 0 ? (
                 listData?.contemplados?.map((row: IContempladoAssembleia) => (
                   <tr>
@@ -65,7 +82,7 @@ export default function ContemplatedList({
             </tbody>
           </Table>
         </ModalWrapper>
-      </ModalDefault>
+      </ModalTable>
     </>
   );
 }

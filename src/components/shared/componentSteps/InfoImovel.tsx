@@ -120,7 +120,7 @@ export function InfoImovel({
           label={
             <>
               Aceito o{' '}
-              <Link href="/termos-de-privacidade" target="_blank">
+              <Link href="/aviso-de-privacidade" target="_blank">
                 termo de privacidade
               </Link>
             </>
@@ -176,7 +176,7 @@ export function ConfirmImovel({
           label={
             <>
               Aceito o{' '}
-              <Link href="/termos-de-privacidade" target="_blank">
+              <Link href="/aviso-de-privacidade" target="_blank">
                 termo de privacidade
               </Link>
             </>

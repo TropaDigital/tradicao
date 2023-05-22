@@ -1,15 +1,23 @@
 'use client';
 
+// Next
+import Link from 'next/link';
+
+// React
+import React, { useState } from 'react';
+
+// Components
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
-import ComplianceBg from '../../../../public/images/compliance.jpg';
-import React, { useState } from 'react';
-import MainTitle from '@/components/UI/MainTitle';
 import Button from '@/components/UI/Button';
-import * as S from './styles';
+import MainTitle from '@/components/UI/MainTitle';
 import ComplaintForm from '@/components/pages/Canal-de-denuncia/ComplaintForm';
-import FollowComplaintForm from '@/components/pages/Canal-de-denuncia/FollowComplaintForm';
-import Link from 'next/link';
+
+// Images
+import ComplianceBg from '../../../../public/images/compliance.jpg';
+
+// Styles
+import * as S from './styles';
 
 const CompliancePage = () => {
   const [isComplaintFormOpen, setIsComplaintFormOpen] =
@@ -21,10 +29,7 @@ const CompliancePage = () => {
 
   return (
     <>
-      <SkewContainer
-        imageSrc={ComplianceBg}
-        imageAlt="Homem em uma mesa trabalhando"
-      />
+      <SkewContainer imageSrc={ComplianceBg} imageAlt="Pessoas dando as mãos" />
       <CenterWrapper>
         <S.Container data-aos="fade-up">
           <MainTitle title="Canal de Comunicação" />

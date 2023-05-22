@@ -110,7 +110,7 @@ export function InfoTruck({
           label={
             <>
               Aceito o{' '}
-              <Link href="/termos-de-privacidade" target="_blank">
+              <Link href="/aviso-de-privacidade" target="_blank">
                 termo de privacidade
               </Link>
             </>
@@ -165,7 +165,7 @@ export function ConfirmTruck({
           label={
             <>
               Aceito o{' '}
-              <Link href="/termos-de-privacidade" target="_blank">
+              <Link href="/aviso-de-privacidade" target="_blank">
                 termo de privacidade
               </Link>
             </>

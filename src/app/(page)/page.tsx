@@ -19,7 +19,7 @@ export default function Home() {
     <Container>
       <HeroSkew
         backgroundImage={home_bg}
-        altBackgroundImage="Imagem de um carro com um homem e uma criança ao lado"
+        altBackgroundImage="Imagem de um casal feliz em uma concessionária"
         subtitle="Realizar sonhos se tornou Tradição!"
         solidHeight={'86%'}
       />

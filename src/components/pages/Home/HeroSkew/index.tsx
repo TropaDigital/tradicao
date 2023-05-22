@@ -1,7 +1,12 @@
-import SkewImage from '@/components/shared/SkewContainer/SkewImage';
-import Button from '@/components/UI/Button';
+'use client';
+
+// Next
 import Image from 'next/image';
+
+// Styles
 import * as S from './styles';
+
+// Types
 import { IHeroSkew } from './types';
 
 export default function HeroSkew({

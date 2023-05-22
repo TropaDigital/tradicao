@@ -1,8 +1,5 @@
 'use client';
 
-// React
-import { useEffect, useDeferredValue } from 'react';
-
 // Styles
 import StyledJsxRegistry from './registry';
 import { GlobalStyles } from '@/styles/global';
@@ -24,11 +21,11 @@ export default function RootLayout({
 }) {
   const queryClient = new QueryClient();
 
-  useEffect(() => {
+  if (typeof document !== 'undefined') {
     AOS.init({
       delay: 300
     });
-  }, []);
+  }
 
   return (
     <html lang="pt-BR">
@@ -50,12 +47,12 @@ export default function RootLayout({
         </QueryClientProvider>
 
         <script
-          src="//titulares.becompliance.com/becompliance.js"
-          defer
-        ></script>
-        <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-3LNMB2ZH0R"
+        ></script>
+        <script
+          src="//tag.goadopt.io/injector.js?website_code=cf3c01fb-bc26-4d96-a464-74c2189d951f"
+          className="adopt-injector"
         ></script>
         <script
           dangerouslySetInnerHTML={{

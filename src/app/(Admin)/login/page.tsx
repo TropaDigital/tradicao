@@ -1,20 +1,31 @@
 'use client';
 
+// React
 import React from 'react';
 
+// Next
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+// Styles
 import * as S from './styles';
 
+// Images
 import familyBanner from '../../../../public/images/family-on-grass.jpg';
 
+// Icons
 import { DefaultLogo, WhiteLogo } from '@/assets/icons';
-import Button from '@/components/UI/Button';
 
+// Components
+import Button from '@/components/UI/Button';
 import { InputPassword } from '@/components/UI/Inputs/InputPassword';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+
+// Libraries
 import { Form, Formik } from 'formik';
 import { loginSchema } from './yupSchema';
-import { useRouter } from 'next/navigation';
+
+// Services
 import { loginClass } from '@/services/login-painel';
 
 const PanelLoginComponent = () => {

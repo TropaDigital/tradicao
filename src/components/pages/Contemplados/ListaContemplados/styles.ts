@@ -1,5 +1,17 @@
 'use client';
+
 import styled from 'styled-components';
+import ModalDefault from '@/components/shared/Modal';
+
+type TableTypes = {
+  tableWidth: number;
+};
+
+export const ModalTable = styled(ModalDefault)`
+  max-width: 1281px;
+  width: 100%;
+  overflow: hidden;
+`;
 
 export const ModalWrapper = styled.div`
   display: flex;
@@ -12,23 +24,32 @@ export const ModalTitle = styled.div`
   font-weight: 700;
   color: var(--primary);
   text-align: center;
+
+  @media (max-width: 425px) {
+    font-size: 26px;
+  }
 `;
 
-export const Table = styled.table`
+export const Table = styled.table<TableTypes>`
   display: flex;
   flex-direction: column;
+  overflow-x: auto;
 
   thead,
   tbody {
     tr {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
+      grid-template-columns: repeat(5, 1fr);
+
+      @media (max-width: 650px) {
+        grid-template-columns: repeat(5, 142px);
+      }
     }
   }
 
   thead {
-    margin-right: 22px;
+    /* margin-right: 22px; */
 
     tr {
       height: fit-content;
@@ -38,7 +59,11 @@ export const Table = styled.table`
 
   tbody {
     max-height: 344px;
-    overflow-y: auto;
+
+    @media (max-width: 650px) {
+      width: fit-content;
+    }
+
     tr {
       &:nth-child(odd) {
         background: var(--background-secondary);
@@ -65,6 +90,16 @@ export const TdTitle = styled.td`
 
   &.first {
     padding-left: 8px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 650px) {
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 14px;
   }
 `;
 

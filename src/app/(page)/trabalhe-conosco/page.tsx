@@ -146,7 +146,7 @@ const WorkWithUsPage = () => {
                       label={
                         <>
                           Aceito o{' '}
-                          <Link href="/termos-de-privacidade" target="_blank">
+                          <Link href="/aviso-de-privacidade" target="_blank">
                             termo de privacidade
                           </Link>
                         </>
@@ -229,7 +229,7 @@ const WorkWithUsPage = () => {
                       label={
                         <>
                           Aceito o{' '}
-                          <Link href="/termos-de-privacidade" target="_blank">
+                          <Link href="/aviso-de-privacidade" target="_blank">
                             termo de privacidade
                           </Link>
                         </>
