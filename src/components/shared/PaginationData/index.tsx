@@ -19,7 +19,7 @@ const PaginationData = ({
     <S.Container>
       {data?.paginas > 1 && (
         <Pagination
-          page={page}
+          page={page as number}
           onChange={handlePagination}
           count={data?.paginas}
           defaultPage={defaultPage}

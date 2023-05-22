@@ -14,8 +14,7 @@ import SearchCourses from '@/components/pages/Universidade/SearchCourses';
 // import UniversityLogin from '@/components/pages/Universidade/ClientLogin';
 
 export default function University() {
-
-  return (        
+  return (
     <>
       <S.ContainerTop>
         <SkewContainerFiltered

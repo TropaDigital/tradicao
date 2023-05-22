@@ -1,5 +1,8 @@
 'use client';
 
+// React
+import { useEffect } from 'react';
+
 // Styles
 import StyledJsxRegistry from './registry';
 import { GlobalStyles } from '@/styles/global';
@@ -21,14 +24,30 @@ export default function RootLayout({
 }) {
   const queryClient = new QueryClient();
 
-  if (typeof document !== 'undefined') {
+  useEffect(() => {
     AOS.init({
       delay: 300
     });
-  }
+  }, []);
 
   return (
     <html lang="pt-BR">
+      <head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-3LNMB2ZH0R`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-3LNMB2ZH0R');
+              `
+          }}
+        />
+      </head>
       <body>
         <QueryClientProvider client={queryClient}>
           <StyledJsxRegistry>
@@ -53,21 +72,6 @@ export default function RootLayout({
         <script
           src="//tag.goadopt.io/injector.js?website_code=cf3c01fb-bc26-4d96-a464-74c2189d951f"
           className="adopt-injector"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-3LNMB2ZH0R');
-              `
-          }}
-        ></script>
-        <script
-          type="text/javascript"
-          src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/62afde1d-bc84-4c9b-a382-a60fea3f34a4-loader.js"
-          async
         ></script>
       </body>
     </html>

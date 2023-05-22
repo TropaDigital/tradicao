@@ -117,7 +117,7 @@ const PageVideoInstitucional = () => {
           <S.VideoContainer>
             <S.VideoWrapper videoIsRunning={videoStats}>
               <video
-                webkit-playsInline
+                // webkit-playsInline
                 playsInline
                 autoPlay={false}
                 ref={videoRef}
