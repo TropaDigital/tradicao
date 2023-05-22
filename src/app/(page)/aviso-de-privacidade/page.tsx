@@ -11,10 +11,7 @@ import Link from 'next/link';
 const TermosPage = () => {
   return (
     <>
-      <SkewContainer
-        imageAlt="Termos de Privacidade"
-        imageSrc={RegulamentoBg}
-      />
+      <SkewContainer imageAlt="Aviso de Privacidade" imageSrc={RegulamentoBg} />
 
       <CenterWrapper>
         <Container>
