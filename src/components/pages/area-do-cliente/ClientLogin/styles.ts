@@ -12,6 +12,8 @@ export const ContainerLogin = styled.div`
   background: var(--degrade-primary);
   border-radius: 10px;
 
+  cursor: default;
+
   padding: 48px;
 
   /* position: absolute;

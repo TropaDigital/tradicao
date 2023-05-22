@@ -1,9 +1,13 @@
+// Next
+import Link from 'next/link';
+
 // React
 import { useRef, useState } from 'react';
 
 // Components
 import Button from '@/components/UI/Button';
 import { InputDefault } from '@/components/UI/Inputs/InputDefault';
+import { InputPassword } from '@/components/UI/Inputs/InputPassword';
 
 // Styles
 import {
@@ -13,10 +17,9 @@ import {
   LoginTitle,
   TextButton
 } from './styles';
-import { EyeIcon } from '@/assets/icons';
-import { InputPassword } from '@/components/UI/Inputs/InputPassword';
+
+// Utils
 import formatCnpjAndCpf from '@/utils/formatCnpjAndCpf';
-import Link from 'next/link';
 
 interface ILoginProps {
   bbwCpfCnpj: string;
@@ -44,14 +47,22 @@ export default function ClientLogin() {
   }
 
   return (
-    <ContainerLogin>
+    <ContainerLogin
+      onClick={() =>
+        window?.open(
+          'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/',
+          '_blank'
+        )
+      }
+    >
       <LoginTitle>Acesse sua conta</LoginTitle>
 
       <form
         style={{ display: 'none' }}
         ref={formRef}
-        action="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/identifica.asp?TipoAcesso=Login"
+        // action="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/identifica.asp?TipoAcesso=Login"
         method="post"
+        onSubmit={(e) => e.preventDefault()}
       >
         <input name="bbwCpfCnpj" value={DTOLogin?.bbwCpfCnpj} />
         <input name="bbwSenha" value={DTOLogin?.bbwSenha} />
