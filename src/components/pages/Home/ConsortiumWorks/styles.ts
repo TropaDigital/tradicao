@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const ConsortiumContainer = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 `;
 
 export const ConsortiumTitle = styled.h1`

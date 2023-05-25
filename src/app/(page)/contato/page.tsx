@@ -5,8 +5,6 @@ import Link from 'next/link';
 import profilePic from '../../../../public/m10.png';
 import * as S from './styles';
 
-const inter = Inter({ subsets: ['latin'] });
-
 import contato_bg from '../../../../public/images/contato_bg.jpg';
 import CenterWrapper from '@/components/global/CenterWrapper';
 import SkewContainer from '@/components/shared/SkewContainer';
