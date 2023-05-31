@@ -342,7 +342,7 @@ export default function QuemSomos() {
 
       <S.ContemplatedWrapper>
         <CenterWrapper>
-          <S.ContemplatedTitle>Em 20 anos de mercado</S.ContemplatedTitle>
+          <S.ContemplatedTitle>Mais de 20 anos de mercado</S.ContemplatedTitle>
           <S.ContemplatedQuotasWrapper>
             <div className="contemplatedQuotesNumber">
               {/* {getCounters?.result[0]?.cotas_contemplados?.toLocaleString()} */}

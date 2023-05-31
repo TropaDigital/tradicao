@@ -43,7 +43,7 @@ export default function ClientLogin() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    formRef.current?.submit();
+    // formRef.current?.submit();
   }
 
   return (
@@ -61,7 +61,7 @@ export default function ClientLogin() {
         style={{ display: 'none' }}
         ref={formRef}
         // action="http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/identifica.asp?TipoAcesso=Login"
-        method="post"
+        // method="post"
         onSubmit={(e) => e.preventDefault()}
       >
         <input name="bbwCpfCnpj" value={DTOLogin?.bbwCpfCnpj} />

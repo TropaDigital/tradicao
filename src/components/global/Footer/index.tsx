@@ -11,7 +11,6 @@ import {
   PhoneIcon,
   TalkWithUsIcon,
   TikTokIcon,
-  WhiteLogo,
   YoutubeIcon
 } from '@/assets/icons';
 
@@ -38,19 +37,13 @@ import {
 } from './styles';
 
 // Images
-import ReclameLogo from '../../../../public/images/ReclameAqui.svg';
 import NoFrontiers from '../../../../public/images/NoFrontiers.png';
 import AyrtonSenna from '../../../../public/images/AyrtonSenna.png';
 import MamaRenascer from '../../../../public/images/mama_renascer.png';
 import Apala from '../../../../public/images/apala.png';
 import Tropa from '../../../../public/images/TropaLogo.svg';
-import ButtonChatIa from '../ChatIA/ButtonChatIa';
-import ChatIA from '../ChatIA/ChatIA';
-import { useState } from 'react';
 
 export default function Footer() {
-  const [modalChat, setModalChat] = useState(false);
-
   return (
     <Container>
       <FooterWrapper>
@@ -288,20 +281,17 @@ export default function Footer() {
 
             <TitleColumns>LGPD</TitleColumns>
 
-            <Link href={'/'}>
+            <Link href={'/aviso-de-privacidade'}>
               <TextButton>Portal da Privacidade</TextButton>
             </Link>
 
-            <Link href={'/'}>
-              <TextButton>Portal do Titular</TextButton>
-            </Link>
-
-            <Link href={'/'}>
-              <TextButton>Consentimentos</TextButton>
-            </Link>
-
-            <Link href={'/'}>
-              <TextButton>Pedidos dos Titulares</TextButton>
+            <Link
+              href={
+                'https://titulares.becompliance.com/?client=f091c8ff-b0ca-4aff-bbea-5ae6f14822b3&form=dad46e5b-247f-4dd5-925e-c142c7dfef2d'
+              }
+              target="_blank"
+            >
+              <TextButton>Portal dos Titulares</TextButton>
             </Link>
           </Column>
         </MidFooter>
