@@ -73,20 +73,6 @@ export default function RootLayout({
           src="//tag.goadopt.io/injector.js?website_code=cf3c01fb-bc26-4d96-a464-74c2189d951f"
           className="adopt-injector"
         ></script>
-        <script
-          async
-          src="//titulares.becompliance.com/becompliance.js"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                becompliance_form.create_form({
-                  client : 'f091c8ff-b0ca-4aff-bbea-5ae6f14822b3',
-                  form : 'dad46e5b-247f-4dd5-925e-c142c7dfef2d'
-                })
-                `
-          }}
-        ></script>
       </body>
     </html>
   );
