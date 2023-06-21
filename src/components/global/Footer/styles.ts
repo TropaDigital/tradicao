@@ -30,6 +30,16 @@ export const TopFooter = styled.div`
     align-items: center;
     gap: 20px;
   }
+
+  .partnerWrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .partner-logo {
+      pointer-events: none;
+    }
+  }
 `;
 
 export const LeftSide = styled.div`
@@ -80,6 +90,7 @@ export const SocialMedia = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-top: 30px;
 
   @media (max-width: 500px) {
     width: 80%;

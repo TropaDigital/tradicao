@@ -56,6 +56,15 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-PH25RMN');`
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+        
+            gtag('config', 'G-X3SM6Q273G');`
+          }}
+        />
       </head>
       <body>
         <noscript
@@ -83,6 +92,10 @@ export default function RootLayout({
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-3LNMB2ZH0R"
+        ></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-X3SM6Q273G"
         ></script>
         <script
           src="//tag.goadopt.io/injector.js?website_code=cf3c01fb-bc26-4d96-a464-74c2189d951f"

@@ -57,47 +57,16 @@ export default function Footer() {
             />
           </LeftSide>
 
-          <SocialMedia>
-            <Link
-              href={'https://www.facebook.com/ConsorcioTradicao/'}
-              target="_blank"
-              aria-label="Visite a pagina no Facebook do Consórcio Tradição"
-            >
-              <FacebookIcon />
-            </Link>
-
-            <Link
-              href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
-              target="_blank"
-              aria-label="Visite a pagina no Instagram do Consórcio Tradição"
-            >
-              <InstagramIcon />
-            </Link>
-
-            <Link
-              href={'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'}
-              target="_blank"
-              aria-label="Visite a pagina no Youtube do Consórcio Tradição"
-            >
-              <YoutubeIcon />
-            </Link>
-
-            <Link
-              href={'https://www.tiktok.com/@consorciotradicao'}
-              target="_blank"
-              aria-label="Visite a pagina no Tik Tok do Consórcio Tradição"
-            >
-              <TikTokIcon />
-            </Link>
-
-            <Link
-              href={'https://www.linkedin.com/company/consorciotradicao/'}
-              target="_blank"
-              aria-label="Visite a pagina no Linkedin do Consórcio Tradição"
-            >
-              <LinkedinIcon />
-            </Link>
-          </SocialMedia>
+          <div className="partnerWrapper">
+            <TitleColumns>Parceiro:</TitleColumns>
+            <Image
+              src="/images/logo_tradmax.png"
+              alt="Logo Tradmax"
+              className="partner-logo"
+              height={100}
+              width={100}
+            />
+          </div>
 
           <RightSide>
             <div id="reputation-ra">
@@ -293,6 +262,50 @@ export default function Footer() {
             >
               <TextButton>Portal dos Titulares</TextButton>
             </Link>
+
+            <SocialMedia>
+              <Link
+                href={'https://www.facebook.com/ConsorcioTradicao/'}
+                target="_blank"
+                aria-label="Visite a pagina no Facebook do Consórcio Tradição"
+              >
+                <FacebookIcon />
+              </Link>
+
+              <Link
+                href={'https://www.instagram.com/consorciotradicao/?hl=pt-br'}
+                target="_blank"
+                aria-label="Visite a pagina no Instagram do Consórcio Tradição"
+              >
+                <InstagramIcon />
+              </Link>
+
+              <Link
+                href={
+                  'https://www.youtube.com/channel/UCPn_simvsLHGMJGrQbkreMQ'
+                }
+                target="_blank"
+                aria-label="Visite a pagina no Youtube do Consórcio Tradição"
+              >
+                <YoutubeIcon />
+              </Link>
+
+              <Link
+                href={'https://www.tiktok.com/@consorciotradicao'}
+                target="_blank"
+                aria-label="Visite a pagina no Tik Tok do Consórcio Tradição"
+              >
+                <TikTokIcon />
+              </Link>
+
+              <Link
+                href={'https://www.linkedin.com/company/consorciotradicao/'}
+                target="_blank"
+                aria-label="Visite a pagina no Linkedin do Consórcio Tradição"
+              >
+                <LinkedinIcon />
+              </Link>
+            </SocialMedia>
           </Column>
         </MidFooter>
 
