@@ -42,6 +42,7 @@ import AyrtonSenna from '../../../../public/images/AyrtonSenna.png';
 import MamaRenascer from '../../../../public/images/mama_renascer.png';
 import Apala from '../../../../public/images/apala.png';
 import Tropa from '../../../../public/images/TropaLogo.svg';
+import TradMaxLogo from '../../../../public/images/logo_tradmax.png';
 
 export default function Footer() {
   return (
@@ -60,7 +61,7 @@ export default function Footer() {
           <div className="partnerWrapper">
             <TitleColumns>Parceiro:</TitleColumns>
             <Image
-              src="/images/logo_tradmax.png"
+              src={TradMaxLogo}
               alt="Logo Tradmax"
               className="partner-logo"
               height={100}
