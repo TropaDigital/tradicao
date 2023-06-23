@@ -235,10 +235,10 @@ export default function Footer() {
                 Alphaville Industrial, Barueri/SP <br />
                 CEP: 06454-000{' '}
               </TextField>
-              <Link href={'tel:11 40035090'}>
+              <Link href={'tel:40035090'}>
                 <TextButton>
                   <PhoneIcon />
-                  (11) 4003 5090
+                  4003 5090
                 </TextButton>
               </Link>
               <Link href={'tel:11 29284800'}>
