@@ -147,7 +147,7 @@ const Header = () => {
     },
     {
       icon: <SuitCaseIcon />,
-      link: 'http://consorciotradicao.ddns.com.br:8090/newconplus/',
+      link: 'http://trad.consorciotradicao.com.br:8090/newconplus/',
       text: 'Área do Representante'
     }
   ];

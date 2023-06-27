@@ -50,7 +50,7 @@ export default function ClientLogin() {
     <ContainerLogin
       onClick={() =>
         window?.open(
-          'http://consorciotradicao.ddns.com.br:8090/newconplus/conweb/',
+          'http://trad.consorciotradicao.com.br:8090/newconplus/conweb/',
           '_blank'
         )
       }
