@@ -101,6 +101,11 @@ export default function RootLayout({
           src="//tag.goadopt.io/injector.js?website_code=cf3c01fb-bc26-4d96-a464-74c2189d951f"
           className="adopt-injector"
         ></script>
+        <script
+          type="text/javascript"
+          async
+          src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/62afde1d-bc84-4c9b-a382-a60fea3f34a4-loader.js"
+        ></script>
       </body>
     </html>
   );
