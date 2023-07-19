@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import GoogleTagManager from '@/components/shared/GoogleTagManager';
 
 export default function RootLayout({
   children
@@ -86,8 +87,10 @@ export default function RootLayout({
 
         <noscript
           dangerouslySetInnerHTML={{
-            __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R8S5VF"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+            __html: `
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R8S5VF"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        `
           }}
         />
         <QueryClientProvider client={queryClient}>
