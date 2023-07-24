@@ -423,7 +423,7 @@ export default function SimulationForm() {
                     handleOnNextStep();
                   }}
                 >
-                  Avançar
+                  {subCurrentStep !== 1 ? 'Avançar' : 'Enviar'}
                 </Button>
               ) : (
                 <Button
