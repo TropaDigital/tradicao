@@ -11,6 +11,8 @@ import { Toasted } from '@/styles/toast';
 // Libraries
 import { QueryClientProvider, QueryClient } from 'react-query';
 
+import TagManager from 'react-gtm-module';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -26,6 +28,8 @@ export default function RootLayout({
   const queryClient = new QueryClient();
 
   useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-PH25RMN' });
+
     AOS.init({
       delay: 300
     });
@@ -33,31 +37,6 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR">
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PH25RMN');`
-          }}
-        />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-3LNMB2ZH0R`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-3LNMB2ZH0R');
-              `
-          }}
-        />
-      </Head>
       <body>
         <noscript
           dangerouslySetInnerHTML={{
