@@ -296,16 +296,30 @@ const Header = () => {
               {mainPages.map((page, key) => {
                 return (
                   <React.Fragment key={key}>
-                    <a
-                      key={key}
-                      className="mobile-option"
-                      onClick={() => handlePageChangeMobileMenu(page)}
-                    >
-                      {page.title}
-                      <span className="chevron-icon">
-                        {page.subOptions && <ChevronIcon />}
-                      </span>
-                    </a>
+                    {page?.path && (
+                      <a
+                        className="mobile-option"
+                        // onClick={() => handlePageChangeMobileMenu(page)}
+                        href={page?.path}
+                      >
+                        {page.title}
+                        <span className="chevron-icon">
+                          {page.subOptions && <ChevronIcon />}
+                        </span>
+                      </a>
+                    )}
+
+                    {!page?.path && (
+                      <p
+                        className="mobile-option"
+                        onClick={() => handlePageChangeMobileMenu(page)}
+                      >
+                        {page.title}
+                        <span className="chevron-icon">
+                          {page.subOptions && <ChevronIcon />}
+                        </span>
+                      </p>
+                    )}
 
                     {page.subOptions && (
                       <S.SubMobileMenu isOpen={subMenusHeader[page?.title]}>

@@ -18,7 +18,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Head from 'next/head';
 
 export default function RootLayout({
   children
@@ -37,6 +36,38 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR">
+      <head>
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://consorciotradicao.com.br/" />
+        <meta property="og:title" content="Consórcio Tradição" />
+        <meta
+          property="og:description"
+          content="O Consórcio Tradição: Soluções financeiras personalizadas com transparência e ética. Mais de 20 anos de experiência proporcionando uma jornada de consórcio única e satisfatória. Nossa equipe capacitada guia você desde o plano até a contemplação. Confie na nossa tradição para o seu sucesso."
+        />
+        <meta
+          property="og:image"
+          content="https://bucket.trad1.com.br/file/c51176eb-ae9f-40df-95ee-61b20a6b3af6"
+        />
+
+        <meta property="og:type" content="website" />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://consorciotradicao.com.br/"
+        />
+        <meta property="twitter:title" content="Consórcio Tradição" />
+        <meta
+          property="twitter:description"
+          content="O Consórcio Tradição: Soluções financeiras personalizadas com transparência e ética. Mais de 20 anos de experiência proporcionando uma jornada de consórcio única e satisfatória. Nossa equipe capacitada guia você desde o plano até a contemplação. Confie na nossa tradição para o seu sucesso."
+        />
+        <meta
+          property="twitter:image"
+          content="https://bucket.trad1.com.br/file/c51176eb-ae9f-40df-95ee-61b20a6b3af6"
+        />
+      </head>
       <body>
         <noscript
           dangerouslySetInnerHTML={{
