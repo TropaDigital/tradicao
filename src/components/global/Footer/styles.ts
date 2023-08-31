@@ -62,7 +62,7 @@ export const LeftSide = styled.div`
 export const RightSide = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   .correct {
     margin-bottom: -22px;

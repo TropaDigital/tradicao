@@ -70,6 +70,22 @@ export default function Footer() {
           </div>
 
           <RightSide>
+            <div style={{ marginTop: 4.5 }}>
+              <Link
+                href={
+                  'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/premio/'
+                }
+                target="_blank"
+              >
+                <Image
+                  src={'/images/Selo-indicada-horizontal-verde.png'}
+                  alt="Selo de indicação Reclame Aqui - Consórcio Tradição"
+                  width={452 * 0.5}
+                  height={124 * 0.5}
+                />
+              </Link>
+            </div>
+
             <div id="reputation-ra">
               <ReclameAquiSelo />
             </div>
