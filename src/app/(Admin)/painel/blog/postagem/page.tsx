@@ -46,6 +46,7 @@ import { RemoveImageIcon } from '@/assets/icons';
 
 // Yup
 import { PostagemSchema } from './yupSchema';
+import { toSlug } from '@/utils/masks';
 
 const PostPanel = () => {
   const router = useRouter();
@@ -276,7 +277,10 @@ const PostPanel = () => {
               <InputDefault
                 label="Título"
                 placeholder="Título da Postagem"
-                onChange={formik?.handleChange}
+                onChange={(e) => {
+                  formik?.handleChange(e);
+                  formik.setFieldValue('slug', toSlug(e.target.value));
+                }}
                 name="titulo"
                 value={formik?.values?.titulo}
                 error={formik?.touched?.titulo && formik?.errors?.titulo}
