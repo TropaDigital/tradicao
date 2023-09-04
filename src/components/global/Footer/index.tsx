@@ -78,7 +78,7 @@ export default function Footer() {
                 target="_blank"
               >
                 <Image
-                  src={'/images/Selo-indicada-horizontal-verde.png'}
+                  src={'/images/selo-indicacao-ra.png'}
                   alt="Selo de indicação Reclame Aqui - Consórcio Tradição"
                   width={452 * 0.5}
                   height={124 * 0.5}
