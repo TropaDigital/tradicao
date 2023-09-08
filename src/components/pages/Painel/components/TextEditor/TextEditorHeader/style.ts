@@ -109,3 +109,38 @@ export const InsetImageWrapper = styled.button`
     cursor: pointer;
   }
 `;
+
+export const LinkWrapper = styled.div<Props>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+
+  position: absolute;
+  top: 20px;
+  padding: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 5px solid #fff;
+  }
+`;
+
+export const Input = styled.input`
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+`;
