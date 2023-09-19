@@ -34,10 +34,19 @@ export const TopFooter = styled.div`
   .partnerWrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
 
     .partner-logo {
       pointer-events: none;
+      border-radius: 10px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
   }
 `;

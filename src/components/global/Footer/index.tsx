@@ -11,6 +11,7 @@ import {
   PhoneIcon,
   TalkWithUsIcon,
   TikTokIcon,
+  WhatsappIcon,
   YoutubeIcon
 } from '@/assets/icons';
 
@@ -59,14 +60,25 @@ export default function Footer() {
           </LeftSide>
 
           <div className="partnerWrapper">
-            <TitleColumns>Parceiro:</TitleColumns>
-            <Image
-              src={TradMaxLogo}
-              alt="Logo Tradmax"
-              className="partner-logo"
-              height={100}
-              width={100}
-            />
+            <TitleColumns>Parceiros:</TitleColumns>
+
+            <div className="column">
+              <Image
+                src="/images/logo_tradmax_c.jpg"
+                className="partner-logo"
+                alt="Logo Tradmax"
+                height={124 * 0.5}
+                width={451 * 0.5}
+              />
+
+              <Image
+                src="/images/logo_trad_mais.jpg"
+                className="partner-logo"
+                alt="Logo Tradmax"
+                height={124 * 0.5}
+                width={451 * 0.5}
+              />
+            </div>
           </div>
 
           <RightSide>
@@ -186,7 +198,7 @@ export default function Footer() {
                 href={'https://api.whatsapp.com/send?phone=551129284855'}
                 target={'_blank'}
               >
-                <TextButton>11 2928-4855</TextButton>
+                <WhatsappIcon width={256 * 0.1} height={258 * 0.1} />
               </Link>
             </div>
           </Column>
@@ -257,10 +269,10 @@ export default function Footer() {
                   4003 5090
                 </TextButton>
               </Link>
-              <Link href={'tel:11 29284800'}>
+              <Link href={'tel:11 29294855'}>
                 <TextButton>
                   <PhoneIcon />
-                  (11) 2928-4800
+                  (11) 2929-4855
                 </TextButton>
               </Link>
             </div>
