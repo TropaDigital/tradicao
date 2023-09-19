@@ -36,7 +36,7 @@ export const TopFooter = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 5px;
 
     .partner-logo {
       pointer-events: none;
@@ -45,8 +45,15 @@ export const TopFooter = styled.div`
 
     .column {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 485px) {
+        gap: 15px;
+      }
+      /* flex-direction: column; */
+      /* gap: 5px; */
     }
   }
 `;
@@ -70,6 +77,7 @@ export const LeftSide = styled.div`
 
 export const RightSide = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
 

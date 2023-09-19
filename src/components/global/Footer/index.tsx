@@ -64,7 +64,7 @@ export default function Footer() {
 
             <div className="column">
               <Image
-                src="/images/logo_tradmax_c.jpg"
+                src="/images/logo_tradimax.png"
                 className="partner-logo"
                 alt="Logo Tradmax"
                 height={124 * 0.5}
@@ -72,7 +72,7 @@ export default function Footer() {
               />
 
               <Image
-                src="/images/logo_trad_mais.jpg"
+                src="/images/logo_trad+.png"
                 className="partner-logo"
                 alt="Logo Tradmax"
                 height={124 * 0.5}
@@ -82,7 +82,11 @@ export default function Footer() {
           </div>
 
           <RightSide>
-            <div style={{ marginTop: 4.5 }}>
+            <div id="reputation-ra">
+              <ReclameAquiSelo />
+            </div>
+
+            <div>
               <Link
                 href={
                   'https://www.reclameaqui.com.br/empresa/consorcio-nacional-tradicao/premio/'
@@ -96,10 +100,6 @@ export default function Footer() {
                   height={124 * 0.5}
                 />
               </Link>
-            </div>
-
-            <div id="reputation-ra">
-              <ReclameAquiSelo />
             </div>
           </RightSide>
         </TopFooter>
@@ -194,12 +194,6 @@ export default function Footer() {
               <Link href={'tel:08007704139'}>
                 <TextButton>0800 770 4139</TextButton>
               </Link>
-              <Link
-                href={'https://api.whatsapp.com/send?phone=551129284855'}
-                target={'_blank'}
-              >
-                <WhatsappIcon width={256 * 0.1} height={258 * 0.1} />
-              </Link>
             </div>
           </Column>
 
@@ -274,6 +268,15 @@ export default function Footer() {
                   <PhoneIcon />
                   (11) 2929-4855
                 </TextButton>
+              </Link>
+              <Link
+                href={'https://api.whatsapp.com/send?phone=551129284855'}
+                target={'_blank'}
+              >
+                <div style={{ display: 'flex', gap: '5px', marginTop: '8px' }}>
+                  <WhatsappIcon width={256 * 0.07} height={258 * 0.07} />
+                  <TextField>(11) 2928-4855</TextField>
+                </div>
               </Link>
             </div>
 
