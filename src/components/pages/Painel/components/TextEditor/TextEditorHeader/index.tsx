@@ -1,10 +1,18 @@
+// React
+import { useEffect, useRef, useState } from 'react';
+
+// Styles
 import {
   ChangeTextColor,
   DropDownMenuFontSize,
   EditorHeader,
+  Input,
   InsetImageWrapper,
+  LinkWrapper,
   MenuFontSize
 } from './style';
+
+// Icons
 import {
   BoldIcon,
   ClipFileIcon,
@@ -19,17 +27,25 @@ import {
   TextSizeIcon,
   UnderlineIcon
 } from '@/assets/icons';
-import { useEffect, useRef, useState } from 'react';
+import { FiLink2 } from 'react-icons/fi';
+
+// Services
 import { usePostFile } from '@/services/arquivos/POST/usePostFile';
+
+// Utils
 import { useOutsideAlerter } from '@/utils/useOutsideAlerter';
 
 const TextEditorHeader = ({ editor }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenLink, setIsOpenLink] = useState<boolean>(false);
+  const [link, setLink] = useState<string>('');
 
   const { postFile } = usePostFile();
 
   const wrapperRef = useRef(null);
+  const linkRef = useRef(null);
   useOutsideAlerter(wrapperRef, setIsOpen);
+  useOutsideAlerter(linkRef, setIsOpenLink);
 
   async function setImage(e: any) {
     let formData = new FormData();
@@ -44,6 +60,13 @@ const TextEditorHeader = ({ editor }: any) => {
 
     e.target.value = '';
   }
+
+  useEffect(() => {
+    if (!isOpenLink && link !== '') {
+      editor.chain().focus().setLink({ href: link }).run();
+      setLink('');
+    }
+  }, [link, isOpenLink]);
 
   return (
     <EditorHeader>
@@ -158,6 +181,20 @@ const TextEditorHeader = ({ editor }: any) => {
             </ul>
           </DropDownMenuFontSize>
         </MenuFontSize>
+      </div>
+
+      <div style={{ position: 'relative' }}>
+        <button type="button" onClick={() => setIsOpenLink(true)}>
+          <FiLink2 />
+        </button>
+
+        <LinkWrapper isOpen={isOpenLink} ref={linkRef}>
+          <Input
+            placeholder="https://. . ."
+            onChange={({ target }) => setLink(target.value)}
+            value={link}
+          />
+        </LinkWrapper>
       </div>
 
       <InsetImageWrapper type="button">
