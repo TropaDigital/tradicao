@@ -1021,7 +1021,13 @@ export const ChevronIcon = ({ color = '#CCCCCC', size = 18 }) => {
   );
 };
 
-export const FacebookIcon = ({ size = 20, color = '#FFF' }: any) => {
+export const FacebookIcon = ({
+  size = 20,
+  color = '#FFF'
+}: {
+  size: number;
+  color: string;
+}) => {
   return (
     <svg
       width={size}
@@ -1038,7 +1044,13 @@ export const FacebookIcon = ({ size = 20, color = '#FFF' }: any) => {
   );
 };
 
-export const InstagramIcon = ({ size = 20, color = '#FFF' }: any) => {
+export const InstagramIcon = ({
+  size = 20,
+  color = '#FFF'
+}: {
+  size: number;
+  color: string;
+}) => {
   return (
     <svg
       width={size}
@@ -1059,7 +1071,7 @@ export const YoutubeIcon: React.FC = ({
   width = 28,
   height = 19,
   color = '#FFF'
-}: any) => {
+}: IconProps) => {
   return (
     <svg
       width={width}
@@ -1080,7 +1092,7 @@ export const TikTokIcon: React.FC = ({
   width = 20,
   height = 21,
   color = '#FFF'
-}: any) => {
+}: IconProps) => {
   return (
     <svg
       width={width}
@@ -1101,7 +1113,7 @@ export const LinkedinIcon: React.FC = ({
   width = 20,
   height = 21,
   color = '#FFF'
-}: any) => {
+}: IconProps) => {
   return (
     <svg
       width={width}
