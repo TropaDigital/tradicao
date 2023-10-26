@@ -51,7 +51,7 @@ const styleButtonPlan = {
   border: '1px solid #0036C6'
 };
 
-export default function SimulationForm() {
+export default function SimulationForm({ defaultStep = 'Veículos' }) {
   const [error, setError] = useState<StateProps>({});
   const [isSimulator, setSimulator] = useState(false);
   const [selectStep, setSelectStep] = useState('Veículos');
@@ -71,6 +71,19 @@ export default function SimulationForm() {
 
   const { createSimulacao } = useCreateSimulacao();
   const { updateSimulacao } = useUpdateSimulacao();
+
+  useEffect(() => {
+    if (formData.conquest === defaultStep) return;
+
+    const enumConsortiumTypes: { [key: string]: number } = {
+      Veículos: 1,
+      Imóveis: 2,
+      Serviços: 3,
+      Pesados: 4
+    };
+
+    changeStepComp(defaultStep, enumConsortiumTypes[defaultStep]);
+  }, [defaultStep]);
 
   const handleOnChange: HandleOnChange = (event) => {
     const { name, value } = event.target;

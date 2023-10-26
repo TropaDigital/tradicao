@@ -34,7 +34,7 @@ export function InfoVehicle({
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
         <CarIcon width={28.37} height={20.27} />
-        <h2>Consórcio de Veiculo</h2>
+        <h2>Consórcio de Veículo</h2>
       </legend>
       <FieldDefault style={{ marginBottom: '14px' }}>
         <InputDefault

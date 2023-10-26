@@ -71,7 +71,7 @@ export default function ConsortiumProperties() {
           imageAlt="Imagem de uma família se abraçando na sala de casa"
         />
 
-        <SimulationForm />
+        <SimulationForm defaultStep="Imóveis" />
 
         <CenterWrapper>
           <div className="margin">

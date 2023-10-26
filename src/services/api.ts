@@ -9,10 +9,11 @@ var AUTH_KEY_COOKIE = cookieClass.getCookie('AuthorizedAdminConsorcio');
 var AUTH_KEY_STORAGE;
 
 if (process.env.NODE_ENV === 'development') {
-  // baseUrl = 'http://192.168.15.14:33333';
-  baseUrl = 'https://backend.trad1.com.br/';
+  baseUrl = 'http://192.168.15.7:4027';
+  // baseUrl = 'https://backend.trad1.com.br/';
 } else {
-  baseUrl = 'https://backend.trad1.com.br/';
+  baseUrl = 'http://192.168.15.7:4027';
+  // baseUrl = 'https://backend.trad1.com.br/';
 }
 
 const API = axios.create({

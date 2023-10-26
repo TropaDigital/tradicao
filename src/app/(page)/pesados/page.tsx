@@ -69,7 +69,7 @@ export default function ConsortiumTrucks() {
           imageAlt="Imagem de um caminhão de carga numa estrada"
         />
 
-        <SimulationForm />
+        <SimulationForm defaultStep="Pesados" />
 
         <CenterWrapper>
           <div className="margin">

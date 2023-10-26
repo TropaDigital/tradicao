@@ -82,7 +82,7 @@ export default function ConsortiumServices() {
           imageAlt="Imagem de uma mulher com uma câmera digital em mãos"
         />
 
-        <SimulationForm />
+        <SimulationForm defaultStep="Serviços" />
 
         <CenterWrapper>
           <div className="margin">

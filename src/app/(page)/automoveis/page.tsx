@@ -38,10 +38,10 @@ export default function ConsortiumAuto() {
       <S.ContainerTop>
         <SkewContainer imageSrc={AutoMovel} imageAlt="Imagem de um automóvel" />
 
-        <SimulationForm />
+        <SimulationForm defaultStep="Veículos" />
 
         <CenterWrapper>
-          <div className="margin" data-aos="fade-up">
+          <div className="margin" data-aos="fade-up" style={{ maxWidth: 800 }}>
             <MainTitle title="Consórcio de Automóveis" />
             <S.SubtitleTop>
               O consórcio de veículos pode ser a oportunidade que faltava para
