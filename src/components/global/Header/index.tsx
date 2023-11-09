@@ -148,7 +148,7 @@ const Header = () => {
     {
       icon: <SuitCaseIcon />,
       link: 'http://trad.consorciotradicao.com.br:8090/newconplus/',
-      text: 'Área do Representante'
+      text: 'Área do parceiro'
     }
   ];
 
@@ -170,7 +170,7 @@ const Header = () => {
   }
 
   function handleTargetBlank(link: string) {
-    if (link === 'Universidade' || link === 'Área do Representante') {
+    if (link === 'Universidade' || link === 'Área do parceiro') {
       return '_blank';
     }
 

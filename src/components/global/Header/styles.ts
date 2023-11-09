@@ -156,7 +156,7 @@ export const InfoContainer = styled.div<Props>`
     }
   }
   @media (max-width: 630px) {
-    .area-do-representante {
+    .area-do-parceiro {
       display: none;
     }
     .televendas {
