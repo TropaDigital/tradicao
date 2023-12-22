@@ -1,22 +1,38 @@
 'use client';
 
-import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
+// Next
+import { usePathname } from 'next/navigation';
+
+// React
 import React, { useCallback, useEffect, useState } from 'react';
+
+// Hooks
+import { useSteps } from '@/hooks/useSteps';
+
+// Styles
+import { SectionSimulatorForm, TitleSimulator } from './styles';
+
+// Components
 import Steps from '@/components/Steps';
 import Button from '@/components/UI/Button';
-import { useSteps } from '@/hooks/useSteps';
-import InfoGeral from '../componentSteps/InfoGeral';
-import { ConfirmImovel, InfoImovel } from '../componentSteps/InfoImovel';
-import { ConfirmService, InfoService } from '../componentSteps/InfoServices';
-import { ConfirmTruck, InfoTruck } from '../componentSteps/InfoTruck';
-import { ConfirmVehicle, InfoVehicle } from '../componentSteps/InfoVehicle';
-import { SectionSimulatorForm, TitleSimulator } from './styles';
-import { usePathname } from 'next/navigation';
+import { FieldGroup } from '@/components/pages/Painel/components/UiElements/styles';
+
+// Utils
 import { validateCnpj } from '@/utils/validateCnpj';
 import { validateCpf } from '@/utils/validateCpf';
+
+// Services
 import { useCreateSimulacao } from '@/services/simulacao/POST/useCreateSimulacao';
 import { useUpdateSimulacao } from '@/services/simulacao/PUT/useUpdateSimulacao';
+
+// Steps
+import { ConfirmService, InfoService } from '../componentSteps/InfoServices';
+import { ConfirmVehicle, InfoVehicle } from '../componentSteps/InfoVehicle';
+import { ConfirmImovel, InfoImovel } from '../componentSteps/InfoImovel';
+import { ConfirmTruck, InfoTruck } from '../componentSteps/InfoTruck';
+import { ConfirmMoto, InfoMoto } from '../componentSteps/InfoMoto';
 import FinalStep from '../componentSteps/finalStep/index';
+import InfoGeral from '../componentSteps/InfoGeral';
 
 type HandleOnChange = (
   event:
@@ -79,7 +95,8 @@ export default function SimulationForm({ defaultStep = 'Veículos' }) {
       Veículos: 1,
       Imóveis: 2,
       Serviços: 3,
-      Pesados: 4
+      Pesados: 4,
+      Motos: 5
     };
 
     changeStepComp(defaultStep, enumConsortiumTypes[defaultStep]);
@@ -177,6 +194,24 @@ export default function SimulationForm({ defaultStep = 'Veículos' }) {
           error={error}
         />,
         <ConfirmTruck
+          data={formData}
+          handleInputChange={handleOnChange}
+          handleOnChangeCheckbox={handleOnChangeCheckbox}
+          error={error}
+        />,
+        <FinalStep />
+      ]
+    },
+    {
+      name: 'Motos',
+      componet: [
+        <InfoMoto
+          data={formData}
+          handleInputChange={handleOnChange}
+          handleOnChangeCheckbox={handleOnChangeCheckbox}
+          error={error}
+        />,
+        <ConfirmMoto
           data={formData}
           handleInputChange={handleOnChange}
           handleOnChangeCheckbox={handleOnChangeCheckbox}
@@ -351,6 +386,14 @@ export default function SimulationForm({ defaultStep = 'Veículos' }) {
 
     if (formData.conquest === 'Pesados' && formData.typePlan === 'Crédito') {
       setFormData({ ...formData, ['value']: 185914.31 });
+    }
+
+    if (formData.conquest === 'Motos' && formData.typePlan === 'Parcela') {
+      setFormData({ ...formData, ['value']: 704.0 });
+    }
+
+    if (formData.conquest === 'Motos' && formData.typePlan === 'Crédito') {
+      setFormData({ ...formData, ['value']: 30000.0 });
     }
   }, [formData.typePlan, formData.conquest]);
 

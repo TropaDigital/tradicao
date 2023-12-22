@@ -35,6 +35,10 @@ export const ConsortiumCard = styled.div`
 
 export const ConsortiumCardImage = styled.div`
   height: 155px;
+
+  img {
+    height: 100%;
+  }
 `;
 
 export const ConsortiumCardText = styled.div`

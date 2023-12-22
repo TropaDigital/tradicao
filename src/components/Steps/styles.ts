@@ -26,7 +26,7 @@ export const Container = styled.div`
     background-color: transparent;
     transition: all 0.35s;
     position: absolute;
-    bottom: -1px;
+    bottom: -4px;
   }
 
   .step {

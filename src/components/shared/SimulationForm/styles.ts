@@ -29,8 +29,8 @@ const appearFromRight = keyframes`
 `;
 
 export const SectionSimulatorForm = styled.div<Props>`
-  width: 100%;
-  max-width: 460px;
+  width: fit-content;
+  /* max-width: 500px; */
   height: 428px;
 
   padding: 32px 20px;

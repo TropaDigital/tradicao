@@ -204,6 +204,7 @@ const FormContemplados = ({ modalOpen, actualItem, onSubmit }: IForm) => {
                   <option value="Imóveis">Imóveis</option>
                   <option value="Pesados">Pesados</option>
                   <option value="Serviços">Serviços</option>
+                  <option value="Motos">Motos</option>
                 </SelectDefault>
 
                 <SelectDefault

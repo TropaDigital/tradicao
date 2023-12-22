@@ -149,6 +149,22 @@ export default function InfoGeral({
             handleOnChange={handleOnChangeValue}
           />
         )}
+        {selectedType === 'Motos' && simulatorPlan === 'Parcela' && (
+          <InputRange
+            defaultValue={defaultValue !== 704.0 ? 704.0 : defaultValue}
+            maxValue={936.0}
+            minValue={472.0}
+            handleOnChange={handleOnChangeValue}
+          />
+        )}
+        {selectedType === 'Motos' && simulatorPlan === 'Crédito' && (
+          <InputRange
+            defaultValue={defaultValue !== 30000.0 ? 30000.0 : defaultValue}
+            maxValue={40000.0}
+            minValue={20000.0}
+            handleOnChange={handleOnChangeValue}
+          />
+        )}
       </ContentSimulation>
     </div>
   );

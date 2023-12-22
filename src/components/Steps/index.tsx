@@ -1,4 +1,10 @@
-import { CarIcon, MovelIcon, ServiceIcon, TruckIcon } from '@/assets/icons';
+import {
+  CarIcon,
+  MotorcycleIcon,
+  MovelIcon,
+  ServiceIcon,
+  TruckIcon
+} from '@/assets/icons';
 import { Container } from './styles';
 
 interface StepsProps {
@@ -56,6 +62,19 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
         >
           <TruckIcon />
           <span className="option-text">Pesados</span>
+        </button>
+
+        <div className="stepButtonInner" />
+      </div>
+
+      <div className={`step ${currentStep === 5 ? 'stepActive ' : ''}`}>
+        <button
+          type="button"
+          className="stepButton"
+          onClick={() => handleOnClick('Motos', 5)}
+        >
+          <MotorcycleIcon />
+          <span className="option-text">Motos</span>
         </button>
 
         <div className="stepButtonInner" />
