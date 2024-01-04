@@ -35,6 +35,7 @@ const TermosPage = () => {
             que foram fornecidos por você, seja diretamente com o Consórcio
             Tradição ou por intermédio das revendas parceiras credenciadas.
           </Text>
+
           <Subtitle>CONCEITOS ESSENCIAIS</Subtitle>
           <Text>
             <b>Dados pessoais:</b> Informação relacionada a pessoa natural
@@ -51,20 +52,20 @@ const TermosPage = () => {
           </Text>
 
           <Text>
-            <b>Titular:</b> pessoa natural a quem se referem os dados pessoais
+            <b>Titular:</b> Pessoa natural a quem se referem os dados pessoais
             que são objeto de tratamento; Controlador: pessoa natural ou
             jurídica, de direito público ou privado, a quem competem as decisões
             referentes ao tratamento de dados pessoais.
           </Text>
 
           <Text>
-            <b>Operador:</b> pessoa natural ou jurídica, de direito público ou
+            <b>Operador:</b> Pessoa natural ou jurídica, de direito público ou
             privado, que realiza o tratamento de dados pessoais em nome do
             controlador;
           </Text>
 
           <Text>
-            <b>Encarregado (DPO):</b> pessoa indicada pelo controlador e
+            <b>Encarregado (DPO):</b> Pessoa indicada pelo controlador e
             operador para atuar como canal de comunicação entre o controlador,
             os titulares dos dados e a Autoridade Nacional de Proteção de Dados
             (ANPD).
@@ -101,13 +102,14 @@ const TermosPage = () => {
             o navegador utilizado, tais informações são para fins de cumprimento
             de obrigação legal. A coleta de dados automática é realizada através
             de tecnologias padrões como cookies, que é o utilizado pelo
-            Consórcio para transformar a sua experiência de acesso ao site.{' '}
+            Consórcio Tradição para transformar a sua experiência de acesso ao
+            site.{' '}
           </Text>
 
           <Text>
-            <b>Cookies:</b> são informações que um site transfere para o
+            <b>Cookies:</b> São informações que um site transfere para o
             computador de um indivíduo para fins de manutenção de registros.
-            Esses cookies serão colocados como um arquivo de texto no navegador
+            Estes cookies serão colocados como um arquivo de texto no navegador
             do seu computador. Você pode configurar seu navegador para recusar
             cookies, mas consequentemente poderá não conseguir acessar ou usar
             partes do site.
@@ -157,6 +159,24 @@ const TermosPage = () => {
                   Edge
                 </StyledLink>
               </li>
+
+              <li>
+                <StyledLink
+                  href="https://help.opera.com/en/latest/web-preferences/#cookies"
+                  target="_blank"
+                >
+                  Opera
+                </StyledLink>
+              </li>
+
+              <li>
+                <StyledLink
+                  href="https://brave.com/pt-br/privacy-updates/21-blocking-cookie-notices/"
+                  target="_blank"
+                >
+                  Brave
+                </StyledLink>
+              </li>
             </UnorderedList>
           </Text>
 
@@ -170,21 +190,22 @@ const TermosPage = () => {
 
           <Subtitle>FINALIDADES DO TRATAMENTO DE DADOS </Subtitle>
           <Text>
-            O tratamento de dados realizados pelo Consórcio Tradição tem como
-            objetivo melhorar sua experiência de acesso ao site, permitir que
+            O tratamento de dados realizado pelo Consórcio Tradição tem como
+            objetivo melhorar sua experiência de acesso ao site, permitindo que
             nossos consultores entrem em contato com você para passar
-            informações a respeito do Consórcio, além de todo auxilio necessário
-            da contratação até a finalização do contrato. Além do contato de
-            nossos Consultores, seus dados serão utilizados para realizar o
-            envio de conteúdos de Marketing e informativos a respeito do
-            Consórcio, permitir a assinatura de documentos eletronicamente única
-            e exclusivamente a respeito do relacionamento mantido entre o
-            cliente e o Consórcio, atender exigências legais com informações
-            adicionais, manter registros de suas solicitações e realização de
-            pesquisas de qualidade a respeito do Consórcio. Desativação de
-            recebimento de conteúdo: Se você não desejar receber comunicações de
-            marketing e contatos, basta solicitar o não acionamento através do
-            contato disponibilizado ao final desta política.
+            informações a respeito do Consórcio Tradição, além de todo auxílio
+            necessário da contratação até a finalização do contrato. Além do
+            contato de nossos Consultores, seus dados serão utilizados para
+            realizar o envio de conteúdos de Marketing e informativos a respeito
+            do consórcio, permitir a assinatura de documentos eletronicamente
+            única e exclusivamente a respeito do relacionamento mantido entre o
+            cliente e o Consórcio Tradição, atender exigências legais com
+            informações adicionais, manter registros de suas solicitações e
+            realização de pesquisas de qualidade a respeito do Consórcio
+            Tradição. Desativação de recebimento de conteúdo: Se você não
+            desejar receber comunicações de marketing e contatos, basta
+            solicitar o não acionamento através do contato disponibilizado ao
+            final desta política.
           </Text>
 
           <Subtitle>COMPATILHAMENTO DE DADOS</Subtitle>
@@ -205,7 +226,7 @@ const TermosPage = () => {
             O Consórcio Tradição armazenará seus dados pessoais em servidores
             próprios ou por ele contratados no Brasil e/ou no exterior. A guarda
             dos dados pessoais serão armazenados pelo prazo determinado em
-            legislação e regulações especificas. Após a finalização dos prazos
+            legislação e regulações específicas. Após a finalização dos prazos
             determinados, você poderá solicitar a exclusão de seus dados de
             nossos servidores.
           </Text>
@@ -229,10 +250,10 @@ const TermosPage = () => {
           <Text>
             O acesso ao site do Consórcio Tradição poderá ser realizado através
             de aplicações de terceiros como redes sociais, landing pages e
-            buscadores, e você também poderá ser direcionado do site do
-            Consórcio para aplicações de terceiros. Nessas situações a
-            responsabilidade pelo tratamento dos dados pessoais serão de
-            responsabilidade dos titulares das respectivas aplicações.{' '}
+            buscadores, e você também poderá ser direcionado ao site do
+            Consórcio Tradição para aplicações de terceiros. Nessas situações a
+            responsabilidade pelo tratamento dos dados pessoais será de
+            responsabilidade dos titulares das respectivas aplicações.
           </Text>
 
           <Subtitle>DIREITOS DO TITULAR</Subtitle>
@@ -264,23 +285,23 @@ const TermosPage = () => {
 
           <Text>
             Para que você possa exercer alguns de seus direitos, o Consórcio
-            necessitará de algumas informações adicionais que deverão ser
-            fornecidas por você. O Consórcio Tradição está comprometido em
-            atender todas as solicitações realizadas quando possível de forma
-            imediata, e se tratando de informações mais complexas que exijam
-            buscas e fornecimento de informações especificas, estas serão
-            atendidas dentro do prazo legal de 15 dias. A respeito da eliminação
-            de dados, as solicitações só serão realizadas no caso de não estarem
-            conforme as legislações e regulamentos vigentes.
+            Tradição necessitará de algumas informações adicionais que deverão
+            ser fornecidas por você. A Tradição está comprometida em atender
+            todas as solicitações realizadas quando possível de forma imediata,
+            e se tratando de informações mais complexas que exijam buscas e
+            fornecimento de informações específicas, estas serão atendidas
+            dentro do prazo legal de 15 dias. A respeito da eliminação de dados,
+            as solicitações só serão realizadas no caso de não estarem conforme
+            as legislações e regulamentos vigentes.
           </Text>
 
           <Subtitle>TRANSFERÊNCIAS INTERNACIONAIS</Subtitle>
           <Text>
             Os dados pessoais são protegidos no Brasil pelas exigências da Lei
-            Geral de Proteção de Dados, mas alguns outros países podem não
-            necessariamente ter o mesmo alto padrão de proteção para seus dados
-            pessoais. Nós não transferimos nem tratamos seus dados pessoais fora
-            do Brasil.
+            Geral de Proteção de Dados (LGPD), mas alguns outros países podem
+            não necessariamente ter o mesmo alto padrão de proteção para seus
+            dados pessoais. Nós não transferimos nem tratamos seus dados
+            pessoais fora do Brasil.
           </Text>
 
           <Subtitle>CASO NÃO CONCORDE EM FORNECER SEUS DADOS PESSOAIS</Subtitle>
@@ -332,13 +353,13 @@ const TermosPage = () => {
 
           <Subtitle>ALTERAÇÕES AOS TERMOS DESTA POLÍTICA</Subtitle>
           <Text>
-            Caso você não concorde com esta Política, não prossiga e não forneça
-            nenhum dado pessoal que seja solicitado. Esta Política de
+            Caso você não concorde com a nossa política, não prossiga e não
+            forneça nenhum dado pessoal que seja solicitado. Esta Política de
             Privacidade poderá sofrer alterações, desta forma pedimos a você que
             sempre que possível faça nova leitura para verificar sempre a versão
             mais atualizada. E ainda, caso você já seja nosso cliente, você
             receberá e-mail informativo a respeito de alterações que sejam
-            realizadas nesta Política.
+            realizadas nesta política.
           </Text>
 
           <Subtitle>LEGISLAÇÃO E FORO</Subtitle>

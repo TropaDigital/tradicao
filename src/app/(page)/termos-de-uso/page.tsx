@@ -67,12 +67,22 @@ const TermosPage = () => {
           <Subtitle>QUAIS COOKIES UTILIZAMOS E COMO FUNCIONAM?</Subtitle>
           <Text>
             _ga: esses cookies são utilizados para contar e armazenar
-            visualizações na página do Consórcio Tradição. _fbp: são cookies que
-            rastreiam os visitantes do nosso website. _gid: utilizados para
-            informar como o usuário do site Consórcio Tradição utiliza a página,
-            assim ajuda a criar um relatório analítico de como o site está se
-            desempenhando. _gat_AU: é um cookie padrão ao qual utiliza o número
-            de identidade exclusiva do site ao qual se está utilizando.
+            visualizações na página do Consórcio Tradição.
+          </Text>
+
+          <Text>
+            _fbp: são cookies que rastreiam os visitantes do nosso website.
+          </Text>
+
+          <Text>
+            _gid: utilizados para informar como o usuário do site Consórcio
+            Tradição utiliza a página, assim ajuda a criar um relatório
+            analítico de como o site está se desempenhando.
+          </Text>
+
+          <Text>
+            _gat_AU: é um cookie padrão ao qual utiliza o número de identidade
+            exclusiva do site ao qual se está utilizando.
           </Text>
 
           <Subtitle>
