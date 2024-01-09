@@ -21,7 +21,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           className="stepButton"
           onClick={() => handleOnClick('Veículos', 1)}
         >
-          <CarIcon />
+          <div className={'iconWrapper'}>
+            <CarIcon />
+          </div>
           <span className="option-text">Veículos</span>
         </button>
 
@@ -34,7 +36,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           className="stepButton"
           onClick={() => handleOnClick('Imóveis', 2)}
         >
-          <MovelIcon />
+          <div className={'iconWrapper'}>
+            <MovelIcon />
+          </div>
           <span className="option-text">Imóveis</span>
         </button>
 
@@ -47,7 +51,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           className="stepButton"
           onClick={() => handleOnClick('Serviços', 3)}
         >
-          <ServiceIcon />
+          <div className={'iconWrapper'}>
+            <ServiceIcon />
+          </div>
           <span className="option-text">Serviços</span>
         </button>
 
@@ -60,7 +66,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           className="stepButton"
           onClick={() => handleOnClick('Pesados', 4)}
         >
-          <TruckIcon />
+          <div className={'iconWrapper'}>
+            <TruckIcon />
+          </div>
           <span className="option-text">Pesados</span>
         </button>
 
@@ -73,7 +81,9 @@ export default function Steps({ currentStep, handleOnClick }: StepsProps) {
           className="stepButton"
           onClick={() => handleOnClick('Motos', 5)}
         >
-          <MotorcycleIcon />
+          <div className={'iconWrapper'}>
+            <MotorcycleIcon />
+          </div>
           <span className="option-text">Motos</span>
         </button>
 

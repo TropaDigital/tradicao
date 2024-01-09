@@ -41,7 +41,11 @@ export default function ConsortiumAuto() {
         <SimulationForm defaultStep="Veículos" />
 
         <CenterWrapper>
-          <div className="margin" data-aos="fade-up" style={{ maxWidth: 800 }}>
+          <div
+            className="margin content-wrapper"
+            data-aos="fade-up"
+            // style={{ maxWidth: 800 }}
+          >
             <MainTitle title="Consórcio de Automóveis" />
             <S.SubtitleTop>
               O consórcio de veículos pode ser a oportunidade que faltava para

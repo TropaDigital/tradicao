@@ -15,6 +15,22 @@ export const ContainerTop = styled.div`
     margin-top: 30px;
     margin-bottom: 400px;
   }
+
+  .content-wrapper {
+    max-width: 700px;
+
+    @media (max-width: 1250px) {
+      max-width: 600px;
+    }
+
+    @media (max-width: 1100px) {
+      max-width: 550px;
+    }
+
+    @media (max-width: 1090px) {
+      max-width: unset;
+    }
+  }
 `;
 
 export const SubtitleTop = styled.div`

@@ -67,6 +67,14 @@ const styleButtonPlan = {
   border: '1px solid #0036C6'
 };
 
+const DEFAULT_VALUES: { [key: string]: number } = {
+  ['Veículos']: 1366.38,
+  ['Imóveis']: 1313.84,
+  ['Serviços']: 382.92,
+  ['Pesados']: 5236.25,
+  ['Motos']: 704.0
+};
+
 export default function SimulationForm({ defaultStep = 'Veículos' }) {
   const [error, setError] = useState<StateProps>({});
   const [isSimulator, setSimulator] = useState(false);
@@ -74,7 +82,7 @@ export default function SimulationForm({ defaultStep = 'Veículos' }) {
   const [formData, setFormData] = useState({
     conquest: 'Veículos',
     typePlan: 'Parcela',
-    value: 1366.58,
+    value: DEFAULT_VALUES[defaultStep] ?? 1366.38,
     name: '',
     email: '',
     phone: '',

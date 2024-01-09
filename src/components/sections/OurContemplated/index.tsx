@@ -97,7 +97,7 @@ export default function OurContemplated() {
           marginBottom="87"
         >
           <Slider {...SlideSettings}>
-            {actualContemplated?.map((contemplated) => {
+            {actualContemplated?.map((contemplated, key) => {
               if (
                 contemplated?.status === 'Inativo' &&
                 contemplated?.contempladoImagens[0]?.url_foto
@@ -111,6 +111,7 @@ export default function OurContemplated() {
                   image={contemplated?.contempladoImagens[0]?.url_foto}
                   imageType={true}
                   bigText={false}
+                  key={key}
                 />
               );
             })}

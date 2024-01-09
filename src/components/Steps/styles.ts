@@ -11,9 +11,16 @@ export const Container = styled.div`
   border-bottom: 2px solid #0036c6;
 
   .option-text {
-    @media (max-width: 450px) {
+    @media (max-width: 575px) {
       display: none;
     }
+  }
+
+  .iconWrapper {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .stepButtonInner {
@@ -26,7 +33,7 @@ export const Container = styled.div`
     background-color: transparent;
     transition: all 0.35s;
     position: absolute;
-    bottom: -4px;
+    bottom: 0;
   }
 
   .step {
@@ -54,6 +61,14 @@ export const Container = styled.div`
     gap: 4px;
     padding: 10px;
     background-color: transparent;
+
+    @media (max-width: 575px) {
+      padding: 10px 20px;
+    }
+
+    @media (max-width: 395px) {
+      padding: 10px 15px;
+    }
 
     span {
       font-weight: 400;

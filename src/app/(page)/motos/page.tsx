@@ -40,10 +40,10 @@ export default function ConsortiumMoto() {
           imageAlt="Imagem de um automóvel"
         />
 
-        <SimulationForm defaultStep="Veículos" />
+        <SimulationForm defaultStep="Motos" />
 
         <CenterWrapper>
-          <div className="margin" data-aos="fade-up" style={{ maxWidth: 800 }}>
+          <div className="margin content-wrapper" data-aos="fade-up">
             <MainTitle title="Consórcio de Motos" />
             <S.SubtitleTop>
               O consórcio de motos pode ser a oportunidade que faltava para

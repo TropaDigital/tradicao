@@ -1,4 +1,4 @@
-import { TruckIcon } from '@/assets/icons';
+import { MotorcycleIcon, TruckIcon } from '@/assets/icons';
 import { CheckboxDefault } from '@/components/pages/Painel/components/inputs/CheckboxDefault';
 import { SelectDefault } from '@/components/pages/Painel/components/inputs/SelectDefault';
 import {
@@ -34,7 +34,7 @@ export function InfoMoto({
   return (
     <ContentSimulation style={{ marginTop: '0px' }}>
       <legend className="isSubInfo">
-        <TruckIcon width={23} height={21} />
+        <MotorcycleIcon />
         <h2>Consórcio de Motos</h2>
       </legend>
       <FieldDefault style={{ marginBottom: '14px' }}>
