@@ -13,7 +13,7 @@ export default function Contato() {
   const CALL_CENTERS_NUMBER: Array<string> = [
     '0800 877 0020',
     '4003-5090',
-    '(11) 2928-4800'
+    '(11) 2928-4804'
   ];
 
   return (
@@ -39,7 +39,7 @@ export default function Contato() {
             <S.ContactSubtitle>Whatsapp</S.ContactSubtitle>
 
             <Link href={`https://wa.me/551129284855`} target="_blank">
-              <S.ContactText>(11) 2928-4855</S.ContactText>
+              <S.ContactText>(11) 2928-4804</S.ContactText>
             </Link>
 
             <S.ContactSubtitle>SAC</S.ContactSubtitle>

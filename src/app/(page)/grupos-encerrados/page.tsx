@@ -87,7 +87,7 @@ export default function ClosedGroups() {
 
           <S.KnowMore>
             Para maiores informações entre em contato pelo Whatsapp: (11)
-            2928-4855
+            2928-4804
           </S.KnowMore>
 
           <PaginationData

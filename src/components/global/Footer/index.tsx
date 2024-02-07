@@ -171,7 +171,7 @@ export default function Footer() {
               >
                 <div style={{ display: 'flex', gap: '5px', marginTop: '8px' }}>
                   <WhatsappIcon width={256 * 0.07} height={258 * 0.07} />
-                  <TextField>(11) 2928-4855</TextField>
+                  <TextField>(11) 2928-4804</TextField>
                 </div>
               </Link>
             </div>

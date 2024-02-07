@@ -341,7 +341,7 @@ const TermosPage = () => {
             Você pode enviar suas dúvidas e solicitações relativas a seus
             direitos e a esta Política para o e-mail:{' '}
             <strong>dpo@tradicao.net.br</strong> ou através do telefone (11)
-            2928-4800.
+            2928-4804.
           </Text>
 
           <Subtitle>DADOS DO CONTROLADOR</Subtitle>
