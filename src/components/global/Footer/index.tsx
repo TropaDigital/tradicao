@@ -166,7 +166,7 @@ export default function Footer() {
                 </TextButton>
               </Link>
               <Link
-                href={'https://api.whatsapp.com/send?phone=551129284855'}
+                href={'https://api.whatsapp.com/send?phone=551129284804'}
                 target={'_blank'}
               >
                 <div style={{ display: 'flex', gap: '5px', marginTop: '8px' }}>
