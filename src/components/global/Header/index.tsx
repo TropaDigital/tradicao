@@ -276,16 +276,18 @@ const Header = () => {
       </S.InfoContainer>
 
       <S.HeaderContainer className={'nav-' + scrollDirection}>
-        <Link href="/">
-          <div className="logo" onClick={scrollToTop}>
-            <Image
-              src="/images/logo-default.png"
-              alt="Logo Consórcio Tradição"
-              width={262}
-              height={77}
-            />
-          </div>
-        </Link>
+        <h1>
+          <Link href="/">
+            <div className="logo" onClick={scrollToTop}>
+              <Image
+                src="/images/logo-default.png"
+                alt="Consórcio Tradição"
+                width={262}
+                height={77}
+              />
+            </div>
+          </Link>
+        </h1>
 
         {windowWidth && windowWidth <= 1340 ? (
           <div className="menu-container">

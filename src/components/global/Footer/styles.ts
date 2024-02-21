@@ -155,6 +155,19 @@ export const TextButton = styled.div`
   color: var(--white);
 `;
 
+export const TextButtonH3 = styled.h3`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 31px;
+  font-size: var(--text-smal-sm);
+  font-weight: var(--weight-regular);
+  line-height: 30px;
+  color: var(--white);
+  cursor: pointer;
+`;
+
 export const TextField = styled.div`
   font-size: var(--text-smal-sm);
   font-weight: var(--weight-regular);

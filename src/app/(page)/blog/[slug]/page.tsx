@@ -43,7 +43,7 @@ const BlogPostPage = () => {
                   {allPosts?.result[0]?.categoria}
                 </Link>
               </span>
-              <h1 className="post-title">{allPosts?.result[0]?.titulo}</h1>
+              <h2 className="post-title">{allPosts?.result[0]?.titulo}</h2>
               <span className="post-date">
                 Postado em{' '}
                 {moment(allPosts?.result[0]?.data?.split('T')[0]).format(

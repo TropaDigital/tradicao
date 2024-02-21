@@ -17,11 +17,11 @@ export default function Speciality() {
 
       <GroupLogos>
         <div className="logos">
-          <h3>Autorizada</h3>
+          <strong>Autorizada</strong>
           <Image src={bancoCenterImg} alt={'bancoCenterImg'} width={240} />
         </div>
         <div className="logos">
-          <h3>Afiliada</h3>
+          <strong>Afiliada</strong>
           <Image src={abacEmpresaImg} alt={'abacEmpresaImg'} width={210} />
         </div>
       </GroupLogos>

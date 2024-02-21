@@ -29,6 +29,7 @@ import {
   RightSide,
   SocialMedia,
   TextButton,
+  TextButtonH3,
   TextField,
   TitleColumns,
   TopFooter
@@ -103,21 +104,29 @@ export default function Footer() {
                 marginBottom: '26px'
               }}
             >
-              <Link href={'/servicos'}>
-                <TextButton>Consórcio de Serviços</TextButton>
-              </Link>
+              <TextButtonH3>
+                <Link style={{ all: 'inherit' }} href={'/servicos'}>
+                  Consórcio de Serviços
+                </Link>
+              </TextButtonH3>
 
-              <Link href={'/imoveis'}>
-                <TextButton>Consórcio de Imóveis</TextButton>
-              </Link>
+              <TextButtonH3>
+                <Link style={{ all: 'inherit' }} href={'/imoveis'}>
+                  Consórcio de Imóveis
+                </Link>
+              </TextButtonH3>
 
-              <Link href={'/automoveis'}>
-                <TextButton>Consórcio de Automóveis</TextButton>
-              </Link>
+              <TextButtonH3>
+                <Link style={{ all: 'inherit' }} href={'/automoveis'}>
+                  Consórcio de Automóveis
+                </Link>
+              </TextButtonH3>
 
-              <Link href={'/pesados'}>
-                <TextButton>Consórcio de Pesados</TextButton>
-              </Link>
+              <TextButtonH3>
+                <Link style={{ all: 'inherit' }} href={'/pesados'}>
+                  Consórcio de Pesados
+                </Link>
+              </TextButtonH3>
             </div>
 
             <TitleColumns>Ouvidoria:</TitleColumns>
@@ -207,21 +216,25 @@ export default function Footer() {
         <BottomFooter>
           <div>
             <div className="partnerWrapper" style={{ marginBottom: '22px' }}>
-              <Image
-                src="/images/logo_tradimax.png"
-                className="partner-logo"
-                alt="Logo Tradmax"
-                height={124 * 0.4}
-                width={451 * 0.4}
-              />
+              <Link href={'https://tradimax.com.br'} target="_blank">
+                <Image
+                  src="/images/logo_tradimax.png"
+                  className="partner-logo"
+                  alt="Logo Tradmax"
+                  height={124 * 0.4}
+                  width={451 * 0.4}
+                />
+              </Link>
 
-              <Image
-                src="/images/logo_trad+.png"
-                className="partner-logo"
-                alt="Logo Tradmax"
-                height={124 * 0.4}
-                width={451 * 0.4}
-              />
+              <Link href={'https://tradimais.com.br'} target="_blank">
+                <Image
+                  src="/images/logo_trad+.png"
+                  className="partner-logo"
+                  alt="Logo Tradmax"
+                  height={124 * 0.4}
+                  width={451 * 0.4}
+                />
+              </Link>
             </div>
 
             <div className="text" style={{ marginBottom: '15px' }}>
